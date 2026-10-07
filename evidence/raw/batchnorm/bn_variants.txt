@@ -1,0 +1,45 @@
+### captured 2026-10-07T12:18:24+08:00
+### command: python scripts/11_bn_variants.py
+[
+  {
+    "case": "bn1d_2d",
+    "pass": true,
+    "exit_code": 0,
+    "miopen_kernel": null,
+    "type_traits_err": false
+  },
+  {
+    "case": "bn1d_3d",
+    "pass": false,
+    "exit_code": 1,
+    "miopen_kernel": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr",
+    "type_traits_err": true
+  },
+  {
+    "case": "bn2d",
+    "pass": false,
+    "exit_code": 1,
+    "miopen_kernel": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr",
+    "type_traits_err": true
+  },
+  {
+    "case": "bn3d",
+    "pass": false,
+    "exit_code": 1,
+    "miopen_kernel": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr",
+    "type_traits_err": true
+  },
+  {
+    "case": "groupnorm",
+    "pass": true,
+    "exit_code": 0,
+    "miopen_kernel": null,
+    "type_traits_err": false
+  }
+]
+bn1d_2d: PASS kernel=None
+bn1d_3d: FAIL kernel=MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr
+bn2d: FAIL kernel=MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr
+bn3d: FAIL kernel=MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr
+groupnorm: PASS kernel=None
+EXIT=0

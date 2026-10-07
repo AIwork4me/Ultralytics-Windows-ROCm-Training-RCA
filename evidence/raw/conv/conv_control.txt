@@ -1,0 +1,7 @@
+### captured 2026-10-07T12:10:03+08:00
+### command: python scripts/04_conv_control.py
+torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics
+out shape=(8, 32, 64, 64) mean=0.002491 isfinite=True
+first-call wall time (incl. any kernel compile): 0.05 s
+CONV_CONTROL: PASS
+EXIT=0

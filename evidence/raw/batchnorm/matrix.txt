@@ -1,0 +1,156 @@
+### captured 2026-10-07T11:55:54+08:00
+### command: python scripts/03_batchnorm_matrix.py
+
+===== MATRIX RESULTS =====
+[
+  {
+    "case": "A",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py A",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.27,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gemm ok mean=0.016025",
+      "CASE_A: PASS"
+    ]
+  },
+  {
+    "case": "B",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py B",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 1.87,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "cpu bn ok mean=-0.000000",
+      "CASE_B: PASS"
+    ]
+  },
+  {
+    "case": "C",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py C",
+    "env": "",
+    "pass": false,
+    "exit_code": 1,
+    "seconds": 2.15,
+    "signature": [
+      "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdInferSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)",
+      "MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdInferSpatial.cpp",
+      "MIOpen(HIP): Warning [BuildHip] In file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-108844-6-815981\\input\\MIOpenBatchNormFwdInferSpatial.cpp:30:",
+      "C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-108844-6-815981\\include\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found",
+      "  151 | #include <type_traits>",
+      "MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdInferSpatial.cpp",
+      "RuntimeError: miopenStatusUnknownError"
+    ],
+    "last_output_lines": [
+      "        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+      "    )",
+      "    ^",
+      "RuntimeError: miopenStatusUnknownError"
+    ]
+  },
+  {
+    "case": "D",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py D",
+    "env": "",
+    "pass": false,
+    "exit_code": 1,
+    "seconds": 2.22,
+    "signature": [
+      "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)",
+      "MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp",
+      "MIOpen(HIP): Warning [BuildHip] In file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-107764-6-abd112\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:",
+      "C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-107764-6-abd112\\include\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found",
+      "  151 | #include <type_traits>",
+      "MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp",
+      "RuntimeError: miopenStatusUnknownError"
+    ],
+    "last_output_lines": [
+      "        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+      "    )",
+      "    ^",
+      "RuntimeError: miopenStatusUnknownError"
+    ]
+  },
+  {
+    "case": "E",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py E",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.05,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu bn train cudnn.disabled ok mean=0.000000",
+      "CASE_E: PASS"
+    ]
+  },
+  {
+    "case": "F",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py F",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 16.76,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu conv ok mean=0.008708",
+      "CASE_F: PASS"
+    ]
+  },
+  {
+    "case": "G",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py G",
+    "env": "",
+    "pass": false,
+    "exit_code": 1,
+    "seconds": 2.41,
+    "signature": [
+      "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)",
+      "MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp",
+      "MIOpen(HIP): Warning [BuildHip] In file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-91488-6-68a16a\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:",
+      "C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-91488-6-68a16a\\include\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found",
+      "  151 | #include <type_traits>",
+      "MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp",
+      "RuntimeError: miopenStatusUnknownError"
+    ],
+    "last_output_lines": [
+      "        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+      "    )",
+      "    ^",
+      "RuntimeError: miopenStatusUnknownError"
+    ]
+  },
+  {
+    "case": "H",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py H",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.41,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu linear+backward ok grad_norm=8347.244141",
+      "CASE_H: PASS"
+    ]
+  }
+]
+
+===== SUMMARY =====
+CASE A: PASS (exit 0, 2.27s)
+CASE B: PASS (exit 0, 1.87s)
+CASE C: FAIL (exit 1, 2.15s)
+CASE D: FAIL (exit 1, 2.22s)
+CASE E: PASS (exit 0, 2.05s)
+CASE F: PASS (exit 0, 16.76s)
+CASE G: FAIL (exit 1, 2.41s)
+CASE H: PASS (exit 0, 2.41s)
+EXIT=0
