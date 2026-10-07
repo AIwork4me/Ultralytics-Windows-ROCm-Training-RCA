@@ -2,7 +2,7 @@
 
 Date: 2026-10-08. All "unpatched"/"patched" columns are SOURCE-BUILT MIOpen
 from the SAME commit b68f8944300f104875d953fc8e4510908c9aaf0b, the only
-difference being the handoff patch P3-FINAL (0001 f06d7ae5 + 0002 77f9fc16),
+difference being the handoff patch P3-FINAL-R3 (0001 f06d7ae5 + 0002 77f9fc16),
 loaded via LD_PRELOAD with dladdr(miopenCreate) provenance per run, fresh
 isolated MIOpen caches per matrix. Wheel column = shipped wheel stack
 (baseline run 1).

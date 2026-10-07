@@ -51,6 +51,6 @@ LINUX INDEPENDENT REGRESSION VALIDATION — PASS
 ```
 
 Linux unpatched baseline passes; the exact SOURCE_SHA + exact unmodified
-P3-FINAL patch builds and passes identically (numerics bit-identical);
+P3-FINAL-R3 patch builds and passes identically (numerics bit-identical);
 patch never modified by the Linux validator; three independent reviews
 converge with no unresolved BLOCKER/MAJOR on the behavior chain.

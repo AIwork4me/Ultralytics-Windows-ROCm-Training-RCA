@@ -1,0 +1,25 @@
+=== GATE F01: PRE-MERGE HANDOFF VERIFICATION ===
+origin/main: e43321f5a25ba9e0007ec6c737339acec5b03ab6
+ref verified: rca/linux-gfx1151-phase3-regression @ 5c1be1e34adbdfc61cb3b668543e457617c9bb0e
+
+0001 blob sha256 : f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20
+   expected      : f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20
+   0001 MATCH    : True
+
+0002 blob sha256 : 77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532
+   expected      : 77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532
+   0002 MATCH    : True
+
+series sha256    : b1150afcf2170a9d396f9a25669547c0ed4021c221f7feaa59e073d4b9706685
+   expected      : b1150afcf2170a9d396f9a25669547c0ed4021c221f7feaa59e073d4b9706685
+   SERIES MATCH  : True
+
+handoff source.sha : b68f8944300f104875d953fc8e4510908c9aaf0b
+SOURCE_SHA MATCH   : True
+handoff patch_id   : P3-FINAL-R3
+PATCH_ID = P3-FINAL-R3: True
+
+HANDOFF VALID     : True
+
+blob byte lengths: 0001=15143 0002=6375
+crlf check: 0001 CR count=0, 0002 CR count=0
