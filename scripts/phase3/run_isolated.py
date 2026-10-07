@@ -41,6 +41,7 @@ def sha256_file(p: str) -> str:
 def main() -> int:
     tag, outdir, script = sys.argv[1], sys.argv[2], sys.argv[3]
     script_args = sys.argv[4:]
+    yolo_mode = os.environ.get("PHASE3_ISOLATION") == "yolo"
     os.makedirs(outdir, exist_ok=True)
     iso = os.path.join(tempfile.gettempdir(), f"phase3_iso_{tag}_{uuid.uuid4().hex[:8]}")
     os.makedirs(iso)
@@ -51,13 +52,19 @@ def main() -> int:
                 "MIOPEN_USER_CACHE_PATH", "MIOPEN_USER_DB_PATH",
                 "AMD_COMGR_CACHE", "HIP_VISIBLE_DEVICES"):
         env.pop(var, None)
-    env["HOME"] = iso
-    env["USERPROFILE"] = iso
+    if not yolo_mode:
+        env["HOME"] = iso
+        env["USERPROFILE"] = iso
     env["LOCALAPPDATA"] = os.path.join(iso, "AppData", "Local")
     env["TEMP"] = os.path.join(iso, "tmp")
     env["TMP"] = env["TEMP"]
+    # explicit fresh MIOpen user caches regardless of profile layout
+    env["MIOPEN_USER_CACHE_PATH"] = os.path.join(iso, "miopen_cache")
+    env["MIOPEN_USER_DB_PATH"] = os.path.join(iso, "miopen_db")
     os.makedirs(env["LOCALAPPDATA"], exist_ok=True)
     os.makedirs(env["TEMP"], exist_ok=True)
+    os.makedirs(env["MIOPEN_USER_CACHE_PATH"], exist_ok=True)
+    os.makedirs(env["MIOPEN_USER_DB_PATH"], exist_ok=True)
     env["PYTHONUNBUFFERED"] = "1"
 
     probe = r"""

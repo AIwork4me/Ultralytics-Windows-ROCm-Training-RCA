@@ -1,0 +1,14 @@
+{
+  "tag": "g65_66_matrix",
+  "started": "2026-10-07T20:20:25.891274",
+  "finished": "2026-10-07T20:20:25.949995",
+  "isolation_dir": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g65_66_matrix_307e2611",
+  "env_HOME": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g65_66_matrix_307e2611",
+  "argv": [
+    "scripts/phase3/bn_matrix.py",
+    "evidence/phase3/raw/regression/g65_66_results.json"
+  ],
+  "returncode": 1,
+  "stdout_tail": "",
+  "stderr_tail": "  File \"<string>\", line 102\n    \"detail\": \"1024^2 matmul finite\"}))\n                                    ^\nSyntaxError: closing parenthesis '}' does not match opening parenthesis '(' on line 100\n"
+}
