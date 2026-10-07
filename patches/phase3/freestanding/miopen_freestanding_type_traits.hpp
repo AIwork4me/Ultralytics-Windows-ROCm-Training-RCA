@@ -167,6 +167,15 @@ struct conditional<false, X, Y>
 template <bool B, class X, class Y>
 using conditional_t = typename conditional<B, X, Y>::type;
 
+// clang provides this as a builtin in all modes (host STL not required).
+template <class T>
+struct is_trivially_copyable
+    : integral_constant<bool, __is_trivially_copyable(T)>
+{
+};
+template <class T>
+inline constexpr bool is_trivially_copyable_v = __is_trivially_copyable(T);
+
 } // namespace std
 
 // ---- self-tests: compiled (and discarded) wherever this file is used ----
@@ -190,3 +199,15 @@ static_assert(std::is_pointer<int*>::value && !std::is_pointer<int>::value
               "freestanding is_pointer, incl. cv-qualified pointers");
 static_assert(std::integral_constant<int, 5>::value == 5,
               "freestanding integral_constant value");
+struct canary_non_trivial
+{
+    canary_non_trivial(const canary_non_trivial&) {} // user copy ctor
+    int x;
+};
+static_assert(std::is_trivially_copyable<float>::value
+                  && std::is_trivially_copyable<float[4]>::value
+                  && !std::is_trivially_copyable<canary_non_trivial>::value,
+              "freestanding is_trivially_copyable sanity");
+static_assert(std::is_same<std::enable_if_t<std::is_trivially_copyable_v<double>, char>,
+                           char>::value,
+              "freestanding is_trivially_copyable_v usable in SFINAE");
