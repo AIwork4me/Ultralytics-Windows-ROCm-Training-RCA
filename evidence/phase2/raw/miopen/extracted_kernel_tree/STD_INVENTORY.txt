@@ -1,0 +1,61 @@
+=== angle-include directives in extracted closure (files actually reachable from MIOpenBatchNormFwdTrainSpatial.cpp) ===
+      7 #include <hip/hip_runtime.h>
+      7 #include <hip/hip_fp16.h>
+      5 #include <type_traits>
+      5 #include <hip/hip_vector_types.h>
+      4 #include <utility>
+      4 #include <hip/hip_common.h>
+      3 #include <limits>
+      3 #include <hip/driver_types.h>
+      3 #include <hip/amd_detail/ockl_image.h>
+      3 #include <hip/amd_detail/amd_hip_common.h>
+      3 #include <algorithm>
+      2 #include <stdint.h>
+      2 #include <hip/hip_texture_types.h>
+      2 #include <hip/amd_detail/texture_fetch_functions.h>
+      2 #include <hip/amd_detail/hip_cooperative_groups_helper.h>
+      2 #include <cmath>
+      2 #include <climits>
+      2 #include <assert.h>
+      1 // #include <miopen/bfloat16.hpp>
+      1 // #include <hip/amd_detail/amd_hip_vector_types.h>
+      1 // #include <half.hpp>
+      1 #include <type_traits> // std::remove_reference, std::remove_cv, is_pointer
+      1 #include <stdlib.h>  // size_t
+      1 #include <stddef.h>
+      1 #include <rocrand/rocrand_xorwow.h>
+      1 #include <limits.h>
+      1 #include <initializer_list>
+      1 #include <hip/surface_types.h>
+      1 #include <hip/hip_runtime_api.h>
+      1 #include <hip/hip_bfloat16.h>
+      1 #include <hip/channel_descriptor.h>
+      1 #include <hip/amd_detail/host_defines.h>
+      1 #include <hip/amd_detail/hip_assert.h>
+      1 #include <hip/amd_detail/device_library_decls.h>
+      1 #include <hip/amd_detail/amd_warp_sync_functions.h>  // Sync functions
+      1 #include <hip/amd_detail/amd_warp_functions.h>       // define warpSize
+      1 #include <hip/amd_detail/amd_hip_vector_types.h>
+      1 #include <hip/amd_detail/amd_hip_runtime.h>  // threadId, blockId
+      1 #include <hip/amd_detail/amd_hip_runtime.h>
+      1 #include <hip/amd_detail/amd_hip_cooperative_groups.h>
+      1 #include <hip/amd_detail/amd_device_functions.h>
+      1 #include <functional>
+      1 #include <cstdlib>
+      1 #include <cstdint> // int8_t, int16_t
+      1 #include <cstdint>
+
+=== std:: identifiers in extracted closure ===
+     27 std::is_same
+     23 std::forward
+     11 std::conditional
+     10 std::enable_if
+      5 std::numeric_limits
+      5 std::array
+      4 std::remove_reference
+      3 std::remove_cv
+      2 std::is_trivially_copyable_v
+      1 std::remove_reference_t
+      1 std::plus
+      1 std::is_pointer
+      1 std::initializer_list

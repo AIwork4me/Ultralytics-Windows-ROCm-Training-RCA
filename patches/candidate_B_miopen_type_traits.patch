@@ -1,0 +1,35 @@
+--- /c/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/evidence/phase2/raw/upstream/miopen_type_traits.hpp	2026-10-07 13:46:36.273179000 +0800
++++ /c/Users/rocm/AppData/Local/Temp/gate32_candB/include/miopen_type_traits.hpp	2026-10-07 13:43:00.849749900 +0800
+@@ -25,7 +25,7 @@
+  *******************************************************************************/
+ #pragma once
+ 
+-#if HIP_PACKAGE_VERSION_FLAT < 7000000000ULL
++#if HIP_PACKAGE_VERSION_FLAT > 7000000000ULL
+ #ifdef MIOPEN_HIP_RUNTIME_COMPILE
+ 
+ namespace std {
+@@ -77,7 +77,7 @@
+     typedef typename remove_volatile<typename remove_const<T>::type>::type type;
+ };
+ 
+-#if HIP_PACKAGE_VERSION_FLAT >= 6000025000ULL && HIP_PACKAGE_VERSION_FLAT < 6001024000ULL
++#if 1
+ template <class T, T v>
+ struct integral_constant
+ {
+@@ -102,10 +102,12 @@
+ };
+ 
+ template <bool B, typename T = void>
+-using enable_if = __hip_internal::enable_if<B, T>;
++struct enable_if;
++template <typename T>
++struct enable_if<true, T> { using type = T; };
+ 
+ template <bool B, typename T = void>
+-using enable_if_t = typename __hip_internal::enable_if<B, T>::type;
++using enable_if_t = typename enable_if<B, T>::type;
+ #endif
+ 
+ template <class T>

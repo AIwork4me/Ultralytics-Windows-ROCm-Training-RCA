@@ -1,0 +1,66 @@
+### Gate 34: numerical correctness — 2026-10-07T13:49:10+08:00
+C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\scripts\phase2\27_regression_numerics.py:24: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at B:\src\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:839.)
+  max_abs = float(diff.max())
+{
+  "device": "AMD Radeon(TM) 8060S Graphics",
+  "cases": [
+    {
+      "case": "train_forward_out",
+      "max_abs_error": 7.152557373046875e-07,
+      "mean_abs_error": 4.3203293387250596e-08,
+      "max_relative_error": 1.534271802938747e-07,
+      "finite": true,
+      "tolerance": 0.0002,
+      "pass": true
+    },
+    {
+      "case": "train_running_mean",
+      "max_abs_error": 1.7462298274040222e-10,
+      "mean_abs_error": 8.276401786133647e-11,
+      "max_relative_error": 1.448870108333722e-07,
+      "finite": true,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    {
+      "case": "train_running_var",
+      "max_abs_error": 0.0,
+      "mean_abs_error": 0.0,
+      "max_relative_error": 0.0,
+      "finite": true,
+      "tolerance": 0.001,
+      "pass": true
+    },
+    {
+      "case": "train_grad_input",
+      "max_abs_error": 7.152557373046875e-07,
+      "mean_abs_error": 3.179485119630954e-08,
+      "max_relative_error": 1.505174225258088e-07,
+      "finite": true,
+      "tolerance": 0.0002,
+      "pass": true
+    },
+    {
+      "case": "train_grad_weight_finite",
+      "finite": true,
+      "pass": true
+    },
+    {
+      "case": "train_grad_bias_finite",
+      "finite": true,
+      "pass": true
+    },
+    {
+      "case": "eval_forward_out",
+      "max_abs_error": 4.76837158203125e-07,
+      "mean_abs_error": 3.2686159556760686e-08,
+      "max_relative_error": 1.0235694958282693e-07,
+      "finite": true,
+      "tolerance": 0.0002,
+      "pass": true
+    }
+  ]
+}
+NUMERICS: PASS
+numerics_exit=0

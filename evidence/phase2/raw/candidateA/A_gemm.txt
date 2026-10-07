@@ -1,0 +1,18 @@
+﻿### captured 2026-10-07T13:41:28.2731561+08:00
+### desc: Candidate A: GEMM control (regression)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1  ROCM_PATH=C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\patches\shim_stl (shim)
+### cache isolation: HOME=USERPROFILE=C:\Users\rocm\AppData\Local\Temp\gateA_iso_4c7e525c
+torch.__version__ = 2.12.0+rocm7.14.0
+torch.version.hip = 7.14.60850
+device_count = 1
+device(0) = AMD Radeon(TM) 8060S Graphics
+
+input: shape=(4096, 4096) dtype=torch.float32 device=cuda:0
+output: shape=(4096, 4096) dtype=torch.float32 device=cuda:0
+mean=-0.005069  sum=-8.503662e+04
+wall time incl. compile/first-call: 0.167 s
+cpu-side checksum sum=-8.503661e+04
+isfinite=True
+
+PHASE1_GEMM: PASS
+exit_code=0
