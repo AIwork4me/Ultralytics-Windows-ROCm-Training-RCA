@@ -1,0 +1,44 @@
+MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdInferSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
+MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdInferSpatial.cpp
+MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\input\MIOpenBatchNormFwdInferSpatial.cpp:30:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\include\bnorm_spatial_activation_functions.hpp:32:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\include\configuration.hpp:34:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\include\vector_types.hpp:8:
+C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\include\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found
+  151 | #include <type_traits>
+      |          ^~~~~~~~~~~~~
+1 error generated when compiling for gfx1151.
+MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdInferSpatial.cpp
+torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics
+Traceback (most recent call last):
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\scripts\03_batchnorm_matrix.py", line 125, in <module>
+    body(sys.argv[1])
+    ~~~~^^^^^^^^^^^^^
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\scripts\03_batchnorm_matrix.py", line 76, in body
+    y = bn(x)
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+           ~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<11 lines>...
+        self.eps,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\functional.py", line 2850, in batch_norm
+    return torch.batch_norm(
+           ~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<7 lines>...
+        torch.backends.cudnn.enabled,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: miopenStatusUnknownError

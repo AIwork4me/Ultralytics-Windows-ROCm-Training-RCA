@@ -1,0 +1,3 @@
+torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics
+gpu bn train cudnn.disabled ok mean=-0.000000
+CASE_E: PASS

@@ -122,3 +122,20 @@ level: every unrelated package absent. It cannot test "wheel-state
 corruption" — that is covered instead by the SHA256 identity with the
 Phase-1-validated binaries (which produced the failure) and Phase-1's
 checksummed manifest.
+
+## Post-construction completion (recorded)
+
+First clean-env YOLO run surfaced that base satisfied `pyparsing` /
+`python-dateutil` / `six` via the Windows **user-site** fallback (see
+caveat above). Installed into yolo_amd from PyPI, pinned to base's
+effective versions, recorded in
+`evidence/phase2/raw/environment/gate22_pip_install_pyparsing.txt`:
+
+```text
+pip install pyparsing==3.3.2 python-dateutil==2.9.0.post0
+→ Successfully installed six-1.17.0 pyparsing-3.3.2 python-dateutil-2.9.0.post0
+```
+
+These are pure-Python members of ultralytics' documented dependency
+closure (via matplotlib); the install completes the clone rather than
+altering the stack under test.

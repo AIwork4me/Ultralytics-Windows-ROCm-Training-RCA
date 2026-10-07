@@ -1,0 +1,13 @@
+torch.__version__ = 2.12.0+rocm7.14.0
+torch.version.hip = 7.14.60850
+device_count = 1
+device(0) = AMD Radeon(TM) 8060S Graphics
+
+input: shape=(4096, 4096) dtype=torch.float32 device=cuda:0
+output: shape=(4096, 4096) dtype=torch.float32 device=cuda:0
+mean=-0.015907  sum=-2.668793e+05
+wall time incl. compile/first-call: 0.167 s
+cpu-side checksum sum=-2.668793e+05
+isfinite=True
+
+PHASE1_GEMM: PASS
