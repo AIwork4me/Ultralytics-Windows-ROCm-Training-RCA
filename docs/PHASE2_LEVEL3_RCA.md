@@ -21,8 +21,8 @@ Date: 2026-10-07. Every claim cites raw evidence under `evidence/phase2/raw/`
    toolchain detection** (no dev shell, no INCLUDE): wheel clang `-v -E`
    shows the search list gaining
    `C:\BuildTools\VC\Tools\MSVC\14.44.35207\include` + Windows SDK dirs.
-   The full failure chain (minimal BN → YOLO training) flips to PASS with
-   no other change (Gate-27 arm A).
+   The full failure chain (minimal BN at Gate-27 arm A → YOLO training
+   closure at Gate 35) flips to PASS with no other change.
 
 3. **Does a VS Developer shell change it?**
    Also passes (arm B), but is NOT required — plain shell passes (arm A).

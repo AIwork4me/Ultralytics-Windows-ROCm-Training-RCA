@@ -51,9 +51,11 @@ ROCm 7.14.0 pip wheels) failed because:
    practical fix for any affected user — but it is an *undeclared
    prerequisite* today (AMD docs don't mention it).
 2. **`ROCM_PATH` + freestanding shim dir** (`patches/shim_stl/`): no
-   admin, no DLL changes; validated end-to-end and proven NOT to rely on
-   MSVC (the `-I` dir shadows MSVC discovery — poisoned-header proof).
-   User-level workaround, not an upstream fix.
+   admin, no DLL changes; validated end-to-end FOR THE BATCHNORM CLOSURE
+   (a type_traits-only shim covers BN; non-BN composable-kernel RTC
+   kernels that consume `<utility>` would need the shim extended) and
+   proven NOT to rely on MSVC (the `-I` dir shadows MSVC discovery —
+   poisoned-header proof). User-level workaround, not an upstream fix.
 
 ## Upstream-quality fixes identified (recommendation only; nothing submitted)
 
