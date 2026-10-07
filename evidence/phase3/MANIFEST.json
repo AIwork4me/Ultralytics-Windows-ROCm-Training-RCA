@@ -6,6 +6,11 @@
    "size_bytes": 17087
   },
   {
+   "path": "evidence/phase3/raw/build/build_log_v2.txt",
+   "sha256": "5174a236127b658425de36c941900fa26d418232cc7e72ef94f13ad82c72afe6",
+   "size_bytes": 17025
+  },
+  {
    "path": "evidence/phase3/raw/build/configure_log.txt",
    "sha256": "3c8cc374cf7295a28f4305089b629d02be57cc00e89a1c611f738277407688d1",
    "size_bytes": 12359
