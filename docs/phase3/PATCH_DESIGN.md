@@ -137,12 +137,15 @@ documented in the routing plan as the wheel-layer residual).
 
 ### Precedent
 
-rocRAND solved the same class in-tree with `__HIPCC_RTC__` guards
-(rocm-libraries PR #8247, merged 2026-07-11) rather than version gates —
-in-project self-containment is an accepted upstream pattern. Our
-`MIOPEN_HIP_RUNTIME_COMPILE` plays the same role as their `__HIPCC_RTC__`,
-with the availability probe additionally preserving the real-STL path
-post-#3803 kernels now rely on.
+rocRAND addressed the same class at the same ownership boundary
+(rocm-libraries PR #8247, merged 2026-07-11) by suppressing its std
+include under `__HIPCC_RTC__`. The precedent supports the BOUNDARY
+(in-project kernel self-containment), not the exact mechanism — MIOpen
+kernels reference live `std::` names (Gate-54 audit), so the fix must
+PROVIDE freestanding definitions rather than only suppress an include;
+`MIOPEN_HIP_RUNTIME_COMPILE` plays the role of their `__HIPCC_RTC__`,
+with the availability probe preserving the real-STL path post-#3803
+kernels rely on.
 
 ## Decision
 

@@ -38,10 +38,11 @@ validated by arm A reproducing the pre-MSVC machine state live.)
 | MaxPool2d fwd+bwd | MIOpenPoolingBwd*.cpp (type_traits via vector_types) | PASS | PASS |
 | AvgPool2d fwd+bwd | MIOpenPooling* | PASS | PASS |
 | AdaptiveAvgPool2d | MIOpenPooling* | PASS | PASS |
-| PReLU fwd+bwd | MIOpenPReLU.cpp (tensor_view, cstdint) | PASS | PASS |
+| PReLU fwd+bwd | torch-native dispatch observed (MIOpenPReLU.cpp not exercised — see residual note) | PASS | PASS |
 | Conv2d depthwise / grouped / dilated / 1×1 | MIOpenConvDirect*, Winograd, gemm paths | PASS | PASS |
 | ConvTranspose2d | MIOpenConvBwdWrapper family | PASS | PASS |
 | Softmax (attn-like shapes) | torch-native (no MIOpen) — control | PASS | PASS |
+| Residual note | MIOpenPReLU/MIOpenKthvalue/MIOpenGetitem class: not reachable from torch public ops; their TUs are validated by direct hiprtc compile (`kth_compile` rc 0 both STL states) | — | — |
 | Dropout2d | torch-native (rocrand-inlined path in MIOpen untouched) | PASS | PASS |
 
 Evidence: `g68_results.json` (default env), `g68_nomsvc_results.json`

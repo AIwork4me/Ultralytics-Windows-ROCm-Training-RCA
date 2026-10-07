@@ -52,8 +52,10 @@ logic; **the fix applies cleanly to both**.
   - `<type_traits>` → miopen_type_traits.hpp only ✔ (wrapper-mediated)
   - `<utility>` → miopen_utility.hpp only ✔ (wrapper-mediated)
   - `<limits>` → miopen_limits.hpp (its own non-RTC arm) + **radix.hpp
-    line 30, UNGUARDED** (but radix's `numeric_limits` USES sit inside
-    `#ifndef MIOPEN_HIP_RUNTIME_COMPILE` → dead in RTC)
+    line 30, UNGUARDED** (radix's `numeric_limits` uses sit in `if
+    constexpr` branches of a device template — parse-time-checked
+    non-dependent names, so RTC still needs a provider; corrected in V3
+    to compiler builtin limits, see reviewer-B finding)
   - `<cstdint>` → miopen_cstdint.hpp only ✔ (wrapper-mediated)
   - `<initializer_list>` → **tensor_view.hpp line 31, UNGUARDED**, with a
     live RTC use (`tensor_layout_t(std::initializer_list<uint64_t>)`)

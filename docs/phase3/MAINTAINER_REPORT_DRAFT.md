@@ -90,11 +90,12 @@ population uses (Gate-54 audit: `is_same`, `conditional`, `enable_if`,
 `is_pointer`, `is_trivially_copyable` (clang builtin), `forward`,
 `initializer_list`).
 
-The design cannot regress STL-present environments: wherever the real
+The design cannot regression whole-STL-present environments (see Risk scoping in the PR draft): wherever the real
 headers resolve, the patched wrappers evaluate identically to current
-develop. It also structurally prevents the #7718 failure class (shim
-definitions coexisting with a real STL → `std::forward` redefinition),
-since the freestanding arm is selected only when no real header resolves.
+develop. It also prevents the #7718 failure class (shim definitions coexisting
+with a real STL → `std::forward` redefinition): the freestanding arm is
+selected only when no real header resolves, and deliberately partial
+STL states fail with a loud `#error` instead of double-defining.
 
 ## Tests
 

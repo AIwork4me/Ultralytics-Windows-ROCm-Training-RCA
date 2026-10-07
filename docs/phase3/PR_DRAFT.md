@@ -39,7 +39,7 @@ projects/miopen/src/kernels/tensor_view.hpp                (probe for <initializ
 projects/miopen/src/CMakeLists.txt                         (embed-list registration)
 ```
 
-Full diff: `patches/phase3/miopen_hiprtc_freestanding_v2.patch`.
+Full diff: `patches/phase3/0001-miopen-hiprtc-selfcontained.patch + 0002-miopen-hiprtc-selfcontained.patch (two-commit series)`.
 
 **Testing**
 
@@ -58,15 +58,23 @@ Full diff: `patches/phase3/miopen_hiprtc_freestanding_v2.patch`.
 
 **Risk**
 
-- STL-present environments (all of Linux, Windows+MSVC): the probe takes
-  the real-STL branch — behavior identical to current develop; HIP<7 RTC
-  arms untouched; offline builds untouched.
+- Whole-STL-present environments (all of Linux, Windows+MSVC): the probe
+  takes the real-STL branch — behavior identical to current develop;
+  HIP<7 RTC arms untouched; offline builds untouched.
 - The freestanding arm only executes where compilation previously always
   failed (strictly-better).
-- The availability probe structurally prevents the #7718 coexistence
-  failure (shim + real STL in one TU).
+- Coexistence of freestanding definitions with a real STL in one TU is
+  prevented by construction: `__has_include` tests search-path existence
+  (TU-global), and deliberately inconsistent partial-STL states fail
+  LOUDLY (`#error`) rather than double-defining — the #7718 failure class
+  cannot recur silently.
 - Requires `__has_include` in the RTC compiler (standard C++17; all
-  supported clang toolchains have it).
+  supported clang toolchains have it — a compiler lacking it would
+  misselect the freestanding arm; not known to exist in MIOpen CI).
+- Probe outcome is machine-state-dependent: identical MIOpen binaries may
+  take different arms on different machines; no semantic difference for
+  the audited entity set, but kernel-cache provenance differs across STL
+  states.
 
 **Remaining before merge**: Linux HIP>=7 regression runs (author lacks a
 Linux ROCm GPU environment; analysis says no behavior change where STL is

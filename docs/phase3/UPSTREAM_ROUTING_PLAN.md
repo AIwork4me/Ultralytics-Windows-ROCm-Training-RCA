@@ -5,7 +5,7 @@ map for the human/ChatGPT review to execute (or amend) later.
 
 ## 1. rocm-libraries / MIOpen — the source-fix PR
 
-- **Artifact**: `patches/phase3/miopen_hiprtc_freestanding_v2.patch`
+- **Artifact**: `patches/phase3/0001-miopen-hiprtc-selfcontained.patch + 0002-miopen-hiprtc-selfcontained.patch (two-commit series)`
   (+ PR text draft in `docs/phase3/PR_DRAFT.md`).
 - **Content**: availability-probed freestanding `<type_traits>`/`<utility>`
   selection in `miopen_type_traits.hpp`/`miopen_utility.hpp` (HIP<7 legacy
@@ -49,9 +49,34 @@ map for the human/ChatGPT review to execute (or amend) later.
   would close the loop for the reporter (issue open since 2026-04-22,
   zero AMD response). REQUIRES explicit human approval per the brief.
 
-## Ordering recommendation
+## 4b. clr / hiprtc — the contract owner (added per review)
 
-1. ROCm docs prerequisite note (immediate, trivial).
-2. MIOpen PR after Linux regression runs complete.
-3. TheRock packaging issue (parallel to 2; independent owner).
-4. #3956 cross-reference once 2 is public.
+- The component that defines the post-7.0 RTC STL contract (traits moved
+  to `__hip_internal`), sets the `x86_64-pc-windows-msvc` triple on
+  Windows, and controls include-path policy is clr's hiprtc — absent from
+  the original plan. Raise (or fold into the TheRock issue as a
+  cross-reference): "hiprtc should ship or auto-discover a freestanding
+  std subset in its resource dir" — the single-point fix for MIOpen,
+  rocRAND, ComposableKernel and user kernels alike. The likely "by
+  design, consumers provide the STL" response is itself the artifact the
+  TheRock issue needs (the distribution must then be the provider).
+
+## Ordering recommendation (amended per Gate-83 review: submittable-today items first)
+
+1. **TheRock packaging issue** (submittable TODAY, zero new evidence
+   needed; AMD-internal reproduction already exists — their release CI).
+2. **ROCm docs prerequisite note** (immediate, trivial; reference the
+   TheRock issue so the note has a retirement path).
+3. **MIOpen PR** after Linux regression runs complete (gated).
+4. **clr/hiprtc lane** (cross-referenced from 1; possibly merged into it).
+5. #3956 cross-reference once 3 is public.
+
+## TheRock export-mechanism correction (per Gate-83 review)
+
+The `-I$ROCM_PATH/include` channel fires only when `ROCM_PATH` is set —
+unset on stock machines (Gate-50 audit) — and the wheel layout has no
+documented `include/` dir. The issue must specify the discovery owner
+(wheel post-install env var, torch-loader injection, or preferably
+clang/hiprtc resource-dir-based discovery needing no env var), and
+propose bundling llvm/libc++ headers (proven viable by TheRock CI
+artifacts, PR #3588) rather than MSVC's (licensing/distribution).

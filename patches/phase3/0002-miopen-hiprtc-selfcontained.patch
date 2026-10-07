@@ -1,0 +1,156 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: <AUTHOR NAME> <author@example.com>
+Date: Thu, 6 Oct 2026 00:00:00 +0000
+Subject: [PATCH 2/2] MIOpen: make remaining RTC kernel std includes self-contained
+
+
+Complete kernel-source self-containment for the two remaining unguarded
+host-library includes found by auditing all runtime-compiled kernel
+closures: radix.hpp included <limits> unconditionally (its
+std::numeric_limits uses are parse-time-checked template-definition
+names, so the runtime path now uses compiler builtin limits and needs
+only the miopen_cstdint typedefs), and tensor_view.hpp included
+<initializer_list> unconditionally (now selected via the same
+availability probe, with a clang-lowered freestanding fallback).
+
+Signed-off-by: <AUTHOR NAME> <author@example.com>  # DCO: fill in before submission
+---
+
+diff --git a/projects/miopen/src/kernels/radix.hpp b/projects/miopen/src/kernels/radix.hpp
+index f8a91fe..99c29fd 100644
+--- a/projects/miopen/src/kernels/radix.hpp
++++ b/projects/miopen/src/kernels/radix.hpp
+@@ -27,7 +27,14 @@
+ #ifndef GUARD_RADIX_H
+ #define GUARD_RADIX_H
+ 
++// Runtime-compiled kernels must not require a host C++ standard library
++// (see miopen_type_traits.hpp). The runtime-compile path below needs only
++// the fixed-width integer typedefs, provided by miopen_cstdint.hpp.
++#ifdef MIOPEN_HIP_RUNTIME_COMPILE
++#include "miopen_cstdint.hpp"
++#else
+ #include <limits>
++#endif
+ 
+ #ifndef MIOPEN_HIP_RUNTIME_COMPILE
+ #include <hip/hip_fp16.h>
+@@ -64,11 +71,11 @@ __device__ inline Radix encode(DTYPE v)
+     }
+     else if constexpr(std::is_same<int32_t, DTYPE>::value)
+     {
+-        return static_cast<Radix>(std::numeric_limits<int32_t>::max()) + v + 1;
++        return static_cast<Radix>(__INT32_MAX__) + v + 1;
+     }
+     else if constexpr(std::is_same<int64_t, DTYPE>::value)
+     {
+-        return static_cast<Radix>(std::numeric_limits<int64_t>::max()) + v + 1;
++        return static_cast<Radix>(__INT64_MAX__) + v + 1;
+     }
+     // bfloat16 is passed as ushort in kernel
+     else if constexpr(std::is_same<ushort, DTYPE>::value)
+diff --git a/projects/miopen/src/kernels/tensor_view.hpp b/projects/miopen/src/kernels/tensor_view.hpp
+index 36ddef6..d796332 100644
+--- a/projects/miopen/src/kernels/tensor_view.hpp
++++ b/projects/miopen/src/kernels/tensor_view.hpp
+@@ -28,7 +28,14 @@
+ #define GUARD_TENSOR_VIEW_HPP
+ 
+ #include "miopen_cstdint.hpp"
++// Prefer the real <initializer_list> when a host C++ standard library is
++// reachable; otherwise use MIOpen's freestanding definition so
++// runtime-compiled kernels stay self-contained (see miopen_type_traits.hpp).
++#if defined(MIOPEN_HIP_RUNTIME_COMPILE) && !__has_include(<initializer_list>)
++#include "miopen_freestanding_initializer_list.hpp"
++#else
+ #include <initializer_list>
++#endif
+ 
+ template <int N>
+ struct tensor_layout_t;
+diff --git a/projects/miopen/src/CMakeLists.txt b/projects/miopen/src/CMakeLists.txt
+index a2be3a2..7b8a345 100644
+--- a/projects/miopen/src/CMakeLists.txt
++++ b/projects/miopen/src/CMakeLists.txt
+@@ -511,6 +511,7 @@ if( MIOPEN_BACKEND STREQUAL "HIPOC" OR MIOPEN_BACKEND STREQUAL "HIP" OR MIOPEN_B
+         kernels/miopen_math.hpp
+         kernels/miopen_rocrand.hpp
+         ${ROCRAND_XORWOW_INLINED_PATH}
++        kernels/miopen_freestanding_initializer_list.hpp
+         kernels/miopen_freestanding_type_traits.hpp
+         kernels/miopen_freestanding_utility.hpp
+         kernels/miopen_type_traits.hpp
+diff --git a/projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp b/projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp
+new file mode 100644
+new file mode 100644
+--- /dev/null
++++ b/projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp
+@@ -0,0 +1,64 @@
++/*******************************************************************************
++ *
++ * MIT License
++ *
++ * Copyright (c) 2026 [contributor name and notice to be set by the submitter]
++ *
++ * Permission is hereby granted, free of charge, to any person obtaining a copy
++ * of this software and associated documentation files (the "Software"), to deal
++ * in the Software without restriction, including without limitation the rights
++ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
++ * copies of the Software, and to permit persons to whom the Software is
++ * furnished to do so, subject to the following conditions:
++ *
++ * The above copyright notice and this permission notice shall be included in all
++ * copies or substantial portions of the Software.
++ *
++ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
++ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
++ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
++ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
++ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
++ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
++ * SOFTWARE.
++ *
++ *******************************************************************************/
++#pragma once
++
++/// \file Freestanding std::initializer_list for MIOpen runtime-compiled
++/// kernels (clang lowers braced-init-lists to field stores on this exact
++/// layout — verified by Phase-3 canary G57-7 on gfx1151/hiprtc 7.14).
++/// Selected by tensor_view.hpp only when no real <initializer_list> is
++/// reachable; see miopen_freestanding_type_traits.hpp for the rationale.
++
++#ifndef MIOPEN_HIP_RUNTIME_COMPILE
++#error "miopen_freestanding_initializer_list.hpp is for runtime-compiled kernels only"
++#endif
++
++#if !defined(__clang__)
++#error "miopen_freestanding_initializer_list.hpp relies on clang initializer_list lowering"
++#endif
++
++
++
++namespace std {
++
++template <class E>
++class initializer_list
++{
++    const E* __begin_;
++    __SIZE_TYPE__ __size_;
++
++    constexpr initializer_list(const E* b, __SIZE_TYPE__ s) noexcept
++        : __begin_(b), __size_(s)
++    {}
++
++public:
++    constexpr initializer_list() noexcept : __begin_(nullptr), __size_(0) {}
++
++    constexpr const E* begin() const noexcept { return __begin_; }
++    constexpr const E* end() const noexcept { return __begin_ + __size_; }
++    constexpr __SIZE_TYPE__ size() const noexcept { return __size_; }
++};
++
++} // namespace std
+
+--
+2.x.y
+

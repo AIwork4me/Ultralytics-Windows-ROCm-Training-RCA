@@ -1,0 +1,23 @@
+{
+  "tag": "g78_A_wheel_nomsvc_FINAL",
+  "started": "2026-10-07T21:36:26.073572",
+  "finished": "2026-10-07T21:36:28.759546",
+  "isolation_dir": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_A_wheel_nomsvc_FINAL_7acb4532",
+  "env_HOME": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_A_wheel_nomsvc_FINAL_7acb4532",
+  "argv": [
+    "scripts/phase3/bn_minimal.py"
+  ],
+  "returncode": 1,
+  "stdout_tail": "MODULE_PROVENANCE {\"MIOpen.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"hiprtc0714.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\hiprtc0714.dll\", \"amd_comgr.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\amd_comgr.dll\", \"amdhip64_7.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\amdhip64_7.dll\"}\n",
+  "stderr_tail": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)\nMIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp\nMIOpen(HIP): Warning [BuildHip] In file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_A_wheel_nomsvc_FINAL_7acb4532\\tmp\\comgr-104692-6-c3ce58\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_A_wheel_nomsvc_FINAL_7acb4532\\tmp\\comgr-104692-6-c3ce58\\include\\batchnorm_functions.hpp:30:\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_A_wheel_nomsvc_FINAL_7acb4532\\tmp\\comgr-104692-6-c3ce58\\include\\configuration.hpp:34:\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_A_wheel_nomsvc_FINAL_7acb4532\\tmp\\comgr-104692-6-c3ce58\\include\\vector_types.hpp:8:\nC:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_A_wheel_nomsvc_FINAL_7acb4532\\tmp\\comgr-104692-6-c3ce58\\include\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found\n  151 | #include <type_traits>\n      |          ^~~~~~~~~~~~~\n1 error generated when compiling for gfx1151.\nMIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp\nTraceback (most recent call last):\n  File \"<string>\", line 24, in <module>\n    y = m(x)\n  File \"C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1778, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1789, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\nn\\modules\\batchnorm.py\", line 210, in forward\n    return F.batch_norm(\n           ~~~~~~~~~~~~^\n        input,\n        ^^^^^^\n    ...<11 lines>...\n        self.eps,\n        ^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\nn\\functional.py\", line 2850, in batch_norm\n    return torch.batch_norm(\n           ~~~~~~~~~~~~~~~~^\n        input,\n        ^^^^^^\n    ...<7 lines>...\n        torch.backends.cudnn.enabled,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nRuntimeError: miopenStatusUnknownError\n",
+  "module_provenance": {
+    "MIOpen.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "hiprtc0714.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+    "amd_comgr.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amd_comgr.dll",
+    "amdhip64_7.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll"
+  },
+  "sha256_MIOpen.dll": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+  "sha256_hiprtc0714.dll": "c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e",
+  "sha256_amd_comgr.dll": "0a890dbdcd12e6a10dd9ddb48370d592ec3592d6d9a5d4b167c86b7f49c17b34",
+  "sha256_amdhip64_7.dll": "b4b4799f5deafb81ff735e077b0efe95fb98abe728a2a98efa713b1c6f8bd1a2"
+}
