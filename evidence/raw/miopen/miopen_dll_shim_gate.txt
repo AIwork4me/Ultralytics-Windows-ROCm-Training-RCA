@@ -1,0 +1,9 @@
+### captured 2026-10-07T12:24:23+08:00
+### command: grep -aoE '.{0,80}HIP_PACKAGE_VERSION_FLAT.{0,120}' MIOpen.dll (context of the no-STL shim gate in embedded miopen_type_traits.hpp)
+### file: C:\Users\rocm\miniconda3\Lib\site-packages\_rocm_sdk_libraries\bin\MIOpen.dll
+#if HIP_PACKAGE_VERSION_FLAT >= 6000025000ULL
+#if HIP_PACKAGE_VERSION_FLAT >= 6001024024ULL
+#if HIP_PACKAGE_VERSION_FLAT >= 6001024024ULL
+#if HIP_PACKAGE_VERSION_FLAT < 7000000000ULL
+#if HIP_PACKAGE_VERSION_FLAT >= 6000025000ULL && HIP_PACKAGE_VERSION_FLAT < 6001024000ULL
+#if HIP_PACKAGE_VERSION_FLAT < 7000000000ULL

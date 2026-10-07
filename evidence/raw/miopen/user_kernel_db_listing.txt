@@ -1,0 +1,21 @@
+### captured 2026-10-07T12:25:33+08:00
+### command: ls -la C:/Users/rocm/.miopen/cache/*/ ; grep -aoE 'MIOpen[A-Za-z0-9_]*\.(cpp|cl)(\.obj)?' <ukdb files> | sort | uniq -c
+### note: .ukdb = MIOpen user kernel DB (binary); only name strings extracted, no binaries copied
+--- /c/Users/rocm/.miopen/cache/3.5.1.98f923c854/
+total 692
+drwxr-xr-x 1 rocm 197121      0 Aug  2 10:47 .
+drwxr-xr-x 1 rocm 197121      0 Oct  7 11:33 ..
+-rw-r--r-- 1 rocm 197121 704512 Jul 23 11:40 gfx1151_20.ukdb
+--- /c/Users/rocm/.miopen/cache/3.5.2.cd957402/
+total 352
+drwxr-xr-x 1 rocm 197121      0 Oct  7 12:18 .
+drwxr-xr-x 1 rocm 197121      0 Oct  7 11:33 ..
+-rw-r--r-- 1 rocm 197121 356352 Oct  7 11:36 gfx1151_20.ukdb
+--- kernel source/object names inside ukdb files (binary-safe grep -a) ---
+== /c/Users/rocm/.miopen/cache/3.5.1.98f923c854/gfx1151_20.ukdb
+      6 MIOpenBatchNormFwdInferSpatial.cl.obj
+      3 MIOpenCol2Im2d.cpp.obj
+     52 MIOpenIm2d2Col.cpp.obj
+      2 MIOpenIm3d2Col.cpp.obj
+== /c/Users/rocm/.miopen/cache/3.5.2.cd957402/gfx1151_20.ukdb
+     25 MIOpenIm2d2Col.cpp.obj

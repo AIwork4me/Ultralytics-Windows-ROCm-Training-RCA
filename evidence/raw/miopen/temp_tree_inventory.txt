@@ -1,0 +1,10 @@
+﻿### captured 2026-10-07T11:58:00.4809812+08:00
+### temp dir: C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\evidence\tmp\miopen_run
+
+FullName                                                                                                                                                                                            Length
+--------                                                                                                                                                                                            ------
+C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\evidence\tmp\miopen_run\miopen-lockfiles                                                                                             
+C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\evidence\tmp\miopen_run\miopen-lockfiles\8f08b6359bce6f564f4feb1e7a1871d6_batchnorm_gfx1151_20.HIP.3_5_2_cd957402.udb.txt.lock 0     
+
+
+

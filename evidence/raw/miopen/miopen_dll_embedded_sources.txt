@@ -1,0 +1,17 @@
+### captured 2026-10-07T12:18:03+08:00
+### command: grep -aoE 'MIOpenBatchNormFwd[A-Za-z]*\.cpp' MIOpen.dll | sort | uniq -c ; grep -aoE '#include <[a-z_]+>' MIOpen.dll | sort | uniq -c ; grep -ac 'batchnorm_functions.hpp' MIOpen.dll ; grep -ac 'miopen_type_traits.hpp' MIOpen.dll
+### file: C:\Users\rocm\miniconda3\Lib\site-packages\_rocm_sdk_libraries\bin\MIOpen.dll (sha256 74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a)
+--- embedded MIOpen kernel source filenames ---
+      1 MIOpenBatchNormFwdInferPerAct.cpp
+      1 MIOpenBatchNormFwdInferSpatial.cpp
+      1 MIOpenBatchNormFwdTrainPerAct.cpp
+      1 MIOpenBatchNormFwdTrainSpatial.cpp
+--- embedded #include directives (C++ std headers present) ---
+      1 #include <cstdint>
+      1 #include <initializer_list>
+      2 #include <limits>
+      2 #include <type_traits>
+      3 #include <utility>
+--- embedded MIOpen header name hit counts (binary-mode grep -a) ---
+batchnorm_functions.hpp: 8
+miopen_type_traits.hpp: 12
