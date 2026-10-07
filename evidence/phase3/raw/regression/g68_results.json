@@ -1,0 +1,134 @@
+[
+ {
+  "case": "maxpool2d_bwd",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   8,
+   15,
+   15
+  ]
+ },
+ {
+  "case": "avgpool2d_bwd",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   8,
+   15,
+   15
+  ]
+ },
+ {
+  "case": "adaptive_avgpool2d",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   8,
+   7,
+   7
+  ]
+ },
+ {
+  "case": "prelu_fwd_bwd",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   4,
+   16,
+   16
+  ]
+ },
+ {
+  "case": "conv_depthwise",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   8,
+   16,
+   16
+  ]
+ },
+ {
+  "case": "conv_grouped",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   16,
+   16,
+   16
+  ]
+ },
+ {
+  "case": "conv_dilated",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   8,
+   16,
+   16
+  ]
+ },
+ {
+  "case": "conv_transpose",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   8,
+   16,
+   16
+  ]
+ },
+ {
+  "case": "conv_1x1_gemm_path",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   32,
+   20,
+   20
+  ]
+ },
+ {
+  "case": "softmax_attn_like",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   8,
+   64,
+   64
+  ]
+ },
+ {
+  "case": "dropout2d_train",
+  "status": "PASS",
+  "ok": true,
+  "detail": "finite=True",
+  "shape": [
+   2,
+   16,
+   8,
+   8
+  ]
+ }
+]

@@ -1,0 +1,10 @@
+Phase-3 final patch series round-trip validation (2026-10-07)
+patches: patches/phase3/0001-miopen-hiprtc-selfcontained.patch (403 lines, 5 files)
+         patches/phase3/0002-miopen-hiprtc-selfcontained.patch (156 lines, 4 files)
+method: git apply 0001 then 0002 onto pristine b68f8944 blobs
+        (miopen_type_traits/utility/radix/tensor_view.hpp + src/CMakeLists.txt);
+        all 8 resulting files byte-compared (CR-insensitive) against the
+        validated V3 build tree.
+result: ALL 8 FILES IDENTICAL. git apply exit 0 for both patches.
+f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20 *patches/phase3/0001-miopen-hiprtc-selfcontained.patch
+77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532 *patches/phase3/0002-miopen-hiprtc-selfcontained.patch

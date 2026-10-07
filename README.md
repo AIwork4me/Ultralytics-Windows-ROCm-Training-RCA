@@ -33,24 +33,34 @@ x = torch.randn(8, 16, 64, 64, device="cuda")
 y = bn(x)    # RuntimeError: miopenStatusUnknownError
 ```
 
-**Root cause (Phase 1, LEVEL 2 of 3):** every *spatial* BatchNorm on the GPU
-(`BatchNorm2d`, `BatchNorm3d`, `BatchNorm1d` with 3D input) goes through
-MIOpen, which runtime-compiles an embedded spatial-BatchNorm kernel with
-HIPRTC; that compile fails because `#include <type_traits>` cannot be
-resolved — this machine has no C++ standard library at any searched location
-and the ROCm Windows wheels ship none for their
-`x86_64-pc-windows-msvc`-target clang. (`BatchNorm1d` with 2D input and
-`GroupNorm` use other paths and pass.) Which layer owns the fix (undeclared
-MSVC prerequisite vs wheel packaging/include-path defect) is deliberately
-left open — see [`docs/RCA.md`](docs/RCA.md).
+**Root cause (proven through Phase 2, LEVEL 3):** every *spatial* BatchNorm
+on the GPU (`BatchNorm2d`, `BatchNorm3d`, `BatchNorm1d` with 3D input) goes
+through MIOpen, which runtime-compiles an embedded spatial-BatchNorm kernel
+with HIPRTC. For HIP >= 7.0, upstream MIOpen gates
+(`miopen_type_traits.hpp` via commit `ce14dab3`/PR #3803;
+`miopen_utility.hpp` via `b514736610`/PR #3147) disable the internal
+no-STL compatibility shims and unconditionally include real
+`<type_traits>`/`<utility>`. That assumption holds on Linux (system STL
+always present) but fails on AMD's Windows pip wheels, whose bundled
+`x86_64-pc-windows-msvc`-target clang/HIPRTC ships no C++ standard library
+and no include-path configuration. The underlying requirement is resolvable
+C++ standard-library functionality; MSVC Build Tools is one sufficient
+Windows provider of it (not an intrinsic requirement). Full chain:
+[`docs/PHASE2_LEVEL3_RCA.md`](docs/PHASE2_LEVEL3_RCA.md).
 
 ## Scope
 
-- **PHASE 1 (this repo)** = Root Cause Analysis: reproduce, minimize,
-  isolate the layer, publish evidence. No fix or workaround was applied.
-- **PHASE 2 (next)** = decide the owning layer, implement the smallest
-  valid fix, validate, prepare the upstream report/PR
-  ([`docs/NEXT_STEPS.md`](docs/NEXT_STEPS.md)).
+- **PHASE 1 (complete)** = Root Cause Analysis: reproduce, minimize,
+  isolate the layer, publish evidence. LEVEL-2 RCA.
+- **PHASE 2 (complete)** = LEVEL-3 RCA with exact upstream anchors +
+  candidate-remedy validation + YOLO training closure (amp=False and
+  default AMP), review panel, checksummed evidence.
+- **PHASE 3 (in progress)** = Upstream Patch Closure: patch real
+  rocm-libraries source, build patched MIOpen on Windows, prove the
+  BatchNorm failure disappears via the source fix alone, audit the full
+  RTC std-header dependency scope, validate Linux HIP>=7 regression
+  safety, and produce a maintainer-ready patch package. **No upstream
+  submission is made in any phase.**
 
 ## Environment under test
 
@@ -126,10 +136,34 @@ include chain, unlike the ROCm 7.14 wheels here. Details:
 
 ## Status
 
-Phase 1 complete (RCA depth LEVEL 2). **No fix, patch, or permanent
-workaround was applied or is proposed here** — see
-[`docs/RCA.md`](docs/RCA.md#what-phase-1-does-not-claim) for the explicit
-non-claims.
+- **Phase 1: complete — LEVEL-2 RCA** (failure reproduced, minimized,
+  layer-isolated; MIOpen HIPRTC std-header resolution identified).
+- **Phase 2: complete — LEVEL-3 RCA + candidate validation + YOLO
+  closure** (exact upstream commits identified; MSVC-install,
+  INCLUDE-injection, and freestanding-shim remedies all validated;
+  regression matrix 8/8; numerics <= 7.2e-7 vs CPU; YOLO26n coco8
+  epochs=1 train+val closure on GPU in both amp modes).
+- **Phase 3: complete — Upstream Patch Closure (Windows-validated)**:
+  real rocm-libraries develop source patched (two-commit series in
+  `patches/phase3/`), patched MIOpen BUILT on Windows with the wheel
+  toolchain, loaded by PyTorch with SHA-proven provenance, the original
+  BatchNorm failure proven FIXED by the source change alone with NO
+  host STL (live single-variable A/B), full BN/non-BN/numerics/YOLO
+  matrices green, 104-kernel RTC std audit, adversarial 4-reviewer
+  panel with all blockers resolved. Linux HIP>=7 regression runs:
+  BLOCKED (no environment) — PR readiness intentionally capped at
+  Windows-validated.
+
+> Maintainer-ready patch package prepared locally (patches/phase3/
+> 0001+0002, PR draft, routing plan, proposed CI test). No upstream
+> submission has been made.
+
+**No upstream fix has landed and none is claimed.** Nothing in this
+repository implies AMD official support changed. As of Phase 2, two
+user-level remedies are validated for affected machines (see
+[`docs/PHASE2_SUMMARY.md`](docs/PHASE2_SUMMARY.md)): installing VS 2022
+Build Tools with the C++ workload, or a `ROCM_PATH`-based freestanding
+shim directory. Neither depends on an upstream change.
 
 ## License
 

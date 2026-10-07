@@ -1,0 +1,6 @@
+Microsoft (R) COFF/PE Dumper Version 14.44.35229.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+
+Dump of file C:\Program Files\Git\dependents
+LINK : fatal error LNK1181: 无法打开输入文件“C:\Program Files\Git\dependents”

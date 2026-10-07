@@ -1,0 +1,23 @@
+{
+  "tag": "g64_patched_defaultenv",
+  "started": "2026-10-07T20:05:39.710175",
+  "finished": "2026-10-07T20:05:59.275787",
+  "isolation_dir": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g64_patched_defaultenv_51c9adf6",
+  "env_HOME": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g64_patched_defaultenv_51c9adf6",
+  "argv": [
+    "scripts/phase3/bn_minimal.py"
+  ],
+  "returncode": 0,
+  "stdout_tail": "MODULE_PROVENANCE {\"MIOpen.dll\": null, \"hiprtc0714.dll\": null, \"amd_comgr.dll\": null, \"amdhip64_7.dll\": null}\nOUTPUT_MEAN 2.0081643015146255e-09\nBN_MINIMAL PASS (patched MIOpen, fresh caches)\n",
+  "stderr_tail": "MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution\nMIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151\n<string>:20: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at B:\\src\\pytorch\\torch\\csrc\\autograd\\generated\\python_variable_methods.cpp:839.)\n",
+  "module_provenance": {
+    "MIOpen.dll": null,
+    "hiprtc0714.dll": null,
+    "amd_comgr.dll": null,
+    "amdhip64_7.dll": null
+  },
+  "sha256_MIOpen.dll": null,
+  "sha256_hiprtc0714.dll": null,
+  "sha256_amd_comgr.dll": null,
+  "sha256_amdhip64_7.dll": null
+}
