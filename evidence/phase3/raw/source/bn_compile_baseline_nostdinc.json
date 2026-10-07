@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-10-07T17:47:02.671947",
+  "mode": "baseline+nostdinc",
+  "kernels_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase3\\projects\\miopen\\src\\kernels",
+  "type_traits_sha256": "6ab0771ae200b9579af297bd05ee566388fad0bdb0f5779f02c89cfd30ffe325",
+  "utility_sha256": "9cbea609ec4003a8d234d582638962bada2e95b001bbddd5fadbcae0de53a5a5",
+  "freestanding_present": [],
+  "create": 0,
+  "compile": 6,
+  "code_size": 0,
+  "log": "In file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-109004-0-303660\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase3\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:30:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase3\\projects\\miopen\\src\\kernels\\configuration.hpp:34:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase3\\projects\\miopen\\src\\kernels\\vector_types.hpp:8:\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase3\\projects\\miopen\\src\\kernels\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found\n  151 | #include <type_traits>\n      |          ^~~~~~~~~~~~~\n1 error generated when compiling for gfx1151.\n"
+}

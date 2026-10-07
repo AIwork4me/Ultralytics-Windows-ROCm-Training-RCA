@@ -1,0 +1,16 @@
+Phase-3 Gate 52/53 — upstream baseline (recorded 2026-10-07)
+remote URL: https://github.com/ROCm/rocm-libraries.git
+branch: develop (single-branch, depth 1, sparse checkout)
+HEAD SHA: b68f8944300f104875d953fc8e4510908c9aaf0b
+HEAD subject: feat(stinkytofu): ds_load issue cap Sliding/Periodic mode (#13093)
+HEAD commit date: 2026-10-07 17:12:37 +0900
+materialization: git ls-tree listing + per-blob raw.githubusercontent fetch,
+SHA1-verified against index by scripts/phase3/fetch_blobs_raw.py
+materialized: projects/miopen (full), projects/rocblas/library/include,
+projects/rocrand/library/include
+unmaterialized (symlink/LFS pointers, irrelevant): projects/miopen/.gitmodules,
+.jenkins/perf_test, .lfsconfig, .readthedocs.yaml
+network note: git pack transfers to github.com repeatedly reset on this
+network (two full-clone attempts died at ~389MB); tree+commit metadata
+fetched fine via git; blobs fetched via raw.githubusercontent.com with
+SHA1 verification.

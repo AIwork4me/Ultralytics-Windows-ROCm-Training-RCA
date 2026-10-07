@@ -1,0 +1,88 @@
+[
+ {
+  "case": "bn2d_minimal_8x16x64x64",
+  "ok": true,
+  "detail": "max_abs=7.153e-07 rm=1.310e-10 rv=5.960e-08",
+  "max_abs_err": 7.152557373046875e-07,
+  "run_mean_delta": 1.3096723705530167e-10,
+  "run_var_delta": 5.960464477539063e-08,
+  "grads_finite": true,
+  "status": "PASS"
+ },
+ {
+  "case": "bn2d_issue3956_4x64x32x32",
+  "ok": true,
+  "detail": "max_abs=4.768e-07 rm=4.075e-10 rv=1.192e-07",
+  "max_abs_err": 4.76837158203125e-07,
+  "run_mean_delta": 4.0745362639427185e-10,
+  "run_var_delta": 1.1920928955078125e-07,
+  "grads_finite": true,
+  "status": "PASS"
+ },
+ {
+  "case": "bn2d_yololike_16x32x160x160",
+  "ok": true,
+  "detail": "max_abs=9.537e-07 rm=1.455e-10 rv=1.192e-07",
+  "max_abs_err": 9.5367431640625e-07,
+  "run_mean_delta": 1.4551915228366852e-10,
+  "run_var_delta": 1.1920928955078125e-07,
+  "grads_finite": true,
+  "status": "PASS"
+ },
+ {
+  "case": "bn1d_3dinput_8x16x512",
+  "ok": true,
+  "detail": "max_abs=7.153e-07 rm=2.328e-10 rv=5.960e-08",
+  "max_abs_err": 7.152557373046875e-07,
+  "run_mean_delta": 2.3283064365386963e-10,
+  "run_var_delta": 5.960464477539063e-08,
+  "grads_finite": true,
+  "status": "PASS"
+ },
+ {
+  "case": "bn3d_4x8x16x16x16",
+  "ok": true,
+  "detail": "max_abs=4.768e-07 rm=1.746e-10 rv=0.000e+00",
+  "max_abs_err": 4.76837158203125e-07,
+  "run_mean_delta": 1.7462298274040222e-10,
+  "run_var_delta": 0.0,
+  "grads_finite": true,
+  "status": "PASS"
+ },
+ {
+  "case": "bn2d_eval_only",
+  "ok": true,
+  "detail": "finite=True mean=2.016e-02",
+  "status": "PASS"
+ },
+ {
+  "case": "bn1d_2dinput_CONTROL",
+  "ok": true,
+  "detail": "finite=True mean=1.490e-08",
+  "status": "PASS"
+ },
+ {
+  "case": "groupnorm_CONTROL",
+  "ok": true,
+  "detail": "finite=True mean=1.863e-09",
+  "status": "PASS"
+ },
+ {
+  "case": "conv2d_CONTROL",
+  "ok": true,
+  "detail": "finite=True mean=-1.832e-02",
+  "status": "PASS"
+ },
+ {
+  "case": "linear_bwd_CONTROL",
+  "ok": true,
+  "detail": "finite=True mean=-1.001e-02",
+  "status": "PASS"
+ },
+ {
+  "case": "gpu_gemm_CONTROL",
+  "ok": true,
+  "detail": "1024^2 matmul finite",
+  "status": "PASS"
+ }
+]

@@ -1,0 +1,23 @@
+{
+  "tag": "post_restore_sanity",
+  "started": "2026-10-07T21:00:14.472649",
+  "finished": "2026-10-07T21:00:19.147716",
+  "isolation_dir": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_post_restore_sanity_4cc794d4",
+  "env_HOME": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_post_restore_sanity_4cc794d4",
+  "argv": [
+    "scripts/phase3/bn_minimal.py"
+  ],
+  "returncode": 0,
+  "stdout_tail": "OUTPUT_MEAN -1.77351466845721e-09\nBN_MINIMAL PASS (patched MIOpen, fresh caches)\nMODULE_PROVENANCE {\"MIOpen.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"hiprtc0714.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\hiprtc0714.dll\", \"amd_comgr.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\amd_comgr.dll\", \"amdhip64_7.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\amdhip64_7.dll\"}\n",
+  "stderr_tail": "<string>:27: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at B:\\src\\pytorch\\torch\\csrc\\autograd\\generated\\python_variable_methods.cpp:839.)\n",
+  "module_provenance": {
+    "MIOpen.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "hiprtc0714.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+    "amd_comgr.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amd_comgr.dll",
+    "amdhip64_7.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll"
+  },
+  "sha256_MIOpen.dll": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+  "sha256_hiprtc0714.dll": "c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e",
+  "sha256_amd_comgr.dll": "0a890dbdcd12e6a10dd9ddb48370d592ec3592d6d9a5d4b167c86b7f49c17b34",
+  "sha256_amdhip64_7.dll": "b4b4799f5deafb81ff735e077b0efe95fb98abe728a2a98efa713b1c6f8bd1a2"
+}

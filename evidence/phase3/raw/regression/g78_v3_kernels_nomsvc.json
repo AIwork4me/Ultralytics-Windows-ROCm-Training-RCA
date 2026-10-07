@@ -1,0 +1,24 @@
+{
+  "tag": "g78_v3_kernels_nomsvc",
+  "started": "2026-10-07T21:35:11.067171",
+  "finished": "2026-10-07T21:35:55.865521",
+  "isolation_dir": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_v3_kernels_nomsvc_d8738488",
+  "env_HOME": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase3_iso_g78_v3_kernels_nomsvc_d8738488",
+  "argv": [
+    "scripts/phase3/g68_kernels.py",
+    "nul"
+  ],
+  "returncode": 0,
+  "stdout_tail": "[PASS] maxpool2d_bwd: finite=True\n[PASS] avgpool2d_bwd: finite=True\n[PASS] adaptive_avgpool2d: finite=True\n[PASS] prelu_fwd_bwd: finite=True\n[PASS] conv_depthwise: finite=True\n[PASS] conv_grouped: finite=True\n[PASS] conv_dilated: finite=True\n[PASS] conv_transpose: finite=True\n[PASS] conv_1x1_gemm_path: finite=True\n[PASS] softmax_attn_like: finite=True\n[PASS] dropout2d_train: finite=True\n\nG68 MATRIX: 11 PASS / 0 FAIL\nMODULE_PROVENANCE {\"MIOpen.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"hiprtc0714.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\hiprtc0714.dll\", \"amd_comgr.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\amd_comgr.dll\", \"amdhip64_7.dll\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_core\\\\bin\\\\amdhip64_7.dll\"}\n",
+  "stderr_tail": "MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution\nMIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151\nMIOpen: Warning [ParseAndLoadDb] File is unreadable: \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\gfx115128.HIP.fdb.txt\"\nMIOpen: Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 36864, provided ptr: 0000000000000000 size: 0\nMIOpen: Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmBwdRest>, workspace required: 36864, provided ptr: 0000000000000000 size: 0\nMIOpen: Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmWrwUniversal>, workspace required: 36864, provided ptr: 0000000000000000 size: 0\n",
+  "module_provenance": {
+    "MIOpen.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "hiprtc0714.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+    "amd_comgr.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amd_comgr.dll",
+    "amdhip64_7.dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll"
+  },
+  "sha256_MIOpen.dll": "9fa28af5d3b99ab7f099c5b9647bd30a9ed759d9a95d2cba29710228ce139f71",
+  "sha256_hiprtc0714.dll": "c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e",
+  "sha256_amd_comgr.dll": "0a890dbdcd12e6a10dd9ddb48370d592ec3592d6d9a5d4b167c86b7f49c17b34",
+  "sha256_amdhip64_7.dll": "b4b4799f5deafb81ff735e077b0efe95fb98abe728a2a98efa713b1c6f8bd1a2"
+}
