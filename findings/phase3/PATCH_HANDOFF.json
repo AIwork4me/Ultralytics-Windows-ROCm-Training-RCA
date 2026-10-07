@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "handoff_type": "phase3_cross_platform_patch_validation",
+  "patch_id": "P3-FINAL-R3",
+  "source": {
+    "repository": "ROCm/rocm-libraries",
+    "sha": "b68f8944300f104875d953fc8e4510908c9aaf0b"
+  },
+  "patch_series": [
+    {
+      "order": 1,
+      "path": "patches/phase3/0001-miopen-hiprtc-selfcontained.patch",
+      "sha256": "f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20"
+    },
+    {
+      "order": 2,
+      "path": "patches/phase3/0002-miopen-hiprtc-selfcontained.patch",
+      "sha256": "77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532"
+    }
+  ],
+  "series_hash": {
+    "algorithm": "sha256_git_blob_concat_v1",
+    "definition": "SHA256(exact Git blob bytes of patch order 1 concatenated directly with exact Git blob bytes of patch order 2, with no separator or transformation)",
+    "sha256": "b1150afcf2170a9d396f9a25669547c0ed4021c221f7feaa59e073d4b9706685"
+  },
+  "producer": {
+    "platform": "windows",
+    "hardware": "AMD Ryzen AI MAX+ 395 / Radeon 8060S",
+    "gfx": "gfx1151",
+    "rocm": "7.14.0"
+  },
+  "validation": {
+    "windows_patch_closure": "PASS",
+    "real_miopen_source_build": "PASS",
+    "patched_miopen_loaded_by_pytorch": "PASS",
+    "no_msvc_stl_ab": "PASS",
+    "batchnorm_matrix": "PASS",
+    "numerical_validation": "PASS",
+    "rtc_kernel_matrix": "PASS",
+    "yolo_train_amp_false": "PASS",
+    "yolo_train_default_amp": "PASS",
+    "linux_regression": "PENDING"
+  },
+  "consumer_contract": {
+    "intended_consumer": "rca/linux-gfx1151-phase3-regression",
+    "patch_mutation_allowed": false,
+    "source_sha_must_match": true,
+    "individual_patch_sha256_must_match": true,
+    "series_sha256_must_match": true
+  },
+  "upstream_state": {
+    "pr_created": false,
+    "issue_created": false,
+    "comment_posted": false
+  }
+}
