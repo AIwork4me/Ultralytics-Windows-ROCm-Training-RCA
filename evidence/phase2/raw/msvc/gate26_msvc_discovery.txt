@@ -1,0 +1,23 @@
+=== where cl ===
+信息: 用提供的模式无法找到文件。
+=== where vswhere ===
+信息: 用提供的模式无法找到文件。
+=== standard VS locations ===
+absent: /c/Program Files/Microsoft Visual Studio
+absent: /c/Program Files (x86)/Microsoft Visual Studio
+absent: /c/Program Files/Microsoft Visual Studio/2022
+absent: /c/Program Files (x86)/Microsoft Visual Studio/2022
+absent: /c/Program Files (x86)/Microsoft Visual Studio/2019
+absent: /c/Program Files (x86)/Microsoft Visual Studio/2017
+=== vswhere canonical probe ===
+vswhere.exe NOT PRESENT
+=== BuildTools locations ===
+=== Windows SDK ===
+no Windows Kits dir
+=== targeted type_traits search (VS roots) ===
+=== cl.exe on PATH? dumpbin? link? ===
+C:\Program Files\Git\usr\bin\link.exe
+信息: 找不到 "dumpbin"。
+信息: 找不到 "clang"。
+信息: 找不到 "gcc"。
+信息: 找不到 "g++"。

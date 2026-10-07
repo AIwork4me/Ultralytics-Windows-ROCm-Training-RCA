@@ -1,3 +1,7 @@
+﻿### captured 2026-10-07T13:29:35.1937087+08:00
+### desc: Control A: GPU GEMM 4096^2 (scripts/01_gpu_gemm_control.py)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1
+### shell: plain (no VS/MSVC environment injection)
 torch.__version__ = 2.12.0+rocm7.14.0
 torch.version.hip = 7.14.60850
 device_count = 1
@@ -5,9 +9,10 @@ device(0) = AMD Radeon(TM) 8060S Graphics
 
 input: shape=(4096, 4096) dtype=torch.float32 device=cuda:0
 output: shape=(4096, 4096) dtype=torch.float32 device=cuda:0
-mean=-0.015907  sum=-2.668793e+05
-wall time incl. compile/first-call: 0.167 s
-cpu-side checksum sum=-2.668793e+05
+mean=-0.001536  sum=-2.576427e+04
+wall time incl. compile/first-call: 0.174 s
+cpu-side checksum sum=-2.576423e+04
 isfinite=True
 
 PHASE1_GEMM: PASS
+exit_code=0

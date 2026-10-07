@@ -1,8 +1,9 @@
-### captured 2026-10-07T13:18:26+08:00
-### command: yolo_amd python -c "from ultralytics import YOLO; YOLO('yolo26n.pt').train(data='coco8.yaml', epochs=1, imgsz=640, device=0, workers=0)"
-### (Python-API equivalent of: yolo detect train data=coco8.yaml model=yolo26n.pt epochs=1 imgsz=640 device=0 workers=0)
+﻿### captured 2026-10-07T13:29:52.0854627+08:00
+### desc: Test F: Ultralytics YOLO26n GPU train coco8 epochs=1 imgsz=640 device=0 workers=0 (Python-API equivalent)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1
+### workdir: C:\Users\rocm\Desktop\YOLO_AMD
 Ultralytics 8.4.174  Python-3.13.16 torch-2.12.0+rocm7.14.0 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
-[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-7, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-7, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-8, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-8, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
 
                    from  n    params  module                                       arguments                     
   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
@@ -34,30 +35,35 @@ YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLO
 Transferred 708/708 items from pretrained weights
 [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
 [34m[1mAMP: [0mchecks passed 
-[34m[1mtrain: [0mFast image access  (ping: 0.00.0 ms, read: 453.8247.0 MB/s, size: 50.0 KB)
-[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 883.0Kit/s 0.0s
-[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 541.1162.9 MB/s, size: 54.0 KB)
-[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 1.5Mit/s 0.0s
+[34m[1mtrain: [0mFast image access  (ping: 0.00.0 ms, read: 194.266.5 MB/s, size: 50.0 KB)
+
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣 4/4 762.6Kit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 350.171.5 MB/s, size: 54.0 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% 鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣 4/4 1.4Mit/s 0.0s
 [34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
 [34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
-Plotting labels to C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-7\labels.jpg... 
+Plotting labels to C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-8\labels.jpg... 
 Using 4 train, 4 val images for fraction=1.0 at imgsz=640
 Using 0 dataloader workers
-Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-7[0m
+Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-8[0m
 Starting training for 1 epochs...
 Closing dataloader mosaic
 MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
 MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp
-MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-92844-12-764815\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-92844-12-764815\include\batchnorm_functions.hpp:30:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-92844-12-764815\include\configuration.hpp:34:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-92844-12-764815\include\vector_types.hpp:8:
-C:\Users\rocm\AppData\Local\Temp\comgr-92844-12-764815\include\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found
-  151 | #include <type_traits>
-      |          ^~~~~~~~~~~~~
+MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-98836-12-f4ee0e\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-98836-12-f4ee0e\include\batchnorm_functions.hpp:30:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-98836-12-f4ee0e\include\configuration.hpp:34:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-98836-12-f4ee0e\include\vector_types.hpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-98836-12-f4ee0e\include\miopen_type_traits.hpp:151:
+In file included from C:\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits:10:
+C:\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstddef:11:10: fatal error: 'stddef.h' file not found
+   11 | #include <stddef.h>
+      |          ^~~~~~~~~~
 1 error generated when compiling for gfx1151.
 MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp
-[K: 0% ──────────── 0/1  0.3s
+
+[K: 0% 鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€鈹€ 0/1  0.4s
 Traceback (most recent call last):
   File "<string>", line 1, in <module>
     from ultralytics import YOLO; YOLO('yolo26n.pt').train(data='coco8.yaml', epochs=1, imgsz=640, device=0, workers=0)

@@ -1,0 +1,26 @@
+{
+  "fake_include_dir": "C:\\Users\\rocm\\AppData\\Local\\Temp\\hiprtc_incopts_hev_8rnl",
+  "results": [
+    {
+      "option_style": "dash-I",
+      "create": 0,
+      "compile": 0,
+      "code_size": 3808,
+      "log": ""
+    },
+    {
+      "option_style": "include-path",
+      "create": 0,
+      "compile": 6,
+      "code_size": 0,
+      "log": "<built-in>:2:10: fatal error: '-path=C:\\Users\\rocm\\AppData\\Local\\Temp\\hiprtc_incopts_hev_8rnl' file not found\n    2 | #include \"-path=C:\\Users\\rocm\\AppData\\Local\\Temp\\hiprtc_incopts_hev_8rnl\"\n      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n1 error generated when compiling for gfx1151.\n"
+    },
+    {
+      "option_style": "isystem",
+      "create": 0,
+      "compile": 0,
+      "code_size": 3808,
+      "log": ""
+    }
+  ]
+}

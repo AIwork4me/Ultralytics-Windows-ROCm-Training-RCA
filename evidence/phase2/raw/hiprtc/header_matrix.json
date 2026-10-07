@@ -1,0 +1,89 @@
+{
+  "hiprtc_version": "9.0",
+  "results": [
+    {
+      "probe": "none",
+      "header": "(none)",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "type_traits",
+      "header": "#include <type_traits>",
+      "rtc_create": 0,
+      "rtc_compile": 6,
+      "compile_result": "HIPRTC_ERROR_COMPILATION(6)",
+      "log_size": 226,
+      "program_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-113036-2-eadffd\\input\\probe.cu:1:10: fatal error: 'type_traits' file not found\n    1 | #include <type_traits>\n      |          ^~~~~~~~~~~~~\n1 error generated when compiling for gfx1151.\n",
+      "code_size": 0,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "utility",
+      "header": "#include <utility>",
+      "rtc_create": 0,
+      "rtc_compile": 6,
+      "compile_result": "HIPRTC_ERROR_COMPILATION(6)",
+      "log_size": 214,
+      "program_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-113036-3-c10b8b\\input\\probe.cu:1:10: fatal error: 'utility' file not found\n    1 | #include <utility>\n      |          ^~~~~~~~~\n1 error generated when compiling for gfx1151.\n",
+      "code_size": 0,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "limits",
+      "header": "#include <limits>",
+      "rtc_create": 0,
+      "rtc_compile": 6,
+      "compile_result": "HIPRTC_ERROR_COMPILATION(6)",
+      "log_size": 211,
+      "program_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-113036-4-548b57\\input\\probe.cu:1:10: fatal error: 'limits' file not found\n    1 | #include <limits>\n      |          ^~~~~~~~\n1 error generated when compiling for gfx1151.\n",
+      "code_size": 0,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "cstdint",
+      "header": "#include <cstdint>",
+      "rtc_create": 0,
+      "rtc_compile": 6,
+      "compile_result": "HIPRTC_ERROR_COMPILATION(6)",
+      "log_size": 214,
+      "program_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-113036-5-883cb0\\input\\probe.cu:1:10: fatal error: 'cstdint' file not found\n    1 | #include <cstdint>\n      |          ^~~~~~~~~\n1 error generated when compiling for gfx1151.\n",
+      "code_size": 0,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "initializer_list",
+      "header": "#include <initializer_list>",
+      "rtc_create": 0,
+      "rtc_compile": 6,
+      "compile_result": "HIPRTC_ERROR_COMPILATION(6)",
+      "log_size": 241,
+      "program_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-113036-6-bb5b26\\input\\probe.cu:1:10: fatal error: 'initializer_list' file not found\n    1 | #include <initializer_list>\n      |          ^~~~~~~~~~~~~~~~~~\n1 error generated when compiling for gfx1151.\n",
+      "code_size": 0,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    }
+  ]
+}

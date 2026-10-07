@@ -90,7 +90,7 @@ that ONLY the yolo_amd env can satisfy imports. Recorded in
 | `torch.cuda.is_available()` / device | True / AMD Radeon 8060S ✓ |
 | paddlex / paddle / paddleocr / omnidocbench / conda / anaconda_cli_base | **ABSENT** ✓ |
 | onnxruntime (user-site leak) | present WITHOUT `PYTHONNOUSERSITE=1`; absent with it — all Phase-2 runs use the flag |
-| `pip check` | exit 1, but only 2 complaints *inside* the clone (missing `pyparsing`, `python-dateutil` — the pre-existing base gaps above); the base-only pydantic/ruamel/paddlex conflicts do NOT exist here |
+| `pip check` | exit 1 — in-clone complaints: `soundfile requires cffi` plus the two pre-existing matplotlib gaps (`pyparsing`, `python-dateutil`) noted above; the base-only pydantic/ruamel/paddlex conflicts do NOT exist here (row corrected per Gate-23 audit; that verify run itself was made without `PYTHONNOUSERSITE=1`) |
 
 ## Native-stack identity (gate22_dll_provenance.json)
 

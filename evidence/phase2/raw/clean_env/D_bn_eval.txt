@@ -1,12 +1,18 @@
+﻿### captured 2026-10-07T13:29:47.5161691+08:00
+### desc: Test D: BatchNorm2d eval (matrix case C)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1
+### shell: plain (no VS/MSVC environment injection)
 MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdInferSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
 MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdInferSpatial.cpp
-MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\input\MIOpenBatchNormFwdInferSpatial.cpp:30:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\include\bnorm_spatial_activation_functions.hpp:32:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\include\configuration.hpp:34:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\include\vector_types.hpp:8:
-C:\Users\rocm\AppData\Local\Temp\comgr-110564-6-f0fe80\include\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found
-  151 | #include <type_traits>
-      |          ^~~~~~~~~~~~~
+MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-105960-6-6b8d85\input\MIOpenBatchNormFwdInferSpatial.cpp:30:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-105960-6-6b8d85\include\bnorm_spatial_activation_functions.hpp:32:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-105960-6-6b8d85\include\configuration.hpp:34:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-105960-6-6b8d85\include\vector_types.hpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-105960-6-6b8d85\include\miopen_type_traits.hpp:151:
+In file included from C:\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits:10:
+C:\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstddef:11:10: fatal error: 'stddef.h' file not found
+   11 | #include <stddef.h>
+      |          ^~~~~~~~~~
 1 error generated when compiling for gfx1151.
 MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdInferSpatial.cpp
 torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics
@@ -42,3 +48,4 @@ Traceback (most recent call last):
     )
     ^
 RuntimeError: miopenStatusUnknownError
+exit_code=1

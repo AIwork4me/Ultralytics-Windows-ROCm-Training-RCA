@@ -1,4 +1,9 @@
+﻿### captured 2026-10-07T13:29:37.9612127+08:00
+### desc: Control B: GPU Conv2d (scripts/04_conv_control.py; NOTE warm-cache pass expected)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1
+### shell: plain (no VS/MSVC environment injection)
 torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics
-out shape=(8, 32, 64, 64) mean=0.008730 isfinite=True
+out shape=(8, 32, 64, 64) mean=-0.007230 isfinite=True
 first-call wall time (incl. any kernel compile): 0.03 s
 CONV_CONTROL: PASS
+exit_code=0

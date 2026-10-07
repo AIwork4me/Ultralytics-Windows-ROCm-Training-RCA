@@ -1,0 +1,48 @@
+=== env vars relevant to include discovery (clean shell) ===
+INCLUDE=<unset>
+LIB=<unset>
+LIBPATH=<unset>
+CPATH=<unset>
+CPLUS_INCLUDE_PATH=<unset>
+HIP_PATH=<unset>
+ROCM_PATH=<unset>
+PATH=/c/Users/rocm/bin:/mingw64/bin:/usr/local/bin:/usr/bin:/bin:/mingw64/bin:/usr/bin:/c/Users/rocm/bin:/c/Program Files/VisionMaster4.4.0/Applications/PublicFile/x64:/c/Program Files/VisionMaster4.4.0/Applications/PublicFile/x86:/c/Program Files (x86)/Common Files/MVS/Runtime/Win32_i86:/c/Program Files (x86)/Common Files/MVS/Runtime/Win64_x64:/c/Program Files/VisionMaster4.4.0/MVDAlgorithmSDK/Runtime/Win32:/c/Program Files/VisionMaster4.4.0/MVDAlgorithmSDK/Runtime/x64:/c/Program Files/ImageMagick-7.1.2-Q16-HDRI:/c/Windows/system32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0:/c/Windows/System32/OpenSSH:/c/Windows/System32/WindowsPowerShell/v1.0:/c/Program Files/nodejs:/c/Program Files/GitHub CLI:/c/Users/rocm/miniconda3:/c/Users/rocm/miniconda3/Library/mingw-w64/bin:/c/Users/rocm/miniconda3/Library/usr/bin:/c/Users/rocm/miniconda3/Library/bin:/c/Users/rocm/miniconda3/Scripts:/c/Program Files/Tailscale:/c/Program Files/QoderCN/bin:/cmd:/c/Users/rocm/AppData/Local/Programs/Trae CN/bin:/c/Users/rocm/.kimi-code/bin:/c/Users/rocm/AppData/Local/Microsoft/WindowsApps:/c/Users/rocm/AppData/Roaming/npm:/c/Users/rocm/AppData/Local/Programs/Microsoft VS Code/bin:/c/Users/rocm/.local/bin:/c/texlive/2026/bin/windows:/c/Program Files/Graphviz/bin:/c/Users/rocm/AppData/Local/Programs/Comate/bin:/c/Users/rocm/AppData/Local/Programs/CodeBuddy CN/bin:/c/Users/rocm/AppData/Local/Programs/ZCode/resources/tools/ripgrep:/c/Users/rocm/AppData/Local/Programs/ZCode/resources/tools/ugrep:/c/Program Files/nodejs:/usr/bin/vendor_perl:/usr/bin/core_perl
+
+=== wheel clang triple + version ===
+AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:1efe4605317a40d2170d33617075bd5675d0d558)
+Target: x86_64-pc-windows-msvc
+Thread model: posix
+InstalledDir: C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin
+
+=== clang resource dir contents (top level) ===
+23
+resource include dir: /c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/lib/clang/23/include
+__clang_cuda_builtin_vars.h
+__clang_cuda_cmath.h
+__clang_cuda_complex_builtins.h
+__clang_cuda_device_functions.h
+__clang_cuda_intrinsics.h
+__clang_cuda_libdevice_declares.h
+__clang_cuda_math.h
+__clang_cuda_math_forward_declares.h
+__clang_cuda_runtime_wrapper.h
+__clang_cuda_texture_intrinsics.h
+__clang_hip_cmath.h
+__clang_hip_libdevice_declares.h
+__clang_hip_math.h
+__clang_hip_runtime_wrapper.h
+__clang_hip_stdlib.h
+
+=== wheel include roots ===
+CL
+amd_comgr
+hip
+hsa
+hsakmt
+
+=== targeted std-header search in wheel trees ===
+type_traits: NOT FOUND in wheels
+utility: NOT FOUND in wheels
+limits: /c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/lib/clang/23/include/limits.h
+initializer_list: NOT FOUND in wheels
+cstddef: NOT FOUND in wheels

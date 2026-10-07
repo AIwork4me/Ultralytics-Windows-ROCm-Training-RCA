@@ -15,3 +15,6 @@ evidence/SHA256SUMS.txt text eol=lf
 # byte-exact — its SHA256s are recorded in evidence/SHA256SUMS.txt — so no
 # EOL conversion or normalization of any kind.
 evidence/raw/** -text
+# Phase-2 raw evidence: same byte-exact rule as Phase 1 (hashes recorded in
+# evidence/phase2/SHA256SUMS.txt by Gate 43).
+evidence/phase2/** -text

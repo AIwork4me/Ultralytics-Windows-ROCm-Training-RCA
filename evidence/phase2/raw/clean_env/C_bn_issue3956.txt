@@ -1,3 +1,7 @@
+﻿### captured 2026-10-07T13:29:42.8332178+08:00
+### desc: Test C-3956: BatchNorm2d(100) (20,100,35,45)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1
+### shell: plain (no VS/MSVC environment injection)
 torch.__version__ = 2.12.0+rocm7.14.0
 torch.version.hip = 7.14.60850
 device(0) = AMD Radeon(TM) 8060S Graphics
@@ -6,13 +10,15 @@ bn = BatchNorm2d(100).cuda().train()
 x shape = (20, 100, 35, 45) device = cuda:0
 MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
 MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp
-MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-48912-6-85228b\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-48912-6-85228b\include\batchnorm_functions.hpp:30:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-48912-6-85228b\include\configuration.hpp:34:
-In file included from C:\Users\rocm\AppData\Local\Temp\comgr-48912-6-85228b\include\vector_types.hpp:8:
-C:\Users\rocm\AppData\Local\Temp\comgr-48912-6-85228b\include\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found
-  151 | #include <type_traits>
-      |          ^~~~~~~~~~~~~
+MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-97108-6-b44ec0\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-97108-6-b44ec0\include\batchnorm_functions.hpp:30:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-97108-6-b44ec0\include\configuration.hpp:34:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-97108-6-b44ec0\include\vector_types.hpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-97108-6-b44ec0\include\miopen_type_traits.hpp:151:
+In file included from C:\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits:10:
+C:\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstddef:11:10: fatal error: 'stddef.h' file not found
+   11 | #include <stddef.h>
+      |          ^~~~~~~~~~
 1 error generated when compiling for gfx1151.
 MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp
 Traceback (most recent call last):
@@ -44,3 +50,4 @@ Traceback (most recent call last):
     )
     ^
 RuntimeError: miopenStatusUnknownError
+exit_code=1
