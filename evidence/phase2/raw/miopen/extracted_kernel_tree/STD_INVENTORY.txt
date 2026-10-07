@@ -1,4 +1,4 @@
-=== angle-include directives in extracted closure (files actually reachable from MIOpenBatchNormFwdTrainSpatial.cpp) ===
+=== TREE-WIDE angle-include directives across ALL 158 extracted headers (NOT the BN closure; see docs/PHASE2_RUNTIME_STL_REQUIREMENTS.md for the 13-file closure) ===
       7 #include <hip/hip_runtime.h>
       7 #include <hip/hip_fp16.h>
       5 #include <type_traits>
@@ -45,7 +45,7 @@
       1 #include <cstdint> // int8_t, int16_t
       1 #include <cstdint>
 
-=== std:: identifiers in extracted closure ===
+=== std:: identifiers across ALL extracted headers (tree-wide; NOT closure-scoped) ===
      27 std::is_same
      23 std::forward
      11 std::conditional

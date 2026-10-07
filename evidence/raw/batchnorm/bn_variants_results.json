@@ -8,24 +8,24 @@
   },
   {
     "case": "bn1d_3d",
-    "pass": true,
-    "exit_code": 0,
-    "miopen_kernel": null,
-    "type_traits_err": false
+    "pass": false,
+    "exit_code": 1,
+    "miopen_kernel": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr",
+    "type_traits_err": true
   },
   {
     "case": "bn2d",
-    "pass": true,
-    "exit_code": 0,
-    "miopen_kernel": null,
-    "type_traits_err": false
+    "pass": false,
+    "exit_code": 1,
+    "miopen_kernel": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr",
+    "type_traits_err": true
   },
   {
     "case": "bn3d",
-    "pass": true,
-    "exit_code": 0,
-    "miopen_kernel": null,
-    "type_traits_err": false
+    "pass": false,
+    "exit_code": 1,
+    "miopen_kernel": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTr",
+    "type_traits_err": true
   },
   {
     "case": "groupnorm",

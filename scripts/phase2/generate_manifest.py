@@ -16,11 +16,20 @@ now = (
     ).stdout.strip()
 )
 
+tracked = set(
+    subprocess.run(
+        ["git", "ls-files", "--", "evidence/phase2"],
+        capture_output=True, text=True, cwd=ROOT,
+    ).stdout.splitlines()
+)
 entries = []
 for dirpath, dirnames, filenames in os.walk(P2ROOT):
     for fn in sorted(filenames):
         if fn == "SHA256SUMS.txt":
             continue
+        rel = os.path.relpath(os.path.join(dirpath, fn), ROOT).replace(os.sep, "/")
+        if rel not in tracked:
+            continue  # skip gitignored/untracked (e.g. *.bc)
         full = os.path.join(dirpath, fn)
         rel = os.path.relpath(full, ROOT).replace(SEP, "/")
         data = open(full, "rb").read()

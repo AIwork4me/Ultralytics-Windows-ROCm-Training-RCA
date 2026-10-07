@@ -86,15 +86,26 @@ namespace std { /* …no-STL shim… */ }            // self-contained
 a custom limits shim for this HIP version, so `<limits>` is not required in
 the BN closure); `miopen_cstdint.hpp` gates on RTC mode alone.
 
-### Where the gate came from
+### Where the gate came from (two separate upstream commits — attribution corrected per Gate-45 review)
 
-- Commit `ce14dab3b92a82aca14c3477619157f41928fe99` (PR **ROCm/MIOpen#3803**
-  "All 7.0 hipRTC fixes", merged 2025-06-16, author BrianHarrisonAMD,
-  body: "Fixes for hip 7.0 breaking changes") added the outer
+- **`miopen_type_traits.hpp`**: commit
+  `ce14dab3b92a82aca14c3477619157f41928fe99` (PR **ROCm/MIOpen#3803**
+  "All 7.0 hipRTC fixes", merged 2025-06-16) added the outer
   `#if HIP_PACKAGE_VERSION_FLAT < 7000000000ULL` wrapper; the exact 4-line
-  diff to `miopen_type_traits.hpp` is archived in
-  `evidence/phase2/raw/upstream/` (gate29 fetch). Before it, the choice was
-  `#ifdef MIOPEN_DONT_USE_HIP_RUNTIME_HEADERS` only.
+  diff is archived at `evidence/phase2/raw/upstream/commit_ce14dab3.json`.
+  NOTE (post-review): that commit's context shows the inner macro as
+  `MIOPEN_DONT_USE_HIP_RUNTIME_HEADERS`; the wheel and current develop use
+  `MIOPEN_HIP_RUNTIME_COMPILE` — a later rename. The wheel header is
+  therefore not byte-identical to ce14dab3's immediate product; the outer
+  version gate itself is unchanged.
+- **`miopen_utility.hpp`**: commit `b514736610` (PR **#3147**, 2025-12-18,
+  "[MIOpen] Update include to use utility if hip version > 7.0"; body:
+  "With 7.0 the previous workarounds to declare std types is no longer
+  valid (and causes hipRTC failures). This should resolve one of the
+  issues found in #2617.") added the same outer gate for `<utility>`
+  INDEPENDENTLY of #3803 (the #3803 file list does not include
+  miopen_utility.hpp). Archived at
+  `evidence/phase2/raw/upstream/commit_b514736610.json`.
 - Why HIP 7.0 needed changes (ROCm/clr `hipamd/src/hiprtc/hiprtc.cpp`):
   hiprtc's builtin header (`hiprtc_runtime.h`, force-included with
   `-D__HIPCC_RTC__ -nogpuinc`) previously **defined `std` type traits**,

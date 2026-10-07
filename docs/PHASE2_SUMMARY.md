@@ -12,8 +12,9 @@ Ultralytics YOLO GPU training on native Windows (Radeon 8060S / gfx1151,
 ROCm 7.14.0 pip wheels) failed because:
 
 1. **Trigger (MIOpen source)** — commit `ce14dab3b92a82a…` (PR
-   ROCm/MIOpen#3803 "All 7.0 hipRTC fixes", merged 2025-06-16) gates
-   `miopen_type_traits.hpp`/`miopen_utility.hpp` with
+   ROCm/MIOpen#3803, 2025-06-16, `miopen_type_traits.hpp`) and commit
+   `b514736610` (PR #3147, 2025-12-18, `miopen_utility.hpp`, independently)
+   gate those headers with
    `HIP_PACKAGE_VERSION_FLAT < 7000000000ULL`, so for HIP ≥ 7.0 the
    no-STL compatibility shim is disabled and runtime-compiled kernels
    unconditionally `#include <type_traits>` — an assumption that holds on
@@ -50,8 +51,9 @@ ROCm 7.14.0 pip wheels) failed because:
    practical fix for any affected user — but it is an *undeclared
    prerequisite* today (AMD docs don't mention it).
 2. **`ROCM_PATH` + freestanding shim dir** (`patches/shim_stl/`): no
-   admin, no MSVC, no DLL changes; validated end-to-end. User-level
-   workaround, not an upstream fix.
+   admin, no DLL changes; validated end-to-end and proven NOT to rely on
+   MSVC (the `-I` dir shadows MSVC discovery — poisoned-header proof).
+   User-level workaround, not an upstream fix.
 
 ## Upstream-quality fixes identified (recommendation only; nothing submitted)
 

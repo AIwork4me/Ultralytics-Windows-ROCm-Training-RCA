@@ -1,0 +1,101 @@
+{
+  "sha": "b51473661032a0ee384cf31afc765e3d2e004015",
+  "node_id": "C_kwDOOej8qdoAKGI1MTQ3MzY2MTAzMmEwZWUzODRjZjMxYWZjNzY1ZTNkMmUwMDQwMTU",
+  "commit": {
+    "author": {
+      "name": "BrianHarrisonAMD",
+      "email": "169072757+BrianHarrisonAMD@users.noreply.github.com",
+      "date": "2025-12-18T19:19:13Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2025-12-18T19:19:13Z"
+    },
+    "message": "[MIOpen] Update include to use utility if hip version > 7.0 (#3147)\n\n## Motivation\n\nWith 7.0 the previous workarounds to declare std types is no longer\nvalid (and causes hipRTC failures).\nThis should resolve one of the issues found in #2617.\n\nCo-authored-by: Jason Campbell <jascampb@amd.com>",
+    "tree": {
+      "sha": "fbf1ff744d43320491eee01a643b8308003168de",
+      "url": "https://api.github.com/repos/ROCm/rocm-libraries/git/trees/fbf1ff744d43320491eee01a643b8308003168de"
+    },
+    "url": "https://api.github.com/repos/ROCm/rocm-libraries/git/commits/b51473661032a0ee384cf31afc765e3d2e004015",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJpRFOxCRC1aQ7uu5UhlAAAupwQABUsK0sPPveiGWDYIlU0cgfL\n53bY5j5oawj3lB2XSeUcqDlwG4TCpnzWVlFvpA+BrOHkjfzOZkuoz1Tu3QqlEdog\n2qg8+PYdnLhW8yYfu2xVF7FVk/GtBCeye1Z+WMnZoUVJ6cZoQd87QLwD0kgyIBM6\nTU1SHTgwAiC3326HM9yykZulr8aiFuN+Jr59WNr+X2CbpMXdYRmgbicfMiUztj1g\nPd+YgD0zodR0of64zzU8Vm0GBnugDMVeAL7mrYneLTcsrU4EgGVBaq5deynLQOUc\n83x2iuk7JKZbmB1XmyMfOWjcnuN/EgpH34142/QQvEUhk+iIPKBThdPVCtebw2rb\nG7Ua1d4kLjz09elNWbPihDvFnIOm7s50cqBVMzFsEoKVQRx9YA1hel04UQdbY4Xd\n1wj9CQzE5qLtXv1jV34HOmlJQt6nGhBasFkErcaiecikQJyyBRGkwEHL7oW0NbNV\neUx/6ZS4D+hArxyued9f/btyINS3/bwMULh2zQUOfRsQ2eF0fXkXFuPDvdwvfO4N\nTbPr7nr6cwDw6cExVU59LPE11XJglvEAbRkUgKpeZGRCn5juSdpaQm9l50kpvOvg\ntdslq3K6kqtsFHdpoeTprxj+L/ioJWcfHZu57N4ctrGrfyBcqmhw9uPdDHVRE2Sa\nt2jaqg1Xh3DLLpWGN/V7\n=7sGr\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree fbf1ff744d43320491eee01a643b8308003168de\nparent 8c54340d8a38fe183aea0225975a5ffd4790ba96\nauthor BrianHarrisonAMD <169072757+BrianHarrisonAMD@users.noreply.github.com> 1766085553 -0700\ncommitter GitHub <noreply@github.com> 1766085553 -0700\n\n[MIOpen] Update include to use utility if hip version > 7.0 (#3147)\n\n## Motivation\n\nWith 7.0 the previous workarounds to declare std types is no longer\nvalid (and causes hipRTC failures).\nThis should resolve one of the issues found in #2617.\n\nCo-authored-by: Jason Campbell <jascampb@amd.com>",
+      "verified_at": "2025-12-18T19:19:14Z"
+    }
+  },
+  "url": "https://api.github.com/repos/ROCm/rocm-libraries/commits/b51473661032a0ee384cf31afc765e3d2e004015",
+  "html_url": "https://github.com/ROCm/rocm-libraries/commit/b51473661032a0ee384cf31afc765e3d2e004015",
+  "comments_url": "https://api.github.com/repos/ROCm/rocm-libraries/commits/b51473661032a0ee384cf31afc765e3d2e004015/comments",
+  "author": {
+    "login": "BrianHarrisonAMD",
+    "id": 169072757,
+    "node_id": "U_kgDOChPYdQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/169072757?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/BrianHarrisonAMD",
+    "html_url": "https://github.com/BrianHarrisonAMD",
+    "followers_url": "https://api.github.com/users/BrianHarrisonAMD/followers",
+    "following_url": "https://api.github.com/users/BrianHarrisonAMD/following{/other_user}",
+    "gists_url": "https://api.github.com/users/BrianHarrisonAMD/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/BrianHarrisonAMD/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/BrianHarrisonAMD/subscriptions",
+    "organizations_url": "https://api.github.com/users/BrianHarrisonAMD/orgs",
+    "repos_url": "https://api.github.com/users/BrianHarrisonAMD/repos",
+    "events_url": "https://api.github.com/users/BrianHarrisonAMD/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/BrianHarrisonAMD/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "8c54340d8a38fe183aea0225975a5ffd4790ba96",
+      "url": "https://api.github.com/repos/ROCm/rocm-libraries/commits/8c54340d8a38fe183aea0225975a5ffd4790ba96",
+      "html_url": "https://github.com/ROCm/rocm-libraries/commit/8c54340d8a38fe183aea0225975a5ffd4790ba96"
+    }
+  ],
+  "stats": {
+    "total": 4,
+    "additions": 4,
+    "deletions": 0
+  },
+  "files": [
+    {
+      "sha": "a61142c15d0328efc43d070f373a685698f0f2ce",
+      "filename": "projects/miopen/src/kernels/miopen_utility.hpp",
+      "status": "modified",
+      "additions": 4,
+      "deletions": 0,
+      "changes": 4,
+      "blob_url": "https://github.com/ROCm/rocm-libraries/blob/b51473661032a0ee384cf31afc765e3d2e004015/projects%2Fmiopen%2Fsrc%2Fkernels%2Fmiopen_utility.hpp",
+      "raw_url": "https://github.com/ROCm/rocm-libraries/raw/b51473661032a0ee384cf31afc765e3d2e004015/projects%2Fmiopen%2Fsrc%2Fkernels%2Fmiopen_utility.hpp",
+      "contents_url": "https://api.github.com/repos/ROCm/rocm-libraries/contents/projects%2Fmiopen%2Fsrc%2Fkernels%2Fmiopen_utility.hpp?ref=b51473661032a0ee384cf31afc765e3d2e004015",
+      "patch": "@@ -25,6 +25,7 @@\n  *******************************************************************************/\n #pragma once\n \n+#if HIP_PACKAGE_VERSION_FLAT < 7000000000ULL\n #ifdef MIOPEN_DONT_USE_HIP_RUNTIME_HEADERS\n \n #include \"miopen_type_traits.hpp\" // std::remove_reference\n@@ -50,3 +51,6 @@ constexpr T&& forward(typename remove_reference<T>::type&& t_) noexcept\n #include <utility>\n \n #endif\n+#else\n+#include <utility>\n+#endif\n\\ No newline at end of file"
+    }
+  ]
+}

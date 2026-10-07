@@ -99,11 +99,12 @@ supply/discover/document the STL):
   exists and is honored — a wheel-side or docs-side remedy is available
   without any MIOpen change.
 - **H12-P2 (HIP ≥ 7.0 MIOpen header-gating design)** — SUPPORTED as the
-  *trigger* of the regression window: MIOpen PR #3803 ("All 7.0 hipRTC
-  fixes", merged 2025-06-16, commit `ce14dab3b92a82aca14c3477619157f41928fe99`)
-  added the outer `#if HIP_PACKAGE_VERSION_FLAT < 7000000000ULL` gate so
-  that for HIP ≥ 7.0 the no-STL compatibility shim is disabled and real
-  `<type_traits>` is required **even in runtime-compile mode**. Upstream
+  *trigger* of the regression window: MIOpen commits `ce14dab3` (PR #3803 "All 7.0
+  hipRTC fixes", 2025-06-16, `miopen_type_traits.hpp`) and `b514736610`
+  (PR #3147, 2025-12-18, `miopen_utility.hpp`, independently) added the
+  outer `#if HIP_PACKAGE_VERSION_FLAT < 7000000000ULL` gate so that for
+  HIP ≥ 7.0 the no-STL compatibility shim is disabled and real std headers
+  are required **even in runtime-compile mode**. Upstream
   context (ROCm/clr `hipamd/src/hiprtc/hiprtc.cpp`): hiprtc's builtin
   header previously *defined* `std` type traits; in 7.0 they moved to
   `__hip_internal`, so consumers must include the real STL — safe on

@@ -40,15 +40,17 @@ Date: 2026-10-07. Every claim cites raw evidence under `evidence/phase2/raw/`
    a viable injection channel.
 
 5. **Is the HIP ≥ 7 MIOpen header-gating assumption involved?**
-   **YES — it is the regression trigger.** Upstream commit
+   **YES — it is the regression trigger.** Upstream commits
    `ce14dab3b92a82aca14c3477619157f41928fe99` (PR ROCm/MIOpen#3803, "All
-   7.0 hipRTC fixes", merged 2025-06-16) wrapped `miopen_type_traits.hpp`
-   (and `miopen_utility.hpp`) so that for
+   7.0 hipRTC fixes", merged 2025-06-16 — touched
+   `miopen_type_traits.hpp`) and, separately, `b514736610` (PR #3147,
+   2025-12-18 — touched `miopen_utility.hpp`; the #3803 file list does
+   NOT include it) wrapped those headers so that for
    `HIP_PACKAGE_VERSION_FLAT >= 7000000000ULL` the no-STL compatibility
-   shim is disabled and real `<type_traits>` is included **even in
-   runtime-compile mode**. The PR's premise — hiprtc 7.0 consumers can use
-   real std headers — holds on Linux (system STL always present) but not
-   on Windows wheels without MSVC.
+   shim is disabled and real `<type_traits>`/`<utility>` are included
+   **even in runtime-compile mode**. The PRs' premise — hiprtc 7.0
+   consumers can use real std headers — holds on Linux (system STL always
+   present) but not on Windows wheels without MSVC.
 
 6. **Which layer is the strongest owner?**
    **Jointly: (a) AMD's Windows wheel distribution** — ships an

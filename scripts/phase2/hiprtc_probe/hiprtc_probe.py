@@ -100,7 +100,8 @@ def main() -> int:
             overall_exit = 4
             continue
 
-        options = (ctypes.c_char_p * 1)(b"--gpu-architecture=gfx1151")
+        arch = os.environ.get("HIPRTC_ARCH", "gfx1151")
+        options = (ctypes.c_char_p * 1)(f"--gpu-architecture={arch}".encode())
         r_compile = hiprtc.hiprtcCompileProgram(prog, 1, options)
 
         log_size = ctypes.c_size_t(0)
@@ -125,7 +126,7 @@ def main() -> int:
             "program_log": log.value.decode("utf-8", "replace"),
             "code_size": code_size.value if r_codesize == 0 else None,
             "rtc_code_size_result": r_codesize,
-            "arch": "gfx1151",
+            "arch": os.environ.get("HIPRTC_ARCH", "gfx1151"),
             "hiprtc_version": f"{maj.value}.{mnr.value}",
             "dll": os.path.join(core_bin, "hiprtc0714.dll"),
         }
