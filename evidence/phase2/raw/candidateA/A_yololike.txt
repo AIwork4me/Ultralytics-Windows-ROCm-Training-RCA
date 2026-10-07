@@ -1,0 +1,13 @@
+﻿### captured 2026-10-07T13:40:57.4657955+08:00
+### desc: Candidate A: BN yololike shape
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1  ROCM_PATH=C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\patches\shim_stl (shim)
+### cache isolation: HOME=USERPROFILE=C:\Users\rocm\AppData\Local\Temp\gateA_iso_4c7e525c
+torch.__version__ = 2.12.0+rocm7.14.0
+torch.version.hip = 7.14.60850
+device(0) = AMD Radeon(TM) 8060S Graphics
+case = yololike
+bn = BatchNorm2d(16).cuda().train()
+x shape = (16, 16, 320, 320) device = cuda:0
+y shape = (16, 16, 320, 320) mean = -0.000000 isfinite = True
+BATCHNORM_yololike: PASS
+exit_code=0

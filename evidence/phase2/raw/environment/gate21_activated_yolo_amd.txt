@@ -1,0 +1,10 @@
+CONDA_DEFAULT_ENV=%CONDA_DEFAULT_ENV% 
+CONDA_PREFIX=%CONDA_PREFIX% 
+C:\Users\rocm\miniconda3\python.exe
+C:\Users\rocm\AppData\Local\Microsoft\WindowsApps\python.exe
+C:\Users\rocm\miniconda3\Scripts\pip.exe
+C:\Users\rocm\miniconda3\Scripts\yolo.exe
+  File "<string>", line 1
+    "import
+    ^
+SyntaxError: unterminated string literal (detected at line 1)

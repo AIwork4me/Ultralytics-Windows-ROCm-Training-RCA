@@ -1,0 +1,10 @@
+### comgr temps capture (BN passing, MSVC present) — 2026-10-07T13:34:24+08:00
+torch.__version__ = 2.12.0+rocm7.14.0
+torch.version.hip = 7.14.60850
+device(0) = AMD Radeon(TM) 8060S Graphics
+case = minimal
+bn = BatchNorm2d(16).cuda().train()
+x shape = (8, 16, 64, 64) device = cuda:0
+y shape = (8, 16, 64, 64) mean = 0.000000 isfinite = True
+BATCHNORM_minimal: PASS
+exit_code=0

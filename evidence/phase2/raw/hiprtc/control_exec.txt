@@ -1,0 +1,3 @@
+compiled code object: 3840 bytes
+kernel result: out = 42 (expected 42)
+STANDALONE-HIPRTC-EXEC: PASS

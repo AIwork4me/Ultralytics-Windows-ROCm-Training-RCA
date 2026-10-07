@@ -135,3 +135,11 @@ non-claims.
 
 [MIT](LICENSE) — scripts and documentation. Third-party trademarks belong
 to their owners.
+
+## Phase-2 note on null-result artifacts
+
+`evidence/phase2/raw/candidateB/standalone_compile_ab*.txt` record an
+ABANDONED harness (both arms fail on MIOpen option-set divergence before
+reaching the include question). They are retained as null results and are
+NOT cited by any conclusion; the patched-header validation that IS cited
+lives in `candidate_b_v2_validation.txt`.

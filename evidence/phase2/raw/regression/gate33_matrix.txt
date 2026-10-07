@@ -1,0 +1,124 @@
+### Gate 33: regression matrix, post-remedy state (MSVC present, plain shell) — 2026-10-07T13:47:08+08:00
+### command: yolo_amd python scripts/03_batchnorm_matrix.py (all cases A-H, isolated subprocesses)
+
+===== MATRIX RESULTS =====
+[
+  {
+    "case": "A",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py A",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.33,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gemm ok mean=-0.009303",
+      "CASE_A: PASS"
+    ]
+  },
+  {
+    "case": "B",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py B",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 1.9,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "cpu bn ok mean=0.000000",
+      "CASE_B: PASS"
+    ]
+  },
+  {
+    "case": "C",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py C",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.61,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu bn eval ok mean=-0.000455",
+      "CASE_C: PASS"
+    ]
+  },
+  {
+    "case": "D",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py D",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.17,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu bn train ok mean=-0.000000",
+      "CASE_D: PASS"
+    ]
+  },
+  {
+    "case": "E",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py E",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.25,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu bn train cudnn.disabled ok mean=0.000000",
+      "CASE_E: PASS"
+    ]
+  },
+  {
+    "case": "F",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py F",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.29,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu conv ok mean=0.006960",
+      "CASE_F: PASS"
+    ]
+  },
+  {
+    "case": "G",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py G",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.9,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu conv+bn ok mean=0.000000",
+      "CASE_G: PASS"
+    ]
+  },
+  {
+    "case": "H",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py H",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.54,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu linear+backward ok grad_norm=8222.595703",
+      "CASE_H: PASS"
+    ]
+  }
+]
+Traceback (most recent call last):
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\scripts\03_batchnorm_matrix.py", line 131, in <module>
+    with open("evidence/raw/batchnorm/matrix_results.json", "w", encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'evidence/raw/batchnorm/matrix_results.json'
+matrix_exit=1

@@ -53,3 +53,5 @@ desktop.ini
 *.token
 *_token
 credentials*
+# comgr device-libs bitcode captured incidentally with saved temps (not evidence)
+*.bc

@@ -1,0 +1,39 @@
+### Candidate B v2 compile validation — 2026-10-07T14:21:44+08:00
+### v2 semantics: outer HIP-version gate REMOVED (single-level RTC gate); trait block unconditional; real enable_if
+### checks: (1) preprocess in MIOpen RTC context -> self-contained, no <type_traits>;
+###         (2) compile traits kernel via hiprtc with -nostdinc (no system/MSVC STL reachable);
+###         (3) execute on GPU; expected 5 = sizeof(long=4 under -fms-compatibility)+1
+{
+  "patched_header": "C:\\Users\\rocm\\AppData\\Local\\Temp\\gate32_candB_v2\\miopen_type_traits.hpp",
+  "checks": [
+    {
+      "check": "preprocess_RTC_context",
+      "exit": 0,
+      "stderr_head": "",
+      "trait_names_present": {
+        "remove_reference": true,
+        "remove_cv": true,
+        "is_same": true,
+        "enable_if": true,
+        "conditional": true
+      },
+      "pass": true
+    },
+    {
+      "check": "compile_traits_kernel_nostdinc",
+      "create": 0,
+      "compile": 0,
+      "code_size": 3848,
+      "log": "",
+      "pass": true
+    },
+    {
+      "check": "execute_traits_kernel",
+      "result": 5,
+      "expected": 5,
+      "pass": true
+    }
+  ]
+}
+CANDIDATE-B-V2: PASS
+validate_exit=0

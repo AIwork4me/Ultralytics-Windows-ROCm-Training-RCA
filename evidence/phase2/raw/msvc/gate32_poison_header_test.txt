@@ -1,0 +1,6 @@
+### Poisoned-header test: does wheel MIOpen pass -I$ROCM_PATH/include to HIPRTC? — 2026-10-07T13:37:45+08:00
+### ROCM_PATH=C:\hiprtc_poison (include/type_traits = #error POISONED...)
+<string>:1: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at B:\src\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:839.)
+BN OK 1.862645149230957e-09
+exit_code=0

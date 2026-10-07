@@ -1,0 +1,114 @@
+[
+  {
+    "case": "A",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py A",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.3,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gemm ok mean=0.012400",
+      "CASE_A: PASS"
+    ]
+  },
+  {
+    "case": "B",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py B",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 1.98,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "cpu bn ok mean=-0.000000",
+      "CASE_B: PASS"
+    ]
+  },
+  {
+    "case": "C",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py C",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.35,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu bn eval ok mean=0.000171",
+      "CASE_C: PASS"
+    ]
+  },
+  {
+    "case": "D",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py D",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.39,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu bn train ok mean=-0.000000",
+      "CASE_D: PASS"
+    ]
+  },
+  {
+    "case": "E",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py E",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.29,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu bn train cudnn.disabled ok mean=0.000000",
+      "CASE_E: PASS"
+    ]
+  },
+  {
+    "case": "F",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py F",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.29,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu conv ok mean=0.004756",
+      "CASE_F: PASS"
+    ]
+  },
+  {
+    "case": "G",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py G",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.41,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu conv+bn ok mean=-0.000000",
+      "CASE_G: PASS"
+    ]
+  },
+  {
+    "case": "H",
+    "cmd": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\03_batchnorm_matrix.py H",
+    "env": "",
+    "pass": true,
+    "exit_code": 0,
+    "seconds": 2.62,
+    "signature": [],
+    "last_output_lines": [
+      "torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics",
+      "gpu linear+backward ok grad_norm=8291.698242",
+      "CASE_H: PASS"
+    ]
+  }
+]

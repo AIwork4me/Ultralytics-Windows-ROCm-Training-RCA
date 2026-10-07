@@ -1,0 +1,53 @@
+﻿### captured 2026-10-07T13:29:40.3062312+08:00
+### desc: Test C: minimal BatchNorm2d(16) (8,16,64,64) train (scripts/02_batchnorm_minimal.py minimal)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1
+### shell: plain (no VS/MSVC environment injection)
+torch.__version__ = 2.12.0+rocm7.14.0
+torch.version.hip = 7.14.60850
+device(0) = AMD Radeon(TM) 8060S Graphics
+case = minimal
+bn = BatchNorm2d(16).cuda().train()
+x shape = (8, 16, 64, 64) device = cuda:0
+MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
+MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp
+MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111880-6-793ae6\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111880-6-793ae6\include\batchnorm_functions.hpp:30:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111880-6-793ae6\include\configuration.hpp:34:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111880-6-793ae6\include\vector_types.hpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111880-6-793ae6\include\miopen_type_traits.hpp:151:
+In file included from C:\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits:10:
+C:\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstddef:11:10: fatal error: 'stddef.h' file not found
+   11 | #include <stddef.h>
+      |          ^~~~~~~~~~
+1 error generated when compiling for gfx1151.
+MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp
+Traceback (most recent call last):
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\scripts\02_batchnorm_minimal.py", line 38, in <module>
+    y = bn(x)
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+           ~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<11 lines>...
+        self.eps,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\functional.py", line 2850, in batch_norm
+    return torch.batch_norm(
+           ~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<7 lines>...
+        torch.backends.cudnn.enabled,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: miopenStatusUnknownError
+exit_code=1

@@ -1,0 +1,18 @@
+===== PLAIN SHELL (no activation) =====
+python: C:\Users\rocm\miniconda3\python.exe
+sys.prefix: C:\Users\rocm\miniconda3
+sys.base_prefix: C:\Users\rocm\miniconda3
+CONDA_DEFAULT_ENV: None
+CONDA_PREFIX: None
+torch: 2.12.0+rocm7.14.0
+hip: 7.14.60850
+cuda: None
+torchvision: 0.27.0+rocm7.14.0
+ultralytics: 8.4.174
+cuda_available: True
+device: AMD Radeon(TM) 8060S Graphics
+torch_location: C:\Users\rocm\miniconda3\Lib\site-packages\torch
+ultralytics_location: C:\Users\rocm\miniconda3\Lib\site-packages\ultralytics
+
+===== CMD: conda activate yolo_amd; python =====
+python: can't open file 'C:\\c\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\scripts\\phase2\\gate21_env_probe.py': [Errno 2] No such file or directory

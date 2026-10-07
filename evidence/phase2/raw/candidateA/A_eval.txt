@@ -1,0 +1,8 @@
+﻿### captured 2026-10-07T13:41:00.3751460+08:00
+### desc: Candidate A: BN eval (matrix case C)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1  ROCM_PATH=C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\patches\shim_stl (shim)
+### cache isolation: HOME=USERPROFILE=C:\Users\rocm\AppData\Local\Temp\gateA_iso_4c7e525c
+torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics
+gpu bn eval ok mean=0.000035
+CASE_C: PASS
+exit_code=0

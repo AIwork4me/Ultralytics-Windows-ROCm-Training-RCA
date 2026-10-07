@@ -1,0 +1,8 @@
+﻿### captured 2026-10-07T13:29:49.8751958+08:00
+### desc: Test E: BN with torch.backends.cudnn.enabled=False (diagnostic)
+### interpreter: C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe  PYTHONNOUSERSITE=1
+### shell: plain (no VS/MSVC environment injection)
+torch=2.12.0+rocm7.14.0 hip=7.14.60850 dev=AMD Radeon(TM) 8060S Graphics
+gpu bn train cudnn.disabled ok mean=0.000000
+CASE_E: PASS
+exit_code=0

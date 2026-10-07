@@ -1,0 +1,46 @@
+### captured 2026-10-07T13:41:56+08:00
+### desc: Candidate A BN variants V1-V5 (cwd redirected for script's relative output)
+### ROCM_PATH(shim)=C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\patches\shim_stl  HOME=C:\Users\rocm\AppData\Local\Temp\gateA_iso_4c7e525c
+[
+  {
+    "case": "bn1d_2d",
+    "pass": true,
+    "exit_code": 0,
+    "miopen_kernel": null,
+    "type_traits_err": false
+  },
+  {
+    "case": "bn1d_3d",
+    "pass": true,
+    "exit_code": 0,
+    "miopen_kernel": null,
+    "type_traits_err": false
+  },
+  {
+    "case": "bn2d",
+    "pass": true,
+    "exit_code": 0,
+    "miopen_kernel": null,
+    "type_traits_err": false
+  },
+  {
+    "case": "bn3d",
+    "pass": true,
+    "exit_code": 0,
+    "miopen_kernel": null,
+    "type_traits_err": false
+  },
+  {
+    "case": "groupnorm",
+    "pass": true,
+    "exit_code": 0,
+    "miopen_kernel": null,
+    "type_traits_err": false
+  }
+]
+bn1d_2d: PASS kernel=None
+bn1d_3d: PASS kernel=None
+bn2d: PASS kernel=None
+bn3d: PASS kernel=None
+groupnorm: PASS kernel=None
+exit_code=0

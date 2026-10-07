@@ -1,0 +1,40 @@
+### ARM B: VS Developer shell (vcvars64.bat)
+### captured 2026-10-07T13:32:53+08:00
+**********************************************************************
+** Visual Studio 2022 Developer Command Prompt v17.14.41
+** Copyright (c) 2025 Microsoft Corporation
+**********************************************************************
+[vcvarsall.bat] Environment initialized for: 'x64'
+=== ARM B env delta ===
+INCLUDE=C:\BuildTools\VC\Tools\MSVC\14.44.35207\include;C:\BuildTools\VC\Auxiliary\VS\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\um;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\shared;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\winrt;C:\Program Files (x86)\Windows Kits\10\\include\10.0.26100.0\\cppwinrt
+LIB=C:\BuildTools\VC\Tools\MSVC\14.44.35207\lib\x64;C:\Program Files (x86)\Windows Kits\10\lib\10.0.26100.0\ucrt\x64;C:\Program Files (x86)\Windows Kits\10\\lib\10.0.26100.0\\um\x64
+VCToolsInstallDir=C:\BuildTools\VC\Tools\MSVC\14.44.35207\
+{
+  "hiprtc_version": "9.0",
+  "results": [
+    {
+      "probe": "type_traits",
+      "header": "#include <type_traits>",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    }
+  ]
+}
+hiprtc_probe_exit=0
+torch.__version__ = 2.12.0+rocm7.14.0
+torch.version.hip = 7.14.60850
+device(0) = AMD Radeon(TM) 8060S Graphics
+case = minimal
+bn = BatchNorm2d(16).cuda().train()
+x shape = (8, 16, 64, 64) device = cuda:0
+y shape = (8, 16, 64, 64) mean = -0.000000 isfinite = True
+BATCHNORM_minimal: PASS
+bn_repro_exit=0

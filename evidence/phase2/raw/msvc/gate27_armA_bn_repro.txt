@@ -1,0 +1,12 @@
+### ARM A cont: minimal BN repro, plain shell, MSVC present, no env injection
+### captured 2026-10-07T13:31:50+08:00
+### command: yolo_amd python scripts/02_batchnorm_minimal.py minimal
+torch.__version__ = 2.12.0+rocm7.14.0
+torch.version.hip = 7.14.60850
+device(0) = AMD Radeon(TM) 8060S Graphics
+case = minimal
+bn = BatchNorm2d(16).cuda().train()
+x shape = (8, 16, 64, 64) device = cuda:0
+y shape = (8, 16, 64, 64) mean = -0.000000 isfinite = True
+BATCHNORM_minimal: PASS
+exit_code=0

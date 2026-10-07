@@ -1,0 +1,1441 @@
+{
+  "phase": 2,
+  "generated": "2026-10-07T14:23:25.9107082+08:00",
+  "note": "Phase-2 artifacts only; Phase-1 evidence/SHA256SUMS.txt untouched.",
+  "files": [
+    {
+      "path": "evidence/phase2/raw/candidateA/A_conv.txt",
+      "size_bytes": 763,
+      "sha256": "3f5613111bac229117ac350f364f6f6ac845cac42139e5149d134da9c694478b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateA/A_eval.txt",
+      "size_bytes": 513,
+      "sha256": "8c0cdf1681c12fccfaf21f48eaea446a48995028884a754c4bfe277c52431638",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateA/A_gemm.txt",
+      "size_bytes": 807,
+      "sha256": "7b1ecdcbe8f0f2454fb85f95bebc5cd190eb07aa13ebd1f306b332a06de9fdf5",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateA/A_issue3956.txt",
+      "size_bytes": 694,
+      "sha256": "6eae485568ab392c5aa5bf789d087404b47659da833f572e2b9a2b2669bd5a55",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateA/A_minimal.txt",
+      "size_bytes": 718,
+      "sha256": "92197d9c24f45d48de8779334d621c3e5093d78b396f283b18a1b64e2d8a6949",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateA/A_variants.txt",
+      "size_bytes": 1098,
+      "sha256": "41c483ab1cd7bb3ed660dd5e9b97a9aa811f353337cd52a10a36e02583a8b98e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateA/A_yololike.txt",
+      "size_bytes": 692,
+      "sha256": "8a55380088974fbabb9c91e017d2244564701c433172d4cd3878a0ac7b450ec0",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateB/candidate_b_v2_validation.txt",
+      "size_bytes": 1216,
+      "sha256": "c642394e55a620d54d0e8953f8c687f215977447d0744881c387188abdb7de5d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateB/dll_gate_flip_experiment.txt",
+      "size_bytes": 12578,
+      "sha256": "599aa42b49f18c9524889de812834d303ed1fd109d16b630a4373b1c3bff9222",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateB/standalone_compile_ab.txt",
+      "size_bytes": 4828,
+      "sha256": "4b270de556e2cd81e12b3838869a6d7ce1b60fda911379080f8be29e223317f9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/candidateB/standalone_compile_ab_v2.txt",
+      "size_bytes": 4796,
+      "sha256": "866f2770bbeef90687c7e883790247fbb37a208c4fa28a52655a1432296548c9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/clean_env/A_gemm.txt",
+      "size_bytes": 686,
+      "sha256": "f8dc3ca590be54c81c87ab78162f23e45c8aa1180c223b9e73bf5eaf0faa0bbc",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/clean_env/B_conv.txt",
+      "size_bytes": 505,
+      "sha256": "67dc90ad9e402d4050ddaf058c6c7316570eff721c349fc1b4970059588327ca",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/clean_env/C_bn_issue3956.txt",
+      "size_bytes": 3056,
+      "sha256": "0ec12327e2d34101b62f6c58b3529bd09061b415d69cae66ac90be7eaeb10021",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/clean_env/C_bn_minimal_train.txt",
+      "size_bytes": 3104,
+      "sha256": "f201c4462568f5d343665f4a32cb769e4d913cbcc0b0f04c2a7e60edeb5f9fe7",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/clean_env/C_bn_yololike.txt",
+      "size_bytes": 3060,
+      "sha256": "c8106bcd570dcde70d4ee920a0ecbf7476fef9c649aa135cbd4a97394178c51d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/clean_env/D_bn_eval.txt",
+      "size_bytes": 3106,
+      "sha256": "2a4c76d4fee7f67873aa2abafdb8f668f10c002f31a63e528f159fc6dbd1c31b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/clean_env/E_bn_cudnn_off.txt",
+      "size_bytes": 414,
+      "sha256": "1ba08187e7fa2f0684b62427aaf4a8490fbba895b7f9e74b4cfc46021dca8ba3",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/clean_env/F_yolo_train.txt",
+      "size_bytes": 11661,
+      "sha256": "c3a34e9d61618fe5ae8eca5430253371ab23dd677feb27912a9985b0e4e3bbee",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate21_activated_probe.txt",
+      "size_bytes": 1511,
+      "sha256": "6fe96f7002f168c8fcd29e2895f0e8286a7c70be8e63a09254bf01b08c673614",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate21_activated_yolo_amd.txt",
+      "size_bytes": 364,
+      "sha256": "4636df7791c37d9e0b98878e6d35bb1064e4e494256e2f37065c9938d25a8214",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate21_interpreter_probe.txt",
+      "size_bytes": 754,
+      "sha256": "e4f1ee649b342ad66dc471aabdd1bf783abcf5901e0fe88c82bf7a1ad30a6f92",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate21_pip_check.txt",
+      "size_bytes": 250,
+      "sha256": "f73ff0f32532cefd7fa07e057c7dde361f0f721f4cbac26a98b90a8c83fd03e6",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate21_pip_freeze.txt",
+      "size_bytes": 9102,
+      "sha256": "6808c15c0422b7f54edd4e6edbadf20eec4cda832de0848ac2bfd71b8be0c97e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate21_pip_version.txt",
+      "size_bytes": 79,
+      "sha256": "1193925d92308bfdb067e4fd04420a2dd35337a32a4f9159d0a2c5664da5c115",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate21_shell_state.txt",
+      "size_bytes": 490,
+      "sha256": "f60648670f065de1f2c763c372013030a032fa691569b7e6060b7c297d10a586",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate22_closure_manifest.json",
+      "size_bytes": 7207,
+      "sha256": "f90c5e7b422ed6cbc3988850ba4ad0823366d1b8d627d4e4576f6ae6f39536fd",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate22_conda_create.txt",
+      "size_bytes": 13210,
+      "sha256": "6fc81cb8e385a0f8e40be96cd9c5ba461b78ff4d8d9940d3a89b45e339777fae",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate22_dll_provenance.json",
+      "size_bytes": 8895,
+      "sha256": "036b70b60e8d24e875b4bf8231977a54820b8ddcde84865229a4179b7b6e53e0",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate22_dll_provenance_stdout.txt",
+      "size_bytes": 8971,
+      "sha256": "c7c9ef41f0382411d99f4f44037182e705ec97d87ab40609752cc9e58e797b66",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate22_env_verify.txt",
+      "size_bytes": 4329,
+      "sha256": "cd3aa136da3fbe3073a26a3f59974f642f8db503d228e2b65c554aeef785d5f4",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/environment/gate22_pip_install_pyparsing.txt",
+      "size_bytes": 670,
+      "sha256": "789bad40f20956a36ecb359106ad6834bb2a5f6e981d7d722a227aecef2057b5",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/hiprtc/control_exec.txt",
+      "size_bytes": 103,
+      "sha256": "bf8a2b704f51fe3192b120b3f4819b0bce4d29eb3782e056dd01f7cb7b545aa3",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/hiprtc/gate25_amdclang_verbose.txt",
+      "size_bytes": 4410,
+      "sha256": "0f63d401150e79f7d921dfa5c488d447b1b0673131dc4f9482acd3bb1d722d85",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/hiprtc/gate25_include_discovery.txt",
+      "size_bytes": 3067,
+      "sha256": "e69baa0479ad25ee5e2ef72722bc58b3ea48ffd331f55d56faf33666e02d3668",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/hiprtc/header_matrix.json",
+      "size_bytes": 4025,
+      "sha256": "57855de211a253296e4b473b55435e3def046c44badfa4bfad7d625f6ea30842",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/hiprtc/header_matrix_stderr.txt",
+      "size_bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/hiprtc/include_option_probe.json",
+      "size_bytes": 853,
+      "sha256": "922dc8bd57ec8018c857467cb914bcd34fac47fdc17089741ff958f1101031ca",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/comgr_temps_capture/bn_run.txt",
+      "size_bytes": 387,
+      "sha256": "08fcd92865238fc18d9f1158bea51f55c86e182ca632e0d582ae0b64dc876a24",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/comgr_temps_capture/comgr-108888-0-0a632a/input/Assembly Text",
+      "size_bytes": 12020,
+      "sha256": "37536fb1fbc9d9276785b5e8edff2c06731e51a7aecf155bf30c31213e06ff53",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/comgr_temps_capture/comgr-108888-2-a76203/include/opencl-c-base.h",
+      "size_bytes": 29650,
+      "sha256": "4d9e71c4a3217ef4710546831cdc9f04e20e793cd728ba2d3eef1fed0fcdef2d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/comgr_temps_capture/comgr-108888-2-a76203/input/CompileSource",
+      "size_bytes": 9447,
+      "sha256": "531aa35ccbdb40a4b51fad810d819641196e24c144f02b0eaba8dd1ba4fc4891",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/comgr_temps_capture/comgr-108888-3-8ce871/input/LLVM Binary",
+      "size_bytes": 48188,
+      "sha256": "56c171db9830894f498c2d8fa2caf3d6f9cabd9ba567783618c1a6c901c5654c",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/MIOpenBatchNormFwdTrainSpatial.cpp",
+      "size_bytes": 47994,
+      "sha256": "965e96e4c12879d21e58e72eb737cbe65bec3e218b4395a145586f9b274c5992",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/STD_INVENTORY.txt",
+      "size_bytes": 2559,
+      "sha256": "8970c3431fb41d5aa3e623f0ccf2f96775ca86f20f30ddeeef540b059bb39c53",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/MIOpenReduceCalculation.hpp",
+      "size_bytes": 2270,
+      "sha256": "b6fa911295015053d1b6138fcfec1a83e7a03374571d803b48af6ee9549a6d91",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/MIOpenReduceExtreme.hpp",
+      "size_bytes": 3231,
+      "sha256": "aafd6b9e29ed6b7e07250f0ae4099e88f26741d6d4bd18458a72dea98b3b3f10",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/activation_functions.hpp",
+      "size_bytes": 27228,
+      "sha256": "2debc760c33a3e1a3c07225c36cc71e8eb2e7a838b22dc0f6ca5130c4771367e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/amd_address_space.hpp",
+      "size_bytes": 1293,
+      "sha256": "2d54c10dee8fc56ab34505f9f44d07deb2b13971471f57b2f0bdeae19b5e62f5",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/amd_buffer_addressing.hpp",
+      "size_bytes": 33041,
+      "sha256": "5b560ab064717fcb454751791c639a1cf45906ef17d1621c15991e006474fd6c",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/amd_buffer_intrinsics.hpp",
+      "size_bytes": 11400,
+      "sha256": "f6ddf0e82b22594fd171f38344209efea62eb87d534f03ef0e8d272cd0500430",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/amd_inline_asm.hpp",
+      "size_bytes": 15832,
+      "sha256": "765b52bc7cf299492036842d1c399472233f79ba31f31efce4230ef38cec00d8",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/amd_xdlops.hpp",
+      "size_bytes": 18310,
+      "sha256": "29f3b5f34376e07ce1ec2039bfb7b103156e7feb64ea131730f38e51b4a53f7b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/array.hpp",
+      "size_bytes": 1762,
+      "sha256": "b540c777222f06ec392d8c033ba861e423be18f86078ee2a867125e8d9b4f2e0",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/array_multi_index.hpp",
+      "size_bytes": 2412,
+      "sha256": "ab4233da829e1c094d69260a672a35d0072985d1a557f053309d9d3585259fa5",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/batchnorm_functions.hpp",
+      "size_bytes": 14026,
+      "sha256": "aa77cf3d1269a8144f40e13c2ba479eef8f6d04aab9ef50e3b327c10b6d017d7",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/bfloat16_dev.hpp",
+      "size_bytes": 10146,
+      "sha256": "32feb04241279ec1ec0a6f4446634c4ee91c199a0d9128a71d808186b8ed3b7e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/block_reduce.hpp",
+      "size_bytes": 3113,
+      "sha256": "fcdca711b9f87fe89fe9bbd4b5e1485593a2b2efe42292763867663875624f6f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/blockwise_gemm_dlops_v2r2.hpp",
+      "size_bytes": 17974,
+      "sha256": "fb10b5490c5d06c7905866509b79bbc557142242e78a148e6ae1b6abf375b71b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/blockwise_gemm_dlops_v2r3.hpp",
+      "size_bytes": 19522,
+      "sha256": "d3adaa264d44022da78a689f0e0aa6e31d05c4cfa32dfae34ce251c53445966b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/blockwise_gemm_dlops_v3.hpp",
+      "size_bytes": 8341,
+      "sha256": "6dfd89bdccf9684ce1761c40ebdd47b80aacc992153d2240ab857498b6f36d57",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/blockwise_gemm_xdlops.hpp",
+      "size_bytes": 22485,
+      "sha256": "77a8f848a8a8f361f622ed987d823eb7d4562f69b7740dddb11539fd15f7a6d1",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/blockwise_tensor_slice_transfer.hpp",
+      "size_bytes": 7563,
+      "sha256": "7f1a098cf744a536438698aba27dea9394846086fc96efb822ff5c77582921fa",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/blockwise_tensor_slice_transfer_v2.hpp",
+      "size_bytes": 7133,
+      "sha256": "050b76ab07bfdba3357f79ff9f05301964739afa2afa022c9f62a91ba6c76e4e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/bnorm_spatial_activation_functions.hpp",
+      "size_bytes": 7004,
+      "sha256": "7376a83c1079b8230bf9d76e9d0a0b83ff0db9a11e8ef3b550b813d4c560758e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/c_style_pointer_cast.hpp",
+      "size_bytes": 692,
+      "sha256": "5a5053cb44173625054c8e3968469659828c7be37cece7941af851b542200f2b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/cluster_descriptor.hpp",
+      "size_bytes": 1203,
+      "sha256": "55637e376ce034a5915569a3785a9d77a1cb4ae3de5c8baac39b79313641455a",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/common_header.hpp",
+      "size_bytes": 1167,
+      "sha256": "797dcb3c5c8af3192ac4d6cef732cfaf548273993c9f1eeebd83a545a65fe136",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/config.hpp",
+      "size_bytes": 6077,
+      "sha256": "42372e5f4d2b3ae6c852077499ba66d892ed54990968003cd4b015d7927e9d2c",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/configuration.hpp",
+      "size_bytes": 13464,
+      "sha256": "6f914995d998d7409a26710bd854ce448e140ccfb20e0c47e7841a7d61ebe5ae",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/container_helper.hpp",
+      "size_bytes": 13104,
+      "sha256": "9e50aed95c406bfa432e819bcbbcb9ef59892a9b3c87638c0c782e8ba1f3cf79",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/data_type.hpp",
+      "size_bytes": 30935,
+      "sha256": "754e7c13af43d97f9cb04063ce1d07d9f43b4f980cbe9caa3445a54a293a7f96",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/data_type_enum.hpp",
+      "size_bytes": 395,
+      "sha256": "8312f302aeaaf2286e41eaf46817fa92c0eaddccfe86daf754b1034f6e19fd0f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/data_type_enum_helper.hpp",
+      "size_bytes": 1598,
+      "sha256": "9f95b29a396397ce7b691fcd2b9ea033b513076d8b5f09b6d9f523e1cb00539f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/default_configurations.hpp",
+      "size_bytes": 4248,
+      "sha256": "86355a06c2baf319dbe3cea9b2896d9a7af83b48b6602488d4b2d43d6de00f48",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/dynamic_buffer.hpp",
+      "size_bytes": 11571,
+      "sha256": "219d87cf5d555ff32394ca609f8a2487b52e9152ef6eb998ad6f6e15dd89d0f6",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/enable_if.hpp",
+      "size_bytes": 417,
+      "sha256": "e1b30a270f7894da1cde04aac46c373b9733e10b3e7c887af074a4b3965f1fe8",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/float_types.h",
+      "size_bytes": 9737,
+      "sha256": "f1db06c0cda1232f5e55f5edf785bc0a94b5291975f9bdc4b5909c3dc6750431",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/fp8_kern_types.h",
+      "size_bytes": 2211,
+      "sha256": "77eb7bc1b3745e7747437a80616295436f45df20a5574c49d2b0715d94cf58ea",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/functional.hpp",
+      "size_bytes": 2608,
+      "sha256": "eb50a538964c51025ff5d5db8ddb3077e485cb26501c1104d9b44bb805696baf",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/functional2.hpp",
+      "size_bytes": 1364,
+      "sha256": "70db0d6abcd0c91f7044b2d6c55a05780c19acca616503eb145f1ee0e5d3d626",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/functional3.hpp",
+      "size_bytes": 4671,
+      "sha256": "bb4bac67fa5df86bfeac1e94a710ecaa5edd9910c23250806e06cf3795703ac0",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/functional4.hpp",
+      "size_bytes": 2012,
+      "sha256": "53598feb87a82be3d7e42677509caf4203632aa10236bde4abf10ea63f3b7c4d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/general_tensor_reorder_kernel_util.hpp",
+      "size_bytes": 22316,
+      "sha256": "b1106724694dccf38fae29f674000d1dbd788d7a56b08a541cd6b649ea10ac85",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/gridwise_contraction_dlops_v1r2.hpp",
+      "size_bytes": 32917,
+      "sha256": "8cf7248f88b6d4d621895b29b2ac30e32448d9359ee6ceaabc465c085f6be271",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/gridwise_generic_2d_reduction_blockwise.hpp",
+      "size_bytes": 31429,
+      "sha256": "5dfa82e04bda57763bd25d1fa0344508ad1f7e4ffbc236cd4daeaeda0b2ef95d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/gridwise_generic_2d_reduction_direct_threadwise.hpp",
+      "size_bytes": 26340,
+      "sha256": "70eb93195f983915e974c63f62201e5ef95aad163bb8df6a77f2fc0a9427ace6",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/gridwise_generic_2d_reduction_direct_warpwise.hpp",
+      "size_bytes": 28404,
+      "sha256": "10f08746cb793e21eb6e1fb9b4526f500bea070eee3d60928194407d17f46cde",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/gridwise_generic_2d_reduction_multiblock.hpp",
+      "size_bytes": 19415,
+      "sha256": "21cbdf9f14d8522725eb08ac4916fa8dc9c45256fa878b6864a1156a9f0e4e8a",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/hip_atomic.hpp",
+      "size_bytes": 3670,
+      "sha256": "796d58fa9b033fd30886682b50f37b38bb0dc1299f4c606c502bfca74a590938",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/hip_f8_impl.hpp",
+      "size_bytes": 14957,
+      "sha256": "1be2935a95c9216ce9cdca92f61fa61c693329319357d3c2d7ef4ff24b3e48b3",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/hip_float8.hpp",
+      "size_bytes": 25169,
+      "sha256": "f3d58b93816ec1cf26282a78118d7c0faeb290d91a65291c640b243f3c4933c0",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/hip_math_ops.hpp",
+      "size_bytes": 805,
+      "sha256": "ce870ba506369b4d472d2d1740126cea1592ac945f2a7b93fdee62f2b13c2bfa",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/hiprtc_runtime.h",
+      "size_bytes": 802302,
+      "sha256": "18033f92f8e968895cea3d73d8c4e2c7f27b98288f246064fac48854077934ca",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/inner_product.hpp",
+      "size_bytes": 6832,
+      "sha256": "8caba0e6ad897d99dcb9860784b00d826bde604f04bfb459b74287e11cc5d361",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/integral_constant.hpp",
+      "size_bytes": 558,
+      "sha256": "0cea750c231bec857ebf981f4141571f109f956c8f0d0552486d1bb53ee59530",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/magic_division.hpp",
+      "size_bytes": 5461,
+      "sha256": "2b7821826bbd8ec1a344dd1528ad2d2db1de89d41673d0ee651362760826b6a1",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/math.hpp",
+      "size_bytes": 4631,
+      "sha256": "4d3ea749f28ae83932a553f79c2ed94860f26edaf3bd36dd5517c91255453320",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/miopen_cstdint.hpp",
+      "size_bytes": 1773,
+      "sha256": "06778ef3fc31d6b6a9d8685b492c0f2914cfe4024aff94ac2fad400754df08c1",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/miopen_limits.hpp",
+      "size_bytes": 4063,
+      "sha256": "fa31e380cc74358d3667fd1f9b8b14d8cbe47543a8605700bd22f46a967a07c9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/miopen_math.hpp",
+      "size_bytes": 16604,
+      "sha256": "6995c5b885c9d930f5c38f799060f7a406dfef3b199bbfe286dc45f87c61abca",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/miopen_rocrand.hpp",
+      "size_bytes": 2884,
+      "sha256": "f1497270fce033296b93d60ed53b2dbf14ebe470f335f6af879454668aee21a8",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/miopen_type_traits.hpp",
+      "size_bytes": 3847,
+      "sha256": "d04c2fac296b01a8d0f353d190f661b2cc660855d4b36becf8bee58b91e868d9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/miopen_utility.hpp",
+      "size_bytes": 1889,
+      "sha256": "5806863a7abda55da379dd4af64fd7aa65d6599ab53e2c17cfca26231ddd15ad",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/miopen_warp_size.hpp",
+      "size_bytes": 1471,
+      "sha256": "bd97b563906684c894699acdd51d0921e689f4c24dfefa16b196d4704869ec6f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/multi_index.hpp",
+      "size_bytes": 348,
+      "sha256": "f57c3e6fb095b9c0adbd76b63dc63048b4ded0c1fd353fca646b7cb98807d5d0",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/multi_index_transform.hpp",
+      "size_bytes": 65839,
+      "sha256": "231ea186b94dfe79ee3165000b1479e50975aaf1f6ded5ca2c5d65a0fcbb7db0",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/multi_index_transform_helper.hpp",
+      "size_bytes": 4016,
+      "sha256": "706b0f4a0cf92c695a960b525358d25ff5523f377595e37e8f9bd5b6770b9215",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/number.hpp",
+      "size_bytes": 1102,
+      "sha256": "bfe79a5199698cd6bc6afdbfe4f47f4e6c3ed1311b9cd26099f10401144039e8",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/pooling_functions.h",
+      "size_bytes": 2870,
+      "sha256": "1c64071fcd3bcecb67a47f4436322c49fa35403bff78a6862f5cb9e222875567",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/radix.hpp",
+      "size_bytes": 3706,
+      "sha256": "6d87f0749245d4540543f964e7648623f7c92f91d9a518759db2614655873b3a",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/reduction_common.hpp",
+      "size_bytes": 1874,
+      "sha256": "9920478793738f881ac05201131e6c3ff4e391044ec4c41739171b8769b706d4",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/reduction_enums.hpp",
+      "size_bytes": 1975,
+      "sha256": "c77d9751738d475dd70d0b41c6808a9ab028d93a263e7d5e720eec628052717f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/reduction_functions.hpp",
+      "size_bytes": 7051,
+      "sha256": "09164f2357d9828d3ff52e2ead6bd6beb8d0082b0c4e2a7c6715a18995a1d674",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/reduction_functions_binop.hpp",
+      "size_bytes": 3445,
+      "sha256": "f95bd9d8942bc52dd50c34b7a613469b5e19a99d63c058f98a833833f472a242",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/reduction_functions_blockwise.hpp",
+      "size_bytes": 11546,
+      "sha256": "76bfc68eaeca62a47f974caf4035aa9c25e244bb760d34b329ac64c91fbb028a",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/reduction_functions_threadwise.hpp",
+      "size_bytes": 6035,
+      "sha256": "6d16a2d4e0c729f670d2b4bbfee1f794623f6aa8211a795f32fb932999b002b5",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/reduction_functions_warpwise.hpp",
+      "size_bytes": 15315,
+      "sha256": "5fe9d65e7c4450ae47106b7fbb91e26322ee5dde16b59591711471753241677f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/reduction_operator.hpp",
+      "size_bytes": 12115,
+      "sha256": "dfd7cafe9fe6552091450dca36d3b2afaad31cafa6e6cf956e3025840037fa4b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/rocrand_xorwow_inlined.h",
+      "size_bytes": 1238198,
+      "sha256": "1fdcb55a168a050620a82f90d9eb4ca27fc2c6bf121c6d25d0e26310ca841a8a",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/sequence.hpp",
+      "size_bytes": 29449,
+      "sha256": "799575c791751a60d6fcd94c59a98b039ce3a13b87681bccff9e731bb5842367",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/sequence_helper.hpp",
+      "size_bytes": 969,
+      "sha256": "c55e3d8e7ee2ac803c24db48dcc4e557e257c50271482a837352f3b122a19154",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_buffer.hpp",
+      "size_bytes": 2124,
+      "sha256": "e3c522c290357ae4125b410bfe61242d81fa8c7c25df86699d08fca821fed3e3",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_ConstantMatrixDescriptor.hpp",
+      "size_bytes": 3380,
+      "sha256": "0b8170ca191fe6b3cd7523f42e64c25fb7c5b669168f415e1b67f1c5294b2544",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_ConstantTensorDescriptor_deprecated.hpp",
+      "size_bytes": 22879,
+      "sha256": "99cedd2039eba1a08abdc7b04a74c341ee8eae4341cabc04c493cf47ffdf449b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_amd_buffer_addressing.hpp",
+      "size_bytes": 13335,
+      "sha256": "cfd980133cb0b8b6f501dc39214915e6856f5ace6ade5b17349c09b50546a640",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_amd_inline_asm.hpp",
+      "size_bytes": 7039,
+      "sha256": "6d67b17417f663362c7b354e473081eb25cb801e6c6047626ac90fa66607f6cd",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_amd_xdlops.hpp",
+      "size_bytes": 18503,
+      "sha256": "4c3963a12d69dbedbb752e6cd9d269a6cb4f9ada600faaf23102aea7a87ad5dc",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_amd_xdlops_inline_asm.hpp",
+      "size_bytes": 22081,
+      "sha256": "bd61937f75482f295565da32b1bfa43ebb5b409b938d1a67b2e3da54cfd8ac8b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_array.hpp",
+      "size_bytes": 11865,
+      "sha256": "5071b7f07f90b0641eb17f6d4fc43d9f6e41a996fb4ff0623311a80c0930f46f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_blockwise_gemm.hpp",
+      "size_bytes": 16189,
+      "sha256": "43e30e8568c58fefb5701f7355c2bc02d64677a1a154fe0483a1b6cdcfe7f379",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_blockwise_gemm_xdlops.hpp",
+      "size_bytes": 8512,
+      "sha256": "4c69b1ecd239d3bf869e2d1b4d7506a8eb0a117daca14f7cf0f8f0a78908006d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_blockwise_generic_tensor_slice_copy.hpp",
+      "size_bytes": 10449,
+      "sha256": "a3714fee71f179cf28d28d43886fdb1b938a3fe9f80c2ba52d461baf0f09131f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_ck_utils_type.hpp",
+      "size_bytes": 894,
+      "sha256": "ee564b309623934402cbc172195f876f5ef3c41dea0c6951150b189a3d24866d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_common_header.hpp",
+      "size_bytes": 934,
+      "sha256": "366bfd0024d41b10441c635b0f3e999e731d63d7e22e285cbbb726f8bd30dec1",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_config.hpp",
+      "size_bytes": 4037,
+      "sha256": "171dcf8400aca8e563b4f88a33f2f37d9179b25a794168ba53ce4758d6032daa",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_convolution_common.hpp",
+      "size_bytes": 206,
+      "sha256": "23ecffa536fbacb42ceaaa223ed4a38c1ca7cf29b8386c8a4555728807915293",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_dimension.hpp",
+      "size_bytes": 399,
+      "sha256": "603b2ff5c5a156ae212094f324c63b98f679935de4694c2466eae6e72fcd8a95",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_float_type.hpp",
+      "size_bytes": 12373,
+      "sha256": "bf8faea0f17152fe7a5df77e1aa236e10c8670b4bcc3168f26416fadb72b6ff7",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_functional.hpp",
+      "size_bytes": 2526,
+      "sha256": "ecd005a296f86665b85ea3c24d0429209ea6ad92c7f6c07aed10ec7c392f9b55",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_functional2.hpp",
+      "size_bytes": 1213,
+      "sha256": "aeb5f8270a969e317976153f7bd3ddf77057ae76661d44ef95f4342c58a2ba98",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_functional3.hpp",
+      "size_bytes": 4588,
+      "sha256": "ce0796cd5470e56fbdd35804e147b741462de186475dfc41cb23bf1fa4c8132d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_functional4.hpp",
+      "size_bytes": 757,
+      "sha256": "b0ba3bdcce4d90c9c3e1c836d56ac5f4e95a15fabd79f8965ce90bb96a3d8cd7",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_fp16_bfp16_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 9079,
+      "sha256": "bcbe197610070d5c20c081b7434cdae2daca5eeb5a00e4e29cf9d3d2b1bd7df8",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_ncdhw_kczyx_nkdhw.hpp",
+      "size_bytes": 9874,
+      "sha256": "1d26d6365be00949dc4cf627ccbb521652daedfdc3844333494b24b26bd2f3ea",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 9049,
+      "sha256": "8514a7d89e406e3a2c50c5d354d71037d1d77efc5097df26ca2dc0302653b0f3",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_xdlops_gnchw_gkcyx_gnkhw.hpp",
+      "size_bytes": 9505,
+      "sha256": "17a2fd4f1ff547756dd69a477a49c0f0ff546f7d68fb6dcd32ea815f1a480a7d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v4r1_ncdhw_kczyx_nkdhw.hpp",
+      "size_bytes": 30372,
+      "sha256": "72e318df64230e5e46e80c7af44820069f2c315cf6387debef0e7d3acae43454",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v4r1_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 22898,
+      "sha256": "e4be702b1f06d3bf0116c9daf0bd1541ee12401d043461b8c77ec5c4df34fa74",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v4r1_xdlops_gnchw_gkcyx_gnkhw.hpp",
+      "size_bytes": 27267,
+      "sha256": "345b7af7972ae646ed52500ad7bc8e26baca7cf66cd3b8445d358cf58de63cb9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.hpp",
+      "size_bytes": 9271,
+      "sha256": "713399e63d21a1a7579bdb0fb34714062747289e337ee4bca7bced466220aa30",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 8592,
+      "sha256": "22b3deaed6e6ce215248fbadf1911c4a7daafb6fddbfe4761e508843a11d332d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 13513,
+      "sha256": "c4caf9c8c52a462fb6671523279fa8ecc65010507469a9a518efd92aac79d6e2",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.hpp",
+      "size_bytes": 15512,
+      "sha256": "e4a5668538f1ab5ae4b60b32d7d8c3ee2a4308875f76095a64acfa86cd2727d2",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 9863,
+      "sha256": "fab7290cd49df4990478d307ae29677e20513a3ed2bb239e561511892e09a7c1",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.hpp",
+      "size_bytes": 11753,
+      "sha256": "dee58a006247303c7564c2f6bfd8f789b476f0d5b81fd57b15cb851a9d298f61",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r5_xdlops_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 10264,
+      "sha256": "1e9e66cf8574b55b21e135a77225edd43c00b867414e0c51dd5a056317ec6565",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_implicit_gemm_v4r1_fp16_bfp16_gnchw_gkcyx_gnkhw_lds_double_buffer.hpp",
+      "size_bytes": 30543,
+      "sha256": "e6758a576b0c2aa49c3565061c29fc343a6480c6cfca5b11b42dad1f610083f1",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_implicit_gemm_v4r1_fp16_bfp16_nchw_kcyx_nkhw_lds_double_buffer.hpp",
+      "size_bytes": 29000,
+      "sha256": "64aae22f4023d7628a8ea85497ec710ddec5112021a03b4ed1a08776e2408b8e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_implicit_gemm_v4r1_gnchw_gkcyx_gnkhw_lds_double_buffer.hpp",
+      "size_bytes": 26384,
+      "sha256": "8565a9cc38181a5a7e6e7bb09e5ff2d1a390af9f1b1bcec2eba219f1cb45d389",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_implicit_gemm_v4r1_nchw_kcyx_nkhw_lds_double_buffer.hpp",
+      "size_bytes": 24227,
+      "sha256": "e715acb5bcae50f32fdb97f5217a407b911d32134aae2a8223a203b22a34788a",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.hpp",
+      "size_bytes": 9771,
+      "sha256": "643da88a7ae5332ac2aa6d3007bf515d99598263b30ae03f875363e899e9bc5d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_convolution_implicit_gemm_v4r4_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 9129,
+      "sha256": "42a1a9984d2b151808133cfa7595d93585e26d1291df68ed451a78c15dd78b96",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_gemm.hpp",
+      "size_bytes": 18240,
+      "sha256": "b15570e600a5ac180577a620d3e6c5bb9f34b6995adffa264a88eb6eccdbca28",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_gemm_fp16_bfp16.hpp",
+      "size_bytes": 21012,
+      "sha256": "3b2caf1b573fdb270cd62b28540c177acf8f1641f92d9cf74667ae2633d6c70f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_gridwise_gemm_xdlops_fp16_bfp16.hpp",
+      "size_bytes": 62955,
+      "sha256": "905ebf933c23f483b854ad74babd7fec7865bd976a8248402e7ac1617018deba",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_in_memory_operation.hpp",
+      "size_bytes": 7024,
+      "sha256": "fa42ed3d52a64c35f2e069b33fbe54bb57f45f45c13f88d5087f330f7cc5abaf",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_integral_constant.hpp",
+      "size_bytes": 456,
+      "sha256": "6b108c56399b0969deafd203f8a7b8f3401f3e8bc217cba04ba7b489637f4e7d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_math.hpp",
+      "size_bytes": 3487,
+      "sha256": "24de12cc604f3da1c35b35233fcc459c3379bc6c77c18d3dd2ee89cc553914c4",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_multi_index_transform.hpp",
+      "size_bytes": 17653,
+      "sha256": "4f21030f0850dda6a1b8d0510dc2258d61da6ab2514f6f72c3136b7854d1c983",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_number.hpp",
+      "size_bytes": 1014,
+      "sha256": "1ff5750288776b6e25fcd9391e36f7cecfa53ac81d73f555aebcef061e704a69",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_sequence.hpp",
+      "size_bytes": 28945,
+      "sha256": "b3703c0b667cdde9de32bff8034448dfa80f096aae9d2d1f3481d25f1d0d4397",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_synchronization.hpp",
+      "size_bytes": 359,
+      "sha256": "7a2952787d91ca505f9c13c1bf48a44937fcf5d3d4467c81e2311acd8e4367fd",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_tensor_coordinate.hpp",
+      "size_bytes": 10825,
+      "sha256": "fbdb4e1e0d3ff7849ab8d7b31d029bfc9b9e3488231cde33d4b298a282db0fdb",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_tensor_descriptor.hpp",
+      "size_bytes": 20050,
+      "sha256": "08ee7a8ff78e31ba677168a09d1bdc84f189a7bca0bfeffaac18ce94bf88f818",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_tensor_descriptor_helper.hpp",
+      "size_bytes": 9127,
+      "sha256": "ae4bef3837ad2295188e112d865773607baa0e448f693dcea00871e5a0367d86",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_threadwise_gemm.hpp",
+      "size_bytes": 6598,
+      "sha256": "756c40ab54f10da0efdbfa24e0dd836e9b25c9162be06fcb1ef2d6b1c0e22cdf",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_threadwise_generic_tensor_slice_copy.hpp",
+      "size_bytes": 26515,
+      "sha256": "73d2b4f6fc4c89876ce17d4972f5ed8d8b393770bb6b43cbe64fb6307bf00d84",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_tuple.hpp",
+      "size_bytes": 4726,
+      "sha256": "35a4efe1f72546ca3b9185f8319b96fd8972363a5bc4549fd6730577424494fa",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_utility.hpp",
+      "size_bytes": 270,
+      "sha256": "c937e903abc59099dd91597dfd63dcec46159e36908719a453ac859213635de8",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_xdlops_gemm.hpp",
+      "size_bytes": 40828,
+      "sha256": "cc81485a558548cee06c9fc87434bdd74f33582951473ea3f0b83ca348a36343",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_kernel_xdlops_gemm_inline_asm.hpp",
+      "size_bytes": 32043,
+      "sha256": "63b626af47fa85d630c793f4437b529cbb89758939b7718a328b6987b8170f62",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/static_unroll.hpp",
+      "size_bytes": 6592,
+      "sha256": "ac1825fea79af741d0710bba62900252d1bcfb1e9c0dc4ba355e935def1dc960",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/statically_indexed_array.hpp",
+      "size_bytes": 1167,
+      "sha256": "99e8db0595530f2ca3af9f011a59c61658dcfdf8dd0f1fb16e19f0b373612163",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/statically_indexed_array_multi_index.hpp",
+      "size_bytes": 3509,
+      "sha256": "74f8f0f27a1b9b9df67d51cd3b7766dace686b1dc973fa2f9c9c655e770900b5",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/stride_array.hpp",
+      "size_bytes": 3396,
+      "sha256": "cf0470d07dfd7e95ec9c58d5f1823ca47f4066cd08b0340406d4dcda5b1bce52",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/tensor_adaptor.hpp",
+      "size_bytes": 19023,
+      "sha256": "6ebfa298a78c5db26a5ac398a9a414e8dae7d43ada247550a56c8f7a8e2d0deb",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/tensor_descriptor.hpp",
+      "size_bytes": 24480,
+      "sha256": "6ac970b0f3c036dfcd0675a305f124cbdc78259cbc00957eb77dfc669eeeeed2",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/tensor_descriptor_helper.hpp",
+      "size_bytes": 5845,
+      "sha256": "cf7f349afd5c181b66e9eb9ebe372bb5909aaa0c4d57818c98143733c617670f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/tensor_view.hpp",
+      "size_bytes": 2910,
+      "sha256": "c554afa08148224528281c9a100f4fd79dee5d390e45ee6aefeeed938d6c6275",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/threadwise_contraction_dlops.hpp",
+      "size_bytes": 11346,
+      "sha256": "f0a52187b8f7e94009db9ed8bb6fe49b58f6a94311ade0d26e429f08084caab3",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/threadwise_gemm_dlops_v3.hpp",
+      "size_bytes": 8230,
+      "sha256": "18ad3d376a251d90fc2405992a159cfd35641159a5df37f5c2c4a4a24d2d4046",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/threadwise_tensor_slice_set.hpp",
+      "size_bytes": 2085,
+      "sha256": "37e229dc66c1ada9a4f18abe3b7a4b618c836c3575286994c7eea1548b09c87d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/threadwise_tensor_slice_transfer.hpp",
+      "size_bytes": 58040,
+      "sha256": "4610bf2e034f5c2d5d73966c9f86022efe1538b8d8985a6336bc0a02b0e10ba9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/threadwise_tensor_slice_transfer_v2.hpp",
+      "size_bytes": 32957,
+      "sha256": "584e42fdd92cea67f5a241e26bbe105a8f9b1ddbfa8d9a8af8454d806699a6c9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/transform_forward_convolution_into_gemm_v6r1_nchw_kcyx_nkhw.hpp",
+      "size_bytes": 6058,
+      "sha256": "f19fedaa5987a6a319a3cc1d316d895140988872f8e556cbb8ceacde70c5709e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/tuple.hpp",
+      "size_bytes": 5233,
+      "sha256": "c20b7a653953e8a974fd889902bd05d68677ef51cf7afab1fe74aa5bcf3b6c79",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/tuple_helper.hpp",
+      "size_bytes": 2589,
+      "sha256": "dfac1cd2b6d6da0d9330db6bda5ad8200be3303fd9cc5d6305c68c95de872278",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/type.hpp",
+      "size_bytes": 1377,
+      "sha256": "22b2e186514c06e7e96b990323582a69f1db2137c8ce06a535da06e3a6c7d8f9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/utility.hpp",
+      "size_bytes": 358,
+      "sha256": "14a7a92a222f3fbc8d7da5cdec13e7101693aa4257b3aea0fca878a14e1dd591",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/vector_types.hpp",
+      "size_bytes": 5965,
+      "sha256": "860d249fbd45b96805e3cea9c3a438e051a7b74fa5c5e29760ab65e06b53916c",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/warp_reduce.hpp",
+      "size_bytes": 2018,
+      "sha256": "3f360d793dd11c09fd9cfbc4634209f143df79069c704f3ba30bb6d86b38c604",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/miopen/extracted_kernel_tree/include/xdlops_gemm.hpp",
+      "size_bytes": 30152,
+      "sha256": "0adb09b07dde65b95813367845a8430fe2e93cc4dad83140b80e122259a8618d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate26_msvc_discovery.txt",
+      "size_bytes": 819,
+      "sha256": "be6b39d7418f531f3d72fa3e0d9a72c97e006ca37ce9c440d5f2ba557ce64a3d",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate27_armA_bn_repro.txt",
+      "size_bytes": 493,
+      "sha256": "7b92bcc10a951ce45f0cea6f9525f868e6c52ad3adbb1e3c41843d5965339b80",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate27_armA_plain_shell.txt",
+      "size_bytes": 2923,
+      "sha256": "ae4d01c153415aa342e0d63edcea13765a96d076b8d0453142fb330674ed09b1",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate27_armB_devshell.txt",
+      "size_bytes": 1935,
+      "sha256": "cae735167c7657f7627cef932b85cb85564d0e9ef41bc30838dc769ce93de9b2",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate27_armC_include_only.txt",
+      "size_bytes": 2970,
+      "sha256": "bfd6a71945b89c160d18c1ca706148e60ee6994d941aa47068dd820be3986a8a",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate27_post_install_record.txt",
+      "size_bytes": 752,
+      "sha256": "bd2d30ca4f4bc5032a791bee082bf508b457b83111efdb7db29f3ee63b9fbcd3",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate27_winget_install.txt",
+      "size_bytes": 532,
+      "sha256": "c0c084eb79138c029d255248c9da1617f425572367fc76abbe326397fc01b38a",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate32_poison_header_test.txt",
+      "size_bytes": 484,
+      "sha256": "af6fa2b80cf764cf7b45e01d536413de110063bc355d418ed3f4bf4d174b15ce",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate32_poison_header_test_v2.txt",
+      "size_bytes": 2900,
+      "sha256": "129a872f091ed5b0178b70b5aeaf29f763e5350a287559eb35af46819eadba1e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate32_rocm_path_propagation.txt",
+      "size_bytes": 164,
+      "sha256": "b46aa442ee35cc5329bffb3e2c0c73266594f4ac7b7360ae876bf348f14d94cd",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/msvc/gate32_rocm_path_propagation_v2.txt",
+      "size_bytes": 4621,
+      "sha256": "84dac850ecf3e9f9304b0e531c7d35fad26dce11fe380f32629676d5f253b288",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/regression/gate33_matrix.txt",
+      "size_bytes": 4624,
+      "sha256": "26691f12cffc9ef378651d88792f4100c7fd0a3dfeaeef0fdce7ba4b33189895",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/regression/gate33_matrix_rerun.txt",
+      "size_bytes": 4221,
+      "sha256": "79b3ed263ee8da23136657dc4dad806b15cdfc4961eaec4dd47075a1ff6d8bf8",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/regression/gate33_matrix_results.json",
+      "size_bytes": 3927,
+      "sha256": "6eac9cb420f0186ab1a6f4af3f13b695d67a3b46f8099ab8bcfdafcfef708042",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/regression/gate34_numerics.txt",
+      "size_bytes": 2049,
+      "sha256": "eb4e7eeb233feb849e673806686d1c801c4a60d9253d99fab795cfc10d105ba6",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/restart/gate36_fresh_shell.txt",
+      "size_bytes": 8757,
+      "sha256": "6583ba08e277e9b490e2c807fb9a0e40f20127e94b0cb66383ec0c18f4f0e034",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/MIOpenBatchNormFwdTrainSpatial.cpp",
+      "size_bytes": 47808,
+      "sha256": "95bf3f8f0fe48570de337941be52e42e7999993c8e98cc47f897af86a3ab483e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/batchnorm_functions.hpp",
+      "size_bytes": 13673,
+      "sha256": "4f65000b73916a5bf16089a2abd30e4c1904f64491c2eb49ba4bd65a8eab11a6",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/clr_tree.json",
+      "size_bytes": 274198,
+      "sha256": "64e3864b73b5ecea8dabd6520cd20c9ce5f7e45c520f7f6a9874adca94f10524",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/comgr.cpp",
+      "size_bytes": 31524,
+      "sha256": "15915ab8de0d53a99afc9d6666b1296c9141b9213ebd67e5b2b198bea83e0706",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/commit_b514736610.json",
+      "size_bytes": 6816,
+      "sha256": "9a51672d3ddd98cd13e49522680ce08ba667c9230513ac72263aa6e0ee2943a4",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/commit_ce14dab3.json",
+      "size_bytes": 75690,
+      "sha256": "2c4bc2e2739e83d35f95b0a45ab843022797244607a0e98124d5afa52b7cbdec",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/configuration.hpp",
+      "size_bytes": 13141,
+      "sha256": "62a6bee0747b310c9088399e0f3351b1dfc1b1b8ea9d7004aaa897ea8f2bea9b",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/hipoc_program.cpp",
+      "size_bytes": 9635,
+      "sha256": "e355bc09f084eb250f3d8893d5413883e4475964b84fa22f24cab39f26fc056e",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/hiprtcInternal.cpp",
+      "size_bytes": 9012,
+      "sha256": "87153c18f2dd92f87a215c9f27e1ce1d434cf267a36bb830cf69c9650f49bbd6",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/hiprtc_clr.cpp",
+      "size_bytes": 12811,
+      "sha256": "80c9d53521b6dd67e0bce26aa2a21f8208af74e6ac98df2b8fbc5144d2476383",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/miopen_cstdint.hpp",
+      "size_bytes": 1713,
+      "sha256": "3b872eef32c7c66700824e03a4064ffd839d276bd5c1aea562a468a85730f852",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/miopen_limits.hpp",
+      "size_bytes": 3924,
+      "sha256": "804ac47be71d71ade88351bb06747148fa4b04bdd33c3bd02c101ee563138504",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/miopen_type_traits.hpp",
+      "size_bytes": 3695,
+      "sha256": "6ab0771ae200b9579af297bd05ee566388fad0bdb0f5779f02c89cfd30ffe325",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/miopen_utility.hpp",
+      "size_bytes": 1833,
+      "sha256": "9cbea609ec4003a8d234d582638962bada2e95b001bbddd5fadbcae0de53a5a5",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/pr3803.json",
+      "size_bytes": 22809,
+      "sha256": "a206d4baaacdde7e9887d194a08b32f18a8c17bea5ecf758afb93b14ba814aca",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/pr3803_miopen.json",
+      "size_bytes": 23424,
+      "sha256": "e18b3c04c68c4ed029fdf40c9693fdb45bb1ec0778cac7f45075acf50480d660",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/therock_win_support.md",
+      "size_bytes": 37601,
+      "sha256": "634e800b74f50330e474aee175ea57f89e9bedbece321184624b869fbaea2820",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/upstream/vector_types.hpp",
+      "size_bytes": 5757,
+      "sha256": "0c3b66e7a7f646632a0ef23e2da42baf2372f69ab3027386e88c1fb8fce10ad2",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/yolo_closure/train_amp_off.txt",
+      "size_bytes": 9112,
+      "sha256": "97abef068b43d1ca8ccc890e6dd8a8e7050d24abc88d94f8a088b7d95f0a1b0f",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    },
+    {
+      "path": "evidence/phase2/raw/yolo_closure/train_default_amp.txt",
+      "size_bytes": 49794,
+      "sha256": "355eb736bd105f792f0560a652eebe1d347ca0ecf0cd8ed0780ee025e7ece9d9",
+      "capture_time": "2026-10-07T14:23:25.9107082+08:00"
+    }
+  ]
+}

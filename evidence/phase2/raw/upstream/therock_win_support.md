@@ -1,0 +1,574 @@
+# Windows Support
+
+TheRock aims to support as many subprojects as possible on "native" Windows
+(as opposed to WSL 1 or WSL 2) using standard build tools like MSVC.
+
+> [!NOTE]
+> For the WSL-specific ROCDXG CI stage, see
+> [WSL ROCDXG CI Stage](wsl_rocdxg.md).
+
+> [!WARNING]
+> While Windows source builds of TheRock (including PyTorch!) are working for
+> some expert developers, this support is relatively new and is not yet mature.
+> There are several [known issues](#build-troubleshooting-and-known-issues) and
+> active development areas on the
+> [Windows platform support bringup](https://github.com/ROCm/TheRock/issues/36).
+> If you encounter any issues not yet represented there, please file an issue.
+
+## Supported subprojects
+
+ROCm is composed of many subprojects, some of which are supported on Windows:
+
+- https://rocm.docs.amd.com/en/latest/what-is-rocm.html
+- https://rocm.docs.amd.com/projects/install-on-windows/en/latest/conceptual/component-support.html
+- https://rocm.docs.amd.com/projects/install-on-windows/en/latest/about/release-versioning.html#windows-builds-from-source
+
+This table tracks current support status for each subproject in TheRock on
+Windows. Some subprojects may need extra patches to build within TheRock (on
+mainline, in open source, using MSVC, etc.).
+
+> [!NOTE]
+> Many ROCm components are now developed inside super-repositories such as
+> [rocm-libraries](https://github.com/ROCm/rocm-libraries) and
+> [rocm-systems](https://github.com/ROCm/rocm-systems), while others remain
+> standalone repositories. The table below lists the canonical upstream location for
+> each component.
+
+| Component group     | Component                                                                                                                | Upstream       | Supported | Notes                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------ | -------------- | --------- | -------------------------------------------------------- |
+| base                | aux-overlay                                                                                                              | therock        | ✅        |                                                          |
+| base                | [rocm-cmake](https://github.com/ROCm/rocm-cmake)                                                                         | standalone     | ✅        |                                                          |
+| base                | [rocm-core](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocm-core)                                        | rocm-systems   | ✅        |                                                          |
+| base                | [rocm_smi_lib](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocm-smi-lib)                                  | rocm-systems   | ❌        | Unsupported                                              |
+| base                | [rocprofiler-register](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler-register)                  | rocm-systems   | ❌        | Unsupported                                              |
+| base                | [rocm-half](https://github.com/ROCm/half)                                                                                | standalone     | ✅        |                                                          |
+|                     |                                                                                                                          |                |           |                                                          |
+| compiler            | [amd-llvm](https://github.com/ROCm/llvm-project)                                                                         | llvm-project   | ✅        | Limited runtimes                                         |
+| compiler            | [amd-comgr](https://github.com/ROCm/llvm-project/tree/amd-staging/amd/comgr)                                             | llvm-project   | ✅        |                                                          |
+| compiler            | [hipcc](https://github.com/ROCm/llvm-project/tree/amd-staging/amd/hipcc)                                                 | llvm-project   | ✅        | Legacy — see [hipcc migration guide](hipcc_migration.md) |
+| compiler            | [hipify](https://github.com/ROCm/HIPIFY)                                                                                 | standalone     | ✅        |                                                          |
+|                     |                                                                                                                          |                |           |                                                          |
+| core                | [amdsmi](https://github.com/ROCm/rocm-systems/tree/develop/projects/amdsmi)                                              | rocm-systems   | ❌        | Unsupported                                              |
+| core                | [ROCR-Runtime](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocr-runtime)                                  | rocm-systems   | ❌        | Unsupported                                              |
+| core                | [rocminfo](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocminfo)                                          | rocm-systems   | ❌        | Unsupported                                              |
+| core                | [hipInfo (hip-tests)](https://github.com/ROCm/rocm-systems/tree/develop/projects/hip-tests)                              | rocm-systems   | ✅        |                                                          |
+| core                | [clr](https://github.com/ROCm/rocm-systems/tree/develop/projects/clr)                                                    | rocm-systems   | 🟡        | Needs a folder with prebuilt static libraries            |
+|                     |                                                                                                                          |                |           |                                                          |
+| debug-tools         | [amd-dbgapi](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocdbgapi)                                       | rocm-systems   | ✅        |                                                          |
+| debug-tools         | [rocr-debug-agent](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocr-debug-agent)                          | rocm-systems   | ❌        | Unsupported                                              |
+| debug-tools         | [rocgdb](https://github.com/ROCm/rocgdb)                                                                                 | standalone     | ❌        | Unsupported                                              |
+|                     |                                                                                                                          |                |           |                                                          |
+| profiler            | [aqlprofile](https://github.com/ROCm/rocm-systems/tree/develop/projects/aqlprofile)                                      | rocm-systems   | ❌        | Unsupported                                              |
+| profiler            | [rocprofiler-sdk](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler-sdk)                            | rocm-systems   | ❌        | Unsupported                                              |
+| profiler            | [rocprofiler-compute](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler-compute)                    | rocm-systems   | ❌        | Unsupported                                              |
+| profiler            | [rocprofiler-systems](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocprofiler-systems)                    | rocm-systems   | ❌        | Unsupported                                              |
+|                     |                                                                                                                          |                |           |                                                          |
+| comm-libs           | [rccl](https://github.com/ROCm/rocm-systems/tree/develop/projects/rccl)                                                  | rocm-systems   | ❌        | Unsupported                                              |
+|                     |                                                                                                                          |                |           |                                                          |
+| storage-libs        | [hipFile](https://github.com/ROCm/rocm-systems/tree/develop/projects/hipfile)                                            | rocm-systems   | ❌        | Unsupported                                              |
+|                     |                                                                                                                          |                |           |                                                          |
+| media-libs          | [rocDecode](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocdecode)                                        | rocm-systems   | 🟡        | In progress (VA-API / Mesa now builds on Windows)        |
+| media-libs          | [rocJPEG](https://github.com/ROCm/rocm-systems/tree/develop/projects/rocjpeg)                                            | rocm-systems   | ❌        | Unsupported                                              |
+|                     |                                                                                                                          |                |           |                                                          |
+| cv-libs             | [RPP](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rpp)                                                  | rocm-libraries | 🟡        | Experimental; off by default                             |
+|                     |                                                                                                                          |                |           |                                                          |
+| math-libs           | [rocRAND](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocrand)                                          | rocm-libraries | ✅        |                                                          |
+| math-libs           | [hipRAND](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hiprand)                                          | rocm-libraries | ✅        |                                                          |
+| math-libs           | [rocPRIM](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocprim)                                          | rocm-libraries | ✅        |                                                          |
+| math-libs           | [hipCUB](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipcub)                                            | rocm-libraries | ✅        |                                                          |
+| math-libs           | [rocThrust](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocthrust)                                      | rocm-libraries | ✅        |                                                          |
+| math-libs           | [rocFFT](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocfft)                                            | rocm-libraries | ✅        |                                                          |
+| math-libs           | [hipFFT](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipfft)                                            | rocm-libraries | ✅        |                                                          |
+| math-libs (support) | [mxDataGenerator](https://github.com/ROCm/rocm-libraries/tree/develop/shared/mxdatagenerator)                            | rocm-libraries | ❌        | Unsupported                                              |
+| math-libs (BLAS)    | [hipBLAS-common](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipblas-common)                            | rocm-libraries | ✅        |                                                          |
+| math-libs (BLAS)    | [rocRoller](https://github.com/ROCm/rocm-libraries/tree/develop/shared/rocroller)                                        | rocm-libraries | ❌        | Unsupported                                              |
+| math-libs (BLAS)    | [hipBLASLt](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipblaslt)                                      | rocm-libraries | ✅        |                                                          |
+| math-libs (BLAS)    | [rocBLAS](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocblas)                                          | rocm-libraries | ✅        |                                                          |
+| math-libs (BLAS)    | [rocSPARSE](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocsparse)                                      | rocm-libraries | ✅        |                                                          |
+| math-libs (BLAS)    | [hipSPARSE](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipsparse)                                      | rocm-libraries | ✅        |                                                          |
+| math-libs (BLAS)    | [hipSPARSELt](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipsparselt)                                  | rocm-libraries | ❌        | Unsupported                                              |
+| math-libs (BLAS)    | [rocSOLVER](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocsolver)                                      | rocm-libraries | ✅        |                                                          |
+| math-libs (BLAS)    | [hipSOLVER](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipsolver)                                      | rocm-libraries | ✅        |                                                          |
+| math-libs (BLAS)    | [hipBLAS](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipblas)                                          | rocm-libraries | ✅        |                                                          |
+| math-libs           | [rocALUTION](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocalution)                                    | rocm-libraries | ✅        |                                                          |
+| math-libs           | [rocWMMA](https://github.com/ROCm/rocm-libraries/tree/develop/projects/rocwmma)                                          | rocm-libraries | ✅        |                                                          |
+| math-libs           | [Composable Kernel](https://github.com/ROCm/rocm-libraries/tree/develop/projects/composablekernel)                       | rocm-libraries | ✅        |                                                          |
+| math-libs           | [hipTensor](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hiptensor)                                      | rocm-libraries | ✅        |                                                          |
+| math-libs           | [libhipcxx](https://github.com/ROCm/libhipcxx)                                                                           | standalone     | ✅        |                                                          |
+| math-libs           | [hipThreads](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipthreads)                                    | rocm-libraries | ✅        |                                                          |
+|                     |                                                                                                                          |                |           |                                                          |
+| ml-libs             | [MIOpen](https://github.com/ROCm/rocm-libraries/tree/develop/projects/miopen)                                            | rocm-libraries | ✅        |                                                          |
+| ml-libs             | [hipDNN](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipdnn)                                            | rocm-libraries | ✅        |                                                          |
+| ml-libs             | [MIOpen Provider](https://github.com/ROCm/rocm-libraries/tree/develop/dnn-providers/miopen-provider)                     | rocm-libraries | ✅        |                                                          |
+| ml-libs             | [MIOpen Legacy Plugin](https://github.com/ROCm/rocm-libraries/tree/develop/projects/hipdnn/plugins/miopen_legacy_plugin) | rocm-libraries | ✅        |                                                          |
+| ml-libs             | [hipBLASLt Provider](https://github.com/ROCm/rocm-libraries/tree/develop/dnn-providers/hipblaslt-provider)               | rocm-libraries | ✅        |                                                          |
+
+## Building TheRock from source
+
+These instructions mostly mirror the instructions in the root
+[README.md](../../README.md), with some extra Windows-specific callouts.
+
+### Validating your environment
+
+Before diving into the full setup, you can run the environment validation script
+to check that all prerequisites are met:
+
+```bash
+powershell.exe .\build_tools\validate_windows_install.ps1
+```
+
+To get correct results you may need to set all Visual Studio specific paths and pre-configured Python's environment (see below), in such case you need to run few commands before:
+
+```bash
+vcvarsall.bat x64
+.venv\Scripts\Activate.bat
+powershell.exe .\build_tools\validate_windows_install.ps1
+```
+
+The script checks RAM, disk space, long path support, symlink capability, MSVC,
+CMake, Ninja, Git, Python, DVC, Strawberry Perl/gfortran, ccache, and git
+configuration. It is safe to re-run at any time.
+
+### Prerequisites
+
+#### Set up your system
+
+- You will need a powerful system with sufficient RAM (16GB+),
+  CPU (8+ cores), and storage (200GB+) for a full source build.
+  Partial source builds bootstrapped from prebuilt binaries are on our roadmap
+  to enable.
+
+  - To set expectations, on powerful build servers, the full source build can
+    still take over an hour.
+
+  - The Windows build uses
+    [hard links](https://learn.microsoft.com/en-us/windows/win32/fileio/hard-links-and-junctions)
+    to save space, but storage sizes do not often account for this savings.
+    Reported size used and actual size used may differ substantially.
+
+- Long path support is required. There are a few ways to enable it:
+
+  - **Registry (most reliable):** set
+    `HKLM\SYSTEM\CurrentControlSet\Control\FileSystem\LongPathsEnabled` to `1`
+    (requires admin):
+
+    ```
+    reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
+    ```
+
+  - **GUI toggle (Windows 11, after enabling Developer Mode):** go to
+    Settings > System > For developers and enable the **"Enable Long Paths"**
+    toggle, then reboot. Note: this toggle may not appear until Developer Mode
+    is on, and has been reported as unreliable on some systems — verify with the
+    validation script after rebooting.
+
+  - See also:
+    https://learn.microsoft.com/en-us/windows/win32/fileio/maximum-file-path-limitation?tabs=registry#registry-setting-to-enable-long-paths
+
+- There are some [known issues](https://github.com/ROCm/TheRock/issues/651)
+  with preexisting HIP SDK / ROCm installs causing errors during the build
+  process. Until these are resolved, we recommend uninstalling the HIP SDK
+  before trying to build TheRock.
+
+- A Dev Drive is recommended, due to how many source and build files are used.
+  See the
+  [Set up a Dev Drive on Windows 11](https://learn.microsoft.com/en-us/windows/dev-drive/)
+  article for setup instructions.
+
+- Symlink support is recommended. If symlink support is not enabled, enable
+  developer mode and/or grant your
+  account the "Create symbolic links" permission. These resources may help:
+
+  - https://portal.perforce.com/s/article/3472
+  - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/create-symbolic-links
+  - https://stackoverflow.com/a/59761201
+
+- We recommend cmd or git bash over PowerShell. Some developers also report
+  good experiences with
+  [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/)
+  and [Cmder](https://cmder.app/).
+
+#### Install tools
+
+> [!TIP]
+> These tools are available via package managers like winget on Windows:
+>
+> ```bash
+> winget install --id Microsoft.VisualStudio.2022.BuildTools --source winget --override "--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add
+> Microsoft.VisualStudio.Component.VC.CMake.Project --add Microsoft.VisualStudio.Component.VC.ATL --add
+> Microsoft.VisualStudio.Component.Windows11SDK.26100"
+> winget install --id Git.Git -e --source winget --custom "/o:PathOption=CmdTools"
+> winget install cmake
+> winget install ninja-build.ninja ccache python strawberryperl
+> winget install --id Iterative.DVC --silent --accept-source-agreements
+> ```
+
+If you prefer to install tools manually, you will need:
+
+- The MSVC compiler from https://visualstudio.microsoft.com/downloads/
+  (Using either "Visual Studio" or "Build Tools for Visual Studio"),
+  including these components:
+
+  - MSVC **version 19.43+** (Visual Studio 2022 **17.13+**). Older versions
+    will fail at link time because prebuilt libraries reference STL internals
+    introduced in 19.43.
+    See [Issue#5029](https://github.com/ROCm/TheRock/issues/5029).
+  - C++ CMake tools for Windows
+  - C++ ATL
+  - C++ AddressSanitizer (optional)
+
+- Git: https://git-scm.com/downloads
+
+  - With "Use Git and optional Unix tools from the Windows Command Prompt" as certain build scripts use Bash.
+
+- CMake: https://cmake.org/download/
+
+- Ninja: https://ninja-build.org/
+
+- (Optional) ccache: https://ccache.dev/, or sccache:
+  https://github.com/mozilla/sccache
+
+- gfortran, recommended from Strawberry Perl: https://strawberryperl.com/
+
+- nasm, recommended from Strawberry Perl: https://strawberryperl.com/
+
+- patch, available in Strawberry Perl or Git.
+
+- dvc: https://dvc.org/doc/install/windows
+
+- winflexbison3 (**required for the `amd-mesa` / VA-API sysdep build**):
+  `choco install winflexbison3` — provides the `flex` and `bison` tools that
+  Meson uses when building Mesa's gallium/D3D12 driver. Not needed if
+  `THEROCK_ENABLE_SYSDEPS_AMD_MESA` is `OFF`.
+
+- Python: https://www.python.org/downloads/ (3.11+ recommended)
+
+> [!WARNING]
+> Prefer to install Python for the current user only and to a path
+> **without spaces** like
+> `C:\Users\<username>\AppData\Local\Programs\Python\Python312`.
+
+#### Important tool settings
+
+> [!IMPORTANT]
+> Git should be configured with support for symlinks and long paths:
+>
+> ```bash
+> git config --global core.symlinks true
+> git config --global core.longpaths true
+> ```
+
+> [!IMPORTANT]
+> After installing MSVC, use its 64 bit tools in your build environment.
+>
+> - If you use the command line, see
+>   [Use the Microsoft C++ toolset from the command line](https://learn.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170).
+>   Typically this means either `Start > x64 Native Tools Command Prompt for VS 2022` or
+>   running `vcvars64.bat` in an existing shell.
+> - If you build from an editor like VSCode, CMake can discover the compiler
+>   among other "kits".
+> - Our `windows-base` or `windows-release` presets in
+>   [CMakePresets.json](/CMakePresets.json) set the CMake compiler and linker
+>   for you.
+> - You can also tell CMake to use MSVC's tools explicitly with
+>   `-DCMAKE_C_COMPILER=cl.exe -DCMAKE_CXX_COMPILER=cl.exe -DCMAKE_LINKER=link.exe`.
+
+### Set the locale
+
+If the build system is a non-English system. Make sure to switch to `utf-8`.
+
+```cmd
+chcp 65001
+```
+
+### Clone and fetch sources
+
+```bash
+# Clone the repository
+git clone https://github.com/ROCm/TheRock.git
+cd TheRock
+
+# Init python virtual environment and install python dependencies
+python -m venv .venv
+.venv\Scripts\Activate.bat
+pip install -r requirements.txt
+
+# Download submodules and apply patches
+python ./build_tools/fetch_sources.py
+```
+
+### Build configuration
+
+Unsupported subprojects like RCCL are automatically disabled on Windows. See
+the [instructions in the root README](../../README.md#configuration) for other
+options you may want to set.
+
+```bash
+cmake -B build -GNinja . -DTHEROCK_AMDGPU_FAMILIES=gfx110X-all
+```
+
+If iterating and wishes to use ccache, see [CCache usage on Windows](../../README.md#ccache-usage-on-windows)
+
+> [!TIP]
+> Ensure that MSVC is used by looking for lines like these in the logs:
+>
+> ```text
+> -- The C compiler identification is MSVC 19.42.34436.0
+> -- The CXX compiler identification is MSVC 19.42.34436.0
+> ```
+>
+> If you see some other compiler there, refer to the MSVC setup instructions up
+> in [Important tool settings](#important-tool-settings).
+
+### CMake build usage
+
+```bash
+cmake --build build --target therock-artifacts therock-dist
+```
+
+This will start building using MSVC. Once the amd-llvm subproject is built,
+subprojects like the ROCm math libraries will be compiled using `clang.exe` and
+other tools from the amd-llvm toolchain.
+
+When the builds complete, you should have a build of ROCm / the HIP SDK
+in `build/dist/rocm/` and artifacts in `build/artifacts`. See the
+[Build Artifacts guide](./artifacts.md) for more information about the build
+outputs.
+
+#### Building ROCm Python wheels
+
+To build Python wheels, you will need an "artifacts" directory, either from a
+source build of `therock-artifacts` (see above) or by running the
+[`fetch_artifacts.py`](../../build_tools/fetch_artifacts.py) script to download
+artifacts from a CI run.
+
+Once you have an artifacts directory, you can run the
+[`build_python_packages.py`](../../build_tools/build_python_packages.py) script.
+
+#### Building PyTorch
+
+PyTorch builds require Python wheels, either by building from source (see above)
+or by downloading from one of TheRock's release indices. See the instructions at
+[external-builds/pytorch](../../external-builds/pytorch/README.md).
+
+### Run tests
+
+Test builds can be enabled with `-DBUILD_TESTING=ON` (the default).
+
+Some subproject tests have been validated on Windows, like rocPRIM:
+
+```bash
+ctest --test-dir build/math-libs/rocPRIM/dist/bin/rocprim --output-on-failure
+```
+
+### Build troubleshooting and known issues
+
+#### `No such file or directory: (long path to a source file)`
+
+If the build looks for a source file with a long path that does not exist,
+ensure that you have long path support enabled in git (see
+[Important tool settings](#important-tool-settings)), then re-run
+
+```bash
+python ./build_tools/fetch_sources.py
+```
+
+Once the git operations have run with the new setting, confirm that the missing
+files now exist.
+
+#### `error: directive requires gfx90a+`
+
+Errors like this indicate that the value of `-DTHEROCK_AMDGPU_FAMILIES=` or
+`-DTHEROCK_AMDGPU_TARGETS=` is currently unsupported by one or more libraries.
+
+#### `lld-link: m.lib does not exist`
+
+Since msvc 14+, m.lib has become an implicit dependency and should not be linked
+(it does not exist). TheRock does not link it, but `cmake` could decide on its own to try
+and link it because it found a libm.a in the path, coming from leftover installs on the
+build machine, like a w64devkit or msys2 install.
+
+#### `lld-link: error: duplicate symbol`
+
+Several developers have reported link errors in rocBLAS and rocSPARSE like
+
+```
+[rocSPARSE] lld-link: error: duplicate symbol: __hip_cuid_2f7b343d50a9613
+[rocSPARSE] >>> defined at library/CMakeFiles/rocsparse.dir/src/level3/csrmm/row_split/csrmm_device_row_split_256_16_8_3_4.cpp.obj
+[rocSPARSE] >>> defined at library/CMakeFiles/rocsparse.dir/src/level3/csrmm/row_split/csrmm_device_row_split_256_16_8_7_4.cpp.obj
+```
+
+```
+[rocBLAS] lld-link: error: duplicate symbol: rocblas_stbsv_batched
+[rocBLAS] >>> defined at library/src/CMakeFiles/rocblas.dir/blas2/rocblas_tbsv_batched.cpp.obj
+[rocBLAS] >>> defined at library/src/CMakeFiles/rocblas.dir/handle.cpp.obj
+[rocBLAS]
+[rocBLAS] lld-link: error: duplicate symbol: rocblas_dtbsv_batched
+[rocBLAS] >>> defined at library/src/CMakeFiles/rocblas.dir/blas2/rocblas_tbsv_batched.cpp.obj
+[rocBLAS] >>> defined at library/src/CMakeFiles/rocblas.dir/handle.cpp.obj
+[rocBLAS]
+[rocBLAS] lld-link: error: duplicate symbol: __hip_cuid_a201499d9a86b1da
+```
+
+These have been worked around by disabling ccache.
+
+### `pyYAML cannot be found by cmake`
+
+It is recommended to build TheRock using the `.venv` python3 virtual environment.
+The build steps explain that you must do a `pip install -r requirements.txt` that
+installs PyYAML in the venv so maybe this step was not done.
+
+The problem can also be that you have another python install available in your path
+and that cmake chose to use it. Make sure to check `which python` points to the python
+in your .venv
+
+### `gfortran cannot be found by cmake`
+
+If you have installed strawberry perl as recommended but gfortran cannot be found by
+cmake, you can create a `FC` environment variable pointing to where `gfortran.exe` is
+located.
+
+## Other notes
+
+### Platform support lessons, tips, and gotchas
+
+#### Filesystem paths
+
+- Windows paths may have spaces in them, so properly quote paths
+- Windows paths may use `\` instead of `/` as a component delimiter
+  - The `\` character is often an escape character in raw strings, so properly escape paths if passing them between systems
+  - In Python, [`pathlib`](https://docs.python.org/3/library/pathlib.html) has good support for performing transformations on paths like joining or splitting components in a cross-platform way, but some outgoing uses still need to use `.resolve()`, `.as_posix()`, and other functions to resolve symlinks, convert slashes, etc.
+  - In C++, [`<filesystem>`](https://en.cppreference.com/w/cpp/filesystem.html) has good support for performing transformations on paths like joining or splitting components in a cross-platform way. See https://github.com/ROCm/rocm-libraries/pull/948 for example.
+  - In CMake, take care when loading environment variables into strings and treating them as paths. Use https://cmake.org/cmake/help/latest/command/file.html#path-conversion and https://cmake.org/cmake/help/latest/command/cmake_path.html instead of working with strings directly, like so:
+    ```diff
+    -set(HIP_PATH $ENV{HIP_PATH})
+    +file(TO_CMAKE_PATH "$ENV{HIP_PATH}" HIP_PATH)`
+    ```
+- Windows paths (and commands) can have max length limitations, so avoid long file names
+- Windows paths do not allow some characters (https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file)
+
+#### DLL search and runtime loading
+
+Finding a library while building an application and finding its DLLs while
+running it are separate operations. `find_package()` and import libraries such
+as `amdhip64.lib` establish link-time dependencies. At process startup, the
+Windows loader still has to locate DLLs such as `amdhip64_7.dll`.
+
+For an ordinary unpackaged application using the default safe search mode, the
+[DLL search order](https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order)
+includes these locations in this relative order:
+
+1. The directory containing the executable.
+1. The Windows system directory, normally `System32`.
+1. The process current directory.
+1. Directories in `PATH`.
+
+Several special mechanisms, including loaded modules, Known DLLs, manifests,
+and package dependencies, are considered before those directories. Consult the
+Microsoft documentation before depending on the complete order.
+
+Important consequences for ROCm development include:
+
+- Prepending a ROCm `bin` directory to `PATH` does not override a same-named DLL
+  in `System32`.
+- Changing the process current directory is not equivalent to moving the
+  executable. The executable directory has its own earlier search position.
+- Placing the intended DLLs and their dependencies beside an executable gives
+  them precedence over same-named DLLs in `System32`.
+- Windows loads normally linked DLLs before `main()` runs. Calling
+  `LoadLibraryExW()` at the beginning of `main()` is too late to change how
+  Windows finds `amdhip64_7.dll`. The HIP compiler can also generate runtime
+  registration calls that execute during static initialization.
+
+##### Finding DLLs with `SetDllDirectoryW`
+
+One option for tests and dedicated launchers to select a trusted runtime
+directory for their child processes is to use
+[`SetDllDirectoryW`](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setdlldirectoryw):
+
+```python
+import ctypes
+import subprocess
+
+rocm_bin = rocm_bin.resolve(strict=True)
+if not rocm_bin.is_dir():
+    raise NotADirectoryError(rocm_bin)
+
+kernel32 = ctypes.WinDLL("kernel32", use_last_error=True)
+set_dll_directory = kernel32.SetDllDirectoryW
+set_dll_directory.argtypes = [ctypes.c_wchar_p]
+set_dll_directory.restype = ctypes.c_bool
+
+if not set_dll_directory(str(rocm_bin)):
+    raise ctypes.WinError(ctypes.get_last_error())
+try:
+    subprocess.run(command, check=True, env=child_env)
+finally:
+    if not set_dll_directory(None):
+        raise ctypes.WinError(ctypes.get_last_error())
+```
+
+This setting affects child processes created while it is active. It is
+process-global, changes safe-search behavior, and should only name a trusted,
+validated directory. The example assumes a dedicated, single-threaded runner
+that started with the default DLL search state and restores that state after
+launching its children.
+
+The hipthreads test executor adopted this pattern in
+[rocm-libraries PR #10478](https://github.com/ROCm/rocm-libraries/pull/10478).
+It continues to use `PATH` to find tools, but uses `SetDllDirectoryW` to ensure
+that child test processes load the runtime under test ahead of `System32`. This
+only affects the test harness: the test program still cannot run independently
+outside that executor.
+
+> [!WARNING]
+> Common patterns to avoid include:
+>
+> - Assuming `PATH` takes precedence over `System32`.
+> - Copying every DLL from a merged ROCm `bin` directory beside a test or
+>   application executable.
+> - Copying DLLs into an extracted ROCm installation while tests run.
+> - Choosing which DLLs to package based only on inspecting the executable;
+>   applications and libraries can load additional DLLs or data at runtime.
+
+#### Other platform differences
+
+- Symlink support on Windows is not always available
+- Windows uses `[library].dll` files instead of `lib[library].so` files, which use different APIs for loading/linking (and have different versioning in the file names too). CMake can use https://cmake.org/cmake/help/latest/variable/CMAKE_SHARED_LIBRARY_PREFIX.html and https://cmake.org/cmake/help/latest/variable/CMAKE_SHARED_LIBRARY_SUFFIX.html
+- Windows uses the .exe extension for executables while Linux uses files with no suffix. CMake can use https://cmake.org/cmake/help/latest/variable/CMAKE_EXECUTABLE_SUFFIX.html
+- GitHub actions can use bash.exe, cmd.exe, and powershell on Windows. Switching workflows to use Python scripts helps a bit, but some actions / steps / tools / scripts still expect paths in a certain format or with a certain escaping style, or expect certain tools to be available (e.g. `sed`, `grep`)
+
+### Building CLR from partial sources
+
+We are working on enabling flexible open source builds of
+https://github.com/ROCm/clr (notably for `amdhip64_7.dll`) on Windows.
+Historically this has been a closed source component due to the dependency on
+[Platform Abstraction Library (PAL)](https://github.com/GPUOpen-Drivers/pal)
+and providing a fully open source build will take more time. As an incremental
+step towards a fully open source build, we are using an interop folder
+containing header files and static library `.lib` files for PAL and related
+components.
+
+An incremental rollout is planned:
+
+1. The interop folder must be manually copied into place in the source tree.
+   This will allow AMD developers to iterate on integration into TheRock while
+   we work on making this folder or more source files available.
+1. The interop folder will be available publicly
+   (currently at https://github.com/ROCm/rocm-systems/tree/develop/shared/amdgpu-windows-interop).
+1. *(We are here today)* The interop folder will be included automatically from
+   a git repository using [dvc](https://dvc.org/).
+1. A more permanent open source strategy for building the CLR (the HIP runtime)
+   from source on Windows will eventually be available.
+
+If configured correctly, outputs like
+`build/core/clr/dist/bin/amdhip64_6.dll` should be generated by the build.
+
+If the interop folder is _not_ available, sub-project support is limited and
+features should be turned off:
+
+```bash
+-DTHEROCK_ENABLE_CORE=OFF \
+-DTHEROCK_ENABLE_MATH_LIBS=OFF \
+-DTHEROCK_ENABLE_ML_LIBS=OFF \
+```

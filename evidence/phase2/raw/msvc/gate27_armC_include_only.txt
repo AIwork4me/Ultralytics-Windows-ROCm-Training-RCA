@@ -1,0 +1,74 @@
+### ARM C: child process with ONLY INCLUDE injected
+### captured 2026-10-07T13:32:31+08:00
+
+C:\Users\rocm\Desktop\YOLO_AMD>REM Gate 27 arms B and C: VS dev shell and INCLUDE-only injection. 
+
+C:\Users\rocm\Desktop\YOLO_AMD>REM Called with C = B or C. Output redirected by the caller. 
+
+C:\Users\rocm\Desktop\YOLO_AMD>set "RCA=C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA" 
+
+C:\Users\rocm\Desktop\YOLO_AMD>set "ENVPY=C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe" 
+
+C:\Users\rocm\Desktop\YOLO_AMD>set PYTHONNOUSERSITE=1 
+
+C:\Users\rocm\Desktop\YOLO_AMD>set "HIPRTC_CORE_BIN=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\bin" 
+
+C:\Users\rocm\Desktop\YOLO_AMD>if /I "C" == "B" (
+call "C:\BuildTools\Common7\Tools\VsDevCmd.bat" -arch=x64 -no_logo  
+ echo === ARM B env delta ===  
+ echo INCLUDE=  
+ echo LIB=  
+ echo VCToolsInstallDir= 
+) 
+
+C:\Users\rocm\Desktop\YOLO_AMD>if /I "C" == "C" (
+REM Arm C: ONLY the INCLUDE variable injected, nothing else from the dev shell.  
+ set "INCLUDE=C:\BuildTools\VC\Tools\MSVC\14.44.35207\include;C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\ucrt;C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\um"  
+ echo === ARM C env delta ===  
+ echo INCLUDE= 
+) 
+=== ARM C env delta ===
+INCLUDE=
+
+C:\Users\rocm\Desktop\YOLO_AMD>echo === standalone HIPRTC probe === 
+=== standalone HIPRTC probe ===
+
+C:\Users\rocm\Desktop\YOLO_AMD>"C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe" "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\scripts\phase2\hiprtc_probe\hiprtc_probe.py" type_traits 
+{
+  "hiprtc_version": "9.0",
+  "results": [
+    {
+      "probe": "type_traits",
+      "header": "#include <type_traits>",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    }
+  ]
+}
+
+C:\Users\rocm\Desktop\YOLO_AMD>echo hiprtc_probe_exit=0 
+hiprtc_probe_exit=0
+
+C:\Users\rocm\Desktop\YOLO_AMD>echo === minimal BN repro === 
+=== minimal BN repro ===
+
+C:\Users\rocm\Desktop\YOLO_AMD>"C:\Users\rocm\miniconda3\envs\yolo_amd\python.exe" "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\scripts\02_batchnorm_minimal.py" minimal 
+torch.__version__ = 2.12.0+rocm7.14.0
+torch.version.hip = 7.14.60850
+device(0) = AMD Radeon(TM) 8060S Graphics
+case = minimal
+bn = BatchNorm2d(16).cuda().train()
+x shape = (8, 16, 64, 64) device = cuda:0
+y shape = (8, 16, 64, 64) mean = 0.000000 isfinite = True
+BATCHNORM_minimal: PASS
+
+C:\Users\rocm\Desktop\YOLO_AMD>echo bn_repro_exit=0 
+bn_repro_exit=0

@@ -1,0 +1,18 @@
+{
+  "phase": 2,
+  "date": "2026-10-07",
+  "branch": "rca/windows-gfx1151-rocm714-phase2",
+  "level3_status": "LEVEL 3 PROVEN - two-layer defect: (1) MIOpen commit ce14dab3b92a82aca14c3477619157f41928fe99 (PR ROCm/MIOpen#3803) made runtime-compiled kernels require real C++ std headers for HIP>=7.0; (2) AMD Windows wheels ship msvc-triple clang/HIPRTC with no C++ stdlib, no include discovery, no documented MSVC prerequisite",
+  "clean_env_reproduced": true,
+  "standalone_hiprtc_type_traits": "FAIL before MSVC (all 5 std headers, HIPRTC_ERROR_COMPILATION 6); PASS after MSVC in plain shell (auto-discovery)",
+  "msvc_present_before_test": false,
+  "msvc_ab_result": "Pattern 1: plain shell PASS (auto-discovery), dev shell PASS, INCLUDE-only PASS - host STL presence is the operative prerequisite; intent undocumented by AMD",
+  "winning_hypothesis": "H10 (operative, undeclared) x H11/H12-P2 (design ownership): MSVC STL presence is necessary+machine-sufficient; the defect lives jointly in MIOpen HIP>=7 RTC gating (ce14dab3) and Windows wheel packaging/docs",
+  "candidate_fix": "A (validated 3 ways: MSVC install / INCLUDE / ROCM_PATH->-I 48-line freestanding type_traits, cache-isolated, no MSVC); B (principally validated; upstream patch shape requires repairing the version-rotted shim); naive D FALSIFIED by DLL-patch experiment (restored+SHA256-verified)",
+  "minimal_bn_after_fix": "PASS all shapes (minimal, issue3956, yololike), train+eval, V1-V5 variants incl. previously-failing bn1d_3d/bn2d/bn3d",
+  "regression_matrix": "8/8 PASS (A-H incl. previously-failing C/D/G); numerics vs CPU: max_abs<=7.2e-7, running stats <=1.7e-10, grads finite",
+  "yolo_train_closure": "PASS - amp=False AND default AMP: 1 epoch + validation (mAP50 0.942 on coco8 functional check) + best.pt/last.pt saved + exit 0 + GPU confirmed + fresh-process re-validation PASS",
+  "reboot_persistence": "NOT TESTED (reboot impossible in-session; no claim)",
+  "upstream_ready": false,
+  "pr_created": false
+}
