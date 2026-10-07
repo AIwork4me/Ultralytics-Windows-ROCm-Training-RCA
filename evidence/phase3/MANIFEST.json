@@ -1,0 +1,191 @@
+{
+ "files": [
+  {
+   "path": "evidence/phase3/raw/build/build_log.txt",
+   "sha256": "6905e5f459fa78949569ab2d886f0dc93e85c16fed5806773937ca750aad5623",
+   "size_bytes": 17087
+  },
+  {
+   "path": "evidence/phase3/raw/build/configure_log.txt",
+   "sha256": "3c8cc374cf7295a28f4305089b629d02be57cc00e89a1c611f738277407688d1",
+   "size_bytes": 12359
+  },
+  {
+   "path": "evidence/phase3/raw/build/miopen_dll_dependents.txt",
+   "sha256": "9b6fc9096079d123628744fa6b2ee917c9876ce36d5f2fc8ad4f5c1dfd2507ba",
+   "size_bytes": 243
+  },
+  {
+   "path": "evidence/phase3/raw/build/miopen_dll_sha256.txt",
+   "sha256": "f4c5f01e842c59b180a0c7df5f6cb91354024d1d68ffc94015f4c860a3144aca",
+   "size_bytes": 1069
+  },
+  {
+   "path": "evidence/phase3/raw/freestanding/g57_results.jsonl",
+   "sha256": "cd4eedd8b3bec69f76f7867575c8d973e0e9e62091b11be76495ae5195a4ba12",
+   "size_bytes": 53525
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g65_66_matrix.json",
+   "sha256": "65d2803170908a5b3ac62c43768645d4f2288c1300c46f8656dd0d570085dcaf",
+   "size_bytes": 687
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g65_66_matrix_v2.json",
+   "sha256": "558ede7cf0b06b0a8161d176f827ff2315de162bd82cec67becaa91bfdf5dad8",
+   "size_bytes": 600
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g65_66_matrix_v3.json",
+   "sha256": "71b5a1df7ec579ca441163975f9db3dc58dcf22bf1f24716d63b3ee9f9335e69",
+   "size_bytes": 3631
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g65_66_matrix_v4.json",
+   "sha256": "432ddd4945cc01f5ae7e757108844eea67facb3450a10a1a7c34093ac7a5a8d7",
+   "size_bytes": 3626
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g65_66_results.json",
+   "sha256": "2113df4bafce86e56447c3d355328cf50a8fe4648f9e29da1d3ec4333a94ee49",
+   "size_bytes": 2168
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g68_kernels_defaultenv.json",
+   "sha256": "64b3f7aa5e056284f336dbace18bdd8f538bd8884738e26e34ee1c91f59f2cb9",
+   "size_bytes": 3509
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g68_kernels_nomsvc.json",
+   "sha256": "20675b7e25f043ec5080a752e6de5c540b06aa11389f2c53ff5999c60271acbb",
+   "size_bytes": 3504
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g68_nomsvc_results.json",
+   "sha256": "475cb9290edcaf1104c458fea04288a1815d0a86d0bb81569285fced5c18b515",
+   "size_bytes": 1657
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g68_results.json",
+   "sha256": "475cb9290edcaf1104c458fea04288a1815d0a86d0bb81569285fced5c18b515",
+   "size_bytes": 1657
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g78_B2_v2_kernels_nomsvc.json",
+   "sha256": "2b6ea3716d0f74ae8d187b6517c028c12a8329401aa0546d8b233d6bc595c547",
+   "size_bytes": 3471
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g78_v2_kernels.json",
+   "sha256": "7028963d9878c2c25bd748e44c553fb7dc5f50aa85bdbb787be9f0ebbe7ccac1",
+   "size_bytes": 3488
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g78_v2_matrix.json",
+   "sha256": "afdcafb57b35078feb11ae0cf2714e19977a840978d23bb06346148315f13d4d",
+   "size_bytes": 3616
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g63_A_wheel_nomsvc.json",
+   "sha256": "ac242501c0759b59e52f9934f72fde00145e698337759dcf829b8b5fcfe16312",
+   "size_bytes": 2729
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g63_A_wheel_nomsvc_v2.json",
+   "sha256": "f8e954d1684de8239f9c88780291570848f8392bf2512b0a69526dce4424d4c6",
+   "size_bytes": 4625
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g63_B_patched_nomsvc.json",
+   "sha256": "1a117a8421504d9ee098733b79b8ac91fd2eff73e5f0a846e509f147c415e63d",
+   "size_bytes": 2735
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g64_patched_defaultenv.json",
+   "sha256": "17c83df583448ce21d741f3d05896dda80274589b11aed1a9b207883d97fee4b",
+   "size_bytes": 1621
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g64_patched_defaultenv_v2.json",
+   "sha256": "46b56fabe72cfc75ce05d7d3ad05bd53586db4302c5384bc6d5dc1ec63867f90",
+   "size_bytes": 1630
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g64_patched_provenance.json",
+   "sha256": "40d3410fd192338e96dd5430dd3356df709d23f5648a892140516073ef5f2226",
+   "size_bytes": 2742
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g78_B_v2_nomsvc.json",
+   "sha256": "2d2f33c418a61b200314eeb62be997cd667f5aa6b9efd6813154685de65e13be",
+   "size_bytes": 2720
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g78_v2_bn_minimal.json",
+   "sha256": "f7c1decd06adac5dc6b6215fe8a3dd832f853f42688eea5eb9b7f10ecffdfd90",
+   "size_bytes": 2726
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/post_restore_sanity.json",
+   "sha256": "199478b7c53746fec80a01e602fd11d9fef8375d0c03ed8a7f77c196aa1d56bf",
+   "size_bytes": 2304
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/wheel_dll_backup_sha256.txt",
+   "sha256": "3570a37a353eed277904f9c3c3ba266e66bec763f190d77026ce81310e1289e0",
+   "size_bytes": 177
+  },
+  {
+   "path": "evidence/phase3/raw/source/bn_compile_baseline_nostdinc.json",
+   "sha256": "57a420e2a512cc7b25f9c36e73de573f4e0cb75768c74987788283d9563704cd",
+   "size_bytes": 1291
+  },
+  {
+   "path": "evidence/phase3/raw/source/bn_compile_patched_defaultenv.json",
+   "sha256": "7edc0bceb87063189fb71b1d50f8a1966312850409f821832fa8d5a56e8e46ef",
+   "size_bytes": 4708
+  },
+  {
+   "path": "evidence/phase3/raw/source/bn_compile_patched_nostdinc.json",
+   "sha256": "9ece51628587260152503f5af1fa83ec6dacd3f56141b234d0cc3d0af2f1b4a2",
+   "size_bytes": 4694
+  },
+  {
+   "path": "evidence/phase3/raw/source/bn_compile_v2_nostdinc.json",
+   "sha256": "a401cd37465845e18fdd0c75944507766199cbb43e68f02f5f1ecea7a681520b",
+   "size_bytes": 4694
+  },
+  {
+   "path": "evidence/phase3/raw/source/rtc_std_dependency_matrix.json",
+   "sha256": "3cff4c04aeb0f8ec43e332fbafc27f86e0275cb05feb2f71591ef187be34b6ca",
+   "size_bytes": 33833
+  },
+  {
+   "path": "evidence/phase3/raw/source/upstream_baseline.txt",
+   "sha256": "fd99c5c817a99b7c60507bec897dadcd8df6df99f843ef7b0be27f862f361dc9",
+   "size_bytes": 962
+  },
+  {
+   "path": "evidence/phase3/raw/yolo/g67_amp_default.json",
+   "sha256": "7974b35b575fc04ca9d02f193aea8b92f593e6e419dbaf34f35e6e8ffaef62a1",
+   "size_bytes": 13034
+  },
+  {
+   "path": "evidence/phase3/raw/yolo/g67_amp_off.json",
+   "sha256": "be6057d324fc44e1ccda2f7b3a72a1018cc114fad2db784552ff59ce820d8379",
+   "size_bytes": 12066
+  },
+  {
+   "path": "evidence/phase3/raw/yolo/g78_v2_yolo_default.json",
+   "sha256": "5f6f9cec48d65e334ff1bdc29b86d3ced648df4db2479b79ebe789bd92c230db",
+   "size_bytes": 12352
+  },
+  {
+   "path": "evidence/phase3/raw/yolo/g78_v2_yolo_off.json",
+   "sha256": "eb8904db4bcdd8c8a0df1eb7b325d0938ad0c1142d623ddc667e21f35a55967e",
+   "size_bytes": 12074
+  }
+ ],
+ "note": "Phase-3 artifacts only; Phase-1/2 manifests untouched; MANIFEST.json excludes its own hash (SHA256SUMS covers raw evidence files only).",
+ "phase": 3
+}
