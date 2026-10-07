@@ -20,6 +20,7 @@ PATCH_SHA256  0001 f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568
 | numerics | — | PASS (≤9.5e-7 vs CPU) | bit-identical to patched | bit-identical to unpatched (max_abs 0.0) |
 | no-STL freestanding canary | — | PASS | — | PASS (equivalence + fallback + GPU) |
 | non-BN RTC kernels | — | PASS (11-op matrix) | PASS (11-op matrix) | PASS (11-op matrix) |
+| Kthvalue runtime (radix path, values+indices) | NOT TESTED (runtime; radix compile+value-equivalence covered) | NOT TESTED (runtime; see note 4) | PASS (FP32×2, FP16×1, fresh cache, KthvalueFwd RTC-compiled+launched) | PASS (same harness, byte-identical outputs) |
 | YOLO predict | PASS (working case) | PASS | PASS | PASS |
 | YOLO train | FAIL (original defect) | PASS (amp both) | PASS (wheel baseline) | PASS (amp both) |
 
@@ -49,6 +50,18 @@ Linux          PASS            PASS
    static_asserts all PASS with zero STL (L33 arm C, extended E3), and
    the facility set executes on the GPU through the real RTC path
    (L33 arm D).
+4. Kthvalue runtime: executed on Linux only (final closure, Gates F07–F15).
+   Windows never executed a kthvalue at runtime; its coverage of the radix
+   path was compile-time (patched MIOpenKthvalue.cpp compiles in no-STL and
+   with-STL states) plus value-equivalence of the limits replacement
+   (builtin limits == std::numeric_limits values). That is stated exactly —
+   no Windows runtime kthvalue is claimed. Linux closes the runtime risk:
+   the exact kernel `KthvalueFwd` from `MIOpenKthvalue.cpp` (the sole
+   runtime consumer of radix.hpp's changed `encode`/`RadixType` machinery)
+   was RTC-compiled from a fresh cache and launched on both source builds;
+   values and indices are byte-identical A/B and exact vs CPU. See
+   `docs/phase3/linux/KTHVALUE_RUNTIME_CLOSURE.md` and
+   `evidence/phase3/raw/linux/kthvalue/`.
 3. Build/contamination discipline: MIOpen's CMakeLists hardcodes
    `/opt/rocm*` in several find paths; this machine has a system ROCm
    7.2.1 there. The validation pinned every ROCm dependency to the 7.14

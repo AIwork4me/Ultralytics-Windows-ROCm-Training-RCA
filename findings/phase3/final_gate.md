@@ -85,3 +85,47 @@ AIwork4me/Ultralytics-Windows-ROCm-Training-RCA (+ local build trees).
 **PHASE 3 CLOSED — WINDOWS PATCH CLOSURE PASS; UPSTREAM PR READINESS
 BLOCKED ON LINUX REGRESSION** (the brief's sanctioned outcome). Stopped
 for human/ChatGPT review. No upstream submission made.
+
+---
+
+## ADDENDUM 2026-10-08 — Linux leg complete; cross-platform closure
+
+Author: Linux validator, branch `rca/linux-gfx1151-phase3-regression`
+(after Gate-F final integration; see
+`docs/phase3/linux/PATCH_ID_NORMALIZATION.md` for the P3-FINAL →
+P3-FINAL-R3 identity normalization).
+
+The gate-71-74 BLOCKED disposition above was the Windows-branch status
+at its 2026-10-07 authoring date and is preserved as the historical
+record. It was superseded on 2026-10-08:
+
+```text
+LINUX INDEPENDENT REGRESSION VALIDATION — PASS
+  exact SOURCE_SHA b68f8944300f104875d953fc8e4510908c9aaf0b
+  exact patch bytes P3-FINAL-R3 (0001 f06d7ae5… + 0002 77f9fc16…, unmodified)
+  source-built unpatched (8694d2ba…) / patched (02904c25…) A/B
+  LD_PRELOAD + dladdr provenance, fresh caches per run
+  BN matrix 8/8, numerics bit-identical (max_abs 0.0),
+  non-BN RTC matrix 11/11, YOLO predict + train,
+  no-STL / partial-STL canaries, three independent reviews
+KTHVALUE RUNTIME (final residual condition) — CLOSED
+  UNPATCHED PASS → PATCHED PASS, values+indices byte-identical A/B and
+  exact vs CPU; KthvalueFwd RTC-compiled from fresh cache on both builds;
+  adversarial falsification review: PASS
+  (docs/phase3/linux/KTHVALUE_RUNTIME_CLOSURE.md)
+```
+
+**Cross-platform final status:**
+
+```text
+WINDOWS PATCH CLOSURE:        PASS
+LINUX INDEPENDENT REGRESSION: PASS
+CROSS-PLATFORM PATCH CLOSURE: PASS
+UPSTREAM PR:                  NOT CREATED
+```
+
+Still NOT claimed anywhere: MERGED UPSTREAM / OFFICIALLY FIXED / PR
+ACCEPTED. Remaining human steps: DCO/author identity fill, upstream CI
+runs, CI-test wiring preference (see
+`docs/phase3/FINAL_SUBMISSION_CHECKLIST.md`,
+`findings/phase3/final_readiness/`).

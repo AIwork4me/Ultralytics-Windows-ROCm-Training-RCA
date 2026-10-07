@@ -55,12 +55,13 @@ Windows provider of it (not an intrinsic requirement). Full chain:
 - **PHASE 2 (complete)** = LEVEL-3 RCA with exact upstream anchors +
   candidate-remedy validation + YOLO training closure (amp=False and
   default AMP), review panel, checksummed evidence.
-- **PHASE 3 (in progress)** = Upstream Patch Closure: patch real
+- **PHASE 3 (complete)** = Upstream Patch Closure: patch real
   rocm-libraries source, build patched MIOpen on Windows, prove the
   BatchNorm failure disappears via the source fix alone, audit the full
   RTC std-header dependency scope, validate Linux HIP>=7 regression
-  safety, and produce a maintainer-ready patch package. **No upstream
-  submission is made in any phase.**
+  safety (done 2026-10-08 on real gfx1151 hardware, including the
+  kthvalue runtime radix path), and produce a maintainer-ready patch
+  package. **No upstream submission is made in any phase.**
 
 ## Environment under test
 
@@ -143,16 +144,27 @@ include chain, unlike the ROCm 7.14 wheels here. Details:
   INCLUDE-injection, and freestanding-shim remedies all validated;
   regression matrix 8/8; numerics <= 7.2e-7 vs CPU; YOLO26n coco8
   epochs=1 train+val closure on GPU in both amp modes).
-- **Phase 3: complete — Upstream Patch Closure (Windows-validated)**:
+- **Phase 3: complete — Upstream Patch Closure (cross-platform)**:
   real rocm-libraries develop source patched (two-commit series in
-  `patches/phase3/`), patched MIOpen BUILT on Windows with the wheel
-  toolchain, loaded by PyTorch with SHA-proven provenance, the original
-  BatchNorm failure proven FIXED by the source change alone with NO
-  host STL (live single-variable A/B), full BN/non-BN/numerics/YOLO
-  matrices green, 104-kernel RTC std audit, adversarial 4-reviewer
-  panel with all blockers resolved. Linux HIP>=7 regression runs:
-  BLOCKED (no environment) — PR readiness intentionally capped at
-  Windows-validated.
+  `patches/phase3/`, P3-FINAL-R3), patched MIOpen BUILT on Windows with
+  the wheel toolchain, loaded by PyTorch with SHA-proven provenance, the
+  original BatchNorm failure proven FIXED by the source change alone
+  with NO host STL (live single-variable A/B), full BN/non-BN/numerics/
+  YOLO matrices green, 104-kernel RTC std audit, adversarial 4-reviewer
+  panel with all blockers resolved. **Linux independent regression
+  validation PASS (2026-10-08, gfx1151, ROCm 7.14 wheel stack)**:
+  exact SOURCE_SHA + exact patch bytes consumed unmodified, source-built
+  unpatched/patched A/B via LD_PRELOAD+dladdr, fresh caches, BN 8/8,
+  numerics bit-identical (max_abs 0.0), non-BN RTC 11/11, YOLO
+  predict+train, no-STL/partial-STL canaries, kthvalue runtime
+  UNPATCHED PASS → PATCHED PASS, three independent Linux reviews +
+  final adversarial audits. Cross-platform: Windows FAIL→PASS, Linux
+  PASS→PASS. Final status:
+  WINDOWS PATCH CLOSURE PASS · LINUX INDEPENDENT REGRESSION PASS ·
+  CROSS-PLATFORM PATCH CLOSURE PASS · UPSTREAM PR NOT CREATED
+  (see `docs/phase3/CROSS_PLATFORM_VALIDATION.md`,
+  `docs/phase3/linux/LINUX_VALIDATION_SUMMARY.md`,
+  `findings/phase3/final_readiness/`).
 
 > Maintainer-ready patch package prepared locally (patches/phase3/
 > 0001+0002, PR draft, routing plan, proposed CI test). No upstream
