@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-07T08:21:09+00:00",
+  "generated_utc": "2026-10-07T08:48:52+00:00",
   "platform": "linux",
   "gpu": "gfx1151 (Radeon 8060S)",
   "rocm": "7.14.0 (wheel stack)",
@@ -8,13 +8,25 @@
   "source_sha": null,
   "patch_id": null,
   "patch_sha256": null,
-  "file_count": 36,
+  "file_count": 46,
   "files": [
+    {
+      "path": "docs/phase3/linux/BUILD_READINESS.md",
+      "sha256": "b22c7791c5b23419c161509f510bce2afc4ef51dfd59a5601db6280586b60188",
+      "size": 4976,
+      "mtime_utc": "2026-10-07T08:48:04+00:00"
+    },
     {
       "path": "docs/phase3/linux/LINUX_STL_BASELINE.md",
       "sha256": "dda85391d5587b582911bd195127fcff7954965215580e067e6622da93855234",
       "size": 3995,
       "mtime_utc": "2026-10-07T08:04:35+00:00"
+    },
+    {
+      "path": "docs/phase3/linux/LINUX_VALIDATION_SUMMARY.md",
+      "sha256": "dd43545f47c5b87869136566aada0dbd86c7d5a04f34dacf2b8ce062f4afe111",
+      "size": 3074,
+      "mtime_utc": "2026-10-07T08:48:38+00:00"
     },
     {
       "path": "evidence/phase3/raw/linux/baseline/batchnorm/bn_fresh_compile_proof.txt",
@@ -155,16 +167,64 @@
       "mtime_utc": "2026-10-07T07:26:09+00:00"
     },
     {
+      "path": "evidence/phase3/raw/linux/source/miopen_CMakeLists.txt",
+      "sha256": "0542ed519a8a6f6fddd12f2bbc77e57fc40a7ae79a025aa9a817aa60ac8be3df",
+      "size": 41219,
+      "mtime_utc": "2026-10-07T08:48:11+00:00"
+    },
+    {
+      "path": "evidence/phase3/raw/linux/source/miopen_README.md",
+      "sha256": "ffc5503f654c47a3bc214e844080121c2947876b694211e9904802ccfbfbc33c",
+      "size": 16126,
+      "mtime_utc": "2026-10-07T08:48:11+00:00"
+    },
+    {
+      "path": "evidence/phase3/raw/linux/source/miopen_install_deps.cmake",
+      "sha256": "58b68101ce3927ddfe59bc6607b5478a498411f30fe399fa2d7c6113775d4366",
+      "size": 3465,
+      "mtime_utc": "2026-10-07T08:48:11+00:00"
+    },
+    {
+      "path": "evidence/phase3/raw/linux/source/miopen_requirements.txt",
+      "sha256": "e4d32489d8029a1fec1a7c0b30a5d9a4a53f49418b1c4071a46ad66d674c3e6c",
+      "size": 758,
+      "mtime_utc": "2026-10-07T08:48:11+00:00"
+    },
+    {
+      "path": "evidence/phase3/raw/linux/source/readiness_fetch_provenance.txt",
+      "sha256": "babcab40e7f83cf0296a36460a60abdf997a7e06108be40f6adf325e36a40646",
+      "size": 1011,
+      "mtime_utc": "2026-10-07T08:48:16+00:00"
+    },
+    {
+      "path": "evidence/phase3/raw/linux/source/rocm_libs_gitmodules.txt",
+      "sha256": "a4b26c6ccd0570f0486a939be4caf66d41c1605e00e069102d2dec52e0a40d15",
+      "size": 535,
+      "mtime_utc": "2026-10-07T08:48:11+00:00"
+    },
+    {
       "path": "findings/phase3/linux/BLOCKED_ON_PATCH_HANDOFF.md",
       "sha256": "99e64dae5ba786a5be36398a177a9d1428afc834d6ddb13b1b6ce4211c8d4353",
       "size": 2084,
       "mtime_utc": "2026-10-07T08:03:38+00:00"
     },
     {
+      "path": "findings/phase3/linux/final_gate.md",
+      "sha256": "310ab3b68616cbbf47e2acb1a36a30e2f1d09b3ba80b9600c21a8c1fb22d683e",
+      "size": 2462,
+      "mtime_utc": "2026-10-07T08:48:48+00:00"
+    },
+    {
       "path": "findings/phase3/linux/linux_baseline.md",
       "sha256": "217a44038e866d55b9ad67ae7b44cf3524898747ee7098133f184a80db0b92c3",
       "size": 7687,
       "mtime_utc": "2026-10-07T07:52:24+00:00"
+    },
+    {
+      "path": "findings/phase3/linux/linux_conclusion.json",
+      "sha256": "c9e771bdd3a3593559d038c35234dc3514a33c8a485d7112dfbd576496c1b256",
+      "size": 1680,
+      "mtime_utc": "2026-10-07T08:48:23+00:00"
     },
     {
       "path": "findings/phase3/linux/subagent_baseline_review.md",
