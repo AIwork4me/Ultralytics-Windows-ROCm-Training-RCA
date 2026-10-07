@@ -1,0 +1,90 @@
+{
+  "generated": "2026-10-07T15:51:20",
+  "hiprtc_library": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7",
+  "hip_library": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7",
+  "hiprtc_version": "9.0",
+  "arch": "gfx1151",
+  "probes": [
+    {
+      "probe": "none",
+      "header": "(none)",
+      "source": "\nextern \"C\" __global__\nvoid hiprtc_probe(int* out)\n{\n    *out = 1;\n}\n",
+      "arch": "gfx1151",
+      "rtc_create": 0,
+      "log": "",
+      "rtc_compile": 0,
+      "rtc_codesize": 0,
+      "code_size": 3832,
+      "result": "PASS"
+    },
+    {
+      "probe": "type_traits",
+      "header": "#include <type_traits>",
+      "source": "#include <type_traits>\n\nextern \"C\" __global__\nvoid hiprtc_probe(int* out)\n{\n    using T = std::remove_reference<int&>::type;\n    *out = (int)sizeof(T);\n}\n",
+      "arch": "gfx1151",
+      "rtc_create": 0,
+      "log": "",
+      "rtc_compile": 0,
+      "rtc_codesize": 0,
+      "code_size": 3832,
+      "result": "PASS"
+    },
+    {
+      "probe": "utility",
+      "header": "#include <utility>",
+      "source": "#include <utility>\n\nextern \"C\" __global__\nvoid hiprtc_probe(int* out)\n{\n    int a = 1;\n    int& b = a;\n    *out = std::move(b);\n}\n",
+      "arch": "gfx1151",
+      "rtc_create": 0,
+      "log": "",
+      "rtc_compile": 0,
+      "rtc_codesize": 0,
+      "code_size": 3832,
+      "result": "PASS"
+    },
+    {
+      "probe": "limits",
+      "header": "#include <limits>",
+      "source": "#include <limits>\n\nextern \"C\" __global__\nvoid hiprtc_probe(int* out)\n{\n    *out = (std::numeric_limits<int>::max)() > 0 ? 1 : 0;\n}\n",
+      "arch": "gfx1151",
+      "rtc_create": 0,
+      "log": "",
+      "rtc_compile": 0,
+      "rtc_codesize": 0,
+      "code_size": 3832,
+      "result": "PASS"
+    },
+    {
+      "probe": "cstdint",
+      "header": "#include <cstdint>",
+      "source": "#include <cstdint>\n\nextern \"C\" __global__\nvoid hiprtc_probe(int* out)\n{\n    std::uint64_t v = 42;\n    *out = (int)(v & 0xff);\n}\n",
+      "arch": "gfx1151",
+      "rtc_create": 0,
+      "log": "",
+      "rtc_compile": 0,
+      "rtc_codesize": 0,
+      "code_size": 3832,
+      "result": "PASS"
+    },
+    {
+      "probe": "initializer_list",
+      "header": "#include <initializer_list>",
+      "source": "#include <initializer_list>\n\nextern \"C\" __global__\nvoid hiprtc_probe(int* out)\n{\n    auto il = {1, 2, 3};\n    *out = (int)il.size();\n    *out = 3;\n}\n",
+      "arch": "gfx1151",
+      "rtc_create": 0,
+      "log": "",
+      "rtc_compile": 0,
+      "rtc_codesize": 0,
+      "code_size": 3832,
+      "result": "PASS"
+    }
+  ],
+  "exec_control": {
+    "moduleLoadData": 0,
+    "malloc": 0,
+    "launch": 0,
+    "memcpyDtoH": 0,
+    "gpu_result": 1,
+    "moduleGetFunction": 0,
+    "result": "PASS"
+  }
+}

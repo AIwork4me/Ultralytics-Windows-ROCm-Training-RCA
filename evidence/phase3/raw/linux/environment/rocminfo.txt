@@ -1,0 +1,28 @@
+=== GATE L09/L10: wheel layout + rocminfo ===
+2026-10-07T15:24:38+08:00
+
+--- amdclang++ --version ---
+AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:440716f8b87be9d8e20ed910e10e5b6d14d57cf6)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin
+
+--- rocminfo path ---
+/home/amd/Desktop/YOLO_AMD/.venv/bin/rocminfo
+
+Runtime Version:         1.21
+Runtime Ext Version:     1.26
+  Name:                    AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S
+  Marketing Name:          AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S
+  Vendor Name:             CPU                                
+  Device Type:             CPU                                
+  Name:                    gfx1151                            
+  Marketing Name:          AMD Radeon 8060S Graphics          
+  Vendor Name:             AMD                                
+  Device Type:             GPU                                
+      Name:                    amdgcn-amd-amdhsa--gfx1151         
+      Name:                    amdgcn-amd-amdhsa--gfx11-generic   
+  Name:                    aie2p                              
+  Marketing Name:          RyzenAI-npu5                       
+  Vendor Name:             AMD                                
+  Device Type:             DSP                                

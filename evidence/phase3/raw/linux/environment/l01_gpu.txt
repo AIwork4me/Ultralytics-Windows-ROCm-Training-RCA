@@ -1,0 +1,35 @@
+=== lspci -nnk (VGA/Display) ===
+c3:00.0 Display controller [0380]: Advanced Micro Devices, Inc. [AMD/ATI] Device [1002:1586] (rev d1)
+	DeviceName: Onboard IGD
+	Subsystem: Hewlett-Packard Company Device [103c:8d01]
+	Kernel driver in use: amdgpu
+--
+c3:00.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Rembrandt Radeon High Definition Audio Controller [1002:1640]
+	Subsystem: Advanced Micro Devices, Inc. [AMD/ATI] Rembrandt Radeon High Definition Audio Controller [1002:1640]
+	Kernel driver in use: snd_hda_intel
+	Kernel modules: snd_hda_intel
+c3:00.2 Encryption controller [1080]: Advanced Micro Devices, Inc. [AMD] Device [1022:17e0]
+=== /dev/kfd ===
+crw-rw---- 1 root render 511, 0 10月  6 07:28 /dev/kfd
+=== /dev/dri ===
+total 0
+drwxr-xr-x  2 root root         80 10月  6 00:03 by-path
+crw-rw----+ 1 root video  226,   1 10月  6 07:28 card1
+crw-rw----+ 1 root render 226, 128 10月  6 07:28 renderD128
+=== amdgpu module ===
+amdgpu              20111360  26 amd_capture
+amdxcp                 12288  1 amdgpu
+drm_panel_backlight_quirks    12288  1 amdgpu
+drm_buddy              28672  1 amdgpu
+drm_ttm_helper         16384  2 amdgpu
+ttm                   126976  2 amdgpu,drm_ttm_helper
+drm_exec               12288  1 amdgpu
+drm_suballoc_helper    24576  1 amdgpu
+drm_display_helper    290816  1 amdgpu
+cec                    98304  2 drm_display_helper,amdgpu
+i2c_algo_bit           16384  1 amdgpu
+gpu_sched              65536  2 amdxdna,amdgpu
+video                  77824  1 amdgpu
+=== sudo -n check ===
+sudo: a password is required
+PASSWORDLESS_SUDO=no

@@ -1,0 +1,11 @@
+torch: 2.12.0+rocm7.14.0 hip: 7.14.60850 gpu: AMD Radeon 8060S Graphics
+
+BN2d train               PASS  shape=(8, 16, 64, 64) mean=-4.929e-10
+BN2d eval                PASS  shape=(8, 16, 64, 64) mean=-3.396e-03
+BN2d train+bwd           PASS  dx_norm=5.978e-06 wgrad=1.084e-03
+BN1d 3D (spatial)        PASS  shape=(8, 16, 32) mean=-1.281e-09
+BN1d 2D (control)        PASS  shape=(8, 16) mean=-9.313e-09
+BN3d                     PASS  shape=(4, 16, 8, 16, 16) mean=1.164e-09
+GroupNorm control        PASS  shape=(8, 16, 64, 64) mean=-8.731e-11
+
+ALL-DONE

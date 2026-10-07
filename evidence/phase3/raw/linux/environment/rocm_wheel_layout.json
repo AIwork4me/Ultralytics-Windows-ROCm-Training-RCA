@@ -1,0 +1,73 @@
+{
+  "generated": "2026-10-07T15:23:41",
+  "python_executable": "/home/amd/Desktop/YOLO_AMD/.venv/bin/python",
+  "sys_prefix": "/home/amd/Desktop/YOLO_AMD/.venv",
+  "site_packages": [
+    "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages"
+  ],
+  "dist_dirs": {
+    "rocm-sdk-libraries": [
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/rocm_sdk_libraries"
+    ],
+    "rocm": [],
+    "torch": [
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/torch"
+    ],
+    "rocm-sdk-device-gfx1151": [],
+    "rocm-bootstrap": [
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/rocm_bootstrap"
+    ],
+    "rocm-sdk-core": [
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/rocm_sdk_core"
+    ],
+    "rocm-sdk-devel": [
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/rocm_sdk_devel"
+    ]
+  },
+  "dist_details": {
+    "rocm-sdk-libraries": {
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/rocm_sdk_libraries": {
+        "exists": true,
+        "probes": {}
+      }
+    },
+    "rocm": {},
+    "torch": {
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/torch": {
+        "exists": true,
+        "probes": {
+          "bin": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/torch/bin",
+          "lib": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/torch/lib",
+          "include": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/torch/include"
+        }
+      }
+    },
+    "rocm-sdk-device-gfx1151": {},
+    "rocm-bootstrap": {
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/rocm_bootstrap": {
+        "exists": true,
+        "probes": {}
+      }
+    },
+    "rocm-sdk-core": {
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/rocm_sdk_core": {
+        "exists": true,
+        "probes": {}
+      }
+    },
+    "rocm-sdk-devel": {
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/rocm_sdk_devel": {
+        "exists": true,
+        "probes": {}
+      }
+    }
+  },
+  "tool_search": {
+    "hipcc": [
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/bin/hipcc"
+    ],
+    "rocminfo": [
+      "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/bin/rocminfo"
+    ]
+  }
+}

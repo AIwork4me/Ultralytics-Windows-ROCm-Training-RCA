@@ -1,0 +1,6 @@
+torch: 2.12.0+rocm7.14.0
+hip: 7.14.60850
+cuda api available: True
+count: 1
+gpu: AMD Radeon 8060S Graphics
+_CudaDeviceProperties(name='AMD Radeon 8060S Graphics', major=11, minor=5, gcnArchName='gfx1151', total_memory=102400MB, multi_processor_count=20, uuid=58580000-0000-0000-0000-000000000000, pci_bus_id=195, pci_device_id=0, pci_domain_id=0, L2_cache_size=2MB)

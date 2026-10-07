@@ -1,0 +1,7 @@
+start: 2026-10-07T15:50:48
+torch: 2.12.0+rocm7.14.0 hip: 7.14.60850
+device: cuda:0
+shape: (4096, 4096)
+mean:  -0.0014892574399709702
+finite: True
+PASS

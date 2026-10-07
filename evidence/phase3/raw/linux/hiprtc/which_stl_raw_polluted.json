@@ -1,0 +1,80 @@
+. /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/type_traits
+.. /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/c++config.h
+... /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/os_defines.h
+.... /usr/include/features.h
+..... /usr/include/features-time64.h
+...... /usr/include/x86_64-linux-gnu/bits/wordsize.h
+...... /usr/include/x86_64-linux-gnu/bits/timesize.h
+....... /usr/include/x86_64-linux-gnu/bits/wordsize.h
+..... /usr/include/stdc-predef.h
+..... /usr/include/x86_64-linux-gnu/sys/cdefs.h
+...... /usr/include/x86_64-linux-gnu/bits/wordsize.h
+...... /usr/include/x86_64-linux-gnu/bits/long-double.h
+..... /usr/include/x86_64-linux-gnu/gnu/stubs.h
+...... /usr/include/x86_64-linux-gnu/gnu/stubs-64.h
+... /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h
+... /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/pstl/pstl_config.h
+. <built-in>
+.. /tmp/comgr-394488-0-61e29f/include/hiprtc_runtime.h
+. /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/type_traits
+.. /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/c++config.h
+... /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/os_defines.h
+.... /usr/include/features.h
+..... /usr/include/features-time64.h
+...... /usr/include/x86_64-linux-gnu/bits/wordsize.h
+...... /usr/include/x86_64-linux-gnu/bits/timesize.h
+....... /usr/include/x86_64-linux-gnu/bits/wordsize.h
+..... /usr/include/stdc-predef.h
+..... /usr/include/x86_64-linux-gnu/sys/cdefs.h
+...... /usr/include/x86_64-linux-gnu/bits/wordsize.h
+...... /usr/include/x86_64-linux-gnu/bits/long-double.h
+..... /usr/include/x86_64-linux-gnu/gnu/stubs.h
+...... /usr/include/x86_64-linux-gnu/gnu/stubs-64.h
+... /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h
+... /bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/pstl/pstl_config.h
+{
+  "generated": "2026-10-07T15:27:10",
+  "amdclang": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/amdclang++",
+  "wheel_libcxx": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/llvm/include/c++",
+  "wheel_libcxx_exists": true,
+  "driver_probe": {
+    "host_cpp": {
+      "returncode": 1,
+      "search_list": [
+        "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include",
+        "/usr/local/include",
+        "/usr/include/x86_64-linux-gnu",
+        "/usr/include"
+      ],
+      "stderr_tail": "2\nCandidate multilib: x32;@mx32\nSelected multilib: .;@m64\nFound HIP installation: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel, version 7.14.60850\n (in-process)\n \"/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/clang-23\" -cc1 -triple x86_64-unknown-linux-gnu -E -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name - -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=/home/amd/Desktop/YOLO_AMD -v -fcoverage-compilation-dir=/home/amd/Desktop/YOLO_AMD -resource-dir /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23 -internal-isystem /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include -internal-externc-isystem /usr/include/x86_64-linux-gnu -internal-externc-isystem /include -internal-externc-isystem /usr/include -ferror-limit 19 -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -faddrsig -fdwarf2-cfi-asm -o - -x c -\nclang -cc1 version 23.0.0git based upon LLVM 23.0.0git default target x86_64-unknown-linux-gnu\nignoring nonexistent directory \"/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include\"\nignoring nonexistent directory \"/include\"\n#include \"...\" search starts here:\n#include <...> search starts here:\n /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include\n /usr/local/include\n /usr/include/x86_64-linux-gnu\n /usr/include\nEnd of search list.\n<stdin>:1:10: fatal error: 'type_traits' file not found\n    1 | #include <type_traits>\n      |          ^~~~~~~~~~~~~\n1 error generated.\n"
+    },
+    "hip_offload": {
+      "returncode": 0,
+      "search_list": [
+        "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include/cuda_wrappers",
+        "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13",
+        "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13",
+        "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/backward",
+        "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include",
+        "/usr/local/include",
+        "/usr/include/x86_64-linux-gnu",
+        "/usr/include",
+        "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/include",
+        "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include/cuda_wrappers",
+        "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13",
+        "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13",
+        "/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/backward",
+        "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include",
+        "/usr/local/include",
+        "/usr/include/x86_64-linux-gnu",
+        "/usr/include",
+        "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/include"
+      ],
+      "stderr_tail": "ddrsig -fdwarf2-cfi-asm -o /tmp/--f9d94d.hipi -x hip -\nclang -cc1 version 23.0.0git based upon LLVM 23.0.0git default target x86_64-unknown-linux-gnu\nignoring nonexistent directory \"/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include\"\nignoring nonexistent directory \"/include\"\nignoring nonexistent directory \"/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include\"\nignoring nonexistent directory \"/include\"\nignoring duplicate directory \"/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13\"\nignoring duplicate directory \"/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13\"\nignoring duplicate directory \"/usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/backward\"\nignoring duplicate directory \"/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include\"\nignoring duplicate directory \"/usr/local/include\"\nignoring duplicate directory \"/usr/include/x86_64-linux-gnu\"\nignoring duplicate directory \"/usr/include\"\n#include \"...\" search starts here:\n#include <...> search starts here:\n /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include/cuda_wrappers\n /usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13\n /usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/x86_64-linux-gnu/c++/13\n /usr/lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/backward\n /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/lib/clang/23/include\n /usr/local/include\n /usr/include/x86_64-linux-gnu\n /usr/include\n /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/include\nEnd of search list.\n \"/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/clang-offload-bundler\" -type=hipi -targets=hip-amdgcn-amd-amdhsa-unknown-gfx1151,host-x86_64-unknown-linux-gnu -output=- -input=/tmp/--gfx1151-311363.hipi -input=/tmp/--f9d94d.hipi --verbose\n"
+    }
+  },
+  "hiprtc_trace": {
+    "rtc_compile": 0,
+    "log": ""
+  }
+}

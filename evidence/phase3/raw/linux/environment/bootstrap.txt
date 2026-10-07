@@ -1,0 +1,26 @@
+=== GATE L00 bootstrap ===
+2026-10-07T15:09:45+08:00
+$ pwd: /home/amd/Desktop/YOLO_AMD
+/home/amd/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA
+$ uv --version
+uv 0.12.3 (x86_64-unknown-linux-gnu)
+$ git --version
+git version 2.43.0
+
+=== GATE L02 kernel gate ===
+kernel: 6.17.0-1032-oem
+distro: Ubuntu 24.04.4 LTS (VERSION_ID=24.04)
+required: OEM kernel >= 6.14 for gfx1151 APU
+kernel major.minor: 6.17
+GATE L02: PASS (kernel >= 6.14)
+
+=== GATE L03 GPU permissions ===
+user: amd
+groups: amd adm cdrom sudo dip video plugdev users lpadmin ollama docker render
+/dev/kfd readable: YES
+/dev/kfd writable: YES
+/dev/dri/renderD128 readable: YES
+/dev/dri/renderD128 writable: YES
+render in groups: True
+video in groups: True
+GATE L03: PASS (render+video membership, device rw)

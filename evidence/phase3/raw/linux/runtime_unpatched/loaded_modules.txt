@@ -1,0 +1,12 @@
+torch: 2.12.0+rocm7.14.0 hip: 7.14.60850
+
+--- miopen mapped BEFORE batchnorm ---
+/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1
+
+BN2d train result: torch.Size([8, 16, 64, 64]) PASS
+
+--- modules matching miopen/hiprtc/amdhip/comgr AFTER batchnorm ---
+/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamd_comgr.so.3
+/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7
+/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1

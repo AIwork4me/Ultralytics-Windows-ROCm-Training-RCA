@@ -1,0 +1,144 @@
+MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+MIOpen(HIP): Info [Handle] stream: 0, device_id: 0
+MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+MIOpen(HIP): Info [SetStream] stream: 0, device_id: 0
+MIOpen(HIP): miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen(HIP): 	tensorDesc = 0
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen(HIP): 	tensorDesc = {}, {}, packed, 
+MIOpen(HIP): 	dataType = 1
+MIOpen(HIP): 	nbDims = 4
+MIOpen(HIP): 	dim.values = { 8 16 64 64 }
+MIOpen(HIP): 	stride.values = { 65536 4096 64 1 }
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen(HIP): 	tensorDesc = 0
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen(HIP): 	tensorDesc = {}, {}, packed, 
+MIOpen(HIP): 	dataType = 1
+MIOpen(HIP): 	nbDims = 4
+MIOpen(HIP): 	dim.values = { 1 16 1 1 }
+MIOpen(HIP): 	stride.values = { 16 1 1 1 }
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen(HIP): 	handle = stream: 0, device_id: 0
+MIOpen(HIP): 	bn_mode = 1
+MIOpen(HIP): 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen(HIP): 	x = 0x7067a3a00000
+MIOpen(HIP): 	yDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen(HIP): 	y = 0x7067a3c00000
+MIOpen(HIP): 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): 	bnScale = 0x7068bd000000
+MIOpen(HIP): 	bnBias = 0x7068bd000200
+MIOpen(HIP): 	expAvgFactor = 0.1
+MIOpen(HIP): 	prevResultRunningMean = 0x7068bd000400
+MIOpen(HIP): 	prevResultRunningVariance = 0x7068bd000600
+MIOpen(HIP): 	nextResultRunningMean = 0x7068bd000400
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen(HIP): 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen(HIP): }
+MIOpen(HIP): Info [AmdRocmMetadataVersionDetect] ROCm MD version AMDHSA_COv3, HIP version 7.14.60850, MIOpen version 3.5.2.cd957402
+MIOpen(HIP): Info2 [GetInvoker] Returning an invoker for problem 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0 and algorithm miopenBatchNormForwardTrainingSpatial
+MIOpen(HIP): Info2 [GetFound1_0] No invokers found for 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0
+MIOpen(HIP): Info [FindSolutionImpl] BnFwdTrainingSpatial
+MIOpen(HIP): Info2 [GetLibPath] Lib Path: "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1"
+MIOpen(HIP): Info2 [GetPerfDbPathFile] inexact perf database search
+MIOpen(HIP): Info [GetPerfDbPathFile] Database directory does not exist
+MIOpen(HIP): Info [IsNetworkedFilesystem] Filesystem type at '"/home/amd/.config/miopen/"' is: 0xef53 'EXT2/3/4_SUPER_MAGIC'
+MIOpen(HIP): Info [Measure] ReadonlyRamDb::Prefetch time: 5e-05 ms
+MIOpen(HIP): Info [Prefetch] File is unreadable: "/home/amd/.config/miopen/batchnorm_gfx1151_20.HIP.3_5_2_cd957402.udb.txt"
+MIOpen(HIP): Info [Measure] RamDb::Prefetch time: 0.017263 ms
+MIOpen(HIP): Info2 [FindRecordUnsafe] Looking for key 2x8x16x64x64x1x1x1x0xNCHWxTrnxFP32x1 in cache for file "/home/amd/.config/miopen/batchnorm_gfx1151_20.HIP.3_5_2_cd957402.udb.txt"
+MIOpen(HIP): Info2 [FindRecord] Looking for key 2x8x16x64x64x1x1x1x0xNCHWxTrnxFP32x1 in file ""
+MIOpen(HIP): Info2 [Measure] Db::Load time: 0.017132 ms
+MIOpen(HIP): Info [FindSolutionImpl] Perf Db: record not found for: BnFwdTrainingSpatial
+MIOpen(HIP): Info [GetDefaultPerformanceConfig] Variant1-1
+MIOpen(HIP): Info2 [SearchForSolutions] BnFwdTrainingSpatial: Success.
+MIOpen(HIP): Info2 [PrepareInvoker] Preparing kernel: MIOpenBatchNormFwdTrainSpatial
+MIOpen(HIP): Info2 [IsNetworkedFilesystem] Path does not exist: '"/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/logged_bn/3.5.2.cd957402"'
+MIOpen(HIP): Info [IsNetworkedFilesystem] Filesystem type at '"/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/logged_bn"' is: 0xef53 'EXT2/3/4_SUPER_MAGIC'
+MIOpen(HIP): Info2 [SQLiteBase] Initializing system database file ""
+MIOpen(HIP): Info [KernDb] database not present
+MIOpen(HIP): Info2 [SQLiteBase] Initializing user database file "/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/logged_bn/3.5.2.cd957402/gfx1151_20.ukdb"
+MIOpen(HIP): Info2 [KernDb] Database created successfully
+MIOpen(HIP): Info2 [LoadBinary] Loading binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=0 -DMIO_BN_GFX115X=1 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1151
+MIOpen(HIP): Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenBatchNormFwdTrainSpatial.cpp.o') AND (kernel_args = '-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=0 -DMIO_BN_GFX115X=1 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1151');
+MIOpen(HIP): Info2 [Measure] Db::FindRecord time: 0.022443 ms
+MIOpen(HIP): Info2 [LoadBinary] Unable to load binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=0 -DMIO_BN_GFX115X=1 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1151
+MIOpen(HIP): Info [PrintVersion] HIPRTC v.9.0
+MIOpen(HIP): Info2 [SQLiteBase] Initializing system database file ""
+MIOpen(HIP): Info [KernDb] database not present
+MIOpen(HIP): Info2 [SQLiteBase] Initializing user database file "/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/logged_bn/3.5.2.cd957402/gfx1151_20.ukdb"
+MIOpen(HIP): Info2 [KernDb] Database created successfully
+MIOpen(HIP): Info2 [SaveBinary] Saving binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=0 -DMIO_BN_GFX115X=1 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1151
+MIOpen(HIP): Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen(HIP): Info2 [Measure] Db::StoreRecord time: 10.7061 ms
+MIOpen(HIP): Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen(HIP): Info2 [Register] Invoker registered for algorithm 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0 and solver BnFwdTrainingSpatial
+MIOpen(HIP): Info2 [SetAsFound1_0] Solver BnFwdTrainingSpatial registered as find 1.0 best for miopenBatchNormForwardTrainingSpatial in 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0
+MIOpen(HIP): Info2 [run] kernel_name = MIOpenBatchNormFwdTrainSpatial, global_work_dim = { 16384, 1, 1 }, local_work_dim = { 1024, 1, 1 }
+MIOpen(HIP): miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen(HIP): 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen(HIP): 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen(HIP): }
+MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+MIOpen(HIP): Info [SetStream] stream: 0, device_id: 0
+MIOpen(HIP): miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen(HIP): 	tensorDesc = 0
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen(HIP): 	tensorDesc = {}, {}, packed, 
+MIOpen(HIP): 	dataType = 1
+MIOpen(HIP): 	nbDims = 4
+MIOpen(HIP): 	dim.values = { 8 16 64 64 }
+MIOpen(HIP): 	stride.values = { 65536 4096 64 1 }
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen(HIP): 	tensorDesc = 0
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen(HIP): 	tensorDesc = {}, {}, packed, 
+MIOpen(HIP): 	dataType = 1
+MIOpen(HIP): 	nbDims = 4
+MIOpen(HIP): 	dim.values = { 1 16 1 1 }
+MIOpen(HIP): 	stride.values = { 16 1 1 1 }
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen(HIP): 	handle = stream: 0, device_id: 0
+MIOpen(HIP): 	bn_mode = 1
+MIOpen(HIP): 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen(HIP): 	x = 0x7067a3a00000
+MIOpen(HIP): 	yDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen(HIP): 	y = 0x7067a3e00000
+MIOpen(HIP): 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): 	bnScale = 0x7068bd000000
+MIOpen(HIP): 	bnBias = 0x7068bd000200
+MIOpen(HIP): 	expAvgFactor = 0.1
+MIOpen(HIP): 	prevResultRunningMean = 0x7068bd000400
+MIOpen(HIP): 	prevResultRunningVariance = 0x7068bd000600
+MIOpen(HIP): 	nextResultRunningMean = 0x7068bd000400
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen(HIP): 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen(HIP): }
+MIOpen(HIP): Info2 [GetInvoker] Returning an invoker for problem 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0 and algorithm miopenBatchNormForwardTrainingSpatial
+MIOpen(HIP): Info2 [run] kernel_name = MIOpenBatchNormFwdTrainSpatial, global_work_dim = { 16384, 1, 1 }, local_work_dim = { 1024, 1, 1 }
+MIOpen(HIP): miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen(HIP): 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen(HIP): }
+MIOpen(HIP): miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen(HIP): 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen(HIP): }
+BN PASS torch.Size([8, 16, 64, 64])
+BN second call PASS torch.Size([8, 16, 64, 64])
