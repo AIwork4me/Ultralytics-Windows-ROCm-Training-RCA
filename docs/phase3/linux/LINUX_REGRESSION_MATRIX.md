@@ -20,6 +20,7 @@ isolated MIOpen caches per matrix. Wheel column = shipped wheel stack
 | GroupNorm control | PASS | PASS | PASS | NO |
 | numerics (y/grads/running stats, 6 cases) | — | bit-identical to patched | bit-identical to unpatched (overall max_abs = 0.0) | NO |
 | non-BN RTC matrix (g68 mirror, 11 ops) | — | 11/11 PASS | 11/11 PASS | NO |
+| Kthvalue runtime (FP32 ×2 shapes, FP16 ×1, values+indices) | — | PASS (fresh cache, RTC-compile proof, KthvalueFwd launched) | PASS (same harness, outputs byte-identical) | NO |
 | YOLO predict (bus.jpg) | PASS (wheel) | not run (see note) | PASS (exit 0, bound to patched) | NO* |
 | YOLO train coco8 (amp default†) | PASS (wheel) | not run (see note) | PASS (exit 0, epoch+val+best/last.pt) | NO* |
 | YOLO train coco8 (amp=False) | — | — | PASS (exit 0) | NO |
@@ -36,7 +37,13 @@ on baseline and patched runs).
 
 ```text
 UNPATCHED PASS → PATCHED PASS on every workload; numerics bit-identical.
+Kthvalue runtime (final closure): UNPATCHED PASS → PATCHED PASS,
+values/indices byte-identical A/B and exact vs CPU — REGRESSION: NONE.
 ```
+
+Kthvalue runtime detail: `docs/phase3/linux/KTHVALUE_RUNTIME_CLOSURE.md`,
+evidence `evidence/phase3/raw/linux/kthvalue/` (adversarial falsification
+review: PASS, `findings/phase3/linux/subagent_kthvalue_review.md`).
 
 No Linux regression detected. The with-STL preprocessed-output equivalence
 (L33 arm A) explains why: on Linux `__has_include(<type_traits>)` is true in

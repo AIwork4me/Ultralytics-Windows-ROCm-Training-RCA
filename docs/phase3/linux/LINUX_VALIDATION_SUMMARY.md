@@ -52,11 +52,17 @@ PATCH_SHA256 0001 f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e
 
 ## Residual conditions (recorded for the maintainer/producer)
 
-1. Runtime execution of a kthvalue-class op under both source builds
-   (compile + value-equivalence coverage provided instead; same decision
-   as the Windows leg).
+1. **CLOSED 2026-10-08 (final integration)**: runtime execution of a
+   kthvalue-class op under both source builds —
+   `miopenKthvalueForward` → solver `KthvalueFwd` → `MIOpenKthvalue.cpp`
+   RTC-compiled from fresh cache and launched on BOTH source builds
+   (FP32 ×2 shapes, FP16 ×1; values+indices exact vs CPU and
+   byte-identical A/B; adversarial falsification review PASS).
+   UNPATCHED PASS → PATCHED PASS, regression NONE. See
+   `docs/phase3/linux/KTHVALUE_RUNTIME_CLOSURE.md`,
+   `evidence/phase3/raw/linux/kthvalue/`.
 2. CI breadth: ≥1 more arch (gfx94x/gfx110x/gfx120x) and a 10.x line —
-   the patch edits a HIP-version gate.
+   the patch edits a HIP-version gate. (Upstream-CI scope, not local.)
 3. Producer fills author/DCO identity in the patch series.
 4. static-CK RTC wrappers runtime-unexercised in this config (CK off,
    mirroring Windows; wheel CK plugin fails symmetrically in both legs).

@@ -1,0 +1,263 @@
+=== run_with_source_miopen(patched,kthvalue_patched_final3) pid=562429 2026-10-08T07:27:00+08:00 ===
+LD_PRELOAD=/home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1
+bound miopenCreate -> /home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1 (MATCH)
+=== kthvalue runtime harness (P3-FINAL-R3 closure, gfx1151) ===
+PROVENANCE:
+  miopenCreate <- /home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1
+  miopenKthvalueForward <- /home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1
+  hipMalloc <- /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+  hipMemcpy <- /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: /home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpenCKGroupedConv_gfx1151.so
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: libMIOpenCKGroupedConv_gfx1151.so
+MIOpen: Info2 [OpenRuntimeLibraryForDevice] Loaded CK grouped conv library from default path: libMIOpenCKGroupedConv_gfx1151.so
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Info [Handle] stream: 0, device_id: 0
+handle created, stream=(nil)
+
+CASE FP32-2D-nokeep shape={100x500} dtype=FP32 dim=-1 k=10 keepDim=0
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 2
+MIOpen: 	dim.values = { 100 500 }
+MIOpen: 	stride.values = { 500 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 1
+MIOpen: 	dim.values = { 100 }
+MIOpen: 	stride.values = { 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 9
+MIOpen: 	nbDims = 1
+MIOpen: 	dim.values = { 100 }
+MIOpen: 	stride.values = { 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenKthvalueForward(miopenHandle_t, miopenTensorDescriptor_t, const void *, miopenTensorDescriptor_t, void *, miopenTensorDescriptor_t, size_t *, size_t, int32_t, bool){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	inputDesc = {100, 500}, {500, 1}, packed, 
+MIOpen: 	input = 0x7a1541600000
+MIOpen: 	outputDesc = {100}, {1}, packed, 
+MIOpen: 	output = 0x7a1541631000
+MIOpen: 	indicesDesc = {100}, {1}, packed, 
+MIOpen: 	indices = 0
+MIOpen: 	k = 10
+MIOpen: 	dim = -1
+MIOpen: 	keepDim = 0
+MIOpen: }
+MIOpen: void LogCmdKthvalue(const miopenTensorDescriptor_t, bool){
+MIOpen: 	inputDesc = {100, 500}, {500, 1}, packed, 
+MIOpen: }
+MIOpen: Command [LogCmdKthvalue] ./bin/MIOpenDriver kthvaluefp32 -n 100 -T {100,500} -Si {500,1} -F 1
+MIOpen: Info [AmdRocmMetadataVersionDetect] ROCm MD version AMDHSA_COv3, HIP version 7.14.60850, MIOpen version 3.6.2.b68f894-dirty
+MIOpen: Info2 [GetInvoker] Returning an invoker for problem kthvalue_fwdi_dtype1dim_size500dim_num2dim_stride1output_size100 and algorithm KthvalueFwd
+MIOpen: Info2 [GetFound1_0] No invokers found for kthvalue_fwdi_dtype1dim_size500dim_num2dim_stride1output_size100
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+MIOpen: Info2 [SearchForSolutions] KthvalueFwd: Success.
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: KthvalueFwd
+MIOpen: Info2 [IsNetworkedFilesystem] Path does not exist: '"/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/kthvalue_patched_final3/3.6.2.b68f894-dirty"'
+MIOpen: Info [IsNetworkedFilesystem] Filesystem type at '"/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/kthvalue_patched_final3"' is: 0xef53 'EXT2/3/4_SUPER_MAGIC'
+MIOpen: Info2 [GetLibPath] Lib Path: "/home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1.0"
+MIOpen: Info2 [SQLiteBase] Initializing system database file ""
+MIOpen: Info [KernDb] database not present
+MIOpen: Info2 [SQLiteBase] Initializing user database file "/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/kthvalue_patched_final3/3.6.2.b68f894-dirty/gfx1151_20.ukdb"
+MIOpen: Info2 [KernDb] Database created successfully
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenKthvalue.cpp.o') AND (kernel_args = '-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.022001 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1151
+MIOpen: Info [PrintVersion] HIPRTC v.9.0
+MIOpen: Info2 [SQLiteBase] Initializing system database file ""
+MIOpen: Info [KernDb] database not present
+MIOpen: Info2 [SQLiteBase] Initializing user database file "/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/kthvalue_patched_final3/3.6.2.b68f894-dirty/gfx1151_20.ukdb"
+MIOpen: Info2 [KernDb] Database created successfully
+MIOpen: Info2 [SaveBinary] Saving binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 10.6192 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [Register] Invoker registered for algorithm kthvalue_fwdi_dtype1dim_size500dim_num2dim_stride1output_size100 and solver KthvalueFwd
+MIOpen: Info2 [SetAsFound1_0] Solver KthvalueFwd registered as find 1.0 best for KthvalueFwd in kthvalue_fwdi_dtype1dim_size500dim_num2dim_stride1output_size100
+MIOpen: Info2 [run] kernel_name = KthvalueFwd, global_work_dim = { 25600, 1, 1 }, local_work_dim = { 256, 1, 1 }
+  dumped arrays to /home/amd/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/evidence/phase3/raw/linux/kthvalue/patched/dumps/FP32-2D-nokeep_*
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {100, 500}, {500, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {100}, {1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {100}, {1}, packed, 
+MIOpen: }
+  slices=100 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=-60.25 act_val=-60.25 exp_idx=263 act_idx=263
+  STATUS: PASS
+
+CASE FP32-3D-keep-explicit-dim shape={10x20x300} dtype=FP32 dim=2 k=137 keepDim=1
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 3
+MIOpen: 	dim.values = { 10 20 300 }
+MIOpen: 	stride.values = { 6000 300 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 3
+MIOpen: 	dim.values = { 10 20 1 }
+MIOpen: 	stride.values = { 20 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 9
+MIOpen: 	nbDims = 3
+MIOpen: 	dim.values = { 10 20 1 }
+MIOpen: 	stride.values = { 20 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenKthvalueForward(miopenHandle_t, miopenTensorDescriptor_t, const void *, miopenTensorDescriptor_t, void *, miopenTensorDescriptor_t, size_t *, size_t, int32_t, bool){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	inputDesc = {10, 20, 300}, {6000, 300, 1}, packed, 
+MIOpen: 	input = 0x7a1541600000
+MIOpen: 	outputDesc = {10, 20, 1}, {20, 1, 1}, packed, 
+MIOpen: 	output = 0x7a154163b000
+MIOpen: 	indicesDesc = {10, 20, 1}, {20, 1, 1}, packed, 
+MIOpen: 	indices = 0
+MIOpen: 	k = 137
+MIOpen: 	dim = 2
+MIOpen: 	keepDim = 1
+MIOpen: }
+MIOpen: void LogCmdKthvalue(const miopenTensorDescriptor_t, bool){
+MIOpen: 	inputDesc = {10, 20, 300}, {6000, 300, 1}, packed, 
+MIOpen: }
+MIOpen: Command [LogCmdKthvalue] ./bin/MIOpenDriver kthvaluefp32 -n 10 -T {10,20,300} -Si {6000,300,1} -F 1
+MIOpen: Info2 [GetInvoker] Returning an invoker for problem kthvalue_fwdi_dtype1dim_size300dim_num3dim_stride1output_size200 and algorithm KthvalueFwd
+MIOpen: Info2 [GetFound1_0] No invokers found for kthvalue_fwdi_dtype1dim_size300dim_num3dim_stride1output_size200
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+MIOpen: Info2 [SearchForSolutions] KthvalueFwd: Success.
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: KthvalueFwd
+MIOpen: Info2 [Register] Invoker registered for algorithm kthvalue_fwdi_dtype1dim_size300dim_num3dim_stride1output_size200 and solver KthvalueFwd
+MIOpen: Info2 [SetAsFound1_0] Solver KthvalueFwd registered as find 1.0 best for KthvalueFwd in kthvalue_fwdi_dtype1dim_size300dim_num3dim_stride1output_size200
+MIOpen: Info2 [run] kernel_name = KthvalueFwd, global_work_dim = { 51200, 1, 1 }, local_work_dim = { 256, 1, 1 }
+  dumped arrays to /home/amd/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/evidence/phase3/raw/linux/kthvalue/patched/dumps/FP32-3D-keep-explicit-dim_*
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {10, 20, 300}, {6000, 300, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {10, 20, 1}, {20, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {10, 20, 1}, {20, 1, 1}, packed, 
+MIOpen: }
+  slices=200 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=-3.5 act_val=-3.5 exp_idx=260 act_idx=260
+  STATUS: PASS
+
+CASE FP16-4D-keep-kmax shape={8x3x10x2000} dtype=FP16 dim=-1 k=2000 keepDim=1
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 0
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 3 10 2000 }
+MIOpen: 	stride.values = { 60000 20000 2000 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 0
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 3 10 1 }
+MIOpen: 	stride.values = { 30 10 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptor(miopenTensorDescriptor_t, miopenDataType_t, int, const int *, const int *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 9
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 3 10 1 }
+MIOpen: 	stride.values = { 30 10 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenKthvalueForward(miopenHandle_t, miopenTensorDescriptor_t, const void *, miopenTensorDescriptor_t, void *, miopenTensorDescriptor_t, size_t *, size_t, int32_t, bool){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	inputDesc = {8, 3, 10, 2000}, {60000, 20000, 2000, 1}, packed, 
+MIOpen: 	input = 0x7a1541600000
+MIOpen: 	outputDesc = {8, 3, 10, 1}, {30, 10, 1, 1}, packed, 
+MIOpen: 	output = 0x7a15416eb000
+MIOpen: 	indicesDesc = {8, 3, 10, 1}, {30, 10, 1, 1}, packed, 
+MIOpen: 	indices = 0
+MIOpen: 	k = 2000
+MIOpen: 	dim = -1
+MIOpen: 	keepDim = 1
+MIOpen: }
+MIOpen: void LogCmdKthvalue(const miopenTensorDescriptor_t, bool){
+MIOpen: 	inputDesc = {8, 3, 10, 2000}, {60000, 20000, 2000, 1}, packed, 
+MIOpen: }
+MIOpen: Command [LogCmdKthvalue] ./bin/MIOpenDriver kthvaluefp16 -n 8 -T {8,3,10,2000} -Si {60000,20000,2000,1} -F 1
+MIOpen: Info2 [GetInvoker] Returning an invoker for problem kthvalue_fwdi_dtype0dim_size2000dim_num4dim_stride1output_size240 and algorithm KthvalueFwd
+MIOpen: Info2 [GetFound1_0] No invokers found for kthvalue_fwdi_dtype0dim_size2000dim_num4dim_stride1output_size240
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+MIOpen: Info2 [SearchForSolutions] KthvalueFwd: Success.
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: KthvalueFwd
+MIOpen: Info2 [SQLiteBase] Initializing system database file ""
+MIOpen: Info [KernDb] database not present
+MIOpen: Info2 [SQLiteBase] Initializing user database file "/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/kthvalue_patched_final3/3.6.2.b68f894-dirty/gfx1151_20.ukdb"
+MIOpen: Info2 [KernDb] Database created successfully
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenKthvalue.cpp.o') AND (kernel_args = '-DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.021621 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1151
+MIOpen: Info2 [SQLiteBase] Initializing system database file ""
+MIOpen: Info [KernDb] database not present
+MIOpen: Info2 [SQLiteBase] Initializing user database file "/home/amd/Desktop/YOLO_AMD/tmp/miopen_fresh_cache/kthvalue_patched_final3/3.6.2.b68f894-dirty/gfx1151_20.ukdb"
+MIOpen: Info2 [KernDb] Database created successfully
+MIOpen: Info2 [SaveBinary] Saving binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 10.7763 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [Register] Invoker registered for algorithm kthvalue_fwdi_dtype0dim_size2000dim_num4dim_stride1output_size240 and solver KthvalueFwd
+MIOpen: Info2 [SetAsFound1_0] Solver KthvalueFwd registered as find 1.0 best for KthvalueFwd in kthvalue_fwdi_dtype0dim_size2000dim_num4dim_stride1output_size240
+MIOpen: Info2 [run] kernel_name = KthvalueFwd, global_work_dim = { 61440, 1, 1 }, local_work_dim = { 256, 1, 1 }
+  dumped arrays to /home/amd/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/evidence/phase3/raw/linux/kthvalue/patched/dumps/FP16-4D-keep-kmax_*
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 3, 10, 2000}, {60000, 20000, 2000, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 3, 10, 1}, {30, 10, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 3, 10, 1}, {30, 10, 1, 1}, packed, 
+MIOpen: }
+  slices=240 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=249.75 act_val=249.75 exp_idx=1309 act_idx=1309
+  STATUS: PASS
+
+HARNESS_RESULT: PASS

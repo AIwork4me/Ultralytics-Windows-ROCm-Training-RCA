@@ -20,10 +20,10 @@
   "patched_build": "PASS (800/800 full; sha256 02904c25f45ba010d78292a1c2095afe053825a71f5e7cb6a5013d64d0925221)",
   "patched_miopen_loaded": true,
   "load_proof": "LD_PRELOAD soname symlink + dladdr(miopenCreate/miopenGetVersion) -> installs/miopen-*/lib/libMIOpen.so.1 per run; fixed harness echoes binding in-stream",
-  "no_stl_canary": "PASS \u2014 A with-STL token equivalence (reviewer-extended to type_traits+tensor_view; radix differs by design, value-equivalence asserted); C wrapper fallback zero-STL with -H-verified environment; D facilities GPU-exec via real RTC; extended E1 unpatched partial-STL FAIL reproduced through comgr, E2 patched guard fires, E3 0002 paths + radix static-asserts + initlist chain zero-STL, E4 Kthvalue TU both trees",
-  "batchnorm_regression": "PASS \u2014 unpatched 8/8 -> patched 8/8, fresh isolated caches per leg",
-  "numerical_regression": "PASS \u2014 bit-identical: overall max_abs_error 0.0 across 37 tensors (y/xgrad/wgrad/bgrad/running stats, 6 cases incl. #3956 + yololike shapes), CPU-referenced",
-  "other_rtc_kernels": "PASS \u2014 g68 11-op mirror matrix 11/11 -> 11/11; audit reproduces Windows numbers (104 entries; 32/14/6/1); residuals (Kthvalue/Getitem/ReduceSum/MarginLoss runtime, static CK wrappers) documented with compile-level coverage",
+  "no_stl_canary": "PASS — A with-STL token equivalence (reviewer-extended to type_traits+tensor_view; radix differs by design, value-equivalence asserted); C wrapper fallback zero-STL with -H-verified environment; D facilities GPU-exec via real RTC; extended E1 unpatched partial-STL FAIL reproduced through comgr, E2 patched guard fires, E3 0002 paths + radix static-asserts + initlist chain zero-STL, E4 Kthvalue TU both trees",
+  "batchnorm_regression": "PASS — unpatched 8/8 -> patched 8/8, fresh isolated caches per leg",
+  "numerical_regression": "PASS — bit-identical: overall max_abs_error 0.0 across 37 tensors (y/xgrad/wgrad/bgrad/running stats, 6 cases incl. #3956 + yololike shapes), CPU-referenced",
+  "other_rtc_kernels": "PASS — g68 11-op mirror matrix 11/11 -> 11/11; audit reproduces Windows numbers (104 entries; 32/14/6/1); residuals (Kthvalue/Getitem/ReduceSum/MarginLoss runtime, static CK wrappers) documented with compile-level coverage",
   "yolo_predict": "PASS (patched bound, exit 0)",
   "yolo_train": "PASS (amp default self-disabled->fp32 AND amp=False true fp32; v2 rerun with in-stream binding MATCH + fresh cache, exit 0)",
   "patch_modified_by_linux": false,
@@ -34,14 +34,33 @@
     "maintainer_L45": "ADEQUATE_WITH_CONDITIONS (conditions 1/2/3/5 + partial 4 remediated; runtime-kthvalue, CI breadth, DCO identity are producer/CI-side)"
   },
   "open_conditions": [
-    "runtime kthvalue-class execution under both source builds (compile + value-equivalence coverage provided instead; mirrors Windows-side decision)",
-    "CI breadth across arches (gfx94x/110x/120x) and a 10.x line",
-    "producer: fill author/DCO identity in patch series"
+    "CLOSED 2026-10-08: runtime kthvalue-class execution under both source builds (was compile + value-equivalence coverage only; now runtime PASS->PASS)",
+    "CI breadth across arches (gfx94x/110x/120x) and a 10.x line (upstream-CI scope, not local)",
+    "producer: fill author/DCO identity in patch series (human submission step)"
   ],
   "linux_regression_verdict": "PASS",
   "upstream_pr_created": false,
   "upstream_issue_created": false,
   "upstream_comment_posted": false,
   "internal_pr_created": false,
-  "generated": "2026-10-08T03:04:10"
+  "generated": "2026-10-08T03:04:10",
+  "kthvalue_runtime": {
+    "closed": "2026-10-08 (final integration Gates F07-F15)",
+    "mechanism": "public API miopenKthvalueForward via minimal C++ harness through LD_PRELOADed source-built libMIOpen (dladdr-proven), fresh isolated cache per run",
+    "cases": "{100,500} FP32 k=10 keepDim=false; {10,20,300} FP32 dim=2 k=137 keepDim=true; {8,3,10,2000} FP16 k=2000 keepDim=true",
+    "kernel_proof": "KthvalueFwd solver registered + kernel launched; MIOpenKthvalue.cpp.o LoadBinary(miss)->HIPRTC compile->SaveBinary on BOTH builds, -mcpu=gfx1151",
+    "unpatched": "PASS",
+    "patched": "PASS",
+    "values": "exact vs CPU, byte-identical A/B (max_abs_err 0)",
+    "indices": "exact vs CPU (unique per slice: permutation inputs, no ties), byte-identical A/B",
+    "regression": "NONE",
+    "falsification_review": "PASS (findings/phase3/linux/subagent_kthvalue_review.md)",
+    "evidence": "evidence/phase3/raw/linux/kthvalue/ (run.log+metadata+dumps per side, comparison.json)"
+  },
+  "final_integration": {
+    "handoff_premerge_verification": "evidence/phase3/raw/linux/final_integration/handoff_premerge_verification.txt (all hashes MATCH)",
+    "handoff_postmerge_verification": "evidence/phase3/raw/linux/final_integration/handoff_postmerge_verification.txt (all hashes MATCH, origin/main ancestor)",
+    "patch_id_normalized": "docs/phase3/linux/PATCH_ID_NORMALIZATION.md",
+    "merged_origin_main": "commit merging origin/main e43321f (immutable PATCH_HANDOFF) into this branch with --no-ff, no conflicts, patch files byte-identical"
+  }
 }
