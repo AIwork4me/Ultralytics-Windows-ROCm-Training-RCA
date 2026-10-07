@@ -143,10 +143,20 @@ include chain, unlike the ROCm 7.14 wheels here. Details:
   INCLUDE-injection, and freestanding-shim remedies all validated;
   regression matrix 8/8; numerics <= 7.2e-7 vs CPU; YOLO26n coco8
   epochs=1 train+val closure on GPU in both amp modes).
-- **Phase 3: Upstream Patch Closure — in progress** (real-source patch,
-  Windows build of patched MIOpen, no-MSVC source-fix proof, RTC
-  std-dependency audit, Linux regression validation, maintainer-ready
-  patch package).
+- **Phase 3: complete — Upstream Patch Closure (Windows-validated)**:
+  real rocm-libraries develop source patched (two-commit series in
+  `patches/phase3/`), patched MIOpen BUILT on Windows with the wheel
+  toolchain, loaded by PyTorch with SHA-proven provenance, the original
+  BatchNorm failure proven FIXED by the source change alone with NO
+  host STL (live single-variable A/B), full BN/non-BN/numerics/YOLO
+  matrices green, 104-kernel RTC std audit, adversarial 4-reviewer
+  panel with all blockers resolved. Linux HIP>=7 regression runs:
+  BLOCKED (no environment) — PR readiness intentionally capped at
+  Windows-validated.
+
+> Maintainer-ready patch package prepared locally (patches/phase3/
+> 0001+0002, PR draft, routing plan, proposed CI test). No upstream
+> submission has been made.
 
 **No upstream fix has landed and none is claimed.** Nothing in this
 repository implies AMD official support changed. As of Phase 2, two

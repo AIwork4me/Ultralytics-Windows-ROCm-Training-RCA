@@ -11,6 +11,11 @@
    "size_bytes": 17025
   },
   {
+   "path": "evidence/phase3/raw/build/build_log_v3.txt",
+   "sha256": "a7fb3342eb01e6907734adacb1ce0bb574c5447220b99127b7886414935f4fb6",
+   "size_bytes": 17745
+  },
+  {
    "path": "evidence/phase3/raw/build/configure_log.txt",
    "sha256": "3c8cc374cf7295a28f4305089b629d02be57cc00e89a1c611f738277407688d1",
    "size_bytes": 12359
@@ -27,8 +32,8 @@
   },
   {
    "path": "evidence/phase3/raw/freestanding/g57_results.jsonl",
-   "sha256": "cd4eedd8b3bec69f76f7867575c8d973e0e9e62091b11be76495ae5195a4ba12",
-   "size_bytes": 53525
+   "sha256": "1c605d9de530e2fdb7c91125f0fb82789244d058e57a509488791d4c22f61450",
+   "size_bytes": 64708
   },
   {
    "path": "evidence/phase3/raw/regression/g65_66_matrix.json",
@@ -91,6 +96,21 @@
    "size_bytes": 3616
   },
   {
+   "path": "evidence/phase3/raw/regression/g78_v3_kernels.json",
+   "sha256": "ae899fbd227becbc40814a4cb9c62075be01eb00e4f4352740faf66ffef0399f",
+   "size_bytes": 3441
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g78_v3_kernels_nomsvc.json",
+   "sha256": "fb30ae16b494a297b7160dad191fb1877def718e1c4dfc755f3edc55cd9a97f0",
+   "size_bytes": 3462
+  },
+  {
+   "path": "evidence/phase3/raw/regression/g78_v3_matrix.json",
+   "sha256": "6757cb8689779d1c1cbeedf1f05db563cbb062f92adc42e798d4382e7cfc0100",
+   "size_bytes": 3570
+  },
+  {
    "path": "evidence/phase3/raw/runtime/g63_A_wheel_nomsvc.json",
    "sha256": "ac242501c0759b59e52f9934f72fde00145e698337759dcf829b8b5fcfe16312",
    "size_bytes": 2729
@@ -121,6 +141,11 @@
    "size_bytes": 2742
   },
   {
+   "path": "evidence/phase3/raw/runtime/g78_A_wheel_nomsvc_FINAL.json",
+   "sha256": "79f1178c64766907223ee3de0416838e2a78f4516c4751c60a0116a16351c849",
+   "size_bytes": 4649
+  },
+  {
    "path": "evidence/phase3/raw/runtime/g78_B_v2_nomsvc.json",
    "sha256": "2d2f33c418a61b200314eeb62be997cd667f5aa6b9efd6813154685de65e13be",
    "size_bytes": 2720
@@ -129,6 +154,16 @@
    "path": "evidence/phase3/raw/runtime/g78_v2_bn_minimal.json",
    "sha256": "f7c1decd06adac5dc6b6215fe8a3dd832f853f42688eea5eb9b7f10ecffdfd90",
    "size_bytes": 2726
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/g78_v3_bn_minimal.json",
+   "sha256": "b5071618b0604da63f8a81ca4194fada74325b2a445d0075fc08178f8832017f",
+   "size_bytes": 2727
+  },
+  {
+   "path": "evidence/phase3/raw/runtime/post_V3_restore_sanity.json",
+   "sha256": "2d3c7846c09b668dd3d9b19150f0526bc0e4a57f627e1a83836969e2b88c65e4",
+   "size_bytes": 2315
   },
   {
    "path": "evidence/phase3/raw/runtime/post_restore_sanity.json",
@@ -161,6 +196,11 @@
    "size_bytes": 4694
   },
   {
+   "path": "evidence/phase3/raw/source/final_patch_roundtrip.txt",
+   "sha256": "4b687b7521d894ab0d866ff13c93b2de95e2c696ca7fa86052a40b4c33a9e301",
+   "size_bytes": 785
+  },
+  {
    "path": "evidence/phase3/raw/source/rtc_std_dependency_matrix.json",
    "sha256": "3cff4c04aeb0f8ec43e332fbafc27f86e0275cb05feb2f71591ef187be34b6ca",
    "size_bytes": 33833
@@ -189,6 +229,16 @@
    "path": "evidence/phase3/raw/yolo/g78_v2_yolo_off.json",
    "sha256": "eb8904db4bcdd8c8a0df1eb7b325d0938ad0c1142d623ddc667e21f35a55967e",
    "size_bytes": 12074
+  },
+  {
+   "path": "evidence/phase3/raw/yolo/g78_v3_yolo_default.json",
+   "sha256": "68b7e4ff07b658cc92f480c4c43c078051cd2ee45a7b7e4b30029f76582cb6a9",
+   "size_bytes": 12118
+  },
+  {
+   "path": "evidence/phase3/raw/yolo/g78_v3_yolo_off.json",
+   "sha256": "d0a919ae03091e9cd9841eff485afa4103f0783cbdccce4017444032c70f2439",
+   "size_bytes": 10904
   }
  ],
  "note": "Phase-3 artifacts only; Phase-1/2 manifests untouched; MANIFEST.json excludes its own hash (SHA256SUMS covers raw evidence files only).",
