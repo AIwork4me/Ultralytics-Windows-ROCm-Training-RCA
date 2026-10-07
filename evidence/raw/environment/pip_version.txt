@@ -1,0 +1,4 @@
+﻿### captured 2026-10-07T11:51:26.6809451+08:00
+pip 26.0.1 from C:\Users\rocm\miniconda3\Lib\site-packages\pip (python 3.13)
+
+exit_code=0

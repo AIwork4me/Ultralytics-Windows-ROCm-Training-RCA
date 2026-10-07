@@ -1,0 +1,37 @@
+﻿### captured 2026-10-07T11:59:51.6078474+08:00
+--- where.exe probes ---
+cl : NOT FOUND
+clang : NOT FOUND
+clang++ : NOT FOUND
+hipcc : C:\Users\rocm\miniconda3\Scripts\hipcc.exe
+vswhere : NOT FOUND
+dumpbin : NOT FOUND
+gcc : NOT FOUND
+g++ : NOT FOUND
+link : C:\Program Files\Git\usr\bin\link.exe
+rc : NOT FOUND
+--- Visual Studio vswhere discovery ---
+vswhere.exe not present at C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe
+--- narrow search: VC\Tools\MSVC\*\include\type_traits ---
+no dir: C:\Program Files (x86)\Microsoft Visual Studio
+no dir: C:\Program Files\Microsoft Visual Studio
+no MSVC type_traits found under Program Files Visual Studio roots
+--- other C++ std library locations (read-only spot checks) ---
+absent: C:\Program Files\LLVM\include\c++
+absent: C:\Strawberry\c\include\c++
+absent: C:\Users\rocm\miniconda3\Library\include\c++
+absent: C:\Users\rocm\miniconda3\include\c++
+absent: C:\Program Files\Git\usr\lib\gcc
+absent: C:\msys64\usr\lib\gcc
+absent: C:\Program Files\Git\usr\include\c++
+--- relevant env vars ---
+INCLUDE=<unset>
+LIB=<unset>
+LIBPATH=<unset>
+CPATH=<unset>
+CPLUS_INCLUDE_PATH=<unset>
+HIP_PATH=<unset>
+ROCM_PATH=<unset>
+--- hiprtc/clang resources shipped in ROCm wheel (site-packages\_rocm_sdk_libraries) ---
+no type_traits anywhere under C:\Users\rocm\miniconda3\Lib\site-packages\_rocm_sdk_libraries
+--- probe complete ---

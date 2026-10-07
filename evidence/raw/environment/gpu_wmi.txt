@@ -1,0 +1,17 @@
+﻿### captured 2026-10-07T11:51:21.0690792+08:00
+
+
+Name           : GameViewer Virtual Display Adapter
+DriverVersion  : 15.6.5.199
+AdapterRAM     : 
+VideoProcessor : 
+
+Name           : AMD Radeon(TM) 8060S Graphics
+DriverVersion  : 32.0.22032.6002
+AdapterRAM     : 4293918720
+VideoProcessor : AMD Radeon Graphics Processor (0x1586)
+
+
+
+
+exit_code=

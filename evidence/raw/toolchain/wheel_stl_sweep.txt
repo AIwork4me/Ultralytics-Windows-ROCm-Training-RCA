@@ -1,0 +1,27 @@
+### captured 2026-10-07T12:18:10+08:00
+### command: find _rocm_sdk_libraries _rocm_sdk_core -iname type_traits (count) ; find _rocm_sdk_libraries _rocm_sdk_core -iname cstddef -o -iname utility (count) ; amdclang.exe --version
+--- type_traits anywhere in either ROCm wheel tree ---
+0
+--- cstddef / utility / cstdint (common C++ headers) in either wheel tree ---
+0
+--- clang resource include contents (what IS shipped) ---
+__clang_cuda_builtin_vars.h
+__clang_cuda_cmath.h
+__clang_cuda_complex_builtins.h
+__clang_cuda_device_functions.h
+__clang_cuda_intrinsics.h
+__clang_cuda_libdevice_declares.h
+__clang_cuda_math.h
+__clang_cuda_math_forward_declares.h
+__clang_cuda_runtime_wrapper.h
+__clang_cuda_texture_intrinsics.h
+__clang_hip_cmath.h
+__clang_hip_libdevice_declares.h
+__clang_hip_math.h
+__clang_hip_runtime_wrapper.h
+__clang_hip_stdlib.h
+--- bundled clang target triple ---
+AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:1efe4605317a40d2170d33617075bd5675d0d558)
+Target: x86_64-pc-windows-msvc
+Thread model: posix
+InstalledDir: C:\Users\rocm\miniconda3\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin

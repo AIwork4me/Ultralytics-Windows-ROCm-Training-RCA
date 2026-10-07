@@ -1,0 +1,55 @@
+# Model weights / checkpoints / ONNX
+*.pt
+*.pth
+*.onnx
+*.engine
+*.tflite
+*.pb
+*.mlmodel
+*.torchscript
+
+# Datasets and training outputs
+datasets/
+runs/
+coco8/
+*.cache
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Conda / pip caches
+*.conda
+pkg-cache/
+pip-cache/
+
+# Large / binary compiler outputs (never commit)
+*.dll
+*.so
+*.hsaco
+*.o
+*.obj
+*.exe
+*.cubin
+*.fatbin
+
+# Temp evidence workspace (untracked by design; only curated text under raw/ is committed)
+evidence/tmp/
+
+# OS / editor
+Thumbs.db
+.DS_Store
+desktop.ini
+*.swp
+.idea/
+.vscode/
+
+# Secrets
+*.env
+.env.*
+*.token
+*_token
+credentials*

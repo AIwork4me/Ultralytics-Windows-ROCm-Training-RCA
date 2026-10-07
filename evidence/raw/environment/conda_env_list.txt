@@ -1,0 +1,10 @@
+﻿### captured 2026-10-07T11:51:21.1010475+08:00
+
+# conda environments:
+#
+# * -> active
+# + -> frozen
+base                     C:\Users\rocm\miniconda3
+yolo_amd                 C:\Users\rocm\miniconda3\envs\yolo_amd
+
+exit_code=0

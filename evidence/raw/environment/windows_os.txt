@@ -1,0 +1,12 @@
+﻿### captured 2026-10-07T11:51:19.0313004+08:00
+
+
+Caption        : Microsoft Windows 11 家庭版 中文版
+Version        : 10.0.26200
+BuildNumber    : 26200
+OSArchitecture : 64 位
+
+
+
+
+exit_code=

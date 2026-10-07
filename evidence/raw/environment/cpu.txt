@@ -1,0 +1,12 @@
+﻿### captured 2026-10-07T11:51:19.9981474+08:00
+
+
+Name                      : AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          
+NumberOfCores             : 16
+NumberOfLogicalProcessors : 32
+MaxClockSpeed             : 3000
+
+
+
+
+exit_code=

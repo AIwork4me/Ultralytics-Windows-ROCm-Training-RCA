@@ -1,0 +1,36 @@
+﻿### captured 2026-10-07T11:51:22.0629679+08:00
+
+     active environment : None
+       user config file : C:\Users\rocm\.condarc
+ populated config files : C:\Users\rocm\miniconda3\.condarc
+                          C:\Users\rocm\miniconda3\condarc.d\anaconda-auth.yml
+          conda version : 26.3.2
+    conda-build version : not installed
+         python version : 3.13.13.final.0
+                 solver : libmamba (default)
+       virtual packages : __archspec=1=x86_64_v4
+                          __conda=26.3.2=0
+                          __win=10.0.26200=0
+       base environment : C:\Users\rocm\miniconda3  (writable)
+      conda av data dir : C:\Users\rocm\miniconda3\etc\conda
+  conda av metadata url : None
+           channel URLs : https://repo.anaconda.com/pkgs/main/win-64
+                          https://repo.anaconda.com/pkgs/main/noarch
+                          https://repo.anaconda.com/pkgs/r/win-64
+                          https://repo.anaconda.com/pkgs/r/noarch
+                          https://repo.anaconda.com/pkgs/msys2/win-64
+                          https://repo.anaconda.com/pkgs/msys2/noarch
+          package cache : C:\Users\rocm\miniconda3\pkgs
+                          C:\Users\rocm\.conda\pkgs
+                          C:\Users\rocm\AppData\Local\conda\conda\pkgs
+       envs directories : C:\Users\rocm\miniconda3\envs
+                          C:\Users\rocm\.conda\envs
+                          C:\Users\rocm\AppData\Local\conda\conda\envs
+    temporary directory : C:\Users\rocm\AppData\Local\Temp
+               platform : win-64
+             user-agent : conda/26.3.2 requests/2.33.1 CPython/3.13.13 Windows/11 Windows/10.0.26200 solver/libmamba conda-libmamba-solver/26.4.0 libmambapy/2.3.2 aau/0.7.6 c/. s/. e/. i/.
+          administrator : True
+             netrc file : None
+           offline mode : False
+
+exit_code=0

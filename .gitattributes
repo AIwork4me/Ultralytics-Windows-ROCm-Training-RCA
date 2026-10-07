@@ -1,0 +1,17 @@
+# General normalization to LF in-repo.
+* text=auto
+*.py text
+*.ps1 text
+*.md text
+*.json text
+
+# Checksum file must be LF so `sha256sum -c` works on POSIX.
+evidence/SHA256SUMS.txt text eol=lf
+
+*.png binary
+*.jpg binary
+
+# LAST (overrides the general rules above): raw evidence must be committed
+# byte-exact — its SHA256s are recorded in evidence/SHA256SUMS.txt — so no
+# EOL conversion or normalization of any kind.
+evidence/raw/** -text

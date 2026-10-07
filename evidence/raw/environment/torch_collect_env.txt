@@ -1,0 +1,69 @@
+﻿### captured 2026-10-07T11:51:28.5541133+08:00
+python.exe : <frozen runpy>:128: RuntimeWarning: 'torch.utils.collect_env' found in sys.modules after import of package
+ 'torch.utils', but prior to execution of 'torch.utils.collect_env'; this may result in unpredictable behaviour
+所在位置 C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\scripts\00_capture_environment.ps1:50 字符: 37
++ ... -Log "torch_collect_env.txt" { & $Python -m torch.utils.collect_env }
++                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (<frozen runpy>:...table behaviour:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Collecting environment information...
+PyTorch version: 2.12.0+rocm7.14.0
+Is debug build: False
+CUDA used to build PyTorch: N/A
+ROCM used to build PyTorch: 7.14.60850
+
+OS: Microsoft Windows 11 瀹跺涵鐗?涓枃鐗?(10.0.26200 64 浣?
+GCC version: Could not collect
+Clang version: Could not collect
+CMake version: Could not collect
+Libc version: N/A
+
+Python version: 3.13.13 | packaged by Anaconda, Inc. | (main, Apr 14 2026, 06:12:50) [MSC v.1942 64 bit (AMD64)] (64-bit runtime)
+Python platform: Windows-11-10.0.26200-SP0
+Is CUDA available: True
+CUDA runtime version: Could not collect
+CUDA_MODULE_LOADING set to: 
+GPU models and configuration: AMD Radeon(TM) 8060S Graphics (gfx1151)
+Nvidia driver version: Could not collect
+cuDNN version: Could not collect
+Is XPU available: False
+HIP runtime version: 7.14.60850
+MIOpen runtime version: 3.5.2
+Is XNNPACK available: True
+Caching allocator config: N/A
+
+CPU:
+Name: AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          
+Manufacturer: AuthenticAMD
+Family: 107
+Architecture: 9
+ProcessorType: 3
+DeviceID: CPU0
+CurrentClockSpeed: 3000
+MaxClockSpeed: 3000
+L2CacheSize: 16384
+L2CacheSpeed: None
+Revision: 28672
+
+Versions of relevant libraries:
+[pip3] amd-torch-device-gfx11==2.12.0+rocm7.14.0
+[pip3] amd-torch-device-gfx1151==2.12.0+rocm7.14.0
+[pip3] amd-torchvision-device-gfx1151==0.27.0+rocm7.14.0
+[pip3] kokoro-onnx==0.5.0
+[pip3] mypy==2.1.0
+[pip3] mypy_extensions==1.1.0
+[pip3] numpy==2.1.0
+[pip3] onnxruntime==1.27.0
+[pip3] onnxruntime-directml==1.24.4
+[pip3] torch==2.12.0+rocm7.14.0
+[pip3] torchaudio==2.11.0+rocm7.14.0
+[pip3] torchvision==0.27.0+rocm7.14.0
+[conda] amd-torch-device-gfx11            2.12.0+rocm7.14.0  pypi_0              pypi
+[conda] amd-torch-device-gfx1151          2.12.0+rocm7.14.0  pypi_0              pypi
+[conda] amd-torchvision-device-gfx1151    0.27.0+rocm7.14.0  pypi_0              pypi
+[conda] numpy                             2.1.0              pypi_0              pypi
+[conda] torch                             2.12.0+rocm7.14.0  pypi_0              pypi
+[conda] torchaudio                        2.11.0+rocm7.14.0  pypi_0              pypi
+[conda] torchvision                       0.27.0+rocm7.14.0  pypi_0              pypi
+exit_code=0

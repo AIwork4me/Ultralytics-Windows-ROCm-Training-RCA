@@ -1,0 +1,114 @@
+﻿### captured 2026-10-07T11:51:36.9029779+08:00
+
+===== python =====
+executable: C:\Users\rocm\miniconda3\python.exe
+version: 3.13.13 | packaged by Anaconda, Inc. | (main, Apr 14 2026, 06:12:50) [MSC v.1942 64 bit (AMD64)]
+platform: Windows-11-10.0.26200-SP0
+machine: AMD64
+sys.prefix: C:\Users\rocm\miniconda3
+CONDA_PREFIX (env var): <unset>
+CONDA_DEFAULT_ENV (env var): <unset>
+
+===== torch =====
+torch.__version__: 2.12.0+rocm7.14.0
+torch.version.hip: 7.14.60850
+torch.version.cuda: None
+torch.cuda.is_available(): True
+torch.cuda.device_count(): 1
+torch.cuda.get_device_name(0): AMD Radeon(TM) 8060S Graphics
+torch.cuda.get_device_properties(0): name=AMD Radeon(TM) 8060S Graphics total_memory=83954728960 multi_processor_count=20 major.minor=11.5
+torch.backends.cudnn.enabled: True
+torch.backends.cudnn.is_available(): True
+torch.backends.cudnn.version(): 3005002
+torch.backends.miopen.is_available(): <EXCEPTION> AttributeError: module 'torch.backends' has no attribute 'mioopen'
+torch.version.git_version: 13eab2b3ef4e03999247f063bc2dde01c94e9eaa
+
+===== torchvision / torchaudio / ultralytics =====
+torchvision.__version__: 0.27.0+rocm7.14.0
+torchaudio.__version__: 2.11.0+rocm7.14.0
+ultralytics.__version__: 8.4.174
+
+===== package metadata (importlib.metadata) =====
+pkg:torch: 2.12.0+rocm7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:torchvision: 0.27.0+rocm7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:torchaudio: 2.11.0+rocm7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:ultralytics: 8.4.174 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:ultralytics-thop: 2.2.2 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:rocm: 7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:rocm-bootstrap: 0.1.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:rocm-sdk-core: 7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:rocm-sdk-libraries: 7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:rocm-sdk-device-gfx1151: 7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:amd-torch-device-gfx1151: 2.12.0+rocm7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:amd-torch-device-gfx11: 2.12.0+rocm7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+pkg:amd-torchvision-device-gfx1151: 0.27.0+rocm7.14.0 (loc=C:\Users\rocm\miniconda3\Lib\site-packages)
+
+===== environment variable whitelist (sanitized) =====
+PATH (47 entries):
+  C:\Users\rocm\miniconda3\Lib\site-packages\cv2\../../x64/vc17/bin
+  C:\Users\rocm\bin
+  C:\Program Files\Git\mingw64\bin
+  C:\Program Files\Git\usr\local\bin
+  C:\Program Files\Git\usr\bin
+  C:\Program Files\Git\usr\bin
+  C:\Program Files\Git\mingw64\bin
+  C:\Program Files\Git\usr\bin
+  C:\Users\rocm\bin
+  C:\Program Files\VisionMaster4.4.0\Applications\PublicFile\x64
+  C:\Program Files\VisionMaster4.4.0\Applications\PublicFile\x86
+  C:\Program Files (x86)\Common Files\MVS\Runtime\Win32_i86
+  C:\Program Files (x86)\Common Files\MVS\Runtime\Win64_x64
+  C:\Program Files\VisionMaster4.4.0\MVDAlgorithmSDK\Runtime\Win32
+  C:\Program Files\VisionMaster4.4.0\MVDAlgorithmSDK\Runtime\x64
+  C:\Program Files\ImageMagick-7.1.2-Q16-HDRI
+  C:\Windows\system32
+  C:\Windows
+  C:\Windows\System32\Wbem
+  C:\Windows\System32\WindowsPowerShell\v1.0
+  C:\Windows\System32\OpenSSH
+  C:\Windows\System32\WindowsPowerShell\v1.0
+  C:\Program Files\nodejs
+  C:\Program Files\GitHub CLI
+  C:\Users\rocm\miniconda3
+  C:\Users\rocm\miniconda3\Library\mingw-w64\bin
+  C:\Users\rocm\miniconda3\Library\usr\bin
+  C:\Users\rocm\miniconda3\Library\bin
+  C:\Users\rocm\miniconda3\Scripts
+  C:\Program Files\Tailscale
+  C:\Program Files\QoderCN\bin
+  C:\Program Files\Git\cmd
+  C:\Users\rocm\AppData\Local\Programs\Trae CN\bin
+  C:\Users\rocm\.kimi-code\bin
+  C:\Users\rocm\AppData\Local\Microsoft\WindowsApps
+  C:\Users\rocm\AppData\Roaming\npm
+  C:\Users\rocm\AppData\Local\Programs\Microsoft VS Code\bin
+  C:\Users\rocm\.local\bin
+  C:\texlive\2026\bin\windows
+  C:\Program Files\Graphviz\bin
+  C:\Users\rocm\AppData\Local\Programs\Comate\bin
+  C:\Users\rocm\AppData\Local\Programs\CodeBuddy CN\bin
+  C:\Users\rocm\AppData\Local\Programs\ZCode\resources\tools\ripgrep
+  C:\Users\rocm\AppData\Local\Programs\ZCode\resources\tools\ugrep
+  C:\Program Files\nodejs
+  C:\Program Files\Git\usr\bin\vendor_perl
+  C:\Program Files\Git\usr\bin\core_perl
+INCLUDE: <unset>
+LIB: <unset>
+LIBPATH: <unset>
+HIP_PATH: <unset>
+ROCM_PATH: <unset>
+HIP_VISIBLE_DEVICES: <unset>
+ROCR_VISIBLE_DEVICES: <unset>
+GPU_DEVICE_ORDINAL: <unset>
+CPATH: <unset>
+CPLUS_INCLUDE_PATH: <unset>
+TEMP: C:\Users\rocm\AppData\Local\Temp
+TMP: C:\Users\rocm\AppData\Local\Temp
+MIOPEN_ENABLE_LOGGING: <unset>
+MIOPEN_FIND_MODE: <unset>
+PYTORCH_ROCM_ARCH: <unset>
+
+===== summary =====
+probes ok: 30
+probes failed: 1 -> ['torch.backends.miopen.is_available()']
+exit_code=0
