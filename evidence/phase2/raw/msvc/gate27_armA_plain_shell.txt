@@ -1,0 +1,92 @@
+### ARM A: plain shell, no VS env injection
+### captured 2026-10-07T13:31:40+08:00; INCLUDE='' (unset if empty)
+{
+  "hiprtc_version": "9.0",
+  "results": [
+    {
+      "probe": "none",
+      "header": "(none)",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "type_traits",
+      "header": "#include <type_traits>",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "utility",
+      "header": "#include <utility>",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "limits",
+      "header": "#include <limits>",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "cstdint",
+      "header": "#include <cstdint>",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    },
+    {
+      "probe": "initializer_list",
+      "header": "#include <initializer_list>",
+      "rtc_create": 0,
+      "rtc_compile": 0,
+      "compile_result": "HIPRTC_SUCCESS",
+      "log_size": 0,
+      "program_log": "",
+      "code_size": 3832,
+      "rtc_code_size_result": 0,
+      "arch": "gfx1151",
+      "hiprtc_version": "9.0",
+      "dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll"
+    }
+  ]
+}
+armA_exit=0

@@ -1,0 +1,45 @@
+### Poisoned-header test v2: cache-isolated (HOME/USERPROFILE/LOCALAPPDATA redirected) — 2026-10-07T13:38:21+08:00
+### ROCM_PATH=C:\hiprtc_poison; expect FAIL with POISONED_TYPE_TRAITS iff MIOpen passes -I$ROCM_PATH/include
+MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
+MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp
+MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111760-6-009d06\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111760-6-009d06\include\batchnorm_functions.hpp:30:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111760-6-009d06\include\configuration.hpp:34:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111760-6-009d06\include\vector_types.hpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-111760-6-009d06\include\miopen_type_traits.hpp:151:
+C:\hiprtc_poison/include\type_traits:1:2: error: POISONED_TYPE_TRAITS_SHIM_EXPERIMENT
+    1 | #error POISONED_TYPE_TRAITS_SHIM_EXPERIMENT
+      |  ^
+1 error generated when compiling for gfx1151.
+MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import torch,torch.nn as nn; bn=nn.BatchNorm2d(4).cuda().train(); x=torch.randn(2,4,8,8,device='cuda'); y=bn(x); torch.cuda.synchronize(); print('BN OK', float(y.mean()))
+                                                                                                              ~~^^^
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+           ~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<11 lines>...
+        self.eps,
+        ^^^^^^^^^
+    )
+    ^
+  File "C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\torch\nn\functional.py", line 2850, in batch_norm
+    return torch.batch_norm(
+           ~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<7 lines>...
+        torch.backends.cudnn.enabled,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: miopenStatusUnknownError
+exit_code=1

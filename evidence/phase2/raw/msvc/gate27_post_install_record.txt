@@ -1,0 +1,17 @@
+### Gate 27: post-install record — captured 2026-10-07T13:33:16+08:00
+
+=== installed components (VS installer inventory) ===
+14.44.35207
+MSVC toolset dirs above; version details:
+{"FileVersion":"19.44.35229.0","ProductVersion":"14.44.35229.0"}
+=== Windows SDK ===
+10.0.26100.0
+=== type_traits physical path ===
+-rw-r--r-- 1 rocm 197121 108106 Oct  7 13:24 /c/BuildTools/VC/Tools/MSVC/14.44.35207/include/type_traits
+=== vswhere now present? ===
+/c/Program Files (x86)/Microsoft Visual Studio/Installer/vswhere.exe
+=== where cl (plain shell still not on PATH) ===
+INFO: Could not find files for the given pattern(s).
+=== ROCm stack untouched? (SHA256 re-verify of failing-path DLLs) ===
+MIOpen.dll 74b4ee038803606e
+hiprtc0714.dll c6159dd12714eed4

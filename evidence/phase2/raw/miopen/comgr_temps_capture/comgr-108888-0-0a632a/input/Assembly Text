@@ -1,0 +1,435 @@
+
+.if .amdgcn.gfx_generation_number == 11 
+.set SQ_WAVE_PC_HI_ADDRESS_MASK , 0xFFFF 
+.set SQ_WAVE_PC_HI_HT_SHIFT , 24 
+.set SQ_WAVE_PC_HI_TRAP_ID_SHIFT , 16 
+.set SQ_WAVE_PC_HI_TRAP_ID_SIZE , 8 
+.set SQ_WAVE_PC_HI_TRAP_ID_BFE , (SQ_WAVE_PC_HI_TRAP_ID_SHIFT | (SQ_WAVE_PC_HI_TRAP_ID_SIZE << 16)) 
+.set SQ_WAVE_STATUS_HALT_SHIFT , 13 
+.set SQ_WAVE_STATUS_TRAP_SKIP_EXPORT_SHIFT , 18 
+.set SQ_WAVE_STATUS_HALT_BFE , (SQ_WAVE_STATUS_HALT_SHIFT | (1 << 16)) 
+.set SQ_WAVE_TRAPSTS_MEM_VIOL_SHIFT , 8 
+.set SQ_WAVE_TRAPSTS_ILLEGAL_INST_SHIFT , 11 
+.set SQ_WAVE_TRAPSTS_XNACK_ERROR_SHIFT , 28 
+.set SQ_WAVE_TRAPSTS_MATH_EXCP , 0x7F 
+.set SQ_WAVE_TRAPSTS_PERF_SNAPSHOT_SHIFT , 26 
+.set SQ_WAVE_TRAPSTS_HOST_TRAP_SHIFT , 22 
+.set SQ_WAVE_MODE_EXCP_EN_SHIFT , 12 
+.set SQ_WAVE_MODE_EXCP_EN_SIZE , 8 
+.set TRAP_ID_ABORT , 2 
+.set TRAP_ID_DEBUGTRAP , 3 
+.set DOORBELL_ID_SIZE , 10 
+.set DOORBELL_ID_MASK , ((1 << DOORBELL_ID_SIZE) - 1) 
+.set EC_QUEUE_WAVE_ABORT_M0 , (1 << (DOORBELL_ID_SIZE + 0)) 
+.set EC_QUEUE_WAVE_TRAP_M0 , (1 << (DOORBELL_ID_SIZE + 1)) 
+.set EC_QUEUE_WAVE_MATH_ERROR_M0 , (1 << (DOORBELL_ID_SIZE + 2)) 
+.set EC_QUEUE_WAVE_ILLEGAL_INSTRUCTION_M0 , (1 << (DOORBELL_ID_SIZE + 3)) 
+.set EC_QUEUE_WAVE_MEMORY_VIOLATION_M0 , (1 << (DOORBELL_ID_SIZE + 4)) 
+.set EC_QUEUE_WAVE_APERTURE_VIOLATION_M0 , (1 << (DOORBELL_ID_SIZE + 5)) 
+ 
+.set TTMP6_SPI_TTMPS_SETUP_DISABLED_SHIFT , 31 
+.set TTMP6_WAVE_STOPPED_SHIFT , 30 
+.set TTMP6_SAVED_STATUS_HALT_SHIFT , 29 
+.set TTMP6_SAVED_STATUS_HALT_MASK , (1 << TTMP6_SAVED_STATUS_HALT_SHIFT) 
+.set TTMP6_SAVED_TRAP_ID_SHIFT , 25 
+.set TTMP6_SAVED_TRAP_ID_SIZE , 4 
+.set TTMP6_SAVED_TRAP_ID_MASK , (((1 << TTMP6_SAVED_TRAP_ID_SIZE) - 1) << TTMP6_SAVED_TRAP_ID_SHIFT) 
+.set TTMP6_SAVED_TRAP_ID_BFE , (TTMP6_SAVED_TRAP_ID_SHIFT | (TTMP6_SAVED_TRAP_ID_SIZE << 16)) 
+ 
+.set TTMP_PC_HI_SHIFT , 7 
+.set TTMP_DEBUG_ENABLED_SHIFT , 23 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ .globl trap_entry 
+ .type trap_entry,@function 
+ .align 256 
+ 
+trap_entry: 
+ 
+ s_bfe_u32 ttmp2, ttmp1, SQ_WAVE_PC_HI_TRAP_ID_BFE 
+ s_cbranch_scc0 .not_s_trap 
+ 
+ 
+ s_bitcmp1_b32 ttmp1, SQ_WAVE_PC_HI_HT_SHIFT 
+ s_cbranch_scc1 .not_s_trap 
+ 
+ 
+ s_add_u32 ttmp0, ttmp0, 0x4 
+ s_addc_u32 ttmp1, ttmp1, 0x0 
+ 
+ 
+ s_cmp_eq_u32 ttmp2, TRAP_ID_DEBUGTRAP 
+ s_cbranch_scc0 .no_skip_debugtrap 
+ s_bitcmp0_b32 ttmp11, TTMP_DEBUG_ENABLED_SHIFT 
+ s_cbranch_scc0 .no_skip_debugtrap 
+ 
+ 
+ s_branch .exit_trap 
+ 
+.not_s_trap: 
+.no_skip_debugtrap: 
+ 
+ s_andn2_b32 ttmp6, ttmp6, (TTMP6_SAVED_TRAP_ID_MASK | TTMP6_SAVED_STATUS_HALT_MASK) 
+ s_bfe_u32 ttmp2, ttmp1, SQ_WAVE_PC_HI_TRAP_ID_BFE 
+ s_min_u32 ttmp2, ttmp2, 0xF 
+ s_lshl_b32 ttmp2, ttmp2, TTMP6_SAVED_TRAP_ID_SHIFT 
+ s_or_b32 ttmp6, ttmp6, ttmp2 
+ s_bfe_u32 ttmp2, ttmp12, SQ_WAVE_STATUS_HALT_BFE 
+ s_lshl_b32 ttmp2, ttmp2, TTMP6_SAVED_STATUS_HALT_SHIFT 
+ s_or_b32 ttmp6, ttmp6, ttmp2 
+ 
+ 
+ s_sendmsg_rtn_b32 ttmp3, sendmsg(MSG_RTN_GET_DOORBELL) 
+ s_waitcnt lgkmcnt(0) 
+ s_and_b32 ttmp3, ttmp3, DOORBELL_ID_MASK 
+ 
+ 
+ s_getreg_b32 ttmp2, hwreg(HW_REG_TRAPSTS) 
+ 
+ s_bitcmp1_b32 ttmp2, SQ_WAVE_TRAPSTS_XNACK_ERROR_SHIFT 
+ s_cbranch_scc0 .not_memory_violation 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_MEMORY_VIOLATION_M0 
+ 
+ 
+ s_branch .not_aperture_violation 
+ 
+.not_memory_violation: 
+ s_bitcmp1_b32 ttmp2, SQ_WAVE_TRAPSTS_MEM_VIOL_SHIFT 
+ s_cbranch_scc0 .not_aperture_violation 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_APERTURE_VIOLATION_M0 
+ 
+.not_aperture_violation: 
+ s_bitcmp1_b32 ttmp2, SQ_WAVE_TRAPSTS_ILLEGAL_INST_SHIFT 
+ s_cbranch_scc0 .not_illegal_instruction 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_ILLEGAL_INSTRUCTION_M0 
+ 
+.not_illegal_instruction: 
+ s_and_b32 ttmp2, ttmp2, SQ_WAVE_TRAPSTS_MATH_EXCP 
+ s_cbranch_scc0 .not_math_exception 
+ s_getreg_b32 ttmp7, hwreg(HW_REG_MODE) 
+ s_lshl_b32 ttmp2, ttmp2, SQ_WAVE_MODE_EXCP_EN_SHIFT 
+ s_and_b32 ttmp2, ttmp2, ttmp7 
+ s_cbranch_scc0 .not_math_exception 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_MATH_ERROR_M0 
+ 
+.not_math_exception: 
+ s_bfe_u32 ttmp2, ttmp6, TTMP6_SAVED_TRAP_ID_BFE 
+ s_cmp_eq_u32 ttmp2, TRAP_ID_ABORT 
+ s_cbranch_scc0 .not_abort_trap 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_ABORT_M0 
+ 
+.not_abort_trap: 
+ 
+ s_andn2_b32 ttmp2, ttmp3, DOORBELL_ID_MASK 
+ s_cbranch_scc1 .send_interrupt 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_TRAP_M0 
+ 
+.send_interrupt: 
+ 
+ s_mov_b32 ttmp2, m0 
+ s_mov_b32 m0, ttmp3 
+ s_nop 0x0 
+ s_sendmsg sendmsg(MSG_INTERRUPT) 
+ s_waitcnt lgkmcnt(0) 
+ s_mov_b32 m0, ttmp2 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ s_mov_b32 ttmp7, ttmp0 
+ s_and_b32 ttmp1, ttmp1, SQ_WAVE_PC_HI_ADDRESS_MASK 
+ s_lshl_b32 ttmp1, ttmp1, TTMP_PC_HI_SHIFT 
+ s_andn2_b32 ttmp11, ttmp11, (SQ_WAVE_PC_HI_ADDRESS_MASK << TTMP_PC_HI_SHIFT) 
+ s_or_b32 ttmp11, ttmp11, ttmp1 
+ 
+ 
+ s_getpc_b64 [ttmp0, ttmp1] 
+ s_add_u32 ttmp0, ttmp0, .parked - . 
+ s_addc_u32 ttmp1, ttmp1, 0x0 
+ 
+.halt_wave: 
+ 
+ s_bitset1_b32 ttmp6, TTMP6_WAVE_STOPPED_SHIFT 
+ s_bitset1_b32 ttmp12, SQ_WAVE_STATUS_HALT_SHIFT 
+ 
+ 
+ s_bitset1_b32 ttmp12, SQ_WAVE_STATUS_TRAP_SKIP_EXPORT_SHIFT 
+ 
+.exit_trap: 
+ 
+ s_and_b64 exec, exec, exec 
+ s_and_b64 vcc, vcc, vcc 
+ s_setreg_b32 hwreg(HW_REG_STATUS), ttmp12 
+ 
+ 
+ s_rfe_b64 [ttmp0, ttmp1] 
+ 
+.parked: 
+ s_trap 0x2 
+ s_branch .parked 
+ 
+ 
+ 
+.rept (256 - ((. - trap_entry) % 64)) / 4 
+ s_code_end 
+.endr 
+.elseif .amdgcn.gfx_generation_number == 12 
+.set DOORBELL_ID_SIZE , 10 
+.set DOORBELL_ID_MASK , ((1 << DOORBELL_ID_SIZE) - 1) 
+.set EC_QUEUE_WAVE_ABORT_M0 , (1 << (DOORBELL_ID_SIZE + 0)) 
+.set EC_QUEUE_WAVE_TRAP_M0 , (1 << (DOORBELL_ID_SIZE + 1)) 
+.set EC_QUEUE_WAVE_MATH_ERROR_M0 , (1 << (DOORBELL_ID_SIZE + 2)) 
+.set EC_QUEUE_WAVE_ILLEGAL_INSTRUCTION_M0 , (1 << (DOORBELL_ID_SIZE + 3)) 
+.set EC_QUEUE_WAVE_MEMORY_VIOLATION_M0 , (1 << (DOORBELL_ID_SIZE + 4)) 
+.set EC_QUEUE_WAVE_APERTURE_VIOLATION_M0 , (1 << (DOORBELL_ID_SIZE + 5)) 
+ 
+.set SQ_WAVE_EXCP_FLAG_PRIV_ADDR_WATCH_MASK , (1 << 4) - 1 
+.set SQ_WAVE_EXCP_FLAG_PRIV_MEMVIOL_SHIFT , 4 
+.set SQ_WAVE_EXCP_FLAG_PRIV_ILLEGAL_INST_SHIFT , 6 
+.set SQ_WAVE_EXCP_FLAG_PRIV_HT_SHIFT , 7 
+.set SQ_WAVE_EXCP_FLAG_PRIV_WAVE_START_SHIFT , 8 
+.set SQ_WAVE_EXCP_FLAG_PRIV_WAVE_END_SHIFT , 9 
+.set SQ_WAVE_EXCP_FLAG_PRIV_TRAP_AFTER_INST_SHIFT , 11 
+.set SQ_WAVE_EXCP_FLAG_PRIV_XNACK_ERROR_SHIFT , 12 
+ 
+.set SQ_WAVE_EXCP_FLAG_USER_MATH_EXCP_SHIFT , 0 
+.set SQ_WAVE_EXCP_FLAG_USER_MATH_EXCP_SIZE , 7 
+ 
+.set SQ_WAVE_TRAP_CTRL_MATH_EXCP_MASK , ((1 << 7) - 1) 
+.set SQ_WAVE_TRAP_CTRL_ADDR_WATCH_SHIFT , 7 
+.set SQ_WAVE_TRAP_CTRL_WAVE_END_SHIFT , 8 
+.set SQ_WAVE_TRAP_CTRL_TRAP_AFTER_INST , 9 
+ 
+.set SQ_WAVE_PC_HI_ADDRESS_MASK , 0xFFFF 
+.set SQ_WAVE_PC_HI_TRAP_ID_BFE , (SQ_WAVE_PC_HI_TRAP_ID_SHIFT | (SQ_WAVE_PC_HI_TRAP_ID_SIZE << 16)) 
+.set SQ_WAVE_PC_HI_TRAP_ID_SHIFT , 28 
+.set SQ_WAVE_PC_HI_TRAP_ID_SIZE , 4 
+.set SQ_WAVE_STATE_PRIV_HALT_BFE , (SQ_WAVE_STATE_PRIV_HALT_SHIFT | (1 << 16)) 
+.set SQ_WAVE_STATE_PRIV_HALT_SHIFT , 14 
+.set SQ_WAVE_STATE_PRIV_BARRIER_COMPLETE_SHIFT , 2 
+.set TRAP_ID_ABORT , 2 
+.set TRAP_ID_DEBUGTRAP , 3 
+.set TTMP6_SAVED_STATUS_HALT_MASK , (1 << TTMP6_SAVED_STATUS_HALT_SHIFT) 
+.set TTMP6_SAVED_STATUS_HALT_SHIFT , 29 
+.set TTMP6_SAVED_TRAP_ID_BFE , (TTMP6_SAVED_TRAP_ID_SHIFT | (TTMP6_SAVED_TRAP_ID_SIZE << 16)) 
+.set TTMP6_SAVED_TRAP_ID_MASK , (((1 << TTMP6_SAVED_TRAP_ID_SIZE) - 1) << TTMP6_SAVED_TRAP_ID_SHIFT) 
+.set TTMP6_SAVED_TRAP_ID_SHIFT , 25 
+.set TTMP6_SAVED_TRAP_ID_SIZE , 4 
+.set TTMP6_WAVE_STOPPED_SHIFT , 30 
+.set TTMP8_DEBUG_FLAG_SHIFT , 31 
+.set TTMP11_DEBUG_ENABLED_SHIFT , 23 
+.set TTMP_PC_HI_SHIFT , 7 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ .globl trap_entry 
+ .type trap_entry,@function 
+ .align 256 
+ 
+trap_entry: 
+ 
+ s_mov_b32 ttmp3, 0 
+ 
+ 
+ s_bfe_u32 ttmp2, ttmp1, SQ_WAVE_PC_HI_TRAP_ID_BFE 
+ s_cbranch_scc0 .check_exceptions 
+ 
+ 
+ 
+ 
+ 
+ s_add_u32 ttmp0, ttmp0, 0x4 
+ s_addc_u32 ttmp1, ttmp1, 0x0 
+ 
+ 
+ s_cmp_eq_u32 ttmp2, TRAP_ID_DEBUGTRAP 
+ s_cbranch_scc0 .not_debug_trap 
+ 
+ s_bitcmp1_b32 ttmp11, TTMP11_DEBUG_ENABLED_SHIFT 
+ s_cbranch_scc0 .check_exceptions 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_TRAP_M0 
+ 
+.not_debug_trap: 
+ s_cmp_eq_u32 ttmp2, TRAP_ID_ABORT 
+ s_cbranch_scc0 .not_abort_trap 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_ABORT_M0 
+ s_branch .check_exceptions 
+ 
+.not_abort_trap: 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_TRAP_M0 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.check_exceptions: 
+ s_getreg_b32 ttmp2, hwreg(HW_REG_EXCP_FLAG_PRIV) 
+ s_getreg_b32 ttmp13, hwreg(HW_REG_TRAP_CTRL) 
+ 
+ s_bitcmp1_b32 ttmp2, SQ_WAVE_EXCP_FLAG_PRIV_XNACK_ERROR_SHIFT 
+ s_cbranch_scc0 .not_memory_violation 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_MEMORY_VIOLATION_M0 
+ 
+ 
+ s_branch .not_aperture_violation 
+ 
+.not_memory_violation: 
+ s_bitcmp1_b32 ttmp2, SQ_WAVE_EXCP_FLAG_PRIV_MEMVIOL_SHIFT 
+ s_cbranch_scc0 .not_aperture_violation 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_APERTURE_VIOLATION_M0 
+ 
+.not_aperture_violation: 
+ s_bitcmp1_b32 ttmp2, SQ_WAVE_EXCP_FLAG_PRIV_ILLEGAL_INST_SHIFT 
+ s_cbranch_scc0 .not_illegal_instruction 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_ILLEGAL_INSTRUCTION_M0 
+ 
+.not_illegal_instruction: 
+ s_bitcmp1_b32 ttmp2, SQ_WAVE_EXCP_FLAG_PRIV_WAVE_START_SHIFT 
+ s_cbranch_scc0 .not_wave_end 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_TRAP_M0 
+ 
+.not_wave_start: 
+ s_bitcmp1_b32 ttmp2, SQ_WAVE_EXCP_FLAG_PRIV_WAVE_END_SHIFT 
+ s_cbranch_scc0 .not_wave_end 
+ s_bitcmp1_b32 ttmp13, SQ_WAVE_TRAP_CTRL_WAVE_END_SHIFT 
+ s_cbranch_scc0 .not_wave_end 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_TRAP_M0 
+ 
+.not_wave_end: 
+ s_bitcmp1_b32 ttmp13, SQ_WAVE_TRAP_CTRL_TRAP_AFTER_INST 
+ s_cbranch_scc0 .not_trap_after_inst 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_TRAP_M0 
+ 
+.not_trap_after_inst: 
+ s_and_b32 ttmp2, ttmp2, SQ_WAVE_EXCP_FLAG_PRIV_ADDR_WATCH_MASK 
+ s_cbranch_scc0 .not_addr_watch 
+ s_bitcmp1_b32 ttmp13, SQ_WAVE_TRAP_CTRL_ADDR_WATCH_SHIFT 
+ s_cbranch_scc0 .not_addr_watch 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_TRAP_M0 
+ 
+.not_addr_watch: 
+ s_getreg_b32 ttmp2, hwreg(HW_REG_EXCP_FLAG_USER, SQ_WAVE_EXCP_FLAG_USER_MATH_EXCP_SHIFT, SQ_WAVE_EXCP_FLAG_USER_MATH_EXCP_SIZE) 
+ s_and_b32 ttmp13, ttmp13, SQ_WAVE_TRAP_CTRL_MATH_EXCP_MASK 
+ s_and_b32 ttmp2, ttmp2, ttmp13 
+ s_cbranch_scc0 .not_math_exception 
+ s_or_b32 ttmp3, ttmp3, EC_QUEUE_WAVE_MATH_ERROR_M0 
+ 
+.not_math_exception: 
+ s_cmp_eq_u32 ttmp3, 0 
+ 
+ 
+ s_cbranch_scc1 .exit_trap 
+ 
+.send_interrupt: 
+ 
+ s_sendmsg_rtn_b32 ttmp2, sendmsg(MSG_RTN_GET_DOORBELL) 
+ s_wait_kmcnt 0 
+ s_and_b32 ttmp2, ttmp2, DOORBELL_ID_MASK 
+ s_or_b32 ttmp3, ttmp2, ttmp3 
+ 
+ 
+ s_andn2_b32 ttmp6, ttmp6, (TTMP6_SAVED_TRAP_ID_MASK | TTMP6_SAVED_STATUS_HALT_MASK) 
+ s_bfe_u32 ttmp2, ttmp1, SQ_WAVE_PC_HI_TRAP_ID_BFE 
+ s_min_u32 ttmp2, ttmp2, 0xF 
+ s_lshl_b32 ttmp2, ttmp2, TTMP6_SAVED_TRAP_ID_SHIFT 
+ s_or_b32 ttmp6, ttmp6, ttmp2 
+ s_bfe_u32 ttmp2, ttmp12, SQ_WAVE_STATE_PRIV_HALT_BFE 
+ s_lshl_b32 ttmp2, ttmp2, TTMP6_SAVED_STATUS_HALT_SHIFT 
+ s_or_b32 ttmp6, ttmp6, ttmp2 
+ 
+ 
+ s_mov_b32 ttmp2, m0 
+ s_mov_b32 m0, ttmp3 
+ s_nop 0x0 
+ s_sendmsg sendmsg(MSG_INTERRUPT) 
+ 
+ s_wait_kmcnt 0 
+ s_mov_b32 m0, ttmp2 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ s_mov_b32 ttmp10, ttmp0 
+ s_and_b32 ttmp1, ttmp1, SQ_WAVE_PC_HI_ADDRESS_MASK 
+ s_lshl_b32 ttmp1, ttmp1, TTMP_PC_HI_SHIFT 
+ s_andn2_b32 ttmp11, ttmp11, (SQ_WAVE_PC_HI_ADDRESS_MASK << TTMP_PC_HI_SHIFT) 
+ s_or_b32 ttmp11, ttmp11, ttmp1 
+ 
+ 
+ s_getpc_b64 [ttmp0, ttmp1] 
+ s_add_u32 ttmp0, ttmp0, .parked - . 
+ s_addc_u32 ttmp1, ttmp1, 0x0 
+ 
+.halt_wave: 
+ 
+ s_bitset1_b32 ttmp6, TTMP6_WAVE_STOPPED_SHIFT 
+ s_bitset1_b32 ttmp12, SQ_WAVE_STATE_PRIV_HALT_SHIFT 
+ 
+ 
+ s_bitcmp1_b32 ttmp8, TTMP8_DEBUG_FLAG_SHIFT 
+ s_cbranch_scc1 .ttmps_initialized 
+ s_mov_b32 ttmp4, 0 
+ s_mov_b32 ttmp5, 0 
+ s_bitset1_b32 ttmp8, TTMP8_DEBUG_FLAG_SHIFT 
+.ttmps_initialized: 
+ 
+.exit_trap: 
+ 
+ s_and_b64 exec, exec, exec 
+ s_and_b64 vcc, vcc, vcc 
+ s_setreg_b32 hwreg(HW_REG_STATE_PRIV, 0, SQ_WAVE_STATE_PRIV_BARRIER_COMPLETE_SHIFT), ttmp12 
+ s_lshr_b32 ttmp12, ttmp12, (SQ_WAVE_STATE_PRIV_BARRIER_COMPLETE_SHIFT + 1) 
+ s_setreg_b32 hwreg(HW_REG_STATE_PRIV, SQ_WAVE_STATE_PRIV_BARRIER_COMPLETE_SHIFT + 1, 32 - SQ_WAVE_STATE_PRIV_BARRIER_COMPLETE_SHIFT - 1), ttmp12 
+ 
+ 
+ s_rfe_b64 [ttmp0, ttmp1] 
+ 
+.parked: 
+ s_trap 0x2 
+ s_branch .parked 
+ 
+ 
+.rept (256 - ((. - trap_entry) % 64)) / 4 
+ s_code_end 
+.endr 
+.endif 
