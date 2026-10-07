@@ -112,15 +112,15 @@ def compile_source(hiprtc, src: str, name: str, options: list[str]) -> dict:
     return out
 
 
-def execute_code_object(hip, code_buf, kernel: str, expect: int) -> dict:
+def execute_code_object(hip, code_buf, kernel: str, expects: list[int]) -> dict:
     if hip.hipInit(0) != 0:
         return {"exec": "hipInit failed"}
     dev = ctypes.c_int()
     hip.hipGetDevice(ctypes.byref(dev))
     d_out = ctypes.c_void_p()
-    if hip.hipMalloc(ctypes.byref(d_out), ctypes.c_size_t(8)) != 0:
+    if hip.hipMalloc(ctypes.byref(d_out), ctypes.c_size_t(64)) != 0:
         return {"exec": "hipMalloc failed"}
-    hip.hipMemset(d_out, 0, ctypes.c_size_t(8))
+    hip.hipMemset(d_out, 0, ctypes.c_size_t(64))
     module = ctypes.c_void_p()
     if hip.hipModuleLoadData(ctypes.byref(module), code_buf) != 0:
         return {"exec": "hipModuleLoadData failed"}
@@ -133,12 +133,14 @@ def execute_code_object(hip, code_buf, kernel: str, expect: int) -> dict:
             fn, 1, 1, 1, 1, 1, 1, 0, ctypes.c_void_p(), args_buf, None) != 0:
         return {"exec": "hipModuleLaunchKernel failed"}
     hip.hipDeviceSynchronize()
-    host = ctypes.c_int64(-1)
-    if hip.hipMemcpy(ctypes.byref(host), d_out, ctypes.c_size_t(8), 4) != 0:
+    n = max(len(expects), 1)
+    host_arr = (ctypes.c_int32 * 8)(-1, -1, -1, -1, -1, -1, -1, -1)
+    if hip.hipMemcpy(host_arr, d_out, ctypes.c_size_t(4 * n), 4) != 0:
         return {"exec": "hipMemcpy failed"}
-    return {"exec": "PASS" if host.value == expect else
-            f"MISMATCH(got {host.value}, want {expect})",
-            "exec_value": host.value, "exec_expect": expect}
+    got = list(host_arr)[:len(expects)]
+    ok = got == expects
+    return {"exec": "PASS" if ok else f"MISMATCH(got {got}, want {expects})",
+            "exec_value": got[0] if len(got) == 1 else got, "exec_expect": expects}
 
 
 def main() -> int:
@@ -153,7 +155,8 @@ def main() -> int:
                     help="compile a trivial TU that only includes HEADER")
     ap.add_argument("--kernel", default="hiprtc_canary")
     ap.add_argument("--execute", action="store_true")
-    ap.add_argument("--expect", type=int, default=1)
+    ap.add_argument("--expect", type=str, default="1",
+                    help="single expected int, or comma-separated ints")
     ap.add_argument("--include-dir", action="append", default=[])
     ap.add_argument("--define", action="append", default=[],
                     help="extra -D (raw, e.g. FOO=1)")
@@ -223,7 +226,9 @@ def main() -> int:
             record["exec"] = "no code object"
             exit_code = 6
         else:
-            exec_res = execute_code_object(hip, code_buf, args.kernel, args.expect)
+            expects = ([int(x) for x in str(args.expect).split(",")]
+                       if isinstance(args.expect, str) else [args.expect])
+            exec_res = execute_code_object(hip, code_buf, args.kernel, expects)
             record.update(exec_res)
             if exec_res.get("exec") != "PASS":
                 exit_code = 5 if "MISMATCH" in exec_res.get("exec", "") else 6
