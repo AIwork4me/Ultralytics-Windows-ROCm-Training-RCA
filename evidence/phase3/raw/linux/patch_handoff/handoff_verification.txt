@@ -1,0 +1,18 @@
+=== GATE L20 (resumed 2026-10-07): patch handoff verification ===
+2026-10-07T22:05:47+08:00
+
+preferred artifact findings/phase3/PATCH_HANDOFF.json: ABSENT
+handoff source: origin/main (fetched dc95c7a) + origin/rca/windows-gfx1151-rocm714-phase3
+declared FINAL (patches/phase3/README.md @ origin/main):
+  0001-miopen-hiprtc-selfcontained.patch
+  0002-miopen-hiprtc-selfcontained.patch
+declared SOURCE_SHA (phase3_conclusion.json): b68f8944300f104875d953fc8e4510908c9aaf0b
+declared Windows validated MIOpen.dll V3 sha256: 9fa28af5d3b99ab7f099c5b9647bd30a9ed759d9a95d2cba29710228ce139f71
+
+--- locally computed patch sha256 (from origin/main blobs) ---
+0001-miopen-hiprtc-selfcontained.patch: f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20
+0002-miopen-hiprtc-selfcontained.patch: 77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532
+
+--- byte sizes ---
+0001-miopen-hiprtc-selfcontained.patch: 15143
+0002-miopen-hiprtc-selfcontained.patch: 6375

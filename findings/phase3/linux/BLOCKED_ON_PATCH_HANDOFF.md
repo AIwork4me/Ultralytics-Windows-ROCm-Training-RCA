@@ -1,3 +1,13 @@
+# BLOCKED marker resolved
+
+Resolved: 2026-10-07T22:06:00+08:00
+Handoff found on origin/main (dc95c7a):
+  SOURCE_SHA: b68f8944300f104875d953fc8e4510908c9aaf0b
+  PATCH_ID:   P3-FINAL (0001+0002 series)
+  0001 sha256: f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20
+  0002 sha256: 77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532
+Original BLOCKED text preserved below.
+
 # BLOCKED_ON_PATCH_HANDOFF — Linux Phase-3 Validator
 
 Status date: 2026-10-07
