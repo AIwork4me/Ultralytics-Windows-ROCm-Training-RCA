@@ -1,0 +1,307 @@
+### Problem Description
+
+Moving from https://github.com/ROCm/TheRock/discussions/655#discussioncomment-13477130 on request of @stellaraccident. When trying to use community supported PyTorch whl:
+```
+Resampling...
+  Resampled in 2.04s
+Predicting part 1 of 2 ...
+  0%|                                                                                                                                                          | 0/6 [00:00<?, ?it/s]MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+MIOpen(HIP): Info [Handle] stream: 0, device_id: 0
+MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+MIOpen(HIP): Info [SetStream] stream: 0, device_id: 0
+MIOpen(HIP): Info [] MIOPEN_FIND_MODE = DYNAMIC_HYBRID(5)
+MIOpen(HIP): Info [AmdRocmMetadataVersionDetect] ROCm MD version AMDHSA_COv3, HIP version 6.5.25190, MIOpen version 3.4.0.70a79c373
+MIOpen(HIP): Info [GetWorkSpaceSize] 123863040
+MIOpen(HIP): Info [FindConvFwdAlgorithm] requestAlgoCount = 1, workspace = 123863040
+MIOpen(HIP): Info [IsNetworkedFilesystem] Filesystem type at '"/home/logan/.config/miopen/"' is: 0x9123683e '<Unknown magic>'
+MIOpen(HIP): Info [Measure] RamDb::Prefetch time: 0.768365 ms
+MIOpen(HIP): Info [TryLoad] Find-db regenerating.
+MIOpen(HIP): Info [FindSolutionImpl] ConvDirectNaiveConvFwd (not searchable)
+MIOpen(HIP): Info [FindSolutionImpl] GemmFwdRest (not searchable)
+MIOpen(HIP): Info [IsNetworkedFilesystem] Filesystem type at '"/home/logan/.cache"' is: 0x9123683e '<Unknown magic>'
+MIOpen(HIP): Info [KernDb] database not present
+MIOpen(HIP): Info [PrintVersion] HIPRTC v.9.0
+MIOpen(HIP): Info [KernDb] database not present
+MIOpen(HIP): Info [EvaluateInvokers] ConvDirectNaiveConvFwd: naive_conv_ab_nonpacked_fwd_ncdhw_half_double_half: 60.7334 < 3.40282e+38
+MIOpen(HIP): Info [EvaluateInvokers] Selected: ConvDirectNaiveConvFwd: naive_conv_ab_nonpacked_fwd_ncdhw_half_double_half: 60.7334, workspace_sz = 0
+MIOpen(HIP): Info [KernDb] database not present
+MIOpen(HIP): Info [PrintVersionImpl] COMgr v.3.0.0
+MIOpen(HIP): Info [KernDb] database not present
+MIOpen(HIP): Info [EvaluateInvokers] GemmFwdRest: : 8.38309 < 3.40282e+38
+MIOpen(HIP): Info [EvaluateInvokers] Selected: GemmFwdRest: : 8.38309, workspace_sz = 123863040
+MIOpen(HIP): Info [FindConvolution] miopenConvolutionFwdAlgoGEMM	8.38309	123863040
+MIOpen(HIP): Info [FillFindReturnParameters] FW Chosen Algorithm: GemmFwdRest , 123863040, 8.38309
+MIOpen(HIP): Info [ConvolutionForward] algo = 0, workspace = 123863040
+MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+MIOpen(HIP): Info [SetStream] stream: 0, device_id: 0
+MIOpen(HIP): Info [FindSolutionImpl] BnFwdTrainingSpatial
+MIOpen(HIP): Info [Measure] ReadonlyRamDb::Prefetch time: 7.1e-05 ms
+MIOpen(HIP): Info [Prefetch] File is unreadable: "/home/logan/.config/miopen/batchnorm_gfx1151_16.HIP.3_4_0_70a79c373.udb.txt"
+MIOpen(HIP): Info [Measure] RamDb::Prefetch time: 0.016418 ms
+MIOpen(HIP): Info [FindSolutionImpl] Perf Db: record not found for: BnFwdTrainingSpatial
+MIOpen(HIP): Info [GetDefaultPerformanceConfig] Variant1-1
+MIOpen(HIP): Info [KernDb] database not present
+<inline asm>:14:20: error: not a valid operand.
+v_add_f32 v4 v4 v4 row_bcast:15 row_mask:0xa
+                   ^
+<inline asm>:15:20: error: not a valid operand.
+v_add_f32 v3 v3 v3 row_bcast:15 row_mask:0xa
+                   ^
+<inline asm>:17:20: error: not a valid operand.
+v_add_f32 v4 v4 v4 row_bcast:31 row_mask:0xc
+                   ^
+<inline asm>:18:20: error: not a valid operand.
+v_add_f32 v3 v3 v3 row_bcast:31 row_mask:0xc
+                   ^
+MIOpen(HIP): Error [Do] 'amd_comgr_do_action(kind, handle, in.GetHandle(), out.GetHandle())' AMD_COMGR_ACTION_CODEGEN_BC_TO_RELOCATABLE: ERROR (1)
+MIOpen(HIP): Error [BuildOcl] comgr status = ERROR (1)
+MIOpen(HIP): Warning [BuildOcl] error: cannot compile inline asm
+error: cannot compile inline asm
+error: cannot compile inline asm
+error: cannot compile inline asm
+4 errors generated.
+
+MIOpen Error: /therock/src/ml-libs/MIOpen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cl
+  0%|                                                                                                                                                          | 0/6 [00:03<?, ?it/s]
+  0%|                                                                                                                                                          | 0/6 [00:00<?, ?it/s]MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+```
+
+
+### Operating System
+
+NAME="Fedora Linux" VERSION="42 (Workstation Edition)"
+
+### CPU
+
+AMD RYZEN AI MAX PRO 390 w/ Radeon 8050S
+
+### GPU
+
+AMD RYZEN AI MAX PRO 390 w/ Radeon 8050S
+
+### ROCm Version
+
+ROCm 6.5.0
+
+### ROCm Component
+
+MIOpen
+
+### Steps to Reproduce
+
+Current steps to reproduce. I'll see if I can come up with a more isolated MRE later:
+NOTE: only kernels > 6.16 and the `amdxrdna` have the necessary bug fixes not to kernel panic when reproducing this issue (see https://github.com/amd/xdna-driver/issues/595).
+```
+uv pip install TotalSegmentator 
+uv pip install  --index-url https://d2awnip2yjpvqn.cloudfront.net/v2/gfx1151/ \
+  rocm[libraries,devel] ./torch-2.7.0a0+gitbfd8155-cp311-cp311-linux_x86_64.whl
+wget https://surfer.nmr.mgh.harvard.edu/docs/synthmorph/images/t1.nii.gz
+MIOPEN_LOG_LEVEL=5 TotalSegmentator -i t1.nii.gz -o /tmp/seg -ta total_mr
+```
+
+### (Optional for Linux users) Output of /opt/rocm/bin/rocminfo --support
+
+```
+ROCk module is loaded
+=====================    
+HSA System Attributes    
+=====================    
+Runtime Version:         1.16
+Runtime Ext Version:     1.8
+System Timestamp Freq.:  1000.000000MHz
+Sig. Max Wait Duration:  18446744073709551615 (0xFFFFFFFFFFFFFFFF) (timestamp count)
+Machine Model:           LARGE                              
+System Endianness:       LITTLE                             
+Mwaitx:                  DISABLED
+XNACK enabled:           NO
+DMAbuf Support:          YES
+VMM Support:             YES
+
+==========               
+HSA Agents               
+==========               
+*******                  
+Agent 1                  
+*******                  
+  Name:                    AMD RYZEN AI MAX PRO 390 w/ Radeon 8050S
+  Uuid:                    CPU-XX                             
+  Marketing Name:          AMD RYZEN AI MAX PRO 390 w/ Radeon 8050S
+  Vendor Name:             CPU                                
+  Feature:                 None specified                     
+  Profile:                 FULL_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        0(0x0)                             
+  Queue Min Size:          0(0x0)                             
+  Queue Max Size:          0(0x0)                             
+  Queue Type:              MULTI                              
+  Node:                    0                                  
+  Device Type:             CPU                                
+  Cache Info:              
+    L1:                      49152(0xc000) KB                   
+  Chip ID:                 0(0x0)                             
+  ASIC Revision:           0(0x0)                             
+  Cacheline Size:          64(0x40)                           
+  Max Clock Freq. (MHz):   3199                               
+  BDFID:                   0                                  
+  Internal Node ID:        0                                  
+  Compute Unit:            24                                 
+  SIMDs per CU:            0                                  
+  Shader Engines:          0                                  
+  Shader Arrs. per Eng.:   0                                  
+  WatchPts on Addr. Ranges:1                                  
+  Memory Properties:       
+  Features:                None
+  Pool Info:               
+    Pool 1                   
+      Segment:                 GLOBAL; FLAGS: FINE GRAINED        
+      Size:                    49082920(0x2ecf228) KB             
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:4KB                                
+      Alloc Alignment:         4KB                                
+      Accessible by all:       TRUE                               
+    Pool 2                   
+      Segment:                 GLOBAL; FLAGS: EXTENDED FINE GRAINED
+      Size:                    49082920(0x2ecf228) KB             
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:4KB                                
+      Alloc Alignment:         4KB                                
+      Accessible by all:       TRUE                               
+    Pool 3                   
+      Segment:                 GLOBAL; FLAGS: KERNARG, FINE GRAINED
+      Size:                    49082920(0x2ecf228) KB             
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:4KB                                
+      Alloc Alignment:         4KB                                
+      Accessible by all:       TRUE                               
+    Pool 4                   
+      Segment:                 GLOBAL; FLAGS: COARSE GRAINED      
+      Size:                    49082920(0x2ecf228) KB             
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:4KB                                
+      Alloc Alignment:         4KB                                
+      Accessible by all:       TRUE                               
+  ISA Info:                
+*******                  
+Agent 2                  
+*******                  
+  Name:                    gfx1151                            
+  Uuid:                    GPU-XX                             
+  Marketing Name:          AMD Radeon Graphics                
+  Vendor Name:             AMD                                
+  Feature:                 KERNEL_DISPATCH                    
+  Profile:                 BASE_PROFILE                       
+  Float Round Mode:        NEAR                               
+  Max Queue Number:        128(0x80)                          
+  Queue Min Size:          64(0x40)                           
+  Queue Max Size:          131072(0x20000)                    
+  Queue Type:              MULTI                              
+  Node:                    1                                  
+  Device Type:             GPU                                
+  Cache Info:              
+    L1:                      32(0x20) KB                        
+    L2:                      2048(0x800) KB                     
+    L3:                      32768(0x8000) KB                   
+  Chip ID:                 5510(0x1586)                       
+  ASIC Revision:           0(0x0)                             
+  Cacheline Size:          128(0x80)                          
+  Max Clock Freq. (MHz):   2799                               
+  BDFID:                   49920                              
+  Internal Node ID:        1                                  
+  Compute Unit:            32                                 
+  SIMDs per CU:            2                                  
+  Shader Engines:          2                                  
+  Shader Arrs. per Eng.:   2                                  
+  WatchPts on Addr. Ranges:4                                  
+  Coherent Host Access:    FALSE                              
+  Memory Properties:       APU
+  Features:                KERNEL_DISPATCH 
+  Fast F16 Operation:      TRUE                               
+  Wavefront Size:          32(0x20)                           
+  Workgroup Max Size:      1024(0x400)                        
+  Workgroup Max Size per Dimension:
+    x                        1024(0x400)                        
+    y                        1024(0x400)                        
+    z                        1024(0x400)                        
+  Max Waves Per CU:        32(0x20)                           
+  Max Work-item Per CU:    1024(0x400)                        
+  Grid Max Size:           4294967295(0xffffffff)             
+  Grid Max Size per Dimension:
+    x                        2147483647(0x7fffffff)             
+    y                        65535(0xffff)                      
+    z                        65535(0xffff)                      
+  Max fbarriers/Workgrp:   32                                 
+  Packet Processor uCode:: 29                                 
+  SDMA engine uCode::      14                                 
+  IOMMU Support::          None                               
+  Pool Info:               
+    Pool 1                   
+      Segment:                 GLOBAL; FLAGS: COARSE GRAINED      
+      Size:                    24541460(0x1767914) KB             
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:2048KB                             
+      Alloc Alignment:         4KB                                
+      Accessible by all:       FALSE                              
+    Pool 2                   
+      Segment:                 GLOBAL; FLAGS: EXTENDED FINE GRAINED
+      Size:                    24541460(0x1767914) KB             
+      Allocatable:             TRUE                               
+      Alloc Granule:           4KB                                
+      Alloc Recommended Granule:2048KB                             
+      Alloc Alignment:         4KB                                
+      Accessible by all:       FALSE                              
+    Pool 3                   
+      Segment:                 GROUP                              
+      Size:                    64(0x40) KB                        
+      Allocatable:             FALSE                              
+      Alloc Granule:           0KB                                
+      Alloc Recommended Granule:0KB                                
+      Alloc Alignment:         0KB                                
+      Accessible by all:       FALSE                              
+  ISA Info:                
+    ISA 1                    
+      Name:                    amdgcn-amd-amdhsa--gfx1151         
+      Machine Models:          HSA_MACHINE_MODEL_LARGE            
+      Profiles:                HSA_PROFILE_BASE                   
+      Default Rounding Mode:   NEAR                               
+      Default Rounding Mode:   NEAR                               
+      Fast f16:                TRUE                               
+      Workgroup Max Size:      1024(0x400)                        
+      Workgroup Max Size per Dimension:
+        x                        1024(0x400)                        
+        y                        1024(0x400)                        
+        z                        1024(0x400)                        
+      Grid Max Size:           4294967295(0xffffffff)             
+      Grid Max Size per Dimension:
+        x                        2147483647(0x7fffffff)             
+        y                        65535(0xffff)                      
+        z                        65535(0xffff)                      
+      FBarrier Max Size:       32                                 
+    ISA 2                    
+      Name:                    amdgcn-amd-amdhsa--gfx11-generic   
+      Machine Models:          HSA_MACHINE_MODEL_LARGE            
+      Profiles:                HSA_PROFILE_BASE                   
+      Default Rounding Mode:   NEAR                               
+      Default Rounding Mode:   NEAR                               
+      Fast f16:                TRUE                               
+      Workgroup Max Size:      1024(0x400)                        
+      Workgroup Max Size per Dimension:
+        x                        1024(0x400)                        
+        y                        1024(0x400)                        
+        z                        1024(0x400)                        
+      Grid Max Size:           4294967295(0xffffffff)             
+      Grid Max Size per Dimension:
+        x                        2147483647(0x7fffffff)             
+        y                        65535(0xffff)                      
+        z                        65535(0xffff)                      
+      FBarrier Max Size:       32                                 
+*** Done *** 
+```
+
+### Additional Information
+
+_No response_

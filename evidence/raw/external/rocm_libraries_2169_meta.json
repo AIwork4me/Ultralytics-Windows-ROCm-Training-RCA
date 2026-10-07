@@ -1,0 +1,1 @@
+{"closed":"2025-10-20T12:43:59Z","created":"2025-10-19T12:46:09Z","labels":[],"state":"closed","state_reason":"duplicate","title":"[Issue]: torch.nn.BatchNorm2d fails with MIOpenBatchNormFwdTrainSpatial compilation error"}

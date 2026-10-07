@@ -1,0 +1,20 @@
+-- KrisBigK (NONE) 2025-10-20T06:16:27Z
+Quick update: I've updated the original post with a minimal reproducer script. Both float32 and float16 inputs are affected, so it is probably not related to Automatic Mixed Precision.
+
+-- KrisBigK (NONE) 2025-10-20T12:43:59Z
+After quite a bit of digging around in multiple repos ( [TheRock](https://github.com/ROCm/TheRock/), [ROCm](https://github.com/ROCm/ROCm), [rocm-libraries](https://github.com/ROCm/rocm-libraries/) ), this is a duplicate issue of https://github.com/ROCm/TheRock/issues/842 .
+
+I found that there is already a merged pull request https://github.com/ROCm/rocm-libraries/pull/1288 on Oct 9  that implemented a fix. I ran into the assembly compile issue because I was running the nightly build of TheRock on Oct 16, which used rocm-libraries 20251003. After installing the nightly build for the Oct 17 version of TheRock (which bumped rocm-libraries to 20251016), the issue presented here got resolved. Therefore I am closing the issue here. 
+
+The output of my reproducer script, run on the Oct 17 build of TheRock:
+```
+Running on device: AMD Radeon(TM) 8060S Graphics
+Testing with Automatic Mixed Precision (AMP) DISABLED.
+
+Created a dummy input tensor of shape: torch.Size([100, 3, 640, 640]) and dtype: torch.float32
+
+Executing forward pass in full precision (float32)...
+Forward pass completed successfully without error.
+Output tensor shape: torch.Size([100, 32, 320, 320])
+```
+
