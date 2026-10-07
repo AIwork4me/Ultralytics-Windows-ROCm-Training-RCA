@@ -20,9 +20,17 @@ isolated MIOpen caches per matrix. Wheel column = shipped wheel stack
 | GroupNorm control | PASS | PASS | PASS | NO |
 | numerics (y/grads/running stats, 6 cases) | — | bit-identical to patched | bit-identical to unpatched (overall max_abs = 0.0) | NO |
 | non-BN RTC matrix (g68 mirror, 11 ops) | — | 11/11 PASS | 11/11 PASS | NO |
-| YOLO predict (bus.jpg) | PASS | — | PASS (exit 0, bound to patched) | NO |
-| YOLO train coco8 (amp default) | PASS | — | PASS (exit 0, epoch+val+best/last.pt) | NO |
+| YOLO predict (bus.jpg) | PASS (wheel) | not run (see note) | PASS (exit 0, bound to patched) | NO* |
+| YOLO train coco8 (amp default†) | PASS (wheel) | not run (see note) | PASS (exit 0, epoch+val+best/last.pt) | NO* |
 | YOLO train coco8 (amp=False) | — | — | PASS (exit 0) | NO |
+
+\* YOLO unpatched column is the WHEEL-stack baseline (MIOpen 3.5.2), not
+the source-unpatched build — an integration smoke across two variables
+(MIOpen version + patch), not a single-variable A/B; the single-variable
+proof is the BN/numerics/non-BN source-build matrix above it.
+† amp-default self-disabled AMP after its network-flaky asset download
+(manual fp16 controls pass; amp=False leg ran true fp32 — same behavior
+on baseline and patched runs).
 
 ## Verdict
 

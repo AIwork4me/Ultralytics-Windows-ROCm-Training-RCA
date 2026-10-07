@@ -1,6 +1,6 @@
-# Final Gate — Linux Phase-3 Independent Validator (run 1)
+# Final Gate — Linux Phase-3 Independent Validator (run 2, final)
 
-Date closed: 2026-10-07
+Date closed: 2026-10-08
 
 ```text
 UPSTREAM PR CREATED: NO
@@ -9,46 +9,48 @@ UPSTREAM COMMENT POSTED: NO
 INTERNAL PR CREATED: NO
 ```
 
-## Gate ledger
+## Gate ledger (run 2 supersedes run-1 rows L20+)
 
 | Gate | Status | Note |
 |---|---|---|
-| L00 bootstrap | PASS | uv 0.12.3 exact, git 2.43.0 |
-| L01 hardware/OS | PASS | full capture archived |
-| L02 kernel gate | PASS | 6.17.0-1032-oem >= 6.14, no reboot needed |
-| L03 GPU permissions | PASS | render+video, /dev/kfd rw |
-| L04 RCA repo | PASS | branch rca/linux-gfx1151-phase3-regression |
-| L05 uv env | PASS | Python 3.13.15 isolated under .venv |
-| L06 ROCm 7.14 stack | PASS | exact wheel line, uv pip check clean |
-| L07 Ultralytics | PASS | 8.4.174 exact, RECORD-verified unmodified |
-| L08 build tools | PASS | cmake/gcc/bzip2 system; ninja via uv; clang from wheel |
-| L09 wheel layout | PASS | TheRock _rocm_sdk_* layout mapped |
-| L10 ROCm+gfx1151 | PASS | rocminfo + torch properties |
-| L11 GPU compute | PASS | GEMM labeled output |
-| L12 library provenance | PASS | sha256/SONAME/ldd archived |
-| L13 baseline BatchNorm | PASS | 8/8, fresh-cache compile proof |
-| L14 loaded-MIOpen proof | PASS | /proc/self/maps → wheel libMIOpen.so.1 |
-| L15 standalone HIPRTC | PASS | 6/6 + GPU execution control |
-| L16 why Linux finds STL | PASS | GCC 13 libstdc++, direct -H trace |
-| L17 YOLO inference | PASS | exit code recorded |
-| L18 YOLO training | PASS | exit code recorded |
-| L19 baseline conclusion | PASS | + adversarial review remediated |
-| L20 handoff check | ABSENT | no PATCH_HANDOFF.json on any remote branch |
-| L21 missing handoff | BLOCKED | BLOCKED_ON_PATCH_HANDOFF.md created |
-| L22–L39 patch gates | NOT_STARTED | resume on handoff |
-| L40/L41 matrices | NOT_STARTED | no patched results yet |
-| L42 mutation audit | N/A (no patch consumed) | nothing to mutate |
-| L43–L45 subagent attacks | N/A for patch | baseline attack done at L19 |
-| L46 validator defects | APPLIED | reviewer findings remediated (scripts/evidence/docs only) |
-| L47 security/hygiene | PASS | no secrets, no binaries staged |
-| L48 manifest | PASS | linux_MANIFEST.json + linux_SHA256SUMS.txt, self-excluding |
-| L49 conclusion | DONE | BLOCKED_ON_PATCH_HANDOFF path |
+| L20 handoff verify | PASS | identity from origin/main; patch SHAs recomputed locally |
+| L21 blocked marker | RESOLVED | superseded; content in git history |
+| L22 exact SHA source | PASS | blobless fetch + raw backfill, 8032/8032 blobs verified |
+| L23 two trees + patch | PASS | git apply 0001+0002; baseline clean; byte-round-trip verified by reviewer |
+| L24 identity.json | PASS | |
+| L25 build docs at SHA | PASS | standalone README flow; ThirdParty.cmake read at SHA |
+| L26 wheel prefixes | PASS | zero /opt/rocm in caches after pins |
+| L27 deps | PASS | sqlite3 3.53.4 + nlohmann shim + offline FetchContent sources |
+| L28 unpatched build | PASS | 690/690 (incremental final); logs archived |
+| L29 load proof | PASS | LD_PRELOAD + dladdr (script fixed post-review) |
+| L30 unpatched BN | PASS | 8/8 fresh cache + RTC compile proof |
+| L31 patched build | PASS | 800/800; sha 02904c25… |
+| L32 patched provenance | PASS | dladdr binds patched; mutation audit |
+| L33 no-STL canary | PASS | A/C/D + extended E1–E4 (partial-STL reality corrected post-review) |
+| L34 patched BN matrix | PASS | 8/8 fresh cache |
+| L35 numerics | PASS | bit-identical (max_abs 0.0) |
+| L36 selection doc | PASS | audit reproduces Windows numbers; table corrected post-review |
+| L37 non-BN matrix | PASS | 11/11 → 11/11 |
+| L38 YOLO predict (patched) | PASS | bound, exit 0 |
+| L39 YOLO train (patched) | PASS | amp default + amp=False; v2 rerun with in-stream binding |
+| L40 regression matrix | PASS | PASS→PASS everywhere; labels corrected |
+| L41 cross-platform table | PASS | Windows columns referenced, not rewritten |
+| L42 mutation audit | PASS | patches byte-identical; no validator edits |
+| L43 regression attacker | NO_REGRESSION_CONFIRMED | record-keeping MAJORs remediated |
+| L44 provenance auditor | PROVENANCE_CLEAN | bookkeeping MAJORs remediated |
+| L45 maintainer simulation | ADEQUATE_WITH_CONDITIONS | validator-side conditions remediated; producer/CI conditions listed |
+| L46 validator defects | APPLIED | harness fix, docstring fixes, doc corrections, reruns |
+| L47 security/hygiene | PASS | no secrets/binaries; scan archived |
+| L48 manifest | PASS | regenerated over full run-2 set |
+| L49 conclusion | PASS | this file + linux_conclusion.json + summary |
 
 ## Final verdict
 
 ```text
-BLOCKED_ON_PATCH_HANDOFF
+LINUX INDEPENDENT REGRESSION VALIDATION — PASS
 ```
 
-Not PASS, not FAIL: no candidate patch exists to consume. All patch-independent
-Linux work is complete and published; the workflow is re-entrant by design.
+Linux unpatched baseline passes; the exact SOURCE_SHA + exact unmodified
+P3-FINAL patch builds and passes identically (numerics bit-identical);
+patch never modified by the Linux validator; three independent reviews
+converge with no unresolved BLOCKER/MAJOR on the behavior chain.

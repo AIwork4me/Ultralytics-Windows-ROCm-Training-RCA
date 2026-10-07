@@ -36,13 +36,19 @@ Linux          PASS            PASS
 1. Linux numerics between unpatched/patched source builds are bit-identical
    (overall max_abs_error = 0.0 across y, x/w/b grads, running stats, 6
    BN cases) — the patch is a provable no-op when an STL resolves.
-2. On this wheel stack, comgr ALWAYS exposes its bundled libc++
-   (`include/c++/v1`) to hipRTC even with `-nostdinc++`; the Windows
-   no-STL condition is structurally unreproducible through comgr on Linux.
-   The true no-STL fallback arm was therefore exercised via the plain
-   clang driver (`-x c++ -nostdinc++`): full wrapper chain + facility
-   static_asserts PASS there (Gate L33 arm C), and the facility set runs
-   on the GPU through the real RTC path (arm D).
+2. Partial-STL environment (corrected after maintainer review): with
+   `-nostdinc++`, comgr's bundled set exposes <type_traits> but NOT
+   <utility>. The UNPATCHED tree fails there with 'utility' file not
+   found — the Windows failure class reproduced on Linux through the real
+   RTC path (extended-canary E1). The PATCHED tree in the same
+   environment fires its designed partial-STL #error guard with a clean
+   diagnostic (E2). A fully-no-STL environment is unreachable through
+   comgr on this stack, so the freestanding fallback arms were exercised
+   via the plain clang driver (`-x c++ -nostdinc++`): full wrapper chain,
+   tensor_view + freestanding initializer_list chain, and facility
+   static_asserts all PASS with zero STL (L33 arm C, extended E3), and
+   the facility set executes on the GPU through the real RTC path
+   (L33 arm D).
 3. Build/contamination discipline: MIOpen's CMakeLists hardcodes
    `/opt/rocm*` in several find paths; this machine has a system ROCm
    7.2.1 there. The validation pinned every ROCm dependency to the 7.14

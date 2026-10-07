@@ -22,17 +22,24 @@ MIOPEN_HIP_RUNTIME_COMPILE=1, HIP_PACKAGE_VERSION_FLAT=7140060850.
 
 | Case (g68 mirror) | RTC kernels exercised | std dependency covered |
 |---|---|---|
-| maxpool2d_bwd / avgpool2d_bwd / adaptive_avgpool2d | MIOpenPoolingBwd* | numeric_limits (miopen_limits) |
-| prelu_fwd_bwd | MIOpenPReLU.cpp | tensor_view initializer_list probe |
-| conv_depthwise/grouped/dilated/transpose/1x1 | Conv* + MIOpenConv* + static CK wrappers | type_traits (32) + utility/forward (14) |
-| softmax_attn_like | MIOpenSoftmaxAttn | numeric_limits + is_trivially_copyable (hip_float8) |
+| maxpool2d_bwd / avgpool2d_bwd / adaptive_avgpool2d | MIOpenPoolingBwd* | numeric_limits via miopen_limits (patch does NOT touch — control coverage) |
+| prelu_fwd_bwd | torch-native dispatch (PReLU not routed to MIOpenPReLU by torch 2.12 — same observation as Windows Gate 68; MIOpenPReLU.cpp covered at compile level by extended-canary E3) | tensor_view initializer_list probe (compile) |
+| conv_depthwise/grouped/dilated/transpose/1x1 | Conv* + MIOpenConv* via Gemm{Fwd,Bwd,Wrw} solvers | type_traits (32) via wrapper |
+| (static CK conv wrappers — the <utility>/std::forward users) | NOT executed: CK grouped-conv plugin symbol resolution fails identically in both builds (wheel plugin is MIOpen-3.5-built; source CK disabled mirroring Windows config) — compile-level coverage only | utility/forward (14) compile-only |
+| softmax_attn_like | MIOpenSoftmaxAttn | is_trivially_copyable (hip_float8; covered by canary static_asserts) + numeric_limits control |
 | dropout2d_train | MIOpen dropout path | control |
 | BN matrix (Gates L30/L34) | MIOpenBatchNormFwd/Bwd Spatial/PerAct + Activ fused | type_traits via wrapper (10 kernels) |
 
 Kthvalue/Getitem/ReduceSum/MarginLoss families are driver-API ops not
-routed by PyTorch spatial ops (torch uses its own kthvalue kernels);
-covered at compile level by the audit + the wrapper/freestanding canaries
-(Gate L33) instead of runtime, mirroring the Windows matrix decision.
+routed by PyTorch spatial ops (torch uses its own kthvalue kernels).
+Linux coverage is compile-level: extended-canary E4 compiles the
+MIOpenKthvalue TU through hiprtc from BOTH trees (both PASS), and E3
+static-asserts the radix lowering value-equivalence
+(__INT32_MAX__/__INT64_MAX__ == numeric_limits max). Runtime kthvalue
+execution under both source builds remains a documented residual (see
+LINUX_VALIDATION_SUMMARY conditions); radix is NOT probe-gated, so its
+token stream differs on Linux by design — value equivalence is asserted
+instead.
 
 ## Result
 

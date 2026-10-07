@@ -1,0 +1,242 @@
+-- No helper variables provided; attempting to detect ROCm path and hip package using system PATH and CMAKE_PREFIX_PATH.
+-- Automatically detected ROCM_CMAKE_PATH using hipconfig: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel
+-- Automatically detected ROCM_CMAKE_LLVM_BIN_PATH using hipconfig: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin
+-- Added /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/bin to system PATH for ROCm tool discovery
+-- Added /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin to system PATH for ROCm LLVM tool discovery
+-- The CXX compiler identification is Clang 23.0.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/amdclang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+CMake Warning at cmake/ClangCheck.cmake:40 (message):
+  pre-commit not found; pre_commit_checks target will not be available and
+  pre-commit checks are skipped in format
+Call Stack (most recent call first):
+  CMakeLists.txt:105 (include)
+
+
+CMake Warning at cmake/CheckPreCommit.cmake:40 (message):
+  
+
+  pre-commit package is NOT installed
+
+  Please run: pip install pre-commit
+
+    cd /home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline
+    pre-commit install
+
+Call Stack (most recent call first):
+  CMakeLists.txt:106 (include)
+
+
+-- MIOpen: standalone build — preferring system third-party deps, fetching what's missing
+-- MIOpen: Eigen3 not found system-wide, will FetchContent
+-- The C compiler identification is Clang 23.0.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/clang - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Performing Test EIGEN_COMPILER_SUPPORT_CPP11
+-- Performing Test EIGEN_COMPILER_SUPPORT_CPP11 - Success
+-- Performing Test COMPILER_SUPPORT_std=cpp03
+-- Performing Test COMPILER_SUPPORT_std=cpp03 - Success
+-- Performing Test standard_math_library_linked_to_automatically
+-- Performing Test standard_math_library_linked_to_automatically - Success
+-- Standard libraries to link to explicitly: none
+-- Performing Test COMPILER_SUPPORT_WERROR
+-- Performing Test COMPILER_SUPPORT_WERROR - Success
+-- Performing Test COMPILER_SUPPORT_pedantic
+-- Performing Test COMPILER_SUPPORT_pedantic - Success
+-- Performing Test COMPILER_SUPPORT_Wall
+-- Performing Test COMPILER_SUPPORT_Wall - Success
+-- Performing Test COMPILER_SUPPORT_Wextra
+-- Performing Test COMPILER_SUPPORT_Wextra - Success
+-- Performing Test COMPILER_SUPPORT_Wundef
+-- Performing Test COMPILER_SUPPORT_Wundef - Success
+-- Performing Test COMPILER_SUPPORT_Wcastalign
+-- Performing Test COMPILER_SUPPORT_Wcastalign - Success
+-- Performing Test COMPILER_SUPPORT_Wcharsubscripts
+-- Performing Test COMPILER_SUPPORT_Wcharsubscripts - Success
+-- Performing Test COMPILER_SUPPORT_Wnonvirtualdtor
+-- Performing Test COMPILER_SUPPORT_Wnonvirtualdtor - Success
+-- Performing Test COMPILER_SUPPORT_Wunusedlocaltypedefs
+-- Performing Test COMPILER_SUPPORT_Wunusedlocaltypedefs - Success
+-- Performing Test COMPILER_SUPPORT_Wpointerarith
+-- Performing Test COMPILER_SUPPORT_Wpointerarith - Success
+-- Performing Test COMPILER_SUPPORT_Wwritestrings
+-- Performing Test COMPILER_SUPPORT_Wwritestrings - Success
+-- Performing Test COMPILER_SUPPORT_Wformatsecurity
+-- Performing Test COMPILER_SUPPORT_Wformatsecurity - Success
+-- Performing Test COMPILER_SUPPORT_Wshorten64to32
+-- Performing Test COMPILER_SUPPORT_Wshorten64to32 - Success
+-- Performing Test COMPILER_SUPPORT_Wlogicalop
+-- Performing Test COMPILER_SUPPORT_Wlogicalop - Failed
+-- Performing Test COMPILER_SUPPORT_Wenumconversion
+-- Performing Test COMPILER_SUPPORT_Wenumconversion - Success
+-- Performing Test COMPILER_SUPPORT_Wcpp11extensions
+-- Performing Test COMPILER_SUPPORT_Wcpp11extensions - Success
+-- Performing Test COMPILER_SUPPORT_Wdoublepromotion
+-- Performing Test COMPILER_SUPPORT_Wdoublepromotion - Success
+-- Performing Test COMPILER_SUPPORT_Wshadow
+-- Performing Test COMPILER_SUPPORT_Wshadow - Success
+-- Performing Test COMPILER_SUPPORT_Wnopsabi
+-- Performing Test COMPILER_SUPPORT_Wnopsabi - Success
+-- Performing Test COMPILER_SUPPORT_Wnovariadicmacros
+-- Performing Test COMPILER_SUPPORT_Wnovariadicmacros - Success
+-- Performing Test COMPILER_SUPPORT_Wnolonglong
+-- Performing Test COMPILER_SUPPORT_Wnolonglong - Success
+-- Performing Test COMPILER_SUPPORT_fnochecknew
+-- Performing Test COMPILER_SUPPORT_fnochecknew - Success
+-- Performing Test COMPILER_SUPPORT_fnocommon
+-- Performing Test COMPILER_SUPPORT_fnocommon - Failed
+-- Performing Test COMPILER_SUPPORT_fstrictaliasing
+-- Performing Test COMPILER_SUPPORT_fstrictaliasing - Failed
+-- Performing Test COMPILER_SUPPORT_wd981
+-- Performing Test COMPILER_SUPPORT_wd981 - Failed
+-- Performing Test COMPILER_SUPPORT_wd2304
+-- Performing Test COMPILER_SUPPORT_wd2304 - Failed
+-- Performing Test COMPILER_SUPPORT_STRICTANSI
+-- Performing Test COMPILER_SUPPORT_STRICTANSI - Failed
+-- Performing Test COMPILER_SUPPORT_Qunusedarguments
+-- Performing Test COMPILER_SUPPORT_Qunusedarguments - Failed
+-- Performing Test COMPILER_SUPPORT_ansi
+-- Performing Test COMPILER_SUPPORT_ansi - Failed
+-- Performing Test COMPILER_SUPPORT_OPENMP
+-- Performing Test COMPILER_SUPPORT_OPENMP - Success
+-- Looking for a Fortran compiler
+-- Looking for a Fortran compiler - /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/flang
+-- The Fortran compiler identification is LLVMFlang 23.0.0
+-- Detecting Fortran compiler ABI info
+-- Detecting Fortran compiler ABI info - done
+-- Check for working Fortran compiler: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/flang - skipped
+-- Found unsuitable Qt version "" from NOTFOUND
+-- Qt4 not found, so disabling the mandelbrot and opengl demos
+-- Could NOT find CHOLMOD (missing: CHOLMOD_INCLUDES CHOLMOD_LIBRARIES) 
+-- Could NOT find UMFPACK (missing: UMFPACK_INCLUDES UMFPACK_LIBRARIES) 
+-- Could NOT find KLU (missing: KLU_INCLUDES KLU_LIBRARIES) 
+-- Could NOT find SuperLU (missing: SUPERLU_INCLUDES SUPERLU_LIBRARIES SUPERLU_VERSION_OK) (Required is at least version "4.0")
+-- Checking for one of the modules 'hwloc'
+-- A version of Pastix has been found but pastix_nompi.h does not exist in the include directory. Because Eigen tests require a version without MPI, we disable the Pastix backend.
+-- 
+-- Configured Eigen 3.4.0
+-- 
+-- Available targets (use: cmake --build . --target TARGET):
+-- ---------+--------------------------------------------------------------
+-- Target   |   Description
+-- ---------+--------------------------------------------------------------
+-- install  | Install Eigen. Headers will be installed to:
+--          |     <CMAKE_INSTALL_PREFIX>/<INCLUDE_INSTALL_DIR>
+--          |   Using the following values:
+--          |     CMAKE_INSTALL_PREFIX: /home/amd/Desktop/YOLO_AMD/installs/miopen-unpatched
+--          |     INCLUDE_INSTALL_DIR:  include/eigen3
+--          |   Change the install location of Eigen headers using:
+--          |     cmake . -DCMAKE_INSTALL_PREFIX=yourprefix
+--          |   Or:
+--          |     cmake . -DINCLUDE_INSTALL_DIR=yourdir
+-- doc      | Generate the API documentation, requires Doxygen & LaTeX
+-- blas     | Build BLAS library (not the same thing as Eigen)
+-- uninstall| Remove files installed by the install target
+-- ---------+--------------------------------------------------------------
+-- 
+-- MIOpen: using system nlohmann_json 3.12.0
+-- MIOpen: frugally-deep not found system-wide, will FetchContent
+-- MIOpen: FunctionalPlus not found system-wide, will FetchContent
+CMake Deprecation Warning at /home/amd/Desktop/YOLO_AMD/builds/miopen-unpatched/_deps/frugally-deep-src/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- ===( frugally-deep 0.15.31 )===
+-- Found nlohmann_json: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake (found version "3.12.0") 
+-- MIOpen: using system BZip2 1.0.8
+-- MIOpen: using system SQLite3 3.53.4
+-- MIOpen: GTest not found system-wide, will FetchContent
+-- Found SQLite3: /home/amd/Desktop/YOLO_AMD/.deps/miopen/include (found version "3.53.4") 
+-- Found BZip2: /usr/lib/x86_64-linux-gnu/libbz2.so (found version "1.0.8") 
+-- Found nlohmann_json: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake (found suitable version "3.12.0", minimum required is "3.9.1") 
+-- Performing Test HAS_HIP
+-- Performing Test HAS_HIP - Success
+-- Performing Test _HAS_LIB_STD_FILESYSTEM
+-- Performing Test _HAS_LIB_STD_FILESYSTEM - Success
+-- MIOPEN_OFFLINE_COMPILER_PATHS_V2: OFF
+-- MIOPEN_BUILD_DRIVER: OFF
+-- HIP: Using hipcc from relative path: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/bin/hipcc
+-- HIP_PLATFORM using hip_HIPCONFIG_EXECUTABLE: amd
+-- Performing Test HIP_CLANG_SUPPORTS_PARALLEL_JOBS
+-- Performing Test HIP_CLANG_SUPPORTS_PARALLEL_JOBS - Success
+-- Build with HIP 7.14.60850 /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/cmake/hip
+-- Enable Composable Kernels: OFF
+-- Enable per-arch CK unbundling: OFF
+-- Enable hipconv: ON
+-- Performing Test MIOPEN_HIP_COMPILER_HAS_OPTION_OFFLOAD_UNIFORM_BLOCK
+-- Performing Test MIOPEN_HIP_COMPILER_HAS_OPTION_OFFLOAD_UNIFORM_BLOCK - Success
+-- Hip compiler flags:  -x hip   -D__HIP_PLATFORM_AMD__=1  -DUSE_PROF_API=1 --hip-link   -fno-offload-uniform-block 
+-- HIP: Using hipcc from relative path: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/bin/hipcc
+-- Build with rocblas 5.5.0 /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/cmake/rocblas
+-- Build without hipbBLASLt
+-- HIP backend selected.
+-- clang-offload-bundler found: /opt/rocm/llvm/bin/clang-offload-bundler
+-- AMDGCN assembler: /opt/rocm/llvm/bin/clang
+-- Build with amd_comgr 3.3.0 /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/cmake/amd_comgr
+-- Build with hiprtc 7.14.60850 /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/cmake/hiprtc
+-- HALF_INCLUDE_DIR: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/include
+-- Build with frugally-deep 0.15.31 /home/amd/Desktop/YOLO_AMD/builds/miopen-unpatched/CMakeFiles/pkgRedirects
+-- Build with Eigen3  /home/amd/Desktop/YOLO_AMD/builds/miopen-unpatched/CMakeFiles/pkgRedirects
+-- Build with rocTracer: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/libroctx64.so
+-- rocTracer include directory: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/include
+-- Build with rocrand 4.5.0 /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/cmake/rocrand
+CMake Warning (dev) at CMakeLists.txt:784 (set):
+  implicitly converting 'LIST' to 'STRING' type.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Adding support for installing gfx900 database artifacts
+-- Adding support for installing gfx906 database artifacts
+-- Adding support for installing gfx908 database artifacts
+-- Adding support for installing gfx90a database artifacts
+-- Adding support for installing gfx942 database artifacts
+-- Adding support for installing gfx950 database artifacts
+-- Adding support for installing gfx1030 database artifacts
+-- Adding support for installing gfx1100 database artifacts
+-- Adding support for installing gfx1102 database artifacts
+-- Adding support for installing gfx1151 database artifacts
+-- Adding support for installing gfx1200 database artifacts
+-- Adding support for installing gfx1201 database artifacts
+CMake Warning at CMakeLists.txt:795 (message):
+  DVC files not pulled down, skipped:
+  /home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/src/kernels/gfx900.kdb.bz2,
+  /home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/src/kernels/gfx906.kdb.bz2,
+  /home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/src/kernels/gfx908.kdb.bz2,
+  /home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/src/kernels/gfx90a.kdb.bz2,
+  /home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/src/kernels/gfx942.kdb.bz2,
+  /home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/src/kernels/gfx1030.kdb.bz2
+
+
+-- rocm-cmake: Set license file to /home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/LICENSE.md.
+-- Clang tidy found: 23.0.0git
+-- The HIP compiler identification is Clang 23.0.0
+-- Detecting HIP compiler ABI info
+-- Detecting HIP compiler ABI info - done
+-- Check for working HIP compiler: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/clang++ - skipped
+-- Detecting HIP compile features
+-- Detecting HIP compile features - done
+-- MIOpen_VERSION= 3.6.2
+-- CMAKE_BUILD_TYPE= RelWithDebInfo
+-- Found Python3: /home/amd/Desktop/YOLO_AMD/.venv/bin/python3 (found version "3.13.15") found components: Interpreter 
+-- Found rocrand headers at: /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/include
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY
+-- Performing Test COMPILER_HAS_HIDDEN_INLINE_VISIBILITY - Success
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
+-- Configuring done (16.8s)
+-- Generating done (0.2s)
+-- Build files have been written to: /home/amd/Desktop/YOLO_AMD/builds/miopen-unpatched

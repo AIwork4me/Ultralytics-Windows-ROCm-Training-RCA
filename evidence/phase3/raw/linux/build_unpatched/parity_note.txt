@@ -1,0 +1,38 @@
+=== GATE L46 remediation: build parity evidence ===
+2026-10-08T03:00:27+08:00
+
+--- configure logs (unpatched v3 = final, patched v5 = final) ---
+archived: configure_final.log, build.log, CMakeCache.txt (both legs)
+
+--- CMakeCache diff (behavioral keys only) ---
+< //Path to a file.
+< CHOLMOD_INCLUDES:PATH=CHOLMOD_INCLUDES-NOTFOUND
+< 
+< //Path to a library.
+< CHOLMOD_LIBRARIES:FILEPATH=CHOLMOD_LIBRARIES-NOTFOUND
+< 
+< // is installed
+< CMAKEPACKAGE_INSTALL_DIR:PATH=share/eigen3/cmake
+< 
+< //CXX compiler
+(remaining diff lines above; expected: none behavioral)
+
+--- 690 vs 800 target count explanation ---
+unpatched build.log final: [689/690] Creating library symlink lib/libMIOpen.so.1 lib/libMIOpen.so
+patched build.log final: [799/800] Creating library symlink lib/libMIOpen.so.1 lib/libMIOpen.so
+NOTE (from provenance-audit finding): the unpatched ninja run was INCREMENTAL over
+a partially-built tree (first configure attempt built ~110 hipconv/db targets
+at 02:17 before the contaminated-tool reconfigure at 02:2x); the patched tree
+was fresh -> full 800. Inlining-kernels batch step sets are IDENTICAL in both
+logs (129 batches); the patch's 3 new headers embed into existing batches and
+create zero new targets. The first-attempt contamination is contained: final
+caches pin assembler/bundler to wheel paths and zero build edges reference /opt.
+
+--- configure attempt history (for the record) ---
+tmp/configure_patched.log 7239
+tmp/configure_patched_v2.log 6985
+tmp/configure_patched_v3.log 6652
+tmp/configure_patched_v4.log 7183
+tmp/configure_patched_v5.log 7834
+tmp/configure_unpatched.log 14465
+tmp/configure_unpatched_v3.log 6622

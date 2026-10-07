@@ -1,57 +1,73 @@
-# Linux Validation Summary — Phase 3 (run 1: 2026-10-07)
+# Linux Validation Summary — Phase 3 (run 2 final: 2026-10-08)
 
 ```text
-STATUS: BLOCKED_ON_PATCH_HANDOFF
+STATUS: LINUX INDEPENDENT REGRESSION VALIDATION — PASS
 ```
 
-The Windows Phase-3 patch producer has not yet published
-`findings/phase3/PATCH_HANDOFF.json` (verified against local branch state and
-a fresh `git fetch --all --prune` of all remote branches). Per the re-entrant
-execution rules, the Linux validator completed every stage that does not
-depend on the patch, published the evidence, and stopped without error.
+Run 1 (2026-10-07) completed the pre-handoff baseline and exited
+BLOCKED_ON_PATCH_HANDOFF (marker content preserved in git history 07959f8).
+Run 2 (2026-10-08) consumed the Windows producer's final patch series and
+completed Gates L20–L49.
 
-## What this run established
+## Coordination identity
 
-1. **Controlled environment**: Ubuntu 24.04.4 / kernel 6.17.0-1032-oem,
-   uv 0.12.3, Python 3.13.15 venv, ROCm 7.14.0 wheel stack (devel + libraries
-   + device-gfx1151), torch 2.12.0+rocm7.14.0 / torchvision 0.27.0 /
-   torchaudio 2.11.0, ultralytics 8.4.174. Exact frozen line, no
-   substitutions.
-2. **Hardware identity**: gfx1151 / Radeon 8060S confirmed by rocminfo AND
-   torch device properties (never inferred from product name alone).
-3. **Linux baseline PASS** (the counterfactual leg): the exact 5-line
-   Windows-failing BatchNorm2d repro passes; 8/8 BN/GN cases pass on a FRESH
-   isolated cache with direct proof that the same kernel that fails on
-   Windows — `MIOpenBatchNormFwdTrainSpatial` for gfx1151 — is
-   runtime-compiled by HIPRTC on Linux (cache-miss SELECT → compile → INSERT
-   INTO kern_db, plus comgr llvmcache artifacts in the isolated cache dir).
-4. **Standalone HIPRTC matrix 6/6 PASS** (none/type_traits/utility/limits/
-   cstdint/initializer_list) with std-facility-exercising bodies, plus an
-   on-GPU execution control (module load → launch → memcpy → result 1).
-5. **STL root-cause counterpart**: Linux HIPRTC resolves `<type_traits>` to
-   system GCC 13 libstdc++ via clang's automatic GCC-install detection
-   (proven by a `-H` include trace inside hiprtcCompileProgram). Windows has
-   no such provider — consistent with the Phase-2 RCA.
-6. **YOLO controls PASS**: predict (bus.jpg, 4 persons + 1 bus) and train
-   (coco8, 1 epoch, validation, best/last.pt) with recorded exit codes.
-7. **Independent adversarial review** of the baseline: verdict
-   BASELINE_VALID_WITH_NOTES; every accepted finding (incl. two mechanism-
-   narrative errors and a system-ROCm disclosure error) remediated and
-   re-proven the same day. Review preserved verbatim.
-8. **Build readiness** for the post-handoff source builds: dependency
-   inventory complete; wheel stack covers all ROCm-side deps; missing host
-   deps (sqlite3, nlohmann_json, CK…) installable via the tree's own
-   cget-based installer into a local prefix without sudo; /opt/rocm-7.2.1
-   contamination vector identified with a mandatory cache-pin mitigation.
+```text
+SOURCE_SHA   b68f8944300f104875d953fc8e4510908c9aaf0b
+PATCH_ID     P3-FINAL
+PATCH_SHA256 0001 f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20
+             0002 77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532
+```
 
-## Nothing to regress yet
+## Results (single-variable: same SHA, same flags, only the patch differs)
 
-No patch exists on this machine; none was invented; nothing upstream was
-created, commented, or pushed except this Linux evidence branch.
+- **Source acquisition**: exact SHA via blobless fetch + per-blob
+  SHA-1-verified raw backfill (git smart protocol was down); independent
+  reviewer re-verified 8032/8032 blobs; baseline tree clean, patched tree
+  byte-identical to HEAD+0001+0002 (reviewer round-trip).
+- **Builds**: unpatched + patched MIOpen 3.6.2 from source with the 7.14
+  wheel toolchain; configure/build logs + both CMakeCaches archived; zero
+  /opt/rocm references (system 7.2.1 coexistence neutralized by explicit
+  cache pins + controlled LD_LIBRARY_PATH; contained first-configure
+  incident documented).
+- **Load proof**: LD_PRELOAD + dladdr(miopenCreate) per run (harness now
+  echoes binding in-stream).
+- **BatchNorm**: 8/8 → 8/8 on fresh isolated caches with direct RTC-compile
+  proof; wheel stack had already reproduced the Windows-failing kernel
+  compiling fresh on Linux in run 1.
+- **Numerics**: BIT-IDENTICAL (max_abs 0.0, 37 tensors, CPU-referenced).
+- **no-STL canaries**: with-STL token equivalence (incl. reviewer-extended
+  files); partial-STL environment: unpatched FAILS through real comgr RTC
+  ('utility' not found — Windows failure class reproduced on Linux),
+  patched fires its designed guard; zero-STL fallback arms all PASS;
+  facilities execute on GPU; patch-0002 paths (tensor_view/radix/initlist)
+  compile-level PASS with radix value-equivalence static-asserted;
+  Kthvalue TU compiles from both trees.
+- **Non-BN RTC matrix**: 11/11 → 11/11 (g68 mirror).
+- **YOLO**: predict + train (amp-default-self-fp32 AND amp=False) PASS
+  bound to the patched build (v2 rerun with in-stream binding + fresh cache).
+- **Independent reviews**: regression attacker NO_REGRESSION_CONFIRMED;
+  provenance auditor PROVENANCE_CLEAN; maintainer simulation
+  ADEQUATE_WITH_CONDITIONS — all validator-side conditions remediated
+  same-session; remaining conditions are producer/CI-side.
 
-## Resuming
+## Residual conditions (recorded for the maintainer/producer)
 
-Rerun the same validator prompt after the Windows producer commits
-`findings/phase3/PATCH_HANDOFF.json`. Gates L20+ resume from the handoff
-verification; all baseline gates L00–L19 are complete and re-verified cheaply
-on rerun.
+1. Runtime execution of a kthvalue-class op under both source builds
+   (compile + value-equivalence coverage provided instead; same decision
+   as the Windows leg).
+2. CI breadth: ≥1 more arch (gfx94x/gfx110x/gfx120x) and a 10.x line —
+   the patch edits a HIP-version gate.
+3. Producer fills author/DCO identity in the patch series.
+4. static-CK RTC wrappers runtime-unexercised in this config (CK off,
+   mirroring Windows; wheel CK plugin fails symmetrically in both legs).
+
+## Cross-platform picture
+
+```text
+             UNPATCHED       PATCHED
+Windows        FAIL            PASS   (producer, live A/B)
+Linux          PASS            PASS   (this validation)
+```
+
+Details: docs/phase3/linux/LINUX_REGRESSION_MATRIX.md,
+docs/phase3/CROSS_PLATFORM_VALIDATION.md.

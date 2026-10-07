@@ -1,0 +1,8 @@
+=== GATE L47 security/hygiene scan (final) ===
+2026-10-08T02:46:36+08:00
+--- credential patterns ---
+(empty=clean)
+--- forbidden binaries ---
+(empty=clean)
+--- phase3/linux file count ---
+79
