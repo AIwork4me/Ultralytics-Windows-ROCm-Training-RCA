@@ -1,4 +1,3 @@
-b78d860f6dfa705a2198faf5a57429be878ccd2e4900d1905efd4e84123fe893  evidence/phase2/MANIFEST.json
 3f5613111bac229117ac350f364f6f6ac845cac42139e5149d134da9c694478b  evidence/phase2/raw/candidateA/A_conv.txt
 8c0cdf1681c12fccfaf21f48eaea446a48995028884a754c4bfe277c52431638  evidence/phase2/raw/candidateA/A_eval.txt
 7b1ecdcbe8f0f2454fb85f95bebc5cd190eb07aa13ebd1f306b332a06de9fdf5  evidence/phase2/raw/candidateA/A_gemm.txt

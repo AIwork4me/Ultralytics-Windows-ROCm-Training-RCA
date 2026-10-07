@@ -25,7 +25,7 @@ tracked = set(
 entries = []
 for dirpath, dirnames, filenames in os.walk(P2ROOT):
     for fn in sorted(filenames):
-        if fn == "SHA256SUMS.txt":
+        if fn in ("SHA256SUMS.txt", "MANIFEST.json"):
             continue
         rel = os.path.relpath(os.path.join(dirpath, fn), ROOT).replace(os.sep, "/")
         if rel not in tracked:
