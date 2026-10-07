@@ -1,0 +1,54 @@
+TRAINING FAILURE SIGNATURE (normalized)
+========================================
+Source raw log : evidence/raw/ultralytics/train_gpu.txt
+Captured       : 2026-10-07T11:54 +08:00
+Command        : yolo detect train data=coco8.yaml model=yolo26n.pt epochs=1 imgsz=640 device=0 workers=0
+Exit code      : 1
+Reproduces user-reported failure: YES (original: epochs=100, same first-batch failure)
+
+--- Error chain (line refs into raw log) ---
+
+[50] MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())'
+      MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
+[51] MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6),
+      source file: MIOpenBatchNormFwdTrainSpatial.cpp
+[52] MIOpen(HIP): Warning [BuildHip] In file included from
+      C:\Users\rocm\AppData\Local\Temp\comgr-97212-12-74b52b\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+[53] In file included from ...\comgr-97212-12-74b52b\include\batchnorm_functions.hpp:30:
+[54] In file included from ...\comgr-97212-12-74b52b\include\configuration.hpp:34:
+[55] In file included from ...\comgr-97212-12-74b52b\include\vector_types.hpp:8:
+[56] ...\comgr-97212-12-74b52b\include\miopen_type_traits.hpp:151:10:
+      fatal error: 'type_traits' file not found
+[57]   151 | #include <type_traits>
+[59] 1 error generated when compiling for gfx1151.
+[60] MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299:
+      Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp
+[132] RuntimeError: miopenStatusUnknownError
+
+--- Python traceback path (lines 62-132, abridged) ---
+
+ultralytics/engine/trainer.py:546  _do_train -> self.model(batch)
+ultralytics/nn/tasks.py:435        loss -> forward(batch["img"])
+ultralytics/nn/tasks.py:201        _predict_once -> x = m(x)
+ultralytics/nn/modules/conv.py:87  Conv.forward -> self.act(self.bn(self.conv(x)))
+torch/nn/modules/batchnorm.py:210  BatchNorm2d.forward -> F.batch_norm(...)
+torch/nn/functional.py:2850        batch_norm -> torch.batch_norm(..., torch.backends.cudnn.enabled, ...)
+RuntimeError: miopenStatusUnknownError
+
+--- Key signature fields ---
+
+MIOpen kernel        : MIOpenBatchNormFwdTrainSpatial.cpp
+Failing layer        : hiprtcCompileProgram (HIPRTC) -> HIPRTC_ERROR_COMPILATION (6)
+Target arch          : gfx1151
+Missing header       : <type_traits> (from miopen_type_traits.hpp:151)
+Include chain        : .cpp:8 -> batchnorm_functions.hpp:30 -> configuration.hpp:34
+                       -> vector_types.hpp:8 -> miopen_type_traits.hpp:151 -> <type_traits> MISSING
+Temp build dir       : C:\Users\rocm\AppData\Local\Temp\comgr-97212-12-74b52b\{input,include}
+Terminal exception   : RuntimeError: miopenStatusUnknownError (torch.batch_norm)
+MIOpen build provenance: C:/home/runner/_work/rockrel/rockrel/rocm-libraries/.../hipoc_program.cpp:299
+
+--- Failure point in training lifecycle ---
+
+After: model build, checkpoint load, AMP check, dataset scan, optimizer init,
+       epoch start, "Closing dataloader mosaic", first forward pass begins.
+During: first BatchNorm2d in training mode on the first batch (progress 0/1).

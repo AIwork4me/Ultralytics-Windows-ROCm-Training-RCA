@@ -1,0 +1,11 @@
+﻿### captured 2026-10-07T11:53:35.0026211+08:00
+### command: yolo predict model=yolo26n.pt source=https://ultralytics.com/images/bus.jpg device=0
+Ultralytics 8.4.174  Python-3.13.13 torch-2.12.0+rocm7.14.0 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+
+Found https://ultralytics.com/images/bus.jpg locally at bus.jpg
+image 1/1 C:\Users\rocm\Desktop\YOLO_AMD\bus.jpg: 640x480 4 persons, 1 bus, 11.1ms
+Speed: 64.4ms preprocess, 11.1ms inference, 44.5ms postprocess per image at shape (1, 3, 640, 480)
+Results saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\runs\detect\predict-2[0m
+ Learn more at https://docs.ultralytics.com/modes/predict
+exit_code=0
