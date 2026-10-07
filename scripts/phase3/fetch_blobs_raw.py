@@ -59,7 +59,9 @@ def curl_chunk(items: list[tuple[str, str]]) -> None:
         f.write("parallel\nparallel-max = 6\nmax-time = 180\n"
                 "retry = 6\nretry-delay = 4\nretry-all-errors\nsilent\nlocation\n")
         for url, dest in items:
-            f.write(f'url = "{url}"\noutput = "{dest}"\n')
+            # forward slashes: curl's config parser treats '\' as escape
+            dest_fwd = dest.replace("\\", "/")
+            f.write(f'url = "{url}"\noutput = "{dest_fwd}"\n')
     subprocess.run(["curl", "-q", "-K", cfg], capture_output=True)
 
 
