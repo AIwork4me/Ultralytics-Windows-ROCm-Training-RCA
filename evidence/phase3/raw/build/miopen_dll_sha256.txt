@@ -1,0 +1,9 @@
+0a0878dbd179865690162b981ab6f9c199f756b14376abd7355a6f2378a81900 *../build_phase3/bin/MIOpen.dll
+CMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+CMAKE_CXX_COMPILER:UNINITIALIZED=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang++.exe
+CMAKE_CXX_COMPILER_AR:FILEPATH=C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/llvm-ar.exe
+CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS:FILEPATH=C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang-scan-deps.exe
+CMAKE_CXX_COMPILER_RANLIB:FILEPATH=C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/llvm-ranlib.exe
+CMAKE_C_COMPILER:UNINITIALIZED=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang.exe
+CMAKE_HIP_COMPILER:UNINITIALIZED=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang.exe
+CMAKE_HIP_COMPILER_AR:FILEPATH=C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/llvm-ar.exe
