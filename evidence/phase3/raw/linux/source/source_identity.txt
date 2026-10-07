@@ -1,0 +1,13 @@
+=== GATE L22: source identity ===
+2026-10-08T02:15:47+08:00
+remote: https://github.com/ROCm/rocm-libraries.git
+HEAD: b68f8944300f104875d953fc8e4510908c9aaf0b
+expected: b68f8944300f104875d953fc8e4510908c9aaf0b
+MATCH: YES
+commit date: 2026-10-07T17:12:37+09:00
+subject: feat(stinkytofu): ds_load issue cap Sliding/Periodic mode (#13093)
+submodules (gitlinks) under projects/miopen:
+sparse cone: projects/miopen (+root files)
+status: 0 entries (0 = clean)
+file count in worktree: 8032
+blob verification: every file fetched byte-verified against tree blob SHA-1 (raw backfill + hash-object), see scripts/phase3/linux/{raw_backfill_checkout,source_backfill_loop}.sh

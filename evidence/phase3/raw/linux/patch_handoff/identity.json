@@ -1,0 +1,14 @@
+{
+  "generated": "2026-10-08T02:16:36",
+  "platform": "linux",
+  "gpu": "gfx1151",
+  "PATCH_ID": "P3-FINAL",
+  "SOURCE_SHA": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+  "PATCH_SHA256_0001": "f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20",
+  "PATCH_SHA256_0002": "77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532",
+  "baseline_source_HEAD": "b68f8944300f104875d953fc8e4510908c9aaf0b (clean, git diff --exit-code PASS)",
+  "patched_source_HEAD": "b68f8944300f104875d953fc8e4510908c9aaf0b + git-applied 0001+0002",
+  "git_diff_SHA256_tracked": "972e9f5954724a36bc6729ad246f12bef438b5fe34a6bd096cabe70a183dd8cf",
+  "patch_modified_by_linux": false,
+  "notes": "new-file additions are untracked by design; tracked-diff + 3 new files = full patch content; round-trip equality to handoff patches is the applied-content audit"
+}

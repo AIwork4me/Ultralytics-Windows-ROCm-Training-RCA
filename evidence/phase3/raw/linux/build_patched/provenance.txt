@@ -1,0 +1,36 @@
+=== GATE L31/L32: patched build provenance ===
+2026-10-08T02:40:17+08:00
+SOURCE_SHA: b68f8944300f104875d953fc8e4510908c9aaf0b + P3-FINAL (0001 f06d7ae5 + 0002 77f9fc16, unmodified)
+
+files:
+lrwxrwxrwx 1 amd amd        14 10月  8 02:40 libMIOpen.so -> libMIOpen.so.1
+lrwxrwxrwx 1 amd amd        16 10月  8 02:40 libMIOpen.so.1 -> libMIOpen.so.1.0
+-rw-r--r-- 1 amd amd 803103088 10月  8 02:40 libMIOpen.so.1.0
+
+sha256:
+02904c25f45ba010d78292a1c2095afe053825a71f5e7cb6a5013d64d0925221  installs/miopen-patched/lib/libMIOpen.so.1.0
+
+SONAME:
+ 0x000000000000000e (SONAME)             Library soname: [libMIOpen.so.1]
+
+=== source-diff audit (L42 pre-check): patched tree vs baseline ===
+baseline clean
+ projects/miopen/src/kernels/tensor_view.hpp        |  7 +++++++
+ 5 files changed, 48 insertions(+), 5 deletions(-)
+ M projects/miopen/src/CMakeLists.txt
+ M projects/miopen/src/kernels/miopen_type_traits.hpp
+ M projects/miopen/src/kernels/miopen_utility.hpp
+ M projects/miopen/src/kernels/radix.hpp
+ M projects/miopen/src/kernels/tensor_view.hpp
+?? projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp
+?? projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp
+?? projects/miopen/src/kernels/miopen_freestanding_utility.hpp
+
+=== patched loads in PyTorch (dladdr proof) ===
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+miopenCreate                         -> /home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1
+miopenGetVersion                     -> /home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1
+miopenCreate                         -> /home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1
+BN PASS torch.Size([8, 16, 64, 64])
+probe rc=0

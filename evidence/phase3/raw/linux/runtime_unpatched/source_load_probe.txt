@@ -1,0 +1,17 @@
+=== run_with_source_miopen(unpatched) pid=541473 ===
+2026-10-08T02:32:14+08:00
+expect libMIOpen from: /home/amd/Desktop/YOLO_AMD/installs/miopen-unpatched/lib
+--- ldd sanity (ROCm deps) ---
+	libhiprtc.so.7 => /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7 (0x00007e54df300000)
+	libamd_comgr.so.3 => /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamd_comgr.so.3 (0x00007e54de600000)
+	librocblas.so.5 => /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/librocblas.so.5 (0x00007e54dcc00000)
+	libamdhip64.so.7 => /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7 (0x00007e54dae00000)
+--- run ---
+/home/amd/Desktop/YOLO_AMD/tmp/probe_source_load.py:21: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/rockrel/rockrel/external-builds/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  print("BN2d train PASS", y.shape, float(y.mean()))
+torch: 2.12.0+rocm7.14.0 hip: 7.14.60850
+miopen mapped before BN: ['/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1']
+miopen mapped after BN: ['/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1']
+BN2d train PASS torch.Size([8, 16, 64, 64]) 4.5438355300575495e-09
+LOADED_FROM_EXPECTED: NO

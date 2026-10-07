@@ -1,0 +1,804 @@
+=== GATE L34/L35 (rerun): fresh-cache BN matrix + numerics, both builds ===
+2026-10-08T02:41:28+08:00
+
+########## BUILD: unpatched ##########
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 64 64 }
+MIOpen: 	stride.values = { 65536 4096 64 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	x = 0x716ff6200000
+MIOpen: 	yDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	y = 0x716ff6400000
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x7170ff400000
+MIOpen: 	bnBias = 0x7170ff400200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x7170ff400400
+MIOpen: 	prevResultRunningVariance = 0x7170ff400600
+MIOpen: 	nextResultRunningMean = 0x7170ff400400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 64 64 }
+MIOpen: 	stride.values = { 65536 4096 64 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardInferenceActivation(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, void *, void *, double, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	x = 0x716ff6200000
+MIOpen: 	yDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	y = 0x716ff6400000
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	estMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	estVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x7170ff400000
+MIOpen: 	bnBias = 0x7170ff400200
+MIOpen: 	estimatedMean = 0x7170ff400400
+MIOpen: 	estimatedVariance = 0x7170ff400600
+MIOpen: 	epsilon = 1e-05
+MIOpen: 	activDesc = nullptr
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 64 64 }
+MIOpen: 	stride.values = { 65536 4096 64 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	x = 0x716ff6200000
+MIOpen: 	yDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	y = 0x716ff6400000
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x7170ff400000
+MIOpen: 	bnBias = 0x7170ff400200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x7170ff400400
+MIOpen: 	prevResultRunningVariance = 0x7170ff400600
+MIOpen: 	nextResultRunningMean = 0x7170ff400400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 64 64 }
+MIOpen: 	stride.values = { 65536 4096 64 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormBackwardActivation(miopenHandle_t, miopenBatchNormMode_t, const void *, const void *, const void *, const void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const void *, const void *, void *, void *, double, const void *, const void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	x = 0x716ff6200000
+MIOpen: 	dyDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	dy = 0x716ff6600000
+MIOpen: 	dxDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	dx = 0x716ff6800000
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x7170ff400000
+MIOpen: 	bnBias = nullptr
+MIOpen: 	resultBnScaleDiff = 0x7170ff401200
+MIOpen: 	resultBnBiasDiff = 0x7170ff401400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 32 1 }
+MIOpen: 	stride.values = { 512 32 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 32, 1}, {512, 32, 1, 1}, packed, 
+MIOpen: 	x = 0x7170ff400a00
+MIOpen: 	yDesc = {8, 16, 32, 1}, {512, 32, 1, 1}, packed, 
+MIOpen: 	y = 0x7170ff404a00
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x7170ff400000
+MIOpen: 	bnBias = 0x7170ff400200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x7170ff400400
+MIOpen: 	prevResultRunningVariance = 0x7170ff400600
+MIOpen: 	nextResultRunningMean = 0x7170ff400400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 32, 1}, {512, 32, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 32, 1}, {512, 32, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 4 16 8 16 16 }
+MIOpen: 	stride.values = { 32768 2048 256 16 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 1 16 1 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	x = 0x7170ff400a00
+MIOpen: 	yDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	y = 0x7170ff480a00
+MIOpen: 	scaleDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x7170ff400000
+MIOpen: 	bnBias = 0x7170ff400200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x7170ff400400
+MIOpen: 	prevResultRunningVariance = 0x7170ff400600
+MIOpen: 	nextResultRunningMean = 0x7170ff400400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 4 16 8 16 16 }
+MIOpen: 	stride.values = { 32768 2048 256 16 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 1 16 1 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	x = 0x7170ff400a00
+MIOpen: 	yDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	y = 0x7170ff480a00
+MIOpen: 	scaleDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x7170ff400000
+MIOpen: 	bnBias = 0x7170ff400200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x7170ff400400
+MIOpen: 	prevResultRunningVariance = 0x7170ff400600
+MIOpen: 	nextResultRunningMean = 0x7170ff400400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 4 16 8 16 16 }
+MIOpen: 	stride.values = { 32768 2048 256 16 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 1 16 1 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormBackwardActivation(miopenHandle_t, miopenBatchNormMode_t, const void *, const void *, const void *, const void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const void *, const void *, void *, void *, double, const void *, const void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	x = 0x7170ff400a00
+MIOpen: 	dyDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	dy = 0x7170ff501200
+MIOpen: 	dxDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	dx = 0x716fd4200000
+MIOpen: 	scaleDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x7170ff400000
+MIOpen: 	bnBias = nullptr
+MIOpen: 	resultBnScaleDiff = 0x7170ff581200
+MIOpen: 	resultBnBiasDiff = 0x7170ff581400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+torch: 2.12.0+rocm7.14.0 hip: 7.14.60850 gpu: AMD Radeon 8060S Graphics
+BN2d train                 PASS  shape=(8, 16, 64, 64) mean=2.934e-09 finite=True
+BN2d eval                  PASS  shape=(8, 16, 64, 64) mean=-6.124e-04 finite=True
+BN2d train backward        PASS  shape=(8, 16, 64, 64) mean=2.934e-09 finite=True | dx_norm=5.712e-06 wgrad=1.033e-03 grads_finite=True
+BN1d 3D (spatial)          PASS  shape=(8, 16, 32) mean=1.397e-09 finite=True
+BN1d 2D (control)          PASS  shape=(8, 16) mean=-2.794e-09 finite=True
+BN3d train                 PASS  shape=(4, 16, 8, 16, 16) mean=1.746e-09 finite=True
+BN3d backward              PASS  shape=(4, 16, 8, 16, 16) mean=1.746e-09 finite=True | dx_norm=3.234e-06 wgrad=2.931e-04 grads_finite=True
+GroupNorm control          PASS  shape=(8, 16, 64, 64) mean=-7.276e-11 finite=True
+OVERALL: PASS
+matrix rc=0
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+saved 37 tensors -> tmp/numerics_unpatched.pt (build=unpatched)
+capture rc=0
+
+########## BUILD: patched ##########
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 64 64 }
+MIOpen: 	stride.values = { 65536 4096 64 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	x = 0x71f2fa800000
+MIOpen: 	yDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	y = 0x71f2faa00000
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x71f409200000
+MIOpen: 	bnBias = 0x71f409200200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x71f409200400
+MIOpen: 	prevResultRunningVariance = 0x71f409200600
+MIOpen: 	nextResultRunningMean = 0x71f409200400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 64 64 }
+MIOpen: 	stride.values = { 65536 4096 64 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardInferenceActivation(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, void *, void *, double, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	x = 0x71f2fa800000
+MIOpen: 	yDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	y = 0x71f2faa00000
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	estMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	estVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x71f409200000
+MIOpen: 	bnBias = 0x71f409200200
+MIOpen: 	estimatedMean = 0x71f409200400
+MIOpen: 	estimatedVariance = 0x71f409200600
+MIOpen: 	epsilon = 1e-05
+MIOpen: 	activDesc = nullptr
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 64 64 }
+MIOpen: 	stride.values = { 65536 4096 64 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	x = 0x71f2fa800000
+MIOpen: 	yDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	y = 0x71f2faa00000
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x71f409200000
+MIOpen: 	bnBias = 0x71f409200200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x71f409200400
+MIOpen: 	prevResultRunningVariance = 0x71f409200600
+MIOpen: 	nextResultRunningMean = 0x71f409200400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 64 64 }
+MIOpen: 	stride.values = { 65536 4096 64 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormBackwardActivation(miopenHandle_t, miopenBatchNormMode_t, const void *, const void *, const void *, const void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const void *, const void *, void *, void *, double, const void *, const void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	x = 0x71f2fa800000
+MIOpen: 	dyDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	dy = 0x71f2fac00000
+MIOpen: 	dxDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: 	dx = 0x71f2fae00000
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x71f409200000
+MIOpen: 	bnBias = nullptr
+MIOpen: 	resultBnScaleDiff = 0x71f409201200
+MIOpen: 	resultBnBiasDiff = 0x71f409201400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 64, 64}, {65536, 4096, 64, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 8 16 32 1 }
+MIOpen: 	stride.values = { 512 32 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 4
+MIOpen: 	dim.values = { 1 16 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {8, 16, 32, 1}, {512, 32, 1, 1}, packed, 
+MIOpen: 	x = 0x71f409200a00
+MIOpen: 	yDesc = {8, 16, 32, 1}, {512, 32, 1, 1}, packed, 
+MIOpen: 	y = 0x71f409204a00
+MIOpen: 	scaleDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x71f409200000
+MIOpen: 	bnBias = 0x71f409200200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x71f409200400
+MIOpen: 	prevResultRunningVariance = 0x71f409200600
+MIOpen: 	nextResultRunningMean = 0x71f409200400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {8, 16, 32, 1}, {512, 32, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1}, {16, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {8, 16, 32, 1}, {512, 32, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 4 16 8 16 16 }
+MIOpen: 	stride.values = { 32768 2048 256 16 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 1 16 1 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	x = 0x71f409200a00
+MIOpen: 	yDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	y = 0x71f409280a00
+MIOpen: 	scaleDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x71f409200000
+MIOpen: 	bnBias = 0x71f409200200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x71f409200400
+MIOpen: 	prevResultRunningVariance = 0x71f409200600
+MIOpen: 	nextResultRunningMean = 0x71f409200400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 4 16 8 16 16 }
+MIOpen: 	stride.values = { 32768 2048 256 16 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 1 16 1 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormForwardTrainingActivation_V2(miopenHandle_t, miopenBatchNormMode_t, void *, void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, void *, void *, double, const void *, const void *, void *, void *, double, void *, void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	x = 0x71f409200a00
+MIOpen: 	yDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	y = 0x71f409280a00
+MIOpen: 	scaleDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x71f409200000
+MIOpen: 	bnBias = 0x71f409200200
+MIOpen: 	expAvgFactor = 0.1
+MIOpen: 	prevResultRunningMean = 0x71f409200400
+MIOpen: 	prevResultRunningVariance = 0x71f409200600
+MIOpen: 	nextResultRunningMean = 0x71f409200400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 4 16 8 16 16 }
+MIOpen: 	stride.values = { 32768 2048 256 16 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenCreateTensorDescriptor(miopenTensorDescriptor_t *){
+MIOpen: 	tensorDesc = 0
+MIOpen: }
+MIOpen: miopenStatus_t miopenSetTensorDescriptorV2(miopenTensorDescriptor_t, miopenDataType_t, int, const size_t *, const size_t *){
+MIOpen: 	tensorDesc = {}, {}, packed, 
+MIOpen: 	dataType = 1
+MIOpen: 	nbDims = 5
+MIOpen: 	dim.values = { 1 16 1 1 1 }
+MIOpen: 	stride.values = { 16 1 1 1 1 }
+MIOpen: }
+MIOpen: miopenStatus_t miopenBatchNormBackwardActivation(miopenHandle_t, miopenBatchNormMode_t, const void *, const void *, const void *, const void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, const void *, const miopenTensorDescriptor_t, void *, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const miopenTensorDescriptor_t, const void *, const void *, void *, void *, double, const void *, const void *, const miopenActivationDescriptor_t){
+MIOpen: 	handle = stream: 0, device_id: 0
+MIOpen: 	bn_mode = 1
+MIOpen: 	xDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	x = 0x71f409200a00
+MIOpen: 	dyDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	dy = 0x71f409301200
+MIOpen: 	dxDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: 	dx = 0x71f2d3e00000
+MIOpen: 	scaleDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	biasDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedMeanDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	savedVarianceDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: 	bnScale = 0x71f409200000
+MIOpen: 	bnBias = nullptr
+MIOpen: 	resultBnScaleDiff = 0x71f409381200
+MIOpen: 	resultBnBiasDiff = 0x71f409381400
+MIOpen: }
+MIOpen: miopenStatus_t miopenGetTensorDescriptorSize(miopenTensorDescriptor_t, int *){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {1, 16, 1, 1, 1}, {16, 1, 1, 1, 1}, packed, 
+MIOpen: }
+MIOpen: miopenStatus_t miopenDestroyTensorDescriptor(miopenTensorDescriptor_t){
+MIOpen: 	tensorDesc = {4, 16, 8, 16, 16}, {32768, 2048, 256, 16, 1}, packed, 
+MIOpen: }
+torch: 2.12.0+rocm7.14.0 hip: 7.14.60850 gpu: AMD Radeon 8060S Graphics
+BN2d train                 PASS  shape=(8, 16, 64, 64) mean=2.934e-09 finite=True
+BN2d eval                  PASS  shape=(8, 16, 64, 64) mean=-6.124e-04 finite=True
+BN2d train backward        PASS  shape=(8, 16, 64, 64) mean=2.934e-09 finite=True | dx_norm=5.712e-06 wgrad=1.033e-03 grads_finite=True
+BN1d 3D (spatial)          PASS  shape=(8, 16, 32) mean=1.397e-09 finite=True
+BN1d 2D (control)          PASS  shape=(8, 16) mean=-2.794e-09 finite=True
+BN3d train                 PASS  shape=(4, 16, 8, 16, 16) mean=1.746e-09 finite=True
+BN3d backward              PASS  shape=(4, 16, 8, 16, 16) mean=1.746e-09 finite=True | dx_norm=3.234e-06 wgrad=2.931e-04 grads_finite=True
+GroupNorm control          PASS  shape=(8, 16, 64, 64) mean=-7.276e-11 finite=True
+OVERALL: PASS
+matrix rc=0
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+saved 37 tensors -> tmp/numerics_patched.pt (build=patched)
+capture rc=0
+
+########## COMPARE ##########
+/home/amd/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/scripts/phase3/linux/numerics_compare.py:23: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/rockrel/rockrel/external-builds/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  "max_abs": float(d.max()),
+compare rc=0
+      "pat_vs_cpu_max_abs": 9.5367431640625e-07
+    }
+  },
+  "overall_max_abs": 0.0,
+  "overall": "PASS"
+}

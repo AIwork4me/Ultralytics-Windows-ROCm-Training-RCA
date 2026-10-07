@@ -1,0 +1,1190 @@
+{
+ "matrix": {
+  "MIOpenAdam.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenAddLayerNorm.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormActivBwdPerAct.cpp": {
+   "closure_size": 8,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormActivBwdSpatial.cpp": {
+   "closure_size": 12,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormActivFwdTrainPerAct.cpp": {
+   "closure_size": 12,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormActivFwdTrainSpatial.cpp": {
+   "closure_size": 13,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormActivInfer.cpp": {
+   "closure_size": 8,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormBwdPerAct.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormBwdSpatial.cpp": {
+   "closure_size": 13,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormFwdInferPerAct.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormFwdInferSpatial.cpp": {
+   "closure_size": 10,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormFwdTrainPerAct.cpp": {
+   "closure_size": 10,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenBatchNormFwdTrainSpatial.cpp": {
+   "closure_size": 14,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenCTCLoss.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenCat.cpp": {
+   "closure_size": 1,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenCheckNumerics.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_trivially_copyable_v",
+    "numeric_limits"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenCol2Im2d.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenCol2Im3d.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenConvBwdWrW_LxG_P53Hip.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenConvDirBatchNormActivHip.cpp": {
+   "closure_size": 8,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenConvDirUniHip.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenConvFFT.cpp": {
+   "closure_size": 2,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenConvFwd_LxL_11.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenDropoutHIP.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": [
+    "rocrand_xorwow_inlined.h"
+   ]
+  },
+  "MIOpenGLU.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenGetitem.cpp": {
+   "closure_size": 7,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "initializer_list"
+   ],
+   "std_entities": [
+    "initializer_list"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenGroupConvBwdWrW_LxG_P53Hip.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenGroupNorm.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenIm2d2Col.cpp": {
+   "closure_size": 2,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenIm3d2Col.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenKthvalue.cpp": {
+   "closure_size": 8,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "initializer_list",
+    "limits",
+    "type_traits"
+   ],
+   "std_entities": [
+    "initializer_list",
+    "is_same",
+    "numeric_limits"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenLRNBwd.cpp": {
+   "closure_size": 7,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenLRNFwd.cpp": {
+   "closure_size": 8,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenLayerNorm.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenMultiMarginLoss.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "initializer_list"
+   ],
+   "std_entities": [
+    "initializer_list"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenNeuron.cpp": {
+   "closure_size": 9,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenPReLU.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "initializer_list"
+   ],
+   "std_entities": [
+    "initializer_list"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenPooling.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenPoolingBwd.cpp": {
+   "closure_size": 7,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [
+    "numeric_limits"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenPoolingBwdND.cpp": {
+   "closure_size": 7,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [
+    "numeric_limits"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenPoolingForwardNaive.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenPoolingND.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenRNNFusedInference.cpp": {
+   "closure_size": 1,
+   "other_angle_includes": [
+    "hip/hip_cooperative_groups.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenRNNHiddenStateUpdate.cpp": {
+   "closure_size": 9,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenReduceCalculation.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenReduceExtreme.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenReduceSum.cpp": {
+   "closure_size": 8,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "initializer_list"
+   ],
+   "std_entities": [
+    "initializer_list"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenRoPE.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenSoftMarginLoss.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "initializer_list"
+   ],
+   "std_entities": [
+    "initializer_list"
+   ],
+   "unresolved_quoted": []
+  },
+  "MIOpenSoftmax.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenSoftmaxAttn.cpp": {
+   "closure_size": 6,
+   "other_angle_includes": [
+    "hip_float8.hpp"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [
+    "numeric_limits"
+   ],
+   "unresolved_quoted": [
+    "rocrand_xorwow_inlined.h"
+   ]
+  },
+  "MIOpenSoftmaxNoncontiguous.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenSubSample.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenSubTensorOpWithCastTensorKernel.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenSubTensorOpWithScalarKernel.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenSubTensorOpWithSubTensorKernel.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenSubTensorOpWithTransformKernel.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenT5LayerNorm.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenTensorKernelsHip.cpp": {
+   "closure_size": 2,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenUpSample.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenUtilKernels4.cpp": {
+   "closure_size": 2,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "MIOpenUtilKernels5.cpp": {
+   "closure_size": 4,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "UniversalTranspose.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "dynamic_igemm/wrw_reduction_hip.cpp": {
+   "closure_size": 1,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_batched_transpose_kernel/batched_transpose.cpp": {
+   "closure_size": 2,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_16x256_byte.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_16x256_dword.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_16x256_dwordx2.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_16x256_half.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_1x256_byte.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_1x256_dword.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_1x256_dwordx2.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_1x256_half.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_2x256_byte.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_2x256_dword.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_2x256_dwordx2.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_2x256_half.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_4x256_byte.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_4x256_dword.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_4x256_dwordx2.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_4x256_half.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_8x256_byte.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_8x256_dword.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_8x256_dwordx2.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_general_tensor_reorder_kernel/general_tensor_reorder_8x256_half.cpp": {
+   "closure_size": 3,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "gpu_reference_kernel/fp8_naive_conv.cpp": {
+   "closure_size": 7,
+   "other_angle_includes": [],
+   "std_angle_includes": [
+    "type_traits"
+   ],
+   "std_entities": [
+    "is_same",
+    "is_trivially_copyable_v"
+   ],
+   "unresolved_quoted": []
+  },
+  "gpu_reference_kernel/naive_conv_bwd.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [
+    "array"
+   ],
+   "unresolved_quoted": []
+  },
+  "gpu_reference_kernel/naive_conv_fwd.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [
+    "array"
+   ],
+   "unresolved_quoted": []
+  },
+  "gpu_reference_kernel/naive_conv_wrw.cpp": {
+   "closure_size": 5,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [
+    "array"
+   ],
+   "unresolved_quoted": []
+  },
+  "miopen_conv3d_depthwise_fwd.cpp": {
+   "closure_size": 1,
+   "other_angle_includes": [],
+   "std_angle_includes": [],
+   "std_entities": [],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_ncdhw_kczyx_nkdhw.cpp": {
+   "closure_size": 37,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_nchw_kcyx_nkhw.cpp": {
+   "closure_size": 39,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v4r1_xdlops_nchw_kcyx_nkhw.cpp": {
+   "closure_size": 39,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.cpp": {
+   "closure_size": 38,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_nchw_kcyx_nkhw.cpp": {
+   "closure_size": 38,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.cpp": {
+   "closure_size": 39,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.cpp": {
+   "closure_size": 39,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.cpp": {
+   "closure_size": 39,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.cpp": {
+   "closure_size": 39,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r5_xdlops_nchw_kcyx_nkhw.cpp": {
+   "closure_size": 39,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r1_gnchw_gkcyx_gnkhw_lds_double_buffer.cpp": {
+   "closure_size": 38,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r1_nchw_kcyx_nkhw_lds_double_buffer.cpp": {
+   "closure_size": 38,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.cpp": {
+   "closure_size": 37,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  },
+  "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r4_nchw_kcyx_nkhw.cpp": {
+   "closure_size": 37,
+   "other_angle_includes": [
+    "hip/hip_fp8.h"
+   ],
+   "std_angle_includes": [
+    "type_traits",
+    "utility"
+   ],
+   "std_entities": [
+    "forward"
+   ],
+   "unresolved_quoted": []
+  }
+ },
+ "summary": {
+  "defines": {
+   "HIP_PACKAGE_VERSION_FLAT": 7140060850,
+   "HIP_PLATFORM_AMD": 1,
+   "MIOPEN_HIP_RUNTIME_COMPILE": 1,
+   "__HIP_PLATFORM_AMD__": 1
+  },
+  "entity_users": {
+   "array": [
+    "gpu_reference_kernel/naive_conv_bwd.cpp",
+    "gpu_reference_kernel/naive_conv_fwd.cpp",
+    "gpu_reference_kernel/naive_conv_wrw.cpp"
+   ],
+   "forward": [
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v4r1_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r5_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r1_gnchw_gkcyx_gnkhw_lds_double_buffer.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r1_nchw_kcyx_nkhw_lds_double_buffer.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r4_nchw_kcyx_nkhw.cpp"
+   ],
+   "initializer_list": [
+    "MIOpenGetitem.cpp",
+    "MIOpenKthvalue.cpp",
+    "MIOpenMultiMarginLoss.cpp",
+    "MIOpenPReLU.cpp",
+    "MIOpenReduceSum.cpp",
+    "MIOpenSoftMarginLoss.cpp"
+   ],
+   "is_same": [
+    "MIOpenBatchNormActivBwdPerAct.cpp",
+    "MIOpenBatchNormActivBwdSpatial.cpp",
+    "MIOpenBatchNormActivFwdTrainPerAct.cpp",
+    "MIOpenBatchNormActivFwdTrainSpatial.cpp",
+    "MIOpenBatchNormActivInfer.cpp",
+    "MIOpenBatchNormBwdSpatial.cpp",
+    "MIOpenBatchNormFwdInferPerAct.cpp",
+    "MIOpenBatchNormFwdInferSpatial.cpp",
+    "MIOpenBatchNormFwdTrainPerAct.cpp",
+    "MIOpenBatchNormFwdTrainSpatial.cpp",
+    "MIOpenConvDirBatchNormActivHip.cpp",
+    "MIOpenKthvalue.cpp",
+    "MIOpenLRNBwd.cpp",
+    "MIOpenLRNFwd.cpp",
+    "MIOpenNeuron.cpp",
+    "MIOpenRNNHiddenStateUpdate.cpp",
+    "gpu_reference_kernel/fp8_naive_conv.cpp"
+   ],
+   "is_trivially_copyable_v": [
+    "MIOpenCheckNumerics.cpp",
+    "gpu_reference_kernel/fp8_naive_conv.cpp"
+   ],
+   "numeric_limits": [
+    "MIOpenCheckNumerics.cpp",
+    "MIOpenKthvalue.cpp",
+    "MIOpenPoolingBwd.cpp",
+    "MIOpenPoolingBwdND.cpp",
+    "MIOpenSoftmaxAttn.cpp"
+   ]
+  },
+  "kernels_dir": "/home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/src/kernels",
+  "rtc_entry_count": 104,
+  "std_header_reachability": {
+   "initializer_list": [
+    "MIOpenGetitem.cpp",
+    "MIOpenKthvalue.cpp",
+    "MIOpenMultiMarginLoss.cpp",
+    "MIOpenPReLU.cpp",
+    "MIOpenReduceSum.cpp",
+    "MIOpenSoftMarginLoss.cpp"
+   ],
+   "limits": [
+    "MIOpenKthvalue.cpp"
+   ],
+   "type_traits": [
+    "MIOpenBatchNormActivBwdPerAct.cpp",
+    "MIOpenBatchNormActivBwdSpatial.cpp",
+    "MIOpenBatchNormActivFwdTrainPerAct.cpp",
+    "MIOpenBatchNormActivFwdTrainSpatial.cpp",
+    "MIOpenBatchNormActivInfer.cpp",
+    "MIOpenBatchNormBwdSpatial.cpp",
+    "MIOpenBatchNormFwdInferPerAct.cpp",
+    "MIOpenBatchNormFwdInferSpatial.cpp",
+    "MIOpenBatchNormFwdTrainPerAct.cpp",
+    "MIOpenBatchNormFwdTrainSpatial.cpp",
+    "MIOpenCheckNumerics.cpp",
+    "MIOpenConvDirBatchNormActivHip.cpp",
+    "MIOpenKthvalue.cpp",
+    "MIOpenLRNBwd.cpp",
+    "MIOpenLRNFwd.cpp",
+    "MIOpenNeuron.cpp",
+    "MIOpenRNNHiddenStateUpdate.cpp",
+    "gpu_reference_kernel/fp8_naive_conv.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v4r1_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r5_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r1_gnchw_gkcyx_gnkhw_lds_double_buffer.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r1_nchw_kcyx_nkhw_lds_double_buffer.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r4_nchw_kcyx_nkhw.cpp"
+   ],
+   "utility": [
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v1r1_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_data_implicit_gemm_v4r1_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_backward_weights_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r4_xdlops_nchw_kcyx_nkhw_padded_gemm.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_forward_implicit_gemm_v4r5_xdlops_nchw_kcyx_nkhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r1_gnchw_gkcyx_gnkhw_lds_double_buffer.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r1_nchw_kcyx_nkhw_lds_double_buffer.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r4_ncdhw_kczyx_nkdhw.cpp",
+    "static_composable_kernel/src/kernel_wrapper/static_kernel_gridwise_convolution_implicit_gemm_v4r4_nchw_kcyx_nkhw.cpp"
+   ]
+  }
+ }
+}

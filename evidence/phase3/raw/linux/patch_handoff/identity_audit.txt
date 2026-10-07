@@ -1,0 +1,17 @@
+=== GATE L23/L24: patch application audit ===
+2026-10-08T02:16:19+08:00
+SOURCE_SHA: b68f8944300f104875d953fc8e4510908c9aaf0b
+PATCH_ID: P3-FINAL
+patch files (sha256):
+f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20  /home/amd/Desktop/YOLO_AMD/tmp/patches/0001-miopen-hiprtc-selfcontained.patch
+77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532  /home/amd/Desktop/YOLO_AMD/tmp/patches/0002-miopen-hiprtc-selfcontained.patch
+
+git diff --check: clean
+
+full diff sha256 (tracked, vs HEAD): 
+972e9f5954724a36bc6729ad246f12bef438b5fe34a6bd096cabe70a183dd8cf  -
+
+untracked new files:
+  projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp 8fdb1232c8ba3e03…
+  projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp 7475b39cdb4bdf2f…
+  projects/miopen/src/kernels/miopen_freestanding_utility.hpp db65c6882301814f…

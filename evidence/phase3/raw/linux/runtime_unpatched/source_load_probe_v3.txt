@@ -1,0 +1,10 @@
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+/home/amd/Desktop/YOLO_AMD/tmp/probe_source_load.py:21: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /__w/rockrel/rockrel/external-builds/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  print("BN2d train PASS", y.shape, float(y.mean()))
+torch: 2.12.0+rocm7.14.0 hip: 7.14.60850
+miopen mapped before BN: ['/home/amd/Desktop/YOLO_AMD/.deps/miopen/lib/libsqlite3.so', '/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1', '/home/amd/Desktop/YOLO_AMD/installs/miopen-unpatched/lib/libMIOpen.so.1.0']
+miopen mapped after BN: ['/home/amd/Desktop/YOLO_AMD/.deps/miopen/lib/libsqlite3.so', '/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1', '/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_libraries/lib/libMIOpenCKGroupedConv_gfx1151.so', '/home/amd/Desktop/YOLO_AMD/installs/miopen-unpatched/lib/libMIOpen.so.1.0']
+BN2d train PASS torch.Size([8, 16, 64, 64]) -6.111804395914078e-10
+LOADED_FROM_EXPECTED: YES

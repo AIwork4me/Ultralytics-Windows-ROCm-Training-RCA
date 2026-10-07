@@ -1,0 +1,37 @@
+{
+  "generated": "2026-10-08T02:38:51",
+  "arms": {
+    "A_with_stl_equivalence": {
+      "unpatched_rc": 0,
+      "patched_rc": 0,
+      "canonical_bytes_unpatched": 2903968,
+      "canonical_bytes_patched": 2903968,
+      "token_identical": true,
+      "result": "PASS"
+    },
+    "B_provider_documentation": {
+      "rtc_compile": 6,
+      "compiles_with_host_gcc_blocked": false,
+      "host_gcc_resolutions": 0,
+      "comgr_bundled_libcpp_resolutions": 0,
+      "finding": "Linux wheel comgr always provides its bundled libc++ to RTC even with -nostdinc++; the Windows no-STL condition is structurally unreproducible via comgr on this stack",
+      "log_head": "In file included from /tmp/comgr-550028-0-8a8704/input/canary.cu:2:\n/home/amd/Desktop/YOLO_AMD/rocm-libraries-linux-baseline/projects/miopen/src/kernels/miopen_utility.hpp:55:10: fatal error: 'utility' file not found\n   55 | #include <utility>\n      |          ^~~~~~~~~\n1 error generated when compil"
+    },
+    "C_wrapper_fallback_zero_stl": {
+      "rc": 0,
+      "stderr_head": "",
+      "note": "plain C++ mode with -nostdinc++ has no C++ provider at all; the patched wrapper's freestanding fallback arm is the one compiled, with facility static_asserts evaluated",
+      "result": "PASS"
+    },
+    "D_facilities_gpu_exec_rtc": {
+      "rtc_compile": 0,
+      "code_size": 3816,
+      "log": "",
+      "moduleLoadData": 0,
+      "launch": 0,
+      "gpu_result": 2,
+      "result": "PASS"
+    }
+  },
+  "overall": "PASS"
+}

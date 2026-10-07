@@ -1,0 +1,22 @@
+=== GATE L42: patch mutation audit ===
+2026-10-08T02:45:12+08:00
+-- tracked diff --
+ projects/miopen/src/CMakeLists.txt                 |  3 +++
+ projects/miopen/src/kernels/miopen_type_traits.hpp | 17 +++++++++++++++--
+ projects/miopen/src/kernels/miopen_utility.hpp     | 15 ++++++++++++++-
+ projects/miopen/src/kernels/radix.hpp              | 11 +++++++++--
+ projects/miopen/src/kernels/tensor_view.hpp        |  7 +++++++
+ 5 files changed, 48 insertions(+), 5 deletions(-)
+diff sha256: 972e9f5954724a36bc6729ad246f12bef438b5fe34a6bd096cabe70a183dd8cf
+-- untracked additions --
+projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp
+projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp
+projects/miopen/src/kernels/miopen_freestanding_utility.hpp
+-- reconstruct combined patch from tree state and hash --
+6d1581d36b45530cafeb1ad57a7ef053cd9a948e30b89fe7fadfbd98916459d1  -
+-- applied patch files sha256 (must equal handoff) --
+f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20  /home/amd/Desktop/YOLO_AMD/tmp/patches/0001-miopen-hiprtc-selfcontained.patch
+77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532  /home/amd/Desktop/YOLO_AMD/tmp/patches/0002-miopen-hiprtc-selfcontained.patch
+
+baseline tree:
+baseline CLEAN

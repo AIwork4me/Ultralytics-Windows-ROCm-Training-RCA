@@ -1,0 +1,29 @@
+=== GATE L28: unpatched build provenance ===
+2026-10-08T02:31:45+08:00
+libMIOpen.so files:
+lrwxrwxrwx 1 amd amd        14 10月  8 02:31 libMIOpen.so -> libMIOpen.so.1
+lrwxrwxrwx 1 amd amd        16 10月  8 02:31 libMIOpen.so.1 -> libMIOpen.so.1.0
+-rw-r--r-- 1 amd amd 803090840 10月  8 02:31 libMIOpen.so.1.0
+
+sha256:
+8694d2bac119d51f58fcdaeeb0fb0ab4cd050da884f7ae01b355cf4e5ef242cd  installs/miopen-unpatched/lib/libMIOpen.so.1.0
+
+SONAME:
+ 0x000000000000000e (SONAME)             Library soname: [libMIOpen.so.1]
+
+ldd (non-venv deps highlighted):
+	libzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x00007eb136489000)
+	libbz2.so.1.0 => /lib/x86_64-linux-gnu/libbz2.so.1.0 (0x00007eb136475000)
+	libhiprtc.so.7 => /opt/rocm-7.2.1/lib/libhiprtc.so.7 (0x00007eb11832d000)
+	libamd_comgr.so.3 => /opt/rocm-7.2.1/lib/libamd_comgr.so.3 (0x00007eb10e800000)
+	librocblas.so.5 => /opt/rocm-7.2.1/lib/librocblas.so.5 (0x00007eb10b800000)
+	/home/amd/Desktop/YOLO_AMD/.deps/miopen/lib/libsqlite3.so (0x00007eb118221000)
+	libroctx64.so.4 => /opt/rocm-7.2.1/lib/libroctx64.so.4 (0x00007eb13646e000)
+	libamdhip64.so.7 => /opt/rocm-7.2.1/lib/libamdhip64.so.7 (0x00007eb109e00000)
+	libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007eb136422000)
+	libhipblaslt.so.1 => /opt/rocm-7.2.1/lib/libhipblaslt.so.1 (0x00007eb109000000)
+	librocprofiler-register.so.0 => /opt/rocm-7.2.1/lib/librocprofiler-register.so.0 (0x00007eb118192000)
+	libhsa-runtime64.so.1 => /opt/rocm-7.2.1/lib/libhsa-runtime64.so.1 (0x00007eb108a00000)
+	librocroller.so.1 => /opt/rocm-7.2.1/lib/librocroller.so.1 (0x00007eb106800000)
+	libelf.so.1 => /lib/x86_64-linux-gnu/libelf.so.1 (0x00007eb118173000)
+	libdrm.so.2 => /opt/amdgpu/lib/x86_64-linux-gnu/libdrm.so.2 (0x00007eb11815a000)

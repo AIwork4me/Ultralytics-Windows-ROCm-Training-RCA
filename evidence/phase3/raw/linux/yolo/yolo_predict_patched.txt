@@ -1,0 +1,11 @@
+=== GATE L38: YOLO inference under PATCHED source-built MIOpen ===
+2026-10-08T02:43:25+08:00
+bound miopenCreate -> /home/amd/Desktop/YOLO_AMD/installs/miopen-patched/lib/libMIOpen.so.1
+Ultralytics 8.4.174 🚀 Python-3.13.15 torch-2.12.0+rocm7.14.0 CUDA:0 (AMD Radeon 8060S Graphics, 102400MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+
+image 1/1 /home/amd/Desktop/YOLO_AMD/bus.jpg: 640x480 4 persons, 1 bus, 5.9ms
+Speed: 46.6ms preprocess, 5.9ms inference, 24.7ms postprocess per image at shape (1, 3, 640, 480)
+Results saved to /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/runs/detect/predict-3
+💡 Learn more at https://docs.ultralytics.com/modes/predict
+yolo_predict_exit=0
