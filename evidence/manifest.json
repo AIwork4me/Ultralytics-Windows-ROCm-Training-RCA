@@ -1,0 +1,317 @@
+﻿[
+    {
+        "path":  "evidence/raw/batchnorm/bn_variants.txt",
+        "timestamp":  "2026-10-07T04:18:36.4353064Z",
+        "command":  "python scripts/11_bn_variants.py",
+        "sha256":  "e279c80f8b7cc24a36f61dddffea05077be4f25cdc4dd1b1780915f754f1d6c4",
+        "size_bytes":  1591
+    },
+    {
+        "path":  "evidence/raw/batchnorm/bn_variants_results.json",
+        "timestamp":  "2026-10-07T04:18:36.4265963Z",
+        "command":  "",
+        "sha256":  "c962a271073a2f596d51243ce2443bf691a1df40426006a447d342172056f15f",
+        "size_bytes":  1018
+    },
+    {
+        "path":  "evidence/raw/batchnorm/matrix.txt",
+        "timestamp":  "2026-10-07T03:56:27.0659252Z",
+        "command":  "python scripts/03_batchnorm_matrix.py",
+        "sha256":  "1522db5cefdf8a5e735c748ee480c5337317ab34c0e6f264cd7f17035fbb7199",
+        "size_bytes":  6962
+    },
+    {
+        "path":  "evidence/raw/batchnorm/matrix_results.json",
+        "timestamp":  "2026-10-07T03:56:27.0439513Z",
+        "command":  "",
+        "sha256":  "b1fa939c7a2c6e996cf9d4a49797ae5a359bd280c8c731b04938fadbcba7c9fc",
+        "size_bytes":  6569
+    },
+    {
+        "path":  "evidence/raw/batchnorm/minimal.txt",
+        "timestamp":  "2026-10-07T03:54:57.4829120Z",
+        "command":  "python scripts/02_batchnorm_minimal.py minimal",
+        "sha256":  "1363c3f66df9eb3553215709f8fd4dafdf01a2ab5ea89f90ff9405e6ab9cce2f",
+        "size_bytes":  2668
+    },
+    {
+        "path":  "evidence/raw/batchnorm/minimal_issue3956.txt",
+        "timestamp":  "2026-10-07T03:55:25.1000317Z",
+        "command":  "python scripts/02_batchnorm_minimal.py issue3956",
+        "sha256":  "cbae88a624236747ac4a244899bf50b65a048d07dd490df84bbb76e181ce3db2",
+        "size_bytes":  2680
+    },
+    {
+        "path":  "evidence/raw/batchnorm/minimal_yololike.txt",
+        "timestamp":  "2026-10-07T03:55:27.5765348Z",
+        "command":  "python scripts/02_batchnorm_minimal.py yololike",
+        "sha256":  "b8cc2863c84fb62d6f8f68c89f8263a83b548ecd19229d6b572f2df4f102128a",
+        "size_bytes":  2678
+    },
+    {
+        "path":  "evidence/raw/conv/conv_control.txt",
+        "timestamp":  "2026-10-07T04:10:06.0964409Z",
+        "command":  "python scripts/04_conv_control.py",
+        "sha256":  "258df72be129f1f5e1c91b6043284ba4a6f1bc2f34998bd7fbac98355a9d4682",
+        "size_bytes":  299
+    },
+    {
+        "path":  "evidence/raw/environment/conda_env_list.txt",
+        "timestamp":  "2026-10-07T03:51:22.0619663Z",
+        "command":  "",
+        "sha256":  "6eaa9c162c4a113d3873507aa1715288b68e63bb418fd1c6073f6e3846b71a37",
+        "size_bytes":  240
+    },
+    {
+        "path":  "evidence/raw/environment/conda_info.txt",
+        "timestamp":  "2026-10-07T03:51:23.5279576Z",
+        "command":  "",
+        "sha256":  "f67ad2fd4b29a237d03a4c04b1fd1e5fd7d7b23482ce337b439842a631e930c5",
+        "size_bytes":  1914
+    },
+    {
+        "path":  "evidence/raw/environment/conda_list_base.txt",
+        "timestamp":  "2026-10-07T03:51:26.6799467Z",
+        "command":  "",
+        "sha256":  "31d957acb5c5ffed6104e6a18dade0a7bc382f644340274a6145bcc3c3a134cf",
+        "size_bytes":  18965
+    },
+    {
+        "path":  "evidence/raw/environment/cpu.txt",
+        "timestamp":  "2026-10-07T03:51:21.0680717Z",
+        "command":  "",
+        "sha256":  "7efc43af0167776315d2dfa9a76f6c129141b6ccd560644817aad0cc9977b3cc",
+        "size_bytes":  250
+    },
+    {
+        "path":  "evidence/raw/environment/dll_provenance.json",
+        "timestamp":  "2026-10-07T04:01:09.4632928Z",
+        "command":  "",
+        "sha256":  "68d6d748b6330512788739de8a1f474aa26e89fee46229ce00dd2ed1b7b957fb",
+        "size_bytes":  8049
+    },
+    {
+        "path":  "evidence/raw/environment/dll_provenance.txt",
+        "timestamp":  "2026-10-07T04:01:09.9637236Z",
+        "command":  "python scripts/10_dll_provenance.py",
+        "sha256":  "6729bdb4aaea95effd995623ea6b9909c6ef683b184b33ae1166ea0ed62418e6",
+        "size_bytes":  8250
+    },
+    {
+        "path":  "evidence/raw/environment/gpu_wmi.txt",
+        "timestamp":  "2026-10-07T03:51:21.0998089Z",
+        "command":  "",
+        "sha256":  "a4a4e2b5df798d59d10e60100e19819acfc265cbcb95f58fda1c94de8b069536",
+        "size_bytes":  365
+    },
+    {
+        "path":  "evidence/raw/environment/pip_check.txt",
+        "timestamp":  "2026-10-07T03:51:28.5530442Z",
+        "command":  "",
+        "sha256":  "695be08a75b4acad0a0e9c6b0029f520e57412a63a65a398a866afda4dfafcf0",
+        "size_bytes":  314
+    },
+    {
+        "path":  "evidence/raw/environment/pip_freeze.txt",
+        "timestamp":  "2026-10-07T03:51:27.6918587Z",
+        "command":  "",
+        "sha256":  "ddc13ff29b48bf891bf138a58778e72ff27a28ac2474b0639050aa1efb1fadd9",
+        "size_bytes":  9166
+    },
+    {
+        "path":  "evidence/raw/environment/pip_version.txt",
+        "timestamp":  "2026-10-07T03:51:26.9659678Z",
+        "command":  "",
+        "sha256":  "a41e79a30954de3a08045de8031cf92d746b6eef2c17903f45122bde8487a161",
+        "size_bytes":  144
+    },
+    {
+        "path":  "evidence/raw/environment/torch_collect_env.txt",
+        "timestamp":  "2026-10-07T03:51:36.9019766Z",
+        "command":  "",
+        "sha256":  "31491af232e5db42aec4332bbd328dfc303041f78c9629d456b6d07d8f527496",
+        "size_bytes":  3011
+    },
+    {
+        "path":  "evidence/raw/environment/torch_probe.txt",
+        "timestamp":  "2026-10-07T03:51:40.3517410Z",
+        "command":  "",
+        "sha256":  "8296d5ca9cc9c1ca0f6058feb109d0f0e9f88d42b5c1b135bfc652c8204a4200",
+        "size_bytes":  4946
+    },
+    {
+        "path":  "evidence/raw/environment/windows_os.txt",
+        "timestamp":  "2026-10-07T03:51:19.9951530Z",
+        "command":  "",
+        "sha256":  "a7f642657458b2d75cc743ccf83324e873bc6d0d5813dcef134b3d186bf28e67",
+        "size_bytes":  212
+    },
+    {
+        "path":  "evidence/raw/external/EXTERNAL_INDEX.md",
+        "timestamp":  "2026-10-07T04:07:01.3268792Z",
+        "command":  "",
+        "sha256":  "cb9cfd8bc6f859bf875bdb5351b490e1e4134e8a1d31520977d827fe639bac2e",
+        "size_bytes":  5445
+    },
+    {
+        "path":  "evidence/raw/external/miopen_3956_comments.json",
+        "timestamp":  "2026-10-07T04:03:05.4283435Z",
+        "command":  "",
+        "sha256":  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes":  0
+    },
+    {
+        "path":  "evidence/raw/external/miopen_3956_issue.json",
+        "timestamp":  "2026-10-07T04:02:52.5489937Z",
+        "command":  "",
+        "sha256":  "f5204a0fafc026e8fa145fd512a8e5b1831fe17a116f1232aee409122d6a3317",
+        "size_bytes":  3247
+    },
+    {
+        "path":  "evidence/raw/external/miopen_3956_meta.json",
+        "timestamp":  "2026-10-07T04:03:05.4136778Z",
+        "command":  "",
+        "sha256":  "f6c60fc2197841d0ac67d582e44642970e530107610a1969b31151f97ca2180c",
+        "size_bytes":  185
+    },
+    {
+        "path":  "evidence/raw/external/rocm_libraries_2169_body.txt",
+        "timestamp":  "2026-10-07T04:03:25.6272664Z",
+        "command":  "",
+        "sha256":  "ac4cdaef85f797331cbcd64b027d646d4a7c520e5e87f7caea924661de4150cf",
+        "size_bytes":  37211
+    },
+    {
+        "path":  "evidence/raw/external/rocm_libraries_2169_comments.txt",
+        "timestamp":  "2026-10-07T04:03:32.3382402Z",
+        "command":  "",
+        "sha256":  "9a4474681594d4294f699838751e0e2a53b2242241eefdcba88ac9d9b6dca9ab",
+        "size_bytes":  1444
+    },
+    {
+        "path":  "evidence/raw/external/rocm_libraries_2169_meta.json",
+        "timestamp":  "2026-10-07T04:03:24.7943778Z",
+        "command":  "",
+        "sha256":  "a19de73199e59391954c124bc4042e222a2b2a047d0d52178f9adddeb0a9298d",
+        "size_bytes":  223
+    },
+    {
+        "path":  "evidence/raw/external/rocm_libraries_pr1288.json",
+        "timestamp":  "2026-10-07T04:03:52.2710642Z",
+        "command":  "",
+        "sha256":  "8d1befb68164c51cd248d4cb27b28529dfcf3b6a465414f8115c82051542a85b",
+        "size_bytes":  959
+    },
+    {
+        "path":  "evidence/raw/external/therock_842_body.txt",
+        "timestamp":  "2026-10-07T04:03:49.3519355Z",
+        "command":  "",
+        "sha256":  "bd0cb444e002954d05d20dc82549520c25b2e624d73144f1d905cf00dae2a646",
+        "size_bytes":  16796
+    },
+    {
+        "path":  "evidence/raw/external/therock_842_meta.json",
+        "timestamp":  "2026-10-07T04:03:48.5718334Z",
+        "command":  "",
+        "sha256":  "91535b6aede45ca271bbd7841b2db08d1dbfd04c95ace3524bef4f0d900ab21e",
+        "size_bytes":  181
+    },
+    {
+        "path":  "evidence/raw/gpu-control/gemm.txt",
+        "timestamp":  "2026-10-07T03:53:16.6458530Z",
+        "command":  "C:/Users/rocm/miniconda3/python.exe scripts/01_gpu_gemm_control.py",
+        "sha256":  "8261c1d5796581657aa5015187d5677ba78ea8222908e9dd2b14a3532114f11f",
+        "size_bytes":  533
+    },
+    {
+        "path":  "evidence/raw/miopen/minimal_bn_miopen_logging.txt",
+        "timestamp":  "2026-10-07T03:58:00.4809812Z",
+        "command":  "MIOPEN_ENABLE_LOGGING=1 MIOPEN_ENABLE_LOGGING_CMD=1 TEMP=C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\evidence\\tmp\\miopen_run python scripts/02_batchnorm_minimal.py minimal",
+        "sha256":  "d1999e4d0217ac79c837e42496785c431204d8a1119db423d9c0a1ec7f974b80",
+        "size_bytes":  6405
+    },
+    {
+        "path":  "evidence/raw/miopen/miopen_dll_embedded_sources.txt",
+        "timestamp":  "2026-10-07T04:18:04.2191980Z",
+        "command":  "grep -aoE \u0027MIOpenBatchNormFwd[A-Za-z]*\\.cpp\u0027 MIOpen.dll | sort | uniq -c ; grep -aoE \u0027#include \u003c[a-z_]+\u003e\u0027 MIOpen.dll | sort | uniq -c ; grep -ac \u0027batchnorm_functions.hpp\u0027 MIOpen.dll ; grep -ac \u0027miopen_type_traits.hpp\u0027 MIOpen.dll",
+        "sha256":  "52c88ea68ed36cd46de0ccd4a356442a6f4b30ba73fe49455216586e4f135fe5",
+        "size_bytes":  1005
+    },
+    {
+        "path":  "evidence/raw/miopen/miopen_dll_shim_gate.txt",
+        "timestamp":  "2026-10-07T04:25:25.3160106Z",
+        "command":  "grep -aoE \u0027.{0,80}HIP_PACKAGE_VERSION_FLAT.{0,120}\u0027 MIOpen.dll (context of the no-STL shim gate in embedded miopen_type_traits.hpp)",
+        "sha256":  "98917aff4a7490335caed741d00f417417422c217cf999b8080f98f3b70e0155",
+        "size_bytes":  602
+    },
+    {
+        "path":  "evidence/raw/miopen/temp_tree_inventory.txt",
+        "timestamp":  "2026-10-07T03:58:00.4908912Z",
+        "command":  "",
+        "sha256":  "df2de4b41d3cf8eb1f95081f6362e077df640138254e533f0748831d03618530",
+        "size_bytes":  983
+    },
+    {
+        "path":  "evidence/raw/miopen/user_kernel_db_listing.txt",
+        "timestamp":  "2026-10-07T04:25:33.5675324Z",
+        "command":  "ls -la C:/Users/rocm/.miopen/cache/*/ ; grep -aoE \u0027MIOpen[A-Za-z0-9_]*\\.(cpp|cl)(\\.obj)?\u0027 \u003cukdb files\u003e | sort | uniq -c",
+        "sha256":  "3cf80b3e4d85491f38d6c0befa45b2c6dac8bf1896381f91e053c2e45b853436",
+        "size_bytes":  1076
+    },
+    {
+        "path":  "evidence/raw/toolchain/toolchain_probe.txt",
+        "timestamp":  "2026-10-07T03:59:52.1095021Z",
+        "command":  "",
+        "sha256":  "3ed836018ab7a4983733f1db1e15948a828a77951fe1ec912bd84903d90d5399",
+        "size_bytes":  1420
+    },
+    {
+        "path":  "evidence/raw/toolchain/wheel_stl_sweep.txt",
+        "timestamp":  "2026-10-07T04:18:10.7816894Z",
+        "command":  "find _rocm_sdk_libraries _rocm_sdk_core -iname type_traits (count) ; find _rocm_sdk_libraries _rocm_sdk_core -iname cstddef -o -iname utility (count) ; amdclang.exe --version",
+        "sha256":  "825d22c1c01a1d3e43fe2d171c6d5abad5bd46de33a7288a72a3cc0889a7b09d",
+        "size_bytes":  1173
+    },
+    {
+        "path":  "evidence/raw/ultralytics/predict.txt",
+        "timestamp":  "2026-10-07T03:53:40.8310134Z",
+        "command":  "yolo predict model=yolo26n.pt source=https://ultralytics.com/images/bus.jpg device=0",
+        "sha256":  "9aa0a526c61d17f46c0f8ecd103b818bdc7882df5add9ada812143703e944cd0",
+        "size_bytes":  746
+    },
+    {
+        "path":  "evidence/raw/ultralytics/train_cpu.txt",
+        "timestamp":  "2026-10-07T03:57:30.3316781Z",
+        "command":  "yolo detect train data=coco8.yaml model=yolo26n.pt epochs=1 imgsz=640 device=cpu workers=0",
+        "sha256":  "d75694f9b671c2a908a6ecd7790b42b71102f70b97b71b5cf3d4a765e352cd6a",
+        "size_bytes":  8240
+    },
+    {
+        "path":  "evidence/raw/ultralytics/train_gpu.txt",
+        "timestamp":  "2026-10-07T03:54:11.6202954Z",
+        "command":  "yolo detect train data=coco8.yaml model=yolo26n.pt epochs=1 imgsz=640 device=0 workers=0",
+        "sha256":  "0a0e4481991592674cc5262b9760e50a47ec9aff941db268c7ea2fb6ff153b1f",
+        "size_bytes":  11294
+    },
+    {
+        "path":  "evidence/raw/ultralytics/train_gpu_amp_off.txt",
+        "timestamp":  "2026-10-07T03:57:07.2236774Z",
+        "command":  "yolo detect train data=coco8.yaml model=yolo26n.pt epochs=1 imgsz=640 device=0 workers=0 amp=False",
+        "sha256":  "ad9bd7ac9a88308cc305b795913723faa28efc0417f53e1221c7fe483ffbdf15",
+        "size_bytes":  11199
+    },
+    {
+        "path":  "evidence/normalized/gate0_review.md",
+        "timestamp":  "2026-10-07T03:57:10.3712122Z",
+        "command":  "",
+        "sha256":  "23622e63530f2ff753e2c256f29bf84fa782f5dde3548f0ca5e24b560bedae9b",
+        "size_bytes":  15692
+    },
+    {
+        "path":  "evidence/normalized/training_failure_signature.txt",
+        "timestamp":  "2026-10-07T03:54:37.6248822Z",
+        "command":  "",
+        "sha256":  "b0fd9722ade96d870c05dd52c72703e86dc3daffd1cbce4bcffc8ac73d120e2b",
+        "size_bytes":  3195
+    }
+]

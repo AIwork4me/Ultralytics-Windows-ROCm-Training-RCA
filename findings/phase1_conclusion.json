@@ -1,0 +1,48 @@
+{
+  "phase": 1,
+  "date": "2026-10-07",
+  "repository": "AIwork4me/Ultralytics-Windows-ROCm-Training-RCA",
+  "branch": "rca/windows-gfx1151-rocm714",
+  "system_under_test": {
+    "os": "Windows 11 (10.0.26200), native",
+    "cpu": "AMD Ryzen AI MAX+ 395",
+    "gpu": "AMD Radeon(TM) 8060S Graphics",
+    "gfx": "gfx1151",
+    "python": "3.13.13 (conda base)",
+    "torch": "2.12.0+rocm7.14.0",
+    "torchvision": "0.27.0+rocm7.14.0",
+    "rocm": "7.14.0 (pip wheels in site-packages)",
+    "miopen": "3.5.2",
+    "ultralytics": "8.4.174"
+  },
+  "rca_depth_reached": "LEVEL 2",
+  "root_cause_statement": "Ultralytics/YOLO26 training on this machine fails because any spatial BatchNorm (BatchNorm2d, BatchNorm3d, BatchNorm1d with 3D input) executed through MIOpen triggers runtime compilation of an embedded spatial-BatchNorm kernel (MIOpenBatchNormFwdTrainSpatial.cpp / MIOpenBatchNormFwdInferSpatial.cpp) via HIPRTC, and that compilation aborts with HIPRTC_ERROR_COMPILATION (6) because miopen_type_traits.hpp:151's #include <type_traits> cannot be resolved: no C++ standard library exists at any searched location on the machine and the ROCm Windows wheels ship none for their msvc-target clang toolchain.",
+  "minimal_reproduction": "python scripts/02_batchnorm_minimal.py minimal   # nn.BatchNorm2d(16).cuda().train(); bn(torch.randn(8,16,64,64,device='cuda'))",
+  "key_pass_controls": [
+    "GPU GEMM 4096x4096 (evidence/raw/gpu-control/gemm.txt)",
+    "Ultralytics YOLO26n GPU inference, bus.jpg (evidence/raw/ultralytics/predict.txt)",
+    "Ultralytics CPU training 1 epoch coco8 (evidence/raw/ultralytics/train_cpu.txt)",
+    "Matrix B (CPU BN), E (BN with cudnn disabled - diagnostic), F (Conv), H (autograd)"
+  ],
+  "key_fail_experiments": [
+    "Ultralytics GPU train epochs=1 (evidence/raw/ultralytics/train_gpu.txt)",
+    "Pure PyTorch BatchNorm2d train (evidence/raw/batchnorm/minimal.txt)",
+    "Pure PyTorch BatchNorm2d eval - MIOpenBatchNormFwdInferSpatial (evidence/raw/batchnorm/matrix_results.json case C)",
+    "BatchNorm1d(3D)/BatchNorm3d fail identically; BatchNorm1d(2D)/GroupNorm pass (evidence/raw/batchnorm/bn_variants.txt)",
+    "amp=False identical failure (evidence/raw/ultralytics/train_gpu_amp_off.txt)"
+  ],
+  "falsified_hypotheses": ["H1 Ultralytics-specific", "H2 YOLO26 model", "H3 COCO8 dataset", "H4 AMP", "H5 general ROCm GPU failure", "H12 pip conflicts", "H13 virtual display adapter"],
+  "unresolved_hypotheses": {
+    "H10_missing_host_msvc_stl": "plausible - type_traits physically absent machine-wide; sufficiency unproven (no VS to A/B)",
+    "H11_wheel_packaging_include_path": "plausible - wheels ship no C++ STL; AMD Windows docs declare no MSVC prerequisite",
+    "H8_python313": "falsified by external evidence only (MIOpen #3956 on 3.12.7)",
+    "H9_gfx1151_specific": "falsified by external evidence only (#3956 on gfx1200)"
+  },
+  "upstream_correlation": {
+    "miopen_3956": "same error signature field-for-field in compiler diagnostics; still open/unanswered",
+    "rocm_libraries_2169": "DIFFERENT compile-stage defect (gfx1151 DPP inline-asm, fixed by PR #1288); its Windows log compiled past the full include chain, unlike the ROCm 7.14 rockrel wheels - a Phase-2 packaging-difference lead"
+  },
+  "type_traits_status": "ABSENT - physically missing at every searched location (no MSVC/LLVM/gcc STL found; none in either ROCm wheel tree)",
+  "no_fix_applied": true,
+  "workaround_status": "none proposed; torch.backends.cudnn.enabled=False observation is diagnostic only"
+}
