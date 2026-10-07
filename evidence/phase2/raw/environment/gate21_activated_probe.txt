@@ -1,0 +1,29 @@
+
+C:\Users\rocm\Desktop\YOLO_AMD>REM Gate-21 probe: what does an activated (yolo_amd) shell actually execute? 
+
+C:\Users\rocm\Desktop\YOLO_AMD>call conda activate yolo_amd 
+CONDA_DEFAULT_ENV=yolo_amd
+CONDA_PREFIX=C:\Users\rocm\miniconda3\envs\yolo_amd
+PATH-beginning: C:\Users\rocm\miniconda3\envs\yolo_amd;C:\Users\rocm\miniconda3\envs\yolo_amd\Library\mingw-w64\bin;C:\Users\rocm\miniconda3\envs\yolo_amd\Library\usr\bin;C:\Users\rocm\miniconda3\envs\yolo_amd\Library\bin;C:\Users\rocm\miniconda3\envs\yolo_amd\Scripts;C:\Users\rocm\miniconda3\envs\yolo_amd\bin;C:\Users\rocm\miniconda3\condabin;C:\Users\rocm\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Gi
+C:\Users\rocm\miniconda3\python.exe
+C:\Users\rocm\AppData\Local\Microsoft\WindowsApps\python.exe
+C:\Users\rocm\miniconda3\Scripts\pip.exe
+C:\Users\rocm\miniconda3\Scripts\yolo.exe
+C:\Users\rocm\miniconda3\python.exe
+C:\Users\rocm\miniconda3
+C:\Users\rocm\miniconda3
+C:\Users\rocm\miniconda3\envs\yolo_amd
+python: C:\Users\rocm\miniconda3\python.exe
+sys.prefix: C:\Users\rocm\miniconda3
+sys.base_prefix: C:\Users\rocm\miniconda3
+CONDA_DEFAULT_ENV: yolo_amd
+CONDA_PREFIX: C:\Users\rocm\miniconda3\envs\yolo_amd
+torch: 2.12.0+rocm7.14.0
+hip: 7.14.60850
+cuda: None
+torchvision: 0.27.0+rocm7.14.0
+ultralytics: 8.4.174
+cuda_available: True
+device: AMD Radeon(TM) 8060S Graphics
+torch_location: C:\Users\rocm\miniconda3\Lib\site-packages\torch
+ultralytics_location: C:\Users\rocm\miniconda3\Lib\site-packages\ultralytics

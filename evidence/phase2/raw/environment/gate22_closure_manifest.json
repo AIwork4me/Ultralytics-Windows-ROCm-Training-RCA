@@ -1,0 +1,342 @@
+{
+  "source": "C:\\Users\\rocm\\miniconda3\\Lib\\site-packages",
+  "destination": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages",
+  "roots": [
+    "torch",
+    "torchvision",
+    "ultralytics",
+    "ultralytics-thop",
+    "ultralytics-platform",
+    "rocm",
+    "rocm-bootstrap",
+    "rocm-sdk-core",
+    "rocm-sdk-libraries",
+    "rocm-sdk-device-gfx1151",
+    "amd-torch-device-gfx11",
+    "amd-torch-device-gfx1151",
+    "amd-torchvision-device-gfx1151"
+  ],
+  "excluded": [
+    "torchaudio"
+  ],
+  "excluded_edges": [],
+  "closure": {
+    "amd-torch-device-gfx11": {
+      "version": "2.12.0+rocm7.14.0",
+      "requires_kept": [
+        "torch"
+      ]
+    },
+    "amd-torch-device-gfx1151": {
+      "version": "2.12.0+rocm7.14.0",
+      "requires_kept": [
+        "torch",
+        "rocm-sdk-device-gfx1151"
+      ]
+    },
+    "amd-torchvision-device-gfx1151": {
+      "version": "0.27.0+rocm7.14.0",
+      "requires_kept": [
+        "torchvision",
+        "rocm-sdk-device-gfx1151"
+      ]
+    },
+    "anyio": {
+      "version": "4.12.1",
+      "requires_kept": [
+        "idna"
+      ]
+    },
+    "certifi": {
+      "version": "2026.4.22",
+      "requires_kept": []
+    },
+    "charset-normalizer": {
+      "version": "3.4.4",
+      "requires_kept": []
+    },
+    "contourpy": {
+      "version": "1.4.0",
+      "requires_kept": [
+        "numpy"
+      ]
+    },
+    "cycler": {
+      "version": "0.12.1",
+      "requires_kept": []
+    },
+    "filelock": {
+      "version": "3.29.4",
+      "requires_kept": []
+    },
+    "fonttools": {
+      "version": "4.66.1",
+      "requires_kept": []
+    },
+    "fsspec": {
+      "version": "2026.6.0",
+      "requires_kept": []
+    },
+    "h11": {
+      "version": "0.16.0",
+      "requires_kept": []
+    },
+    "httpcore": {
+      "version": "1.0.9",
+      "requires_kept": [
+        "certifi",
+        "h11"
+      ]
+    },
+    "httpx": {
+      "version": "0.28.1",
+      "requires_kept": [
+        "anyio",
+        "certifi",
+        "httpcore",
+        "idna"
+      ]
+    },
+    "idna": {
+      "version": "3.11",
+      "requires_kept": []
+    },
+    "jinja2": {
+      "version": "3.1.6",
+      "requires_kept": [
+        "markupsafe"
+      ]
+    },
+    "kiwisolver": {
+      "version": "1.5.1",
+      "requires_kept": []
+    },
+    "markupsafe": {
+      "version": "3.0.3",
+      "requires_kept": []
+    },
+    "matplotlib": {
+      "version": "3.11.2",
+      "requires_kept": [
+        "contourpy",
+        "cycler",
+        "fonttools",
+        "kiwisolver",
+        "numpy",
+        "packaging",
+        "pillow",
+        "pyparsing",
+        "python-dateutil"
+      ]
+    },
+    "mpmath": {
+      "version": "1.3.0",
+      "requires_kept": []
+    },
+    "networkx": {
+      "version": "3.6.1",
+      "requires_kept": []
+    },
+    "numpy": {
+      "version": "2.1.0",
+      "requires_kept": []
+    },
+    "nvidia-ml-py": {
+      "version": "13.615.71",
+      "requires_kept": []
+    },
+    "opencv-python": {
+      "version": "5.0.0.93",
+      "requires_kept": [
+        "numpy"
+      ]
+    },
+    "packaging": {
+      "version": "26.0",
+      "requires_kept": []
+    },
+    "pillow": {
+      "version": "12.2.0",
+      "requires_kept": []
+    },
+    "polars": {
+      "version": "2.0.0",
+      "requires_kept": [
+        "polars-runtime-32"
+      ]
+    },
+    "polars-runtime-32": {
+      "version": "2.0.0",
+      "requires_kept": []
+    },
+    "psutil": {
+      "version": "7.2.2",
+      "requires_kept": []
+    },
+    "pyyaml": {
+      "version": "6.0.2",
+      "requires_kept": []
+    },
+    "requests": {
+      "version": "2.33.1",
+      "requires_kept": [
+        "charset-normalizer",
+        "idna",
+        "urllib3",
+        "certifi"
+      ]
+    },
+    "rocm": {
+      "version": "7.14.0",
+      "requires_kept": [
+        "rocm",
+        "rocm-sdk-core"
+      ]
+    },
+    "rocm-bootstrap": {
+      "version": "0.1.0",
+      "requires_kept": []
+    },
+    "rocm-sdk-core": {
+      "version": "7.14.0",
+      "requires_kept": []
+    },
+    "rocm-sdk-device-gfx1151": {
+      "version": "7.14.0",
+      "requires_kept": [
+        "rocm-sdk-libraries"
+      ]
+    },
+    "rocm-sdk-libraries": {
+      "version": "7.14.0",
+      "requires_kept": []
+    },
+    "setuptools": {
+      "version": "81.0.0",
+      "requires_kept": []
+    },
+    "sympy": {
+      "version": "1.14.0",
+      "requires_kept": [
+        "mpmath"
+      ]
+    },
+    "torch": {
+      "version": "2.12.0+rocm7.14.0",
+      "requires_kept": [
+        "filelock",
+        "typing-extensions",
+        "setuptools",
+        "sympy",
+        "networkx",
+        "jinja2",
+        "fsspec",
+        "rocm",
+        "rocm-bootstrap"
+      ]
+    },
+    "torchvision": {
+      "version": "0.27.0+rocm7.14.0",
+      "requires_kept": [
+        "numpy",
+        "torch",
+        "pillow",
+        "rocm-bootstrap"
+      ]
+    },
+    "typing-extensions": {
+      "version": "4.15.0",
+      "requires_kept": []
+    },
+    "ultralytics": {
+      "version": "8.4.174",
+      "requires_kept": [
+        "numpy",
+        "matplotlib",
+        "opencv-python",
+        "pillow",
+        "pyyaml",
+        "requests",
+        "torch",
+        "torch",
+        "torchvision",
+        "psutil",
+        "polars",
+        "nvidia-ml-py",
+        "ultralytics-thop",
+        "ultralytics-platform"
+      ]
+    },
+    "ultralytics-platform": {
+      "version": "0.1.82",
+      "requires_kept": [
+        "httpx"
+      ]
+    },
+    "ultralytics-thop": {
+      "version": "2.2.2",
+      "requires_kept": [
+        "numpy",
+        "torch"
+      ]
+    },
+    "urllib3": {
+      "version": "2.6.3",
+      "requires_kept": []
+    }
+  },
+  "missing_in_source": [
+    "pyparsing",
+    "python-dateutil"
+  ],
+  "files_copied": 27180,
+  "bytes_copied": 4892385421,
+  "per_dist_new_files": {
+    "amd-torch-device-gfx11": 1785,
+    "amd-torch-device-gfx1151": 6,
+    "amd-torchvision-device-gfx1151": 6,
+    "anyio": 94,
+    "certifi": 16,
+    "charset-normalizer": 35,
+    "contourpy": 43,
+    "cycler": 9,
+    "filelock": 34,
+    "fonttools": 709,
+    "fsspec": 119,
+    "h11": 31,
+    "httpcore": 70,
+    "httpx": 56,
+    "idna": 24,
+    "jinja2": 57,
+    "kiwisolver": 13,
+    "markupsafe": 14,
+    "matplotlib": 891,
+    "mpmath": 180,
+    "networkx": 1182,
+    "numpy": 1246,
+    "nvidia-ml-py": 9,
+    "opencv-python": 59,
+    "packaging": 6,
+    "pillow": 219,
+    "polars": 440,
+    "polars-runtime-32": 11,
+    "psutil": 28,
+    "pyyaml": 43,
+    "requests": 45,
+    "rocm": 27,
+    "rocm-bootstrap": 31,
+    "rocm-sdk-core": 671,
+    "rocm-sdk-device-gfx1151": 262,
+    "rocm-sdk-libraries": 56,
+    "setuptools": 36,
+    "sympy": 3105,
+    "torch": 14367,
+    "torchvision": 375,
+    "typing-extensions": 9,
+    "ultralytics": 604,
+    "ultralytics-platform": 56,
+    "ultralytics-thop": 20,
+    "urllib3": 81
+  },
+  "dry_run": false
+}

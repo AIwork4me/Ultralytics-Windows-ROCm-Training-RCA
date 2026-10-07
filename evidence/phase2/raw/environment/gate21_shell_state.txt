@@ -1,0 +1,18 @@
+=== conda env list ===
+
+# conda environments:
+#
+# * -> active
+# + -> frozen
+base                     C:\Users\rocm\miniconda3
+yolo_amd                 C:\Users\rocm\miniconda3\envs\yolo_amd
+
+=== CONDA_DEFAULT_ENV= ===
+=== CONDA_PREFIX= ===
+=== where python ===
+C:\Users\rocm\miniconda3\python.exe
+C:\Users\rocm\AppData\Local\Microsoft\WindowsApps\python.exe
+=== where pip ===
+C:\Users\rocm\miniconda3\Scripts\pip.exe
+=== where yolo ===
+C:\Users\rocm\miniconda3\Scripts\yolo.exe

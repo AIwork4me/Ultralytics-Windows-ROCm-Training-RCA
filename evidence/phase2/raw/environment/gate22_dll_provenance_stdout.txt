@@ -1,0 +1,116 @@
+{
+  "captured": "2026-10-07T13:13:26.3269141+08:00",
+  "python": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe",
+  "live_loaded_rocm_dlls": [
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amd_comgr.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\rocm-openblas.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\rocm_kpack.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipblas.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_backend.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipfft.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hiprand.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipsolver.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipsparse.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\libhipblaslt.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\rocblas.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\rocfft.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\rocrand.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\rocsolver.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\rocsparse.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\numpy.libs\\libscipy_openblas64_-c16e4918366c6bc1f1cd71e28ca36fc0.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\numpy.libs\\msvcp140-23ebcc0b37c8e3d074511f362feac48b.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\aotriton_v2.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\c10.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\c10_hip.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\caffe2_nvrtc.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\dl.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\liblzma.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\libomp140.x86_64.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\shm.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\torch.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\torch_global_deps.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\torch_hip.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\torch_python.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\torch\\lib\\uv.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Library\\bin\\ffi.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Library\\bin\\libbz2.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Library\\bin\\libcrypto-3-x64.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Library\\bin\\liblzma.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Library\\bin\\libssl-3-x64.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\msvcp140.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\msvcp140_atomic_wait.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python3.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python313.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\vcruntime140.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\vcruntime140_1.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\zlib.dll"
+  ],
+  "dlls": [
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "size_bytes": 492380672,
+      "sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+      "version_info": "{\"FileVersion\":null,\"ProductVersion\":null,\"CompanyName\":null,\"FileDescription\":null}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpenCKGroupedConv_gfx1151.dll",
+      "size_bytes": 305966080,
+      "sha256": "f67654a630cd5409b84af03878b2a1f98c5d2ed89eb996f3e058b8983de87c3d",
+      "version_info": "{\"FileVersion\":null,\"ProductVersion\":null,\"CompanyName\":null,\"FileDescription\":null}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_plugins\\engines\\miopen_plugin.dll",
+      "size_bytes": 500736,
+      "sha256": "fd9629078d8937e19e169f3edcd23ed721d9509aaae92136d4e962ba2dc10e79",
+      "version_info": "{\"FileVersion\":null,\"ProductVersion\":null,\"CompanyName\":null,\"FileDescription\":null}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll",
+      "size_bytes": 22084096,
+      "sha256": "b4b4799f5deafb81ff735e077b0efe95fb98abe728a2a98efa713b1c6f8bd1a2",
+      "version_info": "{\"FileVersion\":\"10.0.3581.0\",\"ProductVersion\":\"10.0.3581.0\",\"CompanyName\":\"Advanced Micro Devices Inc.\",\"FileDescription\":\"AMD Accelerated Parallel Processing amdhip64 7.14 Runtime\"}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amd_comgr.dll",
+      "size_bytes": 120767488,
+      "sha256": "0a890dbdcd12e6a10dd9ddb48370d592ec3592d6d9a5d4b167c86b7f49c17b34",
+      "version_info": "{\"FileVersion\":\"3.3.0.0\",\"ProductVersion\":\"3.3.0.0\",\"CompanyName\":\"Advanced Micro Devices, Inc.\",\"FileDescription\":\"AMD Code Object Manager (Commit Hash: 2079bd6e5, Build Type: )\"}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc-builtins0714.dll",
+      "size_bytes": 1297920,
+      "sha256": "33ae08201842711b4871eb3e51928313a2a5f08f3dc7f875da8441bbdf9635d2",
+      "version_info": "{\"FileVersion\":\"10.0.3581.0\",\"ProductVersion\":\"10.0.3581.0\",\"CompanyName\":\"Advanced Micro Devices Inc.\",\"FileDescription\":\"AMD Accelerated Parallel Processing hiprtc-builtins 7.14 Runtime\"}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+      "size_bytes": 2126336,
+      "sha256": "c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e",
+      "version_info": "{\"FileVersion\":\"10.0.3581.0\",\"ProductVersion\":\"10.0.3581.0\",\"CompanyName\":\"Advanced Micro Devices Inc.\",\"FileDescription\":\"AMD Accelerated Parallel Processing hiprtc 7.14 Runtime\"}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\rocm-openblas.dll",
+      "size_bytes": 11719680,
+      "sha256": "88f7631d9f7c49cfbf710551a7fa69bef2fd54052007532a518d7ba3699534c0",
+      "version_info": "{\"FileVersion\":null,\"ProductVersion\":null,\"CompanyName\":null,\"FileDescription\":null}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\rocm-openblas64.dll",
+      "size_bytes": 11926528,
+      "sha256": "9020e44dc2afd30576dbe38fccc473011efadfbe86e3b6f954b8b4776c8d66fb",
+      "version_info": "{\"FileVersion\":null,\"ProductVersion\":null,\"CompanyName\":null,\"FileDescription\":null}"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\rocm_kpack.dll",
+      "size_bytes": 181248,
+      "sha256": "97b59ca4e7b5edfcda72d66c5b6643f557168b3c60091cf5c6fe9bb226597bf1",
+      "version_info": "{\"FileVersion\":null,\"ProductVersion\":null,\"CompanyName\":null,\"FileDescription\":null}"
+    }
+  ]
+}
+
+10 DLL records written to evidence/raw/environment/dll_provenance.json
