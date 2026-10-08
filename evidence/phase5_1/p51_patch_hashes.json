@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "name": "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "sha256": "14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2",
+      "bytes": 15546,
+      "crlf": false,
+      "lf_ending": true
+    },
+    {
+      "name": "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "sha256": "7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e",
+      "bytes": 7444,
+      "crlf": false,
+      "lf_ending": true
+    },
+    {
+      "name": "0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch",
+      "sha256": "3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4",
+      "bytes": 27631,
+      "crlf": false,
+      "lf_ending": true
+    }
+  ],
+  "series_sha256_file_concat_v1": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d"
+}

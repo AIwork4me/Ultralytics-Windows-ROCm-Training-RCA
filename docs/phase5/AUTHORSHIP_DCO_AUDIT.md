@@ -96,7 +96,8 @@ fill exactly:
 Copyright (c) 2026 AIwork4me
 ```
 
-in the three files; that changes validated bytes (comment-only,
+in the FOUR files (3 kernel headers + `test/hiprtc_selfcontained.cpp`);
+that changes validated bytes (comment-only,
 classification COPYRIGHT_TEXT) → rerun the targeted validation
 (CI matrix + DLL build + runtime spot-check) on the new candidate.
 

@@ -64,10 +64,13 @@ audited two-commit series itself has zero executable delta.
   CMake/CTest wiring (see `docs/phase5/CI_INTEGRATION.md`).
 - DCO: all three commits unsigned with the `DCO: PENDING HUMAN
   CONFIRMATION` marker retained → **DCO_ATTESTATION_PENDING**.
-- Copyright: 3 MIT headers still carry the submitter placeholder →
+- Copyright: FOUR files still carry the submitter placeholder in their
+  MIT headers (3 kernel headers + `test/hiprtc_selfcontained.cpp`;
+  count corrected 3→4 by Phase 5.1 Gate 05) →
   **COPYRIGHT_ATTRIBUTION_PENDING** (comment-only lines; when the human
   sets attribution, classify as COPYRIGHT_TEXT and rerun the targeted
-  validation).
+  validation. Phase 5.1 executed exactly this under the confirmed
+  right-to-contribute: see `findings/phase5_1/FINAL_HANDOFF.json`).
 
 ## Series identity
 

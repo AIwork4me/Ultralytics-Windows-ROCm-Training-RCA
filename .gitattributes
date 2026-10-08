@@ -18,3 +18,7 @@ evidence/raw/** -text
 # Phase-2 raw evidence: same byte-exact rule as Phase 1 (hashes recorded in
 # evidence/phase2/SHA256SUMS.txt by Gate 43).
 evidence/phase2/** -text
+
+# Phase-5.1 (Reviewer A A-1): canonical patch bytes are hash-anchored
+# (sha256 recorded in manifests); they must never be EOL-converted.
+patches/** -text

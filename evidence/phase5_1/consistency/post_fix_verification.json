@@ -1,0 +1,287 @@
+{
+  "label": "post-fix",
+  "schema_version": 1,
+  "repo": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA",
+  "worktree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-candidate",
+  "git_author": "AIwork4me <AIwork4me@users.noreply.github.com>",
+  "checks": [
+    {
+      "check": 1,
+      "name": "same upstream base",
+      "result": "PASS",
+      "detail": {
+        "git_HEAD~3": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+        "PATCH_HANDOFF.upstream_base.sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+        "PATCH_IDENTITY.new_upstream_base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+        "phase5_conclusion.new_upstream_base": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+        "md_frozen_base": "7c5866144ac4b879be442563e2b49fa1c142ea36"
+      }
+    },
+    {
+      "check": 2,
+      "name": "same ordered candidate commits",
+      "result": "PASS",
+      "detail": {
+        "git": [
+          "135f775e855bc40185d0a39e13d0a1a97105c1b9",
+          "66f66944f171628076785e5b89b4a1334d5a987d",
+          "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+        ],
+        "PATCH_HANDOFF": [
+          "135f775e855bc40185d0a39e13d0a1a97105c1b9",
+          "66f66944f171628076785e5b89b4a1334d5a987d",
+          "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+        ],
+        "PATCH_IDENTITY": [
+          "135f775e855bc40185d0a39e13d0a1a97105c1b9",
+          "66f66944f171628076785e5b89b4a1334d5a987d",
+          "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+        ],
+        "conclusion": [
+          "135f775e855bc40185d0a39e13d0a1a97105c1b9",
+          "66f66944f171628076785e5b89b4a1334d5a987d",
+          "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+        ],
+        "handoff_md": [
+          "135f775e855bc40185d0a39e13d0a1a97105c1b9",
+          "66f66944f171628076785e5b89b4a1334d5a987d",
+          "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+        ],
+        "head": "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+      }
+    },
+    {
+      "check": 3,
+      "name": "same commit subjects",
+      "result": "PASS",
+      "detail": {
+        "git": [
+          "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
+          "MIOpen: make remaining RTC kernel std includes self-contained",
+          "MIOpen: add HIPRTC no-host-STL regression test"
+        ],
+        "conclusion": [
+          "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
+          "MIOpen: make remaining RTC kernel std includes self-contained",
+          "MIOpen: add HIPRTC no-host-STL regression test"
+        ]
+      }
+    },
+    {
+      "check": 4,
+      "name": "same patch paths",
+      "result": "PASS",
+      "detail": {
+        "PATCH_HANDOFF": [
+          "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+          "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+          "0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch"
+        ],
+        "disk": [
+          "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+          "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+          "0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch"
+        ]
+      }
+    },
+    {
+      "check": 5,
+      "name": "same individual patch SHA256",
+      "result": "PASS",
+      "detail": {
+        "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": {
+          "recomputed": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586",
+          "expected": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586"
+        },
+        "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": {
+          "recomputed": "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea",
+          "expected": "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea"
+        },
+        "0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch": {
+          "recomputed": "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821",
+          "expected": "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821"
+        },
+        "PATCH_HANDOFF:0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": {
+          "recorded": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586",
+          "expected": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586"
+        },
+        "PATCH_HANDOFF:0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": {
+          "recorded": "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea",
+          "expected": "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea"
+        },
+        "PATCH_HANDOFF:0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch": {
+          "recorded": "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821",
+          "expected": "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821"
+        },
+        "PATCH_IDENTITY:0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": {
+          "recorded": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586",
+          "expected": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586"
+        },
+        "PATCH_IDENTITY:0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": {
+          "recorded": "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea",
+          "expected": "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea"
+        },
+        "PATCH_IDENTITY:0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch": {
+          "recorded": "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821",
+          "expected": "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821"
+        },
+        "handoff_md_hashes": [
+          "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586",
+          "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea",
+          "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821",
+          "5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d"
+        ]
+      }
+    },
+    {
+      "check": 6,
+      "name": "same ordered series SHA256",
+      "result": "PASS",
+      "detail": {
+        "recomputed": "5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d",
+        "expected": "5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d",
+        "PATCH_HANDOFF": "5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d",
+        "PATCH_IDENTITY": "5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d",
+        "conclusion": "5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d",
+        "in_handoff_md": true
+      }
+    },
+    {
+      "check": 7,
+      "name": "same source-fix content",
+      "result": "PASS",
+      "detail": {
+        "git_files": [
+          "projects/miopen/src/CMakeLists.txt",
+          "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+          "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+          "projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+          "projects/miopen/src/kernels/miopen_type_traits.hpp",
+          "projects/miopen/src/kernels/miopen_utility.hpp",
+          "projects/miopen/src/kernels/radix.hpp",
+          "projects/miopen/src/kernels/tensor_view.hpp",
+          "projects/miopen/test/CMakeLists.txt",
+          "projects/miopen/test/hiprtc_selfcontained.cpp"
+        ],
+        "patch_files": [
+          "projects/miopen/src/CMakeLists.txt",
+          "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+          "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+          "projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+          "projects/miopen/src/kernels/miopen_type_traits.hpp",
+          "projects/miopen/src/kernels/miopen_utility.hpp",
+          "projects/miopen/src/kernels/radix.hpp",
+          "projects/miopen/src/kernels/tensor_view.hpp",
+          "projects/miopen/test/CMakeLists.txt",
+          "projects/miopen/test/hiprtc_selfcontained.cpp"
+        ],
+        "post_image_blob_matches": {
+          "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch:projects/miopen/src/CMakeLists.txt": {
+            "patch_post_blob": "a2be3a29",
+            "commit_blob": "a2be3a2999178fe423dbe94f7c465009e3037051",
+            "match": true
+          },
+          "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch:projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": {
+            "patch_post_blob": "c19736f6",
+            "commit_blob": "c19736f60e376a0c05e5a2894bc0c365a97d3e1c",
+            "match": true
+          },
+          "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch:projects/miopen/src/kernels/miopen_freestanding_utility.hpp": {
+            "patch_post_blob": "f335261b",
+            "commit_blob": "f335261b9976fb20c23cd96548607977773f9049",
+            "match": true
+          },
+          "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch:projects/miopen/src/kernels/miopen_type_traits.hpp": {
+            "patch_post_blob": "71b64ed0",
+            "commit_blob": "71b64ed063840b353ef94d00ef8dfe9c4a2ce35c",
+            "match": true
+          },
+          "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch:projects/miopen/src/kernels/miopen_utility.hpp": {
+            "patch_post_blob": "44ab2c40",
+            "commit_blob": "44ab2c40ea8a5fcc5264976216d0839a9b7b5aa9",
+            "match": true
+          },
+          "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch:projects/miopen/src/CMakeLists.txt": {
+            "patch_post_blob": "7b8a3454",
+            "commit_blob": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+            "match": true
+          },
+          "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch:projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": {
+            "patch_post_blob": "14ac227e",
+            "commit_blob": "14ac227ec69dbe4f86ea3c5cafe5c0773a3448e1",
+            "match": true
+          },
+          "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch:projects/miopen/src/kernels/radix.hpp": {
+            "patch_post_blob": "99c29fda",
+            "commit_blob": "99c29fda93463818b2bb8c91230527098b689687",
+            "match": true
+          },
+          "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch:projects/miopen/src/kernels/tensor_view.hpp": {
+            "patch_post_blob": "d7963324",
+            "commit_blob": "d7963324b0de98900f105ca07e9264e12ae0b646",
+            "match": true
+          },
+          "0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch:projects/miopen/test/CMakeLists.txt": {
+            "patch_post_blob": "7c35a47e",
+            "commit_blob": "7c35a47eafdcfffd5ee000951b4d5083a5a41f77",
+            "match": true
+          },
+          "0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch:projects/miopen/test/hiprtc_selfcontained.cpp": {
+            "patch_post_blob": "d63d2030",
+            "commit_blob": "d63d2030a59431527fe3de715c02590daa8c44c8",
+            "match": true
+          }
+        }
+      }
+    },
+    {
+      "check": 8,
+      "name": "no stale commit IDs in current instructions",
+      "result": "PASS",
+      "detail": {
+        "stale_tokens": [],
+        "known_stale_present": []
+      }
+    },
+    {
+      "check": 9,
+      "name": "correct Linux validation status (PENDING)",
+      "result": "PASS",
+      "detail": {
+        "PATCH_HANDOFF.linux_validation_status": "LINUX_PHASE5_TARGETED_REVALIDATION = PENDING",
+        "conclusion.linux_phase5_revalidation": "LINUX_PHASE5_TARGETED_REVALIDATION = PENDING",
+        "md_status_line": "LINUX_PHASE5_TARGETED_REVALIDATION = PENDING"
+      }
+    },
+    {
+      "check": 10,
+      "name": "correct outstanding human-action status",
+      "result": "PASS",
+      "detail": {
+        "dco": {
+          "PATCH_HANDOFF.pending": [
+            "COPYRIGHT_TEXT (attribution placeholders retained - human decision)",
+            "DCO sign-off (human certification)"
+          ],
+          "PATCH_IDENTITY.dco_status": "DCO_ATTESTATION_PENDING",
+          "conclusion.dco_status": "DCO_ATTESTATION_PENDING (commits unsigned, explicit marker; MIOpen CONTRIBUTING.md does not mandate DCO)"
+        },
+        "copyright": {
+          "PATCH_IDENTITY.copyright_status": "COPYRIGHT_ATTRIBUTION_PENDING",
+          "conclusion.copyright_status": "COPYRIGHT_ATTRIBUTION_PENDING at P5-CANDIDATE-R1 (placeholder retained in FOUR MIT headers: 3 kernel headers + test/hiprtc_selfcontained.cpp; count corrected 3->4 by Phase 5.1 Gate 05; resolved in P5.1-CANDIDATE-R1 under CONFIRMED right-to-contribute - see findings/phase5_1/FINAL_HANDOFF.json)"
+        },
+        "human_actions": [
+          "DCO: decide and sign (exact commands in docs/phase5/AUTHORSHIP_DCO_AUDIT.md \u00a73; still pending - Phase 5.1 did not receive sign-off authorization)",
+          "Copyright: holder confirmed + FOUR headers filled in P5.1-CANDIDATE-R1 (Phase 5.1; targeted revalidation executed there)",
+          "Linux: execute the authoritative Phase-5.1 handoff findings/phase5_1/FINAL_HANDOFF.json (direct miopenKthvalueForward harness; this file's Phase-5 doc is superseded)",
+          "Submission day: re-check develop applicability (Gate P5-02 method)"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "total": 10,
+    "verdict": "CONSISTENT"
+  }
+}

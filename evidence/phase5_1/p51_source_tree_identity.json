@@ -1,0 +1,55 @@
+{
+  "head_tree": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+  "files": {
+    "projects/miopen/src/CMakeLists.txt": {
+      "git_blob": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+      "sha256": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b",
+      "bytes": 55129
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": {
+      "git_blob": "de044f6fc9dff13051d9eb38ecdd9b49a01ea27c",
+      "sha256": "32b6c5585f0590a984a57346471f60a3c9793cb81edc6d6945ded0a9f0b26962",
+      "bytes": 2461
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": {
+      "git_blob": "fc864b4eaa18235fe877ffdb4715e23033a817d4",
+      "sha256": "ce1a407b834dccf0554dd106be9277aceda223b25fb36c6b794a87126758e792",
+      "bytes": 6975
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_utility.hpp": {
+      "git_blob": "04b207792d7edff69ce91189c146e16b022cbb35",
+      "sha256": "4d6e60da271fbac0da2811f29585d355ff96a6b83b09a34c3394ed9d5143ef5f",
+      "bytes": 2210
+    },
+    "projects/miopen/src/kernels/miopen_type_traits.hpp": {
+      "git_blob": "71b64ed063840b353ef94d00ef8dfe9c4a2ce35c",
+      "sha256": "70e14ee1a76835f569934a41921dbb1ed9799bb5f4e0f218e896e2df53283f45",
+      "bytes": 4333
+    },
+    "projects/miopen/src/kernels/miopen_utility.hpp": {
+      "git_blob": "44ab2c40ea8a5fcc5264976216d0839a9b7b5aa9",
+      "sha256": "a254bb9b4467435052768dbac3c2077ca62ad5d0f2692586e7931731c5ebfb5c",
+      "bytes": 2466
+    },
+    "projects/miopen/src/kernels/radix.hpp": {
+      "git_blob": "99c29fda93463818b2bb8c91230527098b689687",
+      "sha256": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9",
+      "bytes": 3848
+    },
+    "projects/miopen/src/kernels/tensor_view.hpp": {
+      "git_blob": "d7963324b0de98900f105ca07e9264e12ae0b646",
+      "sha256": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300",
+      "bytes": 3179
+    },
+    "projects/miopen/test/CMakeLists.txt": {
+      "git_blob": "7c35a47eafdcfffd5ee000951b4d5083a5a41f77",
+      "sha256": "546434b219c9d724baa9d3856a1d15fd04bdd7746f54e00027a9885293efc872",
+      "bytes": 39935
+    },
+    "projects/miopen/test/hiprtc_selfcontained.cpp": {
+      "git_blob": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
+      "sha256": "e5679eba5fb52b666d0f761a4e5e7d01024f7caaf881fa7cf19933af733d2ede",
+      "bytes": 21101
+    }
+  }
+}

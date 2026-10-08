@@ -1,0 +1,113 @@
+{
+  "schema": "phase5_1_review_v1",
+  "reviewer": "A-git-patch-integrity",
+  "reviewed_at": "2026-10-08",
+  "candidate_id": "P5.1-CANDIDATE-R1",
+  "verdict": "PASS",
+  "counts": {
+    "BLOCKER": 0,
+    "MAJOR": 0,
+    "MINOR": 1,
+    "NIT": 3
+  },
+  "findings": [
+    {
+      "id": "A-1",
+      "severity": "MINOR",
+      "title": ".gitattributes byte-exactness rules do not cover patches/**; future Windows checkout could break the recorded SHA256 chain",
+      "detail": "The RCA repo has core.autocrlf=true and .gitattributes '* text=auto' with explicit '-text' (no-conversion) overrides for evidence/raw/** and evidence/phase2/** only. patches/phase5_1/canonical/*.patch are currently UNTRACKED, and tracked patches/phase5/canonical/*.patch blobs were verified byte-identical to the working tree (stored 76fd6623/d37376c9/59306105 == working bytes), so there is NO current corruption. However, if the phase5_1 patches are committed under the current attributes, a fresh clone/checkout on Windows would smudge the patch files to CRLF in the working tree, and their SHA256 would no longer match the values recorded in FINAL_HANDOFF.json / freeze evidence.",
+      "resolution": "Before committing patches/phase5_1 (and ideally for all patches/**), add a 'patches/** -text' rule to .gitattributes. Re-verify the three sha256 values from a fresh checkout afterwards."
+    },
+    {
+      "id": "A-2",
+      "severity": "NIT",
+      "title": "git format-patch --stdout reproduction differs from the series concat by exactly 2 bytes",
+      "detail": "format-patch --stdout for the 3-commit range hashes to 85434328... (50623 bytes) vs the canonical concat 797a69b5... (50621 bytes); byte-level cmp shows stdout inserts one extra 0x0A after patch 1 and after patch 2 (at bytes 15547 and 23e... offsets, i.e. between signature and next 'From '). Per-file regeneration with 'git format-patch -o <dir>' reproduces all three canonical files BYTE-IDENTICALLY (14719b8b/7d40c314/3eb20ec0), so the manifest's sha256_file_concat_v1 over the three files is unambiguous and correct. Risk is only that a future reproducer using --stdout gets a confusing mismatch.",
+      "resolution": "In reproduction instructions (e.g. the freeze doc), state that regeneration must use per-file output (-o / one file per commit), not --stdout, and that the series hash is over the concatenation of the three files with no separator."
+    },
+    {
+      "id": "A-3",
+      "severity": "NIT",
+      "title": "patches/phase5_1/canonical/ lacks the README.md present in the phase3/phase4/phase5 canonical dirs",
+      "detail": "patches/phase5/canonical/ and patches/phase4/canonical/ each contain a README.md; patches/phase5_1/ contains only canonical/ with the three .patch files and no README. No integrity impact; the manifest records all identities.",
+      "resolution": "Optionally add a short README.md pointing to findings/phase5_1/FINAL_HANDOFF.json for the hash manifest, mirroring earlier phases."
+    },
+    {
+      "id": "A-4",
+      "severity": "NIT",
+      "title": "RCA repo phase5_1 artifacts are untracked (not yet committed)",
+      "detail": "git status in the RCA repo shows patches/phase5_1/, findings/phase5_1/, docs/phase5_1/, evidence/phase5_1/, scripts/phase5_1/ as untracked, plus modified docs/phase5 (4 files) and findings/phase5 (1 file). The modified phase5 files are annotated supersession corrections whose new hash values I independently verified against the immutable patch bytes; nothing under patches/phase3, patches/phase4, findings/phase3, findings/phase4, docs/phase3, docs/phase4 is modified. Until committed, the evidence chain lives only in the working tree.",
+      "resolution": "Commit the phase5_1 artifacts (after applying finding A-1's .gitattributes rule) so the frozen evidence is protected by the RCA repo's history."
+    }
+  ],
+  "checks": [
+    {
+      "id": "1",
+      "name": "Commit order & parent chain; HEAD; base exact",
+      "status": "PASS",
+      "evidence": "P5.1 worktree HEAD = e7ff6d75fac3e7b683e81e671555ada99af13b74, tree = 605d0d214acdbc06086fdb27c61fec970c0f2798, branch prepare/miopen-hiprtc-phase5.1, clean status. Chain: 7c5866144ac4b879be442563e2b49fa1c142ea36 (base) -> d4003de1a7cabc3715f73e48d3fd414f312a40de -> 3b18a0655b991890b63587ee18cb0950234a47f0 -> e7ff6d75. rev-list --count base..HEAD = 3; no merge commits; merge-base = base; base == origin/develop tip in clone. All three commits authored by AIwork4me <AIwork4me@users.noreply.github.com>."
+    },
+    {
+      "id": "2",
+      "name": "SHA256 domains: per-patch, series concat, LF purity, trailing newline",
+      "status": "PASS",
+      "evidence": "Recomputed from bytes with sha256sum/tr: 0001=14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2 (15546 B), 0002=7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e (7444 B), 0003=3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4 (27631 B) - all equal to manifest ordered_patches. Series concat (cat in order, no separator) = 797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d = manifest. CR byte count = 0 in all three files (LF counts 406/170/651 equal line counts; last byte 0x0A). Initial grep-based \\r hits were an MSYS/ugrep false positive, disproven by tr byte counting. STRONGER: regenerating with 'git format-patch -o' from the three commits reproduces all three files byte-identically (same sha256), proving the canonical files are faithful, unedited format-patch products."
+    },
+    {
+      "id": "3",
+      "name": "P5 -> P5.1 delta: exactly 4 files, 1 comment line each; messages/authors/dates preserved",
+      "status": "PASS",
+      "evidence": "git diff 29846fc4..e7ff6d75: exactly 4 files, numstat 1/1 each, shortstat '4 files changed, 4 insertions(+), 4 deletions(-)'. Every hunk replaces comment line ' * Copyright (c) 2026 [contributor name and notice to be set by the submitter]' with ' * Copyright (c) 2026 AIwork4me' (files: miopen_freestanding_initializer_list.hpp, miopen_freestanding_type_traits.hpp, miopen_freestanding_utility.hpp, test/hiprtc_selfcontained.cpp). Commit message bytes (%B sha256) identical between P5 and P5.1 for all three pairs (967d9e22/e59db31f/0cbf831c). Author name/email identical. Author dates preserved exactly: 2026-10-08T13:37:28+08:00, 2026-10-08T14:40:01+08:00, 2026-10-08T14:40:01+08:00. Committer dates differ (15:19:38-47 vs 14:40:01) - permitted."
+    },
+    {
+      "id": "4",
+      "name": "Historical immutability of P5 and prior phases",
+      "status": "PASS",
+      "evidence": "P5 worktree still at 29846fc4fb736800ff0ad91af95c7cc32f1373ad with clean status; phase5-pristine worktree still at 7c586614, clean. P5 canonical patches rehash to 76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586 / d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea / 593061053e113c5005040d6d9b1dee39c4d0d7cb2b0c27626749815ed6877821, series concat 5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d - all match the frozen documented values, and regeneration from the P5 commits is byte-identical. Tracked RCA blobs for these files equal working bytes. RCA git status: modified only docs/phase5 (4 files: supersession banner + hash corrections, new values verified against immutable bytes, provenance in evidence/phase5_1/consistency/pre_fix_findings.json + post_fix_verification.json) and findings/phase5/phase5_conclusion.json; untracked phase5_1 dirs; NOTHING modified under patches/phase3, patches/phase4, findings/phase3, findings/phase4, docs/phase3, docs/phase4."
+    },
+    {
+      "id": "5",
+      "name": "Source-tree reconstruction from base + patches (git am roundtrip)",
+      "status": "PASS",
+      "evidence": "Fresh temp worktree at 7c586614 in the main clone; 'git am' of the three canonical patches applied cleanly (exit 0) and produced HEAD^{tree} = 605d0d214acdbc06086fdb27c61fec970c0f2798, exactly equal to the candidate HEAD tree; author identities/dates/subjects reproduced from patch headers. Temp worktree removed afterwards (worktree list re-verified)."
+    },
+    {
+      "id": "6",
+      "name": "Patch-envelope validity and sequential git apply --check on byte-exact base",
+      "status": "PASS",
+      "evidence": "Each file is a genuine format-patch product: 'From <full commit sha> Mon Sep 17 00:00:00 2001' first lines reference exactly d4003de1/3b18a065/e7ff6d75; From:/Date:/Subject: [PATCH n/3] headers present and correct; Date headers equal the commit author dates; trailing signature '2.55.0.windows.5'; diff --git + index lines present with 5/4/2 file sections = 10 unique files = manifest changed_files_vs_base. Sequential 'git apply --check' passed for each patch on the byte-exact base state (after patch1, patch2 applied via --index), and 'git apply --index' of all three yields write-tree = 605d0d214acdbc06086fdb27c61fec970c0f2798. Note: an initial non-index apply --check failure for patch 3 was an artifact of the temp worktree inheriting the clone's sparse-checkout cone (projects/miopen/test not materialized); after widening the cone the checks pass - not a patch defect."
+    },
+    {
+      "id": "7",
+      "name": "Manifest (FINAL_HANDOFF.json) vs independently recomputed reality",
+      "status": "PASS",
+      "evidence": "ordered_commits = [d4003de1..., 3b18a065..., e7ff6d75...] matches git log; ordered_commit_subjects match; ordered_patches paths/sha256/bytes all match recomputation; series_hash 797a69b5... matches; base_sha 7c586614... matches; source_tree_identity.head_tree_sha1 605d0d21... verified via both git am and write-tree reconstruction; all 10 changed_files_vs_base git_blob values match git ls-tree of e7ff6d75 exactly; supersedes.phase5_commits = [135f775e..., 66f66944..., 29846fc4...] matches the actual P5 branch commits."
+    },
+    {
+      "id": "8",
+      "name": "No force-push / history rewrite; branch topology consistent",
+      "status": "PASS",
+      "evidence": "git branch -a -v: develop b68f8944, prepare/miopen-hiprtc-phase5 29846fc4, prepare/miopen-hiprtc-phase5.1 e7ff6d75, prepare/miopen-hiprtc-selfcontained 4084759f, sole remote branch origin/develop 7c586614 (= frozen base). No phase5/5.1 branch exists on any remote => nothing was ever pushed, so no force-push is possible. Reflogs: phase5.1 branch created from 7c586614 at 15:19:05 +0800 then built by cherry-pick+amend per commit (consistent with the documented single-change rebuild); phase5 branch tip unmoved since its final commit; phase4 branch reflog untouched since creation."
+    },
+    {
+      "id": "9",
+      "name": "DCO: no Signed-off-by anywhere; PENDING marker on all three commits",
+      "status": "PASS",
+      "evidence": "grep '^Signed-off-by:' on %B of all six commits (P5 + P5.1) returns 0 hits. Each of the three P5.1 commit messages ends with trailer 'DCO: PENDING HUMAN CONFIRMATION - provisional local commit, not for upstream submission; replace this line with a real Signed-off-by per DCO before submitting.'; the same marker line appears exactly once in each canonical patch file, so am-based reconstruction carries the marker. Consistent with manifest dco_status."
+    }
+  ],
+  "tools_and_commands": [
+    "git worktree list / add --detach / remove --force",
+    "git log --format='%H %P %an <%ae> %ad %cd %s' --date=iso-strict",
+    "git rev-parse / merge-base / rev-list --count / log --merges",
+    "sha256sum, wc -c, tr -cd '\\r'|wc -c, tr -cd '\\n'|wc -c, tail -c 1|od -An -tu1 (byte-level LF/CRLF audit; grep-based \\r counts on this host are ugrep false positives)",
+    "cat 0001 0002 0003 | sha256sum (series concat v1)",
+    "git format-patch -o <tmp> <range> and hash comparison vs canonical files (byte-identical)",
+    "git diff --numstat/--stat 29846fc4..e7ff6d75",
+    "git show -s --format=%B | sha256sum (message byte comparison)",
+    "git am <3 patches> on fresh base worktree; git apply --check/--index sequence; git write-tree",
+    "git ls-tree e7ff6d75 (blob audit vs manifest), git ls-files -s/-v, git cat-file blob | sha256sum",
+    "git branch -a -v; git reflog show <branch>; git remote -v",
+    "git status --short (RCA repo, P5/P5.1/pristine worktrees)"
+  ]
+}

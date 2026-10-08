@@ -1,0 +1,17 @@
+{
+  "schema": "phase5_1_git_am_roundtrip_v1",
+  "gate": "P51-06-check",
+  "timestamp": "2026-10-08T15:40:00",
+  "method": "fresh detached worktree at frozen base 7c5866144ac4b879be442563e2b49fa1c142ea36, git am of the three ordered canonical patches, compare resulting tree hash with P5.1-CANDIDATE-R1 HEAD tree",
+  "patches_applied": [
+    "patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+    "patches/phase5_1/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+    "patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch"
+  ],
+  "git_am_exit": 0,
+  "applied_tree": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+  "candidate_head": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+  "candidate_head_tree": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+  "source_tree_match": true,
+  "note": "am-created commit SHAs differ from the candidate's (committer/timestamps) but the TREE is identical, which is the content identity that matters; the Linux handoff uses git apply of exact blob bytes and must reproduce this same tree."
+}

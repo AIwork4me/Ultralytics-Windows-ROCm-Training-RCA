@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "handoff_type": "final_pre_upstream_linux_validation",
+  "generated": "2026-10-08T16:16:59.895480",
+  "candidate_id": "P5.1-CANDIDATE-R1",
+  "candidate_status": "TECHNICALLY_VERIFIED_PROVISIONAL_FREEZE",
+  "candidate_status_reason": "right-to-contribute CONFIRMED and copyright resolved (4/4 files); DCO attestation PENDING (not authorized); Linux validation PENDING",
+  "supersedes": {
+    "phase5_candidate_id": "P5-CANDIDATE-R1",
+    "phase5_commits": [
+      "135f775e855bc40185d0a39e13d0a1a97105c1b9",
+      "66f66944f171628076785e5b89b4a1334d5a987d",
+      "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+    ],
+    "phase5_patches_dir": "patches/phase5/canonical (immutable, retained)",
+    "superseded_docs": [
+      "docs/phase5/LINUX_FINAL_VALIDATION_HANDOFF.md (corrected + marked superseded)"
+    ]
+  },
+  "base_repo": "ROCm/rocm-libraries",
+  "base_branch": "develop",
+  "base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "ordered_commits": [
+    "d4003de1a7cabc3715f73e48d3fd414f312a40de",
+    "3b18a0655b991890b63587ee18cb0950234a47f0",
+    "e7ff6d75fac3e7b683e81e671555ada99af13b74"
+  ],
+  "ordered_commit_subjects": [
+    "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
+    "MIOpen: make remaining RTC kernel std includes self-contained",
+    "MIOpen: add HIPRTC no-host-STL regression test"
+  ],
+  "ordered_patches": [
+    {
+      "order": 1,
+      "path": "patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "sha256": "14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2",
+      "bytes": 15546
+    },
+    {
+      "order": 2,
+      "path": "patches/phase5_1/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "sha256": "7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e",
+      "bytes": 7444
+    },
+    {
+      "order": 3,
+      "path": "patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch",
+      "sha256": "3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4",
+      "bytes": 27631
+    }
+  ],
+  "series_hash": {
+    "algorithm": "sha256_file_concat_v1",
+    "definition": "SHA256 of the three canonical patch files' bytes (LF) concatenated in order with no separator",
+    "sha256": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d"
+  },
+  "source_tree_identity": {
+    "head_tree_sha1": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+    "git_am_roundtrip_tree_match": true,
+    "changed_files_vs_base": {
+      "projects/miopen/src/CMakeLists.txt": {
+        "git_blob": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+        "sha256": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b",
+        "bytes": 55129
+      },
+      "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": {
+        "git_blob": "de044f6fc9dff13051d9eb38ecdd9b49a01ea27c",
+        "sha256": "32b6c5585f0590a984a57346471f60a3c9793cb81edc6d6945ded0a9f0b26962",
+        "bytes": 2461
+      },
+      "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": {
+        "git_blob": "fc864b4eaa18235fe877ffdb4715e23033a817d4",
+        "sha256": "ce1a407b834dccf0554dd106be9277aceda223b25fb36c6b794a87126758e792",
+        "bytes": 6975
+      },
+      "projects/miopen/src/kernels/miopen_freestanding_utility.hpp": {
+        "git_blob": "04b207792d7edff69ce91189c146e16b022cbb35",
+        "sha256": "4d6e60da271fbac0da2811f29585d355ff96a6b83b09a34c3394ed9d5143ef5f",
+        "bytes": 2210
+      },
+      "projects/miopen/src/kernels/miopen_type_traits.hpp": {
+        "git_blob": "71b64ed063840b353ef94d00ef8dfe9c4a2ce35c",
+        "sha256": "70e14ee1a76835f569934a41921dbb1ed9799bb5f4e0f218e896e2df53283f45",
+        "bytes": 4333
+      },
+      "projects/miopen/src/kernels/miopen_utility.hpp": {
+        "git_blob": "44ab2c40ea8a5fcc5264976216d0839a9b7b5aa9",
+        "sha256": "a254bb9b4467435052768dbac3c2077ca62ad5d0f2692586e7931731c5ebfb5c",
+        "bytes": 2466
+      },
+      "projects/miopen/src/kernels/radix.hpp": {
+        "git_blob": "99c29fda93463818b2bb8c91230527098b689687",
+        "sha256": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9",
+        "bytes": 3848
+      },
+      "projects/miopen/src/kernels/tensor_view.hpp": {
+        "git_blob": "d7963324b0de98900f105ca07e9264e12ae0b646",
+        "sha256": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300",
+        "bytes": 3179
+      },
+      "projects/miopen/test/CMakeLists.txt": {
+        "git_blob": "7c35a47eafdcfffd5ee000951b4d5083a5a41f77",
+        "sha256": "546434b219c9d724baa9d3856a1d15fd04bdd7746f54e00027a9885293efc872",
+        "bytes": 39935
+      },
+      "projects/miopen/test/hiprtc_selfcontained.cpp": {
+        "git_blob": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
+        "sha256": "e5679eba5fb52b666d0f761a4e5e7d01024f7caaf881fa7cf19933af733d2ede",
+        "bytes": 21101
+      }
+    }
+  },
+  "source_delta_from_phase5": [
+    {
+      "file": "projects/miopen/src/CMakeLists.txt",
+      "p5_1_sha256": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b",
+      "change": "UNCHANGED vs P5"
+    },
+    {
+      "file": "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+      "p5_1_sha256": "32b6c5585f0590a984a57346471f60a3c9793cb81edc6d6945ded0a9f0b26962",
+      "change": "COPYRIGHT_TEXT (comment-only)"
+    },
+    {
+      "file": "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+      "p5_1_sha256": "ce1a407b834dccf0554dd106be9277aceda223b25fb36c6b794a87126758e792",
+      "change": "COPYRIGHT_TEXT (comment-only)"
+    },
+    {
+      "file": "projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+      "p5_1_sha256": "4d6e60da271fbac0da2811f29585d355ff96a6b83b09a34c3394ed9d5143ef5f",
+      "change": "COPYRIGHT_TEXT (comment-only)"
+    },
+    {
+      "file": "projects/miopen/src/kernels/miopen_type_traits.hpp",
+      "p5_1_sha256": "70e14ee1a76835f569934a41921dbb1ed9799bb5f4e0f218e896e2df53283f45",
+      "change": "UNCHANGED vs P5"
+    },
+    {
+      "file": "projects/miopen/src/kernels/miopen_utility.hpp",
+      "p5_1_sha256": "a254bb9b4467435052768dbac3c2077ca62ad5d0f2692586e7931731c5ebfb5c",
+      "change": "UNCHANGED vs P5"
+    },
+    {
+      "file": "projects/miopen/src/kernels/radix.hpp",
+      "p5_1_sha256": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9",
+      "change": "UNCHANGED vs P5"
+    },
+    {
+      "file": "projects/miopen/src/kernels/tensor_view.hpp",
+      "p5_1_sha256": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300",
+      "change": "UNCHANGED vs P5"
+    },
+    {
+      "file": "projects/miopen/test/CMakeLists.txt",
+      "p5_1_sha256": "546434b219c9d724baa9d3856a1d15fd04bdd7746f54e00027a9885293efc872",
+      "change": "UNCHANGED vs P5"
+    },
+    {
+      "file": "projects/miopen/test/hiprtc_selfcontained.cpp",
+      "p5_1_sha256": "e5679eba5fb52b666d0f761a4e5e7d01024f7caaf881fa7cf19933af733d2ede",
+      "change": "COPYRIGHT_TEXT (comment-only)"
+    }
+  ],
+  "source_delta_summary": "4 files, 1 comment line each: copyright placeholder -> 'Copyright (c) 2026 AIwork4me' (RIGHT_TO_CONTRIBUTE=CONFIRMED_BY_USER 2026-10-08). All other source bytes identical to P5-CANDIDATE-R1.",
+  "git_author": "AIwork4me",
+  "git_email": "AIwork4me@users.noreply.github.com",
+  "dco_status": "DCO_ATTESTATION_PENDING (upstream CONTRIBUTING.md files state no DCO requirement; user has NOT authorized certification; explicit marker lines retained on all three commits; sign-off instructions in docs/phase5_1/COPYRIGHT_AND_DCO_STATUS.md \u00a73)",
+  "copyright_status": "RESOLVED: 4/4 new files carry 'Copyright (c) 2026 AIwork4me'; MIT license text preserved verbatim; RIGHT_TO_CONTRIBUTE=CONFIRMED_BY_USER (2026-10-08)",
+  "windows_validation_status": {
+    "cmake_configure": "PASS",
+    "target_build": "PASS",
+    "ctest_discovery": "PASS",
+    "ctest_execution": "PASS",
+    "ci_ab_matrix": "PASS (13/13 cells)",
+    "miopen_dll_build": "PASS",
+    "miopen_dll_sha256": "9a7744029ccdf421f8ee2df588b02e35e9b5c829a7079f6dc18411cd0adb11e7",
+    "dll_load_provenance": "PASS",
+    "nostl_runtime": "PASS",
+    "batchnorm_numerics": "PASS",
+    "batchnorm_numerics_detail": {
+      "y": 6.706602642125858e-07,
+      "dx": 3.202286127666268e-12,
+      "dw": 2.4365591336228398e-08,
+      "db": 1.862645147225183e-09,
+      "running_mean": 3.524055299962067e-10,
+      "running_var": 1.1640783137423227e-07
+    },
+    "yolo_train_amp_false": "PASS",
+    "yolo_train_amp_default": "PASS",
+    "yolo_amp_note": "amp_default training PASSED (exit 0, weights, provenance) with ultralytics' AMP check failing in the CURRENT environment -> FP32 fallback; control experiment (evidence/phase5_1/yolo/amp_check_control.json) shows the check fails identically with the P5 DLL and the pristine wheel DLL => environment-state dependent, NOT a P5.1 regression. P5's historical AMP=True success remains valid for P5 bytes. amp_genuine on P5.1 = FALSE (honest record).",
+    "wheel_dll_restored": "PASS"
+  },
+  "linux_validation_status": "PENDING",
+  "linux_validation_authority": "this manifest + docs/phase5_1/LINUX_FINAL_VALIDATION_HANDOFF.md; consumers must fail closed on identity mismatch",
+  "authorization_to_submit_upstream": false,
+  "upstream_pr_created": false,
+  "upstream_issue_created": false,
+  "upstream_comment_posted": false,
+  "internal_pr_created": false
+}

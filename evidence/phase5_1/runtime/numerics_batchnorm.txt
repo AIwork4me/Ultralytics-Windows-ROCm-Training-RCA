@@ -1,0 +1,7 @@
+exit=0
+{"miopen_path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "miopen_sha256": "9a7744029ccdf421f8ee2df588b02e35e9b5c829a7079f6dc18411cd0adb11e7", "dtype": "float32 gpu vs float64 cpu", "shape": [8, 16, 64, 64], "max_abs": {"y": 6.706602642125858e-07, "dx": 3.202286127666268e-12, "dw": 2.4365591336228398e-08, "db": 1.862645147225183e-09, "running_mean": 3.524055299962067e-10, "running_var": 1.1640783137423227e-07}, "max_rel_where_meaningful": {"running_var": 1.1628949893694546e-07}, "finite": {"y": true, "dx": true, "dw": true, "db": true, "running_mean": true, "running_var": true}}
+
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+<string>:58: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at B:\src\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:839.)

@@ -1,0 +1,21 @@
+{
+  "schema": "phase5_1_amp_check_control_v1",
+  "gate": "P51-13-note",
+  "timestamp": "2026-10-08T15:58:00",
+  "question": "During P5.1 yolo amp_default training, ultralytics' AMP check FAILED (auto-fallback to FP32; training itself PASSED). During Phase 5 (same morning) the same check PASSED with the P5 DLL. Is this a P5.1 regression or environment drift?",
+  "method": "direct check_amp(YOLO(yolo26n.pt)) in fresh isolated profiles, same code, three DLLs swapped into the wheel location (plus a P5 repeat), wheel restored hash-verified after each",
+  "results": [
+    {"dll": "d5974dad0da8 (P5-CANDIDATE-R1 build; PASSED the AMP check during Phase-5 yolo run this morning)", "check_amp": false},
+    {"dll": "9a7744029ccd (P5.1-CANDIDATE-R1 build)", "check_amp": false},
+    {"dll": "d5974dad0da8 (P5 repeat)", "check_amp": false},
+    {"dll": "74b4ee038803 (pristine wheel DLL, no source-fix)", "check_amp": false}
+  ],
+  "conclusion": "The AMP-check failure is CURRENT-ENVIRONMENT-STATE dependent, not attributable to the P5.1 copyright delta: the P5 DLL and the untouched wheel DLL fail the check identically in the current environment. No P5-vs-P5.1 behavioral difference is demonstrable via this check.",
+  "training_outcome": {
+    "amp_false": "PASS (exit 0, TRAIN_DONE, best.pt, in-process provenance 9a7744029ccd) - the mission-required minimum",
+    "amp_default": "PASS as training (exit 0, TRAIN_DONE, best.pt, provenance) with ultralytics AMP check failing -> FP32 fallback",
+    "amp_default_recheck": "PASS as training; AMP check failed again (reproducible in current environment)"
+  },
+  "honest_position": "P5.1 yolo_amp_genuine = FALSE in the current environment. Phase-5's AMP=True success (d5974dad) remains valid HISTORICAL evidence for the P5 bytes; it was not re-achieved on P5.1 because the check's outcome now fails for every DLL including the wheel baseline.",
+  "wheel_restored": true
+}

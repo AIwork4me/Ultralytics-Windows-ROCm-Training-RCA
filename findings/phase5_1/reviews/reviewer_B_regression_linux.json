@@ -1,0 +1,160 @@
+{
+  "schema": "phase5_1_review_v1",
+  "reviewer": "B-regression-linux",
+  "reviewed": "2026-10-08",
+  "scope": "Adversarial MIOpen/Linux regression audit of P5.1-CANDIDATE-R1 final Linux validation handoff + Windows evidence (final Linux validation is PENDING; instructions and Windows evidence audited, no Linux tests run)",
+  "inputs_examined": [
+    "docs/phase5_1/LINUX_FINAL_VALIDATION_HANDOFF.md",
+    "findings/phase5_1/FINAL_HANDOFF.json",
+    "scripts/phase3/linux/kthvalue_runtime_harness.cpp",
+    "scripts/phase3/linux/run_with_source_miopen.sh",
+    "scripts/phase3/linux/run_fresh_cache.sh",
+    "docs/phase3/linux/KTHVALUE_RUNTIME_CLOSURE.md",
+    "docs/phase5/LINUX_FINAL_VALIDATION_HANDOFF.md (superseded marker)",
+    "evidence/phase5_1/ci/ci_matrix_phase5_1.json",
+    "evidence/phase5_1/ci/ci_integration.json",
+    "evidence/phase5_1/ci/ci_ctest_run.log",
+    "evidence/phase5_1/build/build_provenance.json",
+    "evidence/phase5_1/runtime/runtime_validation.json",
+    "evidence/phase5_1/runtime/dll_provenance.json",
+    "evidence/phase5_1/runtime/nostl_validation.json",
+    "evidence/phase5_1/yolo/yolo_train.json",
+    "evidence/phase5_1/yolo/amp_check_control.json",
+    "evidence/phase5_1/git_am_roundtrip.json",
+    "evidence/phase5_1/p51_source_tree_identity.json",
+    "evidence/phase5_1/freeze_integrity.json",
+    "findings/phase5_1/freeze_review.md",
+    "patches/phase5_1/canonical/ (3 patches, hashes recomputed)",
+    "candidate tree C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate (source chain verified)",
+    "pristine tree C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine (verified at base 7c586614)"
+  ],
+  "verdict": "PASS",
+  "counts": { "BLOCKER": 0, "MAJOR": 0, "MINOR": 1, "NIT": 4 },
+  "findings": [
+    {
+      "id": "B-M1",
+      "severity": "MINOR",
+      "title": "Handoff requires Info2-level log-evidence lines but never pins the env var that enables them (MIOPEN_LOG_LEVEL)",
+      "detail": "The handoff's required kernel-dispatch evidence ('Invoker registered ... solver KthvalueFwd', 'kernel_name = KthvalueFwd, global_work_dim = {...}', RTC LoadBinary(miss)->compile->SaveBinary for MIOpenKthvalue.cpp.o) maps to real source strings, but ALL of them are MIOPEN_LOG_I2: invoker_cache.cpp:115 ('Invoker registered for algorithm ... and solver ...'), hipoc/hipoc_kernel.cpp:80-82 ('kernel_name = ..., global_work_dim = ...'), binary_cache.cpp Loading/Saving-binary messages. Per src/logger.cpp IsLogging(), in an NDEBUG (RelWithDebInfo) build with MIOPEN_LOG_LEVEL unset the effective level is Warning, so NONE of these lines print. The handoff never states MIOPEN_LOG_LEVEL=6 (Info2) / MIOPEN_ENABLE_LOGGING. An operator following the handoff literally would produce logs without the required proof lines (blocked/false-fail risk, or temptation to accept weaker evidence). Risk is delay/integrity-of-evidence-capture, not false-PASS: absence of the lines means the required proof is not met, and the handoff culture is fail-closed.",
+      "recommendation": "Add to handoff item 3: run with MIOPEN_LOG_LEVEL=6 (Info2) exported alongside the fresh MIOPEN_CUSTOM_CACHE_DIR, and state that the three proof lines MUST appear in the captured log for the run to count (as Phase 3 did).",
+      "files": [
+        "docs/phase5_1/LINUX_FINAL_VALIDATION_HANDOFF.md",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\logger.cpp"
+      ]
+    },
+    {
+      "id": "B-N1",
+      "severity": "NIT",
+      "title": "Handoff does not require harness identity on both A/B sides",
+      "detail": "Phase-3 closure doc required 'identical harness binary sha256 on both sides'; the P5.1 handoff references the harness by path only and does not require recording the compiled harness binary sha256 (or harness source sha256) identical across unpatched/patched runs. Using the single cited script makes divergence unlikely, but the governing doc should restate the constraint it previously enforced.",
+      "recommendation": "Add one line: record harness source sha256 and require one compiled harness binary, same sha256, used for both A and B runs."
+    },
+    {
+      "id": "B-N2",
+      "severity": "NIT",
+      "title": "windows_validation_status key 'yolo_train_amp_default: PASS' is skim-misleading; disambiguated only by the adjacent note",
+      "detail": "yolo_train.json honestly records amp_genuine=false and the 'ERROR AMP: checks failed ... AMP will be disabled' line; FINAL_HANDOFF.json's yolo_amp_note explicitly says amp_genuine on P5.1 = FALSE (FP32 fallback). No exaggeration found. But the bare key name 'yolo_train_amp_default: PASS' could be skimmed as 'AMP-default training = AMP worked'. Suggest renaming to yolo_train_amp_default_fp32_fallback: PASS in any future manifest revision.",
+      "recommendation": "Cosmetic; no action required for the frozen candidate."
+    },
+    {
+      "id": "B-N3",
+      "severity": "NIT",
+      "title": "Small internal inconsistencies in CI evidence capture",
+      "detail": "ci_integration.json has test_exe=null and test_exe_sha256=null (the sha lives only in ci_matrix_phase5_1.json test_binary_sha256=2f754b34...); the 'adv: STL reachable via CPATH -> INCONCLUSIVE' cell (exit 4) demonstrates the stl-probe guard works but the JSON does not record the env manipulation (CPATH) that produced it. Neither affects any verdict.",
+      "recommendation": "None for the frozen candidate; future matrix runs should capture per-cell env deltas."
+    },
+    {
+      "id": "B-N4",
+      "severity": "NIT",
+      "title": "ctest regex not anchored in handoff text",
+      "detail": "Handoff says ctest -R test_hiprtc_selfcontained; the actual Windows run used the anchored ^test_hiprtc_selfcontained$ (ci_ctest_run.log, exit=0, 1/1 Passed). Unanchored -R is a substring regex and could match longer names in future suites. Cosmetic.",
+      "recommendation": "Use the anchored form in the Linux run for byte-parity with the Windows evidence."
+    }
+  ],
+  "checks": [
+    {
+      "id": "CHK-1",
+      "claim": "Handoff tests miopenKthvalueForward DIRECTLY (public API -> KthvalueFwd solver -> MIOpenKthvalue.cpp -> radix.hpp)",
+      "result": "PASS",
+      "evidence": "Handoff item 3 mandates the DIRECT MIOpen harness and states torch.topk/torch.kthvalue are SUPPLEMENTAL only. Chain verified in candidate tree: miopenKthvalueForward at src/kthvalue_api.cpp:73 (signature exactly matches harness fn-pointer type incl. size_t k, int32_t dim, bool keepDim) -> miopen::KthvalueForward at src/kthvalue.cpp:37 (negative dim normalized at lines 45-48, matching harness CPU normalization) -> SolverContainer<solver::kthvalue::KthvalueFwd> at kthvalue.cpp:71 -> KthvalueFwd::GetSolution at src/solver/kthvalue/forward_kthvalue.cpp:62 sets kernel_file='MIOpenKthvalue.cpp' kernel_name='KthvalueFwd' (lines 88-89) -> src/kernels/MIOpenKthvalue.cpp:37 includes radix.hpp; closure-doc line cites (66 RadixType, 99/148 encode, 160 SetBitFieldImpl) all verified at exact lines. radix.hpp blob 99c29fda... matches manifest and carries the actual patch (MIOPEN_HIP_RUNTIME_COMPILE -> miopen_cstdint.hpp vs <limits>; __INT32_MAX__/__INT64_MAX__)."
+    },
+    {
+      "id": "CHK-2",
+      "claim": "Three deterministic cases in handoff match the harness case table",
+      "result": "PASS",
+      "evidence": "Handoff JSON cases [{100,500} FP32 dim=-1 k=10 nokeep, {10,20,300} FP32 dim=2 k=137 keep, {8,3,10,2000} FP16 dim=-1 k=2000 keep] == harness lines 436-438 (TestCase in_dims/fp16/dim/k/keepDim, fixed seeds). Solver applicability (rank>=2, dimStride==1, dimSize>=300; forward_kthvalue.cpp IsImprovementOverROCm) is satisfied by all three (500/300/2000 contiguous innermost) so the kernel path cannot silently fall back; ExecutePrimitive uses exactly one solver, no find/DB selection involved."
+    },
+    {
+      "id": "CHK-3",
+      "claim": "Proof of which libMIOpen.so was loaded (dladdr on exact pointer, LD_PRELOAD isolation) + fresh MIOPEN_CUSTOM_CACHE_DIR per run",
+      "result": "PASS",
+      "evidence": "Handoff lines 78-84 require: run against source-built UNPATCHED and PATCHED libMIOpen.so isolated via LD_PRELOAD; prove loaded lib via dladdr on the exact miopenKthvalueForward pointer (+ wrapper on miopenCreate); fresh isolated MIOPEN_CUSTOM_CACHE_DIR per run. Harness implements dladdr provenance (provenance() fn printed under PROVENANCE for miopenKthvalueForward and miopenCreate); Phase-3 runner run_with_source_miopen.sh implements LD_PRELOAD of the SONAME symlink (with documented reason that LD_LIBRARY_PATH alone is insufficient), MIOPEN_CUSTOM_CACHE_DIR + XDG_CACHE_HOME per label, and echoes dladdr(miopenCreate) MATCH/MISMATCH."
+    },
+    {
+      "id": "CHK-4",
+      "claim": "Kernel compile+dispatch evidence required (invoker registration, kernel_name, RTC LoadBinary(miss)->compile->SaveBinary)",
+      "result": "PASS_WITH_MINOR",
+      "evidence": "Handoff lines 85-88 require exactly these lines in logs. All three strings are real in the candidate source: invoker_cache.cpp:115, hipoc/hipoc_kernel.cpp:80-82, binary_cache.cpp Loading/Saving-binary messages, plus hiprtc/comgr compile logging. Gap: all are MIOPEN_LOG_I2 and will not print in a release build without MIOPEN_LOG_LEVEL=6, which the handoff does not state (finding B-M1)."
+    },
+    {
+      "id": "CHK-5",
+      "claim": "Handoff isolated from wrong candidate (patch SHA256 + series + tree identity BEFORE build, fail-closed)",
+      "result": "PASS",
+      "evidence": "Candidate-identity block lists base SHA 7c586614, three ordered commit SHAs, three patch SHA256s, series SHA256 (sha256_file_concat_v1), head tree SHA1 605d0d21; 'Verify ... BEFORE building. If any value differs, STOP - wrong candidate.'; consumer rule 1 'FAIL CLOSED (do not proceed to close enough testing)'; rule 3 reconstruct-verify tree == 605d0d21 via git write-tree. Reviewer independently recomputed all three patch SHA256s and the series concat from patches/phase5_1/canonical/ - all match the manifest. Candidate worktree HEAD^{tree} == 605d0d214acd...; pristine worktree at base 7c586614; git_am_roundtrip.json source_tree_match=true; freeze_integrity.json 14/14 PASS incl. 3-way reconstruction (git am / git apply / index-only). The superseded P5 doc is explicitly marked SUPERSEDED and warns not to validate P5 bytes with it."
+    },
+    {
+      "id": "CHK-6",
+      "claim": "Both source-built UNPATCHED and PATCHED libs + direct byte-for-byte A/B + CPU-reference values AND indices + real exit codes/logs",
+      "result": "PASS",
+      "evidence": "Handoff item 1 requires building BOTH from source (clean base checkout + series, AND the bare base); item 3 requires: run against both via LD_PRELOAD, verify values AND indices vs CPU reference (exact equality expected, Phase-3 construction eliminates tie ambiguity), compare patched vs unpatched outputs byte-for-byte, record real exit codes and raw logs. Harness enforces this natively: exit 0 iff every case values_ok AND indices_ok; zero-init of GPU outputs so stale memory cannot fake a pass; KTHV_DUMP_DIR full-array binary dumps for the byte-level A/B."
+    },
+    {
+      "id": "CHK-7",
+      "claim": "HIPRTC CTest AND runtime paths both in the minimum set, incl. negative exact-signature control on unpatched tree",
+      "result": "PASS",
+      "evidence": "Handoff item 2: negative mode on UNPATCHED tree must PASS with the exact 'type_traits' file not found signature (Linux --isolate=-nostdinc++ noted); positive on PATCHED with non-empty code object; ordinary both; in-tree ctest -R test_hiprtc_selfcontained on the patched build. Item 3 runtime kthvalue A/B; item 4 BatchNorm spot-check; item 5 optional YOLO amp=False. Windows analog evidence: ci_matrix negative/unpatched PASS with the exact signature at miopen_type_traits.hpp:151; ci_ctest_run.log ctest exit=0 1/1 Passed; test registered in test/CMakeLists.txt (manual registration, add_test_command default mode=positive, wired into miopen-tests/miopen-check; the negative control is deliberately not in the default suite - documented in-code - so the explicit A/B negative run remains mandatory, which the handoff requires)."
+    },
+    {
+      "id": "CHK-8",
+      "claim": "ci_matrix_phase5_1.json: 13/13 verdicts with actual exit codes, honest cells",
+      "result": "PASS",
+      "evidence": "13 cells each with full cmd, mode, tree+tree_git, real exit_code, raw stdout/stderr. Expected-fail cells honestly recorded (positive/unpatched exit 1; negative/patched exit 1 'no-STL compile unexpectedly succeeded'; adv cells exit 2/1/2/4). The exit-4 INCONCLUSIVE STL-reachable cell demonstrates the isolation self-probe works. verdicts object has 13 entries, overall PASS. No cell masks a failure."
+    },
+    {
+      "id": "CHK-9",
+      "claim": "build_provenance.json source_git_head is the EXACT final source commit",
+      "result": "PASS",
+      "evidence": "source_git_head == e7ff6d75fac3e7b683e81e671555ada99af13b74 (3rd/final commit of the series, == candidate worktree HEAD); source_tree points at the candidate worktree; fresh build dir; dll_sha256 9a7744029ccd... recorded."
+    },
+    {
+      "id": "CHK-10",
+      "claim": "runtime_validation.json: provenance sha == build sha; no-STL checks; numerics vs pre-fixed tolerances",
+      "result": "PASS",
+      "evidence": "In-process provenance sha256 9a7744029ccd... == build dll_sha256 in all occurrences (provenance, numerics, nostl); wheel_dll original expected sha 74b4ee03... distinct and wheel_restored_ok=true. tolerances_fixed_before_run block present (y 1e-5, dx 1e-5, dw 1e-4, db 1e-5, rm 1e-4, rv_rel 1e-3) and all max_abs within. nostl gate: fresh temp profile, env scrubbed list (INCLUDE/LIB/ROCM_PATH/CPATH/C_INCLUDE_PATH/CPLUS_INCLUDE_PATH/AMD_COMGR_CACHE/MIOPEN_USER_CACHE_PATH/MIOPEN_USER_DB_PATH), exit 0, y/grad/running-stats finite, running_mean_changed=true, msvc_include_restored=true."
+    },
+    {
+      "id": "CHK-11",
+      "claim": "YOLO/AMP evidence honest: amp_default not claimed as AMP-enabled",
+      "result": "PASS",
+      "evidence": "yolo_train.json amp_default: exit 0, TRAIN_DONE, best.pt, in-process provenance sha == build sha, amp_lines capture 'AMP: running ... checks' then 'ERROR AMP: checks failed ... AMP will be disabled during training'; amp_genuine=false and genuine_amp_evidence=false recorded. amp_false: exit 0 with amp=False in trainer args. FINAL_HANDOFF yolo_amp_note states amp_genuine on P5.1 = FALSE (honest record) and that P5's historical AMP=True success remains valid for P5 bytes only. Nothing exaggerated (key-name nit B-N2)."
+    },
+    {
+      "id": "CHK-12",
+      "claim": "AMP-check environment attribution control is sound",
+      "result": "PASS",
+      "evidence": "amp_check_control.json: same check_amp code, fresh isolated profiles, three DLLs swapped into the wheel slot with hash-verified wheel restore: P5 DLL d5974dad (passed the AMP check earlier the SAME day in Phase 5) now fails; P5.1 DLL fails; P5 repeat fails; pristine wheel DLL 74b4ee03 (no source fix) fails. Conclusion correctly scoped: CURRENT-ENVIRONMENT-STATE dependent, no P5-vs-P5.1 behavioral difference demonstrable, not attributable to the copyright delta. This is a proper negative-control design (previously-passing DLL + unpatched baseline both re-fail under current conditions). Root cause of the environment drift is not identified - but attribution (the question asked) is answered soundly."
+    },
+    {
+      "id": "CHK-13",
+      "claim": "No premature claims of Linux validation; linux_validation_status PENDING everywhere",
+      "result": "PASS",
+      "evidence": "FINAL_HANDOFF.json linux_validation_status == 'PENDING'; md line 3 'Status: LINUX_VALIDATION = PENDING' and closing line 'until then this status stays PENDING'; no phase5_1_conclusion.json exists (findings/phase5_1 contains only FINAL_HANDOFF.json + freeze_review.md); no evidence/phase5_1-linux directory; freeze_review CHK-10 independently checked the same; windows_validation_status block is explicitly Windows-scoped. Candidate status is TECHNICALLY_VERIFIED_PROVISIONAL_FREEZE with authorization_to_submit_upstream=false."
+    },
+    {
+      "id": "CHK-14",
+      "claim": "Wrong candidate cannot plausibly reach Linux testing under the handoff",
+      "result": "PASS",
+      "evidence": "Identity gate must pass BEFORE build (base SHA + 3 commit SHAs + 3 patch SHA256s + series SHA256 + reconstructed head tree); any mismatch -> STOP / FAIL CLOSED. P5 series patches differ from P5.1 (copyright lines) so a stale P5 patch set fails the hash gate; the superseded P5 handoff doc redirects to the P5.1 manifest. Residual risk is operator discipline only, which the fail-closed language addresses as far as a document can."
+    }
+  ]
+}

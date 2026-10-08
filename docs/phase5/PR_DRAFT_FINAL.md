@@ -1,5 +1,17 @@
 # PR DRAFT — FINAL (Gate P5-16) — DO NOT SUBMIT WITHOUT HUMAN APPROVAL
 
+> **SUPERSEDED SERIES POINTERS (Phase 5.1, 2026-10-08).** This draft was
+> written for P5-CANDIDATE-R1. The current candidate is
+> **P5.1-CANDIDATE-R1** (commits d4003de1/3b18a065/e7ff6d75; patches
+> `patches/phase5_1/canonical/`; copyright attribution applied to the
+> four new files; fresh Windows revalidation recorded in
+> `findings/phase5_1/FINAL_HANDOFF.json`). The narrative below remains
+> accurate for the technical fix, but every series/patch/evidence path
+> and the "VALIDATED" markers refer to the superseded P5 series and to
+> evidence now re-established on P5.1. Regenerate from the Phase-5.1
+> manifest before any actual submission; DCO attestation remains
+> PENDING. Do not reuse as-is.
+
 Proposed title:
 
 ```text

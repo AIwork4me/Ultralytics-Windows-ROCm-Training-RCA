@@ -1,0 +1,229 @@
+{
+  "schema": "phase5_1_ci_matrix_v1",
+  "gate": "P51-08",
+  "timestamp": "2026-10-08T15:24:07.191706",
+  "test_source": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\test\\hiprtc_selfcontained.cpp",
+  "test_source_sha256": "e5679eba5fb52b666d0f761a4e5e7d01024f7caaf881fa7cf19933af733d2ede",
+  "test_binary": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_1_build\\ci_test\\bin\\test_hiprtc_selfcontained.exe",
+  "test_binary_sha256": "2f754b34d1b5f9b0579bf4d13bf69c2033f0b6c69913e828da2450cd9f41f4fc",
+  "hiprtc_dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+  "hiprtc_dll_sha256": "c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e",
+  "unpatched_tree_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "patched_tree_sha": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+  "patch_id": "P5.1-CANDIDATE-R1",
+  "arch": "gfx1151",
+  "hip_version_macro_src": "HIP_PACKAGE_VERSION_FLAT derived from linked hiprtc (>=7000000000 arm exercised)",
+  "cells": [
+    {
+      "cell": "ordinary/unpatched",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels",
+        "--mode=ordinary",
+        "--arch=gfx1151"
+      ],
+      "mode": "ordinary",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine",
+      "tree_git": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+      "exit_code": 0,
+      "stdout": "PASS: ordinary hiprtc control (code object generated)\n",
+      "stderr": "[ordinary] create=0 compile=0 code=0 code_size=3824\n"
+    },
+    {
+      "cell": "ordinary/patched",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels",
+        "--mode=ordinary",
+        "--arch=gfx1151"
+      ],
+      "mode": "ordinary",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 0,
+      "stdout": "PASS: ordinary hiprtc control (code object generated)\n",
+      "stderr": "[ordinary] create=0 compile=0 code=0 code_size=3824\n"
+    },
+    {
+      "cell": "positive/unpatched (expected FAIL exit1)",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels",
+        "--mode=positive",
+        "--arch=gfx1151"
+      ],
+      "mode": "positive",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine",
+      "tree_git": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "[positive] create=0 compile=6 code=0 code_size=0\n---- compiler log ----\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-67344-2-8547a0\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:30:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\configuration.hpp:34:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\vector_types.hpp:8:\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found\n  151 | #include <type_traits>\n      |          ^~~~~~~~~~~~~\n1 error generated when compiling for gfx1151.\n\n----------------------\nFAIL: positive compile did not produce a code object\n"
+    },
+    {
+      "cell": "positive/patched",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels",
+        "--mode=positive",
+        "--arch=gfx1151"
+      ],
+      "mode": "positive",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 0,
+      "stdout": "PASS: kernel compiled without host STL (5784-byte code object)\n",
+      "stderr": "[positive] create=0 compile=0 code=0 code_size=5784\n---- compiler log ----\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:165:20: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]\n  165 |     if constexpr(0 || 0)\n      |                    ^  ~\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:165:20: note: use '|' for a bitwise operation\n  165 |     if constexpr(0 || 0)\n      |                    ^~\n      |                    |\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:68:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n   68 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:69:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n   69 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:208:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  208 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:209:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  209 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:217:39: warning: uninitialized variable in a constexpr function is a C++20 extension [-Wc++20-extensions]\n  217 |         [[maybe_unused]] unsigned int chwid;\n      |                                       ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:330:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  330 |         __attribute__((shared)) FpAccumType lcl_data_x[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:331:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  331 |         __attribute__((shared)) FpAccumType lcl_data_y[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:332:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  332 |         __attribute__((shared)) FpAccumType lcl_data_c[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:497:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  497 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:498:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  498 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\n11 warnings generated when compiling for gfx1151.\n\n----------------------\n"
+    },
+    {
+      "cell": "negative/unpatched (exact signature)",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels",
+        "--mode=negative",
+        "--arch=gfx1151"
+      ],
+      "mode": "negative",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine",
+      "tree_git": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+      "exit_code": 0,
+      "stdout": "PASS: unpatched kernel fails with the field signature ('type_traits' file not found) as the sole error, under no-STL isolation\n",
+      "stderr": "[negative] create=0 compile=6 code=0 code_size=0\n---- compiler log ----\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-81988-2-824c56\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:30:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\configuration.hpp:34:\nIn file included from C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\vector_types.hpp:8:\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found\n  151 | #include <type_traits>\n      |          ^~~~~~~~~~~~~\n1 error generated when compiling for gfx1151.\n\n----------------------\n"
+    },
+    {
+      "cell": "negative/patched (must reject expectation)",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels",
+        "--mode=negative",
+        "--arch=gfx1151"
+      ],
+      "mode": "negative",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "[negative] create=0 compile=0 code=0 code_size=5784\n---- compiler log ----\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:165:20: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]\n  165 |     if constexpr(0 || 0)\n      |                    ^  ~\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:165:20: note: use '|' for a bitwise operation\n  165 |     if constexpr(0 || 0)\n      |                    ^~\n      |                    |\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:68:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n   68 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:69:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n   69 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:208:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  208 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:209:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  209 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:217:39: warning: uninitialized variable in a constexpr function is a C++20 extension [-Wc++20-extensions]\n  217 |         [[maybe_unused]] unsigned int chwid;\n      |                                       ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:330:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  330 |         __attribute__((shared)) FpAccumType lcl_data_x[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:331:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  331 |         __attribute__((shared)) FpAccumType lcl_data_y[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:332:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  332 |         __attribute__((shared)) FpAccumType lcl_data_c[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:497:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  497 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-84928-2-d513a4\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:498:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  498 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\n11 warnings generated when compiling for gfx1151.\n\n----------------------\nFAIL: no-STL compile unexpectedly succeeded (self-containment regression?)\n"
+    },
+    {
+      "cell": "with-stl/unpatched",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels",
+        "--mode=with-stl",
+        "--arch=gfx1151"
+      ],
+      "mode": "with-stl",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine",
+      "tree_git": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+      "exit_code": 0,
+      "stdout": "PASS: kernel compiled with host STL (5784-byte code object)\n",
+      "stderr": "[with-stl] create=0 compile=0 code=0 code_size=5784\n---- compiler log ----\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:165:20: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]\n  165 |     if constexpr(0 || 0)\n      |                    ^  ~\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5-pristine\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:165:20: note: use '|' for a bitwise operation\n  165 |     if constexpr(0 || 0)\n      |                    ^~\n      |                    |\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:68:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n   68 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:69:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n   69 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:208:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  208 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:209:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  209 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:217:39: warning: uninitialized variable in a constexpr function is a C++20 extension [-Wc++20-extensions]\n  217 |         [[maybe_unused]] unsigned int chwid;\n      |                                       ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:330:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  330 |         __attribute__((shared)) FpAccumType lcl_data_x[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:331:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  331 |         __attribute__((shared)) FpAccumType lcl_data_y[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:332:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  332 |         __attribute__((shared)) FpAccumType lcl_data_c[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:497:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  497 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-104852-0-2f64a9\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:498:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  498 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\n11 warnings generated when compiling for gfx1151.\n\n----------------------\n"
+    },
+    {
+      "cell": "with-stl/patched",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels",
+        "--mode=with-stl",
+        "--arch=gfx1151"
+      ],
+      "mode": "with-stl",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 0,
+      "stdout": "PASS: kernel compiled with host STL (5784-byte code object)\n",
+      "stderr": "[with-stl] create=0 compile=0 code=0 code_size=5784\n---- compiler log ----\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:165:20: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]\n  165 |     if constexpr(0 || 0)\n      |                    ^  ~\nC:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels\\batchnorm_functions.hpp:165:20: note: use '|' for a bitwise operation\n  165 |     if constexpr(0 || 0)\n      |                    ^~\n      |                    |\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:68:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n   68 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:69:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n   69 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:208:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  208 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:209:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  209 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:217:39: warning: uninitialized variable in a constexpr function is a C++20 extension [-Wc++20-extensions]\n  217 |         [[maybe_unused]] unsigned int chwid;\n      |                                       ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:330:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  330 |         __attribute__((shared)) FpAccumType lcl_data_x[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:331:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  331 |         __attribute__((shared)) FpAccumType lcl_data_y[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:332:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  332 |         __attribute__((shared)) FpAccumType lcl_data_c[lcl_data_size];\n      |                                             ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:497:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  497 |         __attribute__((shared)) FpPrecType lcl_bias;\n      |                                            ^\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-100756-0-f6456c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:498:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]\n  498 |         __attribute__((shared)) FpPrecType lcl_scale;\n      |                                            ^\n11 warnings generated when compiling for gfx1151.\n\n----------------------\n"
+    },
+    {
+      "cell": "adv: missing kernels dir",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\no_such_dir",
+        "--mode=positive",
+        "--arch=gfx1151"
+      ],
+      "mode": "positive",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "SETUP ERROR: cannot read C:\\Users\\rocm\\Desktop\\YOLO_AMD\\no_such_dir/MIOpenBatchNormFwdTrainSpatial.cpp\n"
+    },
+    {
+      "cell": "adv: wrong include dir (src/, not kernels/)",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src",
+        "--mode=positive",
+        "--arch=gfx1151"
+      ],
+      "mode": "positive",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "SETUP ERROR: cannot read C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src/MIOpenBatchNormFwdTrainSpatial.cpp\n"
+    },
+    {
+      "cell": "adv: bad arch",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels",
+        "--mode=positive",
+        "--arch=gfx9999"
+      ],
+      "mode": "positive",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "[positive] create=0 compile=6 code=0 code_size=0\nFAIL: positive compile did not produce a code object\n"
+    },
+    {
+      "cell": "adv: bad mode",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels",
+        "--mode=no-such-mode",
+        "--arch=gfx1151"
+      ],
+      "mode": "no-such-mode",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "usage: C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_1_build\\ci_test\\bin\\test_hiprtc_selfcontained.exe <kernels-src-dir> [--mode=positive|negative|with-stl|ordinary] [--arch=gfxNNNN] [--hip-flat=N] [--isolate=OPT]\n"
+    },
+    {
+      "cell": "adv: STL reachable via CPATH -> INCONCLUSIVE",
+      "cmd": [
+        "test_hiprtc_selfcontained.exe",
+        "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate\\projects\\miopen\\src\\kernels",
+        "--mode=positive",
+        "--arch=gfx1151"
+      ],
+      "mode": "positive",
+      "tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-candidate",
+      "tree_git": "e7ff6d75fac3e7b683e81e671555ada99af13b74",
+      "exit_code": 4,
+      "stdout": "",
+      "stderr": "[stl-probe] create=0 compile=6 code=0 code_size=0\n---- compiler log ----\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-57932-0-7ba6a2\\input\\stl_probe.cu:2:2: error: STL_PROBE_REACHABLE\n    2 | #error STL_PROBE_REACHABLE\n      |  ^\n1 error generated when compiling for gfx1151.\n\n----------------------\nINCONCLUSIVE: host C++ stdlib still reachable under -nostdinc; isolation does not reproduce the no-STL condition\n"
+    }
+  ],
+  "verdicts": {
+    "ordinary/unpatched": "PASS",
+    "ordinary/patched": "PASS",
+    "positive/unpatched (expected FAIL exit1)": "PASS",
+    "positive/patched": "PASS",
+    "negative/unpatched (exact signature)": "PASS",
+    "negative/patched (must reject expectation)": "PASS",
+    "with-stl/unpatched": "PASS",
+    "with-stl/patched": "PASS",
+    "adv: missing kernels dir": "PASS",
+    "adv: wrong include dir (src/, not kernels/)": "PASS",
+    "adv: bad arch": "PASS",
+    "adv: bad mode": "PASS",
+    "adv: STL reachable via CPATH -> INCONCLUSIVE": "PASS"
+  },
+  "overall": "PASS"
+}

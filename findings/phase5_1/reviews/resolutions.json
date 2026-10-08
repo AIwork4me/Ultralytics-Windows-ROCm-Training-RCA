@@ -1,0 +1,102 @@
+{
+  "schema": "phase5_1_review_resolutions_v1",
+  "timestamp": "2026-10-08T16:40:00",
+  "purpose": "Records the resolution of every BLOCKER/MAJOR/MINOR finding raised by the three adversarial reviewers (GATE 10). Reviewer JSONs are immutable records of what was found at review time; this file records what was done. NITs are recorded when acted upon; accepted-as-is NITs say so.",
+  "resolutions": [
+    {
+      "id": "C-MAJ-1",
+      "severity": "MAJOR",
+      "finding": "docs/phase5/SOURCE_CHANGE_JUSTIFICATION.md Fix 5 still said 'three' MIT headers with status PENDING, contradicting the Phase-5.1 claim that every current doc was corrected to FOUR.",
+      "resolution": "RESOLVED: Fix 5 rewritten — corrected scope to FOUR files (3 kernel headers + test/hiprtc_selfcontained.cpp), documented the Phase-5-time PENDING state as history, and recorded the Phase-5.1 resolution (CONFIRMED right-to-contribute, 4/4 placeholders replaced, targeted revalidation executed on P5.1-CANDIDATE-R1).",
+      "evidence": "git diff of docs/phase5/SOURCE_CHANGE_JUSTIFICATION.md on this branch (committed in the Phase-5.1 evidence commit)."
+    },
+    {
+      "id": "C-MIN-1",
+      "severity": "MINOR",
+      "finding": "docs/phase5/PR_DRAFT_FINAL.md still pointed at the superseded P5 series/patch-dir/evidence paths without supersession annotation.",
+      "resolution": "RESOLVED: prominent SUPERSEDED SERIES POINTERS banner added at the top naming P5.1-CANDIDATE-R1 (commits, patch dir, manifest) and instructing regeneration before any submission.",
+      "evidence": "head of docs/phase5/PR_DRAFT_FINAL.md on this branch."
+    },
+    {
+      "id": "A-1",
+      "severity": "MINOR",
+      "finding": ".gitattributes byte-exactness rules covered evidence/raw and evidence/phase2 but not patches/**; CRLF smudge on future checkout could break the recorded patch SHA256 chain.",
+      "resolution": "RESOLVED: 'patches/** -text' rule appended to .gitattributes (with comment). The committed blobs are LF; the rule guarantees checkout never converts them.",
+      "evidence": ".gitattributes tail on this branch."
+    },
+    {
+      "id": "A-2",
+      "severity": "NIT",
+      "finding": "format-patch --stdout reproduction differs from series concat by two extra LF bytes; per-file output is byte-identical.",
+      "resolution": "RESOLVED (documented): per-file regeneration mandated in patches/phase5_1/canonical/README.md and in the Linux handoff apply instructions."
+    },
+    {
+      "id": "A-3",
+      "severity": "NIT",
+      "finding": "patches/phase5_1/canonical/ lacked the README.md present in earlier canonical dirs.",
+      "resolution": "RESOLVED: README.md written with patch table, series hash, LF/byte-exactness rules, apply order, expected reconstructed tree hash, DCO-pending note."
+    },
+    {
+      "id": "A-4",
+      "severity": "NIT",
+      "finding": "Phase-5.1 artifacts untracked at review time.",
+      "resolution": "RESOLVED by construction: all Phase-5.1 artifacts are committed to phase5.1/windows-final-candidate-freeze in the evidence commit that carries this file."
+    },
+    {
+      "id": "B-M1",
+      "severity": "MINOR",
+      "finding": "Handoff required Info2-level log-evidence lines but never pinned MIOPEN_LOG_LEVEL; a default release build would omit the mandated dispatch evidence.",
+      "resolution": "RESOLVED: handoff item 3 now requires MIOPEN_LOG_LEVEL=6 with the rationale (release builds default to Warning).",
+      "evidence": "docs/phase5_1/LINUX_FINAL_VALIDATION_HANDOFF.md item 3."
+    },
+    {
+      "id": "B-N1",
+      "severity": "NIT",
+      "finding": "Handoff did not require harness binary identity across the A/B runs.",
+      "resolution": "RESOLVED: handoff now requires the SAME harness binary on both sides with recorded SHA256; the only variable between runs is the preloaded library."
+    },
+    {
+      "id": "B-N4",
+      "severity": "NIT",
+      "finding": "ctest regex not anchored in handoff text.",
+      "resolution": "RESOLVED: anchored to '^test_hiprtc_selfcontained$'."
+    },
+    {
+      "id": "B-N2",
+      "severity": "NIT",
+      "finding": "windows_validation_status key 'yolo_train_amp_default: PASS' is skim-able as AMP-enabled success.",
+      "resolution": "RESOLVED (disclosure): the manifest carries yolo_amp_note stating amp_default passed as TRAINING with the AMP check failing in the current environment (FP32 fallback), the control experiment attributing it to environment (P5 DLL + wheel fail identically), and amp_genuine=false recorded honestly. Accepted residual: the boolean key name itself is kept for schema stability."
+    },
+    {
+      "id": "B-N3",
+      "severity": "NIT",
+      "finding": "Small internal inconsistencies in CI evidence capture.",
+      "resolution": "ACCEPTED AS-IS: NIT-level capture inconsistencies in evidence JSONs that do not affect any verdict; raw logs retained."
+    },
+    {
+      "id": "C-NIT-1",
+      "severity": "NIT",
+      "finding": "Phase-5.1 corrections existed only as uncommitted working-tree changes at review time (incl. commit_subjects reorder visible only in diff).",
+      "resolution": "RESOLVED by construction: committed to the evidence branch in this commit; the diff itself is the disclosure."
+    },
+    {
+      "id": "C-NIT-2",
+      "severity": "NIT",
+      "finding": "Copyright holder identified by GitHub handle 'AIwork4me' rather than a legal name.",
+      "resolution": "ACCEPTED AS-IS: matches the user's exact authorization wording; the user may substitute a legal name at submission time."
+    },
+    {
+      "id": "C-NIT-3",
+      "severity": "NIT",
+      "finding": "Sign-off email uses the legacy bare-username noreply form.",
+      "resolution": "ACCEPTED AS-IS: verified linked to the account (Phase-5 audit §2); evidence chain unaffected. GitHub's modern numeric-ID form is an optional substitution for the user."
+    }
+  ],
+  "summary": {
+    "BLOCKER": {"found": 0, "resolved": 0, "open": 0},
+    "MAJOR": {"found": 1, "resolved": 1, "open": 0},
+    "MINOR": {"found": 3, "resolved": 3, "open": 0},
+    "NIT": {"found": 10, "resolved_or_documented": 10, "open": 0},
+    "note": "All BLOCKER and MAJOR findings resolved before the freeze was published (mission GATE 10 requirement)."
+  }
+}

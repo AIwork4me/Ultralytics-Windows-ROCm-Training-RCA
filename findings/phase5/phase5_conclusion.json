@@ -12,9 +12,9 @@
     "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
   ],
   "commit_subjects": [
-    "MIOpen: add HIPRTC no-host-STL regression test",
+    "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
     "MIOpen: make remaining RTC kernel std includes self-contained",
-    "MIOpen: keep RTC type traits self-contained when no host STL is reachable"
+    "MIOpen: add HIPRTC no-host-STL regression test"
   ],
   "patch_hashes": {
     "0001": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586",
@@ -26,7 +26,7 @@
   "author_email": "AIwork4me@users.noreply.github.com",
   "author_email_verification": "GitHub links both AIwork4me@users.noreply.github.com (pushed commit 7294c66) and AIwork4me@qq.com (web merge 033e6f4) to account AIwork4me id=261514469 - VERIFIED via API",
   "dco_status": "DCO_ATTESTATION_PENDING (commits unsigned, explicit marker; MIOpen CONTRIBUTING.md does not mandate DCO)",
-  "copyright_status": "COPYRIGHT_ATTRIBUTION_PENDING (placeholder retained in 3 MIT headers)",
+  "copyright_status": "COPYRIGHT_ATTRIBUTION_PENDING at P5-CANDIDATE-R1 (placeholder retained in FOUR MIT headers: 3 kernel headers + test/hiprtc_selfcontained.cpp; count corrected 3->4 by Phase 5.1 Gate 05; resolved in P5.1-CANDIDATE-R1 under CONFIRMED right-to-contribute - see findings/phase5_1/FINAL_HANDOFF.json)",
   "cmake_configure": "PASS",
   "cmake_build": "PASS",
   "ctest_discovery": "PASS",
@@ -56,9 +56,9 @@
   "internal_pr_created": false,
   "unresolved_technical_blockers": [],
   "human_actions": [
-    "DCO: decide and sign (exact commands in docs/phase5/AUTHORSHIP_DCO_AUDIT.md \u00a73)",
-    "Copyright: confirm holder and fill 3 headers (then targeted revalidation)",
-    "Linux: execute findings/phase5/PATCH_HANDOFF.json targeted revalidation",
+    "DCO: decide and sign (exact commands in docs/phase5/AUTHORSHIP_DCO_AUDIT.md \u00a73; still pending - Phase 5.1 did not receive sign-off authorization)",
+    "Copyright: holder confirmed + FOUR headers filled in P5.1-CANDIDATE-R1 (Phase 5.1; targeted revalidation executed there)",
+    "Linux: execute the authoritative Phase-5.1 handoff findings/phase5_1/FINAL_HANDOFF.json (direct miopenKthvalueForward harness; this file's Phase-5 doc is superseded)",
     "Submission day: re-check develop applicability (Gate P5-02 method)"
   ],
   "upstream_ci_followups": [

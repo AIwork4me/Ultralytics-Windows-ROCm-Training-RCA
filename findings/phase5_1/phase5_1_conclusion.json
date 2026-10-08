@@ -1,0 +1,101 @@
+{
+  "schema": "phase5_1_conclusion_v1",
+  "generated": "2026-10-08T16:17:57.733113",
+  "candidate_id": "P5.1-CANDIDATE-R1",
+  "candidate_status": "TECHNICALLY_VERIFIED_PROVISIONAL_FREEZE",
+  "supersedes_candidate": "P5-CANDIDATE-R1",
+  "base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "ordered_commits": [
+    "d4003de1a7cabc3715f73e48d3fd414f312a40de",
+    "3b18a0655b991890b63587ee18cb0950234a47f0",
+    "e7ff6d75fac3e7b683e81e671555ada99af13b74"
+  ],
+  "ordered_commit_subjects": [
+    "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
+    "MIOpen: make remaining RTC kernel std includes self-contained",
+    "MIOpen: add HIPRTC no-host-STL regression test"
+  ],
+  "patch_sha256": [
+    "14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2",
+    "7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e",
+    "3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4"
+  ],
+  "series_sha256": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d",
+  "source_tree_head": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+  "source_delta_from_phase5": "4 files, 1 comment line each: copyright placeholder -> 'Copyright (c) 2026 AIwork4me' (RIGHT_TO_CONTRIBUTE=CONFIRMED_BY_USER 2026-10-08). All other source bytes identical to P5-CANDIDATE-R1.",
+  "git_author": "AIwork4me",
+  "git_email": "AIwork4me@users.noreply.github.com",
+  "right_to_contribute": "CONFIRMED_BY_USER (2026-10-08)",
+  "dco_status": "DCO_ATTESTATION_PENDING (upstream CONTRIBUTING.md files state no DCO requirement; user has NOT authorized certification; explicit marker lines retained on all three commits; sign-off instructions in docs/phase5_1/COPYRIGHT_AND_DCO_STATUS.md \u00a73)",
+  "copyright_status": "RESOLVED: 4/4 new files carry 'Copyright (c) 2026 AIwork4me'; MIT license text preserved verbatim; RIGHT_TO_CONTRIBUTE=CONFIRMED_BY_USER (2026-10-08)",
+  "windows_validation": {
+    "cmake_configure": "PASS",
+    "target_build": "PASS",
+    "ctest_discovery": "PASS",
+    "ctest_execution": "PASS",
+    "ci_ab_matrix": "PASS (13/13 cells)",
+    "miopen_dll_build": "PASS",
+    "miopen_dll_sha256": "9a7744029ccdf421f8ee2df588b02e35e9b5c829a7079f6dc18411cd0adb11e7",
+    "dll_load_provenance": "PASS",
+    "nostl_runtime": "PASS",
+    "batchnorm_numerics": "PASS",
+    "batchnorm_numerics_detail": {
+      "y": 6.706602642125858e-07,
+      "dx": 3.202286127666268e-12,
+      "dw": 2.4365591336228398e-08,
+      "db": 1.862645147225183e-09,
+      "running_mean": 3.524055299962067e-10,
+      "running_var": 1.1640783137423227e-07
+    },
+    "yolo_train_amp_false": "PASS",
+    "yolo_train_amp_default": "PASS",
+    "yolo_amp_note": "amp_default training PASSED (exit 0, weights, provenance) with ultralytics' AMP check failing in the CURRENT environment -> FP32 fallback; control experiment (evidence/phase5_1/yolo/amp_check_control.json) shows the check fails identically with the P5 DLL and the pristine wheel DLL => environment-state dependent, NOT a P5.1 regression. P5's historical AMP=True success remains valid for P5 bytes. amp_genuine on P5.1 = FALSE (honest record).",
+    "wheel_dll_restored": "PASS"
+  },
+  "linux_validation": "PENDING (authoritative instructions: findings/phase5_1/FINAL_HANDOFF.json + docs/phase5_1/LINUX_FINAL_VALIDATION_HANDOFF.md)",
+  "consistency_check_phase5_record": "10/10 PASS (scripts/phase5_1/verify_handoff_consistency.py; pre-fix 6/10 -> post-fix 10/10)",
+  "freeze_integrity": "PASS",
+  "independent_reviews": {
+    "reviewer_A_git_patch_integrity": {
+      "verdict": "PASS",
+      "blockers": 0,
+      "majors": 0,
+      "recorded_verdict": "PASS",
+      "unresolved_after_resolutions": {
+        "BLOCKER": 0,
+        "MAJOR": 0
+      }
+    },
+    "reviewer_B_regression_linux": {
+      "verdict": "PASS",
+      "blockers": 0,
+      "majors": 0,
+      "recorded_verdict": "PASS",
+      "unresolved_after_resolutions": {
+        "BLOCKER": 0,
+        "MAJOR": 0
+      }
+    },
+    "reviewer_C_dco_submission": {
+      "verdict": "CONDITIONAL PASS",
+      "blockers": 0,
+      "majors": 0,
+      "recorded_verdict": "CONDITIONAL PASS",
+      "unresolved_after_resolutions": {
+        "BLOCKER": 0,
+        "MAJOR": 0
+      }
+    }
+  },
+  "review_resolutions": "all BLOCKER/MAJOR/MINOR findings resolved; see findings/phase5_1/reviews/resolutions.json",
+  "upstream_pr_created": false,
+  "upstream_issue_created": false,
+  "upstream_comment_posted": false,
+  "internal_pr_created": false,
+  "human_actions_remaining": [
+    "DCO: decide and certify (exact commands docs/phase5_1/COPYRIGHT_AND_DCO_STATUS.md \u00a73) - commits currently unsigned by explicit decision",
+    "Linux: execute the authoritative handoff (direct miopenKthvalueForward harness) and record evidence/phase5_1-linux/",
+    "Submission day: re-check develop applicability (Gate P5-02 method)"
+  ],
+  "final_verdict": "TECHNICAL_CANDIDATE_FROZEN - HUMAN_AUTHORIZATION_PENDING"
+}

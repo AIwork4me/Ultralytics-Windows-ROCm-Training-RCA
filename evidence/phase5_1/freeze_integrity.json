@@ -1,0 +1,100 @@
+{
+  "schema": "phase5_1_freeze_integrity_v1",
+  "verifier": "independent_subagent",
+  "timestamp": "2026-10-08T16:00:24.564117+08:00",
+  "checks": [
+    {
+      "id": "CHK-01",
+      "name": "Manifest schema/identity fields",
+      "result": "PASS",
+      "detail": "schema_version=1, handoff_type='final_pre_upstream_linux_validation', candidate_id='P5.1-CANDIDATE-R1'"
+    },
+    {
+      "id": "CHK-02",
+      "name": "Commit existence + parent-chain order + HEAD",
+      "result": "PASS",
+      "detail": "d4003de1a7ca type=commit; 3b18a0655b99 type=commit; e7ff6d75fac3 type=commit; commit[0] parent==7c5866144ac4 OK (single parent); commit[1] parent==d4003de1a7ca OK (single parent); commit[2] parent==3b18a0655b99 OK (single parent); HEAD==commit[2]==e7ff6d75fac3 OK"
+    },
+    {
+      "id": "CHK-03",
+      "name": "Canonical patch SHA256/bytes recomputed from disk",
+      "result": "PASS",
+      "detail": "disk(sorted)=['0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch', '0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch', '0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch'] | manifest order=['0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch', '0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch', '0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch'] | 0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch: sha256=14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2 bytes=15546 CR-bytes=0 manifest=14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2/15546 -> MATCH | 0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch: sha256=7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e bytes=7444 CR-bytes=0 manifest=7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e/7444 -> MATCH | 0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch: sha256=3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4 bytes=27631 CR-bytes=0 manifest=3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4/27631 -> MATCH"
+    },
+    {
+      "id": "CHK-04",
+      "name": "Series SHA256 (concat of 3 patch files, no separator)",
+      "result": "PASS",
+      "detail": "recomputed=797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d manifest=797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d algorithm=sha256_file_concat_v1"
+    },
+    {
+      "id": "CHK-06",
+      "name": "Commit subjects (git log --reverse base..HEAD)",
+      "result": "PASS",
+      "detail": "actual=['MIOpen: keep RTC type traits self-contained when no host STL is reachable', 'MIOpen: make remaining RTC kernel std includes self-contained', 'MIOpen: add HIPRTC no-host-STL regression test'] manifest=['MIOpen: keep RTC type traits self-contained when no host STL is reachable', 'MIOpen: make remaining RTC kernel std includes self-contained', 'MIOpen: add HIPRTC no-host-STL regression test']"
+    },
+    {
+      "id": "CHK-07",
+      "name": "Copyright/placeholder/MIT in actual HEAD blobs",
+      "result": "PASS",
+      "detail": "miopen_freestanding_type_traits.hpp: attribution-lines=['Copyright (c) 2026 AIwork4me'] exact-count=1 other-copyright=[] placeholder=False MIT=True worktree==blob:True sha256=ce1a407b834dccf0554dd106be9277aceda223b25fb36c6b794a87126758e792 | miopen_freestanding_utility.hpp: attribution-lines=['Copyright (c) 2026 AIwork4me'] exact-count=1 other-copyright=[] placeholder=False MIT=True worktree==blob:True sha256=4d6e60da271fbac0da2811f29585d355ff96a6b83b09a34c3394ed9d5143ef5f | miopen_freestanding_initializer_list.hpp: attribution-lines=['Copyright (c) 2026 AIwork4me'] exact-count=1 other-copyright=[] placeholder=False MIT=True worktree==blob:True sha256=32b6c5585f0590a984a57346471f60a3c9793cb81edc6d6945ded0a9f0b26962 | hiprtc_selfcontained.cpp: attribution-lines=['Copyright (c) 2026 AIwork4me'] exact-count=1 other-copyright=[] placeholder=False MIT=True worktree==blob:True sha256=e5679eba5fb52b666d0f761a4e5e7d01024f7caaf881fa7cf19933af733d2ede"
+    },
+    {
+      "id": "CHK-08",
+      "name": "DCO trailers (no Signed-off-by; PENDING marker; manifest PENDING)",
+      "result": "PASS",
+      "detail": "d4003de1a7ca: signed-off-by=0 dco-marker=1; 3b18a0655b99: signed-off-by=0 dco-marker=1; e7ff6d75fac3: signed-off-by=0 dco-marker=1; manifest dco_status contains PENDING"
+    },
+    {
+      "id": "CHK-09",
+      "name": "windows_validation evidence vs final source state",
+      "result": "PASS",
+      "detail": "build.source_git_head=e7ff6d75fac3e7b683e81e671555ada99af13b74 == HEAD:True; build.dll_sha256==manifest.miopen_dll_sha256:True (9a7744029ccdf421f8ee2df588b02e35e9b5c829a7079f6dc18411cd0adb11e7); ci.overall=PASS cells=13 (manifest claims 13/13); runtime.overall=PASS; yolo.amp_false_pass=True; dll sha256 consistent across build/runtime/yolo evidence:True; amp_genuine false honestly recorded in both runs:True; evidence timestamps strictly before manifest generation: True (['2026-10-08T15:24:07.191706', '2026-10-08T15:30:22.094088', '2026-10-08T15:33:38.211485', '2026-10-08T15:34:34.282401', '2026-10-08T15:44:26.679125'])"
+    },
+    {
+      "id": "CHK-10",
+      "name": "linux_validation_status exactly PENDING",
+      "result": "PASS",
+      "detail": "value='PENDING'"
+    },
+    {
+      "id": "CHK-11",
+      "name": "No unauthorized upstream actions / no pushed candidate branch",
+      "result": "PASS",
+      "detail": "authorization_to_submit_upstream=False; upstream_pr_created=False; upstream_issue_created=False; upstream_comment_posted=False; remotes: exactly origin -> https://github.com/ROCm/rocm-libraries.git (fetch+push):True; remote branches=['origin/develop'] candidate-branch-pushed:False; remote branches containing HEAD: ''"
+    },
+    {
+      "id": "CHK-12",
+      "name": "Stale-ID scan of docs/phase5_1 handoff",
+      "result": "PASS",
+      "detail": "JUSTIFIED token=605d0d214acdbc06086fdb27c61fec970c0f2798 ctx=...A256MASKED>\r source head tree SHA1:     605d0d214acdbc06086fdb27c61fec970c0f2798\r ```\r \r Verify each patch SHA256 and th...; JUSTIFIED token=605d0d214acdbc06086fdb27c61fec970c0f2798 ctx=...cal tree —\r    proven on Windows: tree `605d0d214acdbc06086fdb27c61fec970c0f2798`).\r 3. Reconstruct-verify: after applyi...; JUSTIFIED token=605d0d214acdbc06086fdb27c61fec970c0f2798 ctx=...tree identity must\r    equal head tree `605d0d214acdbc06086fdb27c61fec970c0f2798` (e.g. `git write-tree` on the staged\r ..."
+    },
+    {
+      "id": "CHK-13",
+      "name": "Old phase5 doc superseded; no stale hex in instruction context",
+      "result": "PASS",
+      "detail": "supersession banner present:True; unknown hex tokens in old doc:0; correction-note hex tokens:[]; hex tokens inside instruction section (post-banner): raw=['7c58661'] non-allowed=[]"
+    },
+    {
+      "id": "CHK-05",
+      "name": "Fresh-worktree reconstruction tree == candidate == manifest",
+      "result": "PASS",
+      "detail": "PRIMARY git-am: HEAD^{tree}=605d0d214acdbc06086fdb27c61fec970c0f2798 ==candidate:True ==manifest:True | changed-file set equals manifest (10 files) | BASE-side files materialized byte-exact from blobs: True | git apply patch 1 OK | git apply patch 2 OK | git apply patch 3 OK | SECONDARY git-apply+write-tree=605d0d214acdbc06086fdb27c61fec970c0f2798 ==manifest:True | CROSS-CHECK index-only tree=605d0d214acdbc06086fdb27c61fec970c0f2798 match:True | temp cleanup done, tmp dir still present: False"
+    },
+    {
+      "id": "EX-01",
+      "name": "Manifest changed_files_vs_base blob/sha/size vs HEAD blobs",
+      "result": "PASS",
+      "detail": "projects/miopen/src/CMakeLists.txt: blob True sha256 True bytes True; projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp: blob True sha256 True bytes True; projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp: blob True sha256 True bytes True; projects/miopen/src/kernels/miopen_freestanding_utility.hpp: blob True sha256 True bytes True; projects/miopen/src/kernels/miopen_type_traits.hpp: blob True sha256 True bytes True; projects/miopen/src/kernels/miopen_utility.hpp: blob True sha256 True bytes True; projects/miopen/src/kernels/radix.hpp: blob True sha256 True bytes True; projects/miopen/src/kernels/tensor_view.hpp: blob True sha256 True bytes True; projects/miopen/test/CMakeLists.txt: blob True sha256 True bytes True; projects/miopen/test/hiprtc_selfcontained.cpp: blob True sha256 True bytes True"
+    }
+  ],
+  "verdicts": {
+    "PATCH_IDENTITY_MATCH": true,
+    "COMMIT_CHAIN_MATCH": true,
+    "SERIES_SHA256_MATCH": true,
+    "SOURCE_TREE_MATCH": true,
+    "NO_STALE_HANDOFF_IDS": true,
+    "LINUX_PENDING_RECORDED": true
+  },
+  "overall": "PASS"
+}

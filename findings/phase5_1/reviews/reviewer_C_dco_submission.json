@@ -1,0 +1,106 @@
+{
+  "schema": "phase5_1_review_v1",
+  "reviewer": "C-dco-submission",
+  "review_scope": "adversarial DCO / submission-policy / copyright-authorization audit of P5.1-CANDIDATE-R1 (frozen provisional candidate)",
+  "date": "2026-10-08",
+  "inputs_of_record": [
+    "P5.1 worktree C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.1-candidate (branch prepare/miopen-hiprtc-phase5.1, HEAD e7ff6d75fac3e7b683e81e671555ada99af13b74, base 7c5866144ac4b879be442563e2b49fa1c142ea36)",
+    "RCA repo C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA (docs/phase5_1, findings/phase5_1, docs/phase5, findings/phase5, patches/phase5_1/canonical, git history)",
+    "User authorization of record (Phase 5.1, 2026-10-08, verbatim): 'AIwork4me owns the relevant copyright OR has obtained the necessary authorization to contribute this code under the applicable open-source license.' (DCO certification NOT authorized)"
+  ],
+  "verdict": "CONDITIONAL PASS",
+  "counts": { "BLOCKER": 0, "MAJOR": 1, "MINOR": 1, "NIT": 3 },
+  "findings": [
+    {
+      "id": "C-MAJ-1",
+      "severity": "MAJOR",
+      "title": "Residual stale 'three' copyright count in docs/phase5/SOURCE_CHANGE_JUSTIFICATION.md Fix 5, contradicting the completeness claim in docs/phase5_1/COPYRIGHT_AND_DCO_STATUS.md §2",
+      "detail": "COPYRIGHT_AND_DCO_STATUS.md §2 states 'Phase 5.1 corrected every current checklist, conclusion and summary to say FOUR' and enumerates three corrected locations (phase5_conclusion.json copyright_status, AUTHORSHIP_DCO_AUDIT.md §4, P3_TO_P5_DELTA.md). That enumeration is accurate for those three files (verified, including via git diff of the uncommitted edits), but the sweep was not exhaustive: docs/phase5/SOURCE_CHANGE_JUSTIFICATION.md 'Fix 5 — Copyright attribution — PENDING (human decision)' (lines 66–85) still reads 'The three new MIT headers still carry [the placeholder]' and 'those three comment lines change', i.e. it describes the attribution scope as THREE files when FOUR files carried placeholders and FOUR comment lines changed in P5.1. Its section status is also still 'PENDING (human decision)' although P5.1 resolved it, and the file is neither corrected nor marked superseded (git status confirms it is NOT among the Phase-5 files Phase 5.1 edited; the FINAL_HANDOFF.json supersedes list covers only docs/phase5/LINUX_FINAL_VALIDATION_HANDOFF.md). SOURCE_CHANGE_JUSTIFICATION.md is not an immutable reviewer transcript (the exemption covers only findings/phase5/reviews/), so the stale count survives into the frozen record alongside an assertion that none remain. No code or manifest impact: the candidate itself is correct (4/4 files filled; P5→P5.1 delta verified as exactly 4 files, +4/−4 comment-only lines).",
+      "evidence": "grep -inE '3 MIT|three' docs/phase5/*.md → SOURCE_CHANGE_JUSTIFICATION.md:68 'The three new MIT headers still carry', :82 'those three comment lines change'; git status shows SOURCE_CHANGE_JUSTIFICATION.md unmodified by Phase 5.1; AUTHORSHIP_DCO_AUDIT.md:87/:99 and P3_TO_P5_DELTA.md:67-68 use 'three' correctly as a decomposition of FOUR (3 kernel headers + 1 test file) — those are NOT findings.",
+      "recommendation": "Before treating the freeze as final: correct SOURCE_CHANGE_JUSTIFICATION.md Fix 5 to the FOUR-file scope (3 kernel headers + test/hiprtc_selfcontained.cpp) and either update its status line or add a superseded/resolved pointer to findings/phase5_1/FINAL_HANDOFF.json; alternatively tighten the 'corrected every current checklist, conclusion and summary' sentence in COPYRIGHT_AND_DCO_STATUS.md §2 to name exactly which documents were corrected. Then re-run the count sweep."
+    },
+    {
+      "id": "C-MIN-1",
+      "severity": "MINOR",
+      "title": "docs/phase5/PR_DRAFT_FINAL.md still points at the superseded P5 series and predates the copyright/DCO resolution; no phase5_1 artifact supersedes or re-points it",
+      "detail": "PR_DRAFT_FINAL.md is internally honest for its P5 framing: it is gated 'DO NOT SUBMIT WITHOUT HUMAN APPROVAL', marks the Linux row 'PENDING NEW VALIDATION', uses explicit status markers, and nowhere claims DCO done or submission-readiness — no statement is inconsistent with DCO-pending or Linux-pending status. However, if reused verbatim for P5.1 it would cite the wrong series identity ('Series: 3 commits, patches/phase5/canonical/ (P5-CANDIDATE-R1)'), the wrong evidence paths (evidence/phase5/ rather than evidence/phase5_1/), and would be silent on the now-applied copyright notices ('Three small MIT-licensed headers' is literally accurate for the headers; the fourth copyright-bearing file is the test .cpp, described separately). FINAL_HANDOFF.json's supersedes list does not mention PR_DRAFT_FINAL.md and no P5.1 PR draft exists.",
+      "evidence": "PR_DRAFT_FINAL.md lines 1, 9-13, 95, 127, 150-157; FINAL_HANDOFF.json 'supersedes' object lists only the phase5 candidate id/commits/patches-dir and docs/phase5/LINUX_FINAL_VALIDATION_HANDOFF.md; docs/phase5_1/ contains only COPYRIGHT_AND_DCO_STATUS.md and LINUX_FINAL_VALIDATION_HANDOFF.md.",
+      "recommendation": "Add a superseded/needs-re-pointing banner to PR_DRAFT_FINAL.md (as was done for the phase5 Linux handoff), or regenerate a P5.1 PR draft from FINAL_HANDOFF.json before any human submission action; the reuse risk is identity/evidence staleness, not overclaiming."
+    },
+    {
+      "id": "C-NIT-1",
+      "severity": "NIT",
+      "title": "Phase 5.1 corrections exist only as uncommitted working-tree changes in the RCA repo",
+      "detail": "git status in the RCA repo shows modified: docs/phase5/AUTHORSHIP_DCO_AUDIT.md, docs/phase5/LINUX_FINAL_VALIDATION_HANDOFF.md, docs/phase5/P3_TO_P5_DELTA.md, findings/phase5/phase5_conclusion.json; and untracked: docs/phase5_1/, evidence/phase5_1/, findings/phase5_1/, patches/phase5_1/, scripts/phase5_1/. The edits themselves are transparent and well-scoped (count corrections, supersession banner, human_actions updates, and a commit_subjects order fix aligning subjects with the commits array — visible in git diff), but until committed the audit trail of 'what Phase 5.1 changed in Phase-5 records' lives only in the diff.",
+      "evidence": "git -C RCA status --porcelain; git diff of the four modified files (verified: no evidence rewrites, only the disclosed corrections).",
+      "recommendation": "Commit the Phase 5.1 documentation set (after reviews land) with a message enumerating the corrections — explicitly including the phase5_conclusion.json commit_subjects reorder — so the 3→4 correction is versioned and reproducible."
+    },
+    {
+      "id": "C-NIT-2",
+      "severity": "NIT",
+      "title": "Copyright holder identified by GitHub handle 'AIwork4me' rather than a legal name",
+      "detail": "The notice 'Copyright (c) 2026 AIwork4me' names an account handle. This is permissible (a copyright notice may identify the holder by any stable designation) and matches the user's own authorization wording, which uses 'AIwork4me' as the owning party; no documentation claims legal-entity status. Informational only: upstream maintainers may at review time ask for the holder's real name; changing it later would be another COPYRIGHT_TEXT-only delta requiring the same re-hash/re-validation steps already documented for DCO rewording.",
+      "evidence": "All four new files, line 5; COPYRIGHT_AND_DCO_STATUS.md §2 quote of the authorization.",
+      "recommendation": "No action required; confirm at submission time that the user is comfortable with the handle as the public notice."
+    },
+    {
+      "id": "C-NIT-3",
+      "severity": "NIT",
+      "title": "Sign-off email uses the legacy bare-username noreply form; evidence chain unaffected",
+      "detail": "AIwork4me@users.noreply.github.com is the legacy noreply format (accounts created after 2017 default to id+username@, i.e. 261514469+AIwork4me@users.noreply.github.com). The Phase 5 record does not depend on the format: it rests on the observed API linkage (author.login=AIwork4me) for both the pushed commit 7294c66 (this email) and the web-UI merge 033e6f4 (qq.com email), which is sound. The recorded sign-off instructions use the same email for author and sign-off, so any DCO-bot author-email==signoff-email check would pass. Purely informational for the human at submission time (they may prefer the id+ form or AIwork4me@qq.com, both already recorded as legitimate).",
+      "evidence": "docs/phase5/AUTHORSHIP_DCO_AUDIT.md §2 table and §3 instructions; commits 7294c66 and 033e6f4 confirmed present in RCA git log.",
+      "recommendation": "No action required."
+    }
+  ],
+  "checks": [
+    {
+      "id": "CHK-C1",
+      "question": "Is AIwork4me the approved author of all three commits on the stated base?",
+      "result": "PASS",
+      "evidence": "git log -3 --format=fuller in the P5.1 worktree: all three commits (d4003de1, 3b18a065, e7ff6d75) have Author AND Committer 'AIwork4me <AIwork4me@users.noreply.github.com>'; parent of the oldest is base 7c5866144ac4b879be442563e2b49fa1c142ea36 (ROCm/rocm-libraries develop). Matches docs/phase5_1/COPYRIGHT_AND_DCO_STATUS.md §1 and docs/phase5/AUTHORSHIP_DCO_AUDIT.md §1, which record the user's explicit confirmation that AIwork4me is the real author identity and that the user owns/controls it. Worktree git config user.name/email match exactly (no environment fallback)."
+    },
+    {
+      "id": "CHK-C2",
+      "question": "Is the email-to-identity linkage soundly and honestly derived from the prior verified evidence?",
+      "result": "PASS",
+      "evidence": "AUTHORSHIP_DCO_AUDIT.md §2 records: account AIwork4me id 261514469; AIwork4me@users.noreply.github.com verified via pushed commit 7294c66 (API author.login=AIwork4me); AIwork4me@qq.com verified via web-UI merge 033e6f4 (author.login=AIwork4me). Both commits exist in the RCA repo git log. The stated GitHub linking rules (verified email on pushed commits; signed-in account for web-UI commits) are accurate, the conclusion is drawn from observed API output rather than string similarity, alternatives are honestly recorded, and P5.1 documentation cites rather than re-asserts it. See NIT-3 for the legacy-format footnote."
+    },
+    {
+      "id": "CHK-C3",
+      "question": "Are the copyright assertions authorized and scoped to exactly the four series-created files, with no over-claiming?",
+      "result": "PASS",
+      "evidence": "The four files carrying 'Copyright (c) 2026 AIwork4me' are all created by this series: miopen_freestanding_type_traits.hpp + miopen_freestanding_utility.hpp added by d4003de1 (commit 1), miopen_freestanding_initializer_list.hpp added by 3b18a065 (commit 2), test/hiprtc_selfcontained.cpp added by e7ff6d75 (commit 3) — verified via git diff-tree --diff-filter=A per commit. git diff base..HEAD greps for copyright lines show ONLY four '+' lines, all inside those new files; zero copyright lines removed or altered anywhere. Modified pre-existing files (miopen_type_traits.hpp, miopen_utility.hpp, radix.hpp, tensor_view.hpp, both CMakeLists.txt) retain their 'Advanced Micro Devices, Inc.' notices unchanged — no AMD code claimed. P5→P5.1 delta verified independently: git diff 29846fc4..e7ff6d75 = 4 files, +4/−4, each hunk exactly '[contributor name and notice to be set by the submitter]' → 'AIwork4me', MIT license text otherwise byte-identical. Code-level inspection of all four new files found no third-party markers (no AMD/LLVM/libc++ notices, no _LIBCPP internals); the trait/forward/initializer_list definitions are minimal implementations of interfaces and layouts mandated by the C++ standard and clang's lowering, so the documentation's 'no third-party code' statement is defensible. Documentation does not claim legal-entity status or copyright over anything not authored here."
+    },
+    {
+      "id": "CHK-C4",
+      "question": "Is DCO certification correctly NOT performed, truthfully recorded, with usable reword instructions?",
+      "result": "PASS",
+      "evidence": "grep over the three full commit bodies: 0 lines matching ^Signed-off-by: (the only 'Signed-off-by' occurrences are inside the pending-marker text). All three commits carry exactly one 'DCO: PENDING HUMAN CONFIRMATION - provisional local commit, not for upstream submission; replace this line with a real Signed-off-by per DCO before submitting.' line; the marker does not parse as a sign-off trailer. patches/phase5_1/canonical/*.patch likewise contain 0 trailer-shaped Signed-off-by lines (same marker-only matches). Manifest findings/phase5_1/FINAL_HANDOFF.json dco_status = 'DCO_ATTESTATION_PENDING (...)' — PENDING, with an accurate policy summary. Independently grepped CONTRIBUTING.md in the candidate tree at the frozen base: root CONTRIBUTING.md (315 lines) — no DCO/signed-off/developer-certificate text (sole regex hit is the false positive 'amdclang' matching 'cla'); projects/miopen/CONTRIBUTING.md (131 lines) — zero matches; last 30 develop commits contain 0 Signed-off-by trailers. Accordingly docs/phase5_1/COPYRIGHT_AND_DCO_STATUS.md's 'DCO_REQUIRED_BY_UPSTREAM = NOT DOCUMENTED AS REQUIRED (no DCO text in root or projects/miopen CONTRIBUTING.md)' is accurate — DCO is NOT described as an upstream requirement anywhere in phase5_1 or the dco_status fields. §3 provides exact reword instructions (git rebase -i <base>, delete the marker line, add exactly 'Signed-off-by: AIwork4me <AIwork4me@users.noreply.github.com>', format-patch, re-hash, update manifest) and honestly notes SHAs/hashes change while tree bytes do not."
+    },
+    {
+      "id": "CHK-C5",
+      "question": "Do all current (non-immutable) checklists/conclusions/summaries say FOUR copyright-bearing files?",
+      "result": "PASS WITH FINDING (C-MAJ-1)",
+      "evidence": "findings/phase5/phase5_conclusion.json copyright_status explicitly says 'FOUR MIT headers: 3 kernel headers + test/hiprtc_selfcontained.cpp; count corrected 3->4 by Phase 5.1 Gate 05; resolved in P5.1-CANDIDATE-R1' — FOUR present as required. AUTHORSHIP_DCO_AUDIT.md §4 and P3_TO_P5_DELTA.md corrected to FOUR (verified via git diff: scoped, disclosed edits; no evidence rewritten). PHASE5_SUMMARY.md:48 and CI_INTEGRATION.md already said four. Remaining 'three' hits audited: PATCH_IDENTITY.json/PATCH_HANDOFF.json 'three canonical patch files' = patch count (correct, series is 3 commits); AUTHORSHIP_DCO_AUDIT.md:87/99 and P3_TO_P5_DELTA.md:68 use '3 kernel headers' as a decomposition of FOUR (correct); PR_DRAFT_FINAL.md:95 'Three small MIT-licensed headers' = headers only (correct). The ONE residual defect is SOURCE_CHANGE_JUSTIFICATION.md Fix 5 (see C-MAJ-1). findings/phase5/reviews/* not swept for correction (immutable per audit policy)."
+    },
+    {
+      "id": "CHK-C6",
+      "question": "Are provisional artifacts correctly labeled (no FINAL_SUBMITTABLE, no exaggerated readiness)?",
+      "result": "PASS WITH FINDING (C-MIN-1)",
+      "evidence": "FINAL_HANDOFF.json candidate_status = 'TECHNICALLY_VERIFIED_PROVISIONAL_FREEZE' with reason string naming DCO PENDING and Linux PENDING; 'FINAL_SUBMITTABLE' appears nowhere in docs/ or findings/. authorization_to_submit_upstream=false; linux_validation_status='PENDING' (exact token); phase5_1 LINUX handoff opens with 'Status: LINUX_VALIDATION = PENDING' and fail-closed identity rules; COPYRIGHT_AND_DCO_STATUS.md says 'technically frozen but NOT submission-ready until the DCO decision is made' and 'authorization_to_submit_upstream' is not contradicted anywhere. PR_DRAFT_FINAL.md contains no claim inconsistent with DCO-pending or Linux-pending (gated, honest markers); its only issue is stale P5-series identity references if reused (C-MIN-1)."
+    },
+    {
+      "id": "CHK-C7",
+      "question": "Have any forbidden upstream actions occurred?",
+      "result": "PASS",
+      "evidence": "Manifest: upstream_pr_created=false, upstream_issue_created=false, upstream_comment_posted=false, internal_pr_created=false (accurate for P5.1 — the phase5_1 work is not yet merged even into the RCA evidence repo). P5.1 worktree: git branch -r shows only origin/develop; candidate branches (prepare/miopen-hiprtc-phase5.1, prepare/miopen-hiprtc-phase5, prepare/miopen-hiprtc-selfcontained) are local-only; sole remote is https://github.com/ROCm/rocm-libraries.git (used for fetching the frozen base; no candidate ref pushed). RCA repo remote is the user's own evidence repo (AIwork4me/Ultralytics-Windows-ROCm-Training-RCA); its git log contains only internal phase/PR activity (PRs #4/#5 are merges within that private repo), plus an explicit historical record 'UPSTREAM PR/ISSUE/COMMENT: NONE'. No evidence of any upstream contact."
+    },
+    {
+      "id": "CHK-C8",
+      "question": "Is RIGHT_TO_CONTRIBUTE recorded exactly as CONFIRMED_BY_USER with the user's wording, without inflation?",
+      "result": "PASS",
+      "evidence": "COPYRIGHT_AND_DCO_STATUS.md §2 quotes the authorization verbatim ('AIwork4me owns the relevant copyright OR has obtained the necessary authorization to contribute this code under the applicable open-source license.'), records 'RIGHT_TO_CONTRIBUTE = CONFIRMED_BY_USER (2026-10-08)', and separately keeps DCO_ATTESTATION_PENDING — the two concepts are not conflated. FINAL_HANDOFF.json copyright_status uses the same CONFIRMED_BY_USER token. The supporting statement 'no external copyright holder exists to attribute' is presented as a factual consequence of the four files being new and free of third-party code (independently verified in CHK-C3), not as a legal certification of ownership; nothing in the record upgrades the user's OR-worded confirmation into an assertion that AIwork4me legally owns the copyright."
+    }
+  ],
+  "summary": "The candidate's code, commits, patches and manifest are procedurally clean: correct author identity on the correct base, copyright notices confined to the four series-created files, DCO correctly left uncertified with honest policy records (my own CONTRIBUTING.md greps at the frozen base confirm no DCO requirement text), exact reword instructions, provisional-freeze labeling throughout, and zero upstream contact. One documentation-consistency defect must be fixed before the freeze is treated as final: the stale three-count in docs/phase5/SOURCE_CHANGE_JUSTIFICATION.md Fix 5, which also falsifies the 'corrected every current checklist, conclusion and summary' sentence in the frozen DCO status doc (C-MAJ-1); plus one MINOR staleness risk in PR_DRAFT_FINAL.md (C-MIN-1)."
+}

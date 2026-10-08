@@ -63,26 +63,28 @@ changes (already clean). `CMakeLists.txt` is not in clang-format scope.
 Legacy-file style in untouched regions preserved, per the mission rule
 against wholesale reformatting.
 
-## Fix 5 — Copyright attribution — PENDING (human decision)
+## Fix 5 — Copyright attribution — RESOLVED in Phase 5.1
 
-The three new MIT headers still carry
-`Copyright (c) 2026 [contributor name and notice to be set by the submitter]`.
+*(Corrected 2026-10-08 by Phase 5.1 Gate 05 / Reviewer C C-MAJ-1: this
+section previously said "three" new MIT headers. There are FOUR files
+with placeholder headers: the 3 kernel headers above plus
+`test/hiprtc_selfcontained.cpp`. Scope count corrected; the Phase-5
+record below describes the state AT Phase-5 time.)*
 
-The user confirmed `AIwork4me` as the Git author and as owner of that
-GitHub identity — **authorship only**. No statement in this phase's
-authorization establishes legal copyright ownership, so per the mission
-identity policy the placeholder is retained and the candidate is marked:
+At Phase-5 freeze time the FOUR new files carrying MIT headers still
+had `Copyright (c) 2026 [contributor name and notice to be set by the
+submitter]`: authorship alone did not establish legal ownership, so
+P5-CANDIDATE-R1 was marked `COPYRIGHT_ATTRIBUTION_PENDING`.
 
-```text
-COPYRIGHT_ATTRIBUTION_PENDING
-```
-
-Consequence: the Phase-5 candidate is **provisional**, not a
-release-ready submission package. When the human sets the attribution,
-those three comment lines change (classification `COPYRIGHT_TEXT`,
-non-functional); the required follow-up is a targeted revalidation
-(rebuild + CI A/B spot-check) per the Phase-4 checklist §2. Do NOT
-publish as final until then.
+**Phase 5.1 resolution:** the user explicitly confirmed the right to
+contribute ("owns the relevant copyright OR has obtained the necessary
+authorization …", 2026-10-08). All FOUR placeholders were replaced with
+`Copyright (c) 2026 AIwork4me` (classification `COPYRIGHT_TEXT`,
+comment-only, +4/−4 lines — nothing else changed), and the full targeted
+revalidation was executed on the rebuilt candidate **P5.1-CANDIDATE-R1**
+(CI 4/4 + A/B matrix 13/13 + DLL rebuild + provenance + no-STL + BN
+numerics + YOLO26n smoke; see `findings/phase5_1/FINAL_HANDOFF.json`).
+DCO attestation remains PENDING by separate decision.
 
 ## Mandatory exclusions — respected
 
