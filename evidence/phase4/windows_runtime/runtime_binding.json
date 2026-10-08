@@ -1,0 +1,30 @@
+{
+  "schema": "phase4_runtime_binding_v1",
+  "gate": "P51+P52(A-D)",
+  "timestamp": "2026-10-08T11:36:12.507176",
+  "canonical_dll": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase4_build\\miopen\\bin\\MIOpen.dll",
+  "canonical_sha256": "b32d6310817a225ff81cfe8de3dfe2a0d5c525caa845bad1f4d2304abc6aa721",
+  "wheel_dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+  "wheel_sha256_expected": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+  "binding_probe": {
+    "loaded": true,
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "b32d6310817a225ff81cfe8de3dfe2a0d5c525caa845bad1f4d2304abc6aa721",
+    "y_finite": true
+  },
+  "canonical_loaded": true,
+  "gpu_control": {
+    "name": "gpu_control",
+    "exit": 0,
+    "stdout": "True AMD Radeon(TM) 8060S Graphics\n",
+    "stderr": ""
+  },
+  "batchnorm": {
+    "name": "batchnorm_minimal",
+    "exit": 0,
+    "stdout": "{\"y_shape\": [8, 16, 64, 64], \"y_finite\": true, \"max_abs_vs_cpu\": 6.845486382189847e-07, \"running_stats_finite\": true, \"running_mean_changed\": true, \"eval_ok\": true, \"backward_finite\": true}\n",
+    "stderr": "MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution\nMIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151\n<string>:19: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at B:\\src\\pytorch\\torch\\csrc\\autograd\\generated\\python_variable_methods.cpp:839.)\n"
+  },
+  "wheel_restored_sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+  "wheel_restored_ok": true
+}

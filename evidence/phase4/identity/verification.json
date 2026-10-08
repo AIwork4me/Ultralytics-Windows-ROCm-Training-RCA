@@ -1,0 +1,45 @@
+{
+  "schema": "phase4_identity_verification_v1",
+  "gate": "P41",
+  "date": "2026-10-08",
+  "verified_ref": "origin/main (cb5e8cac615afff38bb8c78634a7cf130fc97a06)",
+  "source": {
+    "origin_main": "cb5e8cac615afff38bb8c78634a7cf130fc97a06",
+    "handoff_patch_id": "P3-FINAL-R3",
+    "handoff_source_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+    "source_sha_match": true
+  },
+  "patches": [
+    {
+      "order": 1,
+      "path": "patches/phase3/0001-miopen-hiprtc-selfcontained.patch",
+      "git_ref": "origin/main:patches/phase3/0001-miopen-hiprtc-selfcontained.patch",
+      "size_bytes": 15143,
+      "sha256": "f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20",
+      "expected_sha256": "f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20",
+      "match": true,
+      "handoff_sha256": "f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20",
+      "handoff_match": true
+    },
+    {
+      "order": 2,
+      "path": "patches/phase3/0002-miopen-hiprtc-selfcontained.patch",
+      "git_ref": "origin/main:patches/phase3/0002-miopen-hiprtc-selfcontained.patch",
+      "size_bytes": 6375,
+      "sha256": "77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532",
+      "expected_sha256": "77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532",
+      "match": true,
+      "handoff_sha256": "77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532",
+      "handoff_match": true
+    }
+  ],
+  "series": {
+    "algorithm": "sha256_git_blob_concat_v1",
+    "sha256": "b1150afcf2170a9d396f9a25669547c0ed4021c221f7feaa59e073d4b9706685",
+    "expected_sha256": "b1150afcf2170a9d396f9a25669547c0ed4021c221f7feaa59e073d4b9706685",
+    "match": true,
+    "handoff_sha256": "b1150afcf2170a9d396f9a25669547c0ed4021c221f7feaa59e073d4b9706685",
+    "handoff_match": true
+  },
+  "overall": "MATCH"
+}
