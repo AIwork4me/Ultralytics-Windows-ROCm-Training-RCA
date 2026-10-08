@@ -1,0 +1,21 @@
+{
+  "gate": "G08",
+  "timestamp": "2026-10-08T10:22:21.602926+00:00",
+  "final_handoff_available": false,
+  "check_method": "GitHub contents API: repos/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/contents/findings/phase5_1/FINAL_HANDOFF.json -> 404 (also absent from main git tree recursive listing)",
+  "consumer": {
+    "script": "scripts/check_final_handoff.py",
+    "modes": [
+      "--check-only MANIFEST --rca-root DIR [--json-out PATH]",
+      "--apply MANIFEST TARGET_DIR --rca-root DIR (ENABLE_APPLY=1 post-freeze only)"
+    ],
+    "design_doc": "docs/FINAL_HANDOFF_CONSUMER.md",
+    "adversarial_history": "initially CONDITIONAL PASS with HIGH/MEDIUM findings; all fixed same-session; regression matrix green",
+    "stale_anchors_rejected": [
+      "b68f8944300f104875d953fc8e4510908c9aaf0b",
+      "07959f8",
+      "013f6f005f97aca5ef46d841ca754f2283dc62f0"
+    ]
+  },
+  "decision": "Preparation proceeded with check-only tooling; NO patches applied; B directories empty"
+}

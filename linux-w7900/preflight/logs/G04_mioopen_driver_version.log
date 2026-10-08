@@ -1,0 +1,6 @@
+=== MIOpenDriver provenance-corrected run 2026-10-08T09:56:06+00:00 ===
+MIOpen (version: 3.6.2)
+rc=0
+	libMIOpen.so.1 => /workspace/miopen-w7900-validation/install/baseline/lib/libMIOpen.so.1 (0x00007290fe000000)
+	libamdhip64.so.7 => /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7 (0x00007290f9800000)
+	libhiprtc.so.7 => /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7 (0x000072911c046000)

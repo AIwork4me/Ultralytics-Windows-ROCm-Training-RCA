@@ -1,0 +1,31 @@
+=== G03 network probes 2026-10-08T08:00:38+00:00 ===
+--- git ls-remote rocm-libraries ---
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+rc=128
+--- git ls-remote RCA ---
+fatal: unable to access 'https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA.git/': CONNECT tunnel failed, response 503
+rc=128
+--- repo.amd.com HEAD ---
+http=200 tls=0 time=12.643705
+--- api.github.com ---
+http=200
+--- raw.githubusercontent.com ---
+curl: (28) Connection timed out after 20002 milliseconds
+http=000
+--- proxy env (values sanitized) ---
+no_proxy=127.0.0.1,localhost,.svc,.svc.cluster.local,j-5jmn7smvmz5iaumh5o3cifgjd6.amd-oneclick-lablab-runtime.svc.cluster.local
+https_proxy=http://notebook-egress-proxy.amd-oneclick-lablab.svc.cluster.local:3128
+NO_PROXY=127.0.0.1,localhost,.svc,.svc.cluster.local,j-5jmn7smvmz5iaumh5o3cifgjd6.amd-oneclick-lablab-runtime.svc.cluster.local
+HTTPS_PROXY=http://notebook-egress-proxy.amd-oneclick-lablab.svc.cluster.local:3128
+HTTP_PROXY=http://notebook-egress-proxy.amd-oneclick-lablab.svc.cluster.local:3128
+http_proxy=http://notebook-egress-proxy.amd-oneclick-lablab.svc.cluster.local:3128
+--- TLS check github.com ---
+curl: (28) Connection timed out after 20001 milliseconds
+http=000 ssl_verify=0
+--- gh auth status (token redacted by gh) ---
+github.com
+  ✓ Logged in to github.com account AIwork4me (/root/.config/gh/hosts.yml)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'

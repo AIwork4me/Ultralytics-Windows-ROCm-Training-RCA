@@ -1,0 +1,52 @@
+{
+  "gate": "G04",
+  "baseline_build": {
+    "source_dir": "source/upstream-pristine/projects/miopen",
+    "build_dir": "build/baseline-miopen",
+    "install_prefix": "install/baseline",
+    "config": {
+      "MIOPEN_BACKEND": "HIP",
+      "MIOPEN_USE_HIPRTC": "ON",
+      "MIOPEN_USE_COMGR": "ON",
+      "MIOPEN_USE_COMPOSABLEKERNEL": "OFF (mirrors Phase-3 Linux config; CK not needed for kthvalue path)",
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "GPU_TARGETS": "gfx1100",
+      "BUILD_TESTING": "OFF",
+      "cache_pins": [
+        "hip_DIR",
+        "hiprtc_DIR",
+        "rocblas_DIR",
+        "hipblaslt_DIR",
+        "hipblas-common_DIR",
+        "amd_comgr_DIR",
+        "rocrand_DIR",
+        "Eigen3_DIR",
+        "MIOPEN_OFFLOADBUNDLER_BIN",
+        "MIOPEN_AMDGCN_ASSEMBLER"
+      ]
+    },
+    "resolved_versions": {
+      "hip": "7.14.60850 (wheel devel)",
+      "hiprtc": "7.14.60850 (wheel devel)",
+      "rocblas": "5.5.0 (wheel)",
+      "hipblaslt": "1.4.1",
+      "amd_comgr": "3.3.0 (wheel core)"
+    },
+    "cmakecache_opt_rocm_count": 0,
+    "contamination_incidents_and_fixes": [
+      "MIOPEN_AMDGCN_ASSEMBLER + MIOPEN_OFFLOADBUNDLER_BIN initially resolved to /opt/rocm/llvm/bin (7.2.1) via find_program PATHS hints; caught by mandatory CMakeCache grep; fixed by explicit cache pins to 7.14.1 SDK llvm"
+    ],
+    "build_targets_completed": "841/841 (incl. MIOpenDriver)",
+    "libMIOpen": "install/baseline/lib/libMIOpen.so.1.0",
+    "libMIOpen_size_bytes": 803390264,
+    "libMIOpen_sha256": "6af347af760bb5145a6d8f2c50871bcd2d11c7aa71075a59cd67de7e49990697",
+    "status": "BUILD OK",
+    "logs": [
+      "logs/G04_configure.log",
+      "logs/G04_build.log",
+      "logs/G04_install.log",
+      "logs/G04_build_driver.log"
+    ]
+  },
+  "timestamp": "2026-10-08T10:41:38.681197+00:00"
+}

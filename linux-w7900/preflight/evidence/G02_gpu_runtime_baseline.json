@@ -1,0 +1,48 @@
+{
+  "gate": "G02",
+  "timestamp": "2026-10-08T07:57:56.363762+00:00",
+  "scope": "BASELINE of currently installed stacks only - NOT validation of any MIOpen source patch",
+  "system_rocm_721": {
+    "torch": "2.9.1+gitff65f5b",
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "matmul": "PASS",
+    "batchnorm_fwd": "PASS",
+    "batchnorm_bwd": "PASS",
+    "loaded_libMIOpen": [
+      "/opt/rocm-7.2.1/lib/libMIOpen.so.1.0.70201"
+    ],
+    "libMIOpen_sha256": {
+      "/opt/rocm-7.2.1/lib/libMIOpen.so.1.0.70201": "bd03b86420b6d6891da40c9d8e23f62e49ce0a1c92a2ee4fcb34809dc8d77eb4"
+    },
+    "loaded_libamdhip64": [
+      "/opt/rocm-7.2.1/lib/libamdhip64.so.7.2.70201"
+    ],
+    "log": "logs/G02_baseline_system721.log",
+    "exit_code": 0
+  },
+  "isolated_rocm_7141": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon Pro W7900D",
+    "matmul": "PASS",
+    "batchnorm_fwd": "PASS",
+    "batchnorm_bwd": "PASS",
+    "loaded_libMIOpen": [
+      "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1"
+    ],
+    "libMIOpen_sha256": {
+      "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1": "941a92dad8a6784d5258b874bcb034abae6ceb6c02fca48ac7fe3244f4561a26"
+    },
+    "loaded_libamdhip64": [
+      "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7"
+    ],
+    "log": "logs/G02_baseline_rocm7141.log",
+    "exit_code": 0
+  },
+  "notes": [
+    "7.14.1 run executed under scripts/env_rocm7141.sh; provenance via /proc/<pid>/maps proves zero /opt/rocm mappings",
+    "Device name 'AMD Radeon Pro W7900D' (7.14.1 stack) further confirms W7900 hardware",
+    "MIOpen version in both stacks is the DISTRIBUTED MIOpen, not source-built - source-built MIOpen baseline is Gate G04/G06 scope"
+  ]
+}

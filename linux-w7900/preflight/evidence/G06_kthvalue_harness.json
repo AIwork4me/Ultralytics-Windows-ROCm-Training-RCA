@@ -1,0 +1,85 @@
+{
+  "gate": "G06",
+  "timestamp": "2026-10-08T10:07:47.065848+00:00",
+  "scope": "BASELINE-ONLY kthvalue test of source-built UNPATCHED MIOpen 3.6.2. NOT patched validation. NOT an A/B comparison.",
+  "harness": {
+    "original": "scripts/phase3-original/kthvalue_runtime_harness.cpp (Phase-3 RCA main @013f6f0, preserved byte-identical)",
+    "preparatory_copy": "scripts/kthvalue_runtime_harness_gfx1100.cpp (single diff: banner string gfx1151->gfx1100/W7900)",
+    "binary": "build/kthvalue-harness/kthvalue_runtime_harness_gfx1100",
+    "binary_sha256": "b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8",
+    "link_time_deps": "NONE on MIOpen/HIP (dlsym RTLD_DEFAULT design confirmed via ldd)",
+    "api_signature_check": "miopenKthvalueForward verified identical in include/miopen/miopen.h:7753 of pinned source b68f894 and harness typedef"
+  },
+  "baseline_run": {
+    "miopen_lib": "install/baseline/lib/libMIOpen.so.1",
+    "miopen_lib_sha256": "6af347af760bb5145a6d8f2c50871bcd2d11c7aa71075a59cd67de7e49990697",
+    "binding": "LD_PRELOAD of install/baseline/lib/libMIOpen.so.1 via scripts/run_validation_leg.sh baseline",
+    "dladdr_provenance": "miopenCreate AND miopenKthvalueForward both <- install/baseline/lib/libMIOpen.so.1 (in-harness, in-stream)",
+    "cache": "runtime/baseline-cache/kthv-baseline (fresh; MIOPEN_CUSTOM_CACHE_DIR + MIOPEN_USER_DB_PATH + XDG_CACHE_HOME isolated)",
+    "solver_selection": "FindSolutionImpl KthvalueFwd (not searchable) x3 - MIOpen info log",
+    "rtc_compile_proof": "SQLite kern_db in fresh cache contains RTC-compiled kernels: id=1 MIOpenKthvalue.cpp.o args='-DMIOPEN_USE_FP32=1 ... -mcpu=gfx1100' blob=4232B hash=ebb749a659a503cc597e697a0ffe1dbd; id=2 FP16 variant blob=4272B hash=050ca32ffc91f96382299bef789a9cb3; plus comgr llvmcache artifacts",
+    "cases": [
+      {
+        "id": "FP32-2D-nokeep",
+        "shape": [
+          100,
+          500
+        ],
+        "dtype": "FP32",
+        "k": 10,
+        "status": "PASS",
+        "slices": 100,
+        "value_mismatch": 0,
+        "index_mismatch": 0,
+        "max_abs_err": 0.0
+      },
+      {
+        "id": "FP32-3D-keep-explicit-dim",
+        "shape": [
+          10,
+          20,
+          300
+        ],
+        "dtype": "FP32",
+        "dim": 2,
+        "k": 137,
+        "keepDim": true,
+        "status": "PASS",
+        "slices": 200,
+        "value_mismatch": 0,
+        "index_mismatch": 0,
+        "max_abs_err": 0.0
+      },
+      {
+        "id": "FP16-4D-keep-kmax",
+        "shape": [
+          8,
+          3,
+          10,
+          2000
+        ],
+        "dtype": "FP16",
+        "k": 2000,
+        "keepDim": true,
+        "status": "PASS",
+        "slices": 240,
+        "value_mismatch": 0,
+        "index_mismatch": 0,
+        "max_abs_err": 0.0
+      }
+    ],
+    "ties_note": "deterministic per-slice permutation inputs, pairwise distinct values (exact 0.25 multiples) - tie ambiguity impossible; index comparison exact",
+    "harness_result": "PASS",
+    "exit_code": 0,
+    "log": "logs/G06_kthvalue_baseline.log",
+    "dumps": "runtime/baseline-cache/kthv-baseline/dumps/ (input/output/indices/expected binaries for future byte-level A/B)"
+  },
+  "future_ab_readiness": {
+    "identical_inputs_across_legs": "same harness binary + fixed seeds (xorshift64*, seeds recorded in source)",
+    "a_b_single_variable": "which libMIOpen.so.1 is LD_PRELOADed (baseline vs final-patched install prefixes)",
+    "not_done": [
+      "patched leg (NOT AUTHORIZED in prep mission)",
+      "A/B comparison execution"
+    ]
+  }
+}

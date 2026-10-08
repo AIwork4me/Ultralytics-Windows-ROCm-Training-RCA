@@ -1,0 +1,13 @@
+{
+  "mission": "W7900-LINUX-PREP-R1",
+  "published_at": "2026-10-08T10:44:55.574076+00:00",
+  "repository": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA",
+  "branch": "linux-w7900/preflight-readiness",
+  "branch_url": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/tree/linux-w7900/preflight-readiness",
+  "commit_sha": "1f80986d1dda985e4be2dee8a870cb9e332a50f3",
+  "base_branch": "main @ 013f6f005f97aca5ef46d841ca754f2283dc62f0 (untouched)",
+  "remote_file_count_under_preflight": 77,
+  "integrity_check": "remote evidence/G06_kthvalue_harness.json fetched via contents API; base64-decoded sha256 a3cab74aea76af25fed8b716f027bee6a94b3631fcb6658fb2b3a44a749aa96c == local sha256 (byte-identical)",
+  "pull_requests_created": 0,
+  "notes": "push succeeded on first attempt after clone retry (proxy cooperating); no PR opened; no merge; binaries/code-objects/build outputs/caches excluded from git"
+}

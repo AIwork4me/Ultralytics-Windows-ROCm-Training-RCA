@@ -1,0 +1,52 @@
+{
+  "gate": "G05",
+  "timestamp": "2026-10-08T10:05:27.550918+00:00",
+  "hiprtc_smoke": {
+    "program": "scripts/g05_hiprtc_smoke.cpp (built build/kthvalue-harness/g05_hiprtc_smoke)",
+    "libhiprtc_provenance": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/.../_rocm_sdk_core/lib/libhiprtc.so.7 (dladdr-proven in log)",
+    "hiprtcamdhip_provenance": ".../_rocm_sdk_core/lib/libamdhip64.so.7",
+    "arch_flag": "-mcpu=gfx1100",
+    "compile_result": "OK",
+    "code_object_bytes": 4728,
+    "code_object_sha256": "79fd4f388f99613d5d48a894e1cd2969a6eed65f27031b1a165bf061d2ba7ca2",
+    "code_object_archived": "evidence/G05_code_object_gfx1100.co",
+    "kernel_execution": "axpy_smoke 1024 elements, 0 mismatches",
+    "exit_code": 0,
+    "log": "logs/G05_hiprtc_smoke.log",
+    "result": "PASS"
+  },
+  "stl_availability_probe": {
+    "program": "scripts/g05_stl_probe.cpp (kernel __has_include matrix, executed on GPU)",
+    "results": {
+      "default": {
+        "type_traits": 1,
+        "utility": 1,
+        "limits": 1,
+        "initializer_list": 1
+      },
+      "-nostdinc++": {
+        "type_traits": 1,
+        "utility": 0,
+        "limits": 1,
+        "initializer_list": 1
+      },
+      "-nostdinc": {
+        "type_traits": 1,
+        "utility": 0,
+        "limits": 1,
+        "initializer_list": 1
+      }
+    },
+    "actual_include_test": "#include <limits> inside RTC kernel compiles OK under default AND -nostdinc++ AND -nostdinc",
+    "interpretation": [
+      "Linux wheel HIPRTC exposes full libc++ to device compilation by default -> unpatched MIOpen HIPRTC kernels that use <limits>/<utility> compile (matches historical Linux unpatched PASS; Windows lacks these paths, hence the Windows failure class)",
+      "-nostdinc and -nostdinc++ behave IDENTICALLY in this HIPRTC context: both remove <utility> only; <type_traits>/<limits>/<initializer_list> remain reachable via HIPRTC-internal include paths that -nostdinc does not suppress (plain clang++ -nostdinc++/-nostdinc outside HIPRTC removes all four - verified separately)",
+      "CONSEQUENCE: on Linux, neither flag is a complete STL isolation method; any validation requiring a Windows-like partial-STL environment must construct it differently (e.g., explicit header search path restriction). Recorded for the final A/B protocol."
+    ],
+    "log": "logs/G05_stl_probe.log",
+    "actual_include_test_source": "scripts/g05_limits_include_test.cpp (archived after review MINOR; build with hipcc under env_rocm7141)"
+  },
+  "scope": "Ordinary compiler controls only - NOT a patched-MIOpen regression claim",
+  "review_nit_version_labeling": "'7.14.60850' is the HIP toolchain version (hipcc); hiprtcVersion() API self-reports 9.0 (HIPRTC API version). Library provenance is by dladdr + wheel dist-info rocm_sdk_core-7.14.1.",
+  "code_object_target_string": "amdgcn-amd-amdhsa--gfx1100 (reviewer-verified via llvm-readobj EF_AMDGPU_MACH_AMDGCN_GFX1100; axpy_smoke disassembles as valid GCN11)"
+}

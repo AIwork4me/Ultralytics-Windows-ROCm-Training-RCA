@@ -1,0 +1,42 @@
+=== G09 machine hygiene audit 2026-10-08T10:22:34+00:00 ===
+--- system ROCm untouched check ---
+system libMIOpen sha256: bd03b86420b6d6891da40c9d8e23f62e49ce0a1c92a2ee4fcb34809dc8d77eb4
+rocm/amdgpu dpkg entries: 17
+HSA_OVERRIDE_GFX_VERSION=<unset>
+LD_PRELOAD(global)=<unset>
+--- kernel/driver ---
+6.8.0-79-generic
+6.16.13
+--- disk ---
+/dev/loop0       98G   38G   56G  41% /workspace
+--- workspace git state (RCA clone of record: tarball; repo-of-record is rocm-libraries) ---
+0
+234d9b96db feat(hipblaslt): fp32 GridBased logic + Equality retune for gfx1200/g… (#12116)
+--- scripts executable inventory ---
+x build_baseline_miopen.sh
+x build_leg_miopen.sh
+x check_final_handoff.py
+x clone_loop.sh
+x env_rocm7141.sh
+x env_system721.sh
+NOT-EXEC g02_gpu_baseline.py
+NOT-EXEC g05_hiprtc_smoke.cpp
+NOT-EXEC g05_limits_include_test.cpp
+NOT-EXEC g05_stl_probe.cpp
+x git-retry.sh
+NOT-EXEC kthvalue_runtime_harness_gfx1100.cpp
+x phase3-original
+x prepare_validation_legs.sh
+x repo_backfill_loop.sh
+x run_validation_leg.sh
+--- pip checks ---
+No broken requirements found.
+No broken requirements found.
+--- credential scan ---
+0
+--- caches not shared A/B ---
+/workspace/miopen-w7900-validation/runtime/baseline-cache:
+g06-audit-78225
+kthv-baseline
+
+/workspace/miopen-w7900-validation/runtime/patched-cache:

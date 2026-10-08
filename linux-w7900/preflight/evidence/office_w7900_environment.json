@@ -1,0 +1,63 @@
+{
+  "gate": "G11",
+  "mission": "W7900-LINUX-PREP-R1",
+  "timestamp": "2026-10-08T10:42:50.463795+00:00",
+  "machine": {
+    "os": "Ubuntu 24.04.4 LTS",
+    "kernel": "6.8.0-79-generic",
+    "gpu": "AMD Radeon PRO W7900 (gfx1100, PCI 1002:744b:0e0c)",
+    "cpu": "AMD EPYC 9334 128 threads",
+    "ram": "503 GiB",
+    "disk_free_workspace": "~56 GiB"
+  },
+  "stacks": {
+    "system_untouched": {
+      "rocm": "7.2.1",
+      "torch": "2.9.1+gitff65f5b",
+      "purpose": "machine baseline only"
+    },
+    "isolated": {
+      "rocm": "7.14.1 (wheel SDK venv)",
+      "torch": "2.12.0+rocm7.14.1",
+      "purpose": "all prep builds + final validation legs"
+    }
+  },
+  "baseline": {
+    "source_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+    "miopen": "3.6.2",
+    "libMIOpen_sha256": "6af347af760bb5145a6d8f2c50871bcd2d11c7aa71075a59cd67de7e49990697"
+  },
+  "test_results": {
+    "gpu_matmul": "PASS (both stacks)",
+    "batchnorm_fwd": "PASS (both stacks)",
+    "batchnorm_bwd": "PASS (both stacks)",
+    "hiprtc_smoke": "PASS (gfx1100 code object executed)",
+    "stl_probe": "completed (Linux default exposes STL; -nostdinc++/-nostdinc equivalent, partial isolation only)",
+    "kthvalue_harness_compile": "PASS",
+    "kthvalue_baseline_runtime": "PASS 3/3 exact",
+    "library_provenance": "dladdr-proven source-built MIOpen; RTC kernel hash reproduced across runs"
+  },
+  "future_final_validation": {
+    "a_source_prepared": true,
+    "b_directory_reserved": true,
+    "cache_isolation": true,
+    "sha256_verifier": "scripts/check_final_handoff.py (adversarially hardened)",
+    "final_handoff_available": false,
+    "final_candidate_applied": false,
+    "final_patched_ab_executed": false
+  },
+  "reviews": {
+    "G00": "PASS",
+    "G01": "PASS(resolved)",
+    "G02": "PASS",
+    "G03": "PASS",
+    "G04": "PASS(resolved)",
+    "G05": "PASS",
+    "G06": "PASS",
+    "G07": "PASS",
+    "G08": "PASS(adversarially hardened)",
+    "G09": "PASS(resolved)",
+    "G10": "A resolved/B PASS/C resolved"
+  },
+  "conclusion": "OFFICE_W7900_ENV_READY"
+}

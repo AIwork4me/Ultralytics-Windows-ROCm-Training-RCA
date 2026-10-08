@@ -1,0 +1,9 @@
+actual #include <limits> under (default)   -> compile=OK 
+actual #include <limits> under -nostdinc++ -> compile=OK 
+actual #include <limits> under -nostdinc   -> compile=OK 
+=== G05 STL probe matrix refresh 2026-10-08T10:41:38+00:00 (G09-review fix) ===
+MODE default   flags=[-mcpu=gfx1100] compile=OK | <type_traits>=1 <utility>=1 <limits>=1 <initializer_list>=1 | code_size=3824
+MODE nostdincpp flags=[-mcpu=gfx1100,-nostdinc++] compile=OK | <type_traits>=1 <utility>=0 <limits>=1 <initializer_list>=1 | code_size=3824
+MODE nostdinc  flags=[-mcpu=gfx1100,-nostdinc] compile=OK | <type_traits>=1 <utility>=0 <limits>=1 <initializer_list>=1 | code_size=3824
+G05_STL_PROBE_DONE
+EXIT=0

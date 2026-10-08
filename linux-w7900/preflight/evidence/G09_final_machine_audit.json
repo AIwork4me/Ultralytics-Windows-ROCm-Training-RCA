@@ -1,0 +1,81 @@
+{
+  "gate": "G09",
+  "timestamp": "2026-10-08T10:41:45.496739+00:00",
+  "system_state": {
+    "kernel": "6.8.0-79-generic (unchanged since G00)",
+    "amdgpu_module": "6.16.13 (unchanged since G00)",
+    "system_libMIOpen_sha256": "bd03b86420b6d6891da40c9d8e23f62e49ce0a1c92a2ee4fcb34809dc8d77eb4 (unchanged = system MIOpen NOT replaced)",
+    "global_HSA_OVERRIDE_GFX_VERSION": "unset",
+    "global_LD_PRELOAD": "unset",
+    "dpkg_rocm_amdgpu_entries": {
+      "rocm_lines": 16,
+      "amdgpu_lines": 1,
+      "installed_ii_matching_rocm_or_amdgpu": 17,
+      "note": "count is pattern-dependent; zero packages installed/removed during mission (verified via /var/log/dpkg.log by G09 subagent: all rocm/amdgpu entries date from 2026-03-13 provisioning)"
+    },
+    "disk_free_workspace": "56 GiB",
+    "credential_scan_evidence_logs_scripts_docs_reviews": "0 matches",
+    "dpkg_note": "count corrected per G09 subagent (initial grep undercounted; all entries installed 2026-03-13 provisioning, none during mission)"
+  },
+  "python_environments": {
+    "/opt/venv": "pip check clean (torch 2.9.1+git/ROCm7.2.1 stack, untouched)",
+    "tools/rocm7141-venv": "pip check clean",
+    "rocm7141_freeze": [
+      "amd-torch-device-gfx1100==2.12.0+rocm7.14.1",
+      "amd-torch-device-gfx110x==2.12.0+rocm7.14.1",
+      "amd-torchvision-device-gfx1100==0.27.0+rocm7.14.1",
+      "numpy==2.4.4",
+      "patchelf==0.19.1.0",
+      "rocm==7.14.1",
+      "rocm-bootstrap==0.1.0",
+      "rocm-sdk-core==7.14.1",
+      "rocm-sdk-devel==7.14.1",
+      "rocm-sdk-device-gfx1100==7.14.1",
+      "rocm-sdk-libraries==7.14.1",
+      "torch==2.12.0+rocm7.14.1",
+      "torchvision==0.27.0+rocm7.14.1",
+      "triton==3.8.0+git4cff872c.rocm7.14.1"
+    ]
+  },
+  "cache_isolation": "runtime/baseline-cache (kthv-baseline, g06-audit-*) vs runtime/patched-cache (empty) - no sharing possible",
+  "git_state": {
+    "repos/rocm-libraries": "blobless clone present (.git object store growing via backfill loop; worktree files currently absent pending successful promisor checkout of b68f894 - NOT a blocker: baseline source of record is the codeload tarball independently verified 8032/8032 files vs b68f894)",
+    "source/upstream-pristine": "extracted tarball at b68f894 (verified)",
+    "source/final-patched": "EMPTY (reserved)"
+  },
+  "scripts_executable": "all shell/python entry scripts executable; .cpp probe sources are build inputs (invocation documented in docs/HIPRTC_BASELINE.md)",
+  "reproducibility_notes": [
+    "Environment lock below pins the isolated SDK versions; builds use one cmake literal (build_leg_miopen.sh)",
+    "No claim of byte-identical binaries across machines; within-machine leg A/B reproducibility enforced by identical inputs/seeds/flags",
+    "RCA repo of record for phase3 originals: main @ 013f6f005f97aca5ef46d841ca754f2283dc62f0 (tarball, scripts/phase3-original preserved byte-identical)"
+  ],
+  "environment_lock": {
+    "isolated_sdk": {
+      "rocm": "7.14.1",
+      "rocm-sdk-core": "7.14.1",
+      "rocm-sdk-devel": "7.14.1",
+      "rocm-sdk-libraries": "7.14.1",
+      "rocm-sdk-device-gfx1100": "7.14.1",
+      "torch": "2.12.0+rocm7.14.1",
+      "torchvision": "0.27.0+rocm7.14.1",
+      "python": "3.12.3"
+    },
+    "system_stack": {
+      "rocm": "7.2.1",
+      "torch": "2.9.1+gitff65f5b",
+      "cmake": "3.31.10",
+      "ninja": "1.13.0",
+      "gcc": "13.3.0"
+    },
+    "baseline_build_pinned": {
+      "source_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+      "miopen_version": "3.6.2",
+      "libMIOpen_sha256": "6af347af760bb5145a6d8f2c50871bcd2d11c7aa71075a59cd67de7e49990697"
+    },
+    "apt_additions_during_prep": [
+      "libbz2-dev 1.0.8-5.1",
+      "nlohmann-json3-dev 3.11.3",
+      "libeigen3-dev 3.4.0"
+    ]
+  }
+}

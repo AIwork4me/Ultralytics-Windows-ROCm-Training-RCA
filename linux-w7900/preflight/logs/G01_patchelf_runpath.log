@@ -1,0 +1,5 @@
+patched libaotriton_v2.so.0.13.50
+patched libc10_hip.so
+patched libcaffe2_nvrtc.so
+patched libtorch_cpu.so
+patched libtorch_python.so

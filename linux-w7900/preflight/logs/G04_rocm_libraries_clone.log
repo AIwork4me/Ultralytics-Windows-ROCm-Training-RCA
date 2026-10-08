@@ -1,0 +1,126 @@
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+clone attempt 1 failed 2026-10-08T09:10:10+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+clone attempt 2 failed 2026-10-08T09:12:12+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 3 failed 2026-10-08T09:13:42+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 4 failed 2026-10-08T09:15:13+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 5 failed 2026-10-08T09:16:43+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 6 failed 2026-10-08T09:18:13+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 7 failed 2026-10-08T09:19:43+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': Failure when receiving data from the peer
+clone attempt 8 failed 2026-10-08T09:20:31+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 9 failed 2026-10-08T09:22:04+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 10 failed 2026-10-08T09:23:34+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 11 failed 2026-10-08T09:25:05+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+clone attempt 12 failed 2026-10-08T09:26:41+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 13 failed 2026-10-08T09:28:11+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 14 failed 2026-10-08T09:29:41+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+clone attempt 15 failed 2026-10-08T09:31:23+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': Failure when receiving data from the peer
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+clone attempt 16 failed 2026-10-08T09:33:22+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 17 failed 2026-10-08T09:35:05+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 18 failed 2026-10-08T09:36:36+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 19 failed 2026-10-08T09:38:06+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 20 failed 2026-10-08T09:39:36+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 21 failed 2026-10-08T09:41:06+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+clone attempt 22 failed 2026-10-08T09:42:59+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+clone attempt 23 failed 2026-10-08T09:44:38+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 24 failed 2026-10-08T09:46:08+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 25 failed 2026-10-08T09:47:38+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 26 failed 2026-10-08T09:49:08+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 27 failed 2026-10-08T09:50:47+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+clone attempt 28 failed 2026-10-08T09:52:17+00:00
+Cloning into '/tmp/opencode/rl-clone-tmp'...
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503

@@ -1,0 +1,19 @@
+{
+  "argv0_py": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/bin/python",
+  "torch": "2.12.0+rocm7.14.1",
+  "torch_hip": "7.14.60850",
+  "device": "AMD Radeon Pro W7900D",
+  "matmul": "PASS",
+  "bn_forward": "PASS",
+  "bn_backward": "PASS",
+  "loaded_libMIOpen_paths": [
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1"
+  ],
+  "libMIOpen_sha256": {
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1": "941a92dad8a6784d5258b874bcb034abae6ceb6c02fca48ac7fe3244f4561a26"
+  },
+  "loaded_libamdhip64_paths": [
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7"
+  ],
+  "timestamp": "2026-10-08T10:41:38.681066+00:00"
+}
