@@ -121,11 +121,22 @@ treatment (patched build) under identical no-MSVC state.
 
 ## Linux results
 
-**Not yet run — no Linux ROCm GPU environment available to the author.**
-Analysis (see PATCH_DESIGN.md): on Linux the probe takes the real-STL
-branch, byte-identical to current behavior; the freestanding arm only
-activates where compilation previously always failed. Linux HIP>=7
-regression runs remain a precondition for merge.
+**DONE 2026-10-08 — independent validation on real gfx1151 hardware**
+(Ubuntu 24.04.4, Ryzen AI MAX+ PRO 395 / Radeon 8060S, ROCm 7.14 wheel
+stack, torch 2.12.0+rocm7.14.0). The earlier "not yet run" state below is
+superseded. Exact SOURCE_SHA b68f8944300f104875d953fc8e4510908c9aaf0b,
+unmodified patch bytes (P3-FINAL-R3, SHA-verified): source-built
+unpatched/patched MIOpen A/B via LD_PRELOAD+dladdr, fresh caches — BN
+matrix 8/8, numerics **bit-identical** (max_abs 0.0), non-BN RTC matrix
+11/11, YOLO predict + train (both amp modes), no-STL/partial-STL
+canaries, and the kthvalue runtime residual closed
+(miopenKthvalueForward → KthvalueFwd RTC-compiled fresh-cache on both
+builds; UNPATCHED PASS → PATCHED PASS; adversarial falsification review
+PASS). Analysis confirmed as predicted: the probe takes the real-STL
+branch on Linux, byte-identical behavior. Cross-arch (gfx94x/110x/120x)
+and HIP 10.x legs remain upstream-CI pre-merge items. Full evidence:
+findings/phase3/linux/linux_conclusion.json,
+docs/phase3/linux/LINUX_VALIDATION_SUMMARY.md.
 
 ## Regression coverage
 
@@ -144,7 +155,7 @@ CI reproduction).
 
 ## Remaining limitations
 
-- Linux HIP>=7 regression runs pending (blocking for merge).
+- ~~Linux HIP>=7 regression runs pending~~ DONE 2026-10-08 (gfx1151; see Linux results above). Upstream-CI cross-arch legs remain.
 - `__has_include` is required in the RTC toolchain (true for all clang
   MIOpen supports; called out for exotic vendors).
 - The wheel-packaging gap itself (no bundled STL) is a separate,

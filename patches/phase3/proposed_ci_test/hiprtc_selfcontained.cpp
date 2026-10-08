@@ -5,6 +5,21 @@
 // GPU execution required (log inspection suffices); negative-control
 // mode verifies the unpatched tree fails with the field signature.
 //
+// *** WIRING-TIME FIX REQUIRED (final-readiness Reviewers A & C, Gate F25)
+// *** before this proposal is hooked into upstream CI — it is a PROPOSAL
+// *** artifact, NOT part of the validated patch series:
+//   1. the hiprtcCreateProgram call must receive the kernels include dir
+//      (numIncludes/includes with "<repo>/projects/miopen/src/kernels")
+//      or quoted includes will not resolve — as written it fails even on
+//      a patched tree (the working local canary always passed
+//      --include-dir);
+//   2. wiring typo: target name "hiprtc_selftrained" ->
+//      "hiprtc_selfcontained";
+//   3. negative-control mode (--expect-fail <pristine-tree>) referenced
+//      but not implemented — implement or wire only the positive mode;
+//   4. path is monorepo-shaped (src/kernels): adjust to the standalone
+//      MIOpen layout at wiring time (projects/miopen/src/kernels).
+//
 // Proposed wiring (test/CMakeLists.txt, gated on BUILD_TESTING and
 // MIOPEN_USE_HIPRTC):
 //   add_executable(hiprtc_selfcontained test/hiprtc_selfcontained.cpp)

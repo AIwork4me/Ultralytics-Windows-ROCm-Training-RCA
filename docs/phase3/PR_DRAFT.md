@@ -76,9 +76,14 @@ Full diff: `patches/phase3/0001-miopen-hiprtc-selfcontained.patch + 0002-miopen-
   the audited entity set, but kernel-cache provenance differs across STL
   states.
 
-**Remaining before merge**: Linux HIP>=7 regression runs (author lacks a
-Linux ROCm GPU environment; analysis says no behavior change where STL is
-reachable).
+**Remaining before merge**: ~~Linux HIP>=7 regression runs~~ — **DONE
+2026-10-08**: independent Linux validation on real gfx1151 (ROCm 7.14
+wheel stack) at the exact SOURCE_SHA with unmodified patch bytes:
+source-built unpatched/patched A/B, BN 8/8, numerics bit-identical
+(max_abs 0.0), non-BN RTC 11/11, YOLO predict+train, kthvalue runtime
+UNPATCHED PASS → PATCHED PASS (values+indices byte-identical A/B).
+Cross-platform matrix: docs/phase3/CROSS_PLATFORM_VALIDATION.md. Remaining
+for merge: upstream-CI cross-arch legs (gfx94x/110x/120x, a 10.x line).
 
 **Related issue**: #3956. Related context: #7718, rocRAND PR #8247,
 TheRock#8292.

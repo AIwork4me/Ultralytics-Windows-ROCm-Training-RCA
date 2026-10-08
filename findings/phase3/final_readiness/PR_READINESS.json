@@ -1,0 +1,43 @@
+{
+  "schema": "phase3_final_pr_readiness_v1",
+  "date": "2026-10-08",
+  "patch_id": "P3-FINAL-R3",
+  "source_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+  "windows_fail_to_pass": true,
+  "linux_pass_to_pass": true,
+  "linux_numerics_bit_identical": true,
+  "kthvalue_runtime_unpatched": "PASS",
+  "kthvalue_runtime_patched": "PASS",
+  "kthvalue_runtime_regression": "NONE",
+  "kthvalue_falsification_review": "PASS",
+  "patch_mutated_after_validation": false,
+  "cross_platform_closure": "PASS",
+  "final_reviews": {
+    "reviewer_a_miopen_maintainer": "APPROVE",
+    "reviewer_b_regression_attacker": "NO REGRESSION FOUND",
+    "reviewer_c_ci_portability": "NO LOCAL BLOCKER",
+    "reviewer_d_submission": "APPROVE"
+  },
+  "technical_blockers": [],
+  "upstream_ci_followups": [
+    "gfx94x/gfx110x/gfx120x legs: compile-only no-STL test + kthvalue runtime fresh-cache run (reviewer_ci J1-J7)",
+    "HIP/ROCm 10.x line leg (gate verified present on 10.x source; new arm exercised)",
+    "HIP<7 legacy arms pinned by compile-only leg J2",
+    "ROCm 7.2.1: PR backport note (macro-name adaptation); runtime untestable, wheels delisted",
+    "audit_rtc_std_dependencies.py upstreamed as CI ratchet (J5)",
+    "one static-CK wrapper TU in the compile-only CI set",
+    "proposed CI test wiring fixes (include dir, typo, negative-control mode, monorepo path) - defects documented in the proposal header",
+    "initializer_list-lowering hardening for older wheel clangs; pre-existing BFP16-NaN isnan(ushort) semantics (not a patch regression)"
+  ],
+  "human_submission_steps": [
+    "fill real Git author identity and Signed-off-by under DCO; REMOVE the trailing '# DCO: fill in before submission' comment (fails DCO-bot) and the placeholder 2.x.y/date trailers",
+    "regenerate formal commits from the validated semantic diff; verify byte/patch-equivalence; rerun targeted tests (checklist steps 3-5)",
+    "copyright attribution placeholder in three new MIT headers per maintainer preference",
+    "final PR-text refresh (Linux results already integrated in drafts as of 2026-10-08; re-verify)"
+  ],
+  "upstream_pr_created": false,
+  "upstream_issue_created": false,
+  "upstream_comment_posted": false,
+  "internal_pr_created": false,
+  "readiness": "READY_FOR_HUMAN_SUBMISSION_PREP"
+}

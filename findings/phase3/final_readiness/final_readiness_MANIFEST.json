@@ -1,0 +1,62 @@
+{
+  "generated": "2026-10-08",
+  "purpose": "Gate F19/F25 final-integration + final-readiness artifacts",
+  "files": {
+    "findings/phase3/final_readiness/reviewer_miopen.md": {
+      "sha256": "2077a7171ca0afaa5907908c5bbc8312a949d43c3270b891ac9dab569c3f803c",
+      "size_bytes": 15074
+    },
+    "findings/phase3/final_readiness/reviewer_regression.md": {
+      "sha256": "410c6f0513c202b662a0d1f05361fa646946a022fe95746320cfb142b872048a",
+      "size_bytes": 16530
+    },
+    "findings/phase3/final_readiness/reviewer_ci.md": {
+      "sha256": "8bdc963de7bf428ba15b26a8fbbf71d4411134dfe98d66eff9c1d9612a9a2e56",
+      "size_bytes": 14100
+    },
+    "findings/phase3/final_readiness/reviewer_submission.md": {
+      "sha256": "3749a420e6027a24baa5794e776048b9ca741bdc65a5bbbae27a97d3f3d5096e",
+      "size_bytes": 14129
+    },
+    "findings/phase3/final_readiness/FINDINGS.md": {
+      "sha256": "bd47482de4b5592f37b0393d89e9eb57a5552d5dd8995db9a34d106cb7a2b650",
+      "size_bytes": 6405
+    },
+    "findings/phase3/final_readiness/PR_READINESS.json": {
+      "sha256": "71eb5300fcbbcec935bd16a575bc3e30c0e9f46b0d8b589a1018d61aabfa8002",
+      "size_bytes": 2289
+    },
+    "docs/phase3/UPSTREAM_PR_READINESS_FINAL.md": {
+      "sha256": "9d9ae627b63ffcde8a1ce7e3472e2e9001ba1e69792727f6421ed100b4f5b9bd",
+      "size_bytes": 2989
+    },
+    "docs/phase3/FINAL_SUBMISSION_CHECKLIST.md": {
+      "sha256": "30821e64927762601e0aaf334799e77899bfd55edf0e86ec07ac7d55970b92ff",
+      "size_bytes": 4119
+    },
+    "docs/phase3/PR_DRAFT.md": {
+      "sha256": "12565ff3586f604b83ac5dfbc0930e3d0407615554a9ccdc3b85a1afc6ecb723",
+      "size_bytes": 4686
+    },
+    "docs/phase3/MAINTAINER_REPORT_DRAFT.md": {
+      "sha256": "84b36584ad97ab26076f890a60038374064e40f5f768c63ba1594241f3df4706",
+      "size_bytes": 7409
+    },
+    "patches/phase3/proposed_ci_test/hiprtc_selfcontained.cpp": {
+      "sha256": "d9249a0ddfc2bffff6a7edd23aa2e474b22a69ed649f99fa164b00ebd30c074f",
+      "size_bytes": 3941
+    },
+    "evidence/phase3/raw/linux/final_integration/handoff_premerge_verification.txt": {
+      "sha256": "dfde41db397ec2a90123406e3ab0fd624548bc252f8bd5287614f9487107c6e0",
+      "size_bytes": 1038
+    },
+    "evidence/phase3/raw/linux/final_integration/handoff_postmerge_verification.txt": {
+      "sha256": "86ab7a4116bd28c5b27a49af13a7ab2dde4104aac4e170890999c422a96a5a8c",
+      "size_bytes": 557
+    },
+    "evidence/phase3/raw/linux/final_integration/origin_main_final_verification.txt": {
+      "sha256": "4a654b634f6bfc1f9b059cb5a25fe12a5414c09a774e47df388b2c36b8c45e81",
+      "size_bytes": 498
+    }
+  }
+}
