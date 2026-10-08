@@ -1,0 +1,119 @@
+{
+  "gate": "G01",
+  "timestamp": "2026-10-08T10:30:42.104944+00:00",
+  "existing_rocm_installations": [
+    {
+      "path": "/opt/rocm",
+      "type": "symlink",
+      "target": "/opt/rocm-7.2.1",
+      "version": "7.2.1"
+    },
+    {
+      "path": "/opt/rocm-7.2.1",
+      "type": "dir",
+      "version": "7.2.1"
+    }
+  ],
+  "environment_variables": {
+    "ROCM_PATH": "/opt/rocm",
+    "HIP_PATH": "/opt/rocm-7.2.1 (hipconfig)",
+    "LD_LIBRARY_PATH": "/opt/rocm/lib:/usr/local/lib:",
+    "PATH_rocm_entries": [
+      "/opt/rocm/llvm/bin",
+      "/opt/rocm/bin"
+    ],
+    "PYTORCH_ROCM_ARCH": "gfx90a;gfx942;gfx950;gfx1100;gfx1101;gfx1200;gfx1201;gfx1150;gfx1151 (build-time list, includes gfx1100)",
+    "HSA_OVERRIDE_GFX_VERSION": "NOT SET"
+  },
+  "system_stack_components": {
+    "hipcc": "/opt/rocm/bin/hipcc",
+    "hip_version": "7.2.53211-e1a6bc5663",
+    "clang": "/opt/rocm/llvm/bin/clang++ (AMD clang 22.0.0git roc-7.2.1)",
+    "libamdhip64": "/opt/rocm/lib/libamdhip64.so.7.2.70201",
+    "libhiprtc": "/opt/rocm/lib/libhiprtc.so.7.2.70201",
+    "libhiprtc_builtins": "/opt/rocm/lib/libhiprtc-builtins.so.7.2.70201",
+    "libamd_comgr": "/opt/rocm/lib/libamd_comgr.so.3.0.0",
+    "librocblas": "/opt/rocm/lib/librocblas.so.5.2.70201",
+    "libMIOpen": "/opt/rocm/lib/libMIOpen.so.1.0.70201",
+    "libMIOpen_sha256": "bd03b86420b6d6891da40c9d8e23f62e49ce0a1c92a2ee4fcb34809dc8d77eb4"
+  },
+  "python_environments": {
+    "/opt/venv (active)": {
+      "python": "3.12.3",
+      "torch": "2.9.1+gitff65f5b",
+      "torch_hip": "7.2.53211-e1a6bc5663 (matches system ROCm 7.2.1)",
+      "torchvision": "0.24.1+d801a34",
+      "torchaudio": "2.9.0+eaa9e4e",
+      "numpy": "2.1.2",
+      "vllm": "0.16.1.dev0+g89a77b108.d20260317.rocm721",
+      "pip_check": "No broken requirements found.",
+      "ldd_provenance": "libtorch_hip.so resolves libMIOpen.so.1, libhiprtc.so.7, librocblas.so.5, libamdhip64.so.7 -> all /opt/rocm/lib (7.2.1); no bundled ROCm libs in torch/lib"
+    },
+    "PYTHONPATH_note": "/opt/amd-oneclick-runtime/python contains only amd_oneclick_* utility modules; no ML library contamination"
+  },
+  "build_tools": {
+    "cmake": "3.31.10",
+    "ninja": "1.13.0.git.kitware.jobserver-pipe-1",
+    "gcc": "13.3.0",
+    "g++": "13.3.0",
+    "sqlite3_cli": "/usr/bin/sqlite3",
+    "system_gtest": "absent (MIOpen builds/fetches its own)"
+  },
+  "functional_rocm_7_14_x_present": false,
+  "rocm_7_14_1_wheel_availability": {
+    "checked": "https://repo.amd.com/rocm/whl-multi-arch/",
+    "http_status": 200,
+    "torch_2_12_0_rocm7_14_1_cp312_linux": true,
+    "amd_torch_device_gfx1100_2_10_0_rocm7_14_1_cp312": true,
+    "rocm_metapackage_7_14_1": true
+  },
+  "decision": {
+    "strategy": "B - new isolated ROCm 7.14.1 Python SDK environment (venv) for final validation legs; system 7.2.1 left untouched and used only for machine baseline",
+    "rationale": [
+      "System stack is a consistent, healthy ROCm 7.2.1 (pip check clean; torch binds /opt/rocm 7.2.1) - reused as G02 machine baseline, never modified",
+      "No functional 7.14.x environment exists on this machine",
+      "Final Phase-5.1 freeze is expected from a 7.14.1-era toolchain (mission reference: torch 2.12.0+rocm7.14.1); building both A/B MIOpen legs against one 7.14.1 SDK keeps the MIOpen patch as the single independent variable",
+      "Isolated venv prevents contamination of system 7.2.1 and vice versa; no kernel/driver change involved"
+    ],
+    "isolated_env_path": "/workspace/miopen-w7900-validation/tools/rocm7141-venv",
+    "status": "COMPLETE - isolated 7.14.1 SDK installed and verified; system 7.2.1 untouched"
+  },
+  "isolated_rocm_7141_environment": {
+    "path": "/workspace/miopen-w7900-validation/tools/rocm7141-venv",
+    "python": "3.12.3 (independent /usr/bin/python3 venv; not /opt/venv)",
+    "rocm_metapackage": "7.14.1",
+    "components": [
+      "rocm-sdk-core 7.14.1",
+      "rocm-sdk-devel 7.14.1",
+      "rocm-sdk-libraries 7.14.1",
+      "rocm-sdk-device-gfx1100 7.14.1"
+    ],
+    "devel_root": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel (expanded via rocm-sdk init)",
+    "hipcc": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/bin/hipcc",
+    "hip_version": "7.14.60850-0000000",
+    "libhiprtc": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7 (7.14.60850)",
+    "libamdhip64": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7",
+    "libamd_comgr": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamd_comgr.so.3",
+    "librocblas": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/librocblas.so.5",
+    "libMIOpen_wheel_note": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1 ships with SDK (will NOT be used for validation; source-built MIOpen replaces it via explicit linkage)",
+    "torch": "2.12.0+rocm7.14.1",
+    "torchvision": "0.27.0+rocm7.14.1",
+    "torch_hip": "7.14.60850",
+    "pip_check": "No broken requirements found.",
+    "rocm_sdk_selftest": "27/27 OK (after source scripts/env_rocm7141.sh; initial run had 1 failure caused by global ROCM_PATH=/opt/rocm leaking - resolved by isolation script)",
+    "isolation_script": "scripts/env_rocm7141.sh (strips /opt/rocm from PATH/LD_LIBRARY_PATH, sets ROCM_PATH/HIP_PATH to devel tree)",
+    "supported_targets_include_gfx1100": true,
+    "trivial_hipcc_gfx1100_compile": "PASS",
+    "isolation_hardening": {
+      "finding": "G01 subagent MAJOR: venv torch RUNPATH referenced non-existent build-machine dirs; without env_rocm7141.sh the venv torch silently bound /opt/rocm 7.2.1 libs (confirmed by ldd under env -u LD_LIBRARY_PATH). System-wide /etc/ld.so.conf.d/10-rocm-opencl.conf registers /opt/rocm-7.2.1/lib.",
+      "remediation": [
+        "patchelf 0.19.1 prepended venv-SDK RUNPATH ($ORIGIN-relative) on torch libs where patchelf succeeded (libaotriton_v2, libc10_hip, libcaffe2_nvrtc, libtorch_cpu, libtorch_python)",
+        "libtorch_hip.so and libtorch_rocshmem.so rejected patchelf ('section content is not naturally aligned'); instead soname symlinks for all 8 needed ROCm sonames (libMIOpen.so.1, libamdhip64.so.7, libhipblas.so.3, libhipblaslt.so.1, libhiprtc.so.7, libhsa-runtime64.so.1, librccl.so.1, librocblas.so.5) were placed in torch/lib; RUNPATH $ORIGIN is searched first for libtorch_hip.so",
+        "note: LD_LIBRARY_PATH still takes precedence over RUNPATH for RUNPATH-type binaries, so per-leg source-built MIOpen directories will win during A/B validation"
+      ],
+      "verification": "env -i (no LD_LIBRARY_PATH, no PATH ROCm entries) python probe: torch.cuda works and /proc/<pid>/maps shows libamdhip64.so.7 + libhiprtc.so.7 from _rocm_sdk_core/lib and libMIOpen.so.1 + librocblas.so.5 from _rocm_sdk_libraries/lib (100% in-venv; zero /opt/rocm mappings)",
+      "result": "MAJOR finding closed - venv is now self-contained even without sourcing env script; sourcing env_rocm7141.sh remains mandatory for builds",
+      "correction_G10_reviewA": "G10 Reviewer A found the earlier claim ('self-contained even without env script; zero /opt/rocm mappings under env -i') OVERSTATED: under env -i, libhsa-amd-aqlprofile64.so.1.0.70201 mapped from /opt/rocm-7.2.1 via ldconfig, and without LD_LIBRARY_PATH five lazy sonames (hipfft/hiprand/hipsparse/hipsolver/rocsolver) resolved to system 7.2.1. RESOLVED: soname symlinks added to torch/lib for ALL strays found iteratively (hipfft, hiprand, hipsparse, hipsolver, rocsolver, hipsparselt, hsa-amd-aqlprofile64, rocfft, rocprofiler-sdk, rocrand, rocroller, rocsparse). Post-fix: clean-env (env -i) ldd of libtorch_hip.so resolves ZERO libraries from /opt/rocm. OPERATIVE RULE UNCHANGED AND MANDATORY: source scripts/env_rocm7141.sh for every 7.14.1 session; all validation runs route through scripts/run_validation_leg.sh (which sources it and LD_PRELOADs the leg library). Binaries carry no RPATH by design."
+    }
+  }
+}

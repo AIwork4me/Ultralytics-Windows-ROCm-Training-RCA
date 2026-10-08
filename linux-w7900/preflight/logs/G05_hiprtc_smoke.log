@@ -1,0 +1,7 @@
+PROVENANCE: hiprtcCreateProgram <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7
+PROVENANCE: hipModuleLaunchKernel <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+hiprtcCompileProgram: OK (-mcpu=gfx1100)
+code object size: 4728 bytes (NONEMPTY)
+kernel result mismatches: 0 / 1024
+G05_HIPRTC_SMOKE: PASS
+EXIT=0

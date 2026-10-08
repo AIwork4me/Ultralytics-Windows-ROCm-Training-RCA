@@ -1,0 +1,43 @@
+{
+  "gate": "G03",
+  "timestamp": "2026-10-08T08:11:00.343980+00:00",
+  "github": {
+    "git_smart_http": "INTERMITTENT - CONNECT tunnel 503 via egress proxy; succeeds on retry (rocm-libraries ls-remote OK on attempt 1 of retry loop; RCA failed 4+ attempts)",
+    "rocm_libraries_HEAD_seen": "1f0a2ad23b33600b85de4814870d9e6200505a6c",
+    "api_github_com": "HTTP 200 (stable)",
+    "raw_githubusercontent_com": "TIMEOUT (blocked via proxy)",
+    "codeload_github_com": "reachable per prior bootstrap evidence (tarball fallback)",
+    "mitigation": "scripts/git-retry.sh wrapper (10 attempts, backoff) for all git network operations"
+  },
+  "amd_repository": {
+    "repo_amd_com_whl_multi_arch": "HTTP 200, TLS verified (ssl_verify_result=0)"
+  },
+  "proxy": {
+    "http_proxy/https_proxy": "http://notebook-egress-proxy.amd-oneclick-lablab.svc.cluster.local:3128 (cluster egress proxy; NO credentials embedded)",
+    "no_proxy": "cluster-internal suffixes",
+    "tls_verification": "enabled everywhere; ssl_verify_result=0 on successes; never disabled"
+  },
+  "git_authentication": {
+    "gh_cli": "authenticated as AIwork4me (scopes: gist, read:org, repo, workflow)",
+    "credential_helper": "gh auth git-credential configured for github.com",
+    "token_disclosure": "none (gh redacts; no tokens in logs/evidence)"
+  },
+  "rca_repo_state": {
+    "default_branch": "main (pushed_at 2026-10-08T06:58:10Z)",
+    "branches": [
+      "main",
+      "phase4/windows-upstream-submission-prep",
+      "phase5/windows-final-upstream-prep",
+      "rca/linux-gfx1151-phase3-regression",
+      "rca/windows-gfx1151-rocm714-phase2",
+      "rca/windows-gfx1151-rocm714-phase3",
+      "rca/windows-gfx1151-rocm714"
+    ],
+    "findings_phase5_1_exists": false,
+    "final_handoff_available": false
+  },
+  "rate_limit": {
+    "core_remaining": 5000,
+    "core_limit": 5000
+  }
+}

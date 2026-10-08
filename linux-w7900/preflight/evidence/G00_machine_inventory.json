@@ -1,0 +1,60 @@
+{
+  "gate": "G00",
+  "timestamp": "2026-10-08T07:41:21.079510+00:00",
+  "mission_id": "W7900-LINUX-PREP-R1",
+  "os": {
+    "distribution": "Ubuntu 24.04.4 LTS (Noble Numbat)",
+    "kernel": "6.8.0-79-generic",
+    "kernel_full": "Linux j-5jmn7smvmz5iaumh5o3cifgjd6 6.8.0-79-generic #79-Ubuntu SMP PREEMPT_DYNAMIC Tue Aug 12 14:42:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux"
+  },
+  "gpu": {
+    "pci_id": "1002:744B",
+    "pci_slot": "0000:a3:00.0",
+    "subsystem_id": "1002:0E0C",
+    "driver": "amdgpu",
+    "amdgpu_module_version": "6.16.13",
+    "llvm_target_detected": "gfx1100",
+    "llvm_target_expected": "gfx1100",
+    "target_matches_expectation": true,
+    "also_advertised_targets": [
+      "amdgcn-amd-amdhsa--gfx1100",
+      "amdgcn-amd-amdhsa--gfx11-generic"
+    ],
+    "marketing_name_rocminfo": "AMD Radeon Graphics",
+    "model_identification": "AMD Radeon PRO W7900 (PCI 1002:744b subsystem 1002:0e0c, Navi31, gfx1100)",
+    "visible_gpu_devices": 1
+  },
+  "device_access": {
+    "user": "root (uid=0)",
+    "kfd": "crw-rw---- 1 root 993 234, 0 Oct  7 14:24 /dev/kfd",
+    "render": "crw-rw---- 1 root 993 226, 133 Oct  7 14:24 /dev/dri/renderD133",
+    "access_mode": "root; /dev/kfd and renderD133 accessible (crw-rw---- root:993/226; uid 0 grants rw)"
+  },
+  "cpu": {
+    "model": "AMD EPYC 9334 32-Core Processor",
+    "threads": 128
+  },
+  "ram": {
+    "total": "503 GiB",
+    "available": "464 GiB"
+  },
+  "disk": {
+    "workspace_path": "/workspace/miopen-w7900-validation",
+    "workspace_fs": "/dev/loop0",
+    "workspace_free": "82 GiB",
+    "root_free": "1.7 TiB"
+  },
+  "python": {
+    "system": "Python 3.12.3",
+    "active": "/opt/venv/bin/python3 (Python 3.12.3)"
+  },
+  "existing_rocm": {
+    "/opt/rocm": "symlink -> /etc/alternatives/rocm -> /opt/rocm-7.2.1",
+    "version": "7.2.1",
+    "hip_version": "HIP version: 7.2.53211-e1a6bc5663"
+  },
+  "notes": [
+    "amdgpu kernel module 6.16.13 (DKMS) on Ubuntu kernel 6.8.0-79-generic",
+    "Exactly 1 GPU visible; gfx1100 confirmed; no HSA_OVERRIDE applied"
+  ]
+}

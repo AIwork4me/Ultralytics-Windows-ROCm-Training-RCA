@@ -1,0 +1,181 @@
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T09:56:47+00:00] round=1 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T09:57:44+00:00] round=2 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T09:58:45+00:00] round=3 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T09:59:41+00:00] round=4 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:00:38+00:00] round=5 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:01:38+00:00] round=6 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:02:35+00:00] round=7 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:03:31+00:00] round=8 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:04:27+00:00] round=9 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:05:23+00:00] round=10 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:06:19+00:00] round=11 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:07:20+00:00] round=12 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:08:17+00:00] round=13 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:09:17+00:00] round=14 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:10:14+00:00] round=15 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:11:22+00:00] round=16 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:12:32+00:00] round=17 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:14:03+00:00] round=18 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:15:25+00:00] round=19 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': Failure when receiving data from the peer
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:16:03+00:00] round=20 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:17:34+00:00] round=21 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': Failure when receiving data from the peer
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:18:40+00:00] round=22 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:20:05+00:00] round=23 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:21:27+00:00] round=24 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:22:50+00:00] round=25 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:24:14+00:00] round=26 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:25:19+00:00] round=27 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:26:14+00:00] round=28 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:27:36+00:00] round=29 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:28:59+00:00] round=30 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:29:59+00:00] round=31 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:31:21+00:00] round=32 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:32:19+00:00] round=33 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:33:16+00:00] round=34 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:34:12+00:00] round=35 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:35:09+00:00] round=36 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: unable to write request to remote: Broken pipe
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:36:02+00:00] round=37 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:37:24+00:00] round=38 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:38:47+00:00] round=39 retry
+fatal: unable to access 'https://github.com/ROCm/rocm-libraries.git/': CONNECT tunnel failed, response 503
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:40:10+00:00] round=40 retry
+fatal: Unable to create '/workspace/miopen-w7900-validation/repos/rocm-libraries/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+[2026-10-08T10:40:25+00:00] round=41 retry
+fatal: Unable to create '/workspace/miopen-w7900-validation/repos/rocm-libraries/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+[2026-10-08T10:40:40+00:00] round=42 retry
+fatal: Unable to create '/workspace/miopen-w7900-validation/repos/rocm-libraries/.git/index.lock': File exists.
+
+Another git process seems to be running in this repository, e.g.
+an editor opened by 'git commit'. Please make sure all processes
+are terminated then try again. If it still fails, a git process
+may have crashed in this repository earlier:
+remove the file manually to continue.
+[2026-10-08T10:40:55+00:00] round=43 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:41:51+00:00] round=44 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:42:50+00:00] round=45 retry
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: protocol error: bad pack header
+fatal: could not fetch c618a9fd130051711b7094a09183c892806e7764 from promisor remote
+[2026-10-08T10:43:47+00:00] round=46 retry

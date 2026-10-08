@@ -1,0 +1,43 @@
+{
+  "gate": "G07",
+  "timestamp": "2026-10-08T10:22:00.674640+00:00",
+  "scripts": [
+    "scripts/prepare_validation_legs.sh",
+    "scripts/build_leg_miopen.sh",
+    "scripts/build_baseline_miopen.sh (wrapper)",
+    "scripts/run_validation_leg.sh"
+  ],
+  "single_variable_discipline": "one cmake literal in build_leg_miopen.sh; only MIOPEN_SOURCE/BUILD/INSTALL differ between legs (audited)",
+  "leg_a_ready": true,
+  "leg_b_reserved_empty": true,
+  "cache_isolation": "runtime/baseline-cache vs runtime/patched-cache roots; per-label subdirs; non-empty-dir refusal incl. xdg subtree",
+  "binding_controls": [
+    "LD_PRELOAD leg soname",
+    "LD_LIBRARY_PATH leg-first",
+    "dladdr in-stream",
+    "lib sha256 echo"
+  ],
+  "handoff_integration": "prepare_validation_legs.sh leg-b -> check_final_handoff.py --check-only --rca-root -> --apply (ENABLE_APPLY=1 post-freeze)",
+  "subagent_findings_resolved": [
+    "G07 NIT xdg-exemption in cache refusal -> fixed (find -type f over whole cache dir)",
+    "G08 HIGH check/apply path-root divergence -> fixed (single resolution routine + mandatory --rca-root/rca_repo_root)",
+    "G08 MEDIUM hash_chain doc/impl mismatch -> fixed (implemented exactly as documented)",
+    "G08 MEDIUM path traversal/absolute acceptance -> fixed (containment + symlink/absolute rejection)",
+    "G08 MEDIUM-LOW unlisted patch files ignored -> fixed (unlisted regular file in patch dir = FAIL)"
+  ],
+  "regression_matrix_after_hardening": {
+    "valid": "PASS",
+    "hash_chain": "PASS",
+    "hash_chain_swapped_order": "FAIL(detected)",
+    "ambiguous_root": "FAIL",
+    "unlisted_extra_patch": "FAIL",
+    "traversal": "FAIL",
+    "absolute_path": "FAIL",
+    "apply_without_enable": "refused"
+  },
+  "not_executed": [
+    "leg-b build",
+    "A/B final comparison (not authorized)"
+  ],
+  "per_leg_library_sha256_evidence": "evidence/G07_library_sha256.json (written by prepare_validation_legs.sh verify_library at final leg builds)"
+}

@@ -1,0 +1,96 @@
+2026-10-08T07:40:38+00:00
+=== os-release ===
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+=== uname ===
+Linux j-5jmn7smvmz5iaumh5o3cifgjd6 6.8.0-79-generic #79-Ubuntu SMP PREEMPT_DYNAMIC Tue Aug 12 14:42:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+=== id/groups ===
+uid=0(root) gid=0(root) groups=0(root),1000(ubuntu)
+root ubuntu
+=== cpu ===
+model name	: AMD EPYC 9334 32-Core Processor
+128
+=== mem ===
+               total        used        free      shared  buff/cache   available
+Mem:           503Gi        38Gi        95Gi       1.1Gi       374Gi       464Gi
+Swap:             0B          0B          0B
+=== disk ===
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         3.5T  1.6T  1.7T  49% /
+/dev/loop0       98G   12G   82G  13% /workspace
+tmpfs           4.0G  938M  3.1G  23% /tmp
+=== gpu pci ===
+03:00.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] Device [1002:744b]
+	Subsystem: Advanced Micro Devices, Inc. [AMD/ATI] Device [1002:0e0c]
+	Kernel driver in use: amdgpu
+=== dri/kfd ===
+crw-rw---- 1 root  993 226, 133 Oct  7 14:24 /dev/dri/renderD133
+crw-rw---- 1 root  993 234,   0 Oct  7 14:24 /dev/kfd
+
+/dev/dri/:
+total 0
+crw-rw---- 1 root video 226,   6 Oct  7 14:24 card6
+crw-rw---- 1 root   993 226, 133 Oct  7 14:24 renderD133
+=== toolchain paths ===
+/opt/rocm/bin/rocminfo
+/opt/rocm/bin/rocm-smi
+/opt/rocm/bin/hipcc
+/opt/rocm/llvm/bin/clang++
+/opt/venv/bin/cmake
+/opt/venv/bin/ninja
+/usr/bin/gcc
+/usr/bin/g++
+/opt/venv/bin/python3
+/usr/bin/git
+/opt/amd-oneclick-runtime/bin/curl
+/usr/local/bin/gh
+=== rocm version ===
+7.2.1
+=== rocminfo GPU section ===
+  Name:                    AMD EPYC 9334 32-Core Processor    
+  Marketing Name:          AMD EPYC 9334 32-Core Processor    
+  Name:                    gfx1100                            
+  Marketing Name:          AMD Radeon Graphics                
+=== python ===
+Python 3.12.3
+/opt/venv/bin/python3
+=== gpu count ===
+0
+G00 exit OK
+=== correction/append: GPU device detail ===
+/sys/module/amdgpu/version:6.16.13
+DRIVER=amdgpu
+PCI_CLASS=30000
+PCI_ID=1002:744B
+PCI_SUBSYS_ID=1002:0E0C
+PCI_SLOT_NAME=0000:a3:00.0
+MODALIAS=pci:v00001002d0000744Bsv00001002sd00000E0Cbc03sc00i00
+  Name:                    AMD EPYC 9334 32-Core Processor    
+  Marketing Name:          AMD EPYC 9334 32-Core Processor    
+  Device Type:             CPU                                
+  Name:                    AMD EPYC 9334 32-Core Processor    
+  Marketing Name:          AMD EPYC 9334 32-Core Processor    
+  Device Type:             CPU                                
+  Name:                    gfx1100                            
+  Marketing Name:          AMD Radeon Graphics                
+  Device Type:             GPU                                
+
+=== ERRATUM (post-review, 2026-10-08) ===
+1) Earlier line "gpu count: 0" was a grep whitespace artifact. Correct count of
+   HSA GPU agents: 1 (gfx1100). Confirmed by independent reviewer.
+2) The lspci section above lists host-wide PCI topology (03:00.0 among 8 host
+   amdgpu adapters at 03/23/43/63/83/a3/c3/e3). This environment is exposed
+   ONLY to a3:00.0 -> /dev/dri/card6 + renderD133. All runtime evidence must
+   reference a3:00.0 / renderD133.
+3) HSA_OVERRIDE_GFX_VERSION is NOT set; gfx1100 is genuine hardware target.

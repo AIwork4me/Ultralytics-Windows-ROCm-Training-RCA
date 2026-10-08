@@ -1,0 +1,10 @@
+Torch: 2.12.0+rocm7.14.1
+HIP: 7.14.60850
+Available: True
+Device: AMD Radeon Pro W7900D
+BASELINE GPU + BATCHNORM PASS
+Loaded libMIOpen: ['/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1']
+  sha256(/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1) = 941a92dad8a6784d5258b874bcb034abae6ceb6c02fca48ac7fe3244f4561a26
+Loaded libamdhip64: ['/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7']
+WROTE evidence/G02_baseline_rocm7141_result.json
+EXIT=0

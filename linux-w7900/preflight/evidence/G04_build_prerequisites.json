@@ -1,0 +1,88 @@
+{
+  "gate": "G04",
+  "timestamp": "2026-10-08T09:56:27.661132+00:00",
+  "source": {
+    "repository": "https://github.com/ROCm/rocm-libraries",
+    "pinned_baseline_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+    "pinned_baseline_rationale": "Phase-3 Linux SOURCE_SHA (verified upstream commit used for patch series P3-FINAL-R3, MIOpen 3.6.2). Historical preparation anchor ONLY - the final Phase-5.1 base will come from findings/phase5_1/FINAL_HANDOFF.json and MUST NOT be assumed to equal this SHA.",
+    "acquisition": "codeload.github.com tarball at exact SHA (132 bytes->1.2GB verified gzip), extracted to source/upstream-pristine; git blobless clone running in background (scripts/clone_loop.sh) for future worktree operations",
+    "git_clone_status_at_evidence_time": "still retrying (egress proxy unstable)"
+  },
+  "build_prerequisites": {
+    "cmake": "3.31.10",
+    "ninja": "1.13.0",
+    "cxx_compiler": "7.14.1 SDK llvm amdclang++ (AMD clang 22.0.0git roc-7.2.1-based LLVM; HIP 7.14.60850)",
+    "rocm_cmake": "system rocm-cmake 0.14.0 (apt)",
+    "apt_installed_during_prep": [
+      "libbz2-dev 1.0.8-5.1",
+      "nlohmann-json3-dev 3.11.3",
+      "libeigen3-dev 3.4.0"
+    ],
+    "preseeded_fetchcontent": {
+      "FunctionalPlus": "v0.2.25 tarball sha256=9b5e24bbc92f43b977dc83efbc173bcf07dbe07f8718fc2670093655b56fcee3",
+      "frugally-deep": "v0.15.31 tarball sha256=49bf5e30ad2d33e464433afbc8b6fe8536fc959474004a1ce2ac03d7c54bc8ba",
+      "googletest": "v1.17.0 tarball sha256=65fab701d9829d38cb77c14acdc431d2108bfdbf8979e40eb8ae567edf10b27c"
+    },
+    "system_found": {
+      "BZip2": "1.0.8",
+      "SQLite3": "3.45.1",
+      "Eigen3": "3.4.0 (/usr/share/eigen3/cmake pinned)",
+      "nlohmann_json": "3.x system"
+    },
+    "notes": "gitlab.com (Eigen upstream URL) black-holed via proxy - system package used instead with identical version 3.4.0; FunctionalPlus fetch failed twice via flaky proxy - tarballs pre-seeded locally with SHA256 verification"
+  },
+  "baseline_build": {
+    "source_dir": "source/upstream-pristine/projects/miopen",
+    "build_dir": "build/baseline-miopen",
+    "install_prefix": "install/baseline",
+    "config": {
+      "MIOPEN_BACKEND": "HIP",
+      "MIOPEN_USE_HIPRTC": "ON",
+      "MIOPEN_USE_COMGR": "ON",
+      "MIOPEN_USE_COMPOSABLEKERNEL": "OFF (mirrors Phase-3 Linux config; CK not needed for kthvalue path)",
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "GPU_TARGETS": "gfx1100",
+      "BUILD_TESTING": "OFF",
+      "cache_pins": [
+        "hip_DIR",
+        "hiprtc_DIR",
+        "rocblas_DIR",
+        "hipblaslt_DIR",
+        "hipblas-common_DIR",
+        "amd_comgr_DIR",
+        "rocrand_DIR",
+        "Eigen3_DIR",
+        "MIOPEN_OFFLOADBUNDLER_BIN",
+        "MIOPEN_AMDGCN_ASSEMBLER"
+      ]
+    },
+    "resolved_versions": {
+      "hip": "7.14.60850 (wheel devel)",
+      "hiprtc": "7.14.60850 (wheel devel)",
+      "rocblas": "5.5.0 (wheel)",
+      "hipblaslt": "1.4.1",
+      "amd_comgr": "3.3.0 (wheel core)"
+    },
+    "cmakecache_opt_rocm_count": 0,
+    "contamination_incidents_and_fixes": [
+      "MIOPEN_AMDGCN_ASSEMBLER + MIOPEN_OFFLOADBUNDLER_BIN initially resolved to /opt/rocm/llvm/bin (7.2.1) via find_program PATHS hints; caught by mandatory CMakeCache grep; fixed by explicit cache pins to 7.14.1 SDK llvm"
+    ],
+    "build_targets_completed": "841/841 (incl. MIOpenDriver)",
+    "libMIOpen": "install/baseline/lib/libMIOpen.so.1.0",
+    "libMIOpen_size_bytes": 803390264,
+    "libMIOpen_sha256": "6af347af760bb5145a6d8f2c50871bcd2d11c7aa71075a59cd67de7e49990697",
+    "status": "BUILD OK",
+    "logs": [
+      "logs/G04_configure.log",
+      "logs/G04_build.log",
+      "logs/G04_install.log",
+      "logs/G04_build_driver.log"
+    ],
+    "post_review_fixes": {
+      "G04_subagent_MAJOR_1": "Under env_rocm7141.sh alone, wheel libMIOpen.so.1 (MIOpen 3.5.2, _rocm_sdk_libraries) shadowed the source build via LD_LIBRARY_PATH precedence over driver RUNPATH; MIOpenDriver --version reported 3.5.2. FIXED: scripts/run_validation_leg.sh prepends the leg install/lib to LD_LIBRARY_PATH AND LD_PRELOADs the leg's libMIOpen.so.1 soname symlink. Corrected proof in logs/G04_mioopen_driver_version.log: MIOpen (version: 3.6.2), ldd shows libMIOpen.so.1 -> install/baseline/lib, hiprtc/amdhip64 -> 7.14.1 wheel core.",
+      "G04_subagent_MAJOR_2": "Venv SDK devel/bin ships its own MIOpenDriver earlier in PATH. Rule: always invoke drivers/harness by ABSOLUTE path (encoded in all runner scripts).",
+      "additional_verification": "Independent reviewer verified all 8032/8032 files of source/upstream-pristine hash-identical to pinned commit b68f894 using the blobless clone's tree objects (fin/ is a submodule gitlink, empty dir in tarball - expected)."
+    },
+    "miopen_version_reported": "3.6.2 (MIOpenDriver --version, correctly bound)"
+  }
+}
