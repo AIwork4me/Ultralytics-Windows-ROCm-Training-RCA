@@ -1,0 +1,50 @@
+{
+  "gate": "P5-03",
+  "commit_1": "98bbc6c",
+  "commit_2": "b82d950",
+  "base": "7c58661",
+  "pre_cleanup_equivalence": "8/8 blob-identical to Phase-4 canonical 4084759",
+  "scope_proof": "8 files (5M+3A) vs base, nothing else",
+  "matrix": {
+    "projects/miopen/src/kernels/miopen_type_traits.hpp": {
+      "p4_canonical_oid": "983cdfe17691456b90e34b00ef946760d889cd9b",
+      "p5_candidate_oid": "983cdfe17691456b90e34b00ef946760d889cd9b",
+      "match": true
+    },
+    "projects/miopen/src/kernels/miopen_utility.hpp": {
+      "p4_canonical_oid": "770882aebf20983f68a1aa8242439e8e1b994d62",
+      "p5_candidate_oid": "770882aebf20983f68a1aa8242439e8e1b994d62",
+      "match": true
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": {
+      "p4_canonical_oid": "40bd307db59436d44656f8bedfce95ec2bc3c22b",
+      "p5_candidate_oid": "40bd307db59436d44656f8bedfce95ec2bc3c22b",
+      "match": true
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_utility.hpp": {
+      "p4_canonical_oid": "f335261b9976fb20c23cd96548607977773f9049",
+      "p5_candidate_oid": "f335261b9976fb20c23cd96548607977773f9049",
+      "match": true
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": {
+      "p4_canonical_oid": "79498fd8d39cf8047b6ad34a010527bbf425ec70",
+      "p5_candidate_oid": "79498fd8d39cf8047b6ad34a010527bbf425ec70",
+      "match": true
+    },
+    "projects/miopen/src/kernels/radix.hpp": {
+      "p4_canonical_oid": "99c29fda93463818b2bb8c91230527098b689687",
+      "p5_candidate_oid": "99c29fda93463818b2bb8c91230527098b689687",
+      "match": true
+    },
+    "projects/miopen/src/kernels/tensor_view.hpp": {
+      "p4_canonical_oid": "d7963324b0de98900f105ca07e9264e12ae0b646",
+      "p5_candidate_oid": "d7963324b0de98900f105ca07e9264e12ae0b646",
+      "match": true
+    },
+    "projects/miopen/src/CMakeLists.txt": {
+      "p4_canonical_oid": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+      "p5_candidate_oid": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+      "match": true
+    }
+  }
+}

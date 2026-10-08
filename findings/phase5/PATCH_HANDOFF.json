@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "handoff_type": "phase5_targeted_linux_revalidation",
+  "patch_id": "P5-CANDIDATE-R1",
+  "derived_from": {
+    "phase3_patch_id": "P3-FINAL-R3",
+    "phase3_source_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+    "phase4_canonical_commit_1": "c86d1b95aacc35eed6b25e69ba659e1f6a133197",
+    "phase4_canonical_commit_2": "4084759f3804748b7935d882db2d0445a3e0c380",
+    "delta_doc": "docs/phase5/P3_TO_P5_DELTA.md"
+  },
+  "upstream_base": {
+    "repository": "ROCm/rocm-libraries",
+    "branch": "develop",
+    "sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "frozen": "2026-10-08"
+  },
+  "phase5_candidate_commits": [
+    "135f775e855bc40185d0a39e13d0a1a97105c1b9",
+    "66f66944f171628076785e5b89b4a1334d5a987d",
+    "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+  ],
+  "patch_series": [
+    {
+      "order": 1,
+      "path": "patches/phase5/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "sha256": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586"
+    },
+    {
+      "order": 2,
+      "path": "patches/phase5/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "sha256": "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea"
+    },
+    {
+      "order": 3,
+      "path": "patches/phase5/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch",
+      "sha256": "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821"
+    }
+  ],
+  "series_hash": {
+    "algorithm": "sha256_file_concat_v1",
+    "definition": "SHA256 of the three canonical patch files' bytes (LF) concatenated in order with no separator",
+    "sha256": "5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d"
+  },
+  "source_delta_classification": {
+    "files_changed_vs_p4_canonical": {
+      "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": "NONFUNCTIONAL_SOURCE_CLEANUP + FORMATTING",
+      "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": "FORMATTING",
+      "projects/miopen/src/kernels/miopen_type_traits.hpp": "FORMATTING",
+      "projects/miopen/src/kernels/miopen_utility.hpp": "FORMATTING"
+    },
+    "files_unchanged": [
+      "projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+      "projects/miopen/src/kernels/radix.hpp",
+      "projects/miopen/src/kernels/tensor_view.hpp",
+      "projects/miopen/src/CMakeLists.txt"
+    ],
+    "metadata_changes": "AUTHORSHIP_METADATA (commit-2 message accuracy)",
+    "test_addition": "commit 3 (hiprtc_selfcontained.cpp + test/CMakeLists.txt wiring)",
+    "upstream_base_change": "b68f894 -> 7c58661 (upstream's own 9-file MIOpen drift; zero drift in the 8 affected files)",
+    "pending": [
+      "COPYRIGHT_TEXT (attribution placeholders retained - human decision)",
+      "DCO sign-off (human certification)"
+    ]
+  },
+  "expected_linux_validation_commands": {
+    "apply": "git fetch origin develop && git checkout 7c5866144ac4b879be442563e2b49fa1c142ea36 && git apply <0001> && git apply <0002> && git apply <0003>  # sequential, exact blob bytes",
+    "build": "cmake + build MIOpen per the Linux phase-3 recipe on ~/Desktop/YOLO_AMD",
+    "ci_ab": "test_hiprtc_selfcontained <kernels-dir> --mode=negative (UNPATCHED tree; may need --isolate=-nostdinc++) ; --mode=positive (PATCHED) ; --mode=ordinary (both) ; ctest -R test_hiprtc_selfcontained (patched build)"
+  },
+  "minimum_tests": [
+    "HIPRTC regression A/B (negative-unpatched exact signature, positive-patched, ordinary, in-tree ctest)",
+    "Kthvalue runtime PASS->PASS (torch.topk/torch.kthvalue vs unpatched wheel, identical results)",
+    "BatchNorm train fwd/bwd + running stats (finite + vs CPU tolerances)",
+    "optional: YOLO26n coco8 1 epoch amp=False"
+  ],
+  "linux_validation_status": "LINUX_PHASE5_TARGETED_REVALIDATION = PENDING",
+  "producer": {
+    "platform": "windows",
+    "hardware": "AMD Ryzen AI MAX+ 395 / Radeon 8060S",
+    "gfx": "gfx1151",
+    "rocm": "7.14.0"
+  },
+  "windows_validation_summary": {
+    "cmake_configure": "PASS",
+    "target_build": "PASS",
+    "ctest_discovery": "PASS",
+    "ctest_execution": "PASS",
+    "ci_ab_matrix": "PASS 13/13 (post-panel amendment rerun at 29846fc4)",
+    "miopen_dll_build": "PASS (sha256 d5974dad0da85b3b9849b5f678fff13b3e678ae14029b98aa0cd87dded9f9a36)",
+    "dll_load_provenance": "PASS",
+    "nostl_runtime": "PASS",
+    "batchnorm_numerics": "PASS (y max_abs 6.71e-07 vs CPU fp64; running stats ~1e-10; all finite)",
+    "yolo_train": "see findings/phase5/phase5_conclusion.json"
+  },
+  "upstream_state": {
+    "pr_created": false,
+    "issue_created": false,
+    "comment_posted": false
+  }
+}

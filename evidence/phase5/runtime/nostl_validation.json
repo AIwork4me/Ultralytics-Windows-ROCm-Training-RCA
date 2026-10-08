@@ -1,0 +1,36 @@
+{
+  "gate": "P5-11",
+  "fresh_profile": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase5_iso_nostl_876cb91b",
+  "env_scrubbed": [
+    "INCLUDE",
+    "LIB",
+    "ROCM_PATH",
+    "CPATH",
+    "C_INCLUDE_PATH",
+    "CPLUS_INCLUDE_PATH",
+    "AMD_COMGR_CACHE",
+    "MIOPEN_USER_CACHE_PATH",
+    "MIOPEN_USER_DB_PATH"
+  ],
+  "exit_code": 0,
+  "result": {
+    "miopen_path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "miopen_sha256": "d5974dad0da85b3b9849b5f678fff13b3e678ae14029b98aa0cd87dded9f9a36",
+    "y_finite": true,
+    "grad_finite": true,
+    "running_stats_finite": true,
+    "running_mean_changed": true
+  },
+  "stdout": "{\"miopen_path\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"miopen_sha256\": \"d5974dad0da85b3b9849b5f678fff13b3e678ae14029b98aa0cd87dded9f9a36\", \"y_finite\": true, \"grad_finite\": true, \"running_stats_finite\": true, \"running_mean_changed\": true}\n",
+  "stderr": "MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution\nMIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151\n",
+  "checks": {
+    "exit_zero": true,
+    "provenance": true,
+    "y_finite": true,
+    "grad_finite": true,
+    "running_stats_finite": true,
+    "running_mean_changed": true
+  },
+  "msvc_include_restored": true,
+  "wheel_restored_ok": true
+}
