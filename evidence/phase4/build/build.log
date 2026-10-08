@@ -1,0 +1,4 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Lib\site-packages\cmake\data\bin\cmake.exe --build C:\Users\rocm\Desktop\YOLO_AMD\phase4_build\miopen --target MIOpen -- -k 0
+exit=0
+[0/2] Re-checking globbed directories...
+ninja: no work to do.
