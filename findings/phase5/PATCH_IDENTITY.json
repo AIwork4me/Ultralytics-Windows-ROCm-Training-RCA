@@ -1,0 +1,106 @@
+{
+  "schema": "phase5_patch_identity_v1",
+  "patch_id": "P5-CANDIDATE-R1",
+  "generated": "2026-10-08",
+  "derivation": "P5 is derived from P3/P4 with an explicitly audited delta (see docs/phase5/P3_TO_P5_DELTA.md)",
+  "historical": {
+    "phase3_patch_id": "P3-FINAL-R3",
+    "phase3_source_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+    "phase3_patch_sha256": [
+      "f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20",
+      "77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532"
+    ],
+    "phase4_canonical_commit_1": "c86d1b95aacc35eed6b25e69ba659e1f6a133197",
+    "phase4_canonical_commit_2": "4084759f3804748b7935d882db2d0445a3e0c380"
+  },
+  "new_upstream_base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "new_commit_shas": [
+    "135f775e855bc40185d0a39e13d0a1a97105c1b9",
+    "66f66944f171628076785e5b89b4a1334d5a987d",
+    "29846fc4fb736800ff0ad91af95c7cc32f1373ad"
+  ],
+  "new_patch_sha256": [
+    "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586",
+    "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea",
+    "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821"
+  ],
+  "new_series_sha256": {
+    "algorithm": "sha256_file_concat_v1",
+    "definition": "SHA256 of the three canonical patch files' bytes (LF) concatenated in order with no separator",
+    "sha256": "5ad951c716fbf986e627a94f65db679f4f49519d672912cb2e407bf3b714391d"
+  },
+  "source_changed_files": {
+    "projects/miopen/src/kernels/miopen_type_traits.hpp": {
+      "p4_sha256": "e0a285bac67902b101035717c1cb65152e72fc01ee6c99a845c2c8261d4945e5",
+      "p5_sha256": "70e14ee1a76835f569934a41921dbb1ed9799bb5f4e0f218e896e2df53283f45",
+      "identical": false,
+      "reason": "FORMATTING (#error line wrap only)"
+    },
+    "projects/miopen/src/kernels/miopen_utility.hpp": {
+      "p4_sha256": "35071f3b07a8d882d582d7dd9335c5aabc7d323622622bf9f9b6abaa0d396cd8",
+      "p5_sha256": "a254bb9b4467435052768dbac3c2077ca62ad5d0f2692586e7931731c5ebfb5c",
+      "identical": false,
+      "reason": "FORMATTING (#error line wrap only)"
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": {
+      "p4_sha256": "7475b39cdb4bdf2f4b2ee70ef31119bb1a294152e20d116372196a8254e23495",
+      "p5_sha256": "3bef15193fa04fbd076c4e2ca773cfa7c873404e91ea7018414c9b238573ddb7",
+      "identical": false,
+      "reason": "NONFUNCTIONAL_SOURCE_CLEANUP (dead macro removal) + FORMATTING"
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_utility.hpp": {
+      "p4_sha256": "db65c6882301814feb439f55d47f741bbf401dfb24a4e8c48ba956178840620f",
+      "p5_sha256": "db65c6882301814feb439f55d47f741bbf401dfb24a4e8c48ba956178840620f",
+      "identical": true,
+      "reason": "UNCHANGED"
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": {
+      "p4_sha256": "8fdb1232c8ba3e0356c04fda7b303e58e22e511968bf28f7f06c572d2921e052",
+      "p5_sha256": "c1e00084acb8e20de64c1658c621ac1f96eb8916f18fe2807ffbaea0deaa0357",
+      "identical": false,
+      "reason": "FORMATTING (blank-line squeeze)"
+    },
+    "projects/miopen/src/kernels/radix.hpp": {
+      "p4_sha256": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9",
+      "p5_sha256": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9",
+      "identical": true,
+      "reason": "UNCHANGED"
+    },
+    "projects/miopen/src/kernels/tensor_view.hpp": {
+      "p4_sha256": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300",
+      "p5_sha256": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300",
+      "identical": true,
+      "reason": "UNCHANGED"
+    },
+    "projects/miopen/src/CMakeLists.txt": {
+      "p4_sha256": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b",
+      "p5_sha256": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b",
+      "identical": true,
+      "reason": "UNCHANGED"
+    }
+  },
+  "classification_legend_used": [
+    "UPSTREAM_BASE_CHANGE (b68f894 -> 7c58661, upstream's own 9-file MIOpen drift; none of it in our 8 files)",
+    "NONFUNCTIONAL_SOURCE_CLEANUP (dead macro)",
+    "FORMATTING (clang-format 18.1.4, repo .clang-format, changed lines only)",
+    "AUTHORSHIP_METADATA (commit 2 message accuracy fix; metadata only)",
+    "TEST_ADDITION (commit 3: CI regression test + CMake wiring)",
+    "COPYRIGHT_TEXT (PENDING - placeholders retained, human decision)"
+  ],
+  "explicit_non_claims": [
+    "P5 SOURCE == P3 SOURCE BYTE-IDENTICAL: FALSE (4 files changed by audited hygiene edits; 4 of 8 byte-identical; base moved to 7c58661)"
+  ],
+  "dco_status": "DCO_ATTESTATION_PENDING",
+  "copyright_status": "COPYRIGHT_ATTRIBUTION_PENDING",
+  "post_panel_amendment": {
+    "date": "2026-10-08",
+    "reason": "resolve P5-17 Reviewer B MAJOR M1 (Linux hiprtc target split) + P508 hardening F1/F3/F4 + Reviewer A MINOR-3 (commit-2 message precision)",
+    "commits_rebuilt": [
+      "commit 2: message precision + correct file set (adds src/CMakeLists.txt registration line, same tree bytes as validated)",
+      "commit 3: hardened test (identity markers, duplicate-arg rejection, 4-header probe) + platform-split hiprtc linkage"
+    ],
+    "commit_1_unchanged": "135f775e (identical SHA)",
+    "src_tree_vs_built_dll_commit": "identical (delta test-only), DLL d5974dad remains the validation artifact",
+    "revalidation": "CI integration 4/4 PASS at 29846fc4; matrix 13/13 PASS; F1/F3 defenses verified directly (exit 2)"
+  }
+}

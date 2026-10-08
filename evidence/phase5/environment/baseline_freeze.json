@@ -1,0 +1,61 @@
+{
+  "gate": "P5-01",
+  "p3_patch_sha256_verified": {
+    "0001": "f06d7ae5d87f73e102c10a4e985afde70659210b96e5ad3247eeea85f4568e20",
+    "0002": "77f9fc1613695b849a5b04e59723c05482467ddc34d0a9d53bf3cdd31f761532"
+  },
+  "p3_source_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b",
+  "p4_canonical_commits": {
+    "commit_1": "c86d1b95aacc35eed6b25e69ba659e1f6a133197",
+    "commit_2": "4084759f3804748b7935d882db2d0445a3e0c380",
+    "tree": "5fbd8fe0c58ecb007da9c6579887b448ff3a3547"
+  },
+  "p4_canonical_dll_sha256": "b32d6310817a225ff81cfe8de3dfe2a0d5c525caa845bad1f4d2304abc6aa721",
+  "affected_files_8": {
+    "projects/miopen/src/CMakeLists.txt": {
+      "oid_old": "19dce8c1bbdb6ed14038565995c38c16f100b4bd",
+      "oid_new": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+      "sha256_new": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b"
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": {
+      "oid_old": null,
+      "oid_new": "79498fd8d39cf8047b6ad34a010527bbf425ec70",
+      "sha256_new": "8fdb1232c8ba3e0356c04fda7b303e58e22e511968bf28f7f06c572d2921e052"
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": {
+      "oid_old": null,
+      "oid_new": "40bd307db59436d44656f8bedfce95ec2bc3c22b",
+      "sha256_new": "7475b39cdb4bdf2f4b2ee70ef31119bb1a294152e20d116372196a8254e23495"
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_utility.hpp": {
+      "oid_old": null,
+      "oid_new": "f335261b9976fb20c23cd96548607977773f9049",
+      "sha256_new": "db65c6882301814feb439f55d47f741bbf401dfb24a4e8c48ba956178840620f"
+    },
+    "projects/miopen/src/kernels/miopen_type_traits.hpp": {
+      "oid_old": "e2b6a98e7779726b01514694d53d784060a4d144",
+      "oid_new": "983cdfe17691456b90e34b00ef946760d889cd9b",
+      "sha256_new": "e0a285bac67902b101035717c1cb65152e72fc01ee6c99a845c2c8261d4945e5"
+    },
+    "projects/miopen/src/kernels/miopen_utility.hpp": {
+      "oid_old": "156cb30fc4ceaa13865be5804c72577cc5a9ecfb",
+      "oid_new": "770882aebf20983f68a1aa8242439e8e1b994d62",
+      "sha256_new": "35071f3b07a8d882d582d7dd9335c5aabc7d323622622bf9f9b6abaa0d396cd8"
+    },
+    "projects/miopen/src/kernels/radix.hpp": {
+      "oid_old": "f8a91fed0d21a62ae438883b38a67cfe083bba14",
+      "oid_new": "99c29fda93463818b2bb8c91230527098b689687",
+      "sha256_new": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9"
+    },
+    "projects/miopen/src/kernels/tensor_view.hpp": {
+      "oid_old": "36ddef6daae5e822633019c8aea86318f498c4e2",
+      "oid_new": "d7963324b0de98900f105ca07e9264e12ae0b646",
+      "sha256_new": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300"
+    }
+  },
+  "verdicts": {
+    "P3_HASHES_MATCH": true,
+    "P4_CANONICAL_SOURCE_MATCH": true,
+    "HISTORICAL_ARTIFACTS_UNCHANGED": true
+  }
+}

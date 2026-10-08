@@ -1,0 +1,214 @@
+{
+  "schema": "phase5_evidence_manifest_v1",
+  "generated": "2026-10-08T14:46:54.567824",
+  "files": {
+    "evidence/phase5/build/build.log": {
+      "sha256": "b629c49902e78f54b03f88bcf747685a65f6f7e752e75fd5f626b8c0f45b883a",
+      "bytes": 79248
+    },
+    "evidence/phase5/build/build_provenance.json": {
+      "sha256": "24b79bd14593f6690fb1a000485b20bb7e33af826701fdc40915acbeac1d3896",
+      "bytes": 4179
+    },
+    "evidence/phase5/build/configure.log": {
+      "sha256": "30afc724632071eff052eb1cf60364aa14b49cc74be0a266574342605d95f768",
+      "bytes": 19287
+    },
+    "evidence/phase5/ci/ci_build_target.log": {
+      "sha256": "bedb11926652cddfa4fa8410b5a43c39fd6dc5c8f7140ae22d449a6d008cf180",
+      "bytes": 414
+    },
+    "evidence/phase5/ci/ci_configure.log": {
+      "sha256": "4a4fdc6c2f1577ae1d647d14d43d1cb27fe84182696baee6cae8faa36dd1de18",
+      "bytes": 41638
+    },
+    "evidence/phase5/ci/ci_ctest_all_tests.log": {
+      "sha256": "5dc1962b08e68b384d79896721876b6061a0ae51de8571c4af9be2b29f67959f",
+      "bytes": 203776
+    },
+    "evidence/phase5/ci/ci_ctest_discovery.log": {
+      "sha256": "70bc63a9da83e9941044967455969a661e628623c6bc758e4841e96ed23f6549",
+      "bytes": 321
+    },
+    "evidence/phase5/ci/ci_ctest_run.log": {
+      "sha256": "6df8b2ad8904bfe6833f24fb7b796627a23cbb6aa57bcba253791ae5e28a0937",
+      "bytes": 464
+    },
+    "evidence/phase5/ci/ci_integration.json": {
+      "sha256": "d7814cd2171c9f26330378acc15eec52b06df27664e6d5a69a38ddcbd984014a",
+      "bytes": 765
+    },
+    "evidence/phase5/ci/ci_matrix_phase5.json": {
+      "sha256": "55be59ac91ca40dc4e43a19011d0c877a417b2ada3fa68536ba0993322f35661",
+      "bytes": 29026
+    },
+    "evidence/phase5/environment/baseline_freeze.json": {
+      "sha256": "16930c249dd30340b9266c236739cff826460243fc051461b48290388e33bcf3",
+      "bytes": 2901
+    },
+    "evidence/phase5/environment/preflight.json": {
+      "sha256": "b0167de11bbcc2511f1745557bfe9bd0b9224c0a2293e7b6ea468dc4de1ac67c",
+      "bytes": 1656
+    },
+    "evidence/phase5/runtime/binding_probe.txt": {
+      "sha256": "4112917d020098f88350e399e3904fb45d3df3a15fed11bc2f754d6be9e0200e",
+      "bytes": 734
+    },
+    "evidence/phase5/runtime/dll_provenance.json": {
+      "sha256": "a2fd2e3b138d99169f2530b0a0e3f9211f9dd7f92c789439fa066f5faf0b07a1",
+      "bytes": 950
+    },
+    "evidence/phase5/runtime/nostl_validation.json": {
+      "sha256": "481ed3bbe6394a3aa1bb91caa20c4e0a1e3c3b4faa802765e5eb1ff4d826d490",
+      "bytes": 1760
+    },
+    "evidence/phase5/runtime/nostl_workload.txt": {
+      "sha256": "0b9a81cba9cb16e4dab5f544b0d000677a20b24bd832be28a240a4fd7bda16ae",
+      "bytes": 743
+    },
+    "evidence/phase5/runtime/numerics_batchnorm.txt": {
+      "sha256": "c3145a09b10eefdf7477006c8860251509af71bc6e1221f18f9fe2b2cdca7874",
+      "bytes": 1346
+    },
+    "evidence/phase5/runtime/runtime_validation.json": {
+      "sha256": "55f417899f381a672e25f5e24969422636428d67850d297e744421023d0f1358",
+      "bytes": 4077
+    },
+    "evidence/phase5/source_delta/pre_cleanup_equivalence.json": {
+      "sha256": "2bdeaadb1bc362abd0d4e0e39ca930723c79c009e01d96d74fceff660502fd7a",
+      "bytes": 2115
+    },
+    "evidence/phase5/yolo/yolo_amp_default.txt": {
+      "sha256": "6f49ce842e885960a689fcdfc2cc7fd5dc61f4b309a191ee4a7562792f80e96a",
+      "bytes": 10313
+    },
+    "evidence/phase5/yolo/yolo_amp_false.txt": {
+      "sha256": "5b37c6ed4b43c16731e9fd6ca267ede7ac991b9fc46a00e4c1b93e11cb752454",
+      "bytes": 10457
+    },
+    "evidence/phase5/yolo/yolo_train.json": {
+      "sha256": "0edbec95d46588dda577a303b109a8eba9e3185fed2257ed8bc24e2566583a2a",
+      "bytes": 31925
+    },
+    "docs/phase5/AUTHORSHIP_DCO_AUDIT.md": {
+      "sha256": "92da1c5121eeaafe28323843084e712018c8458687b2a0c856e650aa2113ad16",
+      "bytes": 5407
+    },
+    "docs/phase5/CI_INTEGRATION.md": {
+      "sha256": "a26c9b04fa638e19c945461de1144600c6eab8a3a4b6e69a4826dbb8df2144b5",
+      "bytes": 7196
+    },
+    "docs/phase5/LINUX_FINAL_VALIDATION_HANDOFF.md": {
+      "sha256": "c88397a62bb14a1092d55ed0887655c44e8bdda3dbb2fc27695484eb6a01d564",
+      "bytes": 4382
+    },
+    "docs/phase5/MAINTAINER_REPORT_FINAL.md": {
+      "sha256": "4efc393d13648083d88d2ad911359522cf1fbf73af88b12f6ec2c9afbb9cee3c",
+      "bytes": 5217
+    },
+    "docs/phase5/P3_TO_P5_DELTA.md": {
+      "sha256": "b311b09055630e14bfd6e1e05e98ff6fa7236435870043b8bac99ab4ef942ec1",
+      "bytes": 6055
+    },
+    "docs/phase5/PR_DRAFT_FINAL.md": {
+      "sha256": "b130f588c881c9e4de8e1afb93df76c3f96ba8501dcb28ecc31d800f6dad5a89",
+      "bytes": 7758
+    },
+    "docs/phase5/SOURCE_CHANGE_JUSTIFICATION.md": {
+      "sha256": "dd4eada34369a06c62f2dc5fd9d745a1a14c6c175ae50e0c17688cfb86e24560",
+      "bytes": 5144
+    },
+    "docs/phase5/UPSTREAM_BASE_ASSESSMENT.md": {
+      "sha256": "96eab147d402d9522d76ccca08ce0e860035c3723103237c899b61cea159e3d2",
+      "bytes": 4282
+    },
+    "findings/phase5/PATCH_HANDOFF.json": {
+      "sha256": "03ecab9e9821a94c9af2daeeefefd87ff182fd517c1af2991d5af0e281870f8e",
+      "bytes": 4769
+    },
+    "findings/phase5/PATCH_IDENTITY.json": {
+      "sha256": "0dc1a99e7a2d87b07d734442e23fee993b1448cf39d9fec713b85098ff6e33bf",
+      "bytes": 5606
+    },
+    "findings/phase5/phase5_conclusion.json": {
+      "sha256": "503d1ce3f33bc436cd42f90b7de193b942986cd42063957ea537d4a06a31de4c",
+      "bytes": 3123
+    },
+    "findings/phase5/reviews/P502_upstream_base_review.md": {
+      "sha256": "c5ae7ba6fdd6482ffabce7c26d7d5c122e07bd4a80ec1e4ceb4cf1d5be764d8c",
+      "bytes": 12101
+    },
+    "findings/phase5/reviews/P504_hygiene_behavior_review.md": {
+      "sha256": "bc3954b4a6d1185fa330e927097847ce8f74b685ebe469d2894fdf3bd49689b0",
+      "bytes": 18815
+    },
+    "findings/phase5/reviews/P508_false_pass_attack.md": {
+      "sha256": "73839aaee8cf708d68103e9ff6ea733827e8313673ef1cf8e05d60905ede1b77",
+      "bytes": 19007
+    },
+    "findings/phase5/reviews/P516_pr_background_review.md": {
+      "sha256": "32f50bdf2965e48a647eca9aa3fc440847a690e6bbf68b0bdb9aa3eb22c057a9",
+      "bytes": 10779
+    },
+    "findings/phase5/reviews/P517_amendment_recheck.md": {
+      "sha256": "81e95a196b59718485f5da75389b21a5d6b971931dfbebce812571dc7fed2e83",
+      "bytes": 10481
+    },
+    "findings/phase5/reviews/P517_reviewer_A_maintainer.md": {
+      "sha256": "a78ff9fb5d665c88b5a88d49b848c3209c1c7ccac4dc19d2eebca2c260ad48be",
+      "bytes": 15325
+    },
+    "findings/phase5/reviews/P517_reviewer_B_ci.md": {
+      "sha256": "ec13ed3c5ad58c15459dc1500becf4170814def4b99b9b75b30748980066b875",
+      "bytes": 15096
+    },
+    "findings/phase5/reviews/P517_reviewer_C_regression.md": {
+      "sha256": "3edd147a2baacd08ca3452d35d11cb30a97107476e53b6a6ff5d76652311edff",
+      "bytes": 17975
+    },
+    "findings/phase5/reviews/P517_reviewer_D_submission.md": {
+      "sha256": "1af9b169b378c240a057b49bbe42c9bdb9cdc29269d3987700af134a38e2931e",
+      "bytes": 15358
+    },
+    "patches/phase5/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": {
+      "sha256": "76fd6623958fb58fc71a9fabbf662bc28a22cfd19aeacba76ca9eee841abc586",
+      "bytes": 15640
+    },
+    "patches/phase5/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": {
+      "sha256": "d37376c9318c79f750b456ff6491ed1e6978d0eafa45a49a34fc66cf85f7a9ea",
+      "bytes": 7491
+    },
+    "patches/phase5/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch": {
+      "sha256": "593061053e113c5005040d6d9b1dee39c4d0d7cb2d0c27626749815ed6877821",
+      "bytes": 27678
+    },
+    "scripts/phase5/build_final_miopen.py": {
+      "sha256": "f5054856ab6b48c72ad302b89ede51c90f5a3fc869b9a87ff345959d0c6a9f40",
+      "bytes": 8454
+    },
+    "scripts/phase5/build_gtest_dep.py": {
+      "sha256": "03fd4b046060bbeb1db4482cff181233ba157499ce27e8301e7e8a48c3ea2a16",
+      "bytes": 3287
+    },
+    "scripts/phase5/ci_ctest_integration.py": {
+      "sha256": "90f301f8c5b2f3f45c4d0f552f17abe852d1fd29a3815c80cd99c4917c04fe90",
+      "bytes": 10006
+    },
+    "scripts/phase5/generate_conclusion.py": {
+      "sha256": "ac4e953f6564cdbb60b235251bd33c18d9a24cee75e6ce9736693e099db68612",
+      "bytes": 6464
+    },
+    "scripts/phase5/run_ci_matrix.py": {
+      "sha256": "27256863b8e67c06747a20650d730cde7cc0754a15f1fc79bb7d62e48cb4bd53",
+      "bytes": 6583
+    },
+    "scripts/phase5/runtime_validation.py": {
+      "sha256": "1f5d585e6383525e8327532658e2babcd0e424dee4120b4718008c21dc372647",
+      "bytes": 14387
+    },
+    "scripts/phase5/yolo_train_validation.py": {
+      "sha256": "5e15f128aff3a4ac1bb04b2458723cd7b1dfd3c360b842a05ac5cfb2f2837e48",
+      "bytes": 7453
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "phase5_runtime_validation_v1",
+  "gate": "P5-10+P5-11+P5-12",
+  "timestamp": "2026-10-08T14:09:37.298062",
+  "phase5_dll": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_build\\miopen\\bin\\MIOpen.dll",
+  "phase5_dll_sha256": "d5974dad0da85b3b9849b5f678fff13b3e678ae14029b98aa0cd87dded9f9a36",
+  "provenance": {
+    "loaded": true,
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "d5974dad0da85b3b9849b5f678fff13b3e678ae14029b98aa0cd87dded9f9a36",
+    "gpu": "AMD Radeon(TM) 8060S Graphics",
+    "torch": "2.12.0+rocm7.14.0",
+    "y_finite": true
+  },
+  "phase5_canonical_miopen_loaded": true,
+  "wheel_dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+  "wheel_sha_expected": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+  "wheel_restored_ok": true
+}
