@@ -1,0 +1,61 @@
+{
+  "schema": "phase4_environment_v1",
+  "gate": "P40",
+  "date": "2026-10-08",
+  "execution_platform": "windows",
+  "os": "Windows 11 native (10.0.26200 x64)",
+  "cpu": "AMD Ryzen AI MAX+ 395",
+  "gpu": "AMD Radeon 8060S Graphics",
+  "gfx_architecture": "gfx1151",
+  "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe",
+  "python_belongs_to_yolo_amd": true,
+  "conda_env_verified_by": "sys.executable resolved inside envs/yolo_amd, not base",
+  "pytorch_version": "2.12.0+rocm7.14.0",
+  "hip_version": "7.14.60850",
+  "cuda_api_available": true,
+  "device_name": "AMD Radeon(TM) 8060S Graphics",
+  "rocm_version": "7.14.0 (pip wheels, _rocm_sdk_core)",
+  "miopen_wheel_dll": {
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+    "size_bytes": 492380672,
+    "note": "Matches pristine wheel hash recorded at end of Phase 3 - machine confirmed restored"
+  },
+  "hiprtc_dlls": [
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+    "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc-builtins0714.dll"
+  ],
+  "git_version": "2.55.0.windows.5",
+  "cmake": {
+    "version": "4.4.4",
+    "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase3_buildtools\\Lib\\site-packages\\cmake\\data\\bin\\cmake.exe"
+  },
+  "ninja": {
+    "version": "1.13.2.git.kitware.jobserver-pipe-1",
+    "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase3_buildtools\\Scripts\\ninja.exe"
+  },
+  "compiler": {
+    "clang": "AMD clang version 23.0.0git (ROCm llvm-project 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:1efe4605317a40d2170d33617075bd5675d0d558)",
+    "clang_target": "x86_64-pc-windows-msvc",
+    "hipcc": "HIP 7.14.60850-2b22ab01",
+    "msvc_build_tools": "14.44.35207 at C:\\BuildTools"
+  },
+  "rca_repo": {
+    "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA",
+    "branch": "main",
+    "origin_main": "cb5e8cac615afff38bb8c78634a7cf130fc97a06",
+    "working_tree": "tracked files clean; untracked evidence/phase4/ being created by this phase",
+    "note": "origin/main advanced e43321f -> cb5e8ca after Linux validator merge (PR-based, human-controlled)"
+  },
+  "environment_caveats": {
+    "conda_base_duplication": "conda base (miniconda3\\Lib\\site-packages) contains a second bit-identical copy of the ROCm wheel stack (same torch version, same MIOpen.dll SHA256); bare 'python'/'hipcc' on PATH resolve to base. All Phase-4 invocations MUST use absolute path C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\python.exe; version strings alone cannot discriminate env vs base (P40 reviewer finding).",
+    "long_paths": "git core.longpaths=true was enabled in rocm-libraries-phase3 repo config to allow full worktree checkout of long gfx950 kernel filenames on Windows"
+  },
+  "phase3_artifacts_preserved": {
+    "rocm_libraries_phase3": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase3",
+    "build_phase3": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\build_phase3",
+    "phase3_deps": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase3_deps",
+    "phase3_buildtools": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase3_buildtools",
+    "phase3_patched_dll_sha256": "9fa28af5d3b99ab7f099c5b9647bd30a9ed759d9a95d2cba29710228ce139f71"
+  }
+}

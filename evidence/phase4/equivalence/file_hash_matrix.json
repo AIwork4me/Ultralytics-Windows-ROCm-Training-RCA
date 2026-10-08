@@ -1,0 +1,104 @@
+{
+  "schema": "phase4_semantic_equivalence_v1",
+  "gate": "P45",
+  "date": "2026-10-08",
+  "reference_definition": "SOURCE_SHA b68f8944300f104875d953fc8e4510908c9aaf0b + original patches 0001+0002 applied (uncommitted, staged)",
+  "canonical_definition": "SOURCE_SHA b68f8944300f104875d953fc8e4510908c9aaf0b + canonical commits c86d1b9(1) + 4084759(2)",
+  "hash_domain": "exact git blob bytes (LF), independent of working-tree CRLF smudge",
+  "files": [
+    {
+      "path": "projects/miopen/src/kernels/miopen_type_traits.hpp",
+      "size_bytes": 4327,
+      "reference_blob_oid": "983cdfe17691456b90e34b00ef946760d889cd9b",
+      "canonical_blob_oid": "983cdfe17691456b90e34b00ef946760d889cd9b",
+      "reference_sha256": "e0a285bac67902b101035717c1cb65152e72fc01ee6c99a845c2c8261d4945e5",
+      "canonical_sha256": "e0a285bac67902b101035717c1cb65152e72fc01ee6c99a845c2c8261d4945e5",
+      "working_tree_bytes_equal": true,
+      "verdict": "MATCH"
+    },
+    {
+      "path": "projects/miopen/src/kernels/miopen_utility.hpp",
+      "size_bytes": 2460,
+      "reference_blob_oid": "770882aebf20983f68a1aa8242439e8e1b994d62",
+      "canonical_blob_oid": "770882aebf20983f68a1aa8242439e8e1b994d62",
+      "reference_sha256": "35071f3b07a8d882d582d7dd9335c5aabc7d323622622bf9f9b6abaa0d396cd8",
+      "canonical_sha256": "35071f3b07a8d882d582d7dd9335c5aabc7d323622622bf9f9b6abaa0d396cd8",
+      "working_tree_bytes_equal": true,
+      "verdict": "MATCH"
+    },
+    {
+      "path": "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+      "size_bytes": 7159,
+      "reference_blob_oid": "40bd307db59436d44656f8bedfce95ec2bc3c22b",
+      "canonical_blob_oid": "40bd307db59436d44656f8bedfce95ec2bc3c22b",
+      "reference_sha256": "7475b39cdb4bdf2f4b2ee70ef31119bb1a294152e20d116372196a8254e23495",
+      "canonical_sha256": "7475b39cdb4bdf2f4b2ee70ef31119bb1a294152e20d116372196a8254e23495",
+      "working_tree_bytes_equal": true,
+      "verdict": "MATCH"
+    },
+    {
+      "path": "projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+      "size_bytes": 2257,
+      "reference_blob_oid": "f335261b9976fb20c23cd96548607977773f9049",
+      "canonical_blob_oid": "f335261b9976fb20c23cd96548607977773f9049",
+      "reference_sha256": "db65c6882301814feb439f55d47f741bbf401dfb24a4e8c48ba956178840620f",
+      "canonical_sha256": "db65c6882301814feb439f55d47f741bbf401dfb24a4e8c48ba956178840620f",
+      "working_tree_bytes_equal": true,
+      "verdict": "MATCH"
+    },
+    {
+      "path": "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+      "size_bytes": 2522,
+      "reference_blob_oid": "79498fd8d39cf8047b6ad34a010527bbf425ec70",
+      "canonical_blob_oid": "79498fd8d39cf8047b6ad34a010527bbf425ec70",
+      "reference_sha256": "8fdb1232c8ba3e0356c04fda7b303e58e22e511968bf28f7f06c572d2921e052",
+      "canonical_sha256": "8fdb1232c8ba3e0356c04fda7b303e58e22e511968bf28f7f06c572d2921e052",
+      "working_tree_bytes_equal": true,
+      "verdict": "MATCH"
+    },
+    {
+      "path": "projects/miopen/src/kernels/radix.hpp",
+      "size_bytes": 3848,
+      "reference_blob_oid": "99c29fda93463818b2bb8c91230527098b689687",
+      "canonical_blob_oid": "99c29fda93463818b2bb8c91230527098b689687",
+      "reference_sha256": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9",
+      "canonical_sha256": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9",
+      "working_tree_bytes_equal": true,
+      "verdict": "MATCH"
+    },
+    {
+      "path": "projects/miopen/src/kernels/tensor_view.hpp",
+      "size_bytes": 3179,
+      "reference_blob_oid": "d7963324b0de98900f105ca07e9264e12ae0b646",
+      "canonical_blob_oid": "d7963324b0de98900f105ca07e9264e12ae0b646",
+      "reference_sha256": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300",
+      "canonical_sha256": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300",
+      "working_tree_bytes_equal": true,
+      "verdict": "MATCH"
+    },
+    {
+      "path": "projects/miopen/src/CMakeLists.txt",
+      "size_bytes": 55129,
+      "reference_blob_oid": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+      "canonical_blob_oid": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+      "reference_sha256": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b",
+      "canonical_sha256": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b",
+      "working_tree_bytes_equal": true,
+      "verdict": "MATCH"
+    }
+  ],
+  "match_count": 8,
+  "required": 8,
+  "scope_changes": [
+    "M\tprojects/miopen/src/CMakeLists.txt",
+    "A\tprojects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+    "A\tprojects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+    "A\tprojects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+    "M\tprojects/miopen/src/kernels/miopen_type_traits.hpp",
+    "M\tprojects/miopen/src/kernels/miopen_utility.hpp",
+    "M\tprojects/miopen/src/kernels/radix.hpp",
+    "M\tprojects/miopen/src/kernels/tensor_view.hpp"
+  ],
+  "scope_exactly_eight_files": true,
+  "overall": "PASS"
+}
