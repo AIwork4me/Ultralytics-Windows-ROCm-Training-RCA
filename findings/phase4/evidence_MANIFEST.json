@@ -1,0 +1,313 @@
+{
+  "schema": "phase4_evidence_manifest_v1",
+  "gate": "P57",
+  "timestamp": "2026-10-08T12:20:37.962907",
+  "generator": "scripts/phase4/generate_manifest.py",
+  "file_count": 56,
+  "files": [
+    {
+      "path": "docs/phase4/AUTHORSHIP_DCO_AUDIT.md",
+      "size_bytes": 4414,
+      "sha256": "fad81f4ccda1f127d0f5a53e3c844d55bca682060946114222d80553c6ae5905"
+    },
+    {
+      "path": "docs/phase4/CI_REGRESSION_TEST_DESIGN.md",
+      "size_bytes": 7301,
+      "sha256": "0b0caacc47fe9187344bccb181bbef067dd88666a3e7b4b15ce7f125d9765233"
+    },
+    {
+      "path": "docs/phase4/MAINTAINER_REPORT_FINAL.md",
+      "size_bytes": 6822,
+      "sha256": "b66f9517ce564313f7dab170f32a499b8abb783741453e93424e65d933a66779"
+    },
+    {
+      "path": "docs/phase4/PHASE4_SUMMARY.md",
+      "size_bytes": 4412,
+      "sha256": "150c6c0f2bd4b8cb514082e1e2ae0630c15b0aeb067d9509e991cbfdb937966a"
+    },
+    {
+      "path": "docs/phase4/PR_DRAFT_FINAL.md",
+      "size_bytes": 6836,
+      "sha256": "411b122f9e3dbdcfc7f10e2bb948329208279ae07f53b27fcd898e5636960119"
+    },
+    {
+      "path": "docs/phase4/SEMANTIC_EQUIVALENCE.md",
+      "size_bytes": 3412,
+      "sha256": "ec5cdb3689e3753bc10c5a56cdfc95ad076ff89181bf6d095fa43eeb8f1c4e43"
+    },
+    {
+      "path": "docs/phase4/UPSTREAM_BASE_COMPATIBILITY.md",
+      "size_bytes": 4338,
+      "sha256": "44f3e489e6432ee3edf6b06374de6c097fd08368e172edfb4ade6b18263006bd"
+    },
+    {
+      "path": "docs/phase4/UPSTREAM_SUBMISSION_CHECKLIST.md",
+      "size_bytes": 2863,
+      "sha256": "970b9e27ac87d225beec64fc461c084def1303748a6131c73ca78f862d4710dd"
+    },
+    {
+      "path": "evidence/phase4/build/build.log",
+      "size_bytes": 251,
+      "sha256": "02b6f15f284bb17689f38cc509f5153be2b49b8a0037f6fdc877c1d822338f00"
+    },
+    {
+      "path": "evidence/phase4/build/build_provenance.json",
+      "size_bytes": 4435,
+      "sha256": "7312ad8237f83afb4ad8d4531024589b7612f7aa0798d34ac44cbf8159c96d26"
+    },
+    {
+      "path": "evidence/phase4/build/configure.log",
+      "size_bytes": 19287,
+      "sha256": "05ad2648d4d9fe801399d789fc5c4346c9a6d06c7d96d286046175c334178e84"
+    },
+    {
+      "path": "evidence/phase4/build/ninja_log.txt",
+      "size_bytes": 121273,
+      "sha256": "3e11cab28c73f0a09d8acc8914104d1aeca6bd5b2efb0f602cb6b19689aab1ad"
+    },
+    {
+      "path": "evidence/phase4/environment/environment.json",
+      "size_bytes": 3429,
+      "sha256": "c3e4dd6cd019cb3dae8c1cf9775aaa985bed55d00a854b8d06fa9d7e03daf7cc"
+    },
+    {
+      "path": "evidence/phase4/equivalence/file_hash_matrix.json",
+      "size_bytes": 5204,
+      "sha256": "5aac0f167af0ddff696c98013a95e128aa8b0f124a3377f0105478607f7b3416"
+    },
+    {
+      "path": "evidence/phase4/hiprtc_ci/ci_matrix.json",
+      "size_bytes": 18111,
+      "sha256": "960a3546d1c1e298a1db6bd7ad05319df7f509186c3dbf595d01c250051fadf4"
+    },
+    {
+      "path": "evidence/phase4/identity/verification.json",
+      "size_bytes": 1911,
+      "sha256": "b37e343e7f98528e11cb59ff7d45c2f11bafa2e93c4e349c57b19c533c4b5dbf"
+    },
+    {
+      "path": "evidence/phase4/linux_preservation.md",
+      "size_bytes": 2431,
+      "sha256": "d0051b1cba5deb7ad2b7f08cc4b3ff3cf37dd54a4569dcec37fabc898d2a36b9"
+    },
+    {
+      "path": "evidence/phase4/windows_runtime/batchnorm_minimal.txt",
+      "size_bytes": 887,
+      "sha256": "9d73d2ef96ed782c061d0b35a0c7d01c0f54803aa01ffe6028ba004499a96d44"
+    },
+    {
+      "path": "evidence/phase4/windows_runtime/binding_probe.txt",
+      "size_bytes": 664,
+      "sha256": "01d375cf4305e7b548874a57abc2563b687c1f212d95a801168ca28dd740272c"
+    },
+    {
+      "path": "evidence/phase4/windows_runtime/gpu_control.txt",
+      "size_bytes": 46,
+      "sha256": "6ca092270174f020e6babdd976d6c71391e420bbb77bfe81814b0e9694489069"
+    },
+    {
+      "path": "evidence/phase4/windows_runtime/nostl_validation.json",
+      "size_bytes": 1720,
+      "sha256": "db8066f5e59d1c6584f8b3967ffa625582f06a11d4c7baf07c5244798c9c3d1d"
+    },
+    {
+      "path": "evidence/phase4/windows_runtime/runtime_binding.json",
+      "size_bytes": 2104,
+      "sha256": "32e575907b36be3d28031a1b4a0c38da3e1b7aacf7998e6e55735baea7d047d3"
+    },
+    {
+      "path": "evidence/phase4/windows_runtime/yolo_amp_default.txt",
+      "size_bytes": 10039,
+      "sha256": "1f5bfc503967642529009b7edf04b4e603f2733772dd9b5955ece83b2a69ee92"
+    },
+    {
+      "path": "evidence/phase4/windows_runtime/yolo_amp_false.txt",
+      "size_bytes": 11803,
+      "sha256": "955f2f83540ad9d3513e22d4ef8a15f909f909541119a9b41a55b400e33ecdd0"
+    },
+    {
+      "path": "evidence/phase4/windows_runtime/yolo_train.json",
+      "size_bytes": 23715,
+      "sha256": "8e6b843c65e0233906a6ea313640c3339b53cb02cd6332266bb4c3af9deb6f81"
+    },
+    {
+      "path": "findings/phase4/evidence_MANIFEST.json",
+      "size_bytes": 11109,
+      "sha256": "9748768b651574228c1e6d33317a996b2eddc9c02ec1cfc76eb8f7f4b8d97f53"
+    },
+    {
+      "path": "findings/phase4/final_gate.md",
+      "size_bytes": 2907,
+      "sha256": "ab3b9ab02315c64bf36fb4218143db5e624ce7d84342f90391df132c96b3ea45"
+    },
+    {
+      "path": "findings/phase4/phase4_conclusion.json",
+      "size_bytes": 3942,
+      "sha256": "bbd28982c412ccfe9a045cbfb50de9b599f54e9654401b4e50d3c222e7a7c2da"
+    },
+    {
+      "path": "findings/phase4/reviews/P40_environment_review.md",
+      "size_bytes": 6695,
+      "sha256": "d19ae59a6d60f3c9be07db28095dfab56c00761414c136e7db2eace05287f0a9"
+    },
+    {
+      "path": "findings/phase4/reviews/P41_identity_review.md",
+      "size_bytes": 4085,
+      "sha256": "a088fcdfa309163697ddc2321a2bc1c2b973cedc011c1e68ef3bb6b675a38b4b"
+    },
+    {
+      "path": "findings/phase4/reviews/P42_upstream_review.md",
+      "size_bytes": 9037,
+      "sha256": "92b354f5f63d520094cb07967f51f1108bc8cb1e97c948b61044acd4f7eece3f"
+    },
+    {
+      "path": "findings/phase4/reviews/P44_commits_review.md",
+      "size_bytes": 7892,
+      "sha256": "7f672657c3efb4eb8c2392dfd524752472ec789ff03123b48e7620641da78a32"
+    },
+    {
+      "path": "findings/phase4/reviews/P45_equivalence_review.md",
+      "size_bytes": 5933,
+      "sha256": "0e8c86b71a954856044beada5ef5ac84e18dd8e8b8f3f1885be18ec2a95e3b1c"
+    },
+    {
+      "path": "findings/phase4/reviews/P49_adversarial_reverify.md",
+      "size_bytes": 15882,
+      "sha256": "dc6f5c35e07ea3a578acedde7a436fbdf38399997a5d7a294a739ccd27988325"
+    },
+    {
+      "path": "findings/phase4/reviews/P49_adversarial_review.md",
+      "size_bytes": 15691,
+      "sha256": "8cba956ad961deda763a8ac29ebdc1bef9facd974a4cd8593ce83055bbe2d5e0"
+    },
+    {
+      "path": "findings/phase4/reviews/P50_build_review.md",
+      "size_bytes": 12744,
+      "sha256": "577b0c728df3e2ee614794a4bc26817ed909ca6977536a8821cf4cd85b3c40ad"
+    },
+    {
+      "path": "findings/phase4/reviews/P53_linux_preservation_review.md",
+      "size_bytes": 8463,
+      "sha256": "38d3a80c4fb3c233d6dae44cc144445d2b9144497f6157de1e01f5d92b8b814d"
+    },
+    {
+      "path": "findings/phase4/reviews/P56_reviewer_A_maintainer.md",
+      "size_bytes": 17355,
+      "sha256": "9642d88678ce0c869b9aa654c75519fc4fad564fd50f5e7496a6578ddf2af2a8"
+    },
+    {
+      "path": "findings/phase4/reviews/P56_reviewer_B_ci.md",
+      "size_bytes": 19126,
+      "sha256": "6d19489760bffdfcf79fa501975536a08fcf01c221bea54966830bcac8fd9771"
+    },
+    {
+      "path": "findings/phase4/reviews/P56_reviewer_C_regression.md",
+      "size_bytes": 18676,
+      "sha256": "b75da9a98e2c57a622a3624c76714636ebd4d51ae467858431c4724bedf3efec"
+    },
+    {
+      "path": "findings/phase4/reviews/P56_reviewer_D_submission.md",
+      "size_bytes": 15222,
+      "sha256": "52fb382af0ffa80f7998879ea1c6039495f54233ff9d21c341c77ddc508dcc26"
+    },
+    {
+      "path": "patches/phase4/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "size_bytes": 15760,
+      "sha256": "c846dea22a98ff5956cefc1f27b20572c8b715ba6f564fe105643590429a06ab"
+    },
+    {
+      "path": "patches/phase4/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "size_bytes": 6854,
+      "sha256": "e2a4f9312545c41240b666417ae6083ef2e516f45945fcf12fe6948e4a0b31f6"
+    },
+    {
+      "path": "patches/phase4/canonical/README.md",
+      "size_bytes": 1455,
+      "sha256": "7eaa91243f3c6a6381bd276d2410d0f8f8969a58e3b5a05c666ce65d88cad7ff"
+    },
+    {
+      "path": "patches/phase4/ci_test_proposal/hiprtc_selfcontained.cpp",
+      "size_bytes": 19183,
+      "sha256": "06f9899993d5dad8e2c50c65c7195fd52df7406d89cd2368aadec4d864da0faf"
+    },
+    {
+      "path": "scripts/phase4/__pycache__/build_canonical_miopen.cpython-313.pyc",
+      "size_bytes": 14046,
+      "sha256": "94cd72452a627e1dea8942b4aa6286c18f51f23a73546d2f94ccc132df63208f"
+    },
+    {
+      "path": "scripts/phase4/build_canonical_miopen.py",
+      "size_bytes": 9755,
+      "sha256": "0625b128d2d6bf88759fb3ed14a9884de687f989a8d0f4752c2ac36706eded6b"
+    },
+    {
+      "path": "scripts/phase4/build_ci_test.py",
+      "size_bytes": 1787,
+      "sha256": "876d49b68e048d5b0d5f159bca226cc1a5f8570d9b5e14f5941b37f50b289dc4"
+    },
+    {
+      "path": "scripts/phase4/extract_commit_messages.py",
+      "size_bytes": 2793,
+      "sha256": "8b0dae43585356eaa0e7c0fb2849c76c98740ced8016b4adfd635ce5d9d92076"
+    },
+    {
+      "path": "scripts/phase4/generate_manifest.py",
+      "size_bytes": 3746,
+      "sha256": "f41095b57c573601e0b20250929ab96e09e5354c48f0d20ed0a007e4ee89bade"
+    },
+    {
+      "path": "scripts/phase4/nostl_validation.py",
+      "size_bytes": 6276,
+      "sha256": "16dc6009c25b79cb26a28bc3b7058507b232581e6e3ce8c24a45a9a39a946162"
+    },
+    {
+      "path": "scripts/phase4/prove_dll_binding.py",
+      "size_bytes": 6005,
+      "sha256": "888b9c926039f1737bc1213f1a350286dc8fa54e84aa88c79663635051d3f3cd"
+    },
+    {
+      "path": "scripts/phase4/run_ci_matrix.py",
+      "size_bytes": 3894,
+      "sha256": "87a6c8a6bf67fe0c36c1ed385aa03bde2e10390010ae7defd8bc28fdbe4262e5"
+    },
+    {
+      "path": "scripts/phase4/semantic_equivalence.py",
+      "size_bytes": 4306,
+      "sha256": "20eae70990861c83ed4d9eaeb0b7f3266a2f3ec9a313a397845e01274765e4b8"
+    },
+    {
+      "path": "scripts/phase4/verify_patch_identity.py",
+      "size_bytes": 4835,
+      "sha256": "f10f92b0015db36c7699b4022633f76064d78754e3afbc308381c4c65033d80e"
+    },
+    {
+      "path": "scripts/phase4/yolo_train_validation.py",
+      "size_bytes": 6287,
+      "sha256": "ce307d8336cf0b424f06ba6ee996adfdf4e889e0a48ada9cc511499e4b0bd831"
+    }
+  ],
+  "security_scan": {
+    "patterns": [
+      "github PAT",
+      "github token",
+      "github oauth",
+      "AWS key",
+      "private key",
+      "slack token",
+      "JWT",
+      "password literal",
+      "api key literal"
+    ],
+    "findings": [],
+    "verdict": "CLEAN"
+  },
+  "provenance": {
+    "producer": "Phase-4 Windows upstream submission preparation",
+    "patch_id": "P3-FINAL-R3 (canonical reconstruction)",
+    "canonical_commits": [
+      "c86d1b95aacc35eed6b25e69ba659e1f6a133197",
+      "4084759f3804748b7935d882db2d0445a3e0c380"
+    ],
+    "base_source_sha": "b68f8944300f104875d953fc8e4510908c9aaf0b"
+  }
+}
