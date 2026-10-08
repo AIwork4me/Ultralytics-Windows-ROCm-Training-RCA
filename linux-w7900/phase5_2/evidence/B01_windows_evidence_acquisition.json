@@ -1,0 +1,66 @@
+{
+  "gate": "B01",
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "pinned_local_evidence_checkout": {
+    "path": "/workspace/miopen-w7900-validation/repos/rca-evidence",
+    "origin_url": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA.git",
+    "checked_out_mode": "detached at exact evidence commit",
+    "head_sha": "494907699f3b57095663f0a70b42278001a8efb7"
+  },
+  "remote_identity_verification": {
+    "git_transport": "git fetch origin phase5.1/windows-final-candidate-freeze -> origin/branch = 494907699f3b57095663f0a70b42278001a8efb7 (MATCH)",
+    "github_api": "GET /repos/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/commits/494907699f3b57095663f0a70b42278001a8efb7 -> sha MATCH; parent 013f6f005f97aca5ef46d841ca754f2283dc62f0 (RCA main head, expected)"
+  },
+  "artifact_hashes_from_pinned_checkout": {
+    "findings/phase5_1/FINAL_HANDOFF.json": {
+      "bytes": 9471,
+      "sha256": "58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8"
+    },
+    "docs/phase5_1/LINUX_FINAL_VALIDATION_HANDOFF.md": {
+      "bytes": 6128,
+      "sha256": "93cd3ba78edcbc3e3b24300535a119be01d046c9d16418451f7ae5770ba22bd7"
+    },
+    "patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": {
+      "bytes": 15546,
+      "sha256": "14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2",
+      "matches_mission_declaration": true,
+      "crlf_present": false
+    },
+    "patches/phase5_1/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": {
+      "bytes": 7444,
+      "sha256": "7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e",
+      "matches_mission_declaration": true,
+      "crlf_present": false
+    },
+    "patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch": {
+      "bytes": 27631,
+      "sha256": "3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4",
+      "matches_mission_declaration": true,
+      "crlf_present": false
+    },
+    "patches/phase5_1/canonical/README.md": {
+      "bytes": 1809,
+      "sha256": "10f7c7ccab19995217320032efe062517c36237dc5f4a85bf81e29f30e491ec1"
+    }
+  },
+  "series_hash_sha256_file_concat_v1": {
+    "recomputed": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d",
+    "matches_manifest": true,
+    "matches_mission_declaration": true
+  },
+  "manifest_declared_vs_actual_consistency": {
+    "candidate_id": "P5.1-CANDIDATE-R1 (manifest) == mission declaration OK",
+    "base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36 OK",
+    "ordered_commits": [
+      "d4003de1a7cabc3715f73e48d3fd414f312a40de",
+      "3b18a0655b991890b63587ee18cb0950234a47f0",
+      "e7ff6d75fac3e7b683e81e671555ada99af13b74"
+    ],
+    "ordered_commits_note": "candidate commits are Windows-author-local MIOpen repo commits, not RCA-repo objects; identity authority = base_sha + canonical patch bytes + expected head tree SHA1 (all independently verified); patch contents encode the same changes",
+    "expected_head_tree_sha1": "605d0d214acdbc06086fdb27c61fec970c0f2798 (to be reproduced in B05)",
+    "linux_validation_status": "PENDING (must remain so until final A/B mission)",
+    "authorization_to_submit_upstream": false
+  },
+  "verification_method": "python3 hashlib sha256 over raw bytes read from the pinned detached checkout; series = sha256(concat(bytes1,bytes2,bytes3)) in manifest order 1,2,3; no shell pipe hashing (no trailing-newline contamination)",
+  "verdict": "PASS"
+}

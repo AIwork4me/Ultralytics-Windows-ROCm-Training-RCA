@@ -1,0 +1,54 @@
+{
+  "ok": true,
+  "method": "A: git am (3 commits)",
+  "tree": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+  "expected_tree": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+  "tree_match": true,
+  "commit_shas": [
+    "5dfa26ff6d76108f00601778ab07f9d693557635",
+    "46d3293032c03a2fc958de4e55b39a8b8d3bb9e6",
+    "e6b6bd06ea1cc100e242e03b6e0735c850a367a2"
+  ],
+  "subjects": [
+    "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
+    "MIOpen: make remaining RTC kernel std includes self-contained",
+    "MIOpen: add HIPRTC no-host-STL regression test"
+  ],
+  "subjects_match": true,
+  "diff_check_clean": true,
+  "all_changes_under_projects_miopen": true,
+  "changed_files": [
+    "projects/miopen/src/CMakeLists.txt",
+    "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+    "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+    "projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+    "projects/miopen/src/kernels/miopen_type_traits.hpp",
+    "projects/miopen/src/kernels/miopen_utility.hpp",
+    "projects/miopen/src/kernels/radix.hpp",
+    "projects/miopen/src/kernels/tensor_view.hpp",
+    "projects/miopen/test/CMakeLists.txt",
+    "projects/miopen/test/hiprtc_selfcontained.cpp"
+  ],
+  "stat": " projects/miopen/src/CMakeLists.txt                                   |   3 ++\n projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp |  60 +++++++++++++++++++++++++++\n projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp      | 209 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n projects/miopen/src/kernels/miopen_freestanding_utility.hpp          |  56 +++++++++++++++++++++++++\n projects/miopen/src/kernels/miopen_type_traits.hpp                   |  18 +++++++-\n projects/miopen/src/kernels/miopen_utility.hpp                       |  16 +++++++-\n projects/miopen/src/kernels/radix.hpp                                |  11 ++++-\n projects/miopen/src/kernels/tensor_view.hpp                          |   7 ++++\n projects/miopen/test/CMakeLists.txt                                  |  57 ++++++++++++++++++++++++++\n projects/miopen/test/hiprtc_selfcontained.cpp                        | 532 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n 10 files changed, 964 insertions(+), 5 deletions(-)\n",
+  "am_log": [
+    {
+      "patch": "patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "exit": 0,
+      "stdout": "Applying: MIOpen: keep RTC type traits self-contained when no host STL is reachable\n",
+      "stderr": ""
+    },
+    {
+      "patch": "patches/phase5_1/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "exit": 0,
+      "stdout": "Applying: MIOpen: make remaining RTC kernel std includes self-contained\n",
+      "stderr": ""
+    },
+    {
+      "patch": "patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch",
+      "exit": 0,
+      "stdout": "Applying: MIOpen: add HIPRTC no-host-STL regression test\n",
+      "stderr": ""
+    }
+  ],
+  "worktree": "/workspace/miopen-w7900-validation/build/recon/method-a-git-am"
+}

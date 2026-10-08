@@ -1,0 +1,48 @@
+=== run_validation_leg(baseline,b07-audit) pid=179721 2026-10-08T17:23:17+00:00 ===
+LD_PRELOAD=/workspace/miopen-w7900-validation/install/baseline/lib/libMIOpen.so.1
+libMIOpen sha256: 6af347af760bb5145a6d8f2c50871bcd2d11c7aa71075a59cd67de7e49990697
+cache dir: /workspace/miopen-w7900-validation/runtime/baseline-cache/b07-audit (fresh per label; never shared across legs)
+B07_DYNAMIC_AUDIT pid=179721
+LD_LIBRARY_PATH=/workspace/miopen-w7900-validation/install/baseline/lib:/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib:/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib:/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib:/usr/local/lib:
+LD_PRELOAD=/workspace/miopen-w7900-validation/install/baseline/lib/libMIOpen.so.1
+ROCM_PATH=/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel HIP_PATH=/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel
+[dlopen] libMIOpen.so.1 OK
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1100
+[api] miopenCreate -> 0 (aiSuccess)
+[api] miopenCreateTensorDescriptor -> 0
+[api] miopenSet4dTensorDescriptor -> 0
+[provenance]
+  MIOpen                       miopenCreate <- /workspace/miopen-w7900-validation/install/baseline/lib/libMIOpen.so.1
+  MIOpen                       miopenKthvalueForward <- /workspace/miopen-w7900-validation/install/baseline/lib/libMIOpen.so.1
+  libhiprtc.so.7               <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7
+  libamdhip64.so.7             <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+  librocblas.so.5              <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/librocblas.so.5
+  libhsa-runtime64.so.1        <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhsa-runtime64.so.1
+  libhipblaslt.so.1            <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libhipblaslt.so.1
+[maps scan]
+  loaded ROCm-related objects (dedup):
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpenCKGroupedConv_gfx1100.so
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_sqlite3.so
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/librocroller.so.1
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/libhsa-amd-aqlprofile64.so.1
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_zstd.so.1
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhsa-runtime64.so.1
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libhipblaslt.so.1
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/librocblas.so.5
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_bz2.so
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamd_comgr.so.3
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_liblzma.so.5
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_numa.so.1
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/librocprofiler-register.so.0
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_drm_amdgpu.so.1
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_drm.so.2
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_elf.so.1
+    /workspace/miopen-w7900-validation/install/baseline/lib/libMIOpen.so.1.0
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/rocm_sysdeps/lib/librocm_sysdeps_z.so.1
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/librocm_kpack.so.0
+    /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libroctx64.so.4
+  ROCm-related loaded objects: 22
+NO_/opt/rocm_IN_maps: PASS
