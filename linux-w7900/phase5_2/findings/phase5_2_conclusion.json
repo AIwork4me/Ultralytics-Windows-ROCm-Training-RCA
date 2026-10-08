@@ -8,6 +8,15 @@
     "validation_rocm": "7.14.1 isolated wheel SDK (tools/rocm7141-venv)",
     "system_rocm": "7.2.1 (/opt/rocm, untouched, never loaded by validation processes)"
   },
+  "windows_freeze_identity": {
+    "rca_evidence_commit": "494907699f3b57095663f0a70b42278001a8efb7",
+    "branch": "phase5.1/windows-final-candidate-freeze",
+    "candidate_id": "P5.1-CANDIDATE-R1",
+    "frozen_base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "expected_head_tree_sha1": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+    "series_sha256": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d",
+    "linux_validation_status": "PENDING (unchanged; only the authorized final A/B mission may report PASS)"
+  },
   "gates": {
     "B00_preflight_reconciliation": {"verdict": "PASS", "audit": "PASS (subagent)"},
     "B01_windows_evidence_acquisition": {"verdict": "PASS", "audit": "PASS (subagent; all SHA256 independently recomputed)"},
