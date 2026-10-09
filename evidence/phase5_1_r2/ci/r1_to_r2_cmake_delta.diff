@@ -1,0 +1,80 @@
+diff --git a/projects/miopen/test/CMakeLists.txt b/projects/miopen/test/CMakeLists.txt
+index 7c35a47e..2c63514b 100755
+--- a/projects/miopen/test/CMakeLists.txt
++++ b/projects/miopen/test/CMakeLists.txt
+@@ -494,19 +494,23 @@ endforeach()
+ # Compiles the real MIOpenBatchNormFwdTrainSpatial.cpp through hiprtc with
+ # the host C++ standard library unreachable: passes only when runtime-
+ # compiled kernels stay self-contained (the __has_include/freestanding
+-# headers) and produces a non-empty code object. Registered by hand rather
+-# than via add_test_executable because the test must not link
+-# MIOpen_with_plugins - it exercises hiprtc exactly like the runtime
+-# compile path, without MIOpen itself in the process. The negative
+-# control (--mode=negative, unpatched tree) is intentionally NOT wired
+-# into the default suite; it belongs to A/B validation harnesses.
++# headers) and produces a non-empty code object. A host that cannot
++# reproduce the no-STL condition at all (the test's embedded probe still
++# sees standard headers under isolation) reports the run as skipped,
++# never as a pass. Registered by hand rather than via add_test_executable
++# because the test must not link MIOpen_with_plugins - it exercises
++# hiprtc exactly like the runtime compile path, without MIOpen itself in
++# the process. The negative control (--mode=negative, unpatched tree) is
++# intentionally NOT wired into the default suite; it belongs to A/B
++# validation harnesses.
+ if(MIOPEN_USE_HIPRTC)
+     add_executable(test_hiprtc_selfcontained EXCLUDE_FROM_ALL hiprtc_selfcontained.cpp)
+     clang_tidy_check(test_hiprtc_selfcontained)
+-    # Mirror the platform split src/CMakeLists.txt uses for the MIOpen
+-    # implementation itself: the hiprtc package exports the namespaced
+-    # hiprtc::hiprtc target on Windows, but plain hiprtc elsewhere.
+-    if(WIN32)
++    # Link whichever hiprtc target the package actually exports: modern
++    # ROCm CMake packages export the namespaced hiprtc::hiprtc imported
++    # target (include dirs + link location); the plain name is only a
++    # fallback for packages that export no namespaced target.
++    if(TARGET hiprtc::hiprtc)
+         target_link_libraries(test_hiprtc_selfcontained PRIVATE hiprtc::hiprtc)
+     else()
+         target_link_libraries(test_hiprtc_selfcontained PRIVATE hiprtc)
+@@ -531,14 +535,35 @@ if(MIOPEN_USE_HIPRTC)
+             string(SUBSTRING "${_hiprtc_test_arch}" 0 ${_hiprtc_test_arch_feat} _hiprtc_test_arch)
+         endif()
+     endif()
+-    if(NOT _hiprtc_test_arch STREQUAL "")
+-        add_test_command(test_hiprtc_selfcontained
+-            test_hiprtc_selfcontained ${CMAKE_CURRENT_SOURCE_DIR}/../src/kernels
+-            --arch=${_hiprtc_test_arch})
++    # Same selection policy as add_test_command (SKIP_TESTS /
++    # SKIP_ALL_EXCEPT_TESTS), so restricted legs (e.g. MIOPEN_NO_GPU)
++    # keep disabling this test like any other.
++    if( (NOT (test_hiprtc_selfcontained IN_LIST SKIP_ALL_EXCEPT_TESTS) AND SKIP_ALL_EXCEPT_TESTS)
++        OR (test_hiprtc_selfcontained IN_LIST SKIP_TESTS))
++        add_test(NAME test_hiprtc_selfcontained COMMAND echo skipped)
++        set_tests_properties(test_hiprtc_selfcontained PROPERTIES DISABLED On)
++    elseif(NOT _hiprtc_test_arch STREQUAL "")
++        add_test(NAME test_hiprtc_selfcontained
++                 COMMAND test_hiprtc_selfcontained
++                         ${CMAKE_CURRENT_SOURCE_DIR}/../src/kernels
++                         --arch=${_hiprtc_test_arch})
+     else()
+-        add_test_command(test_hiprtc_selfcontained
+-            test_hiprtc_selfcontained ${CMAKE_CURRENT_SOURCE_DIR}/../src/kernels)
++        add_test(NAME test_hiprtc_selfcontained
++                 COMMAND test_hiprtc_selfcontained
++                         ${CMAKE_CURRENT_SOURCE_DIR}/../src/kernels)
+     endif()
++    # Registered directly rather than through add_test_command: the
++    # helper's MIOPEN_TEST_GDB wrapper (default On for non-WIN32) folds
++    # every nonzero exit into a generic failure, so this test's exit
++    # code - the verdict itself - would never reach CTest and exit 4
++    # below could never be recognized. Exit 4 means this host cannot
++    # reproduce the no-STL condition (the embedded probe still sees
++    # standard headers under isolation): report that as skipped, not
++    # failed. Capability-aware, not platform-aware: hosts that can
++    # isolate still get a hard PASS/FAIL from exit 0/1.
++    set_tests_properties(test_hiprtc_selfcontained PROPERTIES
++        ENVIRONMENT "MIOPEN_USER_DB_PATH=${CMAKE_CURRENT_BINARY_DIR}"
++        SKIP_RETURN_CODE 4)
+     add_dependencies(miopen-tests test_hiprtc_selfcontained)
+     add_dependencies(miopen-check test_hiprtc_selfcontained)
+ endif()
