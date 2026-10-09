@@ -1,0 +1,25 @@
+{
+  "schema_version": 2,
+  "gate": "S02",
+  "generated": "2026-10-10",
+  "note": "v2: identities updated for the round-2 replay after mid-mission develop drift (fb023f80 -> 54b079ca). Round-1 chain: 766ffa1f -> 258df6a1 -> dcd05f33 on fb023f80 (tree 28595e10), fully validated then superseded; round-1 logs preserved at logs/ci_fb023f80_round1/.",
+  "branch": "submission/miopen-hiprtc-no-host-stl (local) -> fix/miopen-hiprtc-no-host-stl (fork, pushed)",
+  "worktree": "C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.5-submission",
+  "object_store": "C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase3 (shared, worktree-linked)",
+  "chain": [
+    {"sha": "54b079ca753bb3818017d5e724e208c03a43fd5a", "role": "upstream base (origin/develop at PR creation)"},
+    {"sha": "a9a34daa6d013930beed72c7ca7c81e09859b4b9", "role": "submission commit 1", "parent": "54b079ca753bb3818017d5e724e208c03a43fd5a", "tree": "8af9a0b47330b64dc2d1b3fa187e9005cdccb25a"},
+    {"sha": "cd3d36b229435c97d236acb193caca8cc9a7a3c7", "role": "submission commit 2", "parent": "a9a34daa6d013930beed72c7ca7c81e09859b4b9", "tree": "d874fc19a9d18c18864fae050b4d4d7aa4e2feb1"},
+    {"sha": "1cc73f1c1e7c3831a1eb334a483732178948fc66", "role": "submission commit 3 (HEAD, PR head)", "parent": "cd3d36b229435c97d236acb193caca8cc9a7a3c7", "tree": "ce8635c419c89db70a30de8aa1727f26b05387a5"}
+  ],
+  "commit_count_on_base": 3,
+  "author_identity": "AIwork4me <AIwork4me@users.noreply.github.com> (author and committer on all three)",
+  "author_dates_preserved_from_r2": true,
+  "committer_dates": "2026-10-10 (fresh replay, post-base)",
+  "worktree_clean_after_validation": true,
+  "remote": {
+    "fork": "https://github.com/AIwork4me/rocm-libraries.git",
+    "remote_branch": "fix/miopen-hiprtc-no-host-stl",
+    "remote_head_verified": "1cc73f1c1e7c3831a1eb334a483732178948fc66"
+  }
+}

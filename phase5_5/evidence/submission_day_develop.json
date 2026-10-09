@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "gate": "S01",
+  "mission_id": "MIOPEN-HIPRTC-OFFICIAL-UPSTREAM-SUBMISSION",
+  "generated": "2026-10-10",
+  "upstream_repo": "https://github.com/ROCm/rocm-libraries",
+  "upstream_base_branch": "develop",
+  "submission_day_develop_tip": "54b079ca753bb3818017d5e724e208c03a43fd5a",
+  "develop_tip_commit": {
+    "author": "Wayne Franz",
+    "subject": "Update fallback wording in rocThrust changelog",
+    "commit_date_canonical": "2026-10-09T15:40:24-04:00"
+  },
+  "previous_p54_tested_base": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+  "distance_from_p54_base": 55,
+  "merge_base_with_p54_base": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+  "lineage": "strict fast-forward (681bc9ed is ancestor of fb023f80; 0 merge commits in range)",
+  "miopen_touching_commits_in_range": [
+    {
+      "sha": "4ccd8f55783b90c3ff2ddb6bdaa29eb2df88cdf8",
+      "subject": "[MIOpen] Sync hipconv v0.4.0 (#13213)",
+      "files_summary": "vendored src/hipconv tree + CHANGELOG.md + src/include/miopen/conv/solvers.hpp + src/solver/conv/conv_hipconv.cpp + two test/gtest ConvHipConv files",
+      "overlap_with_ten_patched_paths": "NONE"
+    }
+  ],
+  "ten_path_audit": {
+    "six_existing_files_blob_develop_vs_681bc9ed": "ALL SAME",
+    "blobs": {
+      "projects/miopen/src/CMakeLists.txt": "19dce8c1bbdb6ed14038565995c38c16f100b4bd",
+      "projects/miopen/src/kernels/miopen_type_traits.hpp": "e2b6a98e7779726b01514694d53d784060a4d144",
+      "projects/miopen/src/kernels/miopen_utility.hpp": "156cb30fc4ceaa13865be5804c72577cc5a9ecfb",
+      "projects/miopen/src/kernels/radix.hpp": "f8a91fed0d21a62ae438883b38a67cfe083bba14",
+      "projects/miopen/src/kernels/tensor_view.hpp": "36ddef6daae5e822633019c8aea86318f498c4e2",
+      "projects/miopen/test/CMakeLists.txt": "f6a0e66245da4c3b5aa0ee561d3a7e4ba6b09e17"
+    },
+    "four_new_paths_on_develop": "ALL ABSENT (no collision)",
+    "indirect_paths": "miopen_math.hpp and batchnorm_functions.hpp unchanged; solvers.hpp/conv_hipconv.cpp changed only inside the hipconv sync (no interaction with RTC kernel include closure)"
+  },
+  "equivalent_fix_search": "no commit or open PR matching freestanding/self-contained HIPRTC includes; open-PR searches for 'miopen type_traits' and 'freestanding' empty",
+  "risk_prs": {
+    "10945": "OPEN (unmerged)",
+    "10426": "OPEN (unmerged)",
+    "12733": "OPEN (unmerged); files disjoint from the ten paths"
+  },
+  "existing_aiwork4me_prs": "none",
+  "decision": "CONTINUE - exact R2 patch applicable, semantically compatible, zero conflicts",
+  "round1_note": "Round 1 audited tip fb023f80f92a9996f06145418b1bc60ca026ec5c (55 commits past P5.4 base, sole MIOpen commit hipconv v0.4.0 sync, disjoint). Mid-mission drift added 2 commits (rocprim kernel tuner #13007, ck_tile layout fix #11701) - zero MIOpen commits; ten-path blob audit ALL SAME vs fb023f80; four new paths ABSENT; fb023f80 is ancestor (fast-forward). Replay and validation re-executed on 54b079ca; PR #13437 based on it.",
+  "develop_tip_commit_round2": {
+    "sha": "54b079ca753bb3818017d5e724e208c03a43fd5a",
+    "subject": "feat(rocprim): Implement Kernel Tuner for Various Algorithms (port of #12008 to hipccl3) (#13007)"
+  }
+}

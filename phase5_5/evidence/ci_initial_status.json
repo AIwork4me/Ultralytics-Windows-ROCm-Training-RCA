@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "gate": "S09",
+  "generated": "2026-10-10",
+  "pr": "ROCm/rocm-libraries#13437",
+  "head_sha": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+  "initial_snapshot": [
+    {"check": "Base freshness", "status": "pending", "url": "https://github.com/ROCm/rocm-libraries/actions/runs/38005074341/job/114071869425"},
+    {"check": "labeler", "status": "pending", "url": "https://github.com/ROCm/rocm-libraries/actions/runs/38005074480/job/114071869863"},
+    {"check": "therock-pr-bot", "status": "pending", "url": "https://github.com/ROCm/rocm-libraries/actions/runs/38005074613/job/114071871447"}
+  ],
+  "initial_classification": {
+    "passed": 0,
+    "pending": 3,
+    "failed": 0,
+    "expected_skipped": 0,
+    "unexpected_skipped": 0,
+    "note": "Checks queued minutes after creation; full matrix not yet dispatched at snapshot time. Follow-up snapshots in CI_STATUS.md."
+  },
+  "expectations": [
+    "Linux CI legs: test_hiprtc_selfcontained expected Skipped (probe exit 4) - documented in PR body Regression Test Design",
+    "A Windows CI leg with ambient CPATH/CPLUS_INCLUDE_PATH or full MSVC STL would also report Skipped - expected, not a failure",
+    "Genuine Windows no-STL coverage is this RCA's validation; upstream Windows CI may not exist yet for this test"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "gate": "S08",
+  "generated": "2026-10-10",
+  "upstream_pr_url": "https://github.com/ROCm/rocm-libraries/pull/13437",
+  "upstream_pr_number": 13437,
+  "upstream_pr_title": "MIOpen: make HIPRTC kernel includes self-contained without host STL",
+  "upstream_pr_state_at_creation": "OPEN",
+  "target_repository": "ROCm/rocm-libraries",
+  "base_branch": "develop",
+  "head_fork": "AIwork4me/rocm-libraries",
+  "head_branch": "fix/miopen-hiprtc-no-host-stl",
+  "pr_head_sha": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+  "pr_base_sha_at_creation": "54b079ca753bb3818017d5e724e208c03a43fd5a (develop tip 2026-10-10, post-drift)",
+  "commits": [
+    "a9a34daa6d013930beed72c7ca7c81e09859b4b9",
+    "cd3d36b229435c97d236acb193caca8cc9a7a3c7",
+    "1cc73f1c1e7c3831a1eb334a483732178948fc66"
+  ],
+  "changed_files_count": 10,
+  "issue_link": "Addresses ROCm/MIOpen#3956 (neutral, non-closing)",
+  "dco": "not required upstream (re-verified on 2026-10-10 develop); commits unsigned by design; DCO signing NOT authorized for this identity",
+  "body_file": "phase5_5/docs/FINAL_PR_BODY.md",
+  "fork_created": "2026-10-10 via gh repo fork ROCm/rocm-libraries --clone=false (parent verified ROCm/rocm-libraries, push permission ADMIN)",
+  "duplicate_check": "no prior PR from AIwork4me in any state; no PR existed for this head before creation"
+}

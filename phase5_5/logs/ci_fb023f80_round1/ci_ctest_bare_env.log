@@ -1,0 +1,9 @@
+Test project C:/Users/rocm/Desktop/YOLO_AMD/phase5_5_build/ci_test
+    Start 10: test_hiprtc_selfcontained
+1/1 Test #10: test_hiprtc_selfcontained ........   Passed    0.37 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   0.41 sec
+
+rc=0
