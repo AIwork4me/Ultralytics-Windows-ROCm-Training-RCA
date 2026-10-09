@@ -44,5 +44,17 @@
     "S09_ci_triage": "initial snapshot: 3 checks pending, 0 failures (see CI_STATUS.md for follow-ups)",
     "S10_maintainer_prep": "docs/MAINTAINER_HANDOFF.md (Q1-Q12)"
   },
-  "final_verdict_placeholder": "completed in docs/UPSTREAM_PR_SUBMISSION.md FINAL VERDICT section after CI settles"
+  "final_verdict": "UPSTREAM_PR_CREATED_CI_PENDING",
+  "evidence_branch": "phase5.5/upstream-pr-submission",
+  "evidence_freeze": "branch frozen after the final record-correction commit; terminal identity pinned by tag phase5.5-evidence-freeze (tag points at the frozen tip; push of that commit is the last write to this branch)",
+  "errata": [
+    {
+      "file": "logs/ci/ci_matrix_phase5_5.json",
+      "field": "patch_id",
+      "issue": "label reads \"R2 payload, base fb023f80\" (hardcoded string in the round-1-adapted script)",
+      "truth": "the same file correctly records unpatched_tree_sha=54b079ca and patched_tree_sha=1cc73f1c; the round-2 run is on base 54b079ca; raw log left unmodified (immutability), label corrected in scripts for any future run",
+      "found_by": "S11 independent audit (MINOR)"
+    }
+  ],
+  "s11_audit": "CONDITIONAL PASS - content fully verified; MAJOR was procedural (branch advanced from ff098c2 to 79b8c0e during the audit while publishing the PR-bot policy snapshot; auditor re-verified all structural checks at 79b8c0e); resolved by this final correction commit + freeze tag"
 }
