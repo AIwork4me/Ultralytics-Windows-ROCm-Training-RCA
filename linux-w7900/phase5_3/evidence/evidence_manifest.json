@@ -532,7 +532,11 @@
     "findings/OPEN_ISSUES.md": {
       "sha256": "4f2e3c1570a6f84ef71f01cd5ea90a502ad3621100bfebcbdde461a1ebde4680",
       "bytes": 1861
+    },
+    "docs/PUBLICATION_RECORD.md": {
+      "sha256": "7609be047646332b63d4311dcf63d679f7f774448547545fef61e44649562fdf",
+      "bytes": 1775
     }
   },
-  "file_count": 133
+  "file_count": 134
 }
