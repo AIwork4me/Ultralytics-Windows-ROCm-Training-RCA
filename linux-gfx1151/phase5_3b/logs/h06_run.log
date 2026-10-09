@@ -1,0 +1,17 @@
+[H06] harness sha256: bcd242eb212a30b2572360338f90d31bbe343348c9586cabbc34d3c7581cb425
+[H06] legA libMIOpen.so.1.0 sha256: 7f282a6f569e31d05708a1b40f298dd60ad39dcbd197794ff24ec478e7f2533b
+[H06] legA exit code: 0
+  miopenBatchNormalizationForwardTraining <- /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpen.so.1
+  miopenBatchNormalizationBackward <- /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpen.so.1
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: MIOpenBatchNormFwdTrainSpatial
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=0 -DMIO_BN_GFX115X=1 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1151
+[H06] legB libMIOpen.so.1.0 sha256: b14e907a8f259b27e9fc2ebc5fa58120ae90ff179f63a84676ab1a60619e90eb
+[H06] legB exit code: 0
+  miopenBatchNormalizationForwardTraining <- /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legB/lib/libMIOpen.so.1
+  miopenBatchNormalizationBackward <- /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legB/lib/libMIOpen.so.1
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: MIOpenBatchNormFwdTrainSpatial
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=0 -DMIO_BN_GFX115X=1 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1151
+[H06] legA errors: {'err_y': '3.13', 'err_dx': '1e-05', 'err_dw': '0.0001', 'err_db': '1e-05', 'err_running_mean': '2.624e-12'}
+[H06] legB errors: {'err_y': '3.13', 'err_dx': '1e-05', 'err_dw': '0.0001', 'err_db': '1e-05', 'err_running_mean': '2.624e-12'}
+[H06] dispatch fwd/bwd: True True
+[H06] DONE

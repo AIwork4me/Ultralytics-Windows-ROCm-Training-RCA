@@ -1,0 +1,40 @@
+=== kthvalue runtime harness (P3-FINAL-R3 closure, gfx1151) ===
+PROVENANCE:
+  miopenCreate <- /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpen.so.1
+  miopenKthvalueForward <- /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpen.so.1
+  hipMalloc <- /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+  hipMemcpy <- /home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpenCKGroupedConv_gfx1151.so
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: libMIOpenCKGroupedConv_gfx1151.so
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Info [Handle] stream: 0, device_id: 0
+handle created, stream=(nil)
+
+CASE FP32-2D-nokeep shape={100x500} dtype=FP32 dim=-1 k=10 keepDim=0
+MIOpen: Info [AmdRocmMetadataVersionDetect] ROCm MD version AMDHSA_COv3, HIP version 7.14.60850, MIOpen version 3.6.2.7c586614
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+MIOpen: Info [IsNetworkedFilesystem] Filesystem type at '"/home/amd/Desktop/YOLO_AMD/phase5_3b/tmp/fresh_cache/h05_legA"' is: 0xef53 'EXT2/3/4_SUPER_MAGIC'
+MIOpen: Info [KernDb] database not present
+MIOpen: Info [PrintVersion] HIPRTC v.9.0
+  dumped arrays to /home/amd/Desktop/YOLO_AMD/phase5_3b/evidence/h05_kthvalue/legA/dumps/FP32-2D-nokeep_*
+  slices=100 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=-60.25 act_val=-60.25 exp_idx=263 act_idx=263
+  STATUS: PASS
+
+CASE FP32-3D-keep-explicit-dim shape={10x20x300} dtype=FP32 dim=2 k=137 keepDim=1
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+  dumped arrays to /home/amd/Desktop/YOLO_AMD/phase5_3b/evidence/h05_kthvalue/legA/dumps/FP32-3D-keep-explicit-dim_*
+  slices=200 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=-3.5 act_val=-3.5 exp_idx=260 act_idx=260
+  STATUS: PASS
+
+CASE FP16-4D-keep-kmax shape={8x3x10x2000} dtype=FP16 dim=-1 k=2000 keepDim=1
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+  dumped arrays to /home/amd/Desktop/YOLO_AMD/phase5_3b/evidence/h05_kthvalue/legA/dumps/FP16-4D-keep-kmax_*
+  slices=240 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=249.75 act_val=249.75 exp_idx=1309 act_idx=1309
+  STATUS: PASS
+
+HARNESS_RESULT: PASS

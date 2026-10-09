@@ -1,0 +1,78 @@
+{
+  "gate": "H00",
+  "recorded_at": "2026-10-09T19:44:10.422276",
+  "mission_id": "LINUX-GFX1151-P53B-R2-CROSSOS",
+  "os": {
+    "distribution": "Ubuntu 24.04.4 LTS (noble)",
+    "kernel": "6.17.0-1032-oem",
+    "hostname": "amd-HP-ZBook-Ultra"
+  },
+  "gpu": {
+    "lspci": "c3:00.0 Display controller: AMD/ATI Device 1586 (rev d1)",
+    "rocminfo_name": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
+    "rocminfo_chip_id": "5510(0x1586)",
+    "gfx_target": "gfx1151",
+    "isa": "amdgcn-amd-amdhsa--gfx1151 (+ gfx11-generic)",
+    "hsa_devices": "/dev/kfd",
+    "hsa_override_used": false
+  },
+  "rocm_stacks": {
+    "system": {
+      "path": "/opt/rocm-7.2.1",
+      "version": "7.2.1",
+      "driver_pkg": "amdgpu-core 1:7.2.70201-2303469.24.04",
+      "on_ldconfig": true
+    },
+    "wheel": {
+      "location": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel (+ _rocm_sdk_core, _rocm_sdk_libraries)",
+      "version": "7.14.0 (HIP 7.14.60850)",
+      "torch": "2.12.0+rocm7.14.0",
+      "amdclang": "AMD clang 23.0.0git 46fcb339fb61+PATCHED:440716f8b87",
+      "selected_for_mission": true
+    }
+  },
+  "toolchain": {
+    "cmake": "3.28.3",
+    "ninja": "1.13.2 (venv)",
+    "cget": "installed (venv)",
+    "c_compiler_for_build": "amdclang++ (wheel)"
+  },
+  "resources": {
+    "cpu_threads": 32,
+    "ram_gb_total": 94,
+    "disk_free_gb": 279
+  },
+  "existing_phase3_assets": {
+    "rca_repo": "/home/amd/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA @ main cb5e8ca (origin/main advanced to 58da94e after fetch)",
+    "phase3_worktrees": [
+      "rocm-libraries-linux-baseline @ b68f894 (P3-FINAL-R3 era, HISTORICAL, untouched)",
+      "rocm-libraries-linux-patched @ b68f894 + P3 patches (HISTORICAL, untouched)"
+    ],
+    "phase3_builds": [
+      "builds/miopen-unpatched (5.2G)",
+      "builds/miopen-patched (5.2G)"
+    ],
+    "phase3_installs": [
+      "installs/miopen-unpatched",
+      "installs/miopen-patched"
+    ],
+    "phase3_deps": ".deps/miopen (sqlite3 3.50.4, nlohmann_json 3.11.2, libsqlite3.so)",
+    "note": "Phase-3 used base b68f894 + superseded P3 series; NOT reusable as R2 evidence; new src/build/install dirs under phase5_3b/"
+  },
+  "python_env": {
+    "venv": "/home/amd/Desktop/YOLO_AMD/.venv (python 3.13)",
+    "ultralytics": "installed",
+    "triton": "installed"
+  },
+  "new_workspace": "/home/amd/Desktop/YOLO_AMD/phase5_3b",
+  "network_note": "github git-protocol intermittently slow; retries + partial clone (--filter=blob:none) required; raw.githubusercontent + RCA fetch OK",
+  "h00_audit": {
+    "verdict": "PASS",
+    "blockers": 0,
+    "majors": 0,
+    "minors": [
+      "distro libamdhip64.so.5 in /lib/x86_64-linux-gnu added to contamination checklist",
+      "tmp/ hygiene: pinned-evidence worktree to be removed at publication cleanup"
+    ]
+  }
+}

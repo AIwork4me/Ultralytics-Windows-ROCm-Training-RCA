@@ -1,0 +1,3 @@
+Applying: MIOpen: keep RTC type traits self-contained when no host STL is reachable
+Applying: MIOpen: make remaining RTC kernel std includes self-contained
+Applying: MIOpen: add portable HIPRTC no-host-STL regression test

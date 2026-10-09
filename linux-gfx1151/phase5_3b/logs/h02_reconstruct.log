@@ -1,0 +1,7 @@
+[H02] legA HEAD=7c5866144ac4b879be442563e2b49fa1c142ea36 tree=8b0bf035e4568a1d994512b4346fed0dde3c591b (pristine, sparse=projects/miopen)
+[H02] legB(git am) HEAD=9fc2d03b4859bdb30157ad081ebf004be31d2146 tree=b983caddf9f9f561e7d1b590deadb16267c2de15 base=7c5866144ac4b879be442563e2b49fa1c142ea36
+[H02] METHOD 1 (git am): TREE OK = b983caddf9f9f561e7d1b590deadb16267c2de15
+[H02] subjects recorded
+error: RPC failed; curl 56 GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+fatal: unable to write request to remote: Broken pipe
+fatal: could not fetch 528f30c71c687de473bbb506c071e902beba6cd9 from promisor remote

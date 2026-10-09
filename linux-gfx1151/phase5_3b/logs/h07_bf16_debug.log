@@ -1,0 +1,5 @@
+PROVENANCE: miopenKthvalueForward <- /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpen.so.1
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+miopenCreate=0
+free(): invalid size

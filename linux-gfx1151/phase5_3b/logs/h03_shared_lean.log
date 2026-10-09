@@ -1,0 +1,26 @@
+3668 shared blobs queued
+progress 200/3668
+progress 400/3668
+progress 600/3668
+progress 800/3668
+progress 1000/3668
+progress 1200/3668
+progress 1400/3668
+progress 1600/3668
+progress 1800/3668
+progress 2000/3668
+progress 2200/3668
+progress 2400/3668
+progress 2600/3668
+progress 2800/3668
+progress 3000/3668
+progress 3200/3668
+progress 3400/3668
+progress 3600/3668
+done: 3662 fetched, 6 FAILED
+  FAILED shared/tensile/HostLibraryTests/configs/SolutionLibraries/rocBLAS_Full.dat.gz 7d22207f55a6e687a46d02d6653203ff54560d6d
+  FAILED shared/tensile/HostLibraryTests/configs/SolutionLibraries/rocBLAS_Full.yaml.gz 29787a6eb9c53d228a0f53a353296664e8c11005
+  FAILED shared/tensile/Tensile/Configs/miopen/archives/rk/2020-08-12/base/arcturus_Cijk_Alik_Bljk_SB.yaml c5a761f8004d5a4af5f936d90891289d363d9071
+  FAILED shared/tensile/Tensile/Configs/miopen/archives/rk/2020-08-12/combined/arcturus_Cijk_Alik_Bljk_SB.yaml 06a6e739531dde98d2267b1a7eb6648b250ba531
+  FAILED shared/tensile/Tensile/Configs/miopen/archives/small-sizes/archive/vega20_Cijk_Ailk_Bljk_SB.yaml e88d96311ca9b434c44e1e94035b4cd0a1b23b08
+  FAILED shared/tensile/Tensile/Tests/bugs/test_nhwc_defaults[Run_Contraction-src1].contraction.yaml 9f14bc04f43728994bda6fd2950306bbb2b438ff

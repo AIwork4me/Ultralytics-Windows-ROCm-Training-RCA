@@ -1,0 +1,62 @@
+{
+  "gate": "H06",
+  "legA": {
+    "exit": "0",
+    "fwd_dispatch": true,
+    "bwd_dispatch": true,
+    "bound_fwd": "/home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpen.so.1",
+    "bound_bwd": "/home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpen.so.1"
+  },
+  "legB": {
+    "exit": "0",
+    "fwd_dispatch": true,
+    "bwd_dispatch": true,
+    "bound_fwd": "/home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legB/lib/libMIOpen.so.1",
+    "bound_bwd": "/home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legB/lib/libMIOpen.so.1"
+  },
+  "same_binding_paths": false,
+  "numerics_equal_across_legs": true,
+  "measured": {
+    "legA": {
+      "y": "3.752e-07",
+      "y_verdict": "PASS",
+      "dx": "2.303e-07",
+      "dx_verdict": "PASS",
+      "dw": "6.470e-07",
+      "dw_verdict": "PASS",
+      "db": "2.668e-07",
+      "db_verdict": "PASS",
+      "running_mean": "2.624e-12",
+      "running_mean_verdict": "PASS",
+      "running_var": "5.377e-08",
+      "running_var_verdict": "PASS"
+    },
+    "legB": {
+      "y": "3.752e-07",
+      "y_verdict": "PASS",
+      "dx": "2.303e-07",
+      "dx_verdict": "PASS",
+      "dw": "6.470e-07",
+      "dw_verdict": "PASS",
+      "db": "2.668e-07",
+      "db_verdict": "PASS",
+      "running_mean": "2.624e-12",
+      "running_mean_verdict": "PASS",
+      "running_var": "5.377e-08",
+      "running_var_verdict": "PASS"
+    }
+  },
+  "tolerances_predeclared": {
+    "y_abs": "1e-5",
+    "dx_abs": "1e-5",
+    "dw_abs": "1e-4",
+    "db_abs": "1e-5",
+    "running_mean_abs": "1e-4",
+    "running_variance_rel": "1e-3"
+  },
+  "nontrivial_running_stats": true,
+  "finite_checks": true,
+  "a_b_identical_errors": true,
+  "parse_note": "top-level per-leg blocks previously carried regex misparses (err_y '3.13' from a python3.13 path); authoritative values are in 'measured' (anchored to the CHECK lines). Misparsed fields removed per H06 audit. Reviewer independently rebuilt harness from source and re-ran both legs: identical results; tolerances verified as constexpr in source.",
+  "same_binding_paths_note": "false = each leg binds its own install path (expected per-leg outcome)"
+}

@@ -1,0 +1,17 @@
+[H04] legA source verified: tree 8b0bf035e4568a1d994512b4346fed0dde3c591b
+    AMDGPU_TARGETS
+
+
+-- Build files have been written to: /home/amd/Desktop/YOLO_AMD/phase5_3b/builds/legA
+[H04] legA CACHE_CLEAN
+[838/841] Linking CXX shared library lib/libMIOpen.so.1.0
+[839/841] Creating library symlink lib/libMIOpen.so.1 lib/libMIOpen.so
+[840/841] Linking CXX executable bin/MIOpenDriver
+-- Set non-toolchain portion of runtime path of "/home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/bin/MIOpenDriver" to "$ORIGIN/../lib"
+-- Installing: /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/libexec/miopen/install_precompiled_kernels.sh
+7f282a6f569e31d05708a1b40f298dd60ad39dcbd197794ff24ec478e7f2533b  /home/amd/Desktop/YOLO_AMD/phase5_3b/installs/legA/lib/libMIOpen.so.1.0
+	libhiprtc.so.7 => /opt/rocm-7.2.1/lib/libhiprtc.so.7 (0x0000733a25d2d000)
+	libhipblaslt.so.1 => /opt/rocm-7.2.1/lib/libhipblaslt.so.1 (0x0000733a18c00000)
+	/home/amd/Desktop/YOLO_AMD/.deps/miopen/lib/libsqlite3.so (0x0000733a25c21000)
+	libamdhip64.so.7 => /opt/rocm-7.2.1/lib/libamdhip64.so.7 (0x0000733a17200000)
+[H04] legA DONE

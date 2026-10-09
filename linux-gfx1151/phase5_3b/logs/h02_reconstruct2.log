@@ -1,0 +1,9 @@
+[H02] legA HEAD=7c5866144ac4b879be442563e2b49fa1c142ea36 tree=8b0bf035e4568a1d994512b4346fed0dde3c591b (pristine, sparse=projects/miopen)
+[H02] legB(git am) HEAD=9fc2d03b4859bdb30157ad081ebf004be31d2146 tree=b983caddf9f9f561e7d1b590deadb16267c2de15 base=7c5866144ac4b879be442563e2b49fa1c142ea36
+[H02] METHOD 1 (git am): TREE OK = b983caddf9f9f561e7d1b590deadb16267c2de15
+[H02] subjects recorded
+[H02] legB(git apply --index + write-tree) tree=b983caddf9f9f561e7d1b590deadb16267c2de15
+[H02] METHOD 2 (git apply --index + write-tree): TREE OK = b983caddf9f9f561e7d1b590deadb16267c2de15
+[H02] changed files: 10
+[H02] evidence/source_reconstruction.json written, 10 changed files
+[H02] DONE

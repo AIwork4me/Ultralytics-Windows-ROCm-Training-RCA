@@ -1,0 +1,7 @@
+[H05] harness sha256: 4d77a96f63471e8f4500251fdcfd4729e69882123b3b0647d0a88afe06230414
+[H05] legA libMIOpen.so.1.0 sha256: 7f282a6f569e31d05708a1b40f298dd60ad39dcbd197794ff24ec478e7f2533b
+[H05] legA exit code: 0
+[H05] legB libMIOpen.so.1.0 sha256: b14e907a8f259b27e9fc2ebc5fa58120ae90ff179f63a84676ab1a60619e90eb
+[H05] legB exit code: 0
+[H05] A/B byte-identical dumps: YES (15 files)
+[H05] DONE

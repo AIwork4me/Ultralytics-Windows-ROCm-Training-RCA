@@ -1,0 +1,6 @@
+[H03] source tree OK: b983caddf9f9f561e7d1b590deadb16267c2de15
+CMake Error at test/gtest/CMakeLists.txt:518 (apply_test_category_labels):
+  Unknown CMake command "apply_test_category_labels".
+
+
+-- Configuring incomplete, errors occurred!

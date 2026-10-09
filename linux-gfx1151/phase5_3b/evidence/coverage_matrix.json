@@ -1,0 +1,84 @@
+{
+  "gate": "H07",
+  "recorded_at": "2026-10-10T00:56:04.186603",
+  "coverage_to_risk_assessment": {
+    "inputs": "W7900 reviewer_A findings (M1 initializer_list arm; M2 radix int32/int64 + BF16; M4 no extra kernel closures)",
+    "priorities": [
+      "1 (HIGH): RTC closure of R2-touched patch-0002 headers (initializer_list arm, tensor_view, radix) \u2014 direct upstream-review objections",
+      "2 (HIGH): BF16 kthvalue runtime applicability \u2014 solver code advertises MIOPEN_USE_BFP16 but no platform ever ran it",
+      "3 (MED, closed by static asserts + compile-level closure; int64 encode arms runtime-covered only via the 64-bit index output buffer \u2014 the radix int32/int64 KEY-encode arms are static-assert + compile-level only)",
+      "NOT PURSUED: PReLU/ReduceSum kernel closures \u2014 not touched by R2 patches; no R2-specific risk reduction; mission's 1-3 small-test budget spent on 1+2"
+    ]
+  },
+  "rtc_canaries": {
+    "script": "scripts/h07_rtc_canaries.py (Phase-3 extended_canary adapted: path deltas only, legA/legB sources)",
+    "results": {
+      "E1_unpatched_partial_stl_FAIL": {
+        "rc": 6,
+        "reproduces": true,
+        "log_head": "In file included from /tmp/comgr-769120-0-bf7d6d/input/c.cu:3:\n/home/amd/Desktop/YOLO_AMD/phase5_3b/src/legA/projects/miopen/src/kernels/miopen_utility.hpp:55:10: fatal error: 'utility' file not found\n   55 | #include <utility>\n      |          ^~~~~~~~~\n1 error generated when compiling for gfx1151.",
+        "result": "PASS"
+      },
+      "E2_patched_partial_stl_guard": {
+        "rc": 6,
+        "guard_fired": true,
+        "log_head": "In file included from /tmp/comgr-769120-1-6d2cd8/input/c.cu:3:\n/home/amd/Desktop/YOLO_AMD/phase5_3b/src/legB/projects/miopen/src/kernels/miopen_utility.hpp:59:2: error: \"inconsistent C++ standard library availability: <utility> is not reachable but <type_traits> is (a partial freestanding override o",
+        "result": "PASS"
+      },
+      "E3_tensor_view": {
+        "unpatched_rc": 0,
+        "patched_rc": 0,
+        "result": "PASS",
+        "patched_log_head": ""
+      },
+      "E3_radix_value_equivalence": {
+        "rc": 0,
+        "result": "PASS",
+        "stderr": ""
+      },
+      "E3_freestanding_initlist_chain_zerostl": {
+        "rc": 0,
+        "stderr_head": "",
+        "note": "zero-STL offline channel; tensor_view probe falls back to freestanding initializer_list; wrapper chain falls back to freestanding utility/type_traits",
+        "result": "PASS"
+      },
+      "E4_kthvalue_rtc": {
+        "unpatched_rc": 0,
+        "patched_rc": 0,
+        "result": "PASS",
+        "unpatched_log_head": "",
+        "patched_log_head": ""
+      }
+    },
+    "notes": "E1: legA partial-STL FAILs with 'utility not found' (Windows failure class reproduced via real comgr RTC); E2: legB designed guard fires; E3: tensor_view RTC-compiles both trees, radix int32/int64 static-assert equivalence, freestanding initializer_list chain zero-STL offline; E4: MIOpenKthvalue TU RTC both trees"
+  },
+  "bf16_kthvalue_runtime": {
+    "probe": "scripts/bf16_kthvalue_probe.cpp (dlsym/dladdr, deterministic permutations of 300 distinct exactly-BF16-representable integers, [100x300] k=10 dim=-1 keepDim=false, miopenInt64 indices; CPU reference exact sort)",
+    "probe_sha256": "942fd38f5a6b5197ae214d296708f2da4b6d2aae3a84f2c33069c97286826b9a",
+    "legA": {
+      "exit": 0,
+      "status": "miopenStatusSuccess",
+      "value_mismatches": 0,
+      "index_mismatches": 0,
+      "result": "PASS",
+      "log": "logs/h07_bf16_legA.log"
+    },
+    "legB": {
+      "exit": 0,
+      "status": "miopenStatusSuccess",
+      "value_mismatches": 0,
+      "index_mismatches": 0,
+      "result": "PASS",
+      "log": "logs/h07_bf16_legB.log"
+    },
+    "dispatch": "KthvalueFwd (not searchable); HIPRTC v.9.0 fresh-cache RTC; gfx1151; MIOPEN_USE_BFP16 arm of the kernel per solver signature construction",
+    "debug_disclosure": "probe development iterations fixed: descriptor ABI (fn-ptr typedefs), explicit strides, k/dim argument order, and solver dim-size threshold (IsImprovementOverROCm requires dimSize>=300 \u2014 verified in source); final probe only is evidence; intermediate failures were harness-defect, not MIOpen defects",
+    "coverage_delta_vs_w7900": "W7900 recorded BF16 kthvalue as UNTESTED (M2); this mission closes it with a PASS on both legs on gfx1151"
+  },
+  "radix_int_encode_coverage": {
+    "runtime": "FP32 (H05), FP16 (H05), BF16 (this gate) kthvalue all PASS both legs; indices via miopenInt64 descriptor (H05 harness used int64 index buffer as well)",
+    "static": "int32/int64 max/literal equivalence static_asserts PASS (E3)"
+  },
+  "limitations": "no additional non-R2 kernel closures (PReLU/ReduceSum) \u2014 recorded as COVERAGE_LIMITATION-scoped-out by risk assessment, not silently skipped",
+  "audit_notes": "H07 independent audit PASS: canary suite re-run (6/6), BF16 probe rebuilt from source and re-run on both legs (exit 0 both), LCG permutation independently recomputed in Python (slice0 k-th = 16912/257 matches GPU), solver threshold dimSize>=300 verified in source, no spoofing vectors found. Minors adopted: stale probe comment fixed; priorities wording clarified (int64 encode arms not runtime-tested); radix static asserts verify the equivalence precondition, E4 RTC-compiles the changed TU."
+}

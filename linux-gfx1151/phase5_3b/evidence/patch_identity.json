@@ -1,0 +1,35 @@
+{
+  "gate": "H01",
+  "recorded_at": "2026-10-09T23:33:37.154089",
+  "pinned_evidence_commit": "c8417161125dc33275b7ac615298b449a81e7cf8",
+  "manifest": "findings/phase5_1_r2/FINAL_HANDOFF.json",
+  "manifest_sha256": "55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393",
+  "candidate_id": "P5.1-CANDIDATE-R2",
+  "upstream_base": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "expected_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+  "independent_recomputation": {
+    "patch_0001_sha256": "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
+    "patch_0002_sha256": "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
+    "patch_0003_sha256": "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e",
+    "series_sha256_concat_v1": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+    "all_match_mission_and_manifest": true
+  },
+  "windows_verifiers": {
+    "verify_final_handoff.py": "NOT RUN on Linux \u2014 hardcodes C:\\Users\\rocm paths; fails closed (documented failure, not silently accepted)",
+    "linux_r2_aware_consumer": "check_final_handoff_r2.py byte-identical (sha256 b82bb227f2793cdd16436891be426825333316f04260b01c5e5c2be6d23ecfbf) to W7900 published version",
+    "check_only_verdict": "PASS (exit 0) \u2014 see h01_check_only.json"
+  },
+  "negative_controls": {
+    "matrix": "evidence/h01_adversarial_matrix.json \u2014 19/20 PASS",
+    "core_19": "R1 candidate/manifest, wrong evidence SHA (x2), wrong base, wrong tree, patch tamper x3, reorder, R1 series, extra patch, missing patch, symlink, traversal, old schema, unauthorized apply, missing-key: all FAIL with intended reason",
+    "test_16b_authorized_apply": "NOT_COMPLETED_ON_PARTIAL_OBJECT_STORE \u2014 the local git object store intentionally contains only projects/miopen + shared blobs; consumer --apply requires a full monorepo checkout. Environment limitation, NOT a consumer weakness. Equivalent positive reconstruction independently proven in H02 by TWO methods (git am; git apply --index + write-tree) both yielding tree b983cadd; H02 independent reviewer additionally re-derived it via a scratch alternates repo."
+  },
+  "evidence_files": [
+    "evidence/h01_check_only.json",
+    "evidence/h01_adversarial_matrix.json",
+    "evidence/h01_positive_control.json",
+    "logs/h01_check_only.log",
+    "scripts/check_final_handoff_r2.py",
+    "scripts/run_h01_adversarial_matrix.py"
+  ]
+}

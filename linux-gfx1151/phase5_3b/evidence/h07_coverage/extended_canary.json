@@ -1,0 +1,42 @@
+{
+  "generated": "2026-10-10T01:10:50",
+  "arms": {
+    "E1_unpatched_partial_stl_FAIL": {
+      "rc": 6,
+      "reproduces": true,
+      "log_head": "In file included from /tmp/comgr-772873-0-316830/input/c.cu:3:\n/home/amd/Desktop/YOLO_AMD/phase5_3b/src/legA/projects/miopen/src/kernels/miopen_utility.hpp:55:10: fatal error: 'utility' file not found\n   55 | #include <utility>\n      |          ^~~~~~~~~\n1 error generated when compiling for gfx1151.",
+      "result": "PASS"
+    },
+    "E2_patched_partial_stl_guard": {
+      "rc": 6,
+      "guard_fired": true,
+      "log_head": "In file included from /tmp/comgr-772873-1-76d04d/input/c.cu:3:\n/home/amd/Desktop/YOLO_AMD/phase5_3b/src/legB/projects/miopen/src/kernels/miopen_utility.hpp:59:2: error: \"inconsistent C++ standard library availability: <utility> is not reachable but <type_traits> is (a partial freestanding override o",
+      "result": "PASS"
+    },
+    "E3_tensor_view": {
+      "unpatched_rc": 0,
+      "patched_rc": 0,
+      "result": "PASS",
+      "patched_log_head": ""
+    },
+    "E3_radix_value_equivalence": {
+      "rc": 0,
+      "result": "PASS",
+      "stderr": ""
+    },
+    "E3_freestanding_initlist_chain_zerostl": {
+      "rc": 0,
+      "stderr_head": "",
+      "note": "zero-STL offline channel; tensor_view probe falls back to freestanding initializer_list; wrapper chain falls back to freestanding utility/type_traits",
+      "result": "PASS"
+    },
+    "E4_kthvalue_rtc": {
+      "unpatched_rc": 0,
+      "patched_rc": 0,
+      "result": "PASS",
+      "unpatched_log_head": "",
+      "patched_log_head": ""
+    }
+  },
+  "overall": "PASS"
+}

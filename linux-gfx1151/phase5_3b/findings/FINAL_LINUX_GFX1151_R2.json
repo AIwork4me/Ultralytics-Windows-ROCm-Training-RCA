@@ -1,0 +1,55 @@
+{
+  "mission_id": "LINUX-GFX1151-P53B-R2-CROSSOS",
+  "recorded_at": "2026-10-10T01:02:51.055008",
+  "candidate_id": "P5.1-CANDIDATE-R2",
+  "rca_evidence_commit": "c8417161125dc33275b7ac615298b449a81e7cf8",
+  "upstream_base": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "r2_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+  "patches": {
+    "0001": "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
+    "0002": "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
+    "0003": "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e",
+    "series_concat_v1": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02"
+  },
+  "platform": {
+    "gpu": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
+    "gfx": "gfx1151",
+    "os": "Ubuntu 24.04.4 LTS",
+    "kernel": "6.17.0-1032-oem",
+    "rocm_wheel": "7.14.0 (HIP 7.14.60850)",
+    "system_rocm": "7.2.1 (isolated, zero contamination evidenced)",
+    "pytorch": "2.12.0+rocm7.14.0"
+  },
+  "legs": {
+    "legA_lib_sha256": "7f282a6f569e31d05708a1b40f298dd60ad39dcbd197794ff24ec478e7f2533b",
+    "legB_lib_sha256": "b14e907a8f259b27e9fc2ebc5fa58120ae90ff179f63a84676ab1a60619e90eb"
+  },
+  "gates": {
+    "H00_environment": "PASS (audit PASS)",
+    "H01_patch_integrity": "PASS (check-only PASS; 19/20 adversarial matrix, 16b documented env-limitation; audit PASS)",
+    "H02_source_reconstruction": "PASS (git am + git apply --index/write-tree = b983cad; 10/10 blobs match manifest; audit conditional-pass remediated)",
+    "H03_ctest": "PASS_WITH_CTEST_SKIP (no-STL isolation genuinely unavailable; ordinary+with-stl PASS; audit PASS)",
+    "H04_legs": "PASS (audit PASS)",
+    "H05_kthvalue": "PASS (3/3 both legs; 15/15 dumps byte-identical; audit PASS with independent re-runs)",
+    "H06_batchnorm": "PASS (6/6 both legs, identical errors, predeclared tolerances; audit PASS with source rebuild)",
+    "H07_coverage": "PASS (RTC canaries 6/6; BF16 kthvalue runtime PASS both legs \u2014 closes W7900 gap; audit see H07 review)",
+    "H08_yolo": "EXECUTED/PASS (1 epoch amp=False + val; in-process legB binding asserted)",
+    "H09_matrix": "see CROSS_OS_R2_VALIDATION_MATRIX.md (audit see H09 review)",
+    "H10_panel": {
+      "reviewer_A_maintainer": "CONDITIONAL PASS (no technical blockers; governance DCO/authorization out of scope; upstream-ledger residuals documented)",
+      "reviewer_B_gpu_runtime": "PASS (independent probes from scratch; all runtime claims reproduced)",
+      "reviewer_C_integrity": "PASS (full chain re-verified; no false-PASS paths)"
+    },
+    "H11_publication": "see FINAL_GATE.md after push verification"
+  },
+  "upstream_safety": {
+    "frozen_r2_modified": false,
+    "dco_signed_off_added": false,
+    "upstream_pr_created": false,
+    "upstream_issue_or_comment_created": false,
+    "historical_phase3_worktrees_modified": false
+  },
+  "final_verdict": "P53B_GFX1151_R2_CROSSOS_PASS_WITH_CTEST_SKIP",
+  "unresolved_technical_blockers": 0,
+  "unresolved_technical_majors": 0
+}

@@ -1,0 +1,116 @@
+{
+  "gate": "H05",
+  "dumps_legA": [
+    "FP16-4D-keep-kmax_expected_indices.bin",
+    "FP16-4D-keep-kmax_expected_values.txt",
+    "FP16-4D-keep-kmax_indices.bin",
+    "FP16-4D-keep-kmax_input.bin",
+    "FP16-4D-keep-kmax_output.bin",
+    "FP32-2D-nokeep_expected_indices.bin",
+    "FP32-2D-nokeep_expected_values.txt",
+    "FP32-2D-nokeep_indices.bin",
+    "FP32-2D-nokeep_input.bin",
+    "FP32-2D-nokeep_output.bin",
+    "FP32-3D-keep-explicit-dim_expected_indices.bin",
+    "FP32-3D-keep-explicit-dim_expected_values.txt",
+    "FP32-3D-keep-explicit-dim_indices.bin",
+    "FP32-3D-keep-explicit-dim_input.bin",
+    "FP32-3D-keep-explicit-dim_output.bin"
+  ],
+  "dumps_legB": [
+    "FP16-4D-keep-kmax_expected_indices.bin",
+    "FP16-4D-keep-kmax_expected_values.txt",
+    "FP16-4D-keep-kmax_indices.bin",
+    "FP16-4D-keep-kmax_input.bin",
+    "FP16-4D-keep-kmax_output.bin",
+    "FP32-2D-nokeep_expected_indices.bin",
+    "FP32-2D-nokeep_expected_values.txt",
+    "FP32-2D-nokeep_indices.bin",
+    "FP32-2D-nokeep_input.bin",
+    "FP32-2D-nokeep_output.bin",
+    "FP32-3D-keep-explicit-dim_expected_indices.bin",
+    "FP32-3D-keep-explicit-dim_expected_values.txt",
+    "FP32-3D-keep-explicit-dim_indices.bin",
+    "FP32-3D-keep-explicit-dim_input.bin",
+    "FP32-3D-keep-explicit-dim_output.bin"
+  ],
+  "byte_identical": true,
+  "cases": {
+    "FP16-4D-keep-kmax_expected_indices.bin": {
+      "legA_sha256": "62557e813bdc9d0598841378693f45db7f9ede6ce4f1fb0d244a827c080d7c27",
+      "legB_sha256": "62557e813bdc9d0598841378693f45db7f9ede6ce4f1fb0d244a827c080d7c27",
+      "identical": true
+    },
+    "FP16-4D-keep-kmax_expected_values.txt": {
+      "legA_sha256": "8f4fd4d538ef54629772757e6ba47f84774634bee81954c2837dd523c202bb8e",
+      "legB_sha256": "8f4fd4d538ef54629772757e6ba47f84774634bee81954c2837dd523c202bb8e",
+      "identical": true
+    },
+    "FP16-4D-keep-kmax_indices.bin": {
+      "legA_sha256": "62557e813bdc9d0598841378693f45db7f9ede6ce4f1fb0d244a827c080d7c27",
+      "legB_sha256": "62557e813bdc9d0598841378693f45db7f9ede6ce4f1fb0d244a827c080d7c27",
+      "identical": true
+    },
+    "FP16-4D-keep-kmax_input.bin": {
+      "legA_sha256": "43f5d52fd7d0fe65c419851531893939e432358af817a3841e1d3698e1b35132",
+      "legB_sha256": "43f5d52fd7d0fe65c419851531893939e432358af817a3841e1d3698e1b35132",
+      "identical": true
+    },
+    "FP16-4D-keep-kmax_output.bin": {
+      "legA_sha256": "bdefd77afe41fd817b03f7be0fafbff13e9333c31398d0452418a32666f81de5",
+      "legB_sha256": "bdefd77afe41fd817b03f7be0fafbff13e9333c31398d0452418a32666f81de5",
+      "identical": true
+    },
+    "FP32-2D-nokeep_expected_indices.bin": {
+      "legA_sha256": "1085cb7a9fbed9887eea57528ce0d329d77b40a51e331a65f47ef8ca1b9c00f1",
+      "legB_sha256": "1085cb7a9fbed9887eea57528ce0d329d77b40a51e331a65f47ef8ca1b9c00f1",
+      "identical": true
+    },
+    "FP32-2D-nokeep_expected_values.txt": {
+      "legA_sha256": "5d165e7d25b1ce80a7fc0016b4ea03771ecd6339088ae89053239495ecc0544f",
+      "legB_sha256": "5d165e7d25b1ce80a7fc0016b4ea03771ecd6339088ae89053239495ecc0544f",
+      "identical": true
+    },
+    "FP32-2D-nokeep_indices.bin": {
+      "legA_sha256": "1085cb7a9fbed9887eea57528ce0d329d77b40a51e331a65f47ef8ca1b9c00f1",
+      "legB_sha256": "1085cb7a9fbed9887eea57528ce0d329d77b40a51e331a65f47ef8ca1b9c00f1",
+      "identical": true
+    },
+    "FP32-2D-nokeep_input.bin": {
+      "legA_sha256": "768c0abb1ad7896b94062d8d4ae65ecc64cf3d49f6558def9857b49f5b64a0c1",
+      "legB_sha256": "768c0abb1ad7896b94062d8d4ae65ecc64cf3d49f6558def9857b49f5b64a0c1",
+      "identical": true
+    },
+    "FP32-2D-nokeep_output.bin": {
+      "legA_sha256": "81e062caabbfdbe75cd3fb1e8ff2ed22b14fd3a428b3b45f13a7b3fd42be35c0",
+      "legB_sha256": "81e062caabbfdbe75cd3fb1e8ff2ed22b14fd3a428b3b45f13a7b3fd42be35c0",
+      "identical": true
+    },
+    "FP32-3D-keep-explicit-dim_expected_indices.bin": {
+      "legA_sha256": "ae957b5392a7f814ff7f3f91dbcb84e42fd3447661787fbd473188c9006522bd",
+      "legB_sha256": "ae957b5392a7f814ff7f3f91dbcb84e42fd3447661787fbd473188c9006522bd",
+      "identical": true
+    },
+    "FP32-3D-keep-explicit-dim_expected_values.txt": {
+      "legA_sha256": "19733ace02f4d6f0a85849cc2b9fec76b6dc013227dc57a3daded3010101cd6a",
+      "legB_sha256": "19733ace02f4d6f0a85849cc2b9fec76b6dc013227dc57a3daded3010101cd6a",
+      "identical": true
+    },
+    "FP32-3D-keep-explicit-dim_indices.bin": {
+      "legA_sha256": "ae957b5392a7f814ff7f3f91dbcb84e42fd3447661787fbd473188c9006522bd",
+      "legB_sha256": "ae957b5392a7f814ff7f3f91dbcb84e42fd3447661787fbd473188c9006522bd",
+      "identical": true
+    },
+    "FP32-3D-keep-explicit-dim_input.bin": {
+      "legA_sha256": "2bab9e03eb32ed623a4b1415d760ee8488cd4477451b7bed58a1309e90685cbd",
+      "legB_sha256": "2bab9e03eb32ed623a4b1415d760ee8488cd4477451b7bed58a1309e90685cbd",
+      "identical": true
+    },
+    "FP32-3D-keep-explicit-dim_output.bin": {
+      "legA_sha256": "72b69377e16025c5b33e77bb10e5e110b4c66b7033bec1497d8567a382808888",
+      "legB_sha256": "72b69377e16025c5b33e77bb10e5e110b4c66b7033bec1497d8567a382808888",
+      "identical": true
+    }
+  },
+  "all_byte_identical": true
+}

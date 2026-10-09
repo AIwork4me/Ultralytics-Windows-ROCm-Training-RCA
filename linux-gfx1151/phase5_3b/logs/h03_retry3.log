@@ -1,0 +1,3 @@
+OK shared/tensile/HostLibraryTests/configs/SolutionLibraries/rocBLAS_Full.yaml.gz
+OK shared/tensile/Tensile/Configs/miopen/archives/rk/2020-08-12/base/arcturus_Cijk_Alik_Bljk_SB.yaml
+OK shared/tensile/Tensile/Configs/miopen/archives/rk/2020-08-12/combined/arcturus_Cijk_Alik_Bljk_SB.yaml

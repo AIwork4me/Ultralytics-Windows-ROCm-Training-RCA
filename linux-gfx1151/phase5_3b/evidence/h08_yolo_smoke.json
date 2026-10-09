@@ -1,0 +1,35 @@
+{
+  "gate": "H08 (OPTIONAL)",
+  "recorded_at": "2026-10-10T01:01:40.769585",
+  "status": "EXECUTED/PASS",
+  "binding": {
+    "in_process_path": "installs/legB/lib/libMIOpen.so.1",
+    "in_process_sha256": "b14e907a8f259b27e9fc2ebc5fa58120ae90ff179f63a84676ab1a60619e90eb",
+    "asserted_before_training": true
+  },
+  "environment": {
+    "torch": "2.12.0+rocm7.14.0",
+    "device": "AMD Radeon 8060S (gfx1151)",
+    "amp": false
+  },
+  "workload": {
+    "model": "yolo26n.pt",
+    "dataset": "coco8 (local copy /home/amd/Desktop/datasets/coco8)",
+    "epochs": 1,
+    "imgsz": 640,
+    "fresh_cache": "tmp/fresh_cache/h08_yolo"
+  },
+  "results": {
+    "train": "TRAIN_COMPLETE",
+    "val": "VAL_COMPLETE",
+    "metrics": {
+      "precision": 0.5506,
+      "recall": 0.9615,
+      "mAP50": 0.9427,
+      "mAP50-95": 0.6693
+    },
+    "last_pt_sha256": "40ae9450b61111a9771fd8cc8fbd14d7ebb2666bac750b31c44e89ca68280b4b"
+  },
+  "log": "logs/h08_yolo.log",
+  "script": "scripts/h08_yolo_smoke.py"
+}

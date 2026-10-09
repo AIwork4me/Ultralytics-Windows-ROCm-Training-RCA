@@ -1,0 +1,1 @@
+usage: builds/legB-test/bin/test_hiprtc_selfcontained <kernels-src-dir> [--mode=positive|negative|with-stl|ordinary] [--arch=gfxNNNN] [--hip-flat=N] [--isolate=OPT]

@@ -1,0 +1,10 @@
+Test project /home/amd/Desktop/YOLO_AMD/phase5_3b/builds/legB-test
+    Start 10: test_hiprtc_selfcontained
+1/1 Test #10: test_hiprtc_selfcontained ........***Skipped   0.04 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.06 sec
+
+The following tests did not run:
+	 10 - test_hiprtc_selfcontained (Skipped)

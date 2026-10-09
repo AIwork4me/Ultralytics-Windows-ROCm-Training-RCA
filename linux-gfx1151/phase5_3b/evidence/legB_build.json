@@ -1,0 +1,44 @@
+{
+  "gate": "H04",
+  "recorded_at": "2026-10-10T00:36:45.734261",
+  "single_variable": "only the source differs: legA = pristine base 7c58661 (tree 8b0bf03), legB = exact R2 tree b983cad",
+  "recipe": {
+    "toolchain": "wheel 7.14.0 SDK (AMD clang 23.0.0git 46fcb339+PATCHED:440716f8), ninja 1.13.2",
+    "build_type": "RelWithDebInfo",
+    "backend": "HIP",
+    "hiprtc": "ON",
+    "comgr": "ON",
+    "CK": "OFF",
+    "GPU_TARGETS": "gfx1151",
+    "BUILD_TESTING": "OFF",
+    "wheel_cache_pins": "hip_DIR, hiprtc_DIR, rocblas_DIR, hipblaslt_DIR, amd_comgr_DIR -> wheel _rocm_sdk_*",
+    "thirdparty_preseed": "FETCHCONTENT_SOURCE_DIR_{FUNCTIONALPLUS,FRUGALLY-DEEP,GTEST} -> identical legB-test _deps sources for BOTH legs (network flake mitigation; same bytes both legs)",
+    "scripts": [
+      "scripts/h04_build_legs.sh"
+    ]
+  },
+  "legA": {
+    "source_head": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "source_tree": "8b0bf035e4568a1d994512b4346fed0dde3c591b",
+    "libMIOpen.so.1.0_sha256": "7f282a6f569e31d05708a1b40f298dd60ad39dcbd197794ff24ec478e7f2533b",
+    "opt_rocm_in_cmakecache": 0,
+    "runtime_ldd_wheel_first": "hiprtc/rocblas/hipblaslt/amdhip64 all -> wheel; sqlite3 -> .deps; ldd WITHOUT wrapper env shows ldconfig defaults (/opt/rocm-7.2.1) \u2014 runtime discipline is the wrapper's wheel-first LD_LIBRARY_PATH, proven per-run via dladdr in H05/H06"
+  },
+  "legB": {
+    "source_head": "9fc2d03b4859bdb30157ad081ebf004be31d2146",
+    "source_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "libMIOpen.so.1.0_sha256": "b14e907a8f259b27e9fc2ebc5fa58120ae90ff179f63a84676ab1a60619e90eb",
+    "opt_rocm_in_cmakecache": 0,
+    "runtime_ldd_wheel_first": "same as legA"
+  },
+  "cmake_semantic_identity": "diff of key CMakeCache variables (excl. CMAKE_INSTALL_PREFIX) between legs: EMPTY",
+  "phase3_binaries_reused": false,
+  "logs": [
+    "logs/h04_configure_legA.log",
+    "logs/h04_build_legA.log",
+    "logs/h04_install_legA.log",
+    "logs/h04_configure_legB.log",
+    "logs/h04_build_legB.log",
+    "logs/h04_install_legB.log"
+  ]
+}

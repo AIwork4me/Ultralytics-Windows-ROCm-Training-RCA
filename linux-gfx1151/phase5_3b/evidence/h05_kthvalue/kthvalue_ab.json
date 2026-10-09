@@ -1,0 +1,160 @@
+{
+  "gate": "H05",
+  "recorded_at": "2026-10-10T00:41:06.034002",
+  "dispatch_path_verified": "miopenKthvalueForward -> KthvalueFwd (FindSolutionImpl, 3/3 cases) -> MIOpenKthvalue.cpp RTC -> gfx1151",
+  "harness": {
+    "path": "/home/amd/Desktop/YOLO_AMD/tmp/kthvalue_harness",
+    "sha256": "4d77a96f63471e8f4500251fdcfd4729e69882123b3b0647d0a88afe06230414",
+    "same_binary_both_legs": true,
+    "source": "RCA scripts/phase3/linux/kthvalue_runtime_harness.cpp (unchanged, dlsym-based, zero link-time ROCm deps)",
+    "cases": [
+      "FP32 [100,500] k=10 dim=-1 nokeep",
+      "FP32 [10,20,300] k=137 dim=2 keep",
+      "FP16 [8,3,10,2000] k=2000 dim=-1 keep"
+    ]
+  },
+  "legA": {
+    "lib_sha256": "7f282a6f569e31d05708a1b40f298dd60ad39dcbd197794ff24ec478e7f2533b",
+    "exit_code": 0,
+    "cases_pass": "3/3",
+    "value_mismatches": 0,
+    "index_mismatches": 0,
+    "dladdr": "miopenKthvalueForward <- installs/legA/lib/libMIOpen.so.1; hipMalloc <- wheel _rocm_sdk_core/libamdhip64.so.7",
+    "device": "gfx1151 (Raw device name), HIP 7.14.60850, MIOpen 3.6.2.7c586614",
+    "solver": "KthvalueFwd (not searchable) x3",
+    "rtc": "HIPRTC v.9.0; KernDb 'database not present' at start; fresh ukdb 3.6.2.7c586614/gfx1151_20.ukdb created",
+    "run_log": "evidence/h05_kthvalue/legA/run.log"
+  },
+  "legB": {
+    "lib_sha256": "b14e907a8f259b27e9fc2ebc5fa58120ae90ff179f63a84676ab1a60619e90eb",
+    "exit_code": 0,
+    "cases_pass": "3/3",
+    "value_mismatches": 0,
+    "index_mismatches": 0,
+    "dladdr": "miopenKthvalueForward <- installs/legB/lib/libMIOpen.so.1; hipMalloc <- wheel",
+    "device": "gfx1151, MIOpen 3.6.2.9fc2d03b",
+    "solver": "KthvalueFwd (not searchable) x3",
+    "rtc": "HIPRTC v.9.0; fresh ukdb 3.6.2.9fc2d03b/gfx1151_20.ukdb + 515 comgr llvmcache files",
+    "run_log": "evidence/h05_kthvalue/legB/run.log"
+  },
+  "fresh_cache_proof": "per-leg MIOPEN_CUSTOM_CACHE_DIR; KernDb absent->created; xdg llvmcache populated",
+  "fallback_check": "no CPU fallback; CK grouped-conv plugin warning is CK=OFF config, symmetric both legs (Phase-3 documented residual)",
+  "nan_inf": "harness checks: 0 mismatches, exact 0.25-multiple inputs; no NaN/Inf reported",
+  "ab_dump_comparison": {
+    "gate": "H05",
+    "dumps_legA": [
+      "FP16-4D-keep-kmax_expected_indices.bin",
+      "FP16-4D-keep-kmax_expected_values.txt",
+      "FP16-4D-keep-kmax_indices.bin",
+      "FP16-4D-keep-kmax_input.bin",
+      "FP16-4D-keep-kmax_output.bin",
+      "FP32-2D-nokeep_expected_indices.bin",
+      "FP32-2D-nokeep_expected_values.txt",
+      "FP32-2D-nokeep_indices.bin",
+      "FP32-2D-nokeep_input.bin",
+      "FP32-2D-nokeep_output.bin",
+      "FP32-3D-keep-explicit-dim_expected_indices.bin",
+      "FP32-3D-keep-explicit-dim_expected_values.txt",
+      "FP32-3D-keep-explicit-dim_indices.bin",
+      "FP32-3D-keep-explicit-dim_input.bin",
+      "FP32-3D-keep-explicit-dim_output.bin"
+    ],
+    "dumps_legB": [
+      "FP16-4D-keep-kmax_expected_indices.bin",
+      "FP16-4D-keep-kmax_expected_values.txt",
+      "FP16-4D-keep-kmax_indices.bin",
+      "FP16-4D-keep-kmax_input.bin",
+      "FP16-4D-keep-kmax_output.bin",
+      "FP32-2D-nokeep_expected_indices.bin",
+      "FP32-2D-nokeep_expected_values.txt",
+      "FP32-2D-nokeep_indices.bin",
+      "FP32-2D-nokeep_input.bin",
+      "FP32-2D-nokeep_output.bin",
+      "FP32-3D-keep-explicit-dim_expected_indices.bin",
+      "FP32-3D-keep-explicit-dim_expected_values.txt",
+      "FP32-3D-keep-explicit-dim_indices.bin",
+      "FP32-3D-keep-explicit-dim_input.bin",
+      "FP32-3D-keep-explicit-dim_output.bin"
+    ],
+    "byte_identical": true,
+    "cases": {
+      "FP16-4D-keep-kmax_expected_indices.bin": {
+        "legA_sha256": "62557e813bdc9d0598841378693f45db7f9ede6ce4f1fb0d244a827c080d7c27",
+        "legB_sha256": "62557e813bdc9d0598841378693f45db7f9ede6ce4f1fb0d244a827c080d7c27",
+        "identical": true
+      },
+      "FP16-4D-keep-kmax_expected_values.txt": {
+        "legA_sha256": "8f4fd4d538ef54629772757e6ba47f84774634bee81954c2837dd523c202bb8e",
+        "legB_sha256": "8f4fd4d538ef54629772757e6ba47f84774634bee81954c2837dd523c202bb8e",
+        "identical": true
+      },
+      "FP16-4D-keep-kmax_indices.bin": {
+        "legA_sha256": "62557e813bdc9d0598841378693f45db7f9ede6ce4f1fb0d244a827c080d7c27",
+        "legB_sha256": "62557e813bdc9d0598841378693f45db7f9ede6ce4f1fb0d244a827c080d7c27",
+        "identical": true
+      },
+      "FP16-4D-keep-kmax_input.bin": {
+        "legA_sha256": "43f5d52fd7d0fe65c419851531893939e432358af817a3841e1d3698e1b35132",
+        "legB_sha256": "43f5d52fd7d0fe65c419851531893939e432358af817a3841e1d3698e1b35132",
+        "identical": true
+      },
+      "FP16-4D-keep-kmax_output.bin": {
+        "legA_sha256": "bdefd77afe41fd817b03f7be0fafbff13e9333c31398d0452418a32666f81de5",
+        "legB_sha256": "bdefd77afe41fd817b03f7be0fafbff13e9333c31398d0452418a32666f81de5",
+        "identical": true
+      },
+      "FP32-2D-nokeep_expected_indices.bin": {
+        "legA_sha256": "1085cb7a9fbed9887eea57528ce0d329d77b40a51e331a65f47ef8ca1b9c00f1",
+        "legB_sha256": "1085cb7a9fbed9887eea57528ce0d329d77b40a51e331a65f47ef8ca1b9c00f1",
+        "identical": true
+      },
+      "FP32-2D-nokeep_expected_values.txt": {
+        "legA_sha256": "5d165e7d25b1ce80a7fc0016b4ea03771ecd6339088ae89053239495ecc0544f",
+        "legB_sha256": "5d165e7d25b1ce80a7fc0016b4ea03771ecd6339088ae89053239495ecc0544f",
+        "identical": true
+      },
+      "FP32-2D-nokeep_indices.bin": {
+        "legA_sha256": "1085cb7a9fbed9887eea57528ce0d329d77b40a51e331a65f47ef8ca1b9c00f1",
+        "legB_sha256": "1085cb7a9fbed9887eea57528ce0d329d77b40a51e331a65f47ef8ca1b9c00f1",
+        "identical": true
+      },
+      "FP32-2D-nokeep_input.bin": {
+        "legA_sha256": "768c0abb1ad7896b94062d8d4ae65ecc64cf3d49f6558def9857b49f5b64a0c1",
+        "legB_sha256": "768c0abb1ad7896b94062d8d4ae65ecc64cf3d49f6558def9857b49f5b64a0c1",
+        "identical": true
+      },
+      "FP32-2D-nokeep_output.bin": {
+        "legA_sha256": "81e062caabbfdbe75cd3fb1e8ff2ed22b14fd3a428b3b45f13a7b3fd42be35c0",
+        "legB_sha256": "81e062caabbfdbe75cd3fb1e8ff2ed22b14fd3a428b3b45f13a7b3fd42be35c0",
+        "identical": true
+      },
+      "FP32-3D-keep-explicit-dim_expected_indices.bin": {
+        "legA_sha256": "ae957b5392a7f814ff7f3f91dbcb84e42fd3447661787fbd473188c9006522bd",
+        "legB_sha256": "ae957b5392a7f814ff7f3f91dbcb84e42fd3447661787fbd473188c9006522bd",
+        "identical": true
+      },
+      "FP32-3D-keep-explicit-dim_expected_values.txt": {
+        "legA_sha256": "19733ace02f4d6f0a85849cc2b9fec76b6dc013227dc57a3daded3010101cd6a",
+        "legB_sha256": "19733ace02f4d6f0a85849cc2b9fec76b6dc013227dc57a3daded3010101cd6a",
+        "identical": true
+      },
+      "FP32-3D-keep-explicit-dim_indices.bin": {
+        "legA_sha256": "ae957b5392a7f814ff7f3f91dbcb84e42fd3447661787fbd473188c9006522bd",
+        "legB_sha256": "ae957b5392a7f814ff7f3f91dbcb84e42fd3447661787fbd473188c9006522bd",
+        "identical": true
+      },
+      "FP32-3D-keep-explicit-dim_input.bin": {
+        "legA_sha256": "2bab9e03eb32ed623a4b1415d760ee8488cd4477451b7bed58a1309e90685cbd",
+        "legB_sha256": "2bab9e03eb32ed623a4b1415d760ee8488cd4477451b7bed58a1309e90685cbd",
+        "identical": true
+      },
+      "FP32-3D-keep-explicit-dim_output.bin": {
+        "legA_sha256": "72b69377e16025c5b33e77bb10e5e110b4c66b7033bec1497d8567a382808888",
+        "legB_sha256": "72b69377e16025c5b33e77bb10e5e110b4c66b7033bec1497d8567a382808888",
+        "identical": true
+      }
+    },
+    "all_15_files_byte_identical": true
+  },
+  "audit_notes": "H05 independent audit PASS: reviewer re-ran both legs (exit 0), all dump sets byte-identical including reviewer's own fresh runs. Two wording notes adopted: finiteness is enforced implicitly via exact equality against finite CPU references (no explicit isfinite call); the 'Loading binary' grep line never fires at LOG_LEVEL=5 \u2014 RTC proof rests on HIPRTC v.9.0 version line + fresh ukdb creation + comgr llvmcache files."
+}

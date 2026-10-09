@@ -1,0 +1,58 @@
+{
+  "gate": "H03",
+  "recorded_at": "2026-10-10T00:12:43.421436",
+  "source": "legB (exact R2 tree b983cadd) projects/miopen, sparse checkout",
+  "configure": {
+    "BUILD_TESTING": "ON",
+    "MIOPEN_USE_HIPRTC": "ON",
+    "MIOPEN_USE_COMGR": "ON",
+    "GPU_TARGETS": "gfx1151",
+    "backend": "HIP",
+    "CK": "OFF",
+    "manual_hiprtc_include_lib_injection": "NONE \u2014 R2 CMake portability fix carried the configure+build alone",
+    "opt_rocm_in_cmakecache": 0,
+    "configure_log": "logs/h03_configure.log",
+    "no_injection_nuance": "No manual HIPRTC include/LIBRARY injection. Package-LOCATION hints (-Dhip_DIR, -Dhiprtc_DIR, -Drocblas_DIR, -Dhipblaslt_DIR, -Damd_comgr_DIR) were supplied to pin find_package to the wheel stack \u2014 the Phase-3-mandated /opt/rocm-7.2.1 contamination mitigation. The R2 CMake portability fix carried include/link handling itself (hiprtc::hiprtc imported target), with no CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES or CMAKE_EXE_LINKER_FLAGS workarounds."
+  },
+  "target": {
+    "binary": "builds/legB-test/bin/test_hiprtc_selfcontained",
+    "sha256": "4470c896402ac6f550be7d57b2c8a8bcc35b70e34b63e30336adb7f719f09a8e",
+    "links": "libhiprtc.so.7 -> wheel _rocm_sdk_devel (sha256 cdee97e0b75ff4f27eb5462c344e20f4492688a7093fb87c951fd616b9bf332a)"
+  },
+  "ctest": {
+    "ctest_-N": "filtered: ctest -N -R '^test_hiprtc_selfcontained$' -> 'Total Tests: 1' (the unfiltered suite registers 325 tests; Test #10 is test_hiprtc_selfcontained)",
+    "ctest_run": "Skipped / Not Run, 100% passed (0 failed), process exit 0",
+    "skip_return_code": 4,
+    "log": "logs/h03_ctest_run.log"
+  },
+  "mode_matrix": {
+    "default_positive_no_stl": {
+      "exit": 4,
+      "verdict": "INCONCLUSIVE",
+      "cause": "stl_probe.cu: #error STL_PROBE_REACHABLE fires \u2014 host C++ stdlib headers (type_traits, limits, initializer_list; not utility) remain reachable to hipRTC compilation under -nostdinc on this stack. Mechanism per H03 audit: the internal clang searches include/c++/v1 staged inside the comgr working dir (AMD clang 23.0.0git); the user-visible fact (stdlib reachable under -nostdinc) was independently reproduced by the auditor's own standalone hiprtc driver.",
+      "log": "logs/h03_mode_positive.log"
+    },
+    "ordinary": {
+      "exit": 0,
+      "verdict": "PASS",
+      "detail": "code object 3824 bytes",
+      "log": "logs/h03_mode_ordinary.log"
+    },
+    "with_stl": {
+      "exit": 0,
+      "verdict": "PASS",
+      "detail": "MIOpenBatchNormFwdTrainSpatial.cpp RTC-compiled, 5792-byte code object, warnings say 'compiling for gfx1151'",
+      "log": "logs/h03_mode_with-stl.log"
+    },
+    "negative_vs_legA_kernels": {
+      "exit": 4,
+      "verdict": "INCONCLUSIVE (per isolation capability)",
+      "detail": "same stl-probe reachability; negative control interpreted per the VERIFIED no-STL-unavailable classification",
+      "log": "logs/h03_mode_negative_legA.log"
+    }
+  },
+  "classification": "REAL NO-STL UNAVAILABLE on Linux gfx1151 + ROCm 7.14.0 wheel (same class as W7900/7.14.1). SKIPPED is NOT counted as no-STL PASS; the Windows FAIL->PASS no-STL claim remains the Windows RCA's own evidence.",
+  "gpu_target_verification": "rocminfo gfx1151 (H00); code objects compiled for gfx1151 per compiler output",
+  "history_note": "An earlier configure attempt failed (missing shared/ctest/TestCategories.cmake) before the shared/ctest blob backfill; the final configure+build is the claimed one. CMakeCache reflects the post-backfill configure.",
+  "panel_notes": "H10 Reviewer A found the stdlib probe is two-state (a probe compile failing WITHOUT the STL_PROBE_REACHABLE marker is treated as isolation-achieved; a bogus --isolate option string yields FAIL exit 1 via 'unknown argument' rather than INCONCLUSIVE). Documented as a candidate-revision request for the R2 test (three-state probe); the frozen R2 bytes are NOT modified by this mission. Default CTest wiring passes no --isolate, so CI is unaffected."
+}

@@ -1,0 +1,38 @@
+{
+  "gate": "H00",
+  "recorded_at": "2026-10-09T19:44:10.422276",
+  "wheel_stack": {
+    "libMIOpen.so.1.0 (wheel, NOT used as source-built evidence)": {
+      "path": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/libMIOpen.so.1.0",
+      "sha256": "f5be23284011abed2a21524e533f36fa6231f466871da1f934391b37b12d0e63"
+    },
+    "libhiprtc.so.7.14.60850-0000000": {
+      "path": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/libhiprtc.so.7.14.60850-0000000",
+      "sha256": "cdee97e0b75ff4f27eb5462c344e20f4492688a7093fb87c951fd616b9bf332a"
+    },
+    "libamdhip64.so.7.14.60850-0000000": {
+      "path": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/libamdhip64.so.7.14.60850-0000000",
+      "sha256": "6f3c9fe6b655a611e04a9a5a157cb46c425717e2873973f11a67bb6bbf6587b5"
+    },
+    "amdclang++": {
+      "path": "/home/amd/Desktop/YOLO_AMD/.venv/lib/python3.13/site-packages/_rocm_sdk_devel/lib/llvm/bin/amdclang++",
+      "sha256": "6431a5d1e3a0bf84123430ad91971d6f4e0eee5201f2654387fe8c1d784e3f39"
+    }
+  },
+  "system_stack": {
+    "libMIOpen.so.1.0.70201 (system 7.2.1, ldconfig-visible, contamination risk)": {
+      "path": "/opt/rocm-7.2.1/lib/libMIOpen.so.1.0.70201",
+      "sha256": "bd03b86420b6d6891da40c9d8e23f62e49ce0a1c92a2ee4fcb34809dc8d77eb4",
+      "size_note": "1.05GB fat binary"
+    }
+  },
+  "phase3_reference": {
+    "installs/miopen-unpatched/libMIOpen.so.1": {
+      "sha256": "8694d2bac119d51f58fcdaeeb0fb0ab4cd050da884f7ae01b355cf4e5ef242cd"
+    },
+    "installs/miopen-patched/libMIOpen.so.1": {
+      "sha256": "02904c25f45ba010d78292a1c2095afe053825a71f5e7cb6a5013d64d0925221"
+    }
+  },
+  "binding_policy": "LD_PRELOAD source-built libMIOpen.so.1 (per scripts/phase3/linux/run_with_source_miopen.sh) + wheel-first LD_LIBRARY_PATH + MIOPEN_CUSTOM_CACHE_DIR isolation; wheel libMIOpen and /opt/rocm-7.2.1 libMIOpen must never appear in dladdr provenance"
+}
