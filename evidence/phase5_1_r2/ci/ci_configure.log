@@ -76,8 +76,8 @@ exit=0
 -- gtest env: MIOPEN_USER_DB_PATH=C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test/test/gtest
 -- gtest env: MIOPEN_TEST_COMPOSABLEKERNEL=OFF
 -- YAML-based test categorization
--- Configuring done (7.8s)
--- Generating done (5.0s)
+-- Configuring done (8.0s)
+-- Generating done (6.6s)
 -- Build files have been written to: C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test
 CMake Warning at cmake/ClangCheck.cmake:40 (message):
   pre-commit not found; pre_commit_checks target will not be available and

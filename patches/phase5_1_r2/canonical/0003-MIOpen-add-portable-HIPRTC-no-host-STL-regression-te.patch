@@ -1,6 +1,6 @@
-From d758aed7dc8c3ff17d7c4672f1281f09ca3ef131 Mon Sep 17 00:00:00 2001
+From f18c4de94b229bbe3e8501d70e3e2461425c69de Mon Sep 17 00:00:00 2001
 From: AIwork4me <AIwork4me@users.noreply.github.com>
-Date: Fri, 9 Oct 2026 11:19:33 +0800
+Date: Fri, 9 Oct 2026 12:04:36 +0800
 Subject: [PATCH 3/3] MIOpen: add portable HIPRTC no-host-STL regression test
 
 Compile-only CTest that guards the runtime-compile self-containment
@@ -42,13 +42,13 @@ the test drives hiprtc directly, its runtime library directory
 imported target's location metadata and exposed to the test alone, so
 a plain ctest run starts it without any machine-wide PATH setup.
 ---
- projects/miopen/test/CMakeLists.txt           | 125 ++++
+ projects/miopen/test/CMakeLists.txt           | 129 +++++
  projects/miopen/test/hiprtc_selfcontained.cpp | 532 ++++++++++++++++++
- 2 files changed, 657 insertions(+)
+ 2 files changed, 661 insertions(+)
  create mode 100644 projects/miopen/test/hiprtc_selfcontained.cpp
 
 diff --git a/projects/miopen/test/CMakeLists.txt b/projects/miopen/test/CMakeLists.txt
-index f6a0e662..96b427af 100755
+index f6a0e662..67e9ff25 100755
 --- a/projects/miopen/test/CMakeLists.txt
 +++ b/projects/miopen/test/CMakeLists.txt
 @@ -462,6 +462,10 @@ if(NOT MIOPEN_ENABLE_SQLITE)
@@ -62,23 +62,24 @@ index f6a0e662..96b427af 100755
  if(NOT MIOPEN_TEST_ENABLE_TEST_SQLITE_PERFDB)
      list(APPEND EXCLUDE_TESTS test_sqlite_perfdb)
      message(STATUS "Flaky test_sqlite_perfdb currently disabled (May 28 2025)")
-@@ -486,6 +490,127 @@ foreach(TEST_SOURCE ${TEST_SOURCES})
+@@ -486,6 +490,131 @@ foreach(TEST_SOURCE ${TEST_SOURCES})
      add_test_executable(test_${BASE_NAME} ${TEST_SOURCE})
  endforeach()
  
 +# HIPRTC kernel self-containment regression (compile-only; no GPU needed).
-+# Compiles the real MIOpenBatchNormFwdTrainSpatial.cpp through hiprtc with
-+# the host C++ standard library unreachable: passes only when runtime-
-+# compiled kernels stay self-contained (the __has_include/freestanding
-+# headers) and produces a non-empty code object. A host that cannot
-+# reproduce the no-STL condition at all (the test's embedded probe still
-+# sees standard headers under isolation) reports the run as skipped,
-+# never as a pass. Registered by hand rather than via add_test_executable
-+# because the test must not link MIOpen_with_plugins - it exercises
-+# hiprtc exactly like the runtime compile path, without MIOpen itself in
-+# the process. The negative control (--mode=negative, unpatched tree) is
-+# intentionally NOT wired into the default suite; it belongs to A/B
-+# validation harnesses.
++# Compiles the real MIOpenBatchNormFwdTrainSpatial.cpp - the kernel whose
++# RTC failure reported the bug - through hiprtc with the host C++
++# standard library unreachable: passes only when that kernel's include
++# closure stays self-contained (the __has_include/freestanding headers)
++# and produces a non-empty code object. The other self-containment sites
++# (miopen_utility.hpp, radix.hpp, tensor_view.hpp) are not compiled by
++# this default suite; they belong to the A/B validation harnesses, like
++# the negative control. A host that cannot reproduce the no-STL
++# condition at all (the test's embedded probe still sees standard
++# headers under isolation) reports the run as skipped, never as a pass.
++# Registered by hand rather than via add_test_executable because the
++# test must not link MIOpen_with_plugins - it exercises hiprtc exactly
++# like the runtime compile path, without MIOpen itself in the process.
 +if(MIOPEN_USE_HIPRTC)
 +    add_executable(test_hiprtc_selfcontained EXCLUDE_FROM_ALL hiprtc_selfcontained.cpp)
 +    clang_tidy_check(test_hiprtc_selfcontained)
@@ -140,45 +141,48 @@ index f6a0e662..96b427af 100755
 +    # standard headers under isolation): report that as skipped, not
 +    # failed. Capability-aware, not platform-aware: hosts that can
 +    # isolate still get a hard PASS/FAIL from exit 0/1.
-+    # The test drives hiprtc itself, and the hiprtc package installs its
-+    # runtime DLL apart from the import library (import lib in
-+    # <prefix>/lib, DLL in <prefix>/bin on Windows), so a plain ctest run
-+    # whose PATH lacks that directory cannot even start the test
++    # The test drives hiprtc itself. On Windows the hiprtc package
++    # installs its runtime DLL apart from the import library (import lib
++    # in <prefix>/lib, DLL in <prefix>/bin), so a plain ctest run whose
++    # PATH lacks that directory cannot even start the test
 +    # (STATUS_DLL_NOT_FOUND). Derive the runtime directory from the
 +    # imported target's own location metadata - its library file if the
 +    # package set one, else the first interface library entry that is a
 +    # real file - and expose it to this test only by prepending it to
 +    # PATH, with the configure-time PATH escaped after it so the value
 +    # stays a single environment entry (CTest splits ENVIRONMENT on
-+    # unescaped semicolons). Shared-object resolution elsewhere is
-+    # unaffected.
-+    set(_hiprtc_runtime_dir "")
-+    if(TARGET hiprtc::hiprtc)
-+        get_target_property(_hiprtc_lib_loc hiprtc::hiprtc IMPORTED_LOCATION)
-+        if(NOT _hiprtc_lib_loc)
-+            get_target_property(_hiprtc_link_line hiprtc::hiprtc INTERFACE_LINK_LIBRARIES)
-+            foreach(_hiprtc_lib IN LISTS _hiprtc_link_line)
-+                if(EXISTS "${_hiprtc_lib}")
-+                    get_filename_component(_hiprtc_lib_loc "${_hiprtc_lib}" ABSOLUTE)
-+                    break()
++    # unescaped semicolons). Windows-only: other platforms' shared-library
++    # loaders do not search PATH, so their tests keep the inherited
++    # environment untouched.
++    set(_hiprtc_test_env "MIOPEN_USER_DB_PATH=${CMAKE_CURRENT_BINARY_DIR}")
++    if(WIN32)
++        set(_hiprtc_runtime_dir "")
++        if(TARGET hiprtc::hiprtc)
++            get_target_property(_hiprtc_lib_loc hiprtc::hiprtc IMPORTED_LOCATION)
++            if(NOT _hiprtc_lib_loc)
++                get_target_property(_hiprtc_link_line hiprtc::hiprtc INTERFACE_LINK_LIBRARIES)
++                foreach(_hiprtc_lib IN LISTS _hiprtc_link_line)
++                    if(EXISTS "${_hiprtc_lib}")
++                        get_filename_component(_hiprtc_lib_loc "${_hiprtc_lib}" ABSOLUTE)
++                        break()
++                    endif()
++                endforeach()
++            endif()
++            if(_hiprtc_lib_loc)
++                get_filename_component(_hiprtc_lib_dir "${_hiprtc_lib_loc}" DIRECTORY)
++                get_filename_component(_hiprtc_pkg_root "${_hiprtc_lib_dir}/.." ABSOLUTE)
++                if(EXISTS "${_hiprtc_pkg_root}/bin")
++                    set(_hiprtc_runtime_dir "${_hiprtc_pkg_root}/bin")
++                else()
++                    set(_hiprtc_runtime_dir "${_hiprtc_lib_dir}")
 +                endif()
-+            endforeach()
-+        endif()
-+        if(_hiprtc_lib_loc)
-+            get_filename_component(_hiprtc_lib_dir "${_hiprtc_lib_loc}" DIRECTORY)
-+            get_filename_component(_hiprtc_pkg_root "${_hiprtc_lib_dir}/.." ABSOLUTE)
-+            if(EXISTS "${_hiprtc_pkg_root}/bin")
-+                set(_hiprtc_runtime_dir "${_hiprtc_pkg_root}/bin")
-+            else()
-+                set(_hiprtc_runtime_dir "${_hiprtc_lib_dir}")
 +            endif()
 +        endif()
-+    endif()
-+    set(_hiprtc_test_env "MIOPEN_USER_DB_PATH=${CMAKE_CURRENT_BINARY_DIR}")
-+    if(NOT _hiprtc_runtime_dir STREQUAL "")
-+        string(REPLACE ";" "\\;" _hiprtc_path_tail "$ENV{PATH}")
-+        list(APPEND _hiprtc_test_env
-+            "PATH=${_hiprtc_runtime_dir}\;${_hiprtc_path_tail}")
++        if(NOT _hiprtc_runtime_dir STREQUAL "")
++            string(REPLACE ";" "\\;" _hiprtc_path_tail "$ENV{PATH}")
++            list(APPEND _hiprtc_test_env
++                "PATH=${_hiprtc_runtime_dir}\;${_hiprtc_path_tail}")
++        endif()
 +    endif()
 +    set_tests_properties(test_hiprtc_selfcontained PROPERTIES
 +        ENVIRONMENT "${_hiprtc_test_env}"

@@ -71,7 +71,7 @@ exit=0
 -- MIOpen CK: no supported GPU targets found in GPU_TARGETS; skipping CK grouped conv library build.
 -- Performing Test COMPILER_HAS_DEPRECATED_ATTR
 -- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
--- Configuring done (26.5s)
+-- Configuring done (28.9s)
 -- Generating done (1.6s)
 -- Build files have been written to: C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/miopen
 CMake Warning at cmake/ClangCheck.cmake:40 (message):
