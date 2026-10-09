@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "generated": "2026-10-09T20:30:46.793633",
+  "method_A_git_am": {
+    "base": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+    "commits": [
+      "0af085f139468305c6dd37d86e622f2606225096",
+      "69e7ff0715ef0f7fb8027b56e9ad1a3baa755692",
+      "cab3f08ab406a3567c2483904b137f3715d00db2"
+    ],
+    "git_am_exit": 0,
+    "conflicts": 0,
+    "full_tree": "81e39c3b25cb1c37958959fb610d975d294dc9bf"
+  },
+  "method_B_apply_cached": {
+    "miopen_subtree": "96f292c39a32c149d944bfd129f9cd47d3de68c7",
+    "matches_method_A": true,
+    "note": "subtree-scoped due to partial-clone blob availability; full-tree equivalence closed by name-status diff (10 files, all under projects/miopen) + 10/10 blob identity vs R2"
+  },
+  "R2_APPLIES_CLEANLY_TO_LATEST_DEVELOP": true,
+  "patch_payload_byte_identical_to_R2": true
+}

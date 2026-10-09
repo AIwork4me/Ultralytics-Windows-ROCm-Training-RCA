@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "gate": "P54-02",
+  "mission_id": "WINDOWS-P54-MIOPEN-UPSTREAM-MERGE-READINESS",
+  "generated": "2026-10-09T20:05:50.799302",
+  "method_A": {
+    "description": "git am of the EXACT R2 three-patch series in a fresh detached worktree at latest develop",
+    "patch_source": "git cat-file blob of origin/phase5.1/windows-r2-ci-portability-freeze:patches/phase5_1_r2/canonical/*.patch (frozen branch c841716)",
+    "per_patch_sha256": {
+      "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
+      "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
+      "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch": "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e"
+    },
+    "series_sha256_concat_v1": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+    "source_base_sha": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+    "worktree": "C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay (fresh, detached, clean before am)",
+    "git_am_exit": 0,
+    "conflicts": 0,
+    "modified_patches": false,
+    "commits": {
+      "1": {
+        "sha": "0af085f139468305c6dd37d86e622f2606225096",
+        "parent": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+        "message_identical_to_R2_01a77dab": true
+      },
+      "2": {
+        "sha": "69e7ff0715ef0f7fb8027b56e9ad1a3baa755692",
+        "parent": "0af085f139468305c6dd37d86e622f2606225096",
+        "message_identical_to_R2_8188b803": true
+      },
+      "3": {
+        "sha": "cab3f08ab406a3567c2483904b137f3715d00db2",
+        "parent": "69e7ff0715ef0f7fb8027b56e9ad1a3baa755692",
+        "message_identical_to_R2_f18c4de9": true
+      }
+    },
+    "resulting_full_tree": "81e39c3b25cb1c37958959fb610d975d294dc9bf",
+    "miopen_subtree": "96f292c39a32c149d944bfd129f9cd47d3de68c7"
+  },
+  "method_B_independent": {
+    "description": "git apply --cached (-p3 subtree-scoped) into a fresh temporary index seeded from 681bc9ed:projects/miopen, then git write-tree",
+    "apply_exit_per_patch": 0,
+    "write_tree_result": "96f292c39a32c149d944bfd129f9cd47d3de68c7",
+    "matches_method_A_miopen_subtree": true,
+    "full_tree_note": "full-tree write-tree impractical on this partial clone (34756 lazily-fetched blobs, flaky network); equivalence closed structurally: (a) git diff --name-status develop..replay shows exactly the ten R2 files, all under projects/miopen; (b) all ten replay blobs are byte-identical to R2's (git blob SHA equality); (c) miopen subtree tree-SHA reproduced independently by method B"
+  },
+  "changed_file_set": {
+    "count": 10,
+    "diffstat": "10 files changed, 1036 insertions(+), 5 deletions(-)",
+    "identical_to_R2_diffstat": true,
+    "blob_identity_vs_R2_f18c4de9": "10/10 SAME (src/CMakeLists.txt, kernels/{miopen_type_traits,miopen_utility,radix,tensor_view}.hpp, test/CMakeLists.txt, test/hiprtc_selfcontained.cpp, kernels/miopen_freestanding_{type_traits,utility,initializer_list}.hpp)"
+  },
+  "whitespace_check": "git diff --check 681bc9ed cab3f08a -> no output (no whitespace errors)",
+  "identity_separation": {
+    "FROZEN_R2_SOURCE_TREE": "b983caddf9f9f561e7d1b590deadb16267c2de15 @ base 7c586614 (IMMUTABLE, untouched)",
+    "LATEST_DEVELOP_REPLAY_TREE": "81e39c3b25cb1c37958959fb610d975d294dc9bf @ base 681bc9ed (new identity; full-tree SHA differs because upstream base moved, as expected)",
+    "patch_payload_unchanged": true
+  },
+  "R2_APPLIES_CLEANLY_TO_LATEST_DEVELOP": true,
+  "verdict": "PASS"
+}

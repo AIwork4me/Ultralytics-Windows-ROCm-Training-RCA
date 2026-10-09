@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "generated": "2026-10-09T20:30:46.793633",
+  "windows_r2_frozen": {
+    "branch": "phase5.1/windows-r2-ci-portability-freeze",
+    "tip": "c8417161125dc33275b7ac615298b449a81e7cf8",
+    "url": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/tree/c841716",
+    "series_sha256": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+    "dll": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a"
+  },
+  "windows_latest_develop_replay": {
+    "branch": "(this branch) phase5.4/windows-upstream-merge-readiness",
+    "source_branch_local": "miopen/hiprtc-freestanding-upstream-ready",
+    "head": "cab3f08ab406a3567c2483904b137f3715d00db2",
+    "tree": "81e39c3b25cb1c37958959fb610d975d294dc9bf",
+    "dll": "44d43887011856e5a3e8c670355239ba9c4012cb7453af5578e4b3bf8a240089"
+  },
+  "linux_w7900_phase5_3": {
+    "merged_via": "PR #8",
+    "branch_tip": "166c33de40f5a7955f6cf6bed6cd516f93d05c71",
+    "main": "58da94ec16962e7d997fc1a1762e670921916df8",
+    "url": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/tree/166c33d",
+    "verdict": "PHASE5_3_LINUX_R2_AB_PASS_WITH_CTEST_SKIP",
+    "validated_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15 (= frozen R2 tree; NOT the replay tree)",
+    "legA_lib": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+    "legB_lib": "bf21a5fa4abc5ff77b0f50756a69dccf7a077970603a846300f0ea077d61eac1"
+  },
+  "linux_gfx1151_phase5_3b": {
+    "status": "PENDING",
+    "note": "no evidence published as of 2026-10-09; no *5.3B* remote branch exists"
+  }
+}

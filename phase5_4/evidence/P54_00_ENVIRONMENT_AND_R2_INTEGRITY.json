@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "gate": "P54-00",
+  "mission_id": "WINDOWS-P54-MIOPEN-UPSTREAM-MERGE-READINESS",
+  "generated": "2026-10-09T19:48:22.301683",
+  "environment": {
+    "os": "Windows 11 (10.0.26200) x64",
+    "gpu": "AMD Radeon(TM) 8060S Graphics, gfx1151 (capability 11.5), CUDA-API avail=True",
+    "pytorch": "2.12.0+rocm7.14.0, python 3.13.16, env C:/Users/rocm/miniconda3/envs/yolo_amd",
+    "msvc": "19.44.35229 (C:/BuildTools .../MSVC/14.44.35207)",
+    "cmake": "4.4.4 (phase3_buildtools pip cmake)",
+    "ninja": "1.13.2.git.kitware.jobserver-pipe-1",
+    "hip_clang": "AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:1efe4605317a40d2170d33617075bd5675d0d558)"
+  },
+  "r2_integrity": {
+    "worktree": "C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.1-r2-candidate",
+    "worktree_clean": true,
+    "head_sha": "f18c4de94b229bbe3e8501d70e3e2461425c69de",
+    "head_match": true,
+    "tree_sha": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "tree_match": true,
+    "three_commits": [
+      "f18c4de94b229bbe3e8501d70e3e2461425c69de",
+      "8188b803b8304fc5933caa52ee27a58d01a78b04",
+      "01a77dab8c4cf23d1e49273fa3c88bb0bb4fc887"
+    ],
+    "commits_match": true,
+    "canonical_patches_read_from": "origin/phase5.1/windows-r2-ci-portability-freeze (c8417161125dc33275b7ac615298b449a81e7cf8, remote-verified)",
+    "per_patch_sha256": {
+      "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
+      "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
+      "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch": "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e"
+    },
+    "series_sha256_concat_v1": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+    "series_match": true,
+    "frozen_branch_remote_tip": "c8417161125dc33275b7ac615298b449a81e7cf8\trefs/heads/phase5.1/windows-r2-ci-portability-freeze",
+    "three_commits_application_order": [
+      "01a77dab8c4cf23d1e49273fa3c88bb0bb4fc887",
+      "8188b803b8304fc5933caa52ee27a58d01a78b04",
+      "f18c4de94b229bbe3e8501d70e3e2461425c69de"
+    ],
+    "note_commit_order": "git log newest-first; application-order comparison used"
+  },
+  "artifacts_located": {
+    "r2_source_worktree": "C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.1-r2-candidate (branch prepare/miopen-hiprtc-phase5.1-r2)",
+    "rca_repo": "branch phase5.4/windows-upstream-merge-readiness from origin/main 58da94e",
+    "note_main_vs_r2_branch": "patches/phase5_1_r2 + findings/phase5_1_r2 exist only on frozen R2 branch; Phase 5.4 branch uses main ancestry per mission and links R2 evidence immutably",
+    "hiprtc_regression_scripts": "scripts/phase5_1_r2/ (run_ci_matrix.py, ci_ctest_integration.py, runtime_validation.py, yolo_train_validation.py, verify_patch_identity.py) on frozen R2 branch",
+    "rebuilt_r2_miopen_dll": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a (expected prefix 48a1eee2)",
+    "wheel_dll_pristine": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a (expected prefix 74b4ee03)",
+    "yolo_env": "yolo26n.pt + datasets/coco8 + runs/, conda env yolo_amd",
+    "linux_phase53_on_main": "linux-w7900/phase5_3/ PHASE5_3_LINUX_R2_AB_PASS_WITH_CTEST_SKIP (PR #8, 58da94e)",
+    "phase53b_linux_gfx1151": "PENDING - no phase5.3B evidence on any remote branch as of this gate"
+  },
+  "phase54_workspace": "phase5_4/ skeleton created on phase5.4 branch; no existing validated worktree modified",
+  "verdict": "PASS"
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "generated": "2026-10-09T20:30:46.793633",
+  "source_head": "cab3f08ab406a3567c2483904b137f3715d00db2",
+  "full_tree": "81e39c3b25cb1c37958959fb610d975d294dc9bf",
+  "dll_built": "C:/Users/rocm/Desktop/YOLO_AMD/phase5_4_build/miopen/bin/MIOpen.dll",
+  "dll_sha256": "44d43887011856e5a3e8c670355239ba9c4012cb7453af5578e4b3bf8a240089",
+  "in_process_loaded_sha256": "44d43887011856e5a3e8c670355239ba9c4012cb7453af5578e4b3bf8a240089",
+  "wheel_restored_sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+  "ctest_genuine_nostl": "Passed (not skipped)",
+  "ci_matrix": "13/13 PASS",
+  "batchnorm_max_abs": {
+    "y": 6.706602642125858e-07,
+    "dx": 3.202286127666268e-12,
+    "dw": 2.4365591336228398e-08,
+    "db": 1.862645147225183e-09
+  },
+  "yolo": {
+    "amp_false": "PASS",
+    "amp_default": "PASS genuine AMP"
+  },
+  "detail": "LATEST_DEVELOP_WINDOWS_REVALIDATION.json"
+}

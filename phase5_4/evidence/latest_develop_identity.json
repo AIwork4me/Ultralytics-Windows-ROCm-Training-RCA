@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "generated": "2026-10-09T20:30:46.793633",
+  "repo": "https://github.com/ROCm/rocm-libraries",
+  "branch": "develop",
+  "develop_sha_at_mission_start": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+  "develop_sha_at_this_record": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+  "commit_date": "2026-10-09T10:39:02Z",
+  "distance_from_r2_base": 61,
+  "r2_base": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "merge_base": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "blob_audit": {
+    "six_modified_files_base_vs_develop": "identical 6/6",
+    "four_r2_files_at_develop": "absent 4/4"
+  },
+  "miopen_window_commits": 5
+}
