@@ -1,0 +1,240 @@
+{
+ "schema": "wrappers-manifest/1.0",
+ "purpose": "exact operative versions of all locally modified runtime/build wrappers at phase 5.2.1 closure",
+ "count": 21,
+ "wrappers": [
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/build_baseline_miopen.sh",
+   "sha256": "16460b585ad53bc3380dfd9e52f720a935f4daa42b96aa093962eb19230254d6",
+   "size": 332,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/build_baseline_miopen.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/build_leg_miopen.sh",
+   "sha256": "5146289a9b663fd01d0a3b7003a298eaf51c3311485825182f421ce8734d92f8",
+   "size": 2415,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/build_leg_miopen.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/check_final_handoff.py",
+   "sha256": "cea4f1fe165ed495bb7ab6ff3d3142cf250d2e2e5d9a9060774ba914d425b14f",
+   "size": 30822,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "phase5_2_scripts",
+    "published_path": "linux-w7900/phase5_2/scripts/check_final_handoff.py"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/clone_loop.sh",
+   "sha256": "b5cfd7fa2fc314f828227707362bfcbea1a6167d2c6ccbe418ce5b4c1221c107",
+   "size": 662,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/clone_loop.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/env_rocm7141.sh",
+   "sha256": "fb5bd0b6846deecb1f127f3672bc85e96723e64b38e870ac8bdd0aadb5b33628",
+   "size": 1369,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/env_rocm7141.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/env_system721.sh",
+   "sha256": "990aebcc34ded967329d0ec7b4283ba0da64f88a328bd90142f962305e1fa82e",
+   "size": 947,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/env_system721.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/g02_gpu_baseline.py",
+   "sha256": "9463d49b4598a0491940fbb7ed5007839a5103eec61db311084a93af8b402855",
+   "size": 2105,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/g02_gpu_baseline.py"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/g05_hiprtc_smoke.cpp",
+   "sha256": "8ca0df5925f23706c3787bfa96ee76c9e225544b5c760489ee8887637a705760",
+   "size": 3749,
+   "executable": false,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/g05_hiprtc_smoke.cpp"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/g05_limits_include_test.cpp",
+   "sha256": "ce8fe5932ece8b1b92fe2a4743c52092e5e52e3fdaffb176db4e7e8be1fa0e6c",
+   "size": 923,
+   "executable": false,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/g05_limits_include_test.cpp"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/g05_stl_probe.cpp",
+   "sha256": "f2b2ba0538936e38e6f833d31241292b0ac44010fb43d4d2e99008594bb6ffda",
+   "size": 3002,
+   "executable": false,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/g05_stl_probe.cpp"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/git-retry.sh",
+   "sha256": "2858f3866174aa9b426f151a43f596caef0380bf4a69b4512af2dbb9978da662",
+   "size": 514,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/git-retry.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/kthvalue_runtime_harness_gfx1100.cpp",
+   "sha256": "ba75005dadea54fd2e4fef2d3312270d646116f7a3de16350b2f76c824babc8f",
+   "size": 19970,
+   "executable": false,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/kthvalue_runtime_harness_gfx1100.cpp"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/prepare_validation_legs.sh",
+   "sha256": "2f750c26a3ec2c206c75ccdfeecede2504ba493389b7d9b9e921a4b9a509a58d",
+   "size": 7001,
+   "executable": true,
+   "provenance": {
+    "status": "SUPERSEDES_PUBLISHED",
+    "published_copy": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/prepare_validation_legs.sh",
+    "published_sha256": "2ea9395af6f1e710c2e8b6dfbc2d5229970edaf6d3777325c1c1e5abdf29f5bd",
+    "note": "local version is the exact operative version; drift documented in phase 5.2 reviews/resolutions"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/repo_backfill_loop.sh",
+   "sha256": "a2a0328b01cbd73fbaa8bd06a8f367264b5b7ca06dba2e04688a834cf3d44a8e",
+   "size": 935,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/repo_backfill_loop.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/run_validation_leg.sh",
+   "sha256": "856d132246e1bc434a166203b96ff59dc0f88cebd97ffe3a788e4b049885416a",
+   "size": 2982,
+   "executable": true,
+   "provenance": {
+    "status": "SUPERSEDES_PUBLISHED",
+    "published_copy": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/run_validation_leg.sh",
+    "published_sha256": "8c9d8ddca275658751b3af026f481f639334eff52de50891dcc31e6e435fa448",
+    "note": "local version is the exact operative version; drift documented in phase 5.2 reviews/resolutions"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase3-original/kthvalue_runtime_harness.cpp",
+   "sha256": "d7d6f92b619ca5c0735f598b3aafb96b1d314950b112a6f25b51aa9902207d2c",
+   "size": 19970,
+   "executable": false,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/phase3-original/kthvalue_runtime_harness.cpp"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase3-original/library_provenance.py",
+   "sha256": "a241d6a4b69a4b8a08f92a6e3d5ac2ec6257a63960810a63d3564cd58cbfc628",
+   "size": 2601,
+   "executable": false,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/phase3-original/library_provenance.py"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase3-original/run_fresh_cache.sh",
+   "sha256": "e6d5768e8cbd2639f3c09b216b66eea3ebe441f154ea80f52e9ba7ac6ae7c0e1",
+   "size": 939,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/phase3-original/run_fresh_cache.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase3-original/run_with_source_miopen.sh",
+   "sha256": "02974adce56fef8dbfc62b2b246335a105e01fe7ca6d76053bd137520c1ce24b",
+   "size": 1952,
+   "executable": true,
+   "provenance": {
+    "status": "IDENTICAL_TO_PUBLISHED",
+    "matches": "preflight_scripts",
+    "published_path": "linux-w7900/preflight/scripts/phase3-original/run_with_source_miopen.sh"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/workspace-root/git-retry.sh",
+   "sha256": "9d95c5b5901890871be81ad403b9ef89a1f174929c099627b61c95331ae4ff49",
+   "size": 358,
+   "executable": true,
+   "provenance": {
+    "status": "UNPUBLISHED_PREVIOUSLY",
+    "note": "convenience wrapper local to the validation machine workspace root; published here verbatim for reproducibility"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/workspace-root/rocm714-env.sh",
+   "sha256": "1b85ee756791f710ba5f91086d3546d52d5229e729e456bb49c138c3048ec8e6",
+   "size": 605,
+   "executable": false,
+   "provenance": {
+    "status": "UNPUBLISHED_PREVIOUSLY",
+    "note": "convenience wrapper local to the validation machine workspace root; published here verbatim for reproducibility"
+   }
+  }
+ ]
+}
