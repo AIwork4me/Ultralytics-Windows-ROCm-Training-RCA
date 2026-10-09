@@ -1,0 +1,22 @@
+Test project C:/Users/rocm/Desktop/YOLO_AMD/phase5_4_build/ci_test_bf16
+Could not find executable echo
+Looked in the following places:
+echo
+echo.exe
+Release/echo
+Release/echo.exe
+Debug/echo
+Debug/echo.exe
+MinSizeRel/echo
+MinSizeRel/echo.exe
+RelWithDebInfo/echo
+RelWithDebInfo/echo.exe
+Deployment/echo
+Deployment/echo.exe
+Development/echo
+Development/echo.exe
+  Test #10: test_hiprtc_selfcontained (Disabled)
+
+Total Tests: 1
+
+rc=0

@@ -1,0 +1,661 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Lib\site-packages\cmake\data\bin\cmake.exe -S C:\Users\rocm\Desktop\YOLO_AMD\rocm-libraries-phase5.4-develop-replay\projects\miopen -B C:\Users\rocm\Desktop\YOLO_AMD\phase5_4_build\ci_test -G Ninja -DCMAKE_MAKE_PROGRAM=C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Scripts\ninja.exe -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=C:\Users\rocm\Desktop\YOLO_AMD\phase5_4_build\ci_test\install -DCMAKE_TOOLCHAIN_FILE=C:\Users\rocm\Desktop\YOLO_AMD\rocm-libraries-phase5.4-develop-replay\projects\miopen\cmake\ClangToolChain.cmake -DCMAKE_C_COMPILER=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang.exe -DCMAKE_CXX_COMPILER=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang++.exe -DCMAKE_HIP_COMPILER=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang.exe -DCMAKE_HIP_ARCHITECTURES=gfx1151 -DCMAKE_LINKER=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\lld-link.exe -DROCM_PATH=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core -DCMAKE_PREFIX_PATH=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\dep_prefix\Library;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\rocm-cmake;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\hip;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\hip-lang;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\rocblas;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\amd_comgr;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\hiprtc;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\rocrand;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\rocm-core;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\nlohmann_json -DHALF_INCLUDE_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\include -DROCRAND_INCLUDE_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\stage_rocrand -DBZIP2_INCLUDE_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\dep_prefix\Library\include -DSQLite3_INCLUDE_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\dep_prefix\Library\include -DBUILD_TESTING=ON -DGTest_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase5_deps\gtest_prefix\lib\cmake\GTest -DMIOPEN_BUILD_DRIVER=OFF -DMIOPEN_BUILD_CK=OFF -DMIOPEN_USE_COMPOSABLEKERNEL=OFF -DMIOPEN_EMBED_BINCACHE=OFF -DMIOPEN_BINCACHE_PATH= -DMIOPEN_ENABLE_FIN=OFF -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF -DUNZIPPER=C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/tools/bzip2.cmd
+exit=0
+-- ROCM_PATH provided: C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core
+-- Using ROCm Clang compilers from C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin
+-- Added C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core to CMAKE_PREFIX_PATH for finding HIP package
+-- MIOPEN_OFFLINE_COMPILER_PATHS_V2: OFF
+-- MIOPEN_BUILD_DRIVER: OFF
+-- Build with HIP 7.14.60850 C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/hip/lib/cmake/hip
+-- Enable Composable Kernels: OFF
+-- Enable per-arch CK unbundling: OFF
+-- Enable hipconv: ON
+-- Hip compiler flags:  -D__HIP_PLATFORM_AMD__=1 -D__HIP_PLATFORM_HCC__=1 C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/amdhip64.lib  -fno-offload-uniform-block 
+-- Build with rocblas 2.46.0 C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/rocblas/lib/cmake/rocblas
+-- Build without hipbBLASLt
+-- HIP backend selected.
+-- clang-offload-bundler found: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang-offload-bundler.exe
+-- AMDGCN assembler: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang.exe
+-- Build with amd_comgr 3.3.0 C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/amd_comgr/lib/cmake/amd_comgr
+-- Build with hiprtc  C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/hiprtc/lib/cmake/hiprtc
+-- HALF_INCLUDE_DIR: C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/include
+-- Build without rocTracer
+-- Build with rocrand 3.0.0 C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/rocrand/lib/cmake/rocrand
+-- Adding support for installing gfx900 database artifacts
+-- Adding support for installing gfx906 database artifacts
+-- Adding support for installing gfx908 database artifacts
+-- Adding support for installing gfx90a database artifacts
+-- Adding support for installing gfx942 database artifacts
+-- Adding support for installing gfx950 database artifacts
+-- Adding support for installing gfx1030 database artifacts
+-- Adding support for installing gfx1100 database artifacts
+-- Adding support for installing gfx1102 database artifacts
+-- Adding support for installing gfx1151 database artifacts
+-- Adding support for installing gfx1200 database artifacts
+-- Adding support for installing gfx1201 database artifacts
+-- rocm-cmake: Set license file to C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/LICENSE.md.
+-- Clang tidy found: 23.0.0git
+-- The HIP compiler identification is Clang 23.0.0 with GNU-like command-line
+-- Detecting HIP compiler ABI info
+-- Detecting HIP compiler ABI info - done
+-- Check for working HIP compiler: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang.exe - skipped
+-- Detecting HIP compile features
+-- Detecting HIP compile features - done
+-- MIOpen_VERSION= 3.6.2
+-- CMAKE_BUILD_TYPE= RelWithDebInfo
+-- Found Python3: C:/Users/rocm/Desktop/YOLO_AMD/phase3_buildtools/Scripts/python.exe (found version "3.13.16") found components: Interpreter
+-- Found rocrand headers at: C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/stage_rocrand
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
+-- GPU info utility: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/bin/hipInfo.exe
+-- MIOPEN_NO_GPU FALSE
+-- MIOPEN_TEST_GFX900 OFF
+-- MIOPEN_TEST_GFX906 OFF
+-- MIOPEN_TEST_GFX908 OFF
+-- MIOPEN_TEST_GFX90A OFF
+-- MIOPEN_TEST_GFX94X OFF
+-- MIOPEN_TEST_GFX95X OFF
+-- MIOPEN_TEST_GFX103X OFF
+-- MIOPEN_TEST_GFX110X OFF
+-- MIOPEN_TEST_GFX115X ON
+-- MIOPEN_TEST_GFX120X OFF
+-- MIOPEN_TEST_GFX125X OFF
+-- MIOPEN_TEST_GPU_XNACK_ENABLED OFF
+-- MIOPEN_TEST_GPU_DETECTION_FAILED FALSE
+-- MIOPEN_TEST_WITH_MIOPENDRIVER OFF
+-- MIOPEN_TEST_MLIR OFF
+-- MIOPEN_TEST_CONV OFF
+-- MIOPEN_TEST_DEEPBENCH OFF
+-- MIOPEN_TEST_DRIVER_ITER_MODE OFF
+-- MIOPEN_TEST_COMPOSABLEKERNEL OFF
+-- MIOPEN_TEST_DISCRETE ON
+-- MIOPEN_TEST_DBSYNC OFF
+-- MIOPEN_TEST_PERF OFF
+-- MIOPEN_TEST_ENABLE_TEST_SQLITE_PERFDB OFF
+-- MIOPEN_GTEST_SUFFIX FP32
+-- MIOPEN_TEST_FLOAT TRUE
+-- MIOPEN_TEST_HALF OFF
+-- MIOPEN_TEST_BFLOAT16 OFF
+-- MIOPEN_TEST_TF32 OFF
+-- MIOPEN_TEST_INT8 OFF
+-- MIOPEN_TEST_ALL OFF
+-- SKIP_TESTS: db_sync;test_ctc;test_conv2d;test_conv2d_find2;test_immed_conv2d
+-- SKIP_ALL_EXCEPT_TESTS: 
+-- Performing Test MIOPEN_HAS_address
+-- Performing Test MIOPEN_HAS_address - Failed
+-- Performing Test MIOPEN_HAS_thread
+-- Performing Test MIOPEN_HAS_thread - Failed
+-- Flaky test_sqlite_perfdb currently disabled (May 28 2025)
+-- Found GTest: C:/Users/rocm/Desktop/YOLO_AMD/phase5_deps/gtest_prefix/lib/cmake/GTest/GTestConfig.cmake (found version "1.14.0")
+-- MIOPEN_GTEST_FILTER Smoke*FP32*:Smoke*NONE*-*DBSync*:*DeepBench*:*MIOpenTestConv*
+-- gtest env: MIOPEN_USER_DB_PATH=C:/Users/rocm/Desktop/YOLO_AMD/phase5_4_build/ci_test/test/gtest
+-- gtest env: MIOPEN_TEST_COMPOSABLEKERNEL=OFF
+-- YAML-based test categorization
+-- Configuring done (16.2s)
+-- Generating done (2.4s)
+-- Build files have been written to: C:/Users/rocm/Desktop/YOLO_AMD/phase5_4_build/ci_test
+CMake Warning at cmake/ClangCheck.cmake:40 (message):
+  pre-commit not found; pre_commit_checks target will not be available and
+  pre-commit checks are skipped in format
+Call Stack (most recent call first):
+  CMakeLists.txt:105 (include)
+
+
+CMake Warning at cmake/CheckPreCommit.cmake:40 (message):
+
+
+  pre-commit package is NOT installed
+
+  Please run: pip install pre-commit
+
+    cd C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay
+    pre-commit install
+
+Call Stack (most recent call first):
+  CMakeLists.txt:106 (include)
+
+
+CMake Warning (author) at CMakeLists.txt:784 (set):
+  implicitly converting 'LIST' to 'STRING' type.
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning at CMakeLists.txt:795 (message):
+  DVC files not pulled down, skipped:
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx900.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx906.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx908.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx90a.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx942.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx1030.kdb.bz2
+
+
+Adding Test: test_adam : adam.cpp
+Adding Test: test_addlayernorm : addlayernorm.cpp
+Adding Test: test_api_convbiasactiv : api_convbiasactiv.cpp
+Adding Test: test_bad_fusion_plan : bad_fusion_plan.cpp
+Adding Test: test_binary_tensor_ops : binary_tensor_ops.cpp
+Adding Test: test_bn_3d_peract_test : bn_3d_peract_test.cpp
+Adding Test: test_bn_3d_spatial_test : bn_3d_spatial_test.cpp
+Adding Test: test_bn_activ_infer : bn_activ_infer.cpp
+Adding Test: test_bn_aux : bn_aux.cpp
+Adding Test: test_bn_bwd : bn_bwd.cpp
+Adding Test: test_bn_bwd_activation : bn_bwd_activation.cpp
+Adding Test: test_bn_bwd_serial_run : bn_bwd_serial_run.cpp
+Adding Test: test_bn_fwd_infer : bn_fwd_infer.cpp
+Adding Test: test_bn_fwd_train : bn_fwd_train.cpp
+Adding Test: test_bn_fwd_train_activation : bn_fwd_train_activation.cpp
+Adding Test: test_bn_fwd_train_serial_run : bn_fwd_train_serial_run.cpp
+Adding Test: test_bn_infer : bn_infer.cpp
+Adding Test: test_bn_infer_activation : bn_infer_activation.cpp
+Adding Test: test_bn_infer_serial_run : bn_infer_serial_run.cpp
+Adding Test: test_bn_input_validation : bn_input_validation.cpp
+Adding Test: test_bn_peract_test : bn_peract_test.cpp
+Adding Test: test_bn_spatial_test : bn_spatial_test.cpp
+Adding Test: test_cache : cache.cpp
+Adding Test: test_cat : cat.cpp
+Adding Test: test_cba_find2_infer : cba_find2_infer.cpp
+Adding Test: test_cba_infer : cba_infer.cpp
+Adding Test: test_cbna_inference : cbna_inference.cpp
+Adding Test: test_conv3d_test : conv3d_test.cpp
+Adding Test: test_conv_3d : conv_3d.cpp
+Adding Test: test_conv_activ_infer : conv_activ_infer.cpp
+Adding Test: test_conv_ai_candidate_selection_model : conv_ai_candidate_selection_model.cpp
+Adding Test: test_conv_ai_heuristics_threading : conv_ai_heuristics_threading.cpp
+Adding Test: test_conv_ai_nd_heuristics_test : conv_ai_nd_heuristics_test.cpp
+Adding Test: test_conv_ai_nd_kernel_tuning_utils : conv_ai_nd_kernel_tuning_utils.cpp
+Adding Test: test_conv_api : conv_api.cpp
+Adding Test: test_conv_api_find_mode : conv_api_find_mode.cpp
+Adding Test: test_conv_api_solution_count_2d_large_stride : conv_api_solution_count_2d_large_stride.cpp
+Adding Test: test_conv_api_solution_count_3d_large_stride : conv_api_solution_count_3d_large_stride.cpp
+Adding Test: test_conv_api_strided_tensors : conv_api_strided_tensors.cpp
+Adding Test: test_conv_asm_gtc_nhwc_large_tensor : conv_asm_gtc_nhwc_large_tensor.cpp
+Adding Test: test_conv_deterministic_implicit_gemm : conv_deterministic_implicit_gemm.cpp
+Adding Test: test_conv_embed_db : conv_embed_db.cpp
+Adding Test: test_conv_extra : conv_extra.cpp
+Adding Test: test_conv_for_implicit_gemm : conv_for_implicit_gemm.cpp
+Adding Test: test_conv_group : conv_group.cpp
+Adding Test: test_conv_hip_igemm_xdlops : conv_hip_igemm_xdlops.cpp
+Adding Test: test_conv_igemm_dynamic_dlops : conv_igemm_dynamic_dlops.cpp
+Adding Test: test_conv_igemm_dynamic_xdlops_nhwc_bf16 : conv_igemm_dynamic_xdlops_nhwc_bf16.cpp
+Adding Test: test_conv_igemm_dynamic_xdlops_nhwc_nchw : conv_igemm_dynamic_xdlops_nhwc_nchw.cpp
+Adding Test: test_conv_igemm_mlir_bwd_wrw : conv_igemm_mlir_bwd_wrw.cpp
+Adding Test: test_conv_igemm_mlir_fwd : conv_igemm_mlir_fwd.cpp
+Adding Test: test_conv_igemm_mlir_xdlops_bwd_wrw : conv_igemm_mlir_xdlops_bwd_wrw.cpp
+Adding Test: test_conv_igemm_mlir_xdlops_fwd : conv_igemm_mlir_xdlops_fwd.cpp
+Adding Test: test_conv_trans : conv_trans.cpp
+Adding Test: test_conv_workspace_size_range : conv_workspace_size_range.cpp
+Adding Test: test_ctc : ctc.cpp
+Adding Test: test_custom_allocator : custom_allocator.cpp
+Adding Test: test_db_paths : db_paths.cpp
+Adding Test: test_db_sync : db_sync.cpp
+Adding Test: test_deepbench_conv : deepbench_conv.cpp
+Adding Test: test_deepbench_lstm : deepbench_lstm.cpp
+Adding Test: test_deepbench_rnn : deepbench_rnn.cpp
+Adding Test: test_deterministic_conv_api : deterministic_conv_api.cpp
+Adding Test: test_dropout : dropout.cpp
+Adding Test: test_dumpTensorTest : dumpTensorTest.cpp
+Adding Test: test_embed_sqlite : embed_sqlite.cpp
+Adding Test: test_execute_primitive : execute_primitive.cpp
+Adding Test: test_filesystem_checker : filesystem_checker.cpp
+Adding Test: test_find_2_conv : find_2_conv.cpp
+Adding Test: test_find_db : find_db.cpp
+Adding Test: test_find_mode_trust_verify : find_mode_trust_verify.cpp
+Adding Test: test_fused_conv_bias_res_add_activ : fused_conv_bias_res_add_activ.cpp
+Adding Test: test_fusion_aux : fusion_aux.cpp
+Adding Test: test_fusion_test : fusion_test.cpp
+Adding Test: test_getitem : getitem.cpp
+Adding Test: test_glu : glu.cpp
+Adding Test: test_gpu_reference_kernel : gpu_reference_kernel.cpp
+Adding Test: test_group_conv2d_bwd : group_conv2d_bwd.cpp
+Adding Test: test_group_conv2d_fwd : group_conv2d_fwd.cpp
+Adding Test: test_group_conv2d_wrw : group_conv2d_wrw.cpp
+Adding Test: test_group_conv3d_bwd : group_conv3d_bwd.cpp
+Adding Test: test_group_conv3d_fwd : group_conv3d_fwd.cpp
+Adding Test: test_group_conv3d_wrw : group_conv3d_wrw.cpp
+Adding Test: test_group_conv_deterministic_split_k : group_conv_deterministic_split_k.cpp
+Adding Test: test_groupnorm : groupnorm.cpp
+Adding Test: test_gru_test : gru_test.cpp
+Adding Test: test_gtest_activation : gtest_activation.cpp
+Adding Test: test_handle_hip_device : handle_hip_device.cpp
+Adding Test: test_handle_test : handle_test.cpp
+Adding Test: test_hip_graph_exist : hip_graph_exist.cpp
+Adding Test: test_hipblaslt_gemm : hipblaslt_gemm.cpp
+Adding Test: test_include_inliner : include_inliner.cpp
+Adding Test: test_inline_vector_basic_ops : inline_vector_basic_ops.cpp
+Adding Test: test_kernel_build_params : kernel_build_params.cpp
+Adding Test: test_kernel_tuning_net : kernel_tuning_net.cpp
+Adding Test: test_kthvalue : kthvalue.cpp
+Adding Test: test_layernorm : layernorm.cpp
+Adding Test: test_layout_transpose : layout_transpose.cpp
+Adding Test: test_lgbm_pcfg_picker : lgbm_pcfg_picker.cpp
+Adding Test: test_lgbm_picker : lgbm_picker.cpp
+Adding Test: test_log_test : log_test.cpp
+Adding Test: test_log_test_neg : log_test_neg.cpp
+Adding Test: test_lrn : lrn.cpp
+Adding Test: test_lstm : lstm.cpp
+Adding Test: test_lstm_dropout : lstm_dropout.cpp
+Adding Test: test_lstm_extra : lstm_extra.cpp
+Adding Test: test_lstm_fused_inference_test : lstm_fused_inference_test.cpp
+Adding Test: test_lstm_large_workspace : lstm_large_workspace.cpp
+Adding Test: test_miopen_conv : miopen_conv.cpp
+Adding Test: test_miopen_cstdint_lp64 : miopen_cstdint_lp64.cpp
+Adding Test: test_miopendriver_conv2d_trans : miopendriver_conv2d_trans.cpp
+Adding Test: test_miopendriver_conv_immed : miopendriver_conv_immed.cpp
+Adding Test: test_miopendriver_gemm : miopendriver_gemm.cpp
+Adding Test: test_miopendriver_int8_output_descriptor : miopendriver_int8_output_descriptor.cpp
+Adding Test: test_miopendriver_regression_big_tensor : miopendriver_regression_big_tensor.cpp
+Adding Test: test_miopendriver_regression_float_half_gfx10 : miopendriver_regression_float_half_gfx10.cpp
+Adding Test: test_miopendriver_regression_half : miopendriver_regression_half.cpp
+Adding Test: test_miopendriver_regression_half_gfx9 : miopendriver_regression_half_gfx9.cpp
+Adding Test: test_mt_queue : mt_queue.cpp
+Adding Test: test_multimarginloss : multimarginloss.cpp
+Adding Test: test_na_infer : na_infer.cpp
+Adding Test: test_na_inference : na_inference.cpp
+Adding Test: test_na_inference_find2 : na_inference_find2.cpp
+Adding Test: test_na_train : na_train.cpp
+Adding Test: test_na_train_find2 : na_train_find2.cpp
+Adding Test: test_naive_timeout : naive_timeout.cpp
+Adding Test: test_nonpack_conv3d_fwd : nonpack_conv3d_fwd.cpp
+Adding Test: test_perf_config_HipImplicitGemm3DGroupBwdXdlops : perf_config_HipImplicitGemm3DGroupBwdXdlops.cpp
+Adding Test: test_perf_config_HipImplicitGemm3DGroupFwdXdlops : perf_config_HipImplicitGemm3DGroupFwdXdlops.cpp
+Adding Test: test_perf_config_group_deterministic_set_next_value : perf_config_group_deterministic_set_next_value.cpp
+Adding Test: test_perfdb : perfdb.cpp
+Adding Test: test_pooling2d : pooling2d.cpp
+Adding Test: test_pooling2d_asymmetric : pooling2d_asymmetric.cpp
+Adding Test: test_pooling2d_asymmetric_nhwc : pooling2d_asymmetric_nhwc.cpp
+Adding Test: test_pooling2d_wide : pooling2d_wide.cpp
+Adding Test: test_pooling2d_wide_nhwc : pooling2d_wide_nhwc.cpp
+Adding Test: test_pooling3d : pooling3d.cpp
+Adding Test: test_pooling3d_ndhwc : pooling3d_ndhwc.cpp
+Adding Test: test_prelu : prelu.cpp
+Adding Test: test_reduce : reduce.cpp
+Adding Test: test_reduce_shape_limits : reduce_shape_limits.cpp
+Adding Test: test_reducecalculation : reducecalculation.cpp
+Adding Test: test_reduceextreme : reduceextreme.cpp
+Adding Test: test_regression_float_mi100 : regression_float_mi100.cpp
+Adding Test: test_regression_issue_2012 : regression_issue_2012.cpp
+Adding Test: test_rnn_extra : rnn_extra.cpp
+Adding Test: test_rnn_seq_api : rnn_seq_api.cpp
+Adding Test: test_rnn_vanilla : rnn_vanilla.cpp
+Adding Test: test_rnn_vanilla_dropout : rnn_vanilla_dropout.cpp
+Adding Test: test_rope : rope.cpp
+Adding Test: test_sequences : sequences.cpp
+Adding Test: test_smoke_solver_ConvAsmImplicitGemmGTCDynamicFwdDlopsNCHWC : smoke_solver_ConvAsmImplicitGemmGTCDynamicFwdDlopsNCHWC.cpp
+Adding Test: test_smoke_solver_ConvAsmImplicitGemmGTCDynamicXdlopsNHWC_bf16 : smoke_solver_ConvAsmImplicitGemmGTCDynamicXdlopsNHWC_bf16.cpp
+Adding Test: test_smoke_solver_ConvAsmImplicitGemmGTCDynamicXdlopsNHWC_fp32_fp16 : smoke_solver_ConvAsmImplicitGemmGTCDynamicXdlopsNHWC_fp32_fp16.cpp
+Adding Test: test_smoke_solver_convasmbwdwrw : smoke_solver_convasmbwdwrw.cpp
+Adding Test: test_smoke_tuning_policy : smoke_tuning_policy.cpp
+Adding Test: test_soft_max : soft_max.cpp
+Adding Test: test_softmarginloss : softmarginloss.cpp
+Adding Test: test_softmax_find20 : softmax_find20.cpp
+Adding Test: test_solution_load_work_dims : solution_load_work_dims.cpp
+Adding Test: test_solver : solver.cpp
+Adding Test: test_solver_bwd_f8 : solver_bwd_f8.cpp
+Adding Test: test_solver_f8 : solver_f8.cpp
+Adding Test: test_solver_find_list_registry : solver_find_list_registry.cpp
+Adding Test: test_solver_fwd_f8 : solver_fwd_f8.cpp
+Adding Test: test_solver_wrw_f8 : solver_wrw_f8.cpp
+Adding Test: test_stream_tracker : stream_tracker.cpp
+Adding Test: test_sysdb_selection_cu_test : sysdb_selection_cu_test.cpp
+Adding Test: test_t5layernorm : t5layernorm.cpp
+Adding Test: test_tensor_api : tensor_api.cpp
+Adding Test: test_tensor_reorder : tensor_reorder.cpp
+Adding Test: test_tensor_test : tensor_test.cpp
+Adding Test: test_tensor_trans : tensor_trans.cpp
+Adding Test: test_tensor_transform : tensor_transform.cpp
+Adding Test: test_ternary_tensor_ops : ternary_tensor_ops.cpp
+Adding Test: test_test_errors : test_errors.cpp
+Adding Test: test_transformers_adam_w : transformers_adam_w.cpp
+Adding Test: test_tuna_net : tuna_net.cpp
+Adding Test: test_type_name : type_name.cpp
+Adding Test: test_unary_tensor_ops : unary_tensor_ops.cpp
+Adding Test: test_unit_ActivationDescriptor : unit_ActivationDescriptor.cpp
+Adding Test: test_unit_FinInterface : unit_FinInterface.cpp
+Adding Test: test_unit_SeqTensorDescriptor : unit_SeqTensorDescriptor.cpp
+Adding Test: test_unit_TensorDescriptor : unit_TensorDescriptor.cpp
+Adding Test: test_unit_batchnorm_applicability : unit_batchnorm_applicability.cpp
+Adding Test: test_unit_batchnorm_vectorsize : unit_batchnorm_vectorsize.cpp
+Adding Test: test_unit_ck_impl_loader : unit_ck_impl_loader.cpp
+Adding Test: test_unit_conv_ProblemDescription : unit_conv_ProblemDescription.cpp
+Adding Test: test_unit_conv_solver_ConvAsm1x1U : unit_conv_solver_ConvAsm1x1U.cpp
+Adding Test: test_unit_conv_solver_ConvAsm1x1UV2 : unit_conv_solver_ConvAsm1x1UV2.cpp
+Adding Test: test_unit_conv_solver_ConvAsm3x3U : unit_conv_solver_ConvAsm3x3U.cpp
+Adding Test: test_unit_conv_solver_ConvAsm5x10u2v2b1 : unit_conv_solver_ConvAsm5x10u2v2b1.cpp
+Adding Test: test_unit_conv_solver_ConvAsm5x10u2v2f1 : unit_conv_solver_ConvAsm5x10u2v2f1.cpp
+Adding Test: test_unit_conv_solver_ConvAsm7x7c3h224w224k64u2v2p3q3f1 : unit_conv_solver_ConvAsm7x7c3h224w224k64u2v2p3q3f1.cpp
+Adding Test: test_unit_conv_solver_ConvAsmBwdWrW3x3 : unit_conv_solver_ConvAsmBwdWrW3x3.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmGTCDynamicBwdXdlops : unit_conv_solver_ConvAsmImplicitGemmGTCDynamicBwdXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmGTCDynamicBwdXdlopsNHWC : unit_conv_solver_ConvAsmImplicitGemmGTCDynamicBwdXdlopsNHWC.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmGTCDynamicFwdXdlops : unit_conv_solver_ConvAsmImplicitGemmGTCDynamicFwdXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmGTCDynamicFwdXdlopsNHWC : unit_conv_solver_ConvAsmImplicitGemmGTCDynamicFwdXdlopsNHWC.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmGTCDynamicWrwXdlops : unit_conv_solver_ConvAsmImplicitGemmGTCDynamicWrwXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmGTCDynamicWrwXdlopsNHWC : unit_conv_solver_ConvAsmImplicitGemmGTCDynamicWrwXdlopsNHWC.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmV4R1DynamicBwd : unit_conv_solver_ConvAsmImplicitGemmV4R1DynamicBwd.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmV4R1DynamicFwd : unit_conv_solver_ConvAsmImplicitGemmV4R1DynamicFwd.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmV4R1DynamicFwd_1x1 : unit_conv_solver_ConvAsmImplicitGemmV4R1DynamicFwd_1x1.cpp
+Adding Test: test_unit_conv_solver_ConvAsmImplicitGemmV4R1DynamicWrw : unit_conv_solver_ConvAsmImplicitGemmV4R1DynamicWrw.cpp
+Adding Test: test_unit_conv_solver_ConvBinWinograd3x3U : unit_conv_solver_ConvBinWinograd3x3U.cpp
+Adding Test: test_unit_conv_solver_ConvBinWinogradRxS : unit_conv_solver_ConvBinWinogradRxS.cpp
+Adding Test: test_unit_conv_solver_ConvBinWinogradRxSf2x3 : unit_conv_solver_ConvBinWinogradRxSf2x3.cpp
+Adding Test: test_unit_conv_solver_ConvBinWinogradRxSf2x3g1 : unit_conv_solver_ConvBinWinogradRxSf2x3g1.cpp
+Adding Test: test_unit_conv_solver_ConvBinWinogradRxSf3x2 : unit_conv_solver_ConvBinWinogradRxSf3x2.cpp
+Adding Test: test_unit_conv_solver_ConvCkGroupedConvFwd : unit_conv_solver_ConvCkGroupedConvFwd.cpp
+Adding Test: test_unit_conv_solver_ConvDepthwiseBwdData2D_test : unit_conv_solver_ConvDepthwiseBwdData2D_test.cpp
+Adding Test: test_unit_conv_solver_ConvDepthwiseFwd3D : unit_conv_solver_ConvDepthwiseFwd3D.cpp
+Adding Test: test_unit_conv_solver_ConvDirectNaiveConvBwd : unit_conv_solver_ConvDirectNaiveConvBwd.cpp
+Adding Test: test_unit_conv_solver_ConvDirectNaiveConvFwd : unit_conv_solver_ConvDirectNaiveConvFwd.cpp
+Adding Test: test_unit_conv_solver_ConvDirectNaiveConvWrw : unit_conv_solver_ConvDirectNaiveConvWrw.cpp
+Adding Test: test_unit_conv_solver_ConvHipBwdWrW53 : unit_conv_solver_ConvHipBwdWrW53.cpp
+Adding Test: test_unit_conv_solver_ConvHipConv : unit_conv_solver_ConvHipConv.cpp
+Adding Test: test_unit_conv_solver_ConvHipDirectFwd : unit_conv_solver_ConvHipDirectFwd.cpp
+Adding Test: test_unit_conv_solver_ConvHipDirectFwd11x11 : unit_conv_solver_ConvHipDirectFwd11x11.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemm3DGroupBwdXdlops : unit_conv_solver_ConvHipImplicitGemm3DGroupBwdXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemm3DGroupBwdXdlops_LargeStride : unit_conv_solver_ConvHipImplicitGemm3DGroupBwdXdlops_LargeStride.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemm3DGroupFwdXdlops : unit_conv_solver_ConvHipImplicitGemm3DGroupFwdXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemm3DGroupFwdXdlops_LargeStride : unit_conv_solver_ConvHipImplicitGemm3DGroupFwdXdlops_LargeStride.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemm3DGroupWrwXdlops : unit_conv_solver_ConvHipImplicitGemm3DGroupWrwXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemm3DGroupWrwXdlops_LargeStride : unit_conv_solver_ConvHipImplicitGemm3DGroupWrwXdlops_LargeStride.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmBwdDataV1R1 : unit_conv_solver_ConvHipImplicitGemmBwdDataV1R1.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmBwdDataV4R1Xdlops : unit_conv_solver_ConvHipImplicitGemmBwdDataV4R1Xdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmForwardV4R4Xdlops : unit_conv_solver_ConvHipImplicitGemmForwardV4R4Xdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmForwardV4R4Xdlops_Padded_Gemm : unit_conv_solver_ConvHipImplicitGemmForwardV4R4Xdlops_Padded_Gemm.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmForwardV4R5Xdlops : unit_conv_solver_ConvHipImplicitGemmForwardV4R5Xdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmGroupBwdXdlops : unit_conv_solver_ConvHipImplicitGemmGroupBwdXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmGroupBwdXdlops_LargeStride : unit_conv_solver_ConvHipImplicitGemmGroupBwdXdlops_LargeStride.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmGroupFwdXdlops : unit_conv_solver_ConvHipImplicitGemmGroupFwdXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmGroupFwdXdlops_LargeStride : unit_conv_solver_ConvHipImplicitGemmGroupFwdXdlops_LargeStride.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmGroupWrwXdlops : unit_conv_solver_ConvHipImplicitGemmGroupWrwXdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmGroupWrwXdlops_ElementCountOverflow : unit_conv_solver_ConvHipImplicitGemmGroupWrwXdlops_ElementCountOverflow.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmGroupWrwXdlops_LargeStride : unit_conv_solver_ConvHipImplicitGemmGroupWrwXdlops_LargeStride.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmV4R1Fwd : unit_conv_solver_ConvHipImplicitGemmV4R1Fwd.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmV4R1WrW : unit_conv_solver_ConvHipImplicitGemmV4R1WrW.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmV4R4Fwd : unit_conv_solver_ConvHipImplicitGemmV4R4Fwd.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmV4R4WrW : unit_conv_solver_ConvHipImplicitGemmV4R4WrW.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmWrwV4R4Xdlops : unit_conv_solver_ConvHipImplicitGemmWrwV4R4Xdlops.cpp
+Adding Test: test_unit_conv_solver_ConvHipImplicitGemmWrwV4R4Xdlops_Padded_Gemm : unit_conv_solver_ConvHipImplicitGemmWrwV4R4Xdlops_Padded_Gemm.cpp
+Adding Test: test_unit_conv_solver_ConvMPBidirectWinogradF2x3 : unit_conv_solver_ConvMPBidirectWinogradF2x3.cpp
+Adding Test: test_unit_conv_solver_ConvMPBidirectWinogradF3x3 : unit_conv_solver_ConvMPBidirectWinogradF3x3.cpp
+Adding Test: test_unit_conv_solver_ConvMPBidirectWinogradF4x3 : unit_conv_solver_ConvMPBidirectWinogradF4x3.cpp
+Adding Test: test_unit_conv_solver_ConvMPBidirectWinogradF5x3 : unit_conv_solver_ConvMPBidirectWinogradF5x3.cpp
+Adding Test: test_unit_conv_solver_ConvMPBidirectWinogradF6x3 : unit_conv_solver_ConvMPBidirectWinogradF6x3.cpp
+Adding Test: test_unit_conv_solver_ConvWinoFuryRxS : unit_conv_solver_ConvWinoFuryRxS.cpp
+Adding Test: test_unit_conv_solver_ConvWinoRageRxS : unit_conv_solver_ConvWinoRageRxS.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF1x1x7x2 : unit_conv_solver_ConvWinograd3x3MultipassWrWF1x1x7x2.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF1x1x7x3 : unit_conv_solver_ConvWinograd3x3MultipassWrWF1x1x7x3.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF3x2 : unit_conv_solver_ConvWinograd3x3MultipassWrWF3x2.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF3x3 : unit_conv_solver_ConvWinograd3x3MultipassWrWF3x3.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF3x4 : unit_conv_solver_ConvWinograd3x3MultipassWrWF3x4.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF3x5 : unit_conv_solver_ConvWinograd3x3MultipassWrWF3x5.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF3x6 : unit_conv_solver_ConvWinograd3x3MultipassWrWF3x6.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF5x3 : unit_conv_solver_ConvWinograd3x3MultipassWrWF5x3.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF5x4 : unit_conv_solver_ConvWinograd3x3MultipassWrWF5x4.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF7x2 : unit_conv_solver_ConvWinograd3x3MultipassWrWF7x2.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF7x2x1x1 : unit_conv_solver_ConvWinograd3x3MultipassWrWF7x2x1x1.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF7x3 : unit_conv_solver_ConvWinograd3x3MultipassWrWF7x3.cpp
+Adding Test: test_unit_conv_solver_ConvWinograd3x3MultipassWrWF7x3x1x1 : unit_conv_solver_ConvWinograd3x3MultipassWrWF7x3x1x1.cpp
+Adding Test: test_unit_conv_solver_GemmBwd1x1_stride1 : unit_conv_solver_GemmBwd1x1_stride1.cpp
+Adding Test: test_unit_conv_solver_GemmBwd1x1_stride2 : unit_conv_solver_GemmBwd1x1_stride2.cpp
+Adding Test: test_unit_conv_solver_GemmBwdRest : unit_conv_solver_GemmBwdRest.cpp
+Adding Test: test_unit_conv_solver_GemmFwd1x1_0_1 : unit_conv_solver_GemmFwd1x1_0_1.cpp
+Adding Test: test_unit_conv_solver_GemmFwd1x1_0_1_int8 : unit_conv_solver_GemmFwd1x1_0_1_int8.cpp
+Adding Test: test_unit_conv_solver_GemmFwd1x1_0_2 : unit_conv_solver_GemmFwd1x1_0_2.cpp
+Adding Test: test_unit_conv_solver_GemmFwdRest : unit_conv_solver_GemmFwdRest.cpp
+Adding Test: test_unit_conv_solver_GemmWrw1x1_stride1 : unit_conv_solver_GemmWrw1x1_stride1.cpp
+Adding Test: test_unit_conv_solver_GemmWrwUniversal : unit_conv_solver_GemmWrwUniversal.cpp
+Adding Test: test_unit_conv_solver_fft : unit_conv_solver_fft.cpp
+Adding Test: test_unit_conv_solver_gemm_large_memory : unit_conv_solver_gemm_large_memory.cpp
+Adding Test: test_unit_conv_solver_tests : unit_conv_solver_tests.cpp
+Adding Test: test_unit_fp8_conversion : unit_fp8_conversion.cpp
+Adding Test: test_unit_implicitgemm_ck_util : unit_implicitgemm_ck_util.cpp
+Adding Test: test_unit_kernel_tuning_mode_logs : unit_kernel_tuning_mode_logs.cpp
+Adding Test: test_unit_launch_geometry : unit_launch_geometry.cpp
+Adding Test: test_unit_lib_env_var : unit_lib_env_var.cpp
+Adding Test: test_unit_modified_z : unit_modified_z.cpp
+Adding Test: test_unit_tensorOp_ProblemDescription : unit_tensorOp_ProblemDescription.cpp
+Adding Test: test_w_supertensor : w_supertensor.cpp
+Adding Test: test_wrapper_routing : wrapper_routing.cpp
+CMake Warning at C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/shared/ctest/TestCategories.cmake:190 (message):
+  Failed to parse test categories YAML: Traceback (most recent call last):
+
+    File "C:\Users\rocm\Desktop\YOLO_AMD\rocm-libraries-phase5.4-develop-replay\shared\ctest\parse_test_categories.py", line 1, in <module>
+      import yaml
+
+  ModuleNotFoundError: No module named 'yaml'
+
+Call Stack (most recent call first):
+  test/gtest/CMakeLists.txt:518 (apply_test_category_labels)
+
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1161 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1161 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1161 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1161 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+

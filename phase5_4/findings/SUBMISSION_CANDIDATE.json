@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "gate": "P54-10",
+  "candidate_id": "P5.4-SUBMISSION-CANDIDATE-R1",
+  "generated": "2026-10-09T20:25:49.133348",
+  "local_branch": "miopen/hiprtc-freestanding-upstream-ready (LOCAL ONLY; not pushed; no fork created)",
+  "worktree": "C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay",
+  "pinned_base": {
+    "repo": "https://github.com/ROCm/rocm-libraries",
+    "branch": "develop",
+    "sha": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+    "commit_date": "2026-10-09T10:39:02Z",
+    "distance_from_r2_base": 61,
+    "merge_base_with_r2_base": "7c5866144ac4b879be442563e2b49fa1c142ea36"
+  },
+  "commits": [
+    {
+      "n": 1,
+      "sha": "0af085f139468305c6dd37d86e622f2606225096",
+      "subject": "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
+      "parent": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243"
+    },
+    {
+      "n": 2,
+      "sha": "69e7ff0715ef0f7fb8027b56e9ad1a3baa755692",
+      "subject": "MIOpen: make remaining RTC kernel std includes self-contained",
+      "parent": "0af085f139468305c6dd37d86e622f2606225096"
+    },
+    {
+      "n": 3,
+      "sha": "cab3f08ab406a3567c2483904b137f3715d00db2",
+      "subject": "MIOpen: add portable HIPRTC no-host-STL regression test",
+      "parent": "69e7ff0715ef0f7fb8027b56e9ad1a3baa755692"
+    }
+  ],
+  "full_tree_sha": "81e39c3b25cb1c37958959fb610d975d294dc9bf",
+  "miopen_subtree_sha": "96f292c39a32c149d944bfd129f9cd47d3de68c7",
+  "author_committer": "AIwork4me <AIwork4me@users.noreply.github.com> (unsigned; DCO not required upstream, sign-off NOT_AUTHORIZED)",
+  "patch_files": "phase5_4/patches/prospective_submission_series/ (git format-patch of the three commits)",
+  "per_patch_sha256": {
+    "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": "da5a9de469e223db5c30e755b16670ef68c188b328bf455cbf3d3a28b0a56510",
+    "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": "6358142bf585ab89b64ef2c7060c6bfa477eaac837a6514e6d3a293772ac2c7c",
+    "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch": "69cbbb86a74a4ab6f2c36e201c58ad23cee952dd62570627a49f8790165599ee"
+  },
+  "series_sha256_concat_v1": "8e00f59114d17205d06664a065856bbd9012e40065e8826e4725f790c024a0c5",
+  "series_note": "differs from R2 series hash 48308f6d... ONLY in the 'From <sha> <date>' header line per file (new commit identity); diff payloads verified byte-identical 3/3",
+  "changed_file_blob_identities": {
+    "src/CMakeLists.txt": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+    "src/kernels/miopen_type_traits.hpp": "71b64ed063840b353ef94d00ef8dfe9c4a2ce35c",
+    "src/kernels/miopen_utility.hpp": "44ab2c40ea8a5fcc5264976216d0839a9b7b5aa9",
+    "src/kernels/radix.hpp": "99c29fda93463818b2bb8c91230527098b689687",
+    "src/kernels/tensor_view.hpp": "d7963324b0de98900f105ca07e9264e12ae0b646",
+    "test/CMakeLists.txt": "67e9ff25915d7a38d2b203cd6ae9174e9357426c",
+    "test/hiprtc_selfcontained.cpp": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
+    "src/kernels/miopen_freestanding_type_traits.hpp": "fc864b4eaa18235fe877ffdb4715e23033a817d4",
+    "src/kernels/miopen_freestanding_utility.hpp": "04b207792d7edff69ce91189c146e16b022cbb35",
+    "src/kernels/miopen_freestanding_initializer_list.hpp": "de044f6fc9dff13051d9eb38ecdd9b49a01ea27c"
+  },
+  "blob_identity_vs_r2": "10/10 identical to f18c4de9 blobs",
+  "SOURCE_FIX_DELTA_FROM_R2": "NONE",
+  "identity_separation": "FROZEN R2 (b983cadd @ 7c586614, immutable, remote-verified c841716) vs THIS CANDIDATE (81e39c3b @ 681bc9ed). Not the same identity as R2; never described as such.",
+  "windows_verification": "see phase5_4/evidence/LATEST_DEVELOP_WINDOWS_REVALIDATION.json (P54-04): configure/build/ctest/matrix/bare-env/BF16/DLL/numerics/no-STL-runtime PASS; YOLO cell recorded there",
+  "frozen_status": "TECHNICALLY-FROZEN-PENDING-FINAL-GATE (mark TECHNICALLY FROZEN only when all P54-04 mandated gates PASS - see LATEST_DEVELOP_WINDOWS_REVALIDATION.json verdict)",
+  "upstream_actions": {
+    "pr_created": false,
+    "fork_created": false,
+    "pushed_to_rocm": false
+  }
+}

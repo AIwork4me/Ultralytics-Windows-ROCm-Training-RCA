@@ -1,0 +1,345 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Lib\site-packages\cmake\data\bin\cmake.exe -S C:\Users\rocm\Desktop\YOLO_AMD\rocm-libraries-phase5.4-develop-replay\projects\miopen -B C:\Users\rocm\Desktop\YOLO_AMD\phase5_4_build\miopen -G Ninja -DCMAKE_MAKE_PROGRAM=C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Scripts\ninja.exe -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=C:\Users\rocm\Desktop\YOLO_AMD\phase5_4_build\miopen\install -DCMAKE_TOOLCHAIN_FILE=C:\Users\rocm\Desktop\YOLO_AMD\rocm-libraries-phase5.4-develop-replay\projects\miopen\cmake\ClangToolChain.cmake -DCMAKE_C_COMPILER=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang.exe -DCMAKE_CXX_COMPILER=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang++.exe -DCMAKE_HIP_COMPILER=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\clang.exe -DCMAKE_HIP_ARCHITECTURES=gfx1151 -DCMAKE_LINKER=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin\lld-link.exe -DROCM_PATH=C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core -DCMAKE_PREFIX_PATH=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\dep_prefix\Library;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\rocm-cmake;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\hip;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\hip-lang;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\rocblas;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\amd_comgr;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\hiprtc;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\rocrand;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\rocm-core;C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\nlohmann_json -DHALF_INCLUDE_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\cmake_shims\include -DROCRAND_INCLUDE_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\stage_rocrand -DBZIP2_INCLUDE_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\dep_prefix\Library\include -DSQLite3_INCLUDE_DIR=C:\Users\rocm\Desktop\YOLO_AMD\phase3_deps\dep_prefix\Library\include -DBUILD_TESTING=OFF -DMIOPEN_BUILD_DRIVER=OFF -DMIOPEN_BUILD_CK=OFF -DMIOPEN_EMBED_BINCACHE=OFF -DMIOPEN_BINCACHE_PATH= -DMIOPEN_ENABLE_FIN=OFF -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF -DUNZIPPER=C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/tools/bzip2.cmd
+exit=0
+-- ROCM_PATH provided: C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core
+-- Using ROCm Clang compilers from C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin
+-- Added C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core to CMAKE_PREFIX_PATH for finding HIP package
+-- Using ROCm Clang compilers from C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_core\lib\llvm\bin
+-- The CXX compiler identification is Clang 23.0.0 with GNU-like command-line
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+-- Looking for pthread_create in pthread - not found
+-- Check if compiler accepts -pthread
+-- Check if compiler accepts -pthread - no
+-- Found Threads: TRUE
+-- Found SQLite3: C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/dep_prefix/Library/lib/sqlite3.lib (found version "3.53.4")
+-- Found BZip2: C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/dep_prefix/Library/lib/libbz2.lib (found version "1.0.8")
+-- Looking for BZ2_bzCompressInit
+-- Looking for BZ2_bzCompressInit - found
+-- Performing Test HAS_HIP
+-- Performing Test HAS_HIP - Success
+-- MIOPEN_OFFLINE_COMPILER_PATHS_V2: OFF
+-- MIOPEN_BUILD_DRIVER: OFF
+-- Build with HIP 7.14.60850 C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/hip/lib/cmake/hip
+-- Enable Composable Kernels: ON
+-- Enable per-arch CK unbundling: OFF
+-- Enable hipconv: ON
+-- Performing Test MIOPEN_HIP_COMPILER_HAS_OPTION_OFFLOAD_UNIFORM_BLOCK
+-- Performing Test MIOPEN_HIP_COMPILER_HAS_OPTION_OFFLOAD_UNIFORM_BLOCK - Success
+-- Hip compiler flags:  -D__HIP_PLATFORM_AMD__=1 -D__HIP_PLATFORM_HCC__=1 C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/amdhip64.lib  -fno-offload-uniform-block 
+-- Build with rocblas 2.46.0 C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/rocblas/lib/cmake/rocblas
+-- Build without hipbBLASLt
+-- HIP backend selected.
+-- clang-offload-bundler found: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang-offload-bundler.exe
+-- AMDGCN assembler: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang.exe
+-- Build with amd_comgr 3.3.0 C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/amd_comgr/lib/cmake/amd_comgr
+-- Build with hiprtc  C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/hiprtc/lib/cmake/hiprtc
+-- HALF_INCLUDE_DIR: C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/include
+-- Build without rocTracer
+-- Build with rocrand 3.0.0 C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/cmake_shims/rocrand/lib/cmake/rocrand
+-- Adding support for installing gfx900 database artifacts
+-- Adding support for installing gfx906 database artifacts
+-- Adding support for installing gfx908 database artifacts
+-- Adding support for installing gfx90a database artifacts
+-- Adding support for installing gfx942 database artifacts
+-- Adding support for installing gfx950 database artifacts
+-- Adding support for installing gfx1030 database artifacts
+-- Adding support for installing gfx1100 database artifacts
+-- Adding support for installing gfx1102 database artifacts
+-- Adding support for installing gfx1151 database artifacts
+-- Adding support for installing gfx1200 database artifacts
+-- Adding support for installing gfx1201 database artifacts
+-- rocm-cmake: Set license file to C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/LICENSE.md.
+-- Clang tidy found: 23.0.0git
+-- The HIP compiler identification is Clang 23.0.0 with GNU-like command-line
+-- Detecting HIP compiler ABI info
+-- Detecting HIP compiler ABI info - done
+-- Check for working HIP compiler: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang.exe - skipped
+-- Detecting HIP compile features
+-- Detecting HIP compile features - done
+-- MIOpen_VERSION= 3.6.2
+-- CMAKE_BUILD_TYPE= RelWithDebInfo
+-- Found Python3: C:/Users/rocm/Desktop/YOLO_AMD/phase3_buildtools/Scripts/python.exe (found version "3.13.16") found components: Interpreter
+-- Found rocrand headers at: C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/stage_rocrand
+-- MIOpen CK: no supported GPU targets found in GPU_TARGETS; skipping CK grouped conv library build.
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR
+-- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
+-- Configuring done (20.5s)
+-- Generating done (1.1s)
+-- Build files have been written to: C:/Users/rocm/Desktop/YOLO_AMD/phase5_4_build/miopen
+CMake Warning at cmake/ClangCheck.cmake:40 (message):
+  pre-commit not found; pre_commit_checks target will not be available and
+  pre-commit checks are skipped in format
+Call Stack (most recent call first):
+  CMakeLists.txt:105 (include)
+
+
+CMake Warning at cmake/CheckPreCommit.cmake:40 (message):
+
+
+  pre-commit package is NOT installed
+
+  Please run: pip install pre-commit
+
+    cd C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay
+    pre-commit install
+
+Call Stack (most recent call first):
+  CMakeLists.txt:106 (include)
+
+
+CMake Warning at CMakeLists.txt:408 (find_package):
+  By not providing "Findcomposable_kernel.cmake" in CMAKE_MODULE_PATH this
+  project has asked CMake to find a package configuration file provided by
+  "composable_kernel", but CMake did not find one.
+
+  Could not find a package configuration file provided by "composable_kernel"
+  (requested version 1.0.0) with any of the following names:
+
+    composable_kernel.cps
+    composable_kernelConfig.cmake
+    composable_kernel-config.cmake
+
+  Add the installation prefix of "composable_kernel" to CMAKE_PREFIX_PATH or
+  set "composable_kernel_DIR" to a directory containing one of the above
+  files.  If "composable_kernel" provides a separate development package or
+  SDK, be sure it has been installed.
+
+
+CMake Warning (author) at CMakeLists.txt:784 (set):
+  implicitly converting 'LIST' to 'STRING' type.
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning at CMakeLists.txt:795 (message):
+  DVC files not pulled down, skipped:
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx900.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx906.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx908.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx90a.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx942.kdb.bz2,
+  C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay/projects/miopen/src/kernels/gfx1030.kdb.bz2
+
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at tools/sqlite2txt/CMakeLists.txt:5 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1160 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1161 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/CMakeLists.txt:1161 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at src/sqlite/CMakeLists.txt:37 (target_link_libraries):
+  The library that is being linked to, SQLite::SQLite3, is marked as being
+  deprecated by the owner.  The message provided by the developer is:
+
+  The target name SQLite::SQLite3 is deprecated.  Please use SQLite3::SQLite3
+  instead.
+
+This warning is for project developers.  Use -Wno-author to suppress it.
+

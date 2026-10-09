@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "gate": "P54-04",
+  "mission_id": "WINDOWS-P54-MIOPEN-UPSTREAM-MERGE-READINESS",
+  "generated": "2026-10-09T20:29:00.820120",
+  "target": "NEW validation on LATEST-DEVELOP REPLAY tree (not a reprint of R2 historical results)",
+  "source": {
+    "worktree": "C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.4-develop-replay",
+    "git_head": "cab3f08ab406a3567c2483904b137f3715d00db2",
+    "full_tree": "81e39c3b25cb1c37958959fb610d975d294dc9bf",
+    "miopen_subtree": "96f292c39a32c149d944bfd129f9cd47d3de68c7",
+    "base": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243"
+  },
+  "results": {
+    "1_cmake_configure": {
+      "exit": 0,
+      "log": "logs/ci/ci_configure.log",
+      "note": "BUILD_TESTING=ON fresh dir; temporary hip-lang staging restored"
+    },
+    "2_test_target_build": {
+      "exit": 0,
+      "log": "logs/ci/ci_build_target.log",
+      "test_exe_sha256": "0defce4cb66d40f98eb6ba50f923572a5ba289ad931490a791a41bd3b969dc5a"
+    },
+    "3_hiprtc_dll_resolution": {
+      "ctest_bare_env": "Passed (PATH=System32 only; CMake ENVIRONMENT prepend does the work)",
+      "log": "logs/ci/ci_ctest_bare_env.log"
+    },
+    "4_ctest_discovery": {
+      "exit": 0,
+      "log": "logs/ci/ci_ctest_discovery.log"
+    },
+    "5_genuine_nostl_ctest": {
+      "verdict": "Passed (NOT skipped)",
+      "log": "logs/ci/ci_ctest_run.log",
+      "line": "1/1 Test #10: test_hiprtc_selfcontained Passed 0.61 sec"
+    },
+    "6_negative_control": {
+      "matrix_cell": "negative/unpatched PASS via exact 'type_traits file not found' signature; positive/unpatched FAIL exit1 (field failure reproduced on UNPATCHED develop 681bc9ed)",
+      "log": "logs/ci/ci_matrix_phase5_4.json"
+    },
+    "7_adversarial_matrix": {
+      "cells": 13,
+      "verdict": "13/13 PASS",
+      "log": "logs/ci/ci_matrix_phase5_4.json"
+    },
+    "8_miopen_dll_build": {
+      "exit": 0,
+      "sha256": "44d43887011856e5a3e8c670355239ba9c4012cb7453af5578e4b3bf8a240089",
+      "provenance": "logs/build/build_provenance.json",
+      "note": "build script cleanup raced with a parallel BF16-leg staging removal (cosmetic traceback, exit=1 logged); build+provenance wrote before finally; wheel end-state verified clean (no _rocm_sdk_core/lib/cmake)"
+    },
+    "9_inprocess_dll_provenance": {
+      "loaded_path": "C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll (swapped)",
+      "sha256": "44d43887011856e5a3e8c670355239ba9c4012cb7453af5578e4b3bf8a240089",
+      "method": "GetModuleFileNameW + in-process hash, torch 2.12.0+rocm7.14.0, 8060S",
+      "log": "logs/runtime/dll_provenance.json"
+    },
+    "10_batchnorm_fwd_bwd_fresh_cache": {
+      "max_abs": {
+        "y": 6.706602642125858e-07,
+        "dx": 3.202286127666268e-12,
+        "dw": 2.4365591336228398e-08,
+        "db": 1.862645147225183e-09,
+        "running_mean": 3.524055299962067e-10,
+        "running_var": 1.1640783137423227e-07
+      },
+      "tolerances": {
+        "y_abs": 1e-05,
+        "dx_abs": 1e-05,
+        "dw_abs": 0.0001,
+        "db_abs": 1e-05,
+        "running_mean_abs": 0.0001,
+        "running_var_rel": 0.001
+      },
+      "all_finite": true,
+      "note": "values IDENTICAL to frozen R2 run (same seed/kernel); well within pre-registered tolerances",
+      "log": "logs/runtime/numerics_batchnorm.txt"
+    },
+    "11_numerical_correctness": "PASS (see 10)",
+    "12_yolo26n_coco8_1epoch": {
+      "amp_false": {
+        "exit": 0,
+        "done": true,
+        "provenance_sha": "44d43887011856e5a3e8c670355239ba9c4012cb7453af5578e4b3bf8a240089"
+      },
+      "amp_default": {
+        "exit": 0,
+        "done": true,
+        "provenance_sha": "44d43887011856e5a3e8c670355239ba9c4012cb7453af5578e4b3bf8a240089",
+        "amp_requested": true,
+        "amp_precheck": "passed this run",
+        "amp_remained_enabled": true,
+        "fell_back_to_fp32": false,
+        "genuine_amp_evidence": true
+      },
+      "log": "logs/yolo/yolo_train.json",
+      "stderr_noise_disclosure": "both legs print 'MIOpen: Error [EvaluateInvokers] ... Invalid elapsed time' (3x amp_false, 6x amp_default) and a ParseAndLoadDb gfx115128 fdb unreadable line; identical noise class present in frozen R2 runs (4x/3x) - not a regression; exit 0 both legs, full logs in logs/yolo/"
+    },
+    "13_wheel_dll_restored": {
+      "sha256_after": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+      "expected": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+      "match": true
+    },
+    "14_environment_hygiene": {
+      "msvc_include_restored": true,
+      "wheel_restored": true,
+      "hip_lang_staging": "absent (verified no _rocm_sdk_core/lib/cmake)",
+      "replay_worktree_clean": true
+    }
+  },
+  "nostl_runtime_scenario": {
+    "verdict": "PASS exit 0",
+    "method": "fresh profile + scrubbed env (INCLUDE/LIB/ROCM_PATH/CPATH/... removed) + MSVC include renamed during gate",
+    "log": "logs/runtime/runtime_validation.json[nostl]",
+    "env_scrubbed_correction": "record in logs/runtime/runtime_validation.json[nostl].env_scrubbed lists 9 vars; the script (scripts/runtime_validation.py) scrubs 10 including MIOPEN_FIND_MODE - record under-reports; scrubbing was stricter than documented"
+  },
+  "bf16_restricted_leg": {
+    "configure_exit": 0,
+    "test_state": "Disabled (skip-policy parity like add_test_command)",
+    "log": "logs/ci/bf16_leg_ctest_n.log"
+  },
+  "amp_reporting": {
+    "r2_frozen_evidence": "genuine_amp_evidence=false (AMP precheck fell back to FP32; environment-flaky, same-day R1 control showed genuine=True)",
+    "p54_replay_run": "genuine_amp_evidence=true (AMP requested, precheck passed, remained enabled, training completed, no FP32 fallback)",
+    "claim_rule": "no claim upgraded over raw evidence; both runs reported; production kernels identical between DLLs"
+  },
+  "no_r2_historical_values_copied": true,
+  "verdict": "PASS - ALL mandated Windows revalidation items green on the latest-develop replay tree",
+  "develop_drift_final_check": {
+    "observed_mid_panel": "5af159d6d6c244c2b8aa108d2c0fcfe37c3545c7",
+    "final": "aa966601086ab87fdc1ccedbbdb6865f9526d382",
+    "commits_past_candidate_base": 3,
+    "miopen_files_touched": 0,
+    "ten_file_blob_audit": "all identical",
+    "candidate_base_unchanged": "681bc9edc37e8ceceb1c8227d8e63fc2ea9f5243",
+    "policy": "mission rule: new SHA recorded, tested base NOT silently changed; submission-day refresh mandatory (SUBMISSION_DAY_CHECKLIST section 1)"
+  }
+}
