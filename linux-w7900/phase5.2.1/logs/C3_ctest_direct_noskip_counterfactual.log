@@ -1,0 +1,14 @@
+Test project /workspace/miopen-w7900-validation/build/test-BUILD_TESTING-ON
+    Start 10: test_hiprtc_selfcontained
+1/1 Test #10: test_hiprtc_selfcontained ........***Failed    0.07 sec
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.08 sec
+
+The following tests FAILED:
+	 10 - test_hiprtc_selfcontained (Failed)
+Errors while running CTest
+Output from these tests are in: /workspace/miopen-w7900-validation/build/test-BUILD_TESTING-ON/Testing/Temporary/LastTest.log
+Use "--rerun-failed --output-on-failure" to re-run the failed cases verbosely.
+CTEST_RC=8

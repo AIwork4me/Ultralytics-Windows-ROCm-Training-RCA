@@ -1,0 +1,41 @@
+{
+ "schema": "phase5.2.1/ci-amendment-mechanism/1.0",
+ "gate": "C3",
+ "purpose": "empirical validation of the proposed capability-aware skip mechanism in the isolated BUILD_TESTING=ON build tree (frozen patch NOT modified; demonstration via generated CTestTestfile.cmake edits only)",
+ "finding_F_C2_3": {
+  "title": "upstream MIOPEN_TEST_GDB default On discards test exit codes on Linux",
+  "evidence": {
+   "upstream_default": "projects/miopen/test/CMakeLists.txt:96 set(MIOPEN_TEST_GDB On CACHE BOOL \"\")",
+   "wrapper_generated": "test/test_test_hiprtc_selfcontained.cmake wraps the binary with execute_process + message(FATAL_ERROR \"Test failed\") on any nonzero RESULT",
+   "consequence": "exit 4 (INCONCLUSIVE) collapses to generic failure; SKIP_RETURN_CODE alone can never match while registered through add_test_command on Linux"
+  }
+ },
+ "mechanism_matrix": [
+  {
+   "registration": "frozen patch: add_test_command (Linux GDB wrapper path)",
+   "skip_property": false,
+   "outcome": "***Failed 0.11 sec; 0% tests passed, 1 tests failed out of 1; ctest rc 8",
+   "log": "logs/C2_ctest_run.log"
+  },
+  {
+   "registration": "direct add_test (build-tree demonstration, wrapper bypassed)",
+   "skip_property": false,
+   "outcome": "***Failed; Errors while running CTest; ctest rc 8",
+   "log": "logs/C3_ctest_direct_noskip_counterfactual.log"
+  },
+  {
+   "registration": "direct add_test (build-tree demonstration, wrapper bypassed)",
+   "skip_property": "SKIP_RETURN_CODE 4",
+   "outcome": "***Skipped 0.17 sec; 100% tests passed, 0 tests failed out of 1; 'The following tests did not run: 10 - test_hiprtc_selfcontained (Skipped)'; ctest rc 0",
+   "log": "logs/C3_ctest_skip_demo.log"
+  }
+ ],
+ "conclusion": "the amendment must pair SKIP_RETURN_CODE 4 with direct add_test registration on all platforms; property alone is insufficient on Linux, direct registration alone still fails on incapable hosts",
+ "windows_impact": "none expected - WIN32 branch already registers the raw executable; direct registration preserves raw exit codes; verified no-STL positive PASS evidence unchanged (evidence/phase5/ci/ci_ctest_run.log)",
+ "mission_boundaries_respected": {
+  "frozen_patch_modified": false,
+  "demonstration_scope": "generated build tree only (test/CTestTestfile.cmake), reverted-by-discarding; source worktree clean",
+  "final_ab_executed": false,
+  "upstream_actions": "none"
+ }
+}
