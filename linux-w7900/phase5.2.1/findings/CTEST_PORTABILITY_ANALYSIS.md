@@ -7,6 +7,14 @@ sha256 BEFORE use (14719b8b… / 7d40c314… / 3eb20ec0…).
 
 ## C2.1 Frozen patch-0003 test source + CMake registration (inspection)
 
+SOURCE-OF-TRUTH NOTE (independent-audit recommendation): the frozen series
+is `patches/phase5_1/canonical/` ON the freeze ref
+(`origin/phase5.1/windows-final-candidate-freeze` = 494907699f3b…).
+The working tree on main also carries the SUPERSEDED P5-CANDIDATE-R1
+series at `patches/phase5/canonical/` whose 0003 hashes 59306105… — do NOT
+use it for identity checks; it differs by the documented From/index/
+copyright-placeholder lines only.
+
 `patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch`
 (SHA256 3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4):
 
