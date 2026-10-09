@@ -1,0 +1,11 @@
+{
+  "schema": "phase5_1_r2_fc24_dll_provenance_v2",
+  "gate": "F-C2-4",
+  "env": "clean system PATH + ONLY the CMake-derived runtime dir prepended",
+  "test_mode": "with-stl",
+  "test_exit_code": 0,
+  "loaded_hiprtc_dll_path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+  "loaded_hiprtc_dll_sha256": "c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e",
+  "expected_sha256": "c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e",
+  "match": true
+}

@@ -2,8 +2,8 @@ $ C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Lib\site-packages\cmake\data\
 exit=0
 Test project C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test
     Start 10: test_hiprtc_selfcontained
-1/1 Test #10: test_hiprtc_selfcontained ........   Passed    0.58 sec
+1/1 Test #10: test_hiprtc_selfcontained ........   Passed    0.16 sec
 
 100% tests passed out of 1
 
-Total Test time (real) =   0.62 sec
+Total Test time (real) =   0.20 sec

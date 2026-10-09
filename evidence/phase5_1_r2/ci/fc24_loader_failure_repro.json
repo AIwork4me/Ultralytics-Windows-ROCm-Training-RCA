@@ -1,0 +1,17 @@
+{
+  "schema": "phase5_1_r2_fc24_repro_v1",
+  "gate": "F-C2-4 RCA",
+  "env": "clean system PATH (no _rocm_sdk_core, no conda)",
+  "results": {
+    "direct_exe_clean_env": {
+      "returncode": 3221225781,
+      "returncode_hex": "0xc0000135",
+      "stderr_tail": "",
+      "stdout_tail": ""
+    },
+    "ctest_clean_env": {
+      "returncode": 8,
+      "stdout_tail": "Test project C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test\n    Start 10: test_hiprtc_selfcontained\n1/1 Test #10: test_hiprtc_selfcontained ........Exit code 0xc0000135***Exception:  47.13 sec\n\n0% tests passed, 1 tests failed out of 1\n\nTotal Test time (real) =  47.17 sec\n\nThe following tests FAILED:\n\t 10 - test_hiprtc_selfcontained (Exit code 0xc0000135)\n"
+    }
+  }
+}

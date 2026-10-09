@@ -2,7 +2,7 @@
   "schema": "phase5_1_r2_r26_ctest_validation_v1",
   "gate": "R26",
   "fresh_build_dir": "C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test (never reused R1 cache; R1 used phase5_1_build/ci_test)",
-  "source_git_head": "2b3fd2afb31bcb5ece0a9b87d2f5f0662983d71c",
+  "source_git_head": "61410b68 (regenerated after F-C2-4 fix; superseded interim HEAD 2b3fd2af)",
   "configure": {
     "BUILD_TESTING": "ON",
     "MIOPEN_USE_HIPRTC": "ON",
@@ -56,5 +56,14 @@
       "log": "evidence/phase5_1_r2/ci/ci_configure_bf16.log"
     }
   },
-  "overall": "PASS"
+  "overall": "PASS",
+  "fc24_amendment": {
+    "defect": "F-C2-4 Windows DLL loader: bare ctest run cannot start test exe (0xC0000135 STATUS_DLL_NOT_FOUND) - hiprtc DLL lives in <prefix>/bin, import lib in <prefix>/lib",
+    "fix": "test-scoped ENVIRONMENT PATH prepend, runtime dir derived from hiprtc::hiprtc location metadata (IMPORTED_LOCATION else existing INTERFACE_LINK_LIBRARIES entry; pkg root bin if exists else lib dir)",
+    "clean_env_ctest": "PASS (Passed 0.14s, rc 0) from the exact env that reproduced 0xc0000135",
+    "dll_provenance": "loaded _rocm_sdk_core/bin/hiprtc0714.dll sha256 c6159dd1... (psutil module snapshot)",
+    "matrix_rerun": "13/13 PASS on 61410b68",
+    "bf16_parity_rerun": "echo skipped + DISABLED, Not Run (Disabled) rc 0",
+    "rca_doc": "findings/phase5_1_r2/F_C2_4_DLL_LOADER_RCA.md"
+  }
 }

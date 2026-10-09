@@ -34,18 +34,9 @@ exit=0
 -- Adding support for installing gfx1201 database artifacts
 -- rocm-cmake: Set license file to C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.1-r2-candidate/projects/miopen/LICENSE.md.
 -- Clang tidy found: 23.0.0git
--- The HIP compiler identification is Clang 23.0.0 with GNU-like command-line
--- Detecting HIP compiler ABI info
--- Detecting HIP compiler ABI info - done
--- Check for working HIP compiler: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/llvm/bin/clang.exe - skipped
--- Detecting HIP compile features
--- Detecting HIP compile features - done
 -- MIOpen_VERSION= 3.6.2
 -- CMAKE_BUILD_TYPE= RelWithDebInfo
--- Found Python3: C:/Users/rocm/Desktop/YOLO_AMD/phase3_buildtools/Scripts/python.exe (found version "3.13.16") found components: Interpreter
 -- Found rocrand headers at: C:/Users/rocm/Desktop/YOLO_AMD/phase3_deps/stage_rocrand
--- Performing Test COMPILER_HAS_DEPRECATED_ATTR
--- Performing Test COMPILER_HAS_DEPRECATED_ATTR - Success
 -- GPU info utility: C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/bin/hipInfo.exe
 -- MIOPEN_NO_GPU FALSE
 -- MIOPEN_TEST_GFX900 OFF
@@ -80,18 +71,13 @@ exit=0
 -- MIOPEN_TEST_ALL OFF
 -- SKIP_TESTS: db_sync;test_ctc;test_conv2d;test_conv2d_find2;test_immed_conv2d
 -- SKIP_ALL_EXCEPT_TESTS: 
--- Performing Test MIOPEN_HAS_address
--- Performing Test MIOPEN_HAS_address - Failed
--- Performing Test MIOPEN_HAS_thread
--- Performing Test MIOPEN_HAS_thread - Failed
 -- Flaky test_sqlite_perfdb currently disabled (May 28 2025)
--- Found GTest: C:/Users/rocm/Desktop/YOLO_AMD/phase5_deps/gtest_prefix/lib/cmake/GTest/GTestConfig.cmake (found version "1.14.0")
 -- MIOPEN_GTEST_FILTER Smoke*FP32*:Smoke*NONE*-*DBSync*:*DeepBench*:*MIOpenTestConv*
 -- gtest env: MIOPEN_USER_DB_PATH=C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test/test/gtest
 -- gtest env: MIOPEN_TEST_COMPOSABLEKERNEL=OFF
 -- YAML-based test categorization
--- Configuring done (23.1s)
--- Generating done (3.3s)
+-- Configuring done (7.1s)
+-- Generating done (5.5s)
 -- Build files have been written to: C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test
 CMake Warning at cmake/ClangCheck.cmake:40 (message):
   pre-commit not found; pre_commit_checks target will not be available and

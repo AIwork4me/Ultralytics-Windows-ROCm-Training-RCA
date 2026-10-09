@@ -99,3 +99,15 @@ Disclosed remaining deltas vs the helper (accepted, harmless):
 ## SUBAGENT R21
 
 See evidence/phase5_1_r2/subagent_reviews/R21_independent_audit.md.
+
+
+## ADDENDUM (post-R26 interjection) — defect F-C2-4 discovered during revalidation
+
+During R2 revalidation a FOURTH registration-portability defect surfaced on
+Windows: the hiprtc runtime DLL lives in the package's <prefix>/bin while the
+import library the link line carries is <prefix>/lib/hiprtc.lib, so a bare
+ctest run without the package bin dir on PATH cannot START the test
+(0xC0000135 STATUS_DLL_NOT_FOUND; repro recorded). Latent in R1 as well
+(evidence scripts always prepended the dir). Fixed inside the same approved
+block with a test-scoped ENVIRONMENT PATH prepend derived from the imported
+target's location metadata. Full RCA: findings/phase5_1_r2/F_C2_4_DLL_LOADER_RCA.md.
