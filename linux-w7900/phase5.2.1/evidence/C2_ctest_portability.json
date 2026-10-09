@@ -1,0 +1,93 @@
+{
+ "schema": "phase5.2.1/ctest-portability/1.0",
+ "gate": "C2",
+ "environment": {
+  "gpu": "AMD Radeon PRO W7900D (gfx1100)",
+  "os": "Ubuntu 24.04.4 LTS",
+  "rocm_validation": "7.14.1 isolated wheel SDK (venv); system 7.2.1 untouched, 0 /opt/rocm in CMakeCache",
+  "cmake": "3.31.10",
+  "cxx": "venv _rocm_sdk_devel/llvm/bin/amdclang++"
+ },
+ "frozen_inputs_verified_before_use": {
+  "base_commit": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "patch_0001_sha256": "14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2",
+  "patch_0002_sha256": "7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e",
+  "patch_0003_sha256": "3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4",
+  "reconstructed_tree_sha1": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+  "reconstruction": "git am of ordered series into worktree at refs/phase52/frozen-base; write-tree equality enforced by wrapper guard"
+ },
+ "cmake_registration_facts": {
+  "registration": "manual (EXCLUDE_TESTS + add_executable + add_test_command inside if(MIOPEN_USE_HIPRTC))",
+  "ctest_verdict_mechanism": "raw process exit code of test_hiprtc_selfcontained (add_test_command -> add_test on non-WIN32)",
+  "skip_property_in_frozen_patch": "none",
+  "upstream_gating": "projects/miopen/CMakeLists.txt:967 if(BUILD_TESTING) add_subdirectory(test)",
+  "linux_leg_configuration": "build_leg_miopen.sh hardcodes -DBUILD_TESTING=OFF; legA CMakeCache BUILD_TESTING:BOOL=OFF, MIOPEN_USE_HIPRTC:BOOL=ON"
+ },
+ "isolated_test_build": {
+  "build_dir": "build/test-BUILD_TESTING-ON",
+  "single_functional_delta_vs_legA": "-DBUILD_TESTING=ON",
+  "targets_built": ["test_hiprtc_selfcontained"],
+  "test_binary_sha256": "9472c55ece2cbea6e4ca6cf7ff4511415658c99bfa11542e422e8d78815f4bd2",
+  "finding_F_C2_2": {
+   "title": "frozen patch 0003 non-WIN32 link arm is not buildable on Linux as-is",
+   "evidence": [
+    "hiprtc CMake package exports only namespaced hiprtc::hiprtc (INTERFACE_INCLUDE_DIRECTORIES); no plain hiprtc target",
+    "compile fails: 'hip/hiprtc.h' file not found",
+    "after include fix, link fails: unable to find library -lhiprtc"
+   ],
+   "harness_workaround_build_tree_only": [
+    "-DCMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES=$DEVEL/include",
+    "-DCMAKE_EXE_LINKER_FLAGS=-L$DEVEL/lib"
+   ],
+   "frozen_patch_modified": false
+  }
+ },
+ "ctest_discovery": {
+  "works_under_BUILD_TESTING_ON": true,
+  "discovered": "Test #10: test_hiprtc_selfcontained",
+  "not_built_or_discovered_under_BUILD_TESTING_OFF": true
+ },
+ "exit_code_matrix_direct": {
+  "positive": {"exit": 4, "meaning": "INCONCLUSIVE - STL probe detected reachable headers under -nostdinc before any kernel verdict"},
+  "negative": {"exit": 4, "meaning": "INCONCLUSIVE - same probe precondition, negative control not exercisable"},
+  "with-stl": {"exit": 0, "meaning": "PASS - kernel compiled with ambient STL, 6048-byte code object"},
+  "ordinary": {"exit": 0, "meaning": "PASS - trivial kernel, 3824-byte code object"}
+ },
+ "ctest_run_unamended": {
+  "outcome": "***Failed 0.11 sec",
+  "summary": "0% tests passed, 1 tests failed out of 1",
+  "ctest_process_exit_code": 8,
+  "interpretation": "honest INCONCLUSIVE(4) rendered as plain failure; Linux CI leg with BUILD_TESTING=ON would go red"
+ },
+ "inconclusive_counted_as_pass": false,
+ "header_availability_audit_b06_probe_rerun": {
+  "binary": "build/kthvalue-harness/b06_probe",
+  "default": [1, 1, 1, 1],
+  "nostdincpp": [1, 0, 1, 1],
+  "nostdinc": [1, 0, 1, 1],
+  "nostdincpp_nobuiltininc": [1, 0, 1, 1],
+  "nostdinc_nobuiltininc": [1, 0, 1, 1],
+  "nostdinc_nobuiltininc_isysroot": [1, 0, 1, 1],
+  "header_order": ["type_traits", "utility", "limits", "initializer_list"],
+  "control_kernels": "COMPILED+RAN in every mode",
+  "conclusion": "full host-STL isolation NOT reproducible on Linux ROCm 7.14.1; embedded hiprtc builtins keep type_traits/limits/initializer_list reachable"
+ },
+ "logs": [
+  "logs/C2_test_build_configure.log",
+  "logs/C2_test_build_cache_facts.txt",
+  "logs/C2_test_build_build.log",
+  "logs/C2_ctest_discovery.log",
+  "logs/C2_ctest_run.log",
+  "logs/C2_direct_mode_positive.log",
+  "logs/C2_direct_mode_negative.log",
+  "logs/C2_direct_mode_with-stl.log",
+  "logs/C2_direct_mode_ordinary.log",
+  "logs/C2_b06_probe_header_audit.log"
+ ],
+ "mission_boundaries_respected": {
+  "frozen_patch_modified": false,
+  "operational_patched_leg_built": false,
+  "final_ab_executed": false,
+  "upstream_actions": "none"
+ }
+}

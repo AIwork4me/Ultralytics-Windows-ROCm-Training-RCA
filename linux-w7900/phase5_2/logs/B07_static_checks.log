@@ -1,0 +1,7 @@
+PATH_opt_rocm_entries: 0
+LDLP_opt_rocm_entries: 0
+ROCM_PATH=/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel
+HIP_PATH=/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel
+CMAKE_PREFIX_PATH=unset
+CMakeCache_opt_rocm_count: 0
+ldd_libMIOpen_opt_rocm_resolutions: 0

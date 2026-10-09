@@ -1,0 +1,32 @@
+HIPRTC_LIB /opt/rocm/lib/libhiprtc.so.7
+AMDHIP64_LIB /opt/rocm/lib/libamdhip64.so.7
+MODE default
+  flags: -mcpu=gfx1100
+  stl(type_traits,utility,limits,initializer_list)=ran [1 1 1 1]
+  fingerprint: hip/hip_runtime.h=0 v1/type_traits=0 c++/v1/type_traits=0 __cxx03/type_traits=0 stddef.h=0 stdint.h=1 thrust/execution_policy.h=0
+  control_axpy=COMPILED+RAN (result=1)
+MODE nostdincpp
+  flags: -mcpu=gfx1100 -nostdinc++
+  stl(type_traits,utility,limits,initializer_list)=ran [0 0 0 0]
+  fingerprint: hip/hip_runtime.h=0 v1/type_traits=0 c++/v1/type_traits=0 __cxx03/type_traits=0 stddef.h=0 stdint.h=1 thrust/execution_policy.h=0
+  control_axpy=COMPILED+RAN (result=1)
+MODE nostdinc
+  flags: -mcpu=gfx1100 -nostdinc
+  stl(type_traits,utility,limits,initializer_list)=ran [0 0 0 0]
+  fingerprint: hip/hip_runtime.h=0 v1/type_traits=0 c++/v1/type_traits=0 __cxx03/type_traits=0 stddef.h=0 stdint.h=0 thrust/execution_policy.h=0
+  control_axpy=COMPILED+RAN (result=1)
+MODE nostdincpp_nobuiltininc
+  flags: -mcpu=gfx1100 -nostdinc++ -nobuiltininc
+  stl(type_traits,utility,limits,initializer_list)=ran [0 0 0 0]
+  fingerprint: hip/hip_runtime.h=0 v1/type_traits=0 c++/v1/type_traits=0 __cxx03/type_traits=0 stddef.h=0 stdint.h=1 thrust/execution_policy.h=0
+  control_axpy=COMPILED+RAN (result=1)
+MODE nostdinc_nobuiltininc
+  flags: -mcpu=gfx1100 -nostdinc -nobuiltininc
+  stl(type_traits,utility,limits,initializer_list)=ran [0 0 0 0]
+  fingerprint: hip/hip_runtime.h=0 v1/type_traits=0 c++/v1/type_traits=0 __cxx03/type_traits=0 stddef.h=0 stdint.h=0 thrust/execution_policy.h=0
+  control_axpy=COMPILED+RAN (result=1)
+MODE nostdinc_nobuiltininc_isysroot
+  flags: -mcpu=gfx1100 -nostdinc -nobuiltininc --sysroot=/nonexistent-b06
+  stl(type_traits,utility,limits,initializer_list)=ran [0 0 0 0]
+  fingerprint: hip/hip_runtime.h=0 v1/type_traits=0 c++/v1/type_traits=0 __cxx03/type_traits=0 stddef.h=0 stdint.h=0 thrust/execution_policy.h=0
+  control_axpy=COMPILED+RAN (result=1)

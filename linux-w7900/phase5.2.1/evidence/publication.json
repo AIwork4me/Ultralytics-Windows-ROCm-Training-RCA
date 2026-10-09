@@ -1,0 +1,37 @@
+{
+ "schema": "phase5.2.1/publication/1.0",
+ "gate": "C4",
+ "repo": "AIwork4me/Ultralytics-Windows-ROCm-Training-RCA",
+ "branch": "linux-w7900/phase5.2.1-ci-closure",
+ "publication_commit": "2d6c3359417b1ee10cf4de37809acd4cb8053788",
+ "publication_commit_message": "phase5.2.1: mission summary + evidence manifest (pre-publication)",
+ "base": "origin/main 4754622fdad162b6c52a45f0214a996147c9fea5 (PR #6 merge)",
+ "integrated_history": [
+  "5883db91254227c23b3af6088cfe5cffc05c4c03",
+  "c4f9da2fc00af11989914aa4d4111e8ff6d58bae"
+ ],
+ "transport": "native git push over https (CONNECT tunnel available this session)",
+ "remote_verification": {
+  "git_ls_remote": "2d6c3359417b1ee10cf4de37809acd4cb8053788 refs/heads/linux-w7900/phase5.2.1-ci-closure",
+  "gh_api_commit_sha": "2d6c3359417b1ee10cf4de37809acd4cb8053788",
+  "gh_api_commit_date": "2026-10-09T01:14:41Z",
+  "content_blob_check": "linux-w7900/phase5.2.1/docs/PHASE5_2_1_SUMMARY.md remote blob bc858042f0cc889326e547c3c9799d0368724820 == local git blob (byte-exact)",
+  "branch_url": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/tree/linux-w7900/phase5.2.1-ci-closure"
+ },
+ "published_content": {
+  "dirs": ["docs", "evidence", "findings", "logs", "reviews", "scripts", "wrappers"],
+  "file_count_in_manifest": 47,
+  "includes": [
+    "findings/CTEST_PORTABILITY_ANALYSIS.md",
+    "findings/CI_AMENDMENT_PROPOSAL.md",
+    "evidence/C2_ctest_portability.json",
+    "evidence/C3_mechanism_validation.json",
+    "real logs: C2_*.log (configure/build/ctest/direct-mode-matrix/b06-header-audit), C3_*.log (skip demo + counterfactual)",
+    "reviews: C1_independent_review.md (APPROVED), C2_independent_audit.md (APPROVED-WITH-NOTES), C3_maintainer_review.md (RECOMMEND-WITH-CHANGES, all findings resolved)",
+    "wrappers: 22 exact operative runtime/build wrappers + WRAPPERS_MANIFEST.json",
+    "scripts: gen_wrappers_manifest.py, verify_clean_checkout.py"
+  ]
+ },
+ "upstream_actions": "NONE (no PR, no issue, no comment; per mission boundary)",
+ "final_linux_ab_claimed": false
+}

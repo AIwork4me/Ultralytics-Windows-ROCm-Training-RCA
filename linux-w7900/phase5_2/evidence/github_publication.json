@@ -1,0 +1,9 @@
+{
+ "branch": "linux-w7900/phase5.2-handoff-bridge",
+ "commit": "5883db91254227c23b3af6088cfe5cffc05c4c03",
+ "tree": "114404f9485b3acb213002b6fc7c52d0376020dc",
+ "parent": "013f6f005f97aca5ef46d841ca754f2283dc62f0",
+ "files": 48,
+ "blob_shas_verified_against_local_git": true,
+ "method": "GitHub Git Data API (blobs+tree+commit+ref); git CONNECT tunnel unavailable"
+}

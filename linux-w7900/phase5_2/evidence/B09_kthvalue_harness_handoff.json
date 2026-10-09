@@ -1,0 +1,35 @@
+{
+  "gate": "B09",
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "harness_identity": {
+    "source_preparatory_copy": "scripts/kthvalue_runtime_harness_gfx1100.cpp sha256 ba75005dadea54fd2e4fef2d3312270d646116f7a3de16350b2f76c824babc8f",
+    "source_original_phase3": "scripts/phase3-original/kthvalue_runtime_harness.cpp sha256 d7d6f92b619ca5c0735f598b3aafb96b1d314950b112a6f25b51aa9902207d2c (preserved)",
+    "binary": "build/kthvalue-harness/kthvalue_runtime_harness_gfx1100",
+    "binary_sha256": "b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8f (UNCHANGED since G06 — same binary is the A/B invariant)",
+    "link_time_deps_on_miopen_or_hip": "NONE (dlsym RTLD_DEFAULT + dladdr design; confirmed via ldd in G06)"
+  },
+  "frozen_base_api_compatibility": {
+    "method": "git diff b68f8944300f104875d953fc8e4510908c9aaf0b..7c5866144ac4b879be442563e2b49fa1c142ea36 -- projects/miopen/include/",
+    "result": "ZERO changed files: the entire public MIOpen API (miopen.h incl. miopenKthvalueForward, kthvalue.hpp, all headers) is byte-identical between the historical pristine base and the frozen final base",
+    "kthvalue_solver_and_kernel": "projects/miopen/src/kernels/MIOpenKthvalue.cpp and kthvalue solver sources UNCHANGED between bases (only BatchNorm kernels + configuration.hpp etc. differ)",
+    "conclusion": "the G06-proven harness remains exactly usable against frozen-base MIOpen; no rebuild, no source change"
+  },
+  "proven_already_by_G06_baseline_run": {
+    "miopenKthvalueForward_direct_invocation": true,
+    "dladdr_proven_source_built_lib": true,
+    "KthvalueFwd_solver_dispatch": true,
+    "RTC_MIOpenKthvalue_cpp_gfx1100_cache": true,
+    "FP32_FP16_exact_vs_cpu": true,
+    "deterministic_repeat_dumps": true
+  },
+  "next_mission_invocation_plan": [
+    "0. Preconditions: handoff consumer PASS (scripts/check_final_handoff.py --check-only ... --rca-root repos/rca-evidence --rca-evidence-sha 494907699f3b57095663f0a70b42278001a8efb7); frozen libMIOpen legs built via prepare_validation_legs.sh leg-a 7c5866144ac4b879be442563e2b49fa1c142ea36 and leg-b <FINAL_HANDOFF.json> with ENABLE_APPLY=1",
+    "1. LEG A: source scripts/env_rocm7141.sh && MIOPEN_LOG_LEVEL=6 bash scripts/run_validation_leg.sh baseline final-ab-a ./build/kthvalue-harness/kthvalue_runtime_harness_gfx1100 2>&1 | tee phase5_3/logs/legA_kthvalue.log",
+    "2. LEG B: source scripts/env_rocm7141.sh && MIOPEN_LOG_LEVEL=6 bash scripts/run_validation_leg.sh patched final-ab-b ./build/kthvalue-harness/kthvalue_runtime_harness_gfx1100 2>&1 | tee phase5_3/logs/legB_kthvalue.log",
+    "3. INVARIANTS enforced per run: same binary sha256 b830b37a... (wrapper prints lib sha256; verify harness sha256 separately); LD_PRELOAD provenance lines (dladdr miopenKthvalueForward + miopenCreate -> install/<leg>/lib/libMIOpen.so.1); fresh MIOPEN_CUSTOM_CACHE_DIR/XDG per label (refuses reuse); MIOPEN_LOG_LEVEL=6 for Info2 dispatch evidence (KthvalueFwd solver registration, kernel_name=KthvalueFwd, LoadBinary(miss) -> HIPRTC compile -> SaveBinary of MIOpenKthvalue.cpp.o -mcpu=gfx1100)",
+    "4. PASS criteria: values AND indices exact vs CPU reference both legs; legA dumps == legB dumps byte-for-byte; RTC compile events present with fresh-cache miss on both legs; exit code 0",
+    "5. Supplemental only (never primary): torch.kthvalue cross-check via venv python (per handoff doc rules)",
+    "6. Forbidden: -D__has_include overrides in any RTC options (B06 spoof caveat); wheel libMIOpen substitution (must not bypass run_validation_leg.sh); cache reuse across legs"
+  ],
+  "verdict": "PASS (harness ready; final patched leg NOT executed in Phase 5.2 per mission boundary)"
+}

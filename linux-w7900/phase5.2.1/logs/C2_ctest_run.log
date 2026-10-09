@@ -1,0 +1,26 @@
+Test project /workspace/miopen-w7900-validation/build/test-BUILD_TESTING-ON
+    Start 10: test_hiprtc_selfcontained
+1/1 Test #10: test_hiprtc_selfcontained ........***Failed    0.11 sec
+[stl-probe] create=0 compile=6 code=0 code_size=0
+---- compiler log ----
+/tmp/comgr-205806-0-0d6f66/input/stl_probe.cu:2:2: error: STL_PROBE_REACHABLE
+    2 | #error STL_PROBE_REACHABLE
+      |  ^
+1 error generated when compiling for gfx1100.
+
+----------------------
+INCONCLUSIVE: host C++ stdlib still reachable under -nostdinc; isolation does not reproduce the no-STL condition
+CMake Error at test_test_hiprtc_selfcontained.cmake:7 (message):
+  Test failed
+
+
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.13 sec
+
+The following tests FAILED:
+	 10 - test_hiprtc_selfcontained (Failed)
+Errors while running CTest
+CTEST_EXIT_CODE=8

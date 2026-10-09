@@ -1,0 +1,58 @@
+{
+  "gate": "B07",
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "static_checks": {
+    "source": "scripts/env_rocm7141.sh sourced in audit shell",
+    "PATH_opt_rocm_entries": 0,
+    "LD_LIBRARY_PATH_opt_rocm_entries": 0,
+    "ROCM_PATH": "tools/rocm7141-venv/.../_rocm_sdk_devel",
+    "HIP_PATH": "tools/rocm7141-venv/.../_rocm_sdk_devel",
+    "CMAKE_PREFIX_PATH": "unset (cache-pin discipline used at configure time instead)",
+    "CMakeCache_opt_rocm_count": 0,
+    "ldd_libMIOpen_opt_rocm_resolutions": 0,
+    "log": "phase5_2/logs/B07_static_checks.log"
+  },
+  "dynamic_audit": {
+    "program": "phase5_2/scripts/b07_library_isolation_audit.cpp",
+    "binary": "build/kthvalue-harness/b07_audit",
+    "launcher": "scripts/run_validation_leg.sh baseline b07-audit <bin> (identical discipline to the final A/B legs: env_rocm7141.sh + LD_PRELOAD source-built lib + fresh isolated cache)",
+    "api_activity": "dlopen(libMIOpen.so.1) + miopenCreate(=0) + miopenCreateTensorDescriptor(=0) + miopenSet4dTensorDescriptor(=0) + explicit dlopen of the lazy set",
+    "dladdr_provenance": {
+      "miopenCreate": "install/baseline/lib/libMIOpen.so.1 (source-built, LD_PRELOAD first-in-scope)",
+      "miopenKthvalueForward": "install/baseline/lib/libMIOpen.so.1",
+      "libhiprtc.so.7": "tools/rocm7141-venv/.../_rocm_sdk_core/lib/libhiprtc.so.7",
+      "libamdhip64.so.7": "tools/rocm7141-venv/.../_rocm_sdk_core/lib/libamdhip64.so.7",
+      "librocblas.so.5": "tools/rocm7141-venv/.../_rocm_sdk_libraries/lib/librocblas.so.5",
+      "libhsa-runtime64.so.1": "tools/rocm7141-venv/.../_rocm_sdk_core/lib/libhsa-runtime64.so.1",
+      "libhipblaslt.so.1": "tools/rocm7141-venv/.../_rocm_sdk_libraries/lib/libhipblaslt.so.1",
+      "libamd_comgr.so.3": "tools/rocm7141-venv/.../_rocm_sdk_core/lib/libamd_comgr.so.3 (maps)"
+    },
+    "proc_maps_scan": {
+      "method": "full /proc/self/maps scan after GPU-API activity; dedup by object; every ROCm-related soname listed with full path",
+      "rocM_related_loaded_objects": 22,
+      "all_under": ["tools/rocm7141-venv (7.14.1 wheel SDK incl. rocm_sysdeps hermetic sqlite3/zstd/bz2/lzma/numa/drm/elf/z wrappers)", "install/baseline (source-built MIOpen)"],
+      "opt_rocm_entries_in_maps": 0,
+      "verdict": "NO_/opt/rocm_IN_maps: PASS"
+    },
+    "startup_vs_lazy": "startup NEEDED set verified via readelf -d libMIOpen (hiprtc/amd_comgr/rocblas/hipblaslt/sqlite3/roctx64/amdhip64/zstd/bz2) — all resolve into the venv per ldd; lazily dlopened objects (hsa via runtime, CK grouped-conv plugin, rocroller, rocm_kpack, aqlprofile) all observed resolving inside the venv in the live maps scan",
+    "known_benign": "MIOpen warning: CK grouped-conv symbols unresolved (MIOPEN_USE_COMPOSABLEKERNEL=OFF config — expected, kthvalue path unaffected)",
+    "log": "phase5_2/logs/B07_isolation_audit.log"
+  },
+  "prior_safeguards_retained": [
+    "env_rocm7141.sh strips all /opt/rocm from PATH/LD_LIBRARY_PATH (re-verified: 0 entries)",
+    "run_validation_leg.sh LD_PRELOAD+LD_LIBRARY_PATH discipline (wheel libMIOpen.so.1 shadowing impossible)",
+    "fresh per-label MIOPEN_CUSTOM_CACHE_DIR + XDG_CACHE_HOME (stale-cache refuse-unless-FORCE)",
+    "CMakeCache mandatory grep == 0 opt/rocm (re-verified)"
+  ],
+  "independent_audit_addendum": {
+    "verdict": "PASS (no BLOCKER/MAJOR)",
+    "reproduced": [
+      "static env re-check (0 /opt/rocm in PATH/LD_LIBRARY_PATH; CMakeCache grep 0)",
+      "dynamic auditor re-run under fresh cache label b07-audit2: exit 0, identical provenance, NO_/opt/rocm_IN_maps PASS",
+      "independent cross-check program (plain dlopen, NO LD_PRELOAD): miopenCreate=0, dladdr=install/baseline/libMIOpen.so.1.0, maps scan NONE"
+    ],
+    "MINOR_1_ldconfig_latency": "ldconfig -p maps libhiprtc.so.7/libamdhip64.so.7/librocblas.so.5 to /opt/rocm-7.2.1; NOT exploitable in practice because LD_LIBRARY_PATH (venv dirs first) precedes the glibc cache — proven via LD_DEBUG=libs resolution order + live maps scan. Residual risk only for processes launched WITHOUT env_rocm7141.sh (forbidden by runbook)",
+    "MINOR_2_shadowing_guard_load_bearing": "auditor's adversarial demo: soname dlopen('libMIOpen.so.1') WITHOUT run_validation_leg.sh resolves to the WHEEL copy — the LD_PRELOAD+LD_LIBRARY_PATH guard is mandatory for every validation leg (encoded in FINAL_AB_VALIDATION_RUNBOOK.md)"
+  },
+  "verdict": "PASS"
+}

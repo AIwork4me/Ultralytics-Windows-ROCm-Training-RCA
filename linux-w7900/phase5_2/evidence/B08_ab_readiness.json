@@ -1,0 +1,45 @@
+{
+  "gate": "B08",
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "disk_before_build": {"avail_gb": 41, "recorded_in": "phase5_2/logs/B08_predisk.log"},
+  "legA_frozen_build": {
+    "source": "build/recon/frozen-base-checkout/projects/miopen @ frozen base 7c5866144ac4b879be442563e2b49fa1c142ea36 (NOT the historical b68f894)",
+    "build_dir": "build/legA-frozen-miopen (fresh; no stale CMakeCache reuse)",
+    "install_prefix": "install/legA-frozen-baseline (separate from historical install/baseline)",
+    "builder": "scripts/build_leg_miopen.sh with MIOPEN_SOURCE/MIOPEN_BUILD/MIOPEN_INSTALL env overrides, MIOPEN_JOBS=64",
+    "libMIOpen": "install/legA-frozen-baseline/lib/libMIOpen.so.1.0 (803577616 bytes)",
+    "libMIOpen_sha256": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+    "libMIOpen_sha256_differs_from_historical_b68f894_build": "6af347af760bb5145a6d8f2c50871bcd2d11c7aa71075a59cd67de7e49990697 (expected: different source)",
+    "miopendriver_version": "MIOpen (version: 3.6.2) bound through leg prefix",
+    "cmakecache_opt_rocm_count": 0,
+    "log": "phase5_2/logs/B08_legA_build_full.log (also logs/legA-frozen-miopen_{configure,build,install}.log)"
+  },
+  "single_variable_discipline": {
+    "config_identity_vs_historical_baseline": {
+      "MIOPEN_BACKEND": "SAME (HIP)",
+      "MIOPEN_USE_HIPRTC": "SAME (ON)",
+      "MIOPEN_USE_COMGR": "SAME (ON)",
+      "MIOPEN_USE_COMPOSABLEKERNEL": "SAME (OFF)",
+      "CMAKE_BUILD_TYPE": "SAME (RelWithDebInfo)",
+      "GPU_TARGETS/AMDGPU_TARGETS": "SAME (gfx1100)",
+      "CMAKE_CXX_COMPILER": "SAME (venv devel llvm amdclang++)"
+    },
+    "same_harness_both_legs": "build/kthvalue-harness/kthvalue_runtime_harness_gfx1100 sha256 b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8f (wrapper now prints executable sha256; NIT-2 fix)",
+    "separate_caches": "runtime/<leg>-cache/<label> per leg+label (baseline-cache historical; legA-frozen-cache for frozen leg; patched-cache reserved EMPTY)",
+    "separate_logs": "per-leg/per-label log files",
+    "leg_b_status": {"source_final_patched_entries": 0, "build_patched_miopen_entries": 0, "install_patched_entries": 0, "operational_leg_b_built": false, "note": "reserved EMPTY until the authorized final-validation mission"}
+  },
+  "legA_sanity_run_unpatched": {
+    "command": "MIOPEN_LOG_LEVEL=6 bash scripts/run_validation_leg.sh legA-frozen b08-legA-sanity ./build/kthvalue-harness/kthvalue_runtime_harness_gfx1100",
+    "exit_code": 0,
+    "dladdr": "miopenCreate + miopenKthvalueForward -> install/legA-frozen-baseline/lib/libMIOpen.so.1",
+    "solver_evidence": "FindSolutionImpl KthvalueFwd; Invoker registered ... solver KthvalueFwd; kernel_name = KthvalueFwd",
+    "numerics": "value_mismatches=0 index_mismatches=0 max_abs_err=0",
+    "scope_note": "UNPATCHED frozen-base sanity only — explicitly allowed; NOT the final patched A/B",
+    "log": "phase5_2/logs/B08_legA_sanity_run.log"
+  },
+  "script_hardening_this_gate": [
+    "run_validation_leg.sh: new leg name 'legA-frozen' (frozen final Leg A); FRESH_CACHE_FORCE override now logs an explicit NOT-fresh-cache-grade warning; harness executable sha256 printed (A/B binary invariant)"
+  ],
+  "verdict": "PASS"
+}

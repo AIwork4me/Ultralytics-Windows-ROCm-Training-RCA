@@ -1,0 +1,66 @@
+{
+  "gate": "B06",
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "probe": {
+    "program": "phase5_2/scripts/b06_stl_isolation_probe.cpp",
+    "binary": "build/kthvalue-harness/b06_probe",
+    "measurement_method": "RTC kernel reads four __has_include(<...>) results back from GPU memory (flags ARE the measurement); per-mode search-path fingerprint kernel; per-mode ordinary axpy control kernel COMPILED+LAUNCHED under identical flags",
+    "arch_option": "-mcpu=gfx1100",
+    "execution_proof": "all reported bits were computed by kernels launched on the W7900 GPU and copied back via hipMemcpyDtoH"
+  },
+  "toolchain_provenance": {
+    "validation_env_hiprtc": "tools/rocm7141-venv/.../_rocm_sdk_core/lib/libhiprtc.so.7 (7.14.60850; dladdr on hiprtcCompileProgram, in-log)",
+    "validation_env_amdhip64": "tools/rocm7141-venv/.../_rocm_sdk_core/lib/libamdhip64.so.7 (dladdr on hipGetDeviceCount, in-log)",
+    "diagnostic_env_hiprtc_system721": "/opt/rocm/lib/libhiprtc.so.7 (7.2.1; DIAGNOSTIC COMPARISON ONLY — never part of the validation environment; env_system721.sh keeps the stacks separate)"
+  },
+  "matrix_rocm7141_validation_env": {
+    "default":                    {"type_traits": 1, "utility": 1, "limits": 1, "initializer_list": 1, "control_kernel": "COMPILED+RAN"},
+    "-nostdinc++":                {"type_traits": 1, "utility": 0, "limits": 1, "initializer_list": 1, "control_kernel": "COMPILED+RAN"},
+    "-nostdinc":                  {"type_traits": 1, "utility": 0, "limits": 1, "initializer_list": 1, "control_kernel": "COMPILED+RAN"},
+    "-nostdinc++ -nobuiltininc":  {"type_traits": 1, "utility": 0, "limits": 1, "initializer_list": 1, "control_kernel": "COMPILED+RAN"},
+    "-nostdinc -nobuiltininc":    {"type_traits": 1, "utility": 0, "limits": 1, "initializer_list": 1, "control_kernel": "COMPILED+RAN"},
+    "-nostdinc -nobuiltininc --sysroot=/nonexistent-b06": {"type_traits": 1, "utility": 0, "limits": 1, "initializer_list": 1, "control_kernel": "COMPILED+RAN"}
+  },
+  "matrix_system721_diagnostic_only": {
+    "default":                    {"type_traits": 1, "utility": 1, "limits": 1, "initializer_list": 1, "control_kernel": "COMPILED+RAN"},
+    "-nostdinc++":                {"type_traits": 0, "utility": 0, "limits": 0, "initializer_list": 0, "control_kernel": "COMPILED+RAN"},
+    "-nostdinc":                  {"type_traits": 0, "utility": 0, "limits": 0, "initializer_list": 0, "control_kernel": "COMPILED+RAN"},
+    "all_other_tested_combos":   {"type_traits": 0, "utility": 0, "limits": 0, "initializer_list": 0, "control_kernel": "COMPILED+RAN"}
+  },
+  "why_headers_survive_all_flags_on_7141": {
+    "mechanism": "libhiprtc-builtins.so.7 EMBEDS a HIP-specific C++ header subset (strings evidence: __hip_internal numeric_limits templates, '#include <type_traits>', '#include <limits>', '#include <utility>' strings) that hipRTC registers on the RTC include search path independent of the clang driver's standard/builtin include machinery",
+    "consequence": "-nostdinc / -nostdinc++ / -nobuiltininc / --sysroot do not affect the embedded builtin registration; <type_traits>/<limits>/<initializer_list> (+stddef.h) stay reachable while <utility> (not embedded at top level as includable header) disappears with the system libc++ dir",
+    "version_difference": "system 7.2.1 hiprtc does NOT show this behavior (-nostdinc++ removes all four) — documented toolchain behavioral difference, NOT a validation-environment option (7.2.1 mixing is forbidden)"
+  },
+  "environment_classification": {
+    "A_full_STL": "REPRODUCIBLE (default: 1/1/1/1; ordinary kernel OK)",
+    "B_partial_STL": "REPRODUCIBLE (-nostdinc++: type_traits=1 utility=0 limits=1 initializer_list=1; ordinary kernel OK; -nostdinc identical). This exercises the patch's inconsistent-availability (__has_include) guard exactly: one wrapper header reachable, the other not",
+    "C_complete_no_STL": "INCONCLUSIVE on ROCm 7.14.1 Linux hiprtc — no tested flag combination makes all four __has_include()==0 while keeping ordinary kernels compilable; embedded builtins are the cause; system-7.2.1 diagnostic shows a full-isolation-capable toolchain exists but is excluded from the validation environment by the two-stack discipline",
+    "D_unusable_config": "none observed — every tested combination kept the ordinary control kernel compilable and executable"
+  },
+  "implication_for_final_validation": {
+    "test_hiprtc_selfcontained_negative_mode": "on Linux/7.14.1 the test's OWN isolation-probe (patch 0003 rejects isolated mode if ANY of the four headers is still reachable) will correctly detect the leak and refuse to produce a negative-mode PASS — an honest diagnostic, not a false PASS; expected Linux outcome for negative mode is ISOLATION-INSUFFICIENT, not 'type_traits file not found'",
+    "positive_and_ordinary_modes": "unaffected (full-STL env); the primary Linux A/B validation (same-env unpatched-vs-patched) does not require no-STL isolation",
+    "no_STL_windows_parity": "Windows provides the direct no-STL regression evidence (per freeze manifest windows_validation_status.nostl_runtime=PASS); Linux no-STL remains explicitly INCONCLUSIVE"
+  },
+  "logs": [
+    "phase5_2/logs/B06_stl_isolation_probe.log (7.14.1 validation env)",
+    "phase5_2/logs/B06_stl_probe_system721_diagnostic.log (7.2.1 diagnostic only)"
+  ],
+  "falsification_check": "a mismeasurement (e.g. bits read as host-side constants) is excluded: values change across modes within the same binary+GPU session, and the 7.2.1 run of the SAME binary produces different values — the bits are genuinely produced by RTC-compiled kernels on-device",
+  "adversarial_audit_addendum": {
+    "auditor": "fresh-context subagent; independent probe reimplementation reproduced [1,0,1,1]; both logs re-ran byte-identically",
+    "additional_isolation_attacks_all_ineffective": [
+      "-ivfsoverlay (driver and -Xclang cc1 forms): ACCEPTED by hiprtc but ineffective — builtins materialize into randomized /tmp/comgr-*/include/ dirs unreachable by static overlay roots",
+      "-isystem/-idirafter/-iquote with empty dir: add-only, no effect (expected)",
+      "single-string combined option: rejected by hiprtc arg parsing (each array element = one arg)",
+      "explicit headerSources via hiprtcCreateProgram: headers register and are includable but cannot shadow/remove builtins",
+      "AMD_OCL_BUILD_OPTIONS(_APPEND)=-nostdinc++: honored but breaks device linking in ALL modes (undefined __ockl_get_group_id) — unusable config, not isolation",
+      "--rocm-path=/nonexistent: bits unchanged; device libs missing -> ordinary kernel fails (unusable)",
+      "-x c / -stdlib=libc++ / -isysroot: fail entirely or unchanged"
+    ],
+    "spoof_caveat_MINOR": "-D__has_include(x)=0 forces bits [0,0,0,0] while #include <limits> still compiles and numeric_limits<float>::max() executes on GPU (3.40282e+38) — a spoof, not isolation. Not exploitable in the planned A/B (MIOpen constructs its own RTC option list), but the final-validation runbook must never add -D__has_include overrides",
+    "probe_known_cosmetic_MINOR": "axpy control path uploads 4KB from a 1-int host buffer (harmless: devOut unused by axpy_ctl; result readback separately verified); unchecked hip* return codes surface via -1 sentinels which never fired"
+  },
+  "verdict": "PARTIAL-ISOLATION CHARACTERIZED; FULL_NO_STL_ISOLATION=INCONCLUSIVE (honest negative, not a PASS)"
+}

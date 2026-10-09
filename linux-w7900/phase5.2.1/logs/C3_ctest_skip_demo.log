@@ -1,0 +1,11 @@
+Test project /workspace/miopen-w7900-validation/build/test-BUILD_TESTING-ON
+    Start 10: test_hiprtc_selfcontained
+1/1 Test #10: test_hiprtc_selfcontained ........***Skipped   0.17 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.19 sec
+
+The following tests did not run:
+	 10 - test_hiprtc_selfcontained (Skipped)
+CTEST_RC=0

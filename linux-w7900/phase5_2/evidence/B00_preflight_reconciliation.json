@@ -1,0 +1,69 @@
+{
+  "gate": "B00",
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "timestamp": "2026-10-08T12:10:00+00:00",
+  "workspace": "/workspace/miopen-w7900-validation",
+  "filesystem": {
+    "free_disk_gb": 55,
+    "total_gb": 98,
+    "used_pct": 42
+  },
+  "previous_preflight": {
+    "mission": "W7900-LINUX-PREP-R1",
+    "branch": "linux-w7900/preflight-readiness",
+    "local_clone": "/tmp/opencode/rca-clone (full clone, 18M, clean tree)",
+    "declared_evidence_commit": "0f48d0896fa4539a1c93b83073ce820048b57f62",
+    "local_clone_head": "0f48d0896fa4539a1c93b83073ce820048b57f62 (verified: git log --oneline -1 -> 0f48d08 'linux-w7900: add publication verification evidence')",
+    "final_status": "OFFICE_W7900_ENV_READY",
+    "prior_publication_commit": "1f80986d1dda985e4be2dee8a870cb9e33aa50f3 (publication record; 0f48d08 added verification evidence afterwards)"
+  },
+  "confirmed_complete_from_preflight": [
+    "G00 machine inventory: gfx1100 (AMD Radeon PRO W7900, PCI 1002:744b)",
+    "G01 ROCm 7.14.1 isolated wheel SDK venv at tools/rocm7141-venv (contamination-hardened)",
+    "G02 GPU runtime baseline: matmul + BatchNorm fwd/bwd on both stacks",
+    "G03 network: api.github.com stable; git transport unstable; gh CLI authenticated as AIwork4me (repo, workflow scopes)",
+    "G04 pristine MIOpen build from b68f8944 tarball (8032/8032 files blob-verified): install/baseline/lib/libMIOpen.so.1.0 sha256 6af347af760bb5145a6d8f2c50871bcd2d11c7aa71075a59cd67de7e49990697",
+    "G05 HIPRTC smoke: gfx1100 code object compiled+executed; STL probe table (default: type_traits/utility/limits/initializer_list ALL reachable=1; -nostdinc++: utility=0, others=1)",
+    "G06 direct Kthvalue harness PASS 3/3 (dladdr-proven source-built MIOpen; KthvalueFwd solver; RTC MIOpenKthvalue.cpp cached gfx1100)",
+    "G07 A/B leg infrastructure READY (scripts build_leg_miopen.sh / prepare_validation_legs.sh / run_validation_leg.sh)",
+    "G08 handoff consumer hardened for PROVISIONAL schema (needs Phase-5.2 rewrite for ACTUAL schema - see B02)",
+    "G09 machine hygiene PASS",
+    "G10 3-reviewer panel findings all resolved"
+  ],
+  "key_reconciliation_facts": {
+    "historical_pristine_base": "b68f8944300f104875d953fc8e4510908c9aaf0b (NOT the final control base)",
+    "frozen_final_base": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "bases_differ": true,
+    "historical_build_must_NOT_be_used_as_final_leg_A_control": true,
+    "frozen_base_commit_object_present_locally": true,
+    "frozen_base_tree_object_present_locally": true,
+    "frozen_base_blob_completeness": "TO BE VERIFIED in B04 (blobless clone; backfill PID running)"
+  },
+  "running_processes": {
+    "repo_backfill_loop": "PID 76382 bash /workspace/miopen-w7900-validation/scripts/repo_backfill_loop.sh (still active)"
+  },
+  "rocm_environments": {
+    "isolated_7141_venv": "tools/rocm7141-venv (python 3.12; torch 2.12.0+rocm7.14.1)",
+    "system_721": "/opt/rocm (untouched; excluded by scripts/env_rocm7141.sh)"
+  },
+  "github": {
+    "auth_status": "authenticated as AIwork4me (gh 2.101.0)",
+    "api_reachability": "HTTP 200 for AIwork4me/Ultralytics-Windows-ROCm-Training-RCA",
+    "rca_clone_state": "remote branches include origin/phase5.1/windows-final-candidate-freeze at 494907699f3b57095663f0a70b42278001a8efb7 (= authoritative evidence commit, verified by rev-parse)"
+  },
+  "authoritative_windows_freeze_artifacts_located_at_4949076": [
+    "findings/phase5_1/FINAL_HANDOFF.json (schema: base_sha/ordered_commits/ordered_patches/series_hash{algorithm,sha256}/source_tree_identity.head_tree_sha1)",
+    "docs/phase5_1/LINUX_FINAL_VALIDATION_HANDOFF.md",
+    "patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch (15546 bytes)",
+    "patches/phase5_1/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch (7444 bytes)",
+    "patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch (27631 bytes)",
+    "patches/phase5_1/canonical/README.md (1809 bytes)"
+  ],
+  "known_defects_to_fix_this_mission": [
+    "B02: scripts/check_final_handoff.py consumes PROVISIONAL schema (upstream_base_sha/patch_series/series_sha256/series_sha256_mode/rca_evidence_commit) but ACTUAL manifest uses base_sha/ordered_commits/ordered_patches/series_hash.algorithm=sha256_file_concat_v1/source_tree_identity.head_tree_sha1",
+    "B03: check_unlisted_files() rejects README.md in patches/phase5_1/canonical/ -> false rejection of legitimate manifest",
+    "B04: blobless clone blob completeness for frozen base not yet proven",
+    "B05: exact tree reconstruction 605d0d214acdbc06086fdb27c61fec970c0f2798 not yet performed on Linux"
+  ],
+  "verdict": "PASS"
+}
