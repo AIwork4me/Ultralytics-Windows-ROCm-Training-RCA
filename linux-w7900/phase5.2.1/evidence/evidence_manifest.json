@@ -1,0 +1,243 @@
+{
+ "schema": "phase5.2.1/evidence-manifest/1.0",
+ "branch": "linux-w7900/phase5.2.1-ci-closure",
+ "basis": "origin/main 4754622 + merge of phase5.2-handoff-bridge (5883db9+c4f9da2), history preserved",
+ "count": 47,
+ "files": [
+  {
+   "path": "linux-w7900/phase5.2.1/docs/PHASE5_2_1_SUMMARY.md",
+   "sha256": "4c6655f028bf68ffc07a89bf992a0a2d85ede27373dfcdb1ec5cd0219b440260",
+   "size": 5595
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/evidence/C2_ctest_portability.json",
+   "sha256": "61516a2f39f7ee03b99b9a91ae305a1d4d967693ad95f5d0121af0bb86bcef87",
+   "size": 4456
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/evidence/C3_mechanism_validation.json",
+   "sha256": "0ea12f768012ab83422fd6b6fd95fe48ee2f65108fccfc7de9dc58ac6135371a",
+   "size": 2396
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/findings/CI_AMENDMENT_PROPOSAL.md",
+   "sha256": "7428c6ffe5a0e9ea46123b0c5ed4b962e25ca8b84665f53f30ed419f7a8ffca8",
+   "size": 14009
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/findings/CTEST_PORTABILITY_ANALYSIS.md",
+   "sha256": "ecbf49e59c8c78f567ad0d71c772a5de6ececb99802d9c4036d98717601ea5db",
+   "size": 8032
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C1_clean_checkout_verify.log",
+   "sha256": "092d109f4b020e1fc05bb1dd3c552e0375e58e9fc2371b97682b3192e0f1d05b",
+   "size": 387
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C1_wrapper_audit.log",
+   "sha256": "763bf2f8b8cb4298cb4c38443a0775fd4a210d995f285b4fbe555f0a4f52820f",
+   "size": 1825
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_b06_probe_header_audit.log",
+   "sha256": "7f755f3d9305a331a3f3cae3ed930c7bb85582cbba65561e3ac201cbb743eae9",
+   "size": 2152
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_ctest_discovery.log",
+   "sha256": "b776a5c38c1248908491c44a828586aac6914f0584c2af8f5a6c76fefc28a9a0",
+   "size": 130
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_ctest_run.log",
+   "sha256": "1290103b8e25b65763fe10aa65cd9e70477c2d2646603e19da8a4f5c0822e8f4",
+   "size": 843
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_direct_mode_negative.log",
+   "sha256": "70c1dc3687a989c6310b8169e9972886cb948c361050c8d4e9c2a76eaeab90fe",
+   "size": 401
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_direct_mode_ordinary.log",
+   "sha256": "ce1bce4004c3879de2404d35db712ab268412b7271ed6a9aaa5455b59c3dfa07",
+   "size": 127
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_direct_mode_positive.log",
+   "sha256": "015e7dbdf78937efea39c822a2ce495721dea878318827227b8da42247f854d0",
+   "size": 401
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_direct_mode_with-stl.log",
+   "sha256": "d7737084ab2c7030141377dcc3dbeb97f87b37d2239d376e65589ad871b5effa",
+   "size": 3856
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_test_build_build.log",
+   "sha256": "be25ccc376f585c928d9fc1693f1531f3ef928225564d268dbb5f5e3e2085225",
+   "size": 199
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_test_build_cache_facts.txt",
+   "sha256": "95a53866bd05a97dd162046cd086d13edea8329b4b11ecc96b83f8c051ba35f0",
+   "size": 228
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C2_test_build_configure.log",
+   "sha256": "9ed9bba481e5da648dd86d5a4db8fcc703ce5b30aee3adf02359e37250394a8c",
+   "size": 34958
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C3_ctest_direct_noskip_counterfactual.log",
+   "sha256": "a2626900eafc8385e851303582f5ed568a240ae689218d1b234d7b287e0a631f",
+   "size": 579
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/logs/C3_ctest_skip_demo.log",
+   "sha256": "e048046386afa82e33a0be995353748c708354fdf2844c5884dfb2bbeabd9839",
+   "size": 355
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/reviews/C1_independent_review.md",
+   "sha256": "2e4702fd53194f4eb53e91769358e2481c55f037018b806c13bd42f7acda9791",
+   "size": 2541
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/reviews/C2_independent_audit.md",
+   "sha256": "96d17bfc1c5158d1995b017d25a42d74cf18c472397751d725eed5906bb1fad2",
+   "size": 2840
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/reviews/C3_maintainer_review.md",
+   "sha256": "6f35985fdeac9ea72ea537d1654fc59cb013fc58b427e7b997e433efeac7c01d",
+   "size": 2774
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/scripts/gen_wrappers_manifest.py",
+   "sha256": "d21d858f09d9f6fb4db17e6df193502198f193b8b83202567397834a3f10a67a",
+   "size": 4375
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/scripts/verify_clean_checkout.py",
+   "sha256": "13fc66c85a4f2adada6dedb08770d48516c7d132136105fd3f81d214de366931",
+   "size": 6731
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/WRAPPERS_MANIFEST.json",
+   "sha256": "7b9e8f5b49a1014c7b521a7db055802450825f49501333c72bdbb71d48c525be",
+   "size": 8934
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/build_baseline_miopen.sh",
+   "sha256": "16460b585ad53bc3380dfd9e52f720a935f4daa42b96aa093962eb19230254d6",
+   "size": 332
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/build_leg_miopen.sh",
+   "sha256": "5146289a9b663fd01d0a3b7003a298eaf51c3311485825182f421ce8734d92f8",
+   "size": 2415
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/check_final_handoff.py",
+   "sha256": "cea4f1fe165ed495bb7ab6ff3d3142cf250d2e2e5d9a9060774ba914d425b14f",
+   "size": 30822
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/clone_loop.sh",
+   "sha256": "b5cfd7fa2fc314f828227707362bfcbea1a6167d2c6ccbe418ce5b4c1221c107",
+   "size": 662
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/env_rocm7141.sh",
+   "sha256": "fb5bd0b6846deecb1f127f3672bc85e96723e64b38e870ac8bdd0aadb5b33628",
+   "size": 1369
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/env_system721.sh",
+   "sha256": "990aebcc34ded967329d0ec7b4283ba0da64f88a328bd90142f962305e1fa82e",
+   "size": 947
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/g02_gpu_baseline.py",
+   "sha256": "9463d49b4598a0491940fbb7ed5007839a5103eec61db311084a93af8b402855",
+   "size": 2105
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/g05_hiprtc_smoke.cpp",
+   "sha256": "8ca0df5925f23706c3787bfa96ee76c9e225544b5c760489ee8887637a705760",
+   "size": 3749
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/g05_limits_include_test.cpp",
+   "sha256": "ce8fe5932ece8b1b92fe2a4743c52092e5e52e3fdaffb176db4e7e8be1fa0e6c",
+   "size": 923
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/g05_stl_probe.cpp",
+   "sha256": "f2b2ba0538936e38e6f833d31241292b0ac44010fb43d4d2e99008594bb6ffda",
+   "size": 3002
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/git-retry.sh",
+   "sha256": "2858f3866174aa9b426f151a43f596caef0380bf4a69b4512af2dbb9978da662",
+   "size": 514
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/kthvalue_runtime_harness_gfx1100.cpp",
+   "sha256": "ba75005dadea54fd2e4fef2d3312270d646116f7a3de16350b2f76c824babc8f",
+   "size": 19970
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase3-original/kthvalue_runtime_harness.cpp",
+   "sha256": "d7d6f92b619ca5c0735f598b3aafb96b1d314950b112a6f25b51aa9902207d2c",
+   "size": 19970
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase3-original/library_provenance.py",
+   "sha256": "a241d6a4b69a4b8a08f92a6e3d5ac2ec6257a63960810a63d3564cd58cbfc628",
+   "size": 2601
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase3-original/run_fresh_cache.sh",
+   "sha256": "e6d5768e8cbd2639f3c09b216b66eea3ebe441f154ea80f52e9ba7ac6ae7c0e1",
+   "size": 939
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase3-original/run_with_source_miopen.sh",
+   "sha256": "02974adce56fef8dbfc62b2b246335a105e01fe7ca6d76053bd137520c1ce24b",
+   "size": 1952
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase521_test_build.sh",
+   "sha256": "422b6fde3eb2e3e6409cb4c6803a0dcf7ce87e3cd252bf556de9be5ef3115f2e",
+   "size": 5088
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/prepare_validation_legs.sh",
+   "sha256": "2f750c26a3ec2c206c75ccdfeecede2504ba493389b7d9b9e921a4b9a509a58d",
+   "size": 7001
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/repo_backfill_loop.sh",
+   "sha256": "a2a0328b01cbd73fbaa8bd06a8f367264b5b7ca06dba2e04688a834cf3d44a8e",
+   "size": 935
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/run_validation_leg.sh",
+   "sha256": "856d132246e1bc434a166203b96ff59dc0f88cebd97ffe3a788e4b049885416a",
+   "size": 2982
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/workspace-root/git-retry.sh",
+   "sha256": "9d95c5b5901890871be81ad403b9ef89a1f174929c099627b61c95331ae4ff49",
+   "size": 358
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/workspace-root/rocm714-env.sh",
+   "sha256": "1b85ee756791f710ba5f91086d3546d52d5229e729e456bb49c138c3048ec8e6",
+   "size": 605
+  }
+ ]
+}
