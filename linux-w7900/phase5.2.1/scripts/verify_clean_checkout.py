@@ -98,8 +98,11 @@ def main():
             if not name.endswith(".md"):
                 continue
             text = open(os.path.join(droot, name)).read()
-            for m in re.finditer(r"(?<![\w./-])scripts/([A-Za-z0-9_.-]+)", text):
-                refs.add((os.path.join(d, name), m.group(1)))
+            for m in re.finditer(r"(?<![\w./-])scripts/([A-Za-z0-9_./-]+)", text):
+                ref = m.group(1).strip("./-")
+                if "<" in ref or ">" in ref or not ref:
+                    continue  # documented placeholder (e.g. scripts/env_<stack>.sh)
+                refs.add((os.path.join(d, name), ref))
     c2_bad = []
     for doc, name in sorted(refs):
         if not any(os.path.isfile(os.path.join(repo, s, name)) for s in SCRIPT_SOURCES):
