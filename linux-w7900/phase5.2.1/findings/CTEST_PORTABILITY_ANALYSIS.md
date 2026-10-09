@@ -80,8 +80,9 @@ supply the include path and -L; the test target deliberately links
 nothing else. Result on Linux: compile fails `'hip/hiprtc.h' file not
 found`; after supplying the include dir, link fails `unable to find
 library -lhiprtc`. Measurement-harness workaround (build-tree only; the
-frozen patch itself was NOT modified): `-DCMAKE_CXX_STANDARD_INCLUDE_
-DIRECTORIES=$DEVEL/include -DCMAKE_EXE_LINKER_FLAGS=-L$DEVEL/lib`.
+frozen patch itself was NOT modified):
+`-DCMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES=$DEVEL/include
+-DCMAKE_EXE_LINKER_FLAGS=-L$DEVEL/lib`.
 Windows is unaffected (hiprtc::hiprtc carries includes/locations).
 
 ## C2.4 No-STL positive test on ROCm 7.14.1 — exit code verified
