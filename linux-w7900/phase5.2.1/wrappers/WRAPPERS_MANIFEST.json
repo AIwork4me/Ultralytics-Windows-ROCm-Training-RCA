@@ -1,7 +1,7 @@
 {
  "schema": "wrappers-manifest/1.0",
  "purpose": "exact operative versions of all locally modified runtime/build wrappers at phase 5.2.1 closure",
- "count": 21,
+ "count": 22,
  "wrappers": [
   {
    "path": "linux-w7900/phase5.2.1/wrappers/build_baseline_miopen.sh",
@@ -133,6 +133,16 @@
     "status": "IDENTICAL_TO_PUBLISHED",
     "matches": "preflight_scripts",
     "published_path": "linux-w7900/preflight/scripts/kthvalue_runtime_harness_gfx1100.cpp"
+   }
+  },
+  {
+   "path": "linux-w7900/phase5.2.1/wrappers/phase521_test_build.sh",
+   "sha256": "422b6fde3eb2e3e6409cb4c6803a0dcf7ce87e3cd252bf556de9be5ef3115f2e",
+   "size": 5088,
+   "executable": true,
+   "provenance": {
+    "status": "UNPUBLISHED_PREVIOUSLY",
+    "note": "first publication in this manifest"
    }
   },
   {

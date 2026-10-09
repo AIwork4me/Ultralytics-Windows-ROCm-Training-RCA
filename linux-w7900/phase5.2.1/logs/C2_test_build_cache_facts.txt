@@ -1,0 +1,4 @@
+BUILD_TESTING:BOOL=ON
+CMAKE_CXX_COMPILER:STRING=/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/amdclang++
+GPU_TARGETS:UNINITIALIZED=gfx1100
+MIOPEN_USE_HIPRTC:BOOL=ON

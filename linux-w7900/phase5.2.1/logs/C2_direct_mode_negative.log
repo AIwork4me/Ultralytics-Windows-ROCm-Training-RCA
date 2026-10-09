@@ -1,0 +1,10 @@
+[stl-probe] create=0 compile=6 code=0 code_size=0
+---- compiler log ----
+/tmp/comgr-205821-0-c9ab40/input/stl_probe.cu:2:2: error: STL_PROBE_REACHABLE
+    2 | #error STL_PROBE_REACHABLE
+      |  ^
+1 error generated when compiling for gfx1100.
+
+----------------------
+INCONCLUSIVE: host C++ stdlib still reachable under -nostdinc; isolation does not reproduce the no-STL condition
+MODE=negative EXIT=4
