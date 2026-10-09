@@ -1,14 +1,14 @@
 {
-  "schema": "phase5_1_r2_patch_identity_v1",
-  "gate": "R29+R30",
-  "generated": "2026-10-09T11:34:31.473298",
+  "schema": "phase5_1_r2_patch_identity_v2",
+  "gate": "R29+R30 (final after R33 fixes)",
+  "generated": "2026-10-09T12:08:05.790552",
   "base_repo": "https://github.com/ROCm/rocm-libraries",
   "base_branch": "develop",
   "base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
   "ordered_commits": [
     "01a77dab8c4cf23d1e49273fa3c88bb0bb4fc887",
     "8188b803b8304fc5933caa52ee27a58d01a78b04",
-    "d758aed7dc8c3ff17d7c4672f1281f09ca3ef131"
+    "f18c4de94b229bbe3e8501d70e3e2461425c69de"
   ],
   "ordered_commit_subjects": [
     "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
@@ -23,26 +23,26 @@
   "patch_sha256": {
     "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
     "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
-    "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch": "db16ee9e23af2cdbdba1bee1925d60dd7e949e4c44dd98878da221c889001f55"
+    "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch": "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e"
   },
   "patch_sizes_bytes": {
     "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch": 15385,
     "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch": 7283,
-    "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch": 32398
+    "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch": 32725
   },
   "series_hash": {
     "algorithm": "sha256_file_concat_v1",
-    "sha256": "4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf"
+    "sha256": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02"
   },
   "source_tree_identity": {
-    "head_tree_sha1": "060087061488a83a931f1d8d1ad2c0eb6c231eac",
+    "head_tree_sha1": "b983caddf9f9f561e7d1b590deadb16267c2de15",
     "git_am_roundtrip_tree_match": true,
     "git_apply_write_tree_match": true
   },
   "reconstruction": {
-    "method_a_git_am": "fresh worktree, am x3 -> tree 060087061488a83a931f1d8d1ad2c0eb6c231eac MATCH (commit chain af07b523<-ce9a29de<-6b536b5b<-7c586614, subjects correct)",
-    "method_b_git_apply_write_tree": "fresh worktree, git apply --index x3 + write-tree -> 060087061488a83a931f1d8d1ad2c0eb6c231eac MATCH",
-    "candidate_tree": "060087061488a83a931f1d8d1ad2c0eb6c231eac - ALL THREE MATCH"
+    "method_a_git_am": "fresh worktree -> tree b983cadd... MATCH",
+    "method_b_git_apply_write_tree": "fresh worktree -> b983cadd... MATCH",
+    "candidate_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15 - ALL THREE MATCH"
   },
   "changed_files_vs_base": {
     "projects/miopen/src/CMakeLists.txt": {
@@ -86,9 +86,9 @@
       "bytes": 3179
     },
     "projects/miopen/test/CMakeLists.txt": {
-      "git_blob": "96b427af80c9935f759c30d9b3b3080aa2432821",
-      "sha256": "aa8cad53d5a34b6e3d45175176cfa6fb86c8d39f4705c71e232692813f0d1e19",
-      "bytes": 43776
+      "git_blob": "67e9ff25915d7a38d2b203cd6ae9174e9357426c",
+      "sha256": "f39ff327acf720fb1548183123ec050080b3682b4303232c4e9c1dfff4cd6b53",
+      "bytes": 44098
     },
     "projects/miopen/test/hiprtc_selfcontained.cpp": {
       "git_blob": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
@@ -98,14 +98,19 @@
   },
   "r1_vs_r2": {
     "all_production_and_test_source_files_identical": true,
-    "only_differing_file": "projects/miopen/test/CMakeLists.txt (registration amendment)",
+    "only_differing_file": "projects/miopen/test/CMakeLists.txt (registration amendment, +91/-19 vs R1)",
     "r1_series_sha256": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d",
     "r1_tree": "605d0d214acdbc06086fdb27c61fec970c0f2798",
     "r1_patches_unchanged_on_r1_branch": "4949076 (14719b8b / 7d40c314 / 3eb20ec0)"
   },
+  "superseded_interim_r2": {
+    "head_d758aed7_series_4a703d69": "pre-R33-fixes interim; superseded within this mission before publication",
+    "head_61410b68": "pre-MINOR1-hardening interim",
+    "head_2b3fd2af": "pre-FC2-4 interim"
+  },
   "dco": {
     "signed_off_by_present": false,
     "provisional_marker_present": false,
-    "note": "upstream CONTRIBUTING.md at frozen base has no DCO requirement; certification NOT authorized by user; commits unsigned by design"
+    "note": "upstream CONTRIBUTING.md (frozen base) has no DCO requirement; certification NOT authorized by user"
   }
 }
