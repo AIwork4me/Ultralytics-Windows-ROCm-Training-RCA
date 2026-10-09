@@ -1,0 +1,29 @@
+PASS binary:legA_sha256
+PASS binary:legB_sha256
+PASS binary:harness_sha256
+PASS L08:legA_exit_file_matches  [evidence=0 file=0]
+PASS L08:legA_exit_zero_for_pass  [PASS verdict with nonzero exit is contradictory]
+PASS L08:legA_dispatch_in_rawlog  [raw log lacks dispatch lines]
+PASS L08:legA_provenance_in_rawlog  [provenance line missing in raw log]
+PASS L08:legB_exit_file_matches  [evidence=0 file=0]
+PASS L08:legB_exit_zero_for_pass  [PASS verdict with nonzero exit is contradictory]
+PASS L08:legB_dispatch_in_rawlog  [raw log lacks dispatch lines]
+PASS L08:legB_provenance_in_rawlog  [provenance line missing in raw log]
+PASS L08:same_harness_both_legs  [checked via wrapper sha lines]
+PASS L08:harness_sha_equality_rawlogs  [b830b37a5aa7 vs b830b37a5aa7]
+PASS L08:dumps_identical
+PASS L09:legA_exit_consistent  [evidence=0 file=0]
+PASS L09:legA_all_checks_pass
+PASS L09:legB_exit_consistent  [evidence=0 file=0]
+PASS L09:legB_all_checks_pass
+PASS L07:ctest_skipped_not_failed
+PASS L07:positive_exit4
+PASS L07:ordinary_and_withstl_pass
+FAIL L10:exit_consistent  [PASS verdict requires exit 0]
+PASS L10:provenance_is_legB
+PASS L11:all_attacks_behaved  [14/14]
+PASS L05:legB_sha_matches_l06
+PASS L06:no_contamination_both_legs
+
+1 FAILURES
+  - L10:exit_consistent: PASS verdict requires exit 0

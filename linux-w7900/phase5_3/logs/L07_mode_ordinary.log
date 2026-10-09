@@ -1,0 +1,2 @@
+[ordinary] create=0 compile=0 code=0 code_size=3824
+PASS: ordinary hiprtc control (code object generated)

@@ -1,0 +1,320 @@
+{
+  "gate": "L02",
+  "consumer": "/workspace/miopen-w7900-validation/phase5_3/scripts/check_final_handoff_r2.py",
+  "frozen_checkout": "/workspace/miopen-w7900-validation/repos/rca-evidence",
+  "pinned_evidence": "c8417161125dc33275b7ac615298b449a81e7cf8",
+  "scratch_root": "/tmp/p53adv-qtaww_rn",
+  "summary": {
+    "total": 20,
+    "passed": 20
+  },
+  "results": [
+    {
+      "id": 1,
+      "attack": "correct R2 manifest",
+      "expected": "PASS",
+      "actual_verdict": "PASS",
+      "exit_code": 0,
+      "intended_reason": "no failure",
+      "intended_reason_hit": false,
+      "failures_observed": [],
+      "PASS": true,
+      "evidence_path": "/workspace/miopen-w7900-validation/phase5_3/evidence/L02_positive_control.json"
+    },
+    {
+      "id": 2,
+      "attack": "R1 candidate",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "superseded candidate rejected",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 f8bd1ac0c073a44e99e17c14821b9f2f3abc3a63dec4be47174c23f6a2c5caa9 != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "candidate_id mismatch: expected 'P5.1-CANDIDATE-R2', got 'P5.1-CANDIDATE-R1'",
+        "superseded candidate rejected: P5.1-CANDIDATE-R1"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": "2b",
+      "attack": "actual frozen R1 manifest",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "manifest sha256",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "git blob missing at HEAD:findings/phase5_1/FINAL_HANDOFF.json (not a byte-exact checkout)",
+        "rca evidence checkout is DIRTY (local tampering?): ['A  findings/phase5_1/FINAL_HANDOFF.json']"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 3,
+      "attack": "wrong evidence commit (ancestor snapshot)",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "evidence SHA mismatch",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "rca evidence SHA mismatch: CLI pin=cd9c36c52a7702eef4a2b4ba899a4e35dfba8b1a but checkout HEAD=c8417161125dc33275b7ac615298b449a81e7cf8 (the checkout is authoritative)"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": "3b",
+      "attack": "ancestor snapshot pin (checkout mismatch)",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "evidence SHA mismatch",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "rca evidence SHA mismatch: CLI pin=cd9c36c52a7702eef4a2b4ba899a4e35dfba8b1a but checkout HEAD=c8417161125dc33275b7ac615298b449a81e7cf8 (the checkout is authoritative)"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 4,
+      "attack": "wrong base_sha",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "known-stale historical anchor",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 653c5c6484a0080e2c8bbeed0b532c5dfe0907ffc6eabdb661eaa2046800122c != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "base_sha mismatch: expected frozen base 7c5866144ac4b879be442563e2b49fa1c142ea36, got b68f8944300f104875d953fc8e4510908c9aaf0b",
+        "base_sha b68f8944300f104875d953fc8e4510908c9aaf0b is a known-stale historical anchor"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 5,
+      "attack": "wrong head_tree (R1 tree)",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "superseded R1 tree",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 15794e027a2127ad6e43ae4372e26217a92f280ad2b2932cafc7cbd7dad3abcf != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "stale R1 head tree SHA present outside the supersedes record",
+        "head_tree_sha1 mismatch: expected b983caddf9f9f561e7d1b590deadb16267c2de15, got 605d0d214acdbc06086fdb27c61fec970c0f2798 (wrong candidate source identity)",
+        "head_tree_sha1 605d0d214acdbc06086fdb27c61fec970c0f2798 is the superseded R1 tree"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 6,
+      "attack": "patch 0001 tampering",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "sha256 mismatch",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "patch patches/phase5_1_r2/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch: sha256 mismatch manifest=816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c actual=f37f6b1ed91a729a9f1b627c8f145a0f914d79d87d98dc82499e2ffde24e6543",
+        "patch patches/phase5_1_r2/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch: size mismatch manifest=15385 actual=15414",
+        "series hash mismatch: manifest=48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02 actual=c9083f35dc53f9a68f8252e4b85d4f9e0dc3a77fcf9d3e14edd7657e0906fdb9 (algorithm=sha256_file_concat_v1)"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 7,
+      "attack": "patch 0002 tampering",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "sha256 mismatch",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "patch patches/phase5_1_r2/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch: sha256 mismatch manifest=46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460 actual=85408d7fe98503c5ad7f7c27a1522566ebf0d9dab7d97d93752edede1a9ad05a",
+        "patch patches/phase5_1_r2/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch: size mismatch manifest=7283 actual=7312",
+        "series hash mismatch: manifest=48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02 actual=09e99fe553bc44cf3bdfb30d0dd61a36ddb113f36db28ee45c4aebd5cfeef728 (algorithm=sha256_file_concat_v1)"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 8,
+      "attack": "patch 0003 tampering",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "sha256 mismatch",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "patch patches/phase5_1_r2/canonical/0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch: sha256 mismatch manifest=df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e actual=7246d54aab7088f251a7e87e3bf63305e2779339c954545dedc11155186d3b03",
+        "patch patches/phase5_1_r2/canonical/0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch: size mismatch manifest=32725 actual=32754",
+        "series hash mismatch: manifest=48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02 actual=1bec3960bbae5deeb3351ae61d24522c5bc404a1c9bfc8f2bc2d1854453a2e67 (algorithm=sha256_file_concat_v1)"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 9,
+      "attack": "wrong patch order",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "series hash mismatch",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 ec706d9448a8cad584761f00d13e6bb289b812ee6a8f41b18153967b9de5ea53 != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "series hash mismatch: manifest=48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02 actual=dfedbcf3a98a8969397fa20bfdd9c55b58c10418512e9712aab4de171b953ea7 (algorithm=sha256_file_concat_v1)",
+        "ordered_commit_subjects[1] 'MIOpen: keep RTC type traits self-contained when no host STL is reachable' != patch Subject header 'MIOpen: make remaining RTC kernel std includes self-contained'",
+        "ordered_commit_subjects[2] 'MIOpen: make remaining RTC kernel std includes self-contained' != patch Subject header 'MIOpen: keep RTC type traits self-contained when no host STL is reachable'"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 10,
+      "attack": "R1 series hash substitution",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "superseded R1 series",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 be346b4e9cd0e6849bee959d129aefec1e1313548011bc95041030e53bddcd08 != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "stale R1 series hash present outside the supersedes record",
+        "series hash mismatch: manifest=797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d actual=48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02 (algorithm=sha256_file_concat_v1)",
+        "series hash does not match the frozen R2 canonical series 48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02 (wrong candidate? / R1 substitution?)",
+        "series hash 797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d is the superseded R1 series"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 11,
+      "attack": "extra undeclared .patch",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "unexpected file in canonical patch dir",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "unexpected file in canonical patch dir patches/phase5_1_r2/canonical: 9999-rogue.patch (allowed: declared patches + ['.gitattributes', 'README.md'])"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 12,
+      "attack": "missing declared patch",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "declared file missing",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "declared file missing under rca-root: patches/phase5_1_r2/canonical/0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 13,
+      "attack": "symlink patch substitution",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "symlink",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "symlink in patch dir rejected: 0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+        "path component is a symlink (rejected): /tmp/p53adv-qtaww_rn/symlink/patches/phase5_1_r2/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 14,
+      "attack": "../ path traversal",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "traversal",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 cb8cbd3e380793b7122d57eb8e83ea474a207f88b375c5d9143bdf3a18dab0ed != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "all ordered patches must live in ONE canonical directory; found: ['../phase5_1/canonical', 'patches/phase5_1_r2/canonical']",
+        "patch path traversal ('..') rejected: '../phase5_1/canonical/0001-x.patch'"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 15,
+      "attack": "provisional/old schema manifest",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "provisional/stale schema key present",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 8f514e02b42be43024ef65165bb13a125e4209eafd254048eceb0ccca7ca6616 != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "manifest missing required key: base_sha",
+        "manifest missing required key: ordered_patches",
+        "provisional/stale schema key present: upstream_base_sha \u2014 this consumer accepts ONLY the frozen R2 schema (fail closed, no fallback)",
+        "provisional/stale schema key present: patch_series \u2014 this consumer accepts ONLY the frozen R2 schema (fail closed, no fallback)",
+        "provisional/stale schema key present: series_sha256_mode \u2014 this consumer accepts ONLY the frozen R2 schema (fail closed, no fallback)"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 16,
+      "attack": "--apply without ENABLE_APPLY",
+      "expected": "REFUSED",
+      "actual_verdict": "REFUSED",
+      "exit_code": 2,
+      "intended_reason": "refusal message + exit 2",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "FATAL: --apply is REFUSED without explicit authorization. Re-run with ENABLE_APPLY=1 only for the authorized final validation mission (W7900-PHASE53-R2-FINAL-AB)."
+      ],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": "16b",
+      "attack": "--apply WITH ENABLE_APPLY (authorized positive)",
+      "expected": "RECONSTRUCTION_OK + tree b983cadd",
+      "actual_verdict": "exit=0",
+      "exit_code": 0,
+      "intended_reason": "tree b983cadd verified",
+      "intended_reason_hit": true,
+      "failures_observed": [],
+      "PASS": true,
+      "evidence_path": null
+    },
+    {
+      "id": 17,
+      "attack": "ordered_patches entry missing sha256 key",
+      "expected": "FAIL",
+      "actual_verdict": "FAIL",
+      "exit_code": 1,
+      "intended_reason": "missing key: sha256",
+      "intended_reason_hit": true,
+      "failures_observed": [
+        "manifest sha256 72c49822816268d39b947d2f80f92c7443183b086d58e15209f15a79bba651d0 != frozen pinned R2 manifest 55e88f4c2c9bbc0195a2a4b63ceb52786e36d49e4fd0e097808cdf5aab4df393 (wrong or altered manifest)",
+        "ordered_patches[0] missing key: sha256"
+      ],
+      "PASS": true,
+      "evidence_path": null
+    }
+  ]
+}

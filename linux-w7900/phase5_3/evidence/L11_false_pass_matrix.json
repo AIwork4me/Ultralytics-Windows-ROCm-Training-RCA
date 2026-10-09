@@ -1,0 +1,137 @@
+{
+  "gate": "L11",
+  "timestamp_note": "matrix + repair pass (l11-A1b/B1b labels; A9 invalid-arch semantics; A12 corrected probe)",
+  "coverage_map": {
+    "1 Leg A not Leg B": "A1",
+    "2 Leg B not Leg A": "A2",
+    "3 wheel cannot shadow": "A3",
+    "4 reused cache rejected": "A4",
+    "5 A/B distinct cache paths": "A5",
+    "6 R2 hashes mandatory": "A6 (+L02 matrix)",
+    "7 R1 manifest rejected": "A7 (+L02 checks 2/2b)",
+    "8 wrong source tree rejected": "L02 matrix check 5 (wrong head_tree FAIL, 'superseded R1 tree'); also present in A7 failure list",
+    "9 wrong HIP target": "A9",
+    "10 fake PASS no dispatch": "A10",
+    "11 CTest skip not PASS": "A11",
+    "12 7.2.1 contamination detected": "A12",
+    "13 no silent CPU fallback": "A13",
+    "14 different harness rejected": "A14",
+    "15 failed optional not hidden": "A15"
+  },
+  "results": [
+    {
+      "ATTACK_ID": "A3",
+      "INTENDED_FAILURE": "Wheel MIOpen must not shadow legs under validated wrapper",
+      "ACTUAL_RESULT": "PASS: ambient bare dlopen picks wheel (bare-soname -> /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1); wrapper flips to /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1",
+      "EXIT_CODE": 0,
+      "REASON": "LD_PRELOAD + lib-dir prepend is mandatory and effective",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A3_wheel_shadow.log"
+    },
+    {
+      "ATTACK_ID": "A4",
+      "INTENDED_FAILURE": "Reused cache label must be refused",
+      "ACTUAL_RESULT": "PASS: refused (exit 2)",
+      "EXIT_CODE": 2,
+      "REASON": "wrapper detects non-empty cache dir",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A4_cache_reuse.log"
+    },
+    {
+      "ATTACK_ID": "A5",
+      "INTENDED_FAILURE": "A/B cache dirs must differ",
+      "ACTUAL_RESULT": "PASS: /workspace/miopen-w7900-validation/runtime/legA-frozen-cache/l11-A1 != /workspace/miopen-w7900-validation/runtime/patched-cache/l11-B1",
+      "EXIT_CODE": 0,
+      "REASON": "per-leg per-label cache namespaces",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A5_cache_paths.log"
+    },
+    {
+      "ATTACK_ID": "A7",
+      "INTENDED_FAILURE": "R1 manifest rejected under R2 pins",
+      "ACTUAL_RESULT": "PASS: rejected (exit 1)",
+      "EXIT_CODE": 1,
+      "REASON": "frozen R2 manifest digest pin",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A7_r1_manifest.log"
+    },
+    {
+      "ATTACK_ID": "A10",
+      "INTENDED_FAILURE": "No-dispatch process must not satisfy Kthvalue evidence criteria",
+      "ACTUAL_RESULT": "PASS: dispatch lines ABSENT in non-kthvalue process",
+      "EXIT_CODE": 0,
+      "REASON": "L08 evidence generator requires FindSolutionImpl+kernel_name lines; absent here -> evidence would fail",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A10_no_dispatch.log"
+    },
+    {
+      "ATTACK_ID": "A11",
+      "INTENDED_FAILURE": "Skip must not count as PASS",
+      "ACTUAL_RESULT": "PASS: verdict line is Skipped, no Passed token",
+      "EXIT_CODE": 0,
+      "REASON": "exit-4 -> SKIP_RETURN_CODE; fixture at L07 proves 1/2 stay Failed; skip semantics under the validated 7.14.1 env (STL probe reachable -> exit 4); fixture-proven mapping",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A11_ctest_skip.log"
+    },
+    {
+      "ATTACK_ID": "A13",
+      "INTENDED_FAILURE": "No silent CPU fallback on missing GPU",
+      "ACTUAL_RESULT": "PASS: harness failed loudly (exit 2)",
+      "EXIT_CODE": 2,
+      "REASON": "HIP_VISIBLE_DEVICES='' hides GPU; kthvalue requires GPU, no CPU path",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A13_no_gpu.log"
+    },
+    {
+      "ATTACK_ID": "A14",
+      "INTENDED_FAILURE": "Tampered/different harness must be rejected by A/B evidence criteria",
+      "ACTUAL_RESULT": "PASS: sha b830b37a5aa7 != 212afb2034ec; L08 evidence same-binary check fails",
+      "EXIT_CODE": 0,
+      "REASON": "wrapper prints harness sha per run; evidence asserts equality across legs",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A14_harness_sha.log"
+    },
+    {
+      "ATTACK_ID": "A15",
+      "INTENDED_FAILURE": "recorded exit!=0 marked PASS must be rejected by the evidence integrity checker",
+      "ACTUAL_RESULT": "PASS: verify_final_evidence.py (real, 26 checks) rejects contradictory record: FAIL L10:exit_consistent, checker exit 1 (was vacuous pre-review; checker implemented and attack re-run)",
+      "EXIT_CODE": 0,
+      "REASON": "EVIDENCE_DIR override + tampered L10 copy (exit=1, verdict PASS); log L11_A15_real_checker.log",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/evidence/L11_false_pass_matrix.json"
+    },
+    {
+      "ATTACK_ID": "A6",
+      "INTENDED_FAILURE": "R2 hash pins mandatory (positive re-assertion)",
+      "ACTUAL_RESULT": "PASS: consumer verdict PASS (exit 0) with all R2 pins enforced",
+      "EXIT_CODE": 0,
+      "REASON": "positive control under R2 pins; negatives at L02 matrix",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A6_consumer.json"
+    },
+    {
+      "ATTACK_ID": "A1",
+      "INTENDED_FAILURE": "Leg A must NOT load Leg B library",
+      "ACTUAL_RESULT": "PASS: resolved miopenKthvalueForward <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1",
+      "EXIT_CODE": 0,
+      "REASON": "dladdr provenance in-stream",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A1_legA.log"
+    },
+    {
+      "ATTACK_ID": "A2",
+      "INTENDED_FAILURE": "Leg B must NOT load Leg A library",
+      "ACTUAL_RESULT": "PASS: resolved miopenKthvalueForward <- /workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1",
+      "EXIT_CODE": 0,
+      "REASON": "dladdr provenance in-stream",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A2_legB.log"
+    },
+    {
+      "ATTACK_ID": "A9",
+      "INTENDED_FAILURE": "Invalid HIP target must be rejected (not ignored)",
+      "ACTUAL_RESULT": "PASS: invalid arch rejected (exit 1)",
+      "EXIT_CODE": 1,
+      "REASON": "invalid arch string rejected at RTC toolchain level (exit 1); wrong-but-VALID arches compile by design (arch is a parameter) - A/B evidence pins gfx1100 at the evidence level (L04/L05 GPU_TARGETS, L08 device log)",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A9_wrong_arch.log"
+    },
+    {
+      "ATTACK_ID": "A12",
+      "INTENDED_FAILURE": "7.2.1 contamination must be detectable",
+      "ACTUAL_RESULT": "PASS: forced-contamination run detected (exit 10)",
+      "EXIT_CODE": 10,
+      "REASON": "probe walks /proc/self/maps; clean runs (L06) show contamination=0",
+      "EVIDENCE_PATH": "/workspace/miopen-w7900-validation/phase5_3/logs/L11_A12_contam.log"
+    }
+  ],
+  "summary": "14/14 PASS",
+  "review_revisions": "H1 resolved: verify_final_evidence.py implemented (26 checks, all PASS on real tree); A15 re-run against real checker -> rejected. M1/M2/L1/L3 wording corrections applied."
+}

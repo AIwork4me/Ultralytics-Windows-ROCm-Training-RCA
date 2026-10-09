@@ -1,0 +1,26 @@
+[L11] A1: FAIL:  (exit 2)
+[L11] A2: FAIL:  (exit 2)
+[L11] A3: PASS: ambient bare dlopen picks wheel (bare-soname -> /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1); wrapper flips to /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1 (exit 0)
+[L11] A4: PASS: refused (exit 2) (exit 2)
+[L11] A5: PASS: /workspace/miopen-w7900-validation/runtime/legA-frozen-cache/l11-A1 != /workspace/miopen-w7900-validation/runtime/patched-cache/l11-B1 (exit 0)
+[L11] A7: PASS: rejected (exit 1) (exit 1)
+[L11] A9: UNEXPECTED rc=0 (exit 0)
+[L11] A10: PASS: dispatch lines ABSENT in non-kthvalue process
+[L11] A11: PASS: verdict line is Skipped, no Passed token (exit 0)
+/tmp/opencode/p53/contam_probe.c:1:9: warning: '_GNU_SOURCE' macro redefined [-Wmacro-redefined]
+    1 | #define _GNU_SOURCE
+      |         ^
+<command line>:1:9: note: previous definition is here
+    1 | #define _GNU_SOURCE 1
+      |         ^
+/tmp/opencode/p53/contam_probe.c:9:47: error: call to undeclared library function 'strstr' with type 'char *(const char *, const char *)'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+    9 |   while(fgets(l,sizeof(l),f)) if(l[0]=='/' || strstr(l,"/opt/rocm")) { if(strstr(l,"rocm-7.2")) {contam=1; printf("CONTAMINATION: %s", l);} }
+      |                                               ^
+/tmp/opencode/p53/contam_probe.c:9:47: note: include the header <string.h> or explicitly provide a declaration for 'strstr'
+1 warning and 1 error generated.
+[L11] A12: PARTIAL rc=127 (exit 127)
+[L11] A13: PASS: harness failed loudly (exit 2) (exit 2)
+[L11] A14 recorded
+[L11] A15 recorded
+[L11] A6 recorded: PASS
+L11 matrix: 10/14 PASS -> /workspace/miopen-w7900-validation/phase5_3/evidence/L11_false_pass_matrix.json

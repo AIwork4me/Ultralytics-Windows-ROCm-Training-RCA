@@ -1,0 +1,156 @@
+{
+  "gate": "L09",
+  "timestamp_utc": "2026-10-09T09:28:17.448545+00:00",
+  "harness": {
+    "path": "phase5_3/scripts/batchnorm_harness.cpp (new direct-public-API harness, Phase 5.3)",
+    "binary_sha256": "a8c4a1416f7b4d08287f246e059c68787c9ca975dfdec4a0fa18dfa1b49febe1",
+    "api_calls": "miopenBatchNormalizationForwardTraining + miopenBatchNormalizationBackward (dlsym/dladdr, same binary both legs)",
+    "development_note": "Harness authored this mission; 3 interim revisions fixed HARNESS defects (missing derived BN descriptor arg, double-vs-float alpha ABI, naive-vs-full-gradient CPU reference, NCHW strided indexing, input scaling per MIOpen gtest convention so FP32 reductions meet PREDECLARED absolute tolerances). No library/tolerance changes. Tolerances identical throughout: y<=1e-5 dx<=1e-5 dw<=1e-4 db<=1e-5 rm<=1e-4 rv_rel<=1e-3 (predeclared, never adjusted).",
+    "post_audit_fix": "After Gate L09 review: hipMemcpy kinds corrected (1=H2D/2=D2H per driver_types.h; previous literal 3=D2D worked empirically via runtime address sniffing) and rv_moved made a real measurement. Both legs re-run with the corrected binary (cache labels p53-final-bn-A6/B6): results IDENTICAL to the reviewed run."
+  },
+  "workload": {
+    "N": 8,
+    "C": 16,
+    "H": 64,
+    "W": 64,
+    "dtype": "FP32",
+    "mode": "miopenBNSpatial",
+    "eps": 1e-05,
+    "expAvgFactor": 0.1,
+    "reference": "CPU float64 full-gradient batchnorm",
+    "seed": "deterministic xorshift64* 0x5eed1234abcd"
+  },
+  "legs": {
+    "A": {
+      "wrapper_log_lib_sha": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+      "provenance_fwd": "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1",
+      "provenance_bwd": "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1",
+      "fwd_status": "0",
+      "bwd_status": "0",
+      "gpu_sync_after_fwd_and_bwd": true,
+      "checks": [
+        {
+          "name": "y",
+          "err": "3.752e-07",
+          "tol": "1.0e-05",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "dx",
+          "err": "2.303e-07",
+          "tol": "1.0e-05",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "dw",
+          "err": "6.470e-07",
+          "tol": "1.0e-04",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "db",
+          "err": "2.668e-07",
+          "tol": "1.0e-05",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "running_mean",
+          "err": "2.624e-12",
+          "tol": "1.0e-04",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "running_var",
+          "err": "5.377e-08",
+          "tol": "1.0e-03",
+          "finite": true,
+          "result": "PASS"
+        }
+      ],
+      "finite_all": true,
+      "running_stats_nontrivial": true,
+      "dispatch_evidence": {
+        "PrepareInvoker_MIOpenBatchNormFwdTrainSpatial": 1,
+        "fresh_cache_prefetch_line": "/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-bn-A6/batchnorm_gfx110060.HIP.3_6_2_7c5866144a.udb.txt"
+      },
+      "exit_code": "0",
+      "harness_result": "PASS",
+      "cache_label": "p53-final-bn-A6"
+    },
+    "B": {
+      "wrapper_log_lib_sha": "bf21a5fa4abc5ff77b0f50756a69dccf7a077970603a846300f0ea077d61eac1",
+      "provenance_fwd": "/workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1",
+      "provenance_bwd": "/workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1",
+      "fwd_status": "0",
+      "bwd_status": "0",
+      "gpu_sync_after_fwd_and_bwd": true,
+      "checks": [
+        {
+          "name": "y",
+          "err": "3.752e-07",
+          "tol": "1.0e-05",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "dx",
+          "err": "2.303e-07",
+          "tol": "1.0e-05",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "dw",
+          "err": "6.470e-07",
+          "tol": "1.0e-04",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "db",
+          "err": "2.668e-07",
+          "tol": "1.0e-05",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "running_mean",
+          "err": "2.624e-12",
+          "tol": "1.0e-04",
+          "finite": true,
+          "result": "PASS"
+        },
+        {
+          "name": "running_var",
+          "err": "5.377e-08",
+          "tol": "1.0e-03",
+          "finite": true,
+          "result": "PASS"
+        }
+      ],
+      "finite_all": true,
+      "running_stats_nontrivial": true,
+      "dispatch_evidence": {
+        "PrepareInvoker_MIOpenBatchNormFwdTrainSpatial": 1,
+        "fresh_cache_prefetch_line": "/workspace/miopen-w7900-validation/runtime/patched-cache/p53-final-bn-B6/batchnorm_gfx110060.HIP.3_6_2_cd117724af.udb.txt"
+      },
+      "exit_code": "0",
+      "harness_result": "PASS",
+      "cache_label": "p53-final-bn-B6"
+    }
+  },
+  "ab_same_harness_same_inputs": true,
+  "tolerances_unchanged_from_predeclaration": true,
+  "verdict": "PASS",
+  "interpretation_note": "Both legs PASS within predeclared tolerances => R2 introduces no BatchNorm regression on this workload. NOT a Linux no-STL runtime reproduction; Linux HIPRTC environment still differs from Windows no-STL environment.",
+  "final_run_cache_labels": {
+    "legA": "p53-final-bn-A6",
+    "legB": "p53-final-bn-B6"
+  },
+  "pre_fix_run_logs_note": "Pre-fix A5/B5 run logs (pre post_audit_fix recompile) were overwritten by the A6/B6 re-run and were not archived; results were identical (recorded in post_audit_fix) and the reviewed A5/B6-era reviewer log quotes match."
+}

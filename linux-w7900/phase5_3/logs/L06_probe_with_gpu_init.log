@@ -1,0 +1,32 @@
+miopenCreate resolved from: /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so
+miopenKthvalueForward resolved: yes
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1100
+miopenCreate rc=0 handle=0x5c4f9c8a1f50
+miopenDestroy rc=0
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhsa-runtime64.so.1 sha256=bb24bcdee28c4eea895eb453669f08ca123051aa8b16d826cfa04a1e7c807a64
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7 sha256=db0f21d07e81a22311906cd7c45d3854c1d07ddd2e9fa84a1fdc052b4426fca9
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libhipblaslt.so.1 sha256=12d836c51dae01d60dad94d8862cb0eb1a01cfb1d9e1311cfde4cde071f4a1d6
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/librocblas.so.5 sha256=49518754906110bbd1b173183195835eec65053abaedb88d8501358dee52f22b
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamd_comgr.so.3 sha256=b569ef430dc8031c56d083770280f72fd54882582a0326b20f63ebac8531b980
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7 sha256=cdee97e0b75ff4f27eb5462c344e20f4492688a7093fb87c951fd616b9bf332a
+LOADED /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1.0 sha256=7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libroctx64.so.4 sha256=5a0c5380a2d33574831c0e80748fe130095b604c8c434af2c3bd7651d15c9ca1
+dladdr_path_matches_expected=1 contamination=0
+LEG_A_EXIT=0
+miopenCreate resolved from: /workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so
+miopenKthvalueForward resolved: yes
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1100
+miopenCreate rc=0 handle=0x5611e1d35ef0
+miopenDestroy rc=0
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhsa-runtime64.so.1 sha256=bb24bcdee28c4eea895eb453669f08ca123051aa8b16d826cfa04a1e7c807a64
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7 sha256=db0f21d07e81a22311906cd7c45d3854c1d07ddd2e9fa84a1fdc052b4426fca9
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libhipblaslt.so.1 sha256=12d836c51dae01d60dad94d8862cb0eb1a01cfb1d9e1311cfde4cde071f4a1d6
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/librocblas.so.5 sha256=49518754906110bbd1b173183195835eec65053abaedb88d8501358dee52f22b
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamd_comgr.so.3 sha256=b569ef430dc8031c56d083770280f72fd54882582a0326b20f63ebac8531b980
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7 sha256=cdee97e0b75ff4f27eb5462c344e20f4492688a7093fb87c951fd616b9bf332a
+LOADED /workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1.0 sha256=bf21a5fa4abc5ff77b0f50756a69dccf7a077970603a846300f0ea077d61eac1
+LOADED /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libroctx64.so.4 sha256=5a0c5380a2d33574831c0e80748fe130095b604c8c434af2c3bd7651d15c9ca1
+dladdr_path_matches_expected=1 contamination=0
+LEG_B_EXIT=0

@@ -1,0 +1,74 @@
+{
+  "gate": "L07",
+  "timestamp_utc": "2026-10-09T08:43:11.951759+00:00",
+  "build": {
+    "source_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15 (R2, verified by guard in script)",
+    "build_dir": "build/recon53-test",
+    "BUILD_TESTING": "ON",
+    "MIOPEN_USE_HIPRTC": "ON",
+    "GPU_TARGETS": "gfx1100",
+    "manual_workaround_flags_used": "NONE (no CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES, no CMAKE_EXE_LINKER_FLAGS; R2 F-C2-2 capability-aware hiprtc::hiprtc link relied upon)",
+    "build_result": "test_hiprtc_selfcontained compiled+linked cleanly (3 build steps)",
+    "test_binary_sha256": "55085c3df6605ba666f0be49cd46266438d8618d0132ee722e2875e31eb371f4"
+  },
+  "ctest": {
+    "discovery": "Test #10 test_hiprtc_selfcontained found (ctest -N, rc 0)",
+    "execution": "***Skipped 0.05 sec; '100% tests passed, 0 tests failed out of 1'; 'The following tests did not run: 10 - test_hiprtc_selfcontained (Skipped)'",
+    "ctest_process_exit": 0,
+    "interpretation": "exit 4 INCONCLUSIVE -> SKIP_RETURN_CODE 4 -> Skipped; SKIPPED IS NOT a no-STL PASS"
+  },
+  "direct_mode_matrix": {
+    "ordinary": {
+      "kernels": "R2",
+      "exit": 0,
+      "verdict": "PASS",
+      "code_object_bytes": 3824
+    },
+    "with-stl": {
+      "kernels": "R2",
+      "exit": 0,
+      "verdict": "PASS",
+      "code_object_bytes": 6048
+    },
+    "positive": {
+      "kernels": "R2",
+      "exit": 4,
+      "verdict": "INCONCLUSIVE",
+      "raw_diagnostic": "stl_probe.cu:2:2: error: STL_PROBE_REACHABLE -> 'INCONCLUSIVE: host C++ stdlib still reachable under -nostdinc; isolation does not reproduce the no-STL condition'"
+    },
+    "negative": {
+      "kernels": "LEG A (unpatched, build/recon/frozen-base-checkout)",
+      "exit": 4,
+      "verdict": "INCONCLUSIVE (isolation prerequisite unsatisfied on this host; on an isolation-capable host this control would PASS exit 0 per Windows ground truth)"
+    },
+    "arch": "--arch=gfx1100 (all modes)"
+  },
+  "false_skip_audit": {
+    "executable_really_launched": "YES (ctest log shows process start + 0.05s runtime; direct runs confirm binary function)",
+    "reached_isolation_probe": "YES (raw diagnostic shows the probe compile firing STL_PROBE_REACHABLE)",
+    "exit4_is_skip_reason": "YES (SKIP_RETURN_CODE 4 property on test; fixture verifies mapping)",
+    "unrelated_startup_failure_hidden": "NO (ordinary/with-stl modes of the same binary PASS exit 0, proving startup works)",
+    "exit_1_2_hard_fail": "YES (fixture: 1->Failed rc8, 2->Failed rc8)",
+    "disabled_test_masquerade": "NO (not disabled in unrestricted build; BF16 build shows what disabled registration looks like: echo skipped + DISABLED On)",
+    "forced_skip": "NO (no manual skip injection; skip arises from the test's own probe exit code)"
+  },
+  "ctest_exit_code_fixture": {
+    "0": "Passed (ctest rc 0)",
+    "1": "Failed (ctest rc 8)",
+    "2": "Failed (ctest rc 8)",
+    "4": "Skipped (ctest rc 0)",
+    "fixture": "/tmp/opencode/p53/exitfixture (logs/L07_exitcode_fixture.log)"
+  },
+  "bf16_policy_parity": {
+    "configure": "clean (rc 0) with MIOPEN_TEST_BFLOAT16=ON",
+    "registration": "add_test(test_hiprtc_selfcontained \"echo\" \"skipped\") + DISABLED On + SKIP_RETURN_CODE 4",
+    "verdict": "restricted-list policy parity preserved (R2 lines 545-548)"
+  },
+  "environment_note": "Linux ROCm 7.14.1: libhiprtc-builtins embeds C++ headers, so full no-STL isolation is not reproducible; Windows no-STL evidence remains the Windows RCA's claim",
+  "verdict": "PASS (with honest Linux SKIP semantics)",
+  "minor_clarifications": {
+    "phase521_contrast": "Phase-5.2.1 workaround-using comparison build (build/test-BUILD_TESTING-ON) no longer exists in workspace; its workaround usage is documented in published RCA linux-w7900/phase5.2.1 logs (C2_test_build_configure.log). The R2 side (no workarounds) is directly verified here.",
+    "ctest_N_totals": "ctest -N with -R filter shows Total Tests: 1; unfiltered suite has 304 entries (mostly *_NOT_BUILT placeholders in a single-target build). Test numbering #10 consistent.",
+    "ordinary_mode_scope": "ordinary mode is a hiprtc sanity/startup control compiling a hardcoded trivial kernel (does not read the kernels dir); positive/negative/with-stl enforce kernels-dir identity markers."
+  }
+}

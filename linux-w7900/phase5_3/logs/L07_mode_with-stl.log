@@ -1,0 +1,44 @@
+[with-stl] create=0 compile=0 code=0 code_size=6048
+---- compiler log ----
+In file included from /tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:8:
+/workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/kernels/batchnorm_functions.hpp:165:20: warning: use of logical '||' with constant operand [-Wconstant-logical-operand]
+  165 |     if constexpr(0 || 0)
+      |                    ^  ~
+/workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/kernels/batchnorm_functions.hpp:165:20: note: use '|' for a bitwise operation
+  165 |     if constexpr(0 || 0)
+      |                    ^~
+      |                    |
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:68:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+   68 |         __attribute__((shared)) FpPrecType lcl_bias;
+      |                                            ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:69:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+   69 |         __attribute__((shared)) FpPrecType lcl_scale;
+      |                                            ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:208:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+  208 |         __attribute__((shared)) FpPrecType lcl_bias;
+      |                                            ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:209:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+  209 |         __attribute__((shared)) FpPrecType lcl_scale;
+      |                                            ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:217:39: warning: uninitialized variable in a constexpr function is a C++20 extension [-Wc++20-extensions]
+  217 |         [[maybe_unused]] unsigned int chwid;
+      |                                       ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:330:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+  330 |         __attribute__((shared)) FpAccumType lcl_data_x[lcl_data_size];
+      |                                             ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:331:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+  331 |         __attribute__((shared)) FpAccumType lcl_data_y[lcl_data_size];
+      |                                             ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:332:45: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+  332 |         __attribute__((shared)) FpAccumType lcl_data_c[lcl_data_size];
+      |                                             ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:497:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+  497 |         __attribute__((shared)) FpPrecType lcl_bias;
+      |                                            ^
+/tmp/comgr-232450-0-1d08e1/input/MIOpenBatchNormFwdTrainSpatial.cpp:498:44: warning: definition of a static variable in a constexpr function is a C++23 extension [-Wc++23-extensions]
+  498 |         __attribute__((shared)) FpPrecType lcl_scale;
+      |                                            ^
+11 warnings generated when compiling for gfx1100.
+
+----------------------
+PASS: kernel compiled with host STL (6048-byte code object)

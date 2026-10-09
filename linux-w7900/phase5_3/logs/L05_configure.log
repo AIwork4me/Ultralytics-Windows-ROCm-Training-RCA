@@ -1,0 +1,130 @@
+-- No helper variables provided; attempting to detect ROCm path and hip package using system PATH and CMAKE_PREFIX_PATH.
+CMake Warning at cmake/ClangToolChain.cmake:83 (message):
+  
+
+  ROCM_PATH is set in the environment and may interfere with toolchain
+  detection.  Remove ROCM_PATH from the environment and use the following
+  instead:
+
+    cmake -DROCM_PATH=/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel
+
+  
+
+Call Stack (most recent call first):
+  /workspace/miopen-w7900-validation/build/patched-miopen/CMakeFiles/3.31.10/CMakeSystem.cmake:6 (include)
+  CMakeLists.txt:76 (project)
+
+
+-- Automatically detected ROCM_CMAKE_PATH using hipconfig: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel
+-- Automatically detected ROCM_CMAKE_LLVM_BIN_PATH using hipconfig: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/llvm/bin
+-- Added /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/llvm/bin to system PATH for ROCm LLVM tool discovery
+CMake Warning at cmake/ClangCheck.cmake:40 (message):
+  pre-commit not found; pre_commit_checks target will not be available and
+  pre-commit checks are skipped in format
+Call Stack (most recent call first):
+  CMakeLists.txt:105 (include)
+
+
+CMake Warning at cmake/CheckPreCommit.cmake:40 (message):
+  
+
+  pre-commit package is NOT installed
+
+  Please run: pip install pre-commit
+
+    cd /workspace/miopen-w7900-validation/source/final-patched
+    pre-commit install
+
+Call Stack (most recent call first):
+  CMakeLists.txt:106 (include)
+
+
+-- MIOpen: standalone build — preferring system third-party deps, fetching what's missing
+-- MIOpen: using system Eigen3 3.4.0
+-- MIOpen: using system nlohmann_json 3.12.0
+-- MIOpen: frugally-deep not found system-wide, will FetchContent
+-- MIOpen: FunctionalPlus not found system-wide, will FetchContent
+CMake Warning (dev) at /opt/venv/lib/python3.12/site-packages/cmake/data/share/cmake-3.31/Modules/FetchContent.cmake:1953 (message):
+  Calling FetchContent_Populate(frugally-deep) is deprecated, call
+  FetchContent_MakeAvailable(frugally-deep) instead.  Policy CMP0169 can be
+  set to OLD to allow FetchContent_Populate(frugally-deep) to be called
+  directly for now, but the ability to call it with declared details will be
+  removed completely in a future version.
+Call Stack (most recent call first):
+  cmake/ThirdParty.cmake:229 (FetchContent_Populate)
+  CMakeLists.txt:134 (include)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Deprecation Warning at /workspace/miopen-w7900-validation/build/thirdparty-preseed/frugally-deep/CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+
+
+-- ===( frugally-deep 0.15.31 )===
+-- Found nlohmann_json: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake (found version "3.12.0")
+-- MIOpen: using system BZip2 1.0.8
+-- MIOpen: using system SQLite3 3.45.1
+-- MIOpen: GTest not found system-wide, will FetchContent
+-- Found nlohmann_json: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake (found suitable version "3.12.0", minimum required is "3.9.1")
+-- MIOPEN_OFFLINE_COMPILER_PATHS_V2: OFF
+-- MIOPEN_BUILD_DRIVER: ON
+-- HIP: Using hipcc from relative path: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/bin/hipcc
+-- HIP_PLATFORM using hip_HIPCONFIG_EXECUTABLE: amd
+-- Build with HIP 7.14.60850 /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/cmake/hip
+-- Enable Composable Kernels: OFF
+-- Enable per-arch CK unbundling: OFF
+-- Enable hipconv: ON
+-- Hip compiler flags:  -x hip   -D__HIP_PLATFORM_AMD__=1  -DUSE_PROF_API=1 --hip-link   -fno-offload-uniform-block 
+-- HIP: Using hipcc from relative path: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/bin/hipcc
+-- Build with rocblas 5.5.0 /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/cmake/rocblas
+-- Build with hipBLASLt 1.4.1 /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/cmake/hipblaslt
+-- Build with hipBLAS-common 1.4.0 
+-- HIP backend selected.
+-- clang-offload-bundler found: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/clang-offload-bundler
+-- AMDGCN assembler: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/clang
+-- Build with amd_comgr 3.3.0 /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/cmake/amd_comgr
+-- Build with hiprtc 7.14.60850 /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/cmake/hiprtc
+-- HALF_INCLUDE_DIR: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/include
+-- Build with frugally-deep 0.15.31 /workspace/miopen-w7900-validation/build/patched-miopen/CMakeFiles/pkgRedirects
+-- Build with Eigen3 3.4.0 /usr/share/eigen3/cmake
+-- Build with rocTracer: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/libroctx64.so
+-- rocTracer include directory: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/include
+-- Build with rocrand 4.5.0 /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/cmake/rocrand
+CMake Warning (dev) at CMakeLists.txt:784 (set):
+  implicitly converting 'LIST' to 'STRING' type.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- Adding support for installing gfx900 database artifacts
+-- Adding support for installing gfx906 database artifacts
+-- Adding support for installing gfx908 database artifacts
+-- Adding support for installing gfx90a database artifacts
+-- Adding support for installing gfx942 database artifacts
+-- Adding support for installing gfx950 database artifacts
+-- Adding support for installing gfx1030 database artifacts
+-- Adding support for installing gfx1100 database artifacts
+-- Adding support for installing gfx1102 database artifacts
+-- Adding support for installing gfx1151 database artifacts
+-- Adding support for installing gfx1200 database artifacts
+-- Adding support for installing gfx1201 database artifacts
+CMake Warning at CMakeLists.txt:795 (message):
+  DVC files not pulled down, skipped:
+  /workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/kernels/gfx900.kdb.bz2,
+  /workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/kernels/gfx906.kdb.bz2,
+  /workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/kernels/gfx908.kdb.bz2,
+  /workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/kernels/gfx90a.kdb.bz2,
+  /workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/kernels/gfx942.kdb.bz2,
+  /workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/kernels/gfx1030.kdb.bz2
+
+
+-- rocm-cmake: Set license file to /workspace/miopen-w7900-validation/source/final-patched/projects/miopen/LICENSE.md.
+-- Clang tidy found: 23.0.0git
+-- MIOpen_VERSION= 3.6.2
+-- CMAKE_BUILD_TYPE= RelWithDebInfo
+-- Found rocrand headers at: /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/include
+-- Configuring done (4.6s)
+-- Generating done (0.5s)
+-- Build files have been written to: /workspace/miopen-w7900-validation/build/patched-miopen

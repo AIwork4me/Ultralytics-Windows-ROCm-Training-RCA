@@ -1,0 +1,38 @@
+{
+  "gate": "L06",
+  "timestamp_utc": "2026-10-09T08:30:14.615337+00:00",
+  "environment": "scripts/env_rocm7141.sh (ROCm 7.14.1 wheel SDK venv)",
+  "probe": "phase5_3/scripts/l06_dladdr_probe.c (dlopen abs path -> dladdr(miopenCreate) -> miopenCreate/miopenDestroy real GPU init -> /proc/self/maps walk + sha256)",
+  "legA": {
+    "expected_load": "install/legA-frozen-baseline/lib/libMIOpen.so",
+    "dladdr_resolved": "install/legA-frozen-baseline/lib/libMIOpen.so",
+    "libMIOpen_sha256": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+    "miopenCreate_rc": 0,
+    "contamination_721": 0,
+    "probe_exit": 0,
+    "rocm_deps": {
+      "libhiprtc.so.7": "cdee97e0b75ff4f27eb5462c344e20f4492688a7093fb87c951fd616b9bf332a",
+      "libamdhip64.so.7": "db0f21d07e81a22311906cd7c45d3854c1d07ddd2e9fa84a1fdc052b4426fca9",
+      "libamd_comgr.so.3": "b569ef430dc8031c56d083770280f72fd54882582a0326b20f63ebac8531b980",
+      "librocblas.so.5": "49518754906110bbd1b173183195835eec65053abaedb88d8501358dee52f22b",
+      "libhsa-runtime64.so.1": "bb24bcdee28c4eea895eb453669f08ca123051aa8b16d826cfa04a1e7c807a64"
+    },
+    "all_deps_from_7141_venv": true
+  },
+  "legB": {
+    "expected_load": "install/patched/lib/libMIOpen.so",
+    "dladdr_resolved": "install/patched/lib/libMIOpen.so",
+    "libMIOpen_sha256": "bf21a5fa4abc5ff77b0f50756a69dccf7a077970603a846300f0ea077d61eac1",
+    "miopenCreate_rc": 0,
+    "contamination_721": 0,
+    "probe_exit": 0,
+    "all_deps_from_7141_venv": true
+  },
+  "method_note": "ldd output alone insufficient: proven via in-process dladdr + maps walk after real miopenCreate GPU initialization (lazy loads included); ldd cross-check in logs agrees",
+  "logs": [
+    "phase5_3/logs/L06_legA_probe.log",
+    "phase5_3/logs/L06_legB_probe.log",
+    "phase5_3/logs/L06_probe_with_gpu_init.log"
+  ],
+  "verdict": "PASS"
+}
