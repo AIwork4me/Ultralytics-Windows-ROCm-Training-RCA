@@ -1,0 +1,34 @@
+=== R20 environment audit 2026-10-09T01:41:58Z ===
+
+--- OS ---
+
+Microsoft Windows [�汾 10.0.26200.9457]
+
+--- GPU (torch) ---
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import torch; g=torch.cuda.get_device_properties(0); print('torch',torch.__version__); print('name',g.name); print('gcn',g.gcn_arch_name); print('mem_GB',round(g.total_memory/2**30,1))
+                                                                                                                             ^^^^^^^^^^^^^^^
+AttributeError: 'torch._C._CudaDeviceProperties' object has no attribute 'gcn_arch_name'. Did you mean: 'gcnArchName'?
+torch 2.12.0+rocm7.14.0
+name AMD Radeon(TM) 8060S Graphics
+
+--- DLL identities ---
+wheel MIOpen.dll      sha256=74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a
+wheel hiprtc0714.dll  sha256=c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e
+wheel hiprtc-builtins0714.dll sha256=33ae08201842711b4871eb3e51928313a2a5f08f3dc7f875da8441bbdf9635d2
+
+--- MSVC ---
+14.44.35207
+
+--- CMake/Ninja ---
+cmake version 4.4.4
+1.13.2.git.kitware.jobserver-pipe-1
+
+--- R1 provenance ---
+R1 freeze branch HEAD: 494907699f3b57095663f0a70b42278001a8efb7
+fatal: ambiguous argument 'e7ff6d75fac3e7b683e81e671555ada99af13b74^{tree}': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+R1 candidate head: e7ff6d75fac3e7b683e81e671555ada99af13b74  tree: e7ff6d75fac3e7b683e81e671555ada99af13b74^{tree}
+R2 worktree base: 7c5866144ac4b879be442563e2b49fa1c142ea36
