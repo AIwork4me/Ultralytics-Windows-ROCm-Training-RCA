@@ -1,0 +1,6 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Lib\site-packages\cmake\data\bin\ctest.exe -N -R test_hiprtc_selfcontained --test-dir C:\Users\rocm\Desktop\YOLO_AMD\phase5_1_r2_build\ci_test
+exit=0
+Test project C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test
+  Test #10: test_hiprtc_selfcontained
+
+Total Tests: 1

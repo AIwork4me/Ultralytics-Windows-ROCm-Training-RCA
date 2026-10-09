@@ -1,0 +1,60 @@
+{
+  "schema": "phase5_1_r2_r26_ctest_validation_v1",
+  "gate": "R26",
+  "fresh_build_dir": "C:/Users/rocm/Desktop/YOLO_AMD/phase5_1_r2_build/ci_test (never reused R1 cache; R1 used phase5_1_build/ci_test)",
+  "source_git_head": "2b3fd2afb31bcb5ece0a9b87d2f5f0662983d71c",
+  "configure": {
+    "BUILD_TESTING": "ON",
+    "MIOPEN_USE_HIPRTC": "ON",
+    "exit": 0,
+    "log": "evidence/phase5_1_r2/ci/ci_configure.log"
+  },
+  "target_build": {
+    "target": "test_hiprtc_selfcontained",
+    "exit": 0,
+    "exe": "phase5_1_r2_build/ci_test/bin/test_hiprtc_selfcontained.exe",
+    "exe_sha256": "c48421c326aecd32b15dea81f6346400c4847a1efb2e51832eaf11164c6abee4"
+  },
+  "linked_hiprtc": {
+    "arm": "namespaced hiprtc::hiprtc (if(TARGET ...) TRUE on this host)",
+    "evidence": "ninja LINK_LIBRARIES = C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_core/lib/hiprtc.lib (full path from shim INTERFACE_LINK_LIBRARIES; no bare -lhiprtc fallback)"
+  },
+  "ctest_discovery": {
+    "cmd": "ctest -N -R '^test_hiprtc_selfcontained$'",
+    "exit": 0,
+    "test_number": 10
+  },
+  "ctest_execution": {
+    "cmd": "ctest --output-on-failure -R '^test_hiprtc_selfcontained$'",
+    "exit": 0,
+    "verdict": "Passed 0.58 sec; 100% tests passed out of 1",
+    "skipped": false,
+    "note": "genuine Windows no-STL PASS: the R2 binary's probe found STL unreachable, full kernel compiled, non-empty code object"
+  },
+  "generated_registration": "add_test(test_hiprtc_selfcontained <exe> <kernels-dir> --arch=gfx1151) + set_tests_properties(... ENVIRONMENT MIOPEN_USER_DB_PATH=... SKIP_RETURN_CODE 4) - matches amended block; direct registration (no MIOPEN_TEST_GDB wrapper file generated)",
+  "exit_code_fixture": {
+    "file": "evidence/phase5_1_r2/ci/exit_code_fixture.json",
+    "overall": "PASS",
+    "matrix": {
+      "0": "PASS rc0",
+      "1": "FAIL rc8",
+      "2": "FAIL rc8",
+      "4": "SKIP(Not Run) rc0"
+    },
+    "note": "fixture driver python -c sys.exit(N) (cmd /c unusable: CTest quotes '/c' breaking cmd)"
+  },
+  "restricted_list_config": {
+    "miopen_no_gpu": {
+      "finding": "MIOPEN_NO_GPU is a COMPUTED variable (test/CMakeLists.txt:112 set(MIOPEN_NO_GPU FALSE); becomes TRUE only when rocminfo/hipinfo reports 'no GPU devices' at :133-135). -DMIOPEN_NO_GPU=ON is inert (normal set shadows cache). Cannot be legitimately produced on this GPU host; a forced value would be synthetic.",
+      "log": "evidence/phase5_1_r2/ci/ci_configure_nogpu_inert_flag.log (configure exit 0; active-path registration expected and observed - not a guard failure)",
+      "coverage": "guard arm identical (SKIP_ALL_EXCEPT_TESTS non-empty, test not in list) to MIOPEN_TEST_INT8/BFLOAT16 allowlists, empirically exercised below"
+    },
+    "miopen_test_bfloat16": {
+      "configure": "-DMIOPEN_TEST_BFLOAT16=ON fresh dir ci_test_bf16, exit 0",
+      "generated": "add_test(test_hiprtc_selfcontained \"echo\" \"skipped\") + DISABLED \"On\" - byte-identical to add_test_command's disabled path under the same configuration",
+      "ctest_run": "***Not Run (Disabled), ctest rc 0",
+      "log": "evidence/phase5_1_r2/ci/ci_configure_bf16.log"
+    }
+  },
+  "overall": "PASS"
+}

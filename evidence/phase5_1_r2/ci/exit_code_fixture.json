@@ -1,0 +1,43 @@
+{
+  "schema": "phase5_1_r2_exit_fixture_v1",
+  "gate": "R26",
+  "fixture": "python -c sys.exit(N), SKIP_RETURN_CODE 4",
+  "expected": {
+    "exit_0": "PASS rc0",
+    "exit_1": "FAIL rc8",
+    "exit_2": "FAIL rc8",
+    "exit_4": "SKIP(Not Run) rc0"
+  },
+  "results": {
+    "exit_0": {
+      "verdict": "PASS",
+      "ctest_rc": 0,
+      "summary": [
+        "100% tests passed out of 1"
+      ]
+    },
+    "exit_1": {
+      "verdict": "FAIL",
+      "ctest_rc": 8,
+      "summary": [
+        "0% tests passed, 1 tests failed out of 1"
+      ]
+    },
+    "exit_2": {
+      "verdict": "FAIL",
+      "ctest_rc": 8,
+      "summary": [
+        "0% tests passed, 1 tests failed out of 1"
+      ]
+    },
+    "exit_4": {
+      "verdict": "SKIP(Not Run)",
+      "ctest_rc": 0,
+      "summary": [
+        "100% tests passed out of 1",
+        "The following tests did not run:"
+      ]
+    }
+  },
+  "overall": "PASS"
+}
