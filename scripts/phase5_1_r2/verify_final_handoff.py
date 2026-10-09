@@ -61,7 +61,7 @@ def main() -> int:
         ("evidence/phase5_1_r2/build/build_provenance.json", head),
         ("evidence/phase5_1_r2/runtime/runtime_validation.json", ev["miopen_dll_sha256"]),
         ("evidence/phase5_1_r2/yolo/yolo_train.json", ev["miopen_dll_sha256"]),
-        ("evidence/phase5_1_r2/ci/fc24_fix_ctest_clean_env.json", head[:16].rstrip("0123456789abcdef") or "d758aed7"),
+        ("evidence/phase5_1_r2/ci/fc24_fix_ctest_clean_env.json", head[:8]),
     ):
         try:
             txt = show(ref, path)

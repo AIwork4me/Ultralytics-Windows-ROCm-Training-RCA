@@ -117,7 +117,7 @@ def main() -> int:
         "candidate_id": "P5.1-CANDIDATE-R2",
         "candidate_status": "TECHNICALLY_VERIFIED_PROVISIONAL_FREEZE",
         "candidate_status_reason": (
-            "All Windows gates PASS on final HEAD d758aed7 (series "
+            "All Windows gates PASS on final HEAD " + head + " (series "
             "sha256_file_concat_v1 " + series + "). Linux W7900 R2 validation "
             "PENDING. Human submission authorization PENDING. Upstream DCO "
             "policy inspected (frozen base CONTRIBUTING.md: no DCO/"

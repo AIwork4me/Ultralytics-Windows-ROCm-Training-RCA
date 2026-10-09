@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "handoff_type": "final_pre_upstream_linux_validation",
-  "generated": "2026-10-09T11:37:09.462648",
+  "generated": "2026-10-09T12:27:36.984033",
   "candidate_id": "P5.1-CANDIDATE-R2",
   "candidate_status": "TECHNICALLY_VERIFIED_PROVISIONAL_FREEZE",
-  "candidate_status_reason": "All Windows gates PASS on final HEAD d758aed7 (series sha256_file_concat_v1 4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf). Linux W7900 R2 validation PENDING. Human submission authorization PENDING. Upstream DCO policy inspected (frozen base CONTRIBUTING.md: no DCO/Signed-off-by requirement found) - commits are unsigned by design; DCO certification NOT granted by user.",
+  "candidate_status_reason": "All Windows gates PASS on final HEAD f18c4de94b229bbe3e8501d70e3e2461425c69de (series sha256_file_concat_v1 48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02). Linux W7900 R2 validation PENDING. Human submission authorization PENDING. Upstream DCO policy inspected (frozen base CONTRIBUTING.md: no DCO/Signed-off-by requirement found) - commits are unsigned by design; DCO certification NOT granted by user.",
   "supersedes": {
     "candidate_id": "P5.1-CANDIDATE-R1",
     "evidence_branch": "phase5.1/windows-final-candidate-freeze",
@@ -19,7 +19,7 @@
   "ordered_commits": [
     "01a77dab8c4cf23d1e49273fa3c88bb0bb4fc887",
     "8188b803b8304fc5933caa52ee27a58d01a78b04",
-    "d758aed7dc8c3ff17d7c4672f1281f09ca3ef131"
+    "f18c4de94b229bbe3e8501d70e3e2461425c69de"
   ],
   "ordered_commit_subjects": [
     "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
@@ -42,17 +42,17 @@
     {
       "order": 3,
       "path": "patches/phase5_1_r2/canonical/0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch",
-      "sha256": "db16ee9e23af2cdbdba1bee1925d60dd7e949e4c44dd98878da221c889001f55",
-      "bytes": 32398
+      "sha256": "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e",
+      "bytes": 32725
     }
   ],
   "series_hash": {
     "algorithm": "sha256_file_concat_v1",
     "definition": "SHA256 of the three canonical patch files' bytes (LF) concatenated in order with no separator",
-    "sha256": "4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf"
+    "sha256": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02"
   },
   "source_tree_identity": {
-    "head_tree_sha1": "060087061488a83a931f1d8d1ad2c0eb6c231eac",
+    "head_tree_sha1": "b983caddf9f9f561e7d1b590deadb16267c2de15",
     "git_am_roundtrip_tree_match": true,
     "git_apply_write_tree_match": true,
     "changed_files_vs_base": {
@@ -97,9 +97,9 @@
         "bytes": 3179
       },
       "projects/miopen/test/CMakeLists.txt": {
-        "git_blob": "96b427af80c9935f759c30d9b3b3080aa2432821",
-        "sha256": "aa8cad53d5a34b6e3d45175176cfa6fb86c8d39f4705c71e232692813f0d1e19",
-        "bytes": 43776
+        "git_blob": "67e9ff25915d7a38d2b203cd6ae9174e9357426c",
+        "sha256": "f39ff327acf720fb1548183123ec050080b3682b4303232c4e9c1dfff4cd6b53",
+        "bytes": 44098
       },
       "projects/miopen/test/hiprtc_selfcontained.cpp": {
         "git_blob": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
@@ -137,7 +137,7 @@
     "exit_code_fixture": "PASS (0->PASS, 1->FAIL, 2->FAIL, 4->SKIP)",
     "restricted_list_parity": "PASS (MIOPEN_TEST_BFLOAT16 leg disables test like add_test_command)",
     "miopen_dll_build": "PASS",
-    "miopen_dll_sha256": "eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd",
+    "miopen_dll_sha256": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a",
     "dll_load_provenance": "PASS (GetModuleFileNameW + in-process sha256)",
     "hiprtc_dll_provenance": "PASS (psutil module snapshot; loaded _rocm_sdk_core/bin/hiprtc0714.dll c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e)",
     "nostl_runtime": "PASS (fresh profile, scrubbed env, MSVC include renamed)",
@@ -153,13 +153,13 @@
     "yolo_train_amp_false": "PASS",
     "yolo_train_amp_default": "PASS",
     "yolo_amp_note": {
-      "genuine_amp_evidence": true,
+      "genuine_amp_evidence": false,
       "lines": [
-        "\u001b[34m\u001b[1mengine\\trainer: \u001b[0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:\\Users\\rocm\\Desktop\\YOLO_AMD\\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-20, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\\Users\\rocm\\Desktop\\YOLO_AMD\\runs\\detect\\train-20, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None",
+        "\u001b[34m\u001b[1mengine\\trainer: \u001b[0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:\\Users\\rocm\\Desktop\\YOLO_AMD\\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-22, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\\Users\\rocm\\Desktop\\YOLO_AMD\\runs\\detect\\train-22, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None",
         "11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']",
         "14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']",
         "\u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...",
-        "\u001b[34m\u001b[1mAMP: \u001b[0mchecks passed"
+        "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed. Anomalies were detected with AMP on your system that may lead to NaN losses or zero-mAP results, so AMP will be disabled during training."
       ]
     },
     "wheel_dll_restored": "PASS"

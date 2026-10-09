@@ -1,7 +1,7 @@
 exit=0
-MIOPEN_PROVENANCE {"path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd", "device": "AMD Radeon(TM) 8060S Graphics", "torch": "2.12.0+rocm7.14.0"}
+MIOPEN_PROVENANCE {"path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a", "device": "AMD Radeon(TM) 8060S Graphics", "torch": "2.12.0+rocm7.14.0"}
 Ultralytics 8.4.174  Python-3.13.16 torch-2.12.0+rocm7.14.0 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
-[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:\Users\rocm\Desktop\YOLO_AMD\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-20, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-20, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:\Users\rocm\Desktop\YOLO_AMD\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-22, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-22, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
 
                    from  n    params  module                                       arguments                     
   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
@@ -32,54 +32,53 @@ YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLO
 
 Transferred 708/708 items from pretrained weights
 [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
-[34m[1mAMP: [0mchecks passed 
-[34m[1mtrain: [0mFast image access  (ping: 0.00.0 ms, read: 344.3172.9 MB/s, size: 50.0 KB)
+ERROR [34m[1mAMP: [0mchecks failed. Anomalies were detected with AMP on your system that may lead to NaN losses or zero-mAP results, so AMP will be disabled during training.
+[34m[1mtrain: [0mFast image access  (ping: 0.00.0 ms, read: 418.7185.1 MB/s, size: 50.0 KB)
 
-[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 441.5Kit/s 0.0s
-[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 392.277.6 MB/s, size: 54.0 KB)
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 883.0Kit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.00.0 ms, read: 733.0170.8 MB/s, size: 54.0 KB)
 
-[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 729.4Kit/s 0.0s
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 932.1Kit/s 0.0s
 [34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
 [34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
-Plotting labels to C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-20\labels.jpg... 
+Plotting labels to C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-22\labels.jpg... 
 Using 4 train, 4 val images for fraction=1.0 at imgsz=640
 Using 0 dataloader workers
-Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-20[0m
+Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-22[0m
 Starting training for 1 epochs...
 Closing dataloader mosaic
 
       Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
 
-[K        1/1      0.32G     0.7896      2.089    0.01307         13        640: 0% ──────────── 0/1  1:10
-[K        1/1      0.32G     0.7896      2.089    0.01307         13        640: 100% ━━━━━━━━━━━━ 1/1 69.5s/it 1:10
+[K        1/1     0.287G     0.7837      2.089    0.01288         13        640: 0% ──────────── 0/1  1:04
+[K        1/1     0.287G     0.7837      2.089    0.01288         13        640: 100% ━━━━━━━━━━━━ 1/1 63.8s/it 1:04
 
-[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 3.4s/it 3.4s
-                   all          4         17      0.553      0.961      0.942      0.667
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 3.3s/it 3.3s
+                   all          4         17      0.551      0.962      0.943      0.669
 
-1 epochs completed in 0.021 hours.
-Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-20\weights\last.pt, 5.5MB
-Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-20\weights\best.pt, 5.5MB
+1 epochs completed in 0.019 hours.
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-22\weights\last.pt, 5.5MB
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-22\weights\best.pt, 5.5MB
 
-Validating C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-20\weights\best.pt...
+Validating C:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-22\weights\best.pt...
 Ultralytics 8.4.174  Python-3.13.16 torch-2.12.0+rocm7.14.0 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
 YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
 
-[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 20.8it/s 0.0s
-                   all          4         17      0.551       0.96      0.943      0.662
-                person          3         10      0.558        0.8      0.848      0.377
-                   dog          1          1      0.361          1      0.995      0.597
-                 horse          1          2      0.359          1      0.995      0.696
-              elephant          1          2      0.654      0.963      0.828      0.512
-              umbrella          1          1      0.544          1      0.995      0.895
-          potted plant          1          1      0.829          1      0.995      0.895
-Speed: 0.4ms preprocess, 3.7ms inference, 0.0ms loss, 1.1ms postprocess per image
-Results saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-20[0m
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 19.8it/s 0.1s
+                   all          4         17      0.551      0.962      0.943      0.669
+                person          3         10      0.551        0.8      0.848      0.387
+                   dog          1          1       0.36          1      0.995      0.597
+                 horse          1          2       0.36          1      0.995      0.696
+              elephant          1          2      0.656      0.969      0.828      0.545
+              umbrella          1          1      0.543          1      0.995      0.895
+          potted plant          1          1      0.833          1      0.995      0.895
+Speed: 0.5ms preprocess, 4.5ms inference, 0.0ms loss, 0.9ms postprocess per image
+Results saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\runs\detect\train-22[0m
 TRAIN_DONE
 
 MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
 MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
 MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx115128.HIP.fdb.txt"
-MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.1-r2-candidate/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
 MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.1-r2-candidate/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
 MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.1-r2-candidate/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
 MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/Users/rocm/Desktop/YOLO_AMD/rocm-libraries-phase5.1-r2-candidate/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0

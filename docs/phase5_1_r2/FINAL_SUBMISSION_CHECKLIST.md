@@ -17,7 +17,7 @@ State: LOCAL CANDIDATE ONLY. Nothing below authorizes upstream action.
 - [x] AMP behavior truthfully disclosed (this run: genuine amp=True; R1
       environment-fallback history recorded).
 - [x] Three-commit series independently verified (git am + git apply both
-      reproduce tree 06008706; patch/series SHA256 re-hash from bytes).
+      reproduce tree b983cadd; patch/series SHA256 re-hash from bytes).
 - [x] R2 manifest contains ONLY R2 identities (39/39 consistency checks);
       R1 manifest intact on its branch.
 - [x] Linux handoff unambiguous (R2-only identities, consumer pin update

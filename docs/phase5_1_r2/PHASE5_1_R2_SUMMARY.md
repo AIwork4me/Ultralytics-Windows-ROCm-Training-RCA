@@ -16,7 +16,7 @@ human submission authorization outstanding; upstream PR NOT created).
 | R2 commits | `01a77dab` → `8188b803` → `f18c4de9` |
 | R2 source tree | `b983caddf9f9f561e7d1b590deadb16267c2de15` |
 | Series SHA256 (concat v1) | `48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02` |
-| Patch SHA256 0001/0002/0003 | `816946b4…` / `46044d8c…` / `db16ee9e…` |
+| Patch SHA256 0001/0002/0003 | `816946b4…` / `46044d8c…` / `df7c3c3a…` |
 | R2 MIOpen.dll (rebuilt+proven) | `48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a` |
 | R1 (superseded, immutable) | branch `phase5.1/windows-final-candidate-freeze` @ `4949076`, series `797a69b5…`, tree `605d0d21…` |
 

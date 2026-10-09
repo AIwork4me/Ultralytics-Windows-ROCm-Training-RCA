@@ -1,12 +1,24 @@
 {
- "schema": "phase5_1_r2_conclusion_v1",
- "gate": "R36",
- "candidate_id": "P5.1-CANDIDATE-R2",
- "final_verdict": "R2_WINDOWS_FROZEN_WITH_HUMAN_COMPLIANCE_PENDING",
- "verdict_reason": "All Windows gates PASS on d758aed7 (series 4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf, tree 06008706). Linux W7900 validation PENDING (independent authority); upstream submission not authorized; no upstream actions taken.",
- "fixes": {"F-C2-1": "SKIP_RETURN_CODE 4", "F-C2-2": "if(TARGET hiprtc::hiprtc) link", "F-C2-3": "direct add_test (no MIOPEN_TEST_GDB wrapper)", "F-C2-4": "test-scoped ENVIRONMENT PATH prepend derived from imported-target metadata"},
- "unresolved_blocker": [],
- "unresolved_major": [],
- "pending_human": ["DCO certification decision (commits unsigned by design)", "Linux W7900 R2 validation", "submission-day develop re-check", "explicit PR submission authorization"],
- "upstream_pr_created": false, "upstream_issue_created": false, "upstream_comment_posted": false
+  "schema": "phase5_1_r2_conclusion_v1",
+  "gate": "R36",
+  "candidate_id": "P5.1-CANDIDATE-R2",
+  "final_verdict": "R2_WINDOWS_FROZEN_WITH_HUMAN_COMPLIANCE_PENDING",
+  "verdict_reason": "All Windows gates PASS on f18c4de94b229bbe3e8501d70e3e2461425c69de (series 48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02, tree b983cadd). Linux W7900 validation PENDING (independent authority); upstream submission not authorized; no upstream actions taken.",
+  "fixes": {
+    "F-C2-1": "SKIP_RETURN_CODE 4",
+    "F-C2-2": "if(TARGET hiprtc::hiprtc) link",
+    "F-C2-3": "direct add_test (no MIOPEN_TEST_GDB wrapper)",
+    "F-C2-4": "test-scoped ENVIRONMENT PATH prepend derived from imported-target metadata"
+  },
+  "unresolved_blocker": [],
+  "unresolved_major": [],
+  "pending_human": [
+    "DCO certification decision (commits unsigned by design)",
+    "Linux W7900 R2 validation",
+    "submission-day develop re-check",
+    "explicit PR submission authorization"
+  ],
+  "upstream_pr_created": false,
+  "upstream_issue_created": false,
+  "upstream_comment_posted": false
 }

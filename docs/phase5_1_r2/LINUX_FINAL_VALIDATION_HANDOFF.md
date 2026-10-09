@@ -79,10 +79,18 @@ patches/phase3, phase5 (older lineages).
      INCONCLUSIVE (exit 4) and CTest MUST report **Skipped / Not Run**
      with ctest rc 0 (F-C2-1/F-C2-3 fixed). It must NOT report Failed,
      and a Skip must never be counted as a genuine kernel PASS.
+   - Run ctest from the clean test build directory itself (its login
+     environment is otherwise untouched; only the CMake-set ENVIRONMENT
+     applies to the test).
    - Direct binary matrix: `--mode=ordinary` and `--mode=with-stl` must
      each independently PASS (exit 0). `--mode=negative` on the FROZEN
-     BASE tree (run the Leg-B-built binary against Leg A's kernels dir)
-     must FAIL with the exact missing-STL signature (exit 1).
+     BASE tree (run the Leg-B-built binary against Leg A's kernels dir):
+     on this Linux host the isolation probe fires first, so the expected
+     outcome is exit 4 INCONCLUSIVE (consistent with C2.4: positive=4,
+     negative=4) — NOT a failure; on an isolation-capable host the
+     same control would PASS with exit 0 via the exact missing-STL
+     signature (Windows matrix ground truth: negative/unpatched=0,
+     negative/patched=1).
    - Restricted-list parity spot check (optional but recommended):
      configure a third tree with `-DMIOPEN_TEST_BFLOAT16=ON` and confirm
      the test registers as `echo skipped` + DISABLED (policy parity).
