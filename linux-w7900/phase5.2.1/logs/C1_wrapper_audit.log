@@ -1,0 +1,20 @@
+=== C1 wrapper drift audit (local vs published) ===
+source-of-truth dir: /workspace/miopen-w7900-validation/scripts (exact operative versions)
+16460b585ad53bc3380dfd9e52f720a935f4daa42b96aa093962eb19230254d6  scripts/build_baseline_miopen.sh
+5146289a9b663fd01d0a3b7003a298eaf51c3311485825182f421ce8734d92f8  scripts/build_leg_miopen.sh
+cea4f1fe165ed495bb7ab6ff3d3142cf250d2e2e5d9a9060774ba914d425b14f  scripts/check_final_handoff.py
+b5cfd7fa2fc314f828227707362bfcbea1a6167d2c6ccbe418ce5b4c1221c107  scripts/clone_loop.sh
+fb5bd0b6846deecb1f127f3672bc85e96723e64b38e870ac8bdd0aadb5b33628  scripts/env_rocm7141.sh
+990aebcc34ded967329d0ec7b4283ba0da64f88a328bd90142f962305e1fa82e  scripts/env_system721.sh
+9463d49b4598a0491940fbb7ed5007839a5103eec61db311084a93af8b402855  scripts/g02_gpu_baseline.py
+8ca0df5925f23706c3787bfa96ee76c9e225544b5c760489ee8887637a705760  scripts/g05_hiprtc_smoke.cpp
+ce8fe5932ece8b1b92fe2a4743c52092e5e52e3fdaffb176db4e7e8be1fa0e6c  scripts/g05_limits_include_test.cpp
+f2b2ba0538936e38e6f833d31241292b0ac44010fb43d4d2e99008594bb6ffda  scripts/g05_stl_probe.cpp
+2858f3866174aa9b426f151a43f596caef0380bf4a69b4512af2dbb9978da662  scripts/git-retry.sh
+ba75005dadea54fd2e4fef2d3312270d646116f7a3de16350b2f76c824babc8f  scripts/kthvalue_runtime_harness_gfx1100.cpp
+2f750c26a3ec2c206c75ccdfeecede2504ba493389b7d9b9e921a4b9a509a58d  scripts/prepare_validation_legs.sh
+a2a0328b01cbd73fbaa8bd06a8f367264b5b7ca06dba2e04688a834cf3d44a8e  scripts/repo_backfill_loop.sh
+856d132246e1bc434a166203b96ff59dc0f88cebd97ffe3a788e4b049885416a  scripts/run_validation_leg.sh
+
+published refs compared: origin/main:linux-w7900/preflight/scripts/*, origin/linux-w7900/phase5.2-handoff-bridge:linux-w7900/phase5_2/scripts/*
+integration branch: linux-w7900/phase5.2.1-ci-closure (base origin/main=4754622, merge 5883db9+c4f9da2)
