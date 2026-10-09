@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "handoff_type": "final_pre_upstream_linux_validation",
+  "generated": "2026-10-09T11:37:09.462648",
+  "candidate_id": "P5.1-CANDIDATE-R2",
+  "candidate_status": "TECHNICALLY_VERIFIED_PROVISIONAL_FREEZE",
+  "candidate_status_reason": "All Windows gates PASS on final HEAD d758aed7 (series sha256_file_concat_v1 4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf). Linux W7900 R2 validation PENDING. Human submission authorization PENDING. Upstream DCO policy inspected (frozen base CONTRIBUTING.md: no DCO/Signed-off-by requirement found) - commits are unsigned by design; DCO certification NOT granted by user.",
+  "supersedes": {
+    "candidate_id": "P5.1-CANDIDATE-R1",
+    "evidence_branch": "phase5.1/windows-final-candidate-freeze",
+    "evidence_commit": "494907699f3b57095663f0a70b42278001a8efb7",
+    "r1_series_sha256": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d",
+    "r1_source_tree": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+    "note": "R1 history and evidence remain immutable on their branch; R2 adds CI portability fixes F-C2-1/2/3 (+F-C2-4 Windows DLL loader) to the test registration only"
+  },
+  "base_repo": "https://github.com/ROCm/rocm-libraries",
+  "base_branch": "develop",
+  "base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "ordered_commits": [
+    "01a77dab8c4cf23d1e49273fa3c88bb0bb4fc887",
+    "8188b803b8304fc5933caa52ee27a58d01a78b04",
+    "d758aed7dc8c3ff17d7c4672f1281f09ca3ef131"
+  ],
+  "ordered_commit_subjects": [
+    "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
+    "MIOpen: make remaining RTC kernel std includes self-contained",
+    "MIOpen: add portable HIPRTC no-host-STL regression test"
+  ],
+  "ordered_patches": [
+    {
+      "order": 1,
+      "path": "patches/phase5_1_r2/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "sha256": "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
+      "bytes": 15385
+    },
+    {
+      "order": 2,
+      "path": "patches/phase5_1_r2/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "sha256": "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
+      "bytes": 7283
+    },
+    {
+      "order": 3,
+      "path": "patches/phase5_1_r2/canonical/0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch",
+      "sha256": "db16ee9e23af2cdbdba1bee1925d60dd7e949e4c44dd98878da221c889001f55",
+      "bytes": 32398
+    }
+  ],
+  "series_hash": {
+    "algorithm": "sha256_file_concat_v1",
+    "definition": "SHA256 of the three canonical patch files' bytes (LF) concatenated in order with no separator",
+    "sha256": "4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf"
+  },
+  "source_tree_identity": {
+    "head_tree_sha1": "060087061488a83a931f1d8d1ad2c0eb6c231eac",
+    "git_am_roundtrip_tree_match": true,
+    "git_apply_write_tree_match": true,
+    "changed_files_vs_base": {
+      "projects/miopen/src/CMakeLists.txt": {
+        "git_blob": "7b8a3454452b6463aea5e1293cb57663d3a0ff7e",
+        "sha256": "83598dcf2220c84e8756b20c1773c4449975ce832eb277387bc2208fe6c3976b",
+        "bytes": 55129
+      },
+      "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": {
+        "git_blob": "de044f6fc9dff13051d9eb38ecdd9b49a01ea27c",
+        "sha256": "32b6c5585f0590a984a57346471f60a3c9793cb81edc6d6945ded0a9f0b26962",
+        "bytes": 2461
+      },
+      "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": {
+        "git_blob": "fc864b4eaa18235fe877ffdb4715e23033a817d4",
+        "sha256": "ce1a407b834dccf0554dd106be9277aceda223b25fb36c6b794a87126758e792",
+        "bytes": 6975
+      },
+      "projects/miopen/src/kernels/miopen_freestanding_utility.hpp": {
+        "git_blob": "04b207792d7edff69ce91189c146e16b022cbb35",
+        "sha256": "4d6e60da271fbac0da2811f29585d355ff96a6b83b09a34c3394ed9d5143ef5f",
+        "bytes": 2210
+      },
+      "projects/miopen/src/kernels/miopen_type_traits.hpp": {
+        "git_blob": "71b64ed063840b353ef94d00ef8dfe9c4a2ce35c",
+        "sha256": "70e14ee1a76835f569934a41921dbb1ed9799bb5f4e0f218e896e2df53283f45",
+        "bytes": 4333
+      },
+      "projects/miopen/src/kernels/miopen_utility.hpp": {
+        "git_blob": "44ab2c40ea8a5fcc5264976216d0839a9b7b5aa9",
+        "sha256": "a254bb9b4467435052768dbac3c2077ca62ad5d0f2692586e7931731c5ebfb5c",
+        "bytes": 2466
+      },
+      "projects/miopen/src/kernels/radix.hpp": {
+        "git_blob": "99c29fda93463818b2bb8c91230527098b689687",
+        "sha256": "ca28a20945adc51808f1d81c193ad47f7d6e6fd87be83c906096aef8f888b7a9",
+        "bytes": 3848
+      },
+      "projects/miopen/src/kernels/tensor_view.hpp": {
+        "git_blob": "d7963324b0de98900f105ca07e9264e12ae0b646",
+        "sha256": "902316a9f20bd11b11704c3a405adae51133630fba806a2ee3f637e533697300",
+        "bytes": 3179
+      },
+      "projects/miopen/test/CMakeLists.txt": {
+        "git_blob": "96b427af80c9935f759c30d9b3b3080aa2432821",
+        "sha256": "aa8cad53d5a34b6e3d45175176cfa6fb86c8d39f4705c71e232692813f0d1e19",
+        "bytes": 43776
+      },
+      "projects/miopen/test/hiprtc_selfcontained.cpp": {
+        "git_blob": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
+        "sha256": "e5679eba5fb52b666d0f761a4e5e7d01024f7caaf881fa7cf19933af733d2ede",
+        "bytes": 21101
+      }
+    }
+  },
+  "source_delta_from_r1": {
+    "files_changed": 1,
+    "only_file": "projects/miopen/test/CMakeLists.txt",
+    "diffstat": "+84/-16 (registration block amendment)",
+    "all_production_and_test_source_files_identical_to_r1": true,
+    "content": [
+      "F-C2-2: capability-aware link (if(TARGET hiprtc::hiprtc) else plain hiprtc)",
+      "F-C2-3: direct add_test bypassing add_test_command's MIOPEN_TEST_GDB wrapper",
+      "F-C2-1: SKIP_RETURN_CODE 4 for INCONCLUSIVE (probe-failed isolation)",
+      "skip-list parity: add_test_command's SKIP_TESTS/SKIP_ALL_EXCEPT_TESTS guard replicated",
+      "ENVIRONMENT parity: MIOPEN_USER_DB_PATH preserved",
+      "F-C2-4: test-scoped PATH prepend with hiprtc runtime dir derived from imported-target location metadata (Windows DLL loader)",
+      "comments updated (no platform-split claim, no universal no-STL claim)"
+    ]
+  },
+  "git_author": "AIwork4me",
+  "git_email": "AIwork4me@users.noreply.github.com",
+  "dco_status": "UNSIGNED_BY_DESIGN. Upstream CONTRIBUTING.md at frozen base inspected: no DCO/Signed-off-by requirement found. Right to contribute confirmed by user; DCO certification NOT separately authorized, so no Signed-off-by trailer is added and no provisional DCO marker text remains (removed per mission). If upstream later requires DCO, a human must authorize sign-off and the series must be regenerated (identities change).",
+  "copyright_status": "RESOLVED: 4/4 new files carry 'Copyright (c) 2026 AIwork4me'; MIT license text preserved verbatim; RIGHT_TO_CONTRIBUTE=CONFIRMED_BY_USER (2026-10-08, carried from R1; R2 adds no new files)",
+  "windows_validation_status": {
+    "cmake_configure": "PASS",
+    "target_build": "PASS",
+    "ctest_discovery": "PASS",
+    "ctest_execution": "PASS (genuine no-STL PASS, NOT skipped)",
+    "ctest_clean_env_execution": "PASS (F-C2-4: bare ctest, no ambient ROCm PATH)",
+    "ci_ab_matrix": "PASS (13/13 cells)",
+    "exit_code_fixture": "PASS (0->PASS, 1->FAIL, 2->FAIL, 4->SKIP)",
+    "restricted_list_parity": "PASS (MIOPEN_TEST_BFLOAT16 leg disables test like add_test_command)",
+    "miopen_dll_build": "PASS",
+    "miopen_dll_sha256": "eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd",
+    "dll_load_provenance": "PASS (GetModuleFileNameW + in-process sha256)",
+    "hiprtc_dll_provenance": "PASS (psutil module snapshot; loaded _rocm_sdk_core/bin/hiprtc0714.dll c6159dd12714eed42c1d851e49a425404c1a34ba27cd2a8e721b0fe3db4fd86e)",
+    "nostl_runtime": "PASS (fresh profile, scrubbed env, MSVC include renamed)",
+    "batchnorm_numerics": "PASS",
+    "batchnorm_numerics_detail": {
+      "y": 6.706602642125858e-07,
+      "dx": 3.202286127666268e-12,
+      "dw": 2.4365591336228398e-08,
+      "db": 1.862645147225183e-09,
+      "running_mean": 3.524055299962067e-10,
+      "running_var": 1.1640783137423227e-07
+    },
+    "yolo_train_amp_false": "PASS",
+    "yolo_train_amp_default": "PASS",
+    "yolo_amp_note": {
+      "genuine_amp_evidence": true,
+      "lines": [
+        "\u001b[34m\u001b[1mengine\\trainer: \u001b[0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:\\Users\\rocm\\Desktop\\YOLO_AMD\\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-20, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\\Users\\rocm\\Desktop\\YOLO_AMD\\runs\\detect\\train-20, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None",
+        "11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']",
+        "14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']",
+        "\u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...",
+        "\u001b[34m\u001b[1mAMP: \u001b[0mchecks passed"
+      ]
+    },
+    "wheel_dll_restored": "PASS"
+  },
+  "linux_validation_status": "PENDING",
+  "linux_validation_authority": "Independent Linux W7900 (gfx1100) validation per docs/phase5_1_r2/LINUX_FINAL_VALIDATION_HANDOFF.md. Windows agent must NOT claim Linux results.",
+  "authorization_to_submit_upstream": false,
+  "upstream_pr_created": false,
+  "upstream_issue_created": false,
+  "upstream_comment_posted": false,
+  "internal_pr_created": false
+}

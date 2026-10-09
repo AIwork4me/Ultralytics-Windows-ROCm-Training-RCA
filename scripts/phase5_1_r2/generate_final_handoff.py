@@ -97,7 +97,8 @@ def main() -> int:
     require(rt["overall"] == "PASS", "runtime validation not PASS")
     require(rt["phase5_dll_sha256"] == dll_sha, "runtime DLL sha drift")
     nostl = load(EV / "runtime" / "nostl_validation.json")
-    num = load(EV / "runtime" / "numerics_batchnorm.txt")  # existence check
+    num_path = EV / "runtime" / "numerics_batchnorm.txt"
+    require(num_path.exists(), "numerics evidence missing")  # existence check
     yolo = load(EV / "yolo" / "yolo_train.json")
     require(yolo["overall"] == "PASS", "yolo validation not PASS")
     require(yolo["wheel_restored_ok"] is True, "wheel not restored")
