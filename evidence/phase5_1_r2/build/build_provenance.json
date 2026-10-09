@@ -1,9 +1,9 @@
 {
   "schema": "phase5_1_r2_final_build_v1",
   "gate": "R27",
-  "timestamp": "2026-10-09T11:29:38.538041",
+  "timestamp": "2026-10-09T12:12:05.504796",
   "source_tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.1-r2-candidate\\projects\\miopen",
-  "source_git_head": "d758aed7dc8c3ff17d7c4672f1281f09ca3ef131",
+  "source_git_head": "f18c4de94b229bbe3e8501d70e3e2461425c69de",
   "configure_command": [
     "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase3_buildtools\\Lib\\site-packages\\cmake\\data\\bin\\cmake.exe",
     "-S",
@@ -50,7 +50,7 @@
   "over260_files_removed": 1852,
   "dll_path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_1_r2_build\\miopen\\bin\\MIOpen.dll",
   "dll_size": 363044864,
-  "dll_sha256": "eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd",
+  "dll_sha256": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a",
   "toolchain": {
     "cmake": "cmake version 4.4.4",
     "clang": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\lib\\llvm\\bin\\clang++.exe",

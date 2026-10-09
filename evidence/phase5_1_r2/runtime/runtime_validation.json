@@ -1,9 +1,9 @@
 {
   "schema": "phase5_1_r2_runtime_validation_v1",
   "gate": "R27+11+12",
-  "timestamp": "2026-10-09T11:30:27.442233",
+  "timestamp": "2026-10-09T12:14:28.959597",
   "phase5_dll": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_1_r2_build\\miopen\\bin\\MIOpen.dll",
-  "phase5_dll_sha256": "eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd",
+  "phase5_dll_sha256": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a",
   "wheel_dll": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
   "wheel_sha_expected": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
   "tolerances_fixed_before_run": {
@@ -17,7 +17,7 @@
   "provenance": {
     "loaded": true,
     "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
-    "sha256": "eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd",
+    "sha256": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a",
     "gpu": "AMD Radeon(TM) 8060S Graphics",
     "torch": "2.12.0+rocm7.14.0",
     "y_finite": true
@@ -25,7 +25,7 @@
   "phase5_canonical_miopen_loaded": true,
   "numerics": {
     "miopen_path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
-    "miopen_sha256": "eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd",
+    "miopen_sha256": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a",
     "dtype": "float32 gpu vs float64 cpu",
     "shape": [
       8,
@@ -66,7 +66,7 @@
   "wheel_restored_ok": true,
   "nostl": {
     "gate": "R28A",
-    "fresh_profile": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase5_1_r2_iso_nostl_3731741e",
+    "fresh_profile": "C:\\Users\\rocm\\AppData\\Local\\Temp\\phase5_1_r2_iso_nostl_6a977748",
     "env_scrubbed": [
       "INCLUDE",
       "LIB",
@@ -81,13 +81,13 @@
     "exit_code": 0,
     "result": {
       "miopen_path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
-      "miopen_sha256": "eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd",
+      "miopen_sha256": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a",
       "y_finite": true,
       "grad_finite": true,
       "running_stats_finite": true,
       "running_mean_changed": true
     },
-    "stdout": "{\"miopen_path\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"miopen_sha256\": \"eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd\", \"y_finite\": true, \"grad_finite\": true, \"running_stats_finite\": true, \"running_mean_changed\": true}\n",
+    "stdout": "{\"miopen_path\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\yolo_amd\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"miopen_sha256\": \"48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a\", \"y_finite\": true, \"grad_finite\": true, \"running_stats_finite\": true, \"running_mean_changed\": true}\n",
     "stderr": "MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution\nMIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151\n",
     "checks": {
       "exit_zero": true,
