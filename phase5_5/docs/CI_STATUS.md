@@ -24,6 +24,18 @@ Classification: 0 pass / 3 pending / 0 fail. Full matrix not yet dispatched.
 
 Classification: 4 pass / 1 pending / 0 fail / 0 unexpected skip.
 
+## Snapshot 3 (classification complete)
+
+| Check / workflow | State | Classification |
+|---|---|---|
+| Base freshness / base-freshness | pass | PASS |
+| labeler (Auto Label PR) | pass | PASS |
+| Math CI Summary | pass | EXPECTED SKIP (external math-ci.amd.com webhook dispatch semantics) |
+| therock-pr-bot (Libraries PR Bot) | in_progress | PENDING — bot handles PR intake; approval workflow below |
+| TheRock CI · Component CI · TheRock Multi-Arch CI · Multi-Arch CI ASAN · clang-tidy · pre-commit | completed `action_required`, **zero jobs ran** | **EXPECTED SKIP (awaiting maintainer workflow approval)** — first-PR gating for a first-time external contributor; triggering_actor AIwork4me; GitHub requires an org maintainer to approve workflow execution. Not a source failure; the matrix dispatches after approval. |
+
+Classification totals: 4 pass / 1 pending / 0 fail / 7 expected-skip (1 external-webhook + 6 approval-gated) / 0 unexpected skip / 0 blocking failures.
+
 ## Expectations (pre-registered, see PR body "Regression Test Design")
 
 - Linux CI legs: `test_hiprtc_selfcontained` expected **Skipped** (isolation probe exit 4) — this is the designed capability-skip, NOT a failure and NOT a no-STL pass.
