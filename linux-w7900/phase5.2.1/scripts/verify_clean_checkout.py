@@ -102,6 +102,8 @@ def main():
                 ref = m.group(1).strip("./-")
                 if "<" in ref or ">" in ref or not ref:
                     continue  # documented placeholder (e.g. scripts/env_<stack>.sh)
+                if m.end() < len(text) and text[m.end()] == "<":
+                    continue  # placeholder opening right after the token (scripts/env_<stack>.sh)
                 refs.add((os.path.join(d, name), ref))
     c2_bad = []
     for doc, name in sorted(refs):
