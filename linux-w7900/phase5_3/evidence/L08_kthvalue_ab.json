@@ -1,0 +1,134 @@
+{
+  "gate": "L08",
+  "timestamp_utc": "2026-10-09T08:53:13.511783+00:00",
+  "harness": {
+    "path": "build/kthvalue-harness/kthvalue_runtime_harness_gfx1100",
+    "sha256": "b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8",
+    "same_binary_both_legs": true,
+    "execution_path": "miopenKthvalueForward -> KthvalueFwd -> MIOpenKthvalue.cpp -> radix.hpp (log-verified)"
+  },
+  "legA": {
+    "cases": {
+      "FP32-2D-nokeep": {
+        "shape": "100x500",
+        "dtype": "FP32",
+        "dim": -1,
+        "k": 10,
+        "keepDim": 0,
+        "value_mismatches": 0,
+        "index_mismatches": 0,
+        "max_abs_err": "0",
+        "status": "STATUS: PASS"
+      },
+      "FP32-3D-keep-explicit-dim": {
+        "shape": "10x20x300",
+        "dtype": "FP32",
+        "dim": 2,
+        "k": 137,
+        "keepDim": 1,
+        "value_mismatches": 0,
+        "index_mismatches": 0,
+        "max_abs_err": "0",
+        "status": "STATUS: PASS"
+      },
+      "FP16-4D-keep-kmax": {
+        "shape": "8x3x10x2000",
+        "dtype": "FP16",
+        "dim": -1,
+        "k": 2000,
+        "keepDim": 1,
+        "value_mismatches": 0,
+        "index_mismatches": 0,
+        "max_abs_err": "0",
+        "status": "STATUS: PASS"
+      }
+    },
+    "provenance_libMIOpen": "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1",
+    "find_solution_kthvaluefwd": true,
+    "miopenkthvalue_kernel_blob": true,
+    "kernel_run_line": true,
+    "hiprtc_version_line": true,
+    "kern_db_inserts": 2,
+    "gfx1100_device": true,
+    "exit_code": "0"
+  },
+  "legB": {
+    "cases": {
+      "FP32-2D-nokeep": {
+        "shape": "100x500",
+        "dtype": "FP32",
+        "dim": -1,
+        "k": 10,
+        "keepDim": 0,
+        "value_mismatches": 0,
+        "index_mismatches": 0,
+        "max_abs_err": "0",
+        "status": "STATUS: PASS"
+      },
+      "FP32-3D-keep-explicit-dim": {
+        "shape": "10x20x300",
+        "dtype": "FP32",
+        "dim": 2,
+        "k": 137,
+        "keepDim": 1,
+        "value_mismatches": 0,
+        "index_mismatches": 0,
+        "max_abs_err": "0",
+        "status": "STATUS: PASS"
+      },
+      "FP16-4D-keep-kmax": {
+        "shape": "8x3x10x2000",
+        "dtype": "FP16",
+        "dim": -1,
+        "k": 2000,
+        "keepDim": 1,
+        "value_mismatches": 0,
+        "index_mismatches": 0,
+        "max_abs_err": "0",
+        "status": "STATUS: PASS"
+      }
+    },
+    "provenance_libMIOpen": "/workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1",
+    "find_solution_kthvaluefwd": true,
+    "miopenkthvalue_kernel_blob": true,
+    "kernel_run_line": true,
+    "hiprtc_version_line": true,
+    "kern_db_inserts": 2,
+    "gfx1100_device": true,
+    "exit_code": "0"
+  },
+  "input_data": "deterministic tie-free (established Phase-3/5.2 harness seed; inputs dumped per leg)",
+  "ab_dump_comparison": {
+    "files": [
+      "FP16-4D-keep-kmax_expected_indices.bin",
+      "FP16-4D-keep-kmax_expected_values.txt",
+      "FP16-4D-keep-kmax_indices.bin",
+      "FP16-4D-keep-kmax_input.bin",
+      "FP16-4D-keep-kmax_output.bin",
+      "FP32-2D-nokeep_expected_indices.bin",
+      "FP32-2D-nokeep_expected_values.txt",
+      "FP32-2D-nokeep_indices.bin",
+      "FP32-2D-nokeep_input.bin",
+      "FP32-2D-nokeep_output.bin",
+      "FP32-3D-keep-explicit-dim_expected_indices.bin",
+      "FP32-3D-keep-explicit-dim_expected_values.txt",
+      "FP32-3D-keep-explicit-dim_indices.bin",
+      "FP32-3D-keep-explicit-dim_input.bin",
+      "FP32-3D-keep-explicit-dim_output.bin"
+    ],
+    "count": 15,
+    "all_byte_identical": true,
+    "method": "cmp byte-level on input/output/indices/CPU-expected arrays per case"
+  },
+  "fresh_caches": {
+    "legA_dir": "runtime/legA-frozen-cache/p53-final-kthv-A (516 files created during run)",
+    "legB_dir": "runtime/patched-cache/p53-final-kthv-B (516 files created during run)",
+    "distinct": true,
+    "wrapper": "run_validation_leg.sh (LD_PRELOAD leg libMIOpen + per-label cache dirs, refuses non-empty)"
+  },
+  "verdict": "PASS",
+  "verdict_note": "initial JSON carried FAIL from a precedence bug in the verdict expression; all underlying conditions were independently True; recomputed and corrected",
+  "interpretation_note": "Both legs PASS with byte-identical outputs => the R2 patch introduces NO REGRESSION in the covered Linux kthvalue workload (FP32 2D/3D, FP16 4D k-max; deterministic tie-free inputs). This is NOT a reproduction of the Windows no-STL failure and NOT a no-STL claim; Linux HIPRTC environment differs (see L07).",
+  "ck_shared_library_note": "libMIOpenCKGroupedConv_gfx1100.so is not shipped by the legs and resolves from the shared wheel IDENTICALLY on both legs (5-symbol warning, benign; no CK solver participates in kthvalue/batchnorm dispatch chains). CK-solver claims are therefore out of leg-isolation scope.",
+  "original_fail_json_note": "The initial L08 JSON erroneously recorded verdict=FAIL due to an operator-precedence bug in the verdict expression; every underlying condition was independently True (re-derived by the Gate L08 reviewer). The erroneous original JSON was not archived; the correction is disclosed here and mechanically guarded by verify_final_evidence.py."
+}

@@ -1,0 +1,58 @@
+{
+  "mission_id": "W7900-PHASE53-R2-FINAL-AB",
+  "gate": "L01",
+  "timestamp_utc": "2026-10-09T07:28:52.548632+00:00",
+  "pinned_evidence_commit_expected": "c8417161125dc33275b7ac615298b449a81e7cf8",
+  "pinned_evidence_commit_actual": "c8417161125dc33275b7ac615298b449a81e7cf8",
+  "ancestor_snapshot_check": true,
+  "published_verifiers": {
+    "note": "Published scripts hardcode Windows paths; run via phase5_3/scripts/run_r2_verifiers_linux.py (path-adapted copy, logic identical except 1 documented substitution)",
+    "verify_patch_identity": "25/25 PASS",
+    "verify_final_handoff": "39/39 PASS (1 check satisfied via documented tree-identity substitution: commits_match_worktree)",
+    "raw_verifier_evidence": "evidence/L01_verifier_run.json"
+  },
+  "commit_sha_substitution_rationale": "Exact R2 commit objects (01a77dab/8188b803/f18c4de9) exist only on the Windows worktree; not pushed to any GitHub repo (verified: no AIwork4me/rocm-libraries fork; RCA repo lacks objects). Commit SHAs embed Windows committer timestamps (identity=author confirmed by docs/phase5/AUTHORSHIP_DCO_AUDIT.md); brute-force +/-3d @1s with identity=author failed -> committer timestamps genuinely unknown. Per Phase-5.2 precedent (linux-w7900/phase5_2/docs/SOURCE_RECONSTRUCTION.md, merged to RCA main): Git TREE is the content identity.",
+  "independent_hash_verification": {
+    "patch_0001": {
+      "expected": "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
+      "match": true
+    },
+    "patch_0002": {
+      "expected": "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
+      "match": true
+    },
+    "patch_0003": {
+      "expected": "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e",
+      "match": true
+    },
+    "series_sha256_file_concat_v1": {
+      "expected": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+      "match": true
+    },
+    "manifest_individual_and_series_agree": true
+  },
+  "manifest_facts": {
+    "candidate_id": "P5.1-CANDIDATE-R2",
+    "base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "base_repo": "https://github.com/ROCm/rocm-libraries",
+    "head_tree_sha1": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "changed_files_count": 10,
+    "ordered_commit_subjects_match_patches": true,
+    "linux_validation_status_frozen": "PENDING",
+    "dco_status_contains_UNSIGNED": true,
+    "authorization_to_submit_upstream_false": true,
+    "r1_series_hash_absent_outside_supersedes": true,
+    "manifest_unmodified": true
+  },
+  "r1_not_substituted": {
+    "r1_branch": "494907699f3b57095663f0a70b42278001a8efb7",
+    "r1_branch_unchanged": true,
+    "r1_0003_patch_sha256_unchanged": true
+  },
+  "git_blob_verification": "All 10 changed-file blobs at WT HEAD match manifest changed_files_vs_base sha256+bytes (see L01_verifier_run.json blob:* checks)",
+  "worktree_recon": {
+    "method_A_git_am_head": "cd117724af72415d12aa9e31cb9edc47b8ebe766",
+    "method_A_git_am_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "method_B_git_apply_write_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "gate": "L03",
+  "timestamp_utc": "2026-10-09T07:52:19.609336+00:00",
+  "base": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "expected_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+  "method_A": {
+    "worktree": "/workspace/miopen-w7900-validation/source/final-patched",
+    "technique": "git am (3 patches, byte-exact copies of pinned patches)",
+    "head": "cd117724af72415d12aa9e31cb9edc47b8ebe766",
+    "head_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "parent_chain": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "status_clean": true,
+    "changed_paths": [
+      "projects/miopen/src/CMakeLists.txt",
+      "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+      "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+      "projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+      "projects/miopen/src/kernels/miopen_type_traits.hpp",
+      "projects/miopen/src/kernels/miopen_utility.hpp",
+      "projects/miopen/src/kernels/radix.hpp",
+      "projects/miopen/src/kernels/tensor_view.hpp",
+      "projects/miopen/test/CMakeLists.txt",
+      "projects/miopen/test/hiprtc_selfcontained.cpp"
+    ],
+    "changed_paths_match_manifest": true
+  },
+  "method_B": {
+    "worktree": "/workspace/miopen-w7900-validation/build/recon53/methodB",
+    "technique": "git apply --index (3 patches) + git write-tree",
+    "write_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "head": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "status_index_only": true,
+    "changed_paths": [
+      "projects/miopen/src/CMakeLists.txt",
+      "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+      "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+      "projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+      "projects/miopen/src/kernels/miopen_type_traits.hpp",
+      "projects/miopen/src/kernels/miopen_utility.hpp",
+      "projects/miopen/src/kernels/radix.hpp",
+      "projects/miopen/src/kernels/tensor_view.hpp",
+      "projects/miopen/test/CMakeLists.txt",
+      "projects/miopen/test/hiprtc_selfcontained.cpp"
+    ],
+    "changed_paths_match_manifest": true
+  },
+  "per_file_blob_identity": {
+    "projects/miopen/src/CMakeLists.txt": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/src/kernels/miopen_freestanding_utility.hpp": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/src/kernels/miopen_type_traits.hpp": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/src/kernels/miopen_utility.hpp": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/src/kernels/radix.hpp": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/src/kernels/tensor_view.hpp": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/test/CMakeLists.txt": {
+      "sha256_match": true,
+      "bytes_match": true
+    },
+    "projects/miopen/test/hiprtc_selfcontained.cpp": {
+      "sha256_match": true,
+      "bytes_match": true
+    }
+  },
+  "all_blobs_match": true,
+  "crlf_counts_in_changed_files": "none (no line-ending conversion)",
+  "git_diff_check_clean": true,
+  "verdict": "PASS",
+  "method_B_status_parsing_note": "porcelain XY prefix (3 chars) stripped from status lines"
+}

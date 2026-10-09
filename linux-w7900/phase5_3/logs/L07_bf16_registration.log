@@ -1,0 +1,2 @@
+add_test(test_hiprtc_selfcontained "echo" "skipped")
+set_tests_properties(test_hiprtc_selfcontained PROPERTIES  DISABLED "On" ENVIRONMENT "MIOPEN_USER_DB_PATH=/workspace/miopen-w7900-validation/build/recon53-test-bf16/test" SKIP_RETURN_CODE "4" _BACKTRACE_TRIPLES "/workspace/miopen-w7900-validation/source/final-patched/projects/miopen/test/CMakeLists.txt;547;add_test;/workspace/miopen-w7900-validation/source/final-patched/projects/miopen/test/CMakeLists.txt;0;")

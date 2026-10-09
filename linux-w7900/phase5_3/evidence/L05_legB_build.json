@@ -1,0 +1,121 @@
+{
+  "gate": "L05",
+  "timestamp_utc": "2026-10-09T08:20:01.721269+00:00",
+  "source": {
+    "worktree": "source/final-patched",
+    "head": "cd117724af72415d12aa9e31cb9edc47b8ebe766",
+    "tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "status_clean": true,
+    "tree_matches_expected": "b983caddf9f9f561e7d1b590deadb16267c2de15"
+  },
+  "patch_hash_verification": "done at L01/L02 (consumer positive control + matrix)",
+  "build_dir": "build/patched-miopen",
+  "install_dir": "install/patched",
+  "build_command": "MIOPEN_SOURCE=source/final-patched/projects/miopen MIOPEN_BUILD=build/patched-miopen MIOPEN_INSTALL=install/patched MIOPEN_JOBS=64 bash scripts/build_leg_miopen.sh (phase5.2.1 wrapper, byte-identical to published WRAPPERS_MANIFEST)",
+  "build_exit_code": 0,
+  "install_exit_code": 0,
+  "cmake_cache_contamination_check": "grep opt/rocm CMakeCache.txt -> none (wrapper enforces CACHE_CLEAN)",
+  "cmake_semantic_comparison": {
+    "MIOPEN_BACKEND": {
+      "legA": "HIP",
+      "legB": "HIP",
+      "identical": true
+    },
+    "MIOPEN_USE_HIPRTC": {
+      "legA": "ON",
+      "legB": "ON",
+      "identical": true
+    },
+    "MIOPEN_USE_COMGR": {
+      "legA": "ON",
+      "legB": "ON",
+      "identical": true
+    },
+    "MIOPEN_USE_COMPOSABLEKERNEL": {
+      "legA": "OFF",
+      "legB": "OFF",
+      "identical": true
+    },
+    "CMAKE_BUILD_TYPE": {
+      "legA": "RelWithDebInfo",
+      "legB": "RelWithDebInfo",
+      "identical": true
+    },
+    "GPU_TARGETS": {
+      "legA": "gfx1100",
+      "legB": "gfx1100",
+      "identical": true
+    },
+    "AMDGPU_TARGETS": {
+      "legA": "gfx1100",
+      "legB": "gfx1100",
+      "identical": true
+    },
+    "CMAKE_CXX_COMPILER": {
+      "legA": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/amdclang++",
+      "legB": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/amdclang++",
+      "identical": true
+    },
+    "CMAKE_C_COMPILER": {
+      "legA": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/clang",
+      "legB": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/clang",
+      "identical": true
+    },
+    "CMAKE_HIP_COMPILER": {
+      "legA": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/llvm/bin/clang++",
+      "legB": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/llvm/bin/clang++",
+      "identical": true
+    },
+    "BUILD_TESTING": {
+      "legA": "OFF",
+      "legB": "OFF",
+      "identical": true
+    },
+    "MIOPEN_USE_MLIR": {
+      "legA": "OFF",
+      "legB": "OFF",
+      "identical": true
+    },
+    "MIOPEN_USE_ROCBLAS": {
+      "legA": "ON",
+      "legB": "ON",
+      "identical": true
+    },
+    "MIOPEN_EMBED_DB": {
+      "legA": "",
+      "legB": "",
+      "identical": true
+    },
+    "CMAKE_INSTALL_LIBDIR": {
+      "legA": "lib",
+      "legB": "lib",
+      "identical": true
+    },
+    "MIOPEN_OFFLOADBUNDLER_BIN": {
+      "legA": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/clang-offload-bundler",
+      "legB": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/clang-offload-bundler",
+      "identical": true
+    },
+    "MIOPEN_AMDGCN_ASSEMBLER": {
+      "legA": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/clang",
+      "legB": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/clang",
+      "identical": true
+    }
+  },
+  "semantic_differences": [],
+  "binary": {
+    "path": "install/patched/lib/libMIOpen.so.1.0",
+    "sha256": "bf21a5fa4abc5ff77b0f50756a69dccf7a077970603a846300f0ea077d61eac1",
+    "size": 803472544,
+    "soname": "0x000000000000000e (SONAME)             Library soname: [libMIOpen.so.1]",
+    "version_string": "MIOpen version 3.6.2 (patched leg: contains R2 test + RTC headers)",
+    "miopenCreate_exported": true,
+    "miopenKthvalueForward_exported": true,
+    "version_string_literal": "MIOpen version 3.6.2.cd117724af",
+    "version_string_note": "git-derived suffix embeds the Linux git-am commit (cd117724) because MIOpen's version string derives from git describe at build time; Windows build embedded f18c4de9. Consequence of documented commit-metadata difference; tree identity (b983cadd) is authoritative."
+  },
+  "verdict": "PASS",
+  "log_capture_note": "L05_configure.log is the wrapper's configure log from the resumed (second) invocation; the primordial configure with compiler identification is preserved verbatim in phase5_3/logs/L05_build_driver.log (MINOR-1 resolution). Cache value equality and 0 /opt/rocm were independently re-verified by the Gate L05 auditor.",
+  "cache_type_annotation_note": "CMAKE_CXX_COMPILER cache-type annotation differs (STRING vs UNINITIALIZED) between legs due to the re-configure path; values identical (MINOR-3, documented).",
+  "user_db_suffix_note": "MIOPEN_USER_DB_SUFFIX differs per leg (git-derived); A/B runtime caches are additionally isolated into per-leg fresh directories at L08."
+}

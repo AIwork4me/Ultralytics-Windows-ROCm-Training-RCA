@@ -1,0 +1,1 @@
+FATAL: cache dir /workspace/miopen-w7900-validation/runtime/legA-frozen-cache/l11-A1 already holds 516 file(s) (stale-cache risk). Use a new label or FRESH_CACHE_FORCE=1.

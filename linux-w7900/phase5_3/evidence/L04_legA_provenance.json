@@ -1,0 +1,47 @@
+{
+  "gate": "L04",
+  "timestamp_utc": "2026-10-09T07:59:14.266033+00:00",
+  "leg": "A (unpatched frozen upstream baseline)",
+  "source_commit": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+  "source_tree": "8b0bf035e4568a1d994512b4346fed0dde3c591b",
+  "source_status_clean": true,
+  "build_dir": "build/legA-frozen-miopen",
+  "cmake_source_dir": "/workspace/miopen-w7900-validation/build/recon/frozen-base-checkout/projects/miopen",
+  "install_prefix": "/workspace/miopen-w7900-validation/install/legA-frozen-baseline",
+  "config": {
+    "MIOPEN_BACKEND": "HIP",
+    "MIOPEN_USE_HIPRTC": "ON",
+    "MIOPEN_USE_COMGR": "ON",
+    "MIOPEN_USE_COMPOSABLEKERNEL": "OFF",
+    "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+    "GPU_TARGETS": "gfx1100",
+    "AMDGPU_TARGETS": "gfx1100",
+    "CMAKE_CXX_COMPILER": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin/amdclang++",
+    "CMAKE_COMPILER": null,
+    "BUILD_TESTING": "OFF",
+    "MIOPEN_USE_MLIR": "OFF",
+    "MIOPEN_USE_ROCBLAS": "ON"
+  },
+  "binary_path": "install/legA-frozen-baseline/lib/libMIOpen.so.1.0",
+  "binary_sha256_actual": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+  "binary_sha256_expected": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+  "binary_sha256_match": true,
+  "soname": "libMIOpen.so.1",
+  "version_string": "MIOpen version 3.6.2.7c5866144a",
+  "key_symbols_exported": [
+    "miopenCreate",
+    "miopenKthvalueForward",
+    "miopenBatchNormalizationForwardTraining"
+  ],
+  "needed_entries": [
+    "libhiprtc.so.7",
+    "libamd_comgr.so.3",
+    "librocblas.so.5",
+    "libhipblaslt.so.1",
+    "libamdhip64.so.7",
+    "libroctx64.so.4"
+  ],
+  "decision": "REUSE frozen Leg A (hash matches pinned identity; source/build provenance intact). No rebuild.",
+  "historical_b68f894_baseline_used": false,
+  "verdict": "PASS"
+}

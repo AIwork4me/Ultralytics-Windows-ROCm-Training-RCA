@@ -1,0 +1,29 @@
+=== run_validation_leg(legA-frozen,l11-A1b) pid=238942 2026-10-09T10:03:05+00:00 ===
+LD_PRELOAD=/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+libMIOpen sha256: 7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d
+harness build/kthvalue-harness/kthvalue_runtime_harness_gfx1100 sha256: b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8
+cache dir: /workspace/miopen-w7900-validation/runtime/legA-frozen-cache/l11-A1b (fresh per label; never shared across legs)
+=== kthvalue runtime harness (W7900-LINUX-PREP-R1, gfx1100) ===
+PROVENANCE:
+  miopenCreate <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+  miopenKthvalueForward <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+  hipMalloc <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+  hipMemcpy <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+handle created, stream=(nil)
+
+CASE FP32-2D-nokeep shape={100x500} dtype=FP32 dim=-1 k=10 keepDim=0
+  slices=100 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=-60.25 act_val=-60.25 exp_idx=263 act_idx=263
+  STATUS: PASS
+
+CASE FP32-3D-keep-explicit-dim shape={10x20x300} dtype=FP32 dim=2 k=137 keepDim=1
+  slices=200 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=-3.5 act_val=-3.5 exp_idx=260 act_idx=260
+  STATUS: PASS
+
+CASE FP16-4D-keep-kmax shape={8x3x10x2000} dtype=FP16 dim=-1 k=2000 keepDim=1
+  slices=240 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=249.75 act_val=249.75 exp_idx=1309 act_idx=1309
+  STATUS: PASS
+
+HARNESS_RESULT: PASS

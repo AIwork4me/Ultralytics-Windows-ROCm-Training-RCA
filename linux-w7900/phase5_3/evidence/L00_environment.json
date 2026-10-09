@@ -1,0 +1,101 @@
+{
+  "mission_id": "W7900-PHASE53-R2-FINAL-AB",
+  "gate": "L00",
+  "timestamp_utc": "2026-10-09T07:11:05.437466Z",
+  "uname": "Linux j-5jmn7smvmz5iaumh5o3cifgjd6 6.8.0-79-generic #79-Ubuntu SMP PREEMPT_DYNAMIC Tue Aug 12 14:42:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux",
+  "os_release": "PRETTY_NAME=\"Ubuntu 24.04.4 LTS\"\nVERSION_ID=\"24.04\"",
+  "gpu": {
+    "rocminfo_gpu_agent": [],
+    "gfx1100_section": [
+      "Name:                    gfx1100                            ",
+      "  Uuid:                    GPU-5d2beafefe2aaf0d               ",
+      "  Marketing Name:          AMD Radeon Pro W7900D              ",
+      "  Vendor Name:             AMD                                ",
+      "--",
+      "      Name:                    amdgcn-amd-amdhsa--gfx1100"
+    ]
+  },
+  "pytorch": [
+    "2.12.0+rocm7.14.1",
+    "7.14.60850",
+    "AMD Radeon Pro W7900D"
+  ],
+  "hipcc": [
+    "HIP version: 7.14.60850-0000000",
+    "AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git f30ae3e6b680ad23dcf522e668c6d4c5c90838d0+PATCHED:440716f8b87be9d8e20ed910e10e5b6d14d57cf6)"
+  ],
+  "gpu_mem_total_gb": "48.0",
+  "disk_workspace": "/dev/loop0       98G   62G   32G  67% /workspace",
+  "disk_note": "32GB available; required: LegB source+build+install (~9GB), CTest build (~6GB), caches+logs (~1GB). Feasible.",
+  "rocm_path": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel",
+  "hip_path": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel",
+  "ld_library_path": "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib:/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib:/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib:/usr/local/lib:",
+  "ld_preload": "<empty>",
+  "cmake_prefix_path": "<unset>",
+  "path_head": [
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/bin",
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/llvm/bin",
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/bin",
+    "/root/.opencode/bin",
+    "/opt/amd-oneclick-runtime/bin"
+  ],
+  "ldconfig_lookup": {
+    "libhiprtc.so": [
+      "libhiprtc.so (libc6,x86-64) => /opt/rocm-7.2.1/lib/libhiprtc.so"
+    ],
+    "libamdhip64.so": [
+      "libamdhip64.so (libc6,x86-64) => /opt/rocm-7.2.1/lib/libamdhip64.so"
+    ],
+    "libamd_comgr.so": [
+      "libamd_comgr.so (libc6,x86-64) => /opt/rocm-7.2.1/lib/libamd_comgr.so"
+    ],
+    "librocblas.so": [
+      "librocblas.so (libc6,x86-64) => /opt/rocm-7.2.1/lib/librocblas.so"
+    ],
+    "libhsa-runtime64.so": [
+      "libhsa-runtime64.so (libc6,x86-64) => /opt/rocm-7.2.1/lib/libhsa-runtime64.so"
+    ]
+  },
+  "hiprtc_in_7141_sdk": [
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/torch/lib/libhiprtc.so.7",
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libhiprtc.so.7",
+    "/workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_devel/lib/libhiprtc.so"
+  ],
+  "rocm721_in_effective_ld_library_path": false,
+  "driver": "\u001b[37mROCk module version 6.16.13 is loaded\u001b[0m",
+  "legA_lib_sha256_actual": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+  "legA_lib_sha256_expected": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+  "legA_lib_sha256_match": true,
+  "harness_sha256_actual": "b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8",
+  "harness_sha256_expected": "b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8f",
+  "harness_sha256_match": false,
+  "existing_dirs": [
+    "/workspace/miopen-w7900-validation/build/:",
+    "baseline-miopen",
+    "kthvalue-harness",
+    "legA-frozen-miopen",
+    "patched-miopen",
+    "recon",
+    "thirdparty-preseed",
+    "",
+    "/workspace/miopen-w7900-validation/install/:",
+    "baseline",
+    "legA-frozen-baseline",
+    "patched",
+    "",
+    "/workspace/miopen-w7900-validation/repos/:",
+    "rca-evidence",
+    "rocm-libraries",
+    "",
+    "/workspace/miopen-w7900-validation/source/:",
+    "final-patched",
+    "upstream-pristine"
+  ],
+  "gpu_direct_access_test": "-214.27145385742188\nGPU_COMPUTE_OK",
+  "gpu_direct_access_rc": 0,
+  "harness_sha256_expected_mission_string": "b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8f",
+  "harness_sha256_mission_string_len": 65,
+  "harness_sha256_actual_len": 64,
+  "harness_sha256_prefix64_match": true,
+  "harness_identity_note": "Mission brief's expected harness hash is 65 hex chars (invalid SHA-256 length, trailing 'f'). The actual compiled harness binary hash equals the first 64 chars of the mission string exactly. Conclusion: mission-brief transcription typo; harness identity CONFIRMED as the previously tested binary."
+}

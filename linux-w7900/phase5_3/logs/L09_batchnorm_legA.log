@@ -1,0 +1,98 @@
+=== run_validation_leg(legA-frozen,p53-final-bn-A6) pid=236264 2026-10-09T09:25:40+00:00 ===
+LD_PRELOAD=/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+libMIOpen sha256: 7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d
+harness phase5_3/scripts/batchnorm_harness sha256: a8c4a1416f7b4d08287f246e059c68787c9ca975dfdec4a0fa18dfa1b49febe1
+cache dir: /workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-bn-A6 (fresh per label; never shared across legs)
+PROVENANCE:
+  miopenCreate <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+  miopenBatchNormalizationForwardTraining <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+  miopenBatchNormalizationBackward <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+  hipMalloc <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+WORKLOAD: N=8 C=16 H=64 W=64 FP32 mode=spatial eps=1e-05 expAvgFactor=0.1
+TOLERANCES (predeclared): y<=1e-05 dx<=1e-05 dw<=0.0001 db<=1e-05 rm<=0.0001 rv_rel<=0.001
+MIOpen: Info [get_device_name] Raw device name: gfx1100
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpenCKGroupedConv_gfx1100.so
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: libMIOpenCKGroupedConv_gfx1100.so
+MIOpen: Info2 [OpenRuntimeLibraryForDevice] Loaded CK grouped conv library from default path: libMIOpenCKGroupedConv_gfx1100.so
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1100
+MIOpen: Info [Handle] stream: 0, device_id: 0
+
+FORWARD (training)...
+MIOpen: Info [AmdRocmMetadataVersionDetect] ROCm MD version AMDHSA_COv3, HIP version 7.14.60850, MIOpen version 3.6.2.7c5866144a
+MIOpen: Info2 [GetInvoker] Returning an invoker for problem 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0 and algorithm miopenBatchNormForwardTrainingSpatial
+MIOpen: Info2 [GetFound1_0] No invokers found for 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0
+MIOpen: Info [FindSolutionImpl] BnFwdTrainingSpatial
+MIOpen: Info2 [GetLibPath] Lib Path: "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1.0"
+MIOpen: Info2 [GetPerfDbPathFile] inexact perf database search
+MIOpen: Info2 [GetPerfDbPathFile] Iterating over perf db directory "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/share/miopen/db"
+MIOpen: Info2 [GetPerfDbPathFile] Checking perf db file: gfx110060.db
+MIOpen: Info2 [GetPerfDbPathFile] Updating best candidate to: "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/share/miopen/db/gfx110060.db.txt"
+MIOpen: Info [Measure] ReadonlyRamDb::Prefetch time: 56.5855 ms
+MIOpen: Info [Prefetch] File is unreadable: "/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-bn-A6/batchnorm_gfx110060.HIP.3_6_2_7c5866144a.udb.txt"
+MIOpen: Info [Measure] RamDb::Prefetch time: 0.02396 ms
+MIOpen: Info2 [FindRecordUnsafe] Looking for key 2x8x16x64x64x1x1x1x0xNCHWxTrnxFP32x1 in cache for file "/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-bn-A6/batchnorm_gfx110060.HIP.3_6_2_7c5866144a.udb.txt"
+MIOpen: Info2 [FindRecord] Looking for key 2x8x16x64x64x1x1x1x0xNCHWxTrnxFP32x1 in file "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/share/miopen/db/gfx110060.db.txt"
+MIOpen: Info2 [Measure] Db::Load time: 0.025699 ms
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: BnFwdTrainingSpatial
+MIOpen: Info [GetDefaultPerformanceConfig] Variant1-1
+MIOpen: Info2 [~ScopedTimeLogger] [find-timing] BnFwdTrainingSpatial GetDefaultPerformanceConfig(default path): 0.0324 ms
+MIOpen: Info2 [~ScopedTimeLogger] [find-timing] BnFwdTrainingSpatial GetSolution(default path): 0.093689 ms
+MIOpen: Info2 [~ScopedTimeLogger] [find-timing] BnFwdTrainingSpatial FindSolutionImpl(total): 57.7197 ms
+MIOpen: Info2 [SearchForSolutions] BnFwdTrainingSpatial: Success.
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: MIOpenBatchNormFwdTrainSpatial
+MIOpen: Info2 [IsNetworkedFilesystem] Path does not exist: '"/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-bn-A6/3.6.2.7c5866144a"'
+MIOpen: Info [IsNetworkedFilesystem] Filesystem type at '"/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-bn-A6"' is: 0xef53 'EXT2/3/4_SUPER_MAGIC'
+MIOpen: Info2 [SQLiteBase] Initializing system database file ""
+MIOpen: Info [KernDb] database not present
+MIOpen: Info2 [SQLiteBase] Initializing user database file "/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-bn-A6/3.6.2.7c5866144a/gfx1100_48.ukdb"
+MIOpen: Info2 [KernDb] Database created successfully
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=1 -DMIO_BN_GFX115X=0 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1100
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenBatchNormFwdTrainSpatial.cpp.o') AND (kernel_args = '-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=1 -DMIO_BN_GFX115X=0 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1100');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.03744 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=1 -DMIO_BN_GFX115X=0 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1100
+MIOpen: Info [PrintVersion] HIPRTC v.9.0
+MIOpen: Info2 [SaveBinary] Saving binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_SAVE_MEAN_VARIANCE=1 -DMIO_RUNNING_RESULT=1 -DMIO_BN_VARIANT=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=32 -DMIO_BN_N=8 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=1 -DMIO_BN_GFX115X=0 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1100
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 2.0434 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [Register] Invoker registered for algorithm 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0 and solver BnFwdTrainingSpatial
+MIOpen: Info2 [SetAsFound1_0] Solver BnFwdTrainingSpatial registered as find 1.0 best for miopenBatchNormForwardTrainingSpatial in 16x1x64x64x8xNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32x0xTrnx1x1x1x0
+MIOpen: Info2 [run] kernel_name = MIOpenBatchNormFwdTrainSpatial, global_work_dim = { 16384, 1, 1 }, local_work_dim = { 1024, 1, 1 }
+  miopenBatchNormalizationForwardTraining status=0
+  hipDeviceSynchronize after forward OK
+BACKWARD...
+MIOpen: Info2 [GetInvoker] Returning an invoker for problem 16x1x64x64x8xNCHWxNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32xFP32x0xBwdx1x1x0 and algorithm miopenBatchNormBackwardPropSpatial
+MIOpen: Info2 [GetFound1_0] No invokers found for 16x1x64x64x8xNCHWxNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32xFP32x0xBwdx1x1x0
+MIOpen: Info [FindSolutionImpl] BnBwdTrainingSpatial
+MIOpen: Info2 [FindRecordUnsafe] Looking for key 2x8x16x64x64x1x0x0x1xNCHWxBwdxFP32x1 in cache for file "/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-bn-A6/batchnorm_gfx110060.HIP.3_6_2_7c5866144a.udb.txt"
+MIOpen: Info2 [FindRecord] Looking for key 2x8x16x64x64x1x0x0x1xNCHWxBwdxFP32x1 in file "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/share/miopen/db/gfx110060.db.txt"
+MIOpen: Info2 [Measure] Db::Load time: 0.02561 ms
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: BnBwdTrainingSpatial
+MIOpen: Info [GetDefaultPerformanceConfig] Variant1-1
+MIOpen: Info2 [~ScopedTimeLogger] [find-timing] BnBwdTrainingSpatial GetDefaultPerformanceConfig(default path): 0.00962 ms
+MIOpen: Info2 [~ScopedTimeLogger] [find-timing] BnBwdTrainingSpatial GetSolution(default path): 0.0266 ms
+MIOpen: Info2 [~ScopedTimeLogger] [find-timing] BnBwdTrainingSpatial FindSolutionImpl(total): 0.09341 ms
+MIOpen: Info2 [SearchForSolutions] BnBwdTrainingSpatial: Success.
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: MIOpenBatchNormBwdSpatial
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenBatchNormBwdSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_BN_USESAVED=1 -DMIO_BN_N=8 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=16 -DMIO_BN_VARIANT=1 -DMIO_WAVESIZE=64 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=1 -DMIO_BN_GFX115X=0 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1100
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenBatchNormBwdSpatial.cpp.o') AND (kernel_args = '-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_BN_USESAVED=1 -DMIO_BN_N=8 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=16 -DMIO_BN_VARIANT=1 -DMIO_WAVESIZE=64 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=1 -DMIO_BN_GFX115X=0 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1100');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.05873 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "MIOpenBatchNormBwdSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_BN_USESAVED=1 -DMIO_BN_N=8 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=16 -DMIO_BN_VARIANT=1 -DMIO_WAVESIZE=64 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=1 -DMIO_BN_GFX115X=0 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1100
+MIOpen: Info2 [SaveBinary] Saving binary for: "MIOpenBatchNormBwdSpatial.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIO_BN_USESAVED=1 -DMIO_BN_N=8 -DMIO_BN_C=16 -DMIO_BN_HW=4096 -DMIO_BN_NHW=32768 -DMIO_BN_CHW=65536 -DMIO_BN_NCHW=524288 -DMIO_BN_NGRPS=1 -DMIO_BN_NGRPS2=1 -DMIO_BN_N_ELEMENTS=1 -DMIO_BN_LDS_SIZE=1024 -DMIO_BN_LDSGCN_SIZE=16 -DMIO_BN_VARIANT=1 -DMIO_WAVESIZE=64 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIO_BN_GRP0_FINAL=1 -DMIO_BN_GRP1_FINAL=1 -DMIO_BN_GRP2_FINAL=1 -DMIO_LAYOUT_NHWC=0 -DMIO_BN_VECTORIZE=0 -DMIO_BN_VEC_SIZE=1 -DMIO_BN_STASH_METHOD=0 -DMIOPEN_NRN_OP_ID=0 -DMIO_BN_GFX103X=0 -DMIO_BN_GFX110X=1 -DMIO_BN_GFX115X=0 -DMIO_BN_GFX120X=0 -DMIO_BN_GFX125X=0 -DHIP_ENABLE_EXTRA_WARP_SYNC_TYPES -mcpu=gfx1100
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 1.94678 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [Register] Invoker registered for algorithm 16x1x64x64x8xNCHWxNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32xFP32x0xBwdx1x1x0 and solver BnBwdTrainingSpatial
+MIOpen: Info2 [SetAsFound1_0] Solver BnBwdTrainingSpatial registered as find 1.0 best for miopenBatchNormBackwardPropSpatial in 16x1x64x64x8xNCHWxNCHWxNCHWxFP32xFP32xFP32xFP32xFP32xFP32xFP32x0xBwdx1x1x0
+MIOpen: Info2 [run] kernel_name = MIOpenBatchNormBwdSpatial, global_work_dim = { 16384, 1, 1 }, local_work_dim = { 1024, 1, 1 }
+  miopenBatchNormalizationBackward status=0
+  hipDeviceSynchronize after backward OK
+CHECK y              max_abs=3.752e-07 (tol 1.0e-05) finite=1 -> PASS
+CHECK dx             max_abs=2.303e-07 (tol 1.0e-05) finite=1 -> PASS
+CHECK dw             max_abs=6.470e-07 (tol 1.0e-04) finite=1 -> PASS
+CHECK db             max_abs=2.668e-07 (tol 1.0e-05) finite=1 -> PASS
+CHECK running_mean   max_abs=2.624e-12 (tol 1.0e-04) finite=1 -> PASS
+CHECK running_var    max_rel=5.377e-08 (tol 1.0e-03) finite=1 -> PASS
+running stats nontrivial update: rm_moved=1 rv_moved=1 (max |rv-1|=9.999e-02)
+HARNESS_RESULT: PASS

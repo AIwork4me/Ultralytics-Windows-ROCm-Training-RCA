@@ -1,0 +1,5 @@
+[L11-repair] A1: PASS: resolved miopenKthvalueForward <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1 (exit 0)
+[L11-repair] A2: PASS: resolved miopenKthvalueForward <- /workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1 (exit 0)
+[L11-repair] A9: PASS: invalid arch rejected (exit 1) (exit 1)
+[L11-repair] A12: PASS: forced-contamination run detected (exit 10) (exit 10)
+L11 matrix: 14/14 PASS

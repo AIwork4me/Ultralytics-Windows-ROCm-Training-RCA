@@ -1,0 +1,2 @@
+[with-stl] create=0 compile=6 code=0 code_size=0
+FAIL: with-stl compile did not produce a code object

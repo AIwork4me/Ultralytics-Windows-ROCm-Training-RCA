@@ -1,0 +1,88 @@
+=== run_validation_leg(legA-frozen,p53-final-kthv-A) pid=234449 2026-10-09T08:47:54+00:00 ===
+LD_PRELOAD=/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+libMIOpen sha256: 7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d
+harness build/kthvalue-harness/kthvalue_runtime_harness_gfx1100 sha256: b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8
+cache dir: /workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-kthv-A (fresh per label; never shared across legs)
+=== kthvalue runtime harness (W7900-LINUX-PREP-R1, gfx1100) ===
+PROVENANCE:
+  miopenCreate <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+  miopenKthvalueForward <- /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+  hipMalloc <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+  hipMemcpy <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+MIOpen: Info [get_device_name] Raw device name: gfx1100
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpenCKGroupedConv_gfx1100.so
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: libMIOpenCKGroupedConv_gfx1100.so
+MIOpen: Info2 [OpenRuntimeLibraryForDevice] Loaded CK grouped conv library from default path: libMIOpenCKGroupedConv_gfx1100.so
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1100
+MIOpen: Info [Handle] stream: 0, device_id: 0
+handle created, stream=(nil)
+
+CASE FP32-2D-nokeep shape={100x500} dtype=FP32 dim=-1 k=10 keepDim=0
+MIOpen: Info [AmdRocmMetadataVersionDetect] ROCm MD version AMDHSA_COv3, HIP version 7.14.60850, MIOpen version 3.6.2.7c5866144a
+MIOpen: Info2 [GetInvoker] Returning an invoker for problem kthvalue_fwdi_dtype1dim_size500dim_num2dim_stride1output_size100 and algorithm KthvalueFwd
+MIOpen: Info2 [GetFound1_0] No invokers found for kthvalue_fwdi_dtype1dim_size500dim_num2dim_stride1output_size100
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+MIOpen: Info2 [SearchForSolutions] KthvalueFwd: Success.
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: KthvalueFwd
+MIOpen: Info2 [IsNetworkedFilesystem] Path does not exist: '"/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-kthv-A/3.6.2.7c5866144a"'
+MIOpen: Info [IsNetworkedFilesystem] Filesystem type at '"/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-kthv-A"' is: 0xef53 'EXT2/3/4_SUPER_MAGIC'
+MIOpen: Info2 [GetLibPath] Lib Path: "/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1.0"
+MIOpen: Info2 [SQLiteBase] Initializing system database file ""
+MIOpen: Info [KernDb] database not present
+MIOpen: Info2 [SQLiteBase] Initializing user database file "/workspace/miopen-w7900-validation/runtime/legA-frozen-cache/p53-final-kthv-A/3.6.2.7c5866144a/gfx1100_48.ukdb"
+MIOpen: Info2 [KernDb] Database created successfully
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1100
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenKthvalue.cpp.o') AND (kernel_args = '-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1100');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.02856 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1100
+MIOpen: Info [PrintVersion] HIPRTC v.9.0
+MIOpen: Info2 [SaveBinary] Saving binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1100
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 1.7682 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [Register] Invoker registered for algorithm kthvalue_fwdi_dtype1dim_size500dim_num2dim_stride1output_size100 and solver KthvalueFwd
+MIOpen: Info2 [SetAsFound1_0] Solver KthvalueFwd registered as find 1.0 best for KthvalueFwd in kthvalue_fwdi_dtype1dim_size500dim_num2dim_stride1output_size100
+MIOpen: Info2 [run] kernel_name = KthvalueFwd, global_work_dim = { 25600, 1, 1 }, local_work_dim = { 256, 1, 1 }
+  dumped arrays to /workspace/miopen-w7900-validation/phase5_3/kthvalue_dumps/legA/FP32-2D-nokeep_*
+  slices=100 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=-60.25 act_val=-60.25 exp_idx=263 act_idx=263
+  STATUS: PASS
+
+CASE FP32-3D-keep-explicit-dim shape={10x20x300} dtype=FP32 dim=2 k=137 keepDim=1
+MIOpen: Info2 [GetInvoker] Returning an invoker for problem kthvalue_fwdi_dtype1dim_size300dim_num3dim_stride1output_size200 and algorithm KthvalueFwd
+MIOpen: Info2 [GetFound1_0] No invokers found for kthvalue_fwdi_dtype1dim_size300dim_num3dim_stride1output_size200
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+MIOpen: Info2 [SearchForSolutions] KthvalueFwd: Success.
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: KthvalueFwd
+MIOpen: Info2 [Register] Invoker registered for algorithm kthvalue_fwdi_dtype1dim_size300dim_num3dim_stride1output_size200 and solver KthvalueFwd
+MIOpen: Info2 [SetAsFound1_0] Solver KthvalueFwd registered as find 1.0 best for KthvalueFwd in kthvalue_fwdi_dtype1dim_size300dim_num3dim_stride1output_size200
+MIOpen: Info2 [run] kernel_name = KthvalueFwd, global_work_dim = { 51200, 1, 1 }, local_work_dim = { 256, 1, 1 }
+  dumped arrays to /workspace/miopen-w7900-validation/phase5_3/kthvalue_dumps/legA/FP32-3D-keep-explicit-dim_*
+  slices=200 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=-3.5 act_val=-3.5 exp_idx=260 act_idx=260
+  STATUS: PASS
+
+CASE FP16-4D-keep-kmax shape={8x3x10x2000} dtype=FP16 dim=-1 k=2000 keepDim=1
+MIOpen: Info2 [GetInvoker] Returning an invoker for problem kthvalue_fwdi_dtype0dim_size2000dim_num4dim_stride1output_size240 and algorithm KthvalueFwd
+MIOpen: Info2 [GetFound1_0] No invokers found for kthvalue_fwdi_dtype0dim_size2000dim_num4dim_stride1output_size240
+MIOpen: Info [FindSolutionImpl] KthvalueFwd (not searchable)
+MIOpen: Info2 [SearchForSolutions] KthvalueFwd: Success.
+MIOpen: Info2 [PrepareInvoker] Preparing kernel: KthvalueFwd
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1100
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenKthvalue.cpp.o') AND (kernel_args = '-DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1100');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.085219 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1100
+MIOpen: Info2 [SaveBinary] Saving binary for: "MIOpenKthvalue.cpp.o"; args: -DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1100
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 34.5628 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [Register] Invoker registered for algorithm kthvalue_fwdi_dtype0dim_size2000dim_num4dim_stride1output_size240 and solver KthvalueFwd
+MIOpen: Info2 [SetAsFound1_0] Solver KthvalueFwd registered as find 1.0 best for KthvalueFwd in kthvalue_fwdi_dtype0dim_size2000dim_num4dim_stride1output_size240
+MIOpen: Info2 [run] kernel_name = KthvalueFwd, global_work_dim = { 61440, 1, 1 }, local_work_dim = { 256, 1, 1 }
+  dumped arrays to /workspace/miopen-w7900-validation/phase5_3/kthvalue_dumps/legA/FP16-4D-keep-kmax_*
+  slices=240 value_mismatches=0 index_mismatches=0 max_abs_err=0
+  slice0: exp_val=249.75 act_val=249.75 exp_idx=1309 act_idx=1309
+  STATUS: PASS
+
+HARNESS_RESULT: PASS

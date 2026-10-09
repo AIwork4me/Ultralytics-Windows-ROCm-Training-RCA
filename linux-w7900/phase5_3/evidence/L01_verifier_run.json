@@ -1,0 +1,408 @@
+{
+  "runner": "run_r2_verifiers_linux.py",
+  "rca_ref": "HEAD",
+  "rca_head": "c8417161125dc33275b7ac615298b449a81e7cf8",
+  "wt_head": "cd117724af72415d12aa9e31cb9edc47b8ebe766",
+  "results": [
+    {
+      "check": "patch1_sha256",
+      "ok": true,
+      "detail": "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "substituted": false
+    },
+    {
+      "check": "patch1_bytes",
+      "ok": true,
+      "detail": "0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "substituted": false
+    },
+    {
+      "check": "patch2_sha256",
+      "ok": true,
+      "detail": "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "substituted": false
+    },
+    {
+      "check": "patch2_bytes",
+      "ok": true,
+      "detail": "0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "substituted": false
+    },
+    {
+      "check": "patch3_sha256",
+      "ok": true,
+      "detail": "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch",
+      "substituted": false
+    },
+    {
+      "check": "patch3_bytes",
+      "ok": true,
+      "detail": "0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch",
+      "substituted": false
+    },
+    {
+      "check": "series_concat_v1",
+      "ok": true,
+      "detail": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+      "substituted": false
+    },
+    {
+      "check": "head_tree",
+      "ok": true,
+      "detail": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+      "substituted": false
+    },
+    {
+      "check": "parent_chain",
+      "ok": true,
+      "detail": "base ok",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/src/CMakeLists.txt",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/src/kernels/miopen_freestanding_initializer_list.hpp",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/src/kernels/miopen_freestanding_type_traits.hpp",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/src/kernels/miopen_freestanding_utility.hpp",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/src/kernels/miopen_type_traits.hpp",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/src/kernels/miopen_utility.hpp",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/src/kernels/radix.hpp",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/src/kernels/tensor_view.hpp",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/test/CMakeLists.txt",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "blob:projects/miopen/test/hiprtc_selfcontained.cpp",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "r1_branch_unchanged",
+      "ok": true,
+      "detail": "494907699f3b57095663f0a70b42278001a8efb7",
+      "substituted": false
+    },
+    {
+      "check": "r1_0003_immutable",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "nodco:0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "nodco:0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "nodco:0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "manifest_no_r1_series",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "candidate_id",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "base_frozen",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "commits_match_worktree",
+      "ok": true,
+      "detail": "raw_commit_sha_match=False; substituted tree-identity equivalence (tree=True, parent_chain=True, subjects=True)",
+      "substituted": true
+    },
+    {
+      "check": "intermediate_tree_1",
+      "ok": true,
+      "detail": "46dc99d586a5111b34acba52825182c50c57ad77",
+      "substituted": false
+    },
+    {
+      "check": "intermediate_tree_2",
+      "ok": true,
+      "detail": "ad49e582b0702dbba8b0c55c47e56be460d32876",
+      "substituted": false
+    },
+    {
+      "check": "subjects_match_git",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "worktree_clean",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "win:cmake_configure",
+      "ok": true,
+      "detail": "PASS",
+      "substituted": false
+    },
+    {
+      "check": "win:target_build",
+      "ok": true,
+      "detail": "PASS",
+      "substituted": false
+    },
+    {
+      "check": "win:ctest_discovery",
+      "ok": true,
+      "detail": "PASS",
+      "substituted": false
+    },
+    {
+      "check": "win:ctest_execution",
+      "ok": true,
+      "detail": "PASS (genuine no-STL PASS, NOT skipped)",
+      "substituted": false
+    },
+    {
+      "check": "win:ctest_clean_env_execution",
+      "ok": true,
+      "detail": "PASS (F-C2-4: bare ctest, no ambient ROCm PATH)",
+      "substituted": false
+    },
+    {
+      "check": "win:ci_ab_matrix",
+      "ok": true,
+      "detail": "PASS (13/13 cells)",
+      "substituted": false
+    },
+    {
+      "check": "win:exit_code_fixture",
+      "ok": true,
+      "detail": "PASS (0->PASS, 1->FAIL, 2->FAIL, 4->SKIP)",
+      "substituted": false
+    },
+    {
+      "check": "win:restricted_list_parity",
+      "ok": true,
+      "detail": "PASS (MIOPEN_TEST_BFLOAT16 leg disables test like add_test_c",
+      "substituted": false
+    },
+    {
+      "check": "win:miopen_dll_build",
+      "ok": true,
+      "detail": "PASS",
+      "substituted": false
+    },
+    {
+      "check": "win:dll_load_provenance",
+      "ok": true,
+      "detail": "PASS (GetModuleFileNameW + in-process sha256)",
+      "substituted": false
+    },
+    {
+      "check": "win:hiprtc_dll_provenance",
+      "ok": true,
+      "detail": "PASS (psutil module snapshot; loaded _rocm_sdk_core/bin/hipr",
+      "substituted": false
+    },
+    {
+      "check": "win:nostl_runtime",
+      "ok": true,
+      "detail": "PASS (fresh profile, scrubbed env, MSVC include renamed)",
+      "substituted": false
+    },
+    {
+      "check": "win:batchnorm_numerics",
+      "ok": true,
+      "detail": "PASS",
+      "substituted": false
+    },
+    {
+      "check": "win:yolo_train_amp_false",
+      "ok": true,
+      "detail": "PASS",
+      "substituted": false
+    },
+    {
+      "check": "win:yolo_train_amp_default",
+      "ok": true,
+      "detail": "PASS",
+      "substituted": false
+    },
+    {
+      "check": "win:wheel_dll_restored",
+      "ok": true,
+      "detail": "PASS",
+      "substituted": false
+    },
+    {
+      "check": "evidence:ci_integration.json",
+      "ok": true,
+      "detail": "evidence/phase5_1_r2/ci/ci_integration.json",
+      "substituted": false
+    },
+    {
+      "check": "evidence:ci_matrix_phase5_1.json",
+      "ok": true,
+      "detail": "evidence/phase5_1_r2/ci/ci_matrix_phase5_1.json",
+      "substituted": false
+    },
+    {
+      "check": "evidence:build_provenance.json",
+      "ok": true,
+      "detail": "evidence/phase5_1_r2/build/build_provenance.json",
+      "substituted": false
+    },
+    {
+      "check": "evidence:runtime_validation.json",
+      "ok": true,
+      "detail": "evidence/phase5_1_r2/runtime/runtime_validation.json",
+      "substituted": false
+    },
+    {
+      "check": "evidence:yolo_train.json",
+      "ok": true,
+      "detail": "evidence/phase5_1_r2/yolo/yolo_train.json",
+      "substituted": false
+    },
+    {
+      "check": "evidence:fc24_fix_ctest_clean_env.json",
+      "ok": true,
+      "detail": "evidence/phase5_1_r2/ci/fc24_fix_ctest_clean_env.json",
+      "substituted": false
+    },
+    {
+      "check": "yolo_overall",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "yolo_wheel_restored",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "linux_pending",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "no_submit_authorization",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "no_upstream_pr_created",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "no_upstream_issue_created",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "no_upstream_comment_posted",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "no_internal_pr_created",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "dco_truthful",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "copyright_4files",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "supersedes_r1",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    },
+    {
+      "check": "no_stale_r1_identity",
+      "ok": true,
+      "detail": "",
+      "substituted": false
+    }
+  ],
+  "total": 66,
+  "passed": 66,
+  "failed": 0,
+  "substituted": 1
+}

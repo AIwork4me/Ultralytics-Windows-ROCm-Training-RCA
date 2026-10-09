@@ -1,0 +1,4 @@
+raw-exit=0 -> exit_0 ...........................   Passed    0.00 sec | ctest-process rc=0
+raw-exit=1 -> exit_1 ...........................***Failed    0.00 sec | ctest-process rc=8
+raw-exit=2 -> exit_2 ...........................***Failed    0.00 sec | ctest-process rc=8
+raw-exit=4 -> exit_4 ...........................***Skipped   0.00 sec | ctest-process rc=0

@@ -1,0 +1,42 @@
+{
+  "gate": "L07",
+  "matrix": {
+    "ordinary": {
+      "kernels": "R2",
+      "exit": 0,
+      "verdict": "PASS",
+      "code_object_bytes": 3824
+    },
+    "with-stl": {
+      "kernels": "R2",
+      "exit": 0,
+      "verdict": "PASS",
+      "code_object_bytes": 6048
+    },
+    "positive": {
+      "kernels": "R2",
+      "exit": 4,
+      "verdict": "INCONCLUSIVE",
+      "raw_diagnostic": "stl_probe.cu:2:2: error: STL_PROBE_REACHABLE -> 'INCONCLUSIVE: host C++ stdlib still reachable under -nostdinc; isolation does not reproduce the no-STL condition'"
+    },
+    "negative": {
+      "kernels": "LEG A (unpatched, build/recon/frozen-base-checkout)",
+      "exit": 4,
+      "verdict": "INCONCLUSIVE (isolation prerequisite unsatisfied on this host; on an isolation-capable host this control would PASS exit 0 per Windows ground truth)"
+    },
+    "arch": "--arch=gfx1100 (all modes)"
+  },
+  "ctest": {
+    "discovery": "Test #10 test_hiprtc_selfcontained found (ctest -N, rc 0)",
+    "execution": "***Skipped 0.05 sec; '100% tests passed, 0 tests failed out of 1'; 'The following tests did not run: 10 - test_hiprtc_selfcontained (Skipped)'",
+    "ctest_process_exit": 0,
+    "interpretation": "exit 4 INCONCLUSIVE -> SKIP_RETURN_CODE 4 -> Skipped; SKIPPED IS NOT a no-STL PASS"
+  },
+  "fixture": {
+    "0": "Passed (ctest rc 0)",
+    "1": "Failed (ctest rc 8)",
+    "2": "Failed (ctest rc 8)",
+    "4": "Skipped (ctest rc 0)",
+    "fixture": "/tmp/opencode/p53/exitfixture (logs/L07_exitcode_fixture.log)"
+  }
+}

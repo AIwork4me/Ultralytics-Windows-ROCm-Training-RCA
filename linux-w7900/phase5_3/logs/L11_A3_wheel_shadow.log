@@ -1,0 +1,2 @@
+ambient(no wrapper): bare-soname -> /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_libraries/lib/libMIOpen.so.1
+under run_validation_leg.sh legA-frozen: bare-soname -> /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1

@@ -1,0 +1,13 @@
+=== run_validation_leg(patched,l11-A13) pid=238819 2026-10-09T09:56:44+00:00 ===
+LD_PRELOAD=/workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1
+libMIOpen sha256: bf21a5fa4abc5ff77b0f50756a69dccf7a077970603a846300f0ea077d61eac1
+harness build/kthvalue-harness/kthvalue_runtime_harness_gfx1100 sha256: b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8
+cache dir: /workspace/miopen-w7900-validation/runtime/patched-cache/l11-A13 (fresh per label; never shared across legs)
+=== kthvalue runtime harness (W7900-LINUX-PREP-R1, gfx1100) ===
+PROVENANCE:
+  miopenCreate <- /workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1
+  miopenKthvalueForward <- /workspace/miopen-w7900-validation/install/patched/lib/libMIOpen.so.1
+  hipMalloc <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+  hipMemcpy <- /workspace/miopen-w7900-validation/tools/rocm7141-venv/lib/python3.12/site-packages/_rocm_sdk_core/lib/libamdhip64.so.7
+MIOpen Error: j-5jmn7smvmz5iaumh5o3cifgjd6:/workspace/miopen-w7900-validation/source/final-patched/projects/miopen/src/hip/handlehip.cpp:145: No device: no ROCm-capable device is detected
+miopenCreate FAILED

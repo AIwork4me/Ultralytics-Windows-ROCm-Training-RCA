@@ -1,0 +1,123 @@
+{
+  "mission_id": "W7900-PHASE53-R2-FINAL-AB",
+  "candidate_id": "P5.1-CANDIDATE-R2",
+  "rca_frozen_evidence_sha": "c8417161125dc33275b7ac615298b449a81e7cf8",
+  "linux_evidence_branch": "linux-w7900/phase5.3-r2-final-ab",
+  "timestamp_utc": "2026-10-09T10:47:27.779631+00:00",
+  "final_verdict": "PHASE5_3_LINUX_R2_AB_PASS_WITH_CTEST_SKIP",
+  "verdict_rationale": "All required Linux build/runtime/numerical checks PASS (L00-L11, each with independent fresh-subagent review; L12 panel A=CONDITIONAL PASS scoped to upstream-governance conditions, B/C/D=PASS). The only test limitation is the genuine, documented Linux no-STL isolation unavailability (L07: probe INCONCLUSIVE exit 4 -> CTest Skipped, process rc 0; fixture-verified semantics; SKIPPED IS NOT a no-STL PASS). Windows no-STL ground truth remains Windows-side evidence.",
+  "environment": {
+    "os": "Ubuntu 24.04.4",
+    "kernel": "6.8.0-79-generic",
+    "gpu": "AMD Radeon PRO W7900 (W7900D), gfx1100",
+    "rocm": "7.14.1 isolated wheel SDK (system 7.2.1 isolated, zero contamination)",
+    "pytorch": "2.12.0+rocm7.14.1",
+    "hiprtc": "7.14.60850 stack (reports internal v9.0)"
+  },
+  "identities": {
+    "upstream_base": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "r2_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "patch_0001_sha256": "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
+    "patch_0002_sha256": "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
+    "patch_0003_sha256": "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e",
+    "series_sha256_concat_v1": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+    "legA_libmiopen_sha256": "7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d",
+    "legB_libmiopen_sha256": "bf21a5fa4abc5ff77b0f50756a69dccf7a077970603a846300f0ea077d61eac1",
+    "kthvalue_harness_sha256": "b830b37a5aa7aef37da8c79e3ceb30435fd631b99dda29516f2ed36c152e7ef8"
+  },
+  "gates": {
+    "L00": {
+      "verdict": "PASS"
+    },
+    "L01": {
+      "verdict": "PASS"
+    },
+    "L02": {
+      "verdict": "PASS"
+    },
+    "L03": {
+      "verdict": "PASS"
+    },
+    "L04": {
+      "verdict": "PASS"
+    },
+    "L05": {
+      "verdict": "PASS"
+    },
+    "L06": {
+      "verdict": "PASS"
+    },
+    "L07": {
+      "verdict": "PASS"
+    },
+    "L08": {
+      "verdict": "PASS"
+    },
+    "L09": {
+      "verdict": "PASS"
+    },
+    "L10": {
+      "verdict": "PASS (optional; EXECUTED)"
+    },
+    "L11": {
+      "verdict": "PASS"
+    }
+  },
+  "ctest": {
+    "target_built_without_manual_workarounds": true,
+    "ctest_verdict": "Skipped (Not Run)",
+    "ctest_process_exit": 0,
+    "no_stl_isolation_on_linux": "NOT REPRODUCIBLE (INCONCLUSIVE exit 4; documented)",
+    "ordinary_control": "PASS exit 0",
+    "with_stl_control": "PASS exit 0",
+    "negative_control_vs_legA": "INCONCLUSIVE exit 4"
+  },
+  "kthvalue": {
+    "direct_api": true,
+    "solver": "KthvalueFwd",
+    "rtc_kernel": "MIOpenKthvalue.cpp",
+    "legA": "3/3 PASS",
+    "legB": "3/3 PASS",
+    "ab_dump_files_identical": "15/15",
+    "cpu_values_matched": true,
+    "cpu_indices_matched": true,
+    "fresh_caches": true
+  },
+  "batchnorm": {
+    "forward": "PASS",
+    "backward": "PASS",
+    "y": "3.752e-7<=1e-5",
+    "dx": "2.303e-7<=1e-5",
+    "dw": "6.47e-7<=1e-4",
+    "db": "2.668e-7<=1e-5",
+    "running_mean": "2.624e-12<=1e-4",
+    "running_var_rel": "5.377e-8<=1e-3",
+    "finite": true,
+    "actual_miopen_dispatch_proven": true,
+    "identical_both_legs": true
+  },
+  "yolo_optional": {
+    "executed": true,
+    "training_status": "1 epoch + val complete, exit 0",
+    "model": "yolo26n (official Ultralytics/YOLO26 HF)",
+    "dataset": "coco8 (official Ultralytics/COCO8 HF)",
+    "amp": false,
+    "loaded_miopen_provenance": "in-process dladdr bf21a5fa (install/patched)"
+  },
+  "audits": {
+    "reviewer_A": "CONDITIONAL PASS (upstream-governance scoped; adjudicated in reviews/resolutions.md)",
+    "reviewer_B": "PASS",
+    "reviewer_C": "PASS",
+    "reviewer_D": "PASS (endorses PASS_WITH_CTEST_SKIP)",
+    "unresolved_blocker": 0,
+    "unresolved_major": 0
+  },
+  "compliance": {
+    "frozen_windows_r2_artifacts_modified": false,
+    "dco_signoff_added": false,
+    "upstream_pr_created": false,
+    "upstream_issue_or_comment_created": false,
+    "r1_history_rewritten": false,
+    "force_push": false
+  }
+}

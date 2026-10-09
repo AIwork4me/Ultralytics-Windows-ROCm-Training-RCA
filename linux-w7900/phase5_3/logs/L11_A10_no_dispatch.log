@@ -1,0 +1,6 @@
+=== run_validation_leg(legA-frozen,l11-A10) pid=238774 2026-10-09T09:56:42+00:00 ===
+LD_PRELOAD=/workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
+libMIOpen sha256: 7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d
+harness /tmp/opencode/p53/bare_probe sha256: ceee8ffbc5149a613e4f54ec3d8dd91bb65aea981298f4e7c0228043f58e19fd
+cache dir: /workspace/miopen-w7900-validation/runtime/legA-frozen-cache/l11-A10 (fresh per label; never shared across legs)
+bare-soname -> /workspace/miopen-w7900-validation/install/legA-frozen-baseline/lib/libMIOpen.so.1
