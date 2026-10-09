@@ -50,14 +50,14 @@ Independent re-execution audit: R25 subagent PASS (re-ran 11/13 cells).
 ## MIOpen.dll rebuild + provenance (R27)
 build/build_provenance.json — fresh `phase5_1_r2_build/miopen` from the
 exact R2 tree: `bin/MIOpen.dll` SHA256
-`eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd`
+`48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a`
 (change is CMake-test-only; production kernels identical — DLL rebuilt and
 revalidated anyway per mission).
 
 ## Runtime (reversible substitution; wheel restored after every cycle)
 runtime/dll_provenance.json + runtime_validation.json — PASS:
 - Loaded-path proof: GetModuleFileNameW in the target process → wheel path,
-  in-process SHA256 == `eb0a1bf0…` (rebuilt R2 DLL); GPU = 8060S; active
+  in-process SHA256 == `48a1eee2…` (rebuilt R2 DLL); GPU = 8060S; active
   torch runtime 2.12.0+rocm7.14.0; no stale wheel copy in process.
 - Fresh-cache no-STL BatchNorm (R28A): MSVC include renamed away, fresh
   profile, scrubbed env — fwd+bwd finite, running stats updated, exit 0.
@@ -68,7 +68,7 @@ runtime/dll_provenance.json + runtime_validation.json — PASS:
 ## Real workload (R28E/F)
 yolo/yolo_train.json — PASS:
 - YOLO26n coco8, 1 epoch, amp=False: exit 0, TRAIN_DONE, best.pt produced,
-  in-process provenance `eb0a1bf0…`, device 8060S.
+  in-process provenance `48a1eee2…`, device 8060S.
 - Default AMP: exit 0, TRAIN_DONE, weights, provenance — and this run's
   AMP check PASSED → **genuine amp=True** (no FP32 fallback; R1's
   environment-dependent check failure is no longer present — R1 control

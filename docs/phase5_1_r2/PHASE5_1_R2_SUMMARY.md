@@ -17,7 +17,7 @@ human submission authorization outstanding; upstream PR NOT created).
 | R2 source tree | `b983caddf9f9f561e7d1b590deadb16267c2de15` |
 | Series SHA256 (concat v1) | `48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02` |
 | Patch SHA256 0001/0002/0003 | `816946b4…` / `46044d8c…` / `db16ee9e…` |
-| R2 MIOpen.dll (rebuilt+proven) | `eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd` |
+| R2 MIOpen.dll (rebuilt+proven) | `48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a` |
 | R1 (superseded, immutable) | branch `phase5.1/windows-final-candidate-freeze` @ `4949076`, series `797a69b5…`, tree `605d0d21…` |
 
 ## What changed vs R1 (one file, +91/−19)
@@ -60,7 +60,7 @@ discovery, execution PASS — genuine no-STL PASS (not skipped). Clean-env
 ctest (no ambient ROCm PATH) PASS post-F-C2-4 fix; loaded hiprtc0714.dll
 proven in-process (psutil) = `c6159dd1…`. 13/13 adversarial matrix.
 Exit-code fixture 0→PASS / 1→FAIL / 2→FAIL / 4→SKIP. BF16 restricted-leg
-parity. MIOpen.dll rebuilt (`eb0a1bf0…`), loaded-path + in-process SHA
+parity. MIOpen.dll rebuilt (`48a1eee2…`), loaded-path + in-process SHA
 proven, no-STL fresh-profile BatchNorm PASS, numerics within tolerances
 (y 6.7e-7-class), YOLO26n coco8 amp=False PASS and default-AMP PASS with
 GENUINE amp=True this run (R1's environment-dependent AMP-check failure no
