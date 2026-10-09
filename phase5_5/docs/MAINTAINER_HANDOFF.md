@@ -121,3 +121,16 @@ carries the fix. Linux behavior is unchanged (no regression in A/B).
 ## Standing boundaries
 
 - No self-merge; no DCO sign-off on the user's behalf; factual replies only.
+
+---
+
+## Post-submission notes (2026-10-10)
+
+- **PR bot unit-test warning**: the bot's heuristic expects `test_<name>.cpp`
+  filenames; our test file is `test/hiprtc_selfcontained.cpp` with CTest
+  target `test_hiprtc_selfcontained`. The test exists and is registered;
+  a rename would change the frozen payload — happy to do it as a follow-up
+  commit if maintainers prefer, with re-validation.
+- **CI workflows `action_required`**: first-PR approval gating for a
+  first-time contributor — a maintainer must approve workflow runs; zero
+  jobs executed yet, so no CI signal exists to react to.

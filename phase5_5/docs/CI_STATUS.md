@@ -36,6 +36,14 @@ Classification: 4 pass / 1 pending / 0 fail / 0 unexpected skip.
 
 Classification totals: 4 pass / 1 pending / 0 fail / 7 expected-skip (1 external-webhook + 6 approval-gated) / 0 unexpected skip / 0 blocking failures.
 
+## Snapshot 4 — PR bot policy check (issue comment)
+
+`therock-pr-bot` posted: **"✅ All Policy Checks Passed"** with:
+- PR Description ✅ · Forbidden Files ✅ · Draft PR / Feature Flag / Code Coverage 🔜 To Be Enabled
+- **⚠️ Unit Test warning**: the bot's filename heuristic expects `test_<name>.cpp` / `<name>_test.*` and did not match `test/hiprtc_selfcontained.cpp`. The regression test IS present and CTest-registered as target/test `test_hiprtc_selfcontained` (`projects/miopen/test/hiprtc_selfcontained.cpp` + `test/CMakeLists.txt`). Renaming the file would alter the frozen, triple-reviewed patch payload and invalidate the validated series — not done. Disclosed here and in the maintainer handoff.
+
+Overall: policy gate green (warning-level only); no override requested.
+
 ## Expectations (pre-registered, see PR body "Regression Test Design")
 
 - Linux CI legs: `test_hiprtc_selfcontained` expected **Skipped** (isolation probe exit 4) — this is the designed capability-skip, NOT a failure and NOT a no-STL pass.
