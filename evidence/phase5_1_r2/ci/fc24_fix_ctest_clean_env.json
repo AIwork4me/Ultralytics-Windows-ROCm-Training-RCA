@@ -1,10 +1,9 @@
 {
-  "schema": "phase5_1_r2_fc24_fix_validation_v1",
-  "gate": "F-C2-4",
+  "schema": "phase5_1_r2_fc24_fix_validation_v2",
+  "gate": "F-C2-4 (final HEAD d758aed7)",
   "env": "clean system PATH (no _rocm_sdk_core, no conda) - same env as failure repro",
-  "source_head": "61410b68 (verify below)",
   "ctest_rc": 0,
   "verdict_line": [
-    "1/1 Test #10: test_hiprtc_selfcontained ........   Passed    0.14 sec"
+    "1/1 Test #10: test_hiprtc_selfcontained ........   Passed    0.15 sec"
   ]
 }
