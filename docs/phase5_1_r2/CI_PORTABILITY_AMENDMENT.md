@@ -6,7 +6,7 @@ CTEST_PORTABILITY_ANALYSIS}.md, evidence C2/C3, PR #7 at 73e51c4) +
 user-directed defect F-C2-4 discovered during R2 revalidation.
 Implementation: `projects/miopen/test/CMakeLists.txt`, inside the
 `if(MIOPEN_USE_HIPRTC)` block patch 0003 adds — nothing else changed
-(R1→R2 diff: 1 file, +84/−16; every production source byte identical).
+(R1→R2 diff: 1 file, +91/−19; every production source byte identical).
 
 ## Defect → fix map
 
@@ -47,7 +47,7 @@ Implementation: `projects/miopen/test/CMakeLists.txt`, inside the
 ## Windows proof points (evidence/phase5_1_r2/ci/)
 
 - ci_integration.json + logs: configure/build/discover/run all PASS on
-  d758aed7; generated CTestTestfile carries ENVIRONMENT (MIOPEN_USER_DB_PATH
+  f18c4de9; generated CTestTestfile carries ENVIRONMENT (MIOPEN_USER_DB_PATH
   + PATH prepend) + SKIP_RETURN_CODE "4"; genuine no-STL PASS (Passed,
   100%, not skipped).
 - fc24_loader_failure_repro.json: clean-env failure 0xC0000135 (pre-fix).

@@ -2,8 +2,8 @@
 
 Machine: Windows 11, AMD Ryzen AI MAX+ 395, Radeon 8060S (gfx1151),
 PyTorch 2.12.0+rocm7.14.0 (wheel), MSVC 14.44.35207, CMake 4.4.4/Ninja.
-All runs on final candidate HEAD `d758aed7dc8c3ff17d7c4672f1281f09ca3ef131`
-(tree `06008706…`); every artifact under `evidence/phase5_1_r2/`.
+All runs on final candidate HEAD `f18c4de94b229bbe3e8501d70e3e2461425c69de`
+(tree `b983cadd…`); every artifact under `evidence/phase5_1_r2/`.
 
 ## Toolchain + environment (R20)
 environment/r20_environment_audit.txt — torch/GPU/DLL/MSVC/CMake identities;
@@ -39,7 +39,7 @@ wheel MIOpen.dll `74b4ee03…` pristine at start; hiprtc0714.dll `c6159dd1…`.
   hiprtc0714.dll copies are byte-identical (no version ambiguity).
 
 ## HIPRTC 13-cell adversarial matrix (R25)
-ci/ci_matrix_phase5_1.json — 13/13 PASS on d758aed7, expectations identical
+ci/ci_matrix_phase5_1.json — 13/13 PASS on f18c4de9, expectations identical
 to R1: ordinary ×2 PASS; positive/unpatched exit 1 (exact missing-STL
 signature); positive/patched exit 0 (5784-byte code object);
 negative/unpatched exit 0 (signature control); negative/patched exit 1

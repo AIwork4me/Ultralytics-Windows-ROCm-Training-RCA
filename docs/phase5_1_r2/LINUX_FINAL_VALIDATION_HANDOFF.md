@@ -28,8 +28,8 @@ immutable but is SUPERSEDED — do not validate against it.
 - Ordered R2 commits:
   1. `01a77dab8c4cf23d1e49273fa3c88bb0bb4fc887` — MIOpen: keep RTC type traits self-contained when no host STL is reachable
   2. `8188b803b8304fc5933caa52ee27a58d01a78b04` — MIOpen: make remaining RTC kernel std includes self-contained
-  3. `d758aed7dc8c3ff17d7c4672f1281f09ca3ef131` — MIOpen: add portable HIPRTC no-host-STL regression test
-- R2 source tree SHA1: `060087061488a83a931f1d8d1ad2c0eb6c231eac`
+  3. `f18c4de94b229bbe3e8501d70e3e2461425c69de` — MIOpen: add portable HIPRTC no-host-STL regression test
+- R2 source tree SHA1: `b983caddf9f9f561e7d1b590deadb16267c2de15`
 - Canonical patches (apply/git-am in this order; LF bytes; series
   algorithm sha256_file_concat_v1 = SHA256 of the three files'
   concatenated bytes, no separator):
@@ -38,10 +38,10 @@ immutable but is SUPERSEDED — do not validate against it.
   - `patches/phase5_1_r2/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch`
     SHA256 `46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460`
   - `patches/phase5_1_r2/canonical/0003-MIOpen-add-portable-HIPRTC-no-host-STL-regression-te.patch`
-    SHA256 `db16ee9e23af2cdbdba1bee1925d60dd7e949e4c44dd98878da221c889001f55`
-  - Series SHA256: `4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf`
+    SHA256 `df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e`
+  - Series SHA256: `48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02`
 - Acceptance after `git am` of the three patches:
-  `git write-tree` == `060087061488a83a931f1d8d1ad2c0eb6c231eac`.
+  `git write-tree` == `b983caddf9f9f561e7d1b590deadb16267c2de15`.
 
 DO NOT apply any patches/phase5_1/canonical/* (R1, superseded) or
 patches/phase3, phase5 (older lineages).
@@ -62,7 +62,7 @@ patches/phase3, phase5 (older lineages).
 - LEG A — FROZEN BASE: source at `7c586614` (no patches), built with the
   established leg wrapper (BUILD_TESTING=OFF leg build; identity recorded).
 - LEG B — R2 SOURCE: `git am` the three R2 patches onto `7c586614`;
-  verify tree SHA `06008706…` BEFORE building; same flags as Leg A
+  verify tree SHA `b983cadd…` BEFORE building; same flags as Leg A
   (single-variable A/B discipline), GPU_TARGETS=gfx1100.
 
 ## 4. Required tests (all raw logs + exit codes into evidence/)

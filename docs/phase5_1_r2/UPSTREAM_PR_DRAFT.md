@@ -26,11 +26,14 @@ Make the affected include paths self-contained:
 1. `miopen_type_traits.hpp` gates its `<type_traits>` use behind
    `__has_include` and falls back to a new freestanding implementation
    (`miopen_freestanding_type_traits.hpp`) when the header is absent.
-2. The remaining kernel std includes (`radix.hpp`, `tensor_view.hpp`) get
-   the same treatment via `miopen_freestanding_utility.hpp` /
-   `miopen_freestanding_initializer_list.hpp`. No algorithm changes; the
-   production kernels' compiled behavior is unchanged (validated
-   numerically).
+2. The remaining kernel std includes become self-contained the same way:
+   `tensor_view.hpp` falls back to `miopen_freestanding_initializer_list.hpp`
+   when `<initializer_list>` is unreachable; `radix.hpp` switches to
+   `miopen_cstdint.hpp` typedefs and compiler-built-in `__INT32_MAX__`/
+   `__INT64_MAX__` instead of `std::numeric_limits`; `miopen_utility.hpp`
+   prefers real headers via `__has_include` with freestanding fallbacks. No
+   algorithm changes; the production kernels' compiled behavior is unchanged
+   (validated numerically).
 
 ## Regression test
 
@@ -86,7 +89,7 @@ CTest logs, adversarial matrix, numerics, training logs, DLL provenance):
 → `patches/phase5_1_r2/canonical/`, `docs/phase5_1_r2/`,
 `evidence/phase5_1_r2/`, manifest `findings/phase5_1_r2/FINAL_HANDOFF.json`
 (series sha256_file_concat_v1
-`4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf`).
+`48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02`).
 
 ## Limitations (explicit)
 
@@ -99,3 +102,20 @@ CTest logs, adversarial matrix, numerics, training logs, DLL provenance):
 - Commits are not DCO-signed: upstream CONTRIBUTING.md (inspected at the
   proposed base) states no DCO requirement. If maintainers require
   sign-off, it will be provided on request.
+
+
+## Reviewer notes (pre-empting feedback)
+- Issue references in commit messages: `#3956` and `#3147` are
+  ROCm/MIOpen issues; `#3803` refers to ROCm/MIOpen PR #3803 (not the
+  unrelated rocm-libraries #3803). Scope clarified here because commit
+  hashes are frozen.
+- `miopen_freestanding_initializer_list.hpp`'s comment cites internal
+  validation artifacts ("Phase-3 canary G57-7"); the referenced
+  validation is this PR's evidence repository (A/B harness runs).
+- The default-suite regression test compiles the originally failing
+  BatchNorm kernel; the other self-containment sites (utility/radix/
+  tensor_view closures) are exercised by the A/B harnesses documented in
+  the evidence repo, not by the default CTest suite (honest scope).
+- Skipped tests' stderr (the INCONCLUSIVE reason) is suppressed by
+  default ctest output; legs that care should run ctest -VV / read the
+  did-not-run list.

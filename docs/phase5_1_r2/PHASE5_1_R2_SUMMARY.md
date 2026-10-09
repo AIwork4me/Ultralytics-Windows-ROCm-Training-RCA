@@ -13,14 +13,14 @@ human submission authorization outstanding; upstream PR NOT created).
 | Identity | Value |
 |---|---|
 | Upstream base (frozen) | `7c5866144ac4b879be442563e2b49fa1c142ea36` |
-| R2 commits | `01a77dab` → `8188b803` → `d758aed7` |
-| R2 source tree | `060087061488a83a931f1d8d1ad2c0eb6c231eac` |
-| Series SHA256 (concat v1) | `4a703d69cc3e111408fad593761a3f017619ced4cf007f0f565ca98472c91bcf` |
+| R2 commits | `01a77dab` → `8188b803` → `f18c4de9` |
+| R2 source tree | `b983caddf9f9f561e7d1b590deadb16267c2de15` |
+| Series SHA256 (concat v1) | `48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02` |
 | Patch SHA256 0001/0002/0003 | `816946b4…` / `46044d8c…` / `db16ee9e…` |
 | R2 MIOpen.dll (rebuilt+proven) | `eb0a1bf0d31cac5ae7597df423f3d6cb26f433df9c20110ae1d51fddd6ed0bfd` |
 | R1 (superseded, immutable) | branch `phase5.1/windows-final-candidate-freeze` @ `4949076`, series `797a69b5…`, tree `605d0d21…` |
 
-## What changed vs R1 (one file, +84/−16)
+## What changed vs R1 (one file, +91/−19)
 
 `projects/miopen/test/CMakeLists.txt` test registration block only — all
 production kernel headers and the test C++ source are byte-identical to R1
@@ -53,7 +53,7 @@ Signed-off-by added — certification not authorized; upstream policy has no
 DCO requirement). Commit 3 subject updated to "…portable…". Production
 source delta R1→R2: zero.
 
-## Windows validation (all PASS on final HEAD d758aed7)
+## Windows validation (all PASS on final HEAD f18c4de9)
 
 Fresh `phase5_1_r2_build/ci_test` (BUILD_TESTING=ON): configure, build,
 discovery, execution PASS — genuine no-STL PASS (not skipped). Clean-env
