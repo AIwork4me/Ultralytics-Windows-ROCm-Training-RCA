@@ -1,0 +1,39 @@
+{
+  "gate": "B02/B03",
+  "mode": "check-only",
+  "tool": "check_final_handoff.py (phase5_2 schema, sha256_file_concat_v1)",
+  "timestamp": "2026-10-08T12:10:59.153265+00:00",
+  "verdict": "PASS",
+  "failures": [],
+  "notes": [
+    "manifest_sha256=58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8",
+    "rca checkout pinned clean at 494907699f3b57095663f0a70b42278001a8efb7",
+    "dco_status interpreted: DCO_ATTESTATION_PENDING (no sign-off claimed; upstream CONTRIBUTING has no DCO requirement \u2014 informational)",
+    "copyright_status interpreted: RESOLVED, 4/4 files attributed 'Copyright (c) 2026 AIwork4me', MIT text preserved",
+    "documented support file allowed (NOT hashed into series): README.md",
+    "patch[order 1] patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch sha256 OK (14719b8b4ae7\u2026)",
+    "patch[order 2] patches/phase5_1/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch sha256 OK (7d40c314dcac\u2026)",
+    "patch[order 3] patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch sha256 OK (3eb20ec0b4c3\u2026)",
+    "canonical dir audited: patches/phase5_1/canonical (README allowed, not hashed)",
+    "series hash OK (797a69b5ae86d0e3\u2026, sha256_file_concat_v1)",
+    "head_tree_sha1 pinned OK (605d0d214acdbc06\u2026; byte-level source reproduction is verified by verify_source_tree.py / --apply)",
+    "frozen base commit object present locally: 7c5866144ac4"
+  ],
+  "manifest": "repos/rca-evidence/findings/phase5_1/FINAL_HANDOFF.json",
+  "rca_root": "/workspace/miopen-w7900-validation/repos/rca-evidence",
+  "rca_evidence_sha": "494907699f3b57095663f0a70b42278001a8efb7",
+  "effective_expect_pins": {
+    "candidate_id": "P5.1-CANDIDATE-R1",
+    "base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "head_tree_sha1": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+    "series_sha256": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d",
+    "ordered_commits": [
+      "d4003de1a7cabc3715f73e48d3fd414f312a40de",
+      "3b18a0655b991890b63587ee18cb0950234a47f0",
+      "e7ff6d75fac3e7b683e81e671555ada99af13b74"
+    ],
+    "rca_evidence_sha": "494907699f3b57095663f0a70b42278001a8efb7",
+    "canonical_patch_dir": "patches/phase5_1/canonical",
+    "manifest_sha256": "58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "mission_type": "Linux W7900 final handoff bridge & independent integrity verification",
+  "timestamp": "2026-10-08T18:00:00+00:00",
+  "environment": {
+    "gpu": "AMD Radeon PRO W7900 (gfx1100, PCI 1002:744b; ROCm/torch report the marketing name 'AMD Radeon Pro W7900D' for this SKU — same gfx1100 silicon/ISA, noted for byte-level honesty)",
+    "os": "Ubuntu 24.04.4 LTS",
+    "validation_rocm": "7.14.1 isolated wheel SDK (tools/rocm7141-venv)",
+    "system_rocm": "7.2.1 (/opt/rocm, untouched, never loaded by validation processes)"
+  },
+  "windows_freeze_identity": {
+    "rca_evidence_commit": "494907699f3b57095663f0a70b42278001a8efb7",
+    "branch": "phase5.1/windows-final-candidate-freeze",
+    "candidate_id": "P5.1-CANDIDATE-R1",
+    "frozen_base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "expected_head_tree_sha1": "605d0d214acdbc06086fdb27c61fec970c0f2798",
+    "series_sha256": "797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d",
+    "linux_validation_status": "PENDING (unchanged; only the authorized final A/B mission may report PASS)"
+  },
+  "gates": {
+    "B00_preflight_reconciliation": {"verdict": "PASS", "audit": "PASS (subagent)"},
+    "B01_windows_evidence_acquisition": {"verdict": "PASS", "audit": "PASS (subagent; all SHA256 independently recomputed)"},
+    "B02_schema_fix": {"verdict": "PASS", "audit": "PASS (subagent; 10 own attacks)"},
+    "B03_patch_dir_safety": {"verdict": "PASS (22-attack matrix, all intended-reason failures)", "audit": "PASS"},
+    "B04_frozen_source_acquisition": {"verdict": "PASS (object store complete: 0/47771 missing; API-fetched blobs hash-verified)", "audit": "PASS (exhaustive independent inventory)"},
+    "B05_source_reconstruction": {"verdict": "PASS (BOTH methods -> 605d0d214acdbc06086fdb27c61fec970c0f2798)", "audit": "PASS (auditor re-performed both methods)"},
+    "B06_hiprtc_stl_investigation": {"verdict": "PARTIAL-ISOLATION CHARACTERIZED; FULL_NO_STL_ISOLATION=INCONCLUSIVE", "audit": "PASS (adversarial; spoof vector disproved; 8 isolation attacks ineffective)"},
+    "B07_rocm_library_isolation": {"verdict": "PASS (0 /opt/rocm in live maps; 22 objects all venv/source)", "audit": "PASS (independent cross-check + LD_DEBUG proof)"},
+    "B08_ab_build_leg_readiness": {"verdict": "PASS (frozen-base Leg A built: libMIOpen sha256 7e045dc01b22af02f37d6314b1782bcb77aed2e12166e6da1f25d884a363e97d; Leg B dirs EMPTY)", "audit": "PASS (all 7 claims independently verified incl. sanity run + stale-cache refusal)"},
+    "B09_kthvalue_harness_handoff": {"verdict": "PASS (API identical between bases; harness binary invariant b830b37a...; runbook written)", "audit": "PASS (sanity run reproduced; 3 NITs fixed)"},
+    "B10_consumer_revalidation": {"verdict": "PASS (full matrix re-run after all fixes; 22/22 + reconstruction EXACT)", "audit": "PASS (second-pass false-PASS audit: no bypass achievable)"},
+    "B11_three_reviewer_panel": {"reviewer_A_integrity": "PASS (0 blockers/majors/minors)", "reviewer_B_hiprtc": "PASS (0 blockers/majors/minors)", "reviewer_C_maintainer": "PASS (0 blockers/majors; 3 runbook MINORs resolved post-panel)", "verdict": "PASS"},
+    "B12_publication": {"branch": "linux-w7900/phase5.2-handoff-bridge"}
+  },
+  "final_verdict": "PHASE5_2_BRIDGE_READY_WITH_STL_LIMITATION",
+  "final_verdict_basis": [
+    "all source/hash/schema/build-isolation gates PASS with independent audits",
+    "exact tree reconstruction 605d0d214acdbc06086fdb27c61fec970c0f2798 reproduced by two methods + independent auditor",
+    "frozen unpatched Leg A built and sanity-proven on gfx1100",
+    "the ONLY unresolved limitation is the inability to reproduce full no-STL HIPRTC behavior on Linux/7.14.1 (embedded hiprtc builtins) — recorded INCONCLUSIVE, not PASS; Windows retains the no-STL evidence; next mission must preserve this scope limitation"
+  ],
+  "forbidden_actions_respected": {
+    "miopen_patch_changed": false,
+    "windows_canonical_patches_changed": false,
+    "windows_manifest_changed": false,
+    "phase345_history_modified": false,
+    "system_rocm_modified": false,
+    "rocms_mixed": false,
+    "final_patched_gpu_workloads_run": false,
+    "final_linux_ab_claimed": false,
+    "upstream_pr_issue_comment": false,
+    "dco_forged": false
+  }
+}

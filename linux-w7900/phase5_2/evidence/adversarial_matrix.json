@@ -1,0 +1,337 @@
+{
+  "gate": "B03+B10 adversarial matrix",
+  "tool": "/workspace/miopen-w7900-validation/phase5_2/scripts/check_final_handoff.py",
+  "timestamp": "2026-10-08T17:44:39.653697+00:00",
+  "frozen_evidence_untouched": true,
+  "all_attacks_behaved_as_expected": true,
+  "attacks": [
+    {
+      "attack_id": "A",
+      "mutation": "unmodified manifest + correct patches (control)",
+      "expected_verdict": "PASS",
+      "observed_verdict": "PASS",
+      "intended_reason": null,
+      "observed_reasons": [],
+      "reason_confirmed": true,
+      "exit_code": 0,
+      "evidence_path": "/tmp/opencode/p52-adv/A/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "B",
+      "mutation": "flip one byte in patch 0001",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "sha256 mismatch",
+      "observed_reasons": [
+        "patch patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch: sha256 mismatch manifest=14719b8b4ae7b4370afa42249b56c130d7d42b9447701e57a702570eb12ed7e2 actual=ea7169bf25c5d10c44cb339f16bf76bd07df331f4cefd1ebd6fe767cce42ad49",
+        "series hash mismatch: manifest=797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d actual=2d585d147f205600fc58dcab61f950abdc3247abc3ee8fe9f0993f56dfa81564 (algorithm=sha256_file_concat_v1)"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/B/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "C",
+      "mutation": "flip one byte in patch 0002",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "sha256 mismatch",
+      "observed_reasons": [
+        "patch patches/phase5_1/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch: sha256 mismatch manifest=7d40c314dcac87085178ba9d0c84bb2eced8f33ba8e9bd3a6151903d6ee4751e actual=32d5b7899da5fbf6e1078134aa6cc1aaf01524a7ae3f08fb95b9a0180901c848",
+        "series hash mismatch: manifest=797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d actual=ea75fa3076e30d1b026c836fadf55e845836dd7220cd2cb7652972520e526123 (algorithm=sha256_file_concat_v1)"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/C/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "D",
+      "mutation": "flip one byte in patch 0003",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "sha256 mismatch",
+      "observed_reasons": [
+        "patch patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch: sha256 mismatch manifest=3eb20ec0b4c38035438d317c210847e880ae8be5bf914617fb51f160f46670b4 actual=a6d9dd7e7de2b8bfeed12a7e2e1fc6e502573e2f0dfc4eff7268ba6b1f4743fd",
+        "series hash mismatch: manifest=797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d actual=97c8a16326c29c21a59256fb2594dbec3dc7af9137589b2495300ecec07d9e12 (algorithm=sha256_file_concat_v1)"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/D/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "E",
+      "mutation": "reverse patch order in manifest",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "series hash mismatch",
+      "observed_reasons": [
+        "manifest sha256 b41d48a4f387172142c101c4154ce5a0a783e720472243bab1a0edf451c74922 != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "series hash mismatch: manifest=797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d actual=5a944804cd506b16ea04d03b64f6b5cdd81bb4f18155c61be021bc0c688b70d8 (algorithm=sha256_file_concat_v1)"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/E/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "F",
+      "mutation": "duplicate patch order in manifest",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "not contiguous",
+      "observed_reasons": [
+        "manifest sha256 85c39556f76d5dc2b21a8b9e323e249fce4f720ee9bae30cb4b02fff0ece3a2c != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "patch orders are not unique: [1, 1, 3]",
+        "patch orders are not contiguous 1..N: [1, 1, 3]"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/F/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "G",
+      "mutation": "inject 0004-malicious.patch into canonical dir",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "unexpected file in canonical patch dir",
+      "observed_reasons": [
+        "unexpected file in canonical patch dir patches/phase5_1/canonical: 0004-malicious.patch (allowed: declared patches + ['README.md'])"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/G/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "H",
+      "mutation": "replace patch 0001 with a symlink to original",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "symlink",
+      "observed_reasons": [
+        "symlink in patch dir rejected: 0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch",
+        "path component is a symlink (rejected): /tmp/opencode/p52-adv/H/tree/patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/H/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "I",
+      "mutation": "manifest patch path with ../ traversal",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "traversal",
+      "observed_reasons": [
+        "manifest sha256 7d2d54c16e43d653605e22ca2a2e52be045c71112c23913abfca96d1afce32d5 != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "all ordered patches must live in ONE canonical directory; found: ['../../patches/phase5_1/canonical', 'patches/phase5_1/canonical']",
+        "patch path traversal ('..') rejected: '../../patches/phase5_1/canonical/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch'"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/I/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "J",
+      "mutation": "manifest patch path absolute",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "absolute",
+      "observed_reasons": [
+        "manifest sha256 6165b594ccf5f56b64f678c028df1fbf1d9e3217bd5d65b6e864af033536eb6d != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "all ordered patches must live in ONE canonical directory; found: ['/etc/passwd', 'patches/phase5_1/canonical']",
+        "patch path must be relative (no absolute/home paths): '/etc/passwd/0001-MIOpen-keep-RTC-type-traits-self-contained-when-no-h.patch'"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/J/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "K",
+      "mutation": "tamper series SHA256 in manifest",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "series hash mismatch",
+      "observed_reasons": [
+        "manifest sha256 04c92e768271ad09d14e9ef410ee6cdf02e5e5132e262938fac51fdefe7200d0 != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "series hash mismatch: manifest=0000000000000000000000000000000000000000000000000000000000000000 actual=797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d (algorithm=sha256_file_concat_v1)",
+        "series hash does not match the frozen canonical series 797a69b5ae86d0e304b2258b5f5323cc97241a413d2c43134bf01703f7842f6d (wrong candidate?)"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/K/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "L",
+      "mutation": "tamper frozen base SHA in manifest",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "base_sha mismatch",
+      "observed_reasons": [
+        "manifest sha256 d704b7bdc190687df1bb01a11b17f9cbf295534c1c53a029364af31fc88e0309 != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "base_sha mismatch: expected frozen base 7c5866144ac4b879be442563e2b49fa1c142ea36, got b68f8944300f104875d953fc8e4510908c9aaf0b",
+        "base_sha b68f8944300f104875d953fc8e4510908c9aaf0b is a known-stale historical anchor"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/L/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "M",
+      "mutation": "tamper expected source tree SHA1 in manifest",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "head_tree_sha1 mismatch",
+      "observed_reasons": [
+        "manifest sha256 9817da775bb85977dbf96e7862e46f65a330fc6afa20dc2e78213ba15e2234f6 != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "head_tree_sha1 mismatch: expected 605d0d214acdbc06086fdb27c61fec970c0f2798, got 1111111111111111111111111111111111111111 (wrong candidate source identity)"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/M/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "N",
+      "mutation": "old Phase-5 provisional-schema manifest (P5 candidate)",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "provisional",
+      "observed_reasons": [
+        "manifest sha256 7dd96adfffcfd485837ce44c099976ccd7773ce95272bb733700201ce23d2cbb != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "manifest missing required key: handoff_type",
+        "manifest missing required key: base_repo",
+        "manifest missing required key: base_sha",
+        "manifest missing required key: ordered_commits",
+        "manifest missing required key: ordered_patches"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/N/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "O",
+      "mutation": "correct series + legitimate README.md present",
+      "expected_verdict": "PASS",
+      "observed_verdict": "PASS",
+      "intended_reason": null,
+      "observed_reasons": [],
+      "reason_confirmed": true,
+      "exit_code": 0,
+      "evidence_path": "/tmp/opencode/p52-adv/O/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "P",
+      "mutation": "wrong candidate_id (P5) with otherwise valid manifest",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "candidate_id mismatch",
+      "observed_reasons": [
+        "manifest sha256 615d4135c4994d54d1dc264f6a501af1eb5a8eb131fc7e4a4ce4d5c289822e7c != frozen pinned manifest 58a6f9ce8afe2f41e80db8593c8711813b30c6418dfe0a5348dd6131d3bbafd8 (wrong or altered manifest)",
+        "candidate_id mismatch: expected 'P5.1-CANDIDATE-R1', got 'P5-CANDIDATE-R1'",
+        "superseded candidate rejected: P5-CANDIDATE-R1"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/P/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "Q",
+      "mutation": "wrong evidence commit SHA passed via CLI",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "evidence SHA mismatch",
+      "observed_reasons": [
+        "rca evidence SHA mismatch: CLI pin=013f6f005f97aca5ef46d841ca754f2283dc62f0 but checkout HEAD=eb7429d815bc8ab8c0ba924afb3e12e41da71eae (the checkout is authoritative)"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/Q/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "R",
+      "mutation": "declared patch file missing from disk",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "missing",
+      "observed_reasons": [
+        "declared file missing under rca-root: patches/phase5_1/canonical/0003-MIOpen-add-HIPRTC-no-host-STL-regression-test.patch"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/R/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "S",
+      "mutation": "incomplete local git objects (no frozen base commit)",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "not present in local git repo",
+      "observed_reasons": [
+        "frozen base commit 7c5866144ac4b879be442563e2b49fa1c142ea36 not present in local git repo \u2014 fetch the exact commit first (fail closed)"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/S/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "T",
+      "mutation": "executable bit set on a canonical patch",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "executable",
+      "observed_reasons": [
+        "executable file in patch dir rejected: 0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch",
+        "executable file rejected: patches/phase5_1/canonical/0002-MIOpen-make-remaining-RTC-kernel-std-includes-self-c.patch"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/T/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "U",
+      "mutation": "nested directory injected into canonical dir",
+      "expected_verdict": "FAIL",
+      "observed_verdict": "FAIL",
+      "intended_reason": "nested directory",
+      "observed_reasons": [
+        "unexpected nested directory in patch dir: sneaky"
+      ],
+      "reason_confirmed": true,
+      "exit_code": 1,
+      "evidence_path": "/tmp/opencode/p52-adv/U/result.json",
+      "overall_ok": true
+    },
+    {
+      "attack_id": "V",
+      "mutation": "--apply without ENABLE_APPLY=1 authorization",
+      "expected_verdict": "REFUSED",
+      "observed_verdict": "REFUSED",
+      "intended_reason": null,
+      "observed_reasons": [
+        "FATAL: --apply is REFUSED without explicit authorization. Re-run with ENABLE_APPLY=1 only for the authorized final validation mission."
+      ],
+      "reason_confirmed": true,
+      "exit_code": 2,
+      "evidence_path": "/tmp/opencode/p52-adv/V/result.json",
+      "overall_ok": true
+    }
+  ]
+}

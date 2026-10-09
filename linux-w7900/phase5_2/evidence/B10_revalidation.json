@@ -1,0 +1,37 @@
+{
+  "gate": "B10",
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "post_all_changes_revalidation": {
+    "consumer_version": "phase5_2/scripts/check_final_handoff.py with F1-F6 fixes (manifest sha256 pin + manifest blob-match when under pinned root + islink .git rejection + effective-pins reporting)",
+    "adversarial_matrix": {
+      "attacks": 22,
+      "all_behaved_as_expected": true,
+      "every_negative_attack_failed_for_intended_reason": true,
+      "exit_codes_recorded_all_attacks": true,
+      "frozen_evidence_untouched_verified_real": true,
+      "evidence": "phase5_2/evidence/adversarial_matrix.json",
+      "coverage_map": {
+        "1_valid_manifest_PASS": "attack A",
+        "2_legit_README_PASS": "attack O",
+        "3_altered_patch_FAIL": "attacks B,C,D (one byte each)",
+        "4_wrong_order_FAIL": "attack E (reversed)",
+        "5_wrong_series_sha_FAIL": "attack K",
+        "6_wrong_base_sha_FAIL": "attack L",
+        "7_wrong_candidate_FAIL": "attack P (+N stale P5)",
+        "8_wrong_tree_sha_FAIL": "attack M",
+        "9_extra_patch_FAIL": "attack G (0004-malicious)",
+        "10_symlink_FAIL": "attack H",
+        "11_traversal_FAIL": "attack I (+J absolute)",
+        "12_wrong_evidence_commit_FAIL": "attack Q",
+        "13_missing_patch_FAIL": "attack R",
+        "14_incomplete_git_objects_FAIL_CLOSED": "attack S (empty git repo)",
+        "15_apply_without_authorization_REFUSED": "attack V (exit 2, REFUSED message)",
+        "16_valid_disposable_reconstruction_EXACT_TREE": "verify_source_tree.py re-run: both methods -> 605d0d214acdbc06086fdb27c61fec970c0f2798 PASS"
+      },
+      "additional_beyond_matrix": "F duplicate order, T executable bit, U nested dir"
+    },
+    "valid_manifest_recheck": {"verdict": "PASS", "exit_code": 0, "evidence": "phase5_2/evidence/B10_valid_manifest_recheck.json"},
+    "disposable_reconstruction": {"verdict": "PASS", "both_methods_exact_tree_match": true, "evidence": "phase5_2/evidence/source_reconstruction.json"}
+  },
+  "verdict": "PASS"
+}

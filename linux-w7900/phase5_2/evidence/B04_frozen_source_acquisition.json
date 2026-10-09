@@ -1,0 +1,42 @@
+{
+  "gate": "B04",
+  "mission": "W7900-PHASE52-BRIDGE-R1",
+  "target": {
+    "repo": "ROCm/rocm-libraries",
+    "base_sha": "7c5866144ac4b879be442563e2b49fa1c142ea36",
+    "not_confused_with": "b68f8944300f104875d953fc8e4510908c9aaf0b (historical Phase-3 base, DIFFERENT commit; both trees locally distinguished: 8b0bf035 vs 4da45589)"
+  },
+  "acquisition_chain": [
+    "STEP 1: frozen commit+tree objects verified present in local blobless clone (git cat-file -e <sha>^{commit} and ^{tree} both exit 0)",
+    "STEP 2: full codeload tarball download BLOCKED by unstable egress proxy (1.2 GB repo; codeload does not support range resume; partial downloads truncated; raw.githubusercontent.com entirely unreachable HTTP 000; unauthenticated api.github.com contents rate-limited 403)",
+    "STEP 3: local historical extraction (source/upstream-pristine, tarball of b68f894) git-proven instead: bulk 'git add -A -f' into isolated index + 4 gitlink entries via update-index --cacheinfo + 'git write-tree' == 4da45589ff82934ab599b2fa818f443e25000767 (EXACT b68f894 tree SHA; stronger than G04's subset check: whole-tree byte+mode proof)",
+    "STEP 4: b68f894..7c586614 delta computed locally from tree objects: 886 paths (237 A, 4 D, 641 M, 4 R)",
+    "STEP 5: object-store blob inventory via 'git cat-file --batch-all-objects': 47522 of 47771 unique frozen-tree blobs missing after STEP 3 fill",
+    "STEP 6: missing blobs fetched through AUTHENTICATED api.github.com contents endpoint (gh CLI token, 5000/h limit) with Accept: application/vnd.github.raw; EVERY blob independently verified by recomputed git blob SHA-1 == frozen-tree blob SHA before acceptance (fail closed); final: 641/641 fetched, 0 failures",
+    "STEP 7: blobs installed with 'git hash-object -w --stdin-paths'; re-inventory: frozen-tree missing blobs = 0 (complete)",
+    "STEP 8: reachability pin created: refs/phase52/frozen-base -> 7c586614 (prevents gc prune)",
+    "STEP 9: worktree materialization verified: 'git worktree add --detach --no-checkout' + 'git read-tree HEAD' + 'git checkout-index -a -f' with GIT_NO_LAZY_FETCH=1 (no promisor fetch needed; slow filesystem noted, materialization functional)"
+  ],
+  "verification": {
+    "frozen_tree_blob_completeness": "0 missing of 47771 unique blobs",
+    "expected_root_tree": "8b0bf035e4568a1d994512b4346fed0dde3c591b (7c586614^{tree}, matches B00 subagent-observed value)",
+    "no_develop_substitution": true,
+    "no_b68f894_substitution": true
+  },
+  "submodule_gitlinks": {
+    "status": "UNRESOLVED_BY_DESIGN (empty dirs; not required for MIOpen build)",
+    "entries": [
+      "projects/hipccl/hipccl3/libhipcxx @ 385f456d7e7c44a42631bcd242de6015d894aa9c",
+      "projects/miopen/fin @ 06650bddfe40c47294b0414e4262691333b788dd",
+      "projects/rpp/third_party/ffts @ b22d839b61c5bd8a993e24ae3e01f39d9b5084fb",
+      "shared/tensile/HostLibraryTests/googletest @ e2239ee6043f73722e7aa812a459f54a28552929"
+    ],
+    "note": "fin (MIOpen integration-test framework) not needed: BUILD_TESTING=OFF config, matching G04 precedent"
+  },
+  "worktree_materialization": {
+    "path": "build/recon/frozen-base-checkout",
+    "method": "worktree add --no-checkout + read-tree + checkout-index (plain 'worktree add' checkout pass is extremely slow on this loop-mounted ext4 and its finalization step stalls; index-based materialization is deterministic and complete)",
+    "head": "7c5866144ac4b879be442563e2b49fa1c142ea36"
+  },
+  "verdict": "PASS"
+}
