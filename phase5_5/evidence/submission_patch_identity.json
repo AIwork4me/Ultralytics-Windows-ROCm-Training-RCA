@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "gate": "S02",
+  "mission_id": "MIOPEN-HIPRTC-OFFICIAL-UPSTREAM-SUBMISSION",
+  "generated": "2026-10-10",
+  "note": "v2 supersedes v1: upstream develop advanced fb023f80 -> 54b079ca DURING the mission (2 commits, neither touching projects/miopen; ten-path blob audit SAME). Per the submission-day refresh procedure the three patches were re-replayed onto 54b079ca and the validation battery re-run. Round-1 identities (base fb023f80): commits 766ffa1f/258df6a1/dcd05f33, tree 28595e10, series abbe7b89e60cb141f5a1287608798645759dfc97ca0a66661234d08b15ce2df6; round-1 logs preserved at logs/ci_fb023f80_round1/.",
+  "upstream_base": {
+    "branch": "develop",
+    "sha": "54b079ca753bb3818017d5e724e208c03a43fd5a",
+    "tip_subject": "feat(rocprim): Implement Kernel Tuner for Various Algorithms (port of #12008 to hipccl3) (#13007)",
+    "drift_from_round1_base": {
+      "round1_base": "fb023f80f92a9996f06145418b1bc60ca026ec5c",
+      "commits": 2,
+      "miopen_touching": 0,
+      "ten_path_blob_audit": "ALL SAME; four new paths still ABSENT"
+    }
+  },
+  "submission_commits": [
+    {
+      "n": 1,
+      "sha": "a9a34daa6d013930beed72c7ca7c81e09859b4b9",
+      "tree": "8af9a0b47330b64dc2d1b3fa187e9005cdccb25a",
+      "subject": "MIOpen: keep RTC type traits self-contained when no host STL is reachable",
+      "r2_counterpart": "01a77dab8c4cf23d1e49273fa3c88bb0bb4fc887",
+      "patch_sha256": "5d1119650ca1c12c8c63b2e4e3285e637eb931ac8789251e27d07f4d7de2fe8c"
+    },
+    {
+      "n": 2,
+      "sha": "cd3d36b229435c97d236acb193caca8cc9a7a3c7",
+      "tree": "d874fc19a9d18c18864fae050b4d4d7aa4e2feb1",
+      "subject": "MIOpen: make remaining RTC kernel std includes self-contained",
+      "r2_counterpart": "8188b803b8304fc5933caa52ee27a58d01a78b04",
+      "patch_sha256": "ac8f7d46831e09c6beecb69b6a0d97eb43e2bd61cf18524a95e2e5b7f28a2023"
+    },
+    {
+      "n": 3,
+      "sha": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+      "tree": "ce8635c419c89db70a30de8aa1727f26b05387a5",
+      "subject": "MIOpen: add portable HIPRTC no-host-STL regression test",
+      "r2_counterpart": "f18c4de94b229bbe3e8501d70e3e2461425c69de",
+      "patch_sha256": "6225f14a33104afc535647d9bf1a3d680cc046b5c0a8def231c90ed2149f281e"
+    }
+  ],
+  "submission_tree_sha": "ce8635c419c89db70a30de8aa1727f26b05387a5",
+  "submission_series_sha256_concat_v1": "4f65dafb39f5f65ce6166be4eedfa49f0296be2ac9615ba8edf050da22ddc4dc",
+  "frozen_r2_reference": {
+    "r2_tip": "f18c4de94b229bbe3e8501d70e3e2461425c69de",
+    "r2_tree": "b983caddf9f9f561e7d1b590deadb16267c2de15",
+    "r2_series_sha256": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+    "r2_patch_sha256": [
+      "816946b4c8f52dbe044b62ae47b65c346989337eb63557f7bd1b829a1e71a76c",
+      "46044d8c9511fe3575ce8709623b18c627cc25bd076cb3cf231dc00c6ef1f460",
+      "df7c3c3a3386732931b85d682c0d58638f7b4b48e169cede1cae254642d67f7e"
+    ],
+    "evidence_branch": "phase5.1/windows-r2-ci-portability-freeze @ c8417161125dc33275b7ac615298b449a81e7cf8"
+  },
+  "replay_procedure": "identical canonical R2 patch files (sha256 816946b4/46044d8c/df7c3c3a, byte-identical to evidence-branch blobs), git am --keep-cr on a fresh reset to 54b079ca in the same worktree",
+  "source_fix_delta_from_r2": "NONE (10/10 changed-file blobs identical to frozen R2 tip f18c4de9; verified for BOTH rounds)",
+  "patch_payload_equivalence": "submission series patch bodies byte-identical to R2 canonical patches after stripping the 'From <sha>' header line (only commit-identity lines differ)",
+  "changed_files_count": 10,
+  "changed_files_stat": "10 files changed, 1036 insertions(+), 5 deletions(-)",
+  "trailer_check": "no Signed-off-by or other trailers; author/committer = AIwork4me <AIwork4me@users.noreply.github.com>",
+  "whitespace_check": "clean (git log --check)"
+}

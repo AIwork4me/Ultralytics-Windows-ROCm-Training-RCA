@@ -1,0 +1,9 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Lib\site-packages\cmake\data\bin\ctest.exe -R ^test_hiprtc_selfcontained$ --output-on-failure --test-dir C:\Users\rocm\Desktop\YOLO_AMD\phase5_5_build\ci_test2
+exit=0
+Test project C:/Users/rocm/Desktop/YOLO_AMD/phase5_5_build/ci_test2
+    Start 10: test_hiprtc_selfcontained
+1/1 Test #10: test_hiprtc_selfcontained ........   Passed    0.25 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   0.29 sec

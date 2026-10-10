@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "gate": "S11/S12",
+  "mission_id": "MIOPEN-HIPRTC-OFFICIAL-UPSTREAM-SUBMISSION",
+  "generated": "2026-10-10",
+  "upstream_pr_url": "https://github.com/ROCm/rocm-libraries/pull/13437",
+  "upstream_pr_number": 13437,
+  "upstream_pr_head_sha": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+  "upstream_base_sha": "54b079ca753bb3818017d5e724e208c03a43fd5a",
+  "three_commit_shas": [
+    "a9a34daa6d013930beed72c7ca7c81e09859b4b9",
+    "cd3d36b229435c97d236acb193caca8cc9a7a3c7",
+    "1cc73f1c1e7c3831a1eb334a483732178948fc66"
+  ],
+  "three_patch_sha256s_submission": [
+    "5d1119650ca1c12c8c63b2e4e3285e637eb931ac8789251e27d07f4d7de2fe8c",
+    "ac8f7d46831e09c6beecb69b6a0d97eb43e2bd61cf18524a95e2e5b7f28a2023",
+    "6225f14a33104afc535647d9bf1a3d680cc046b5c0a8def231c90ed2149f281e"
+  ],
+  "series_sha256_submission_concat_v1": "4f65dafb39f5f65ce6166be4eedfa49f0296be2ac9615ba8edf050da22ddc4dc",
+  "series_sha256_frozen_r2": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02",
+  "final_tree_sha": "ce8635c419c89db70a30de8aa1727f26b05387a5",
+  "source_fix_delta_from_r2": "NONE",
+  "changed_file_count": 10,
+  "ci_status": "see evidence/ci_initial_status.json and docs/CI_STATUS.md",
+  "review_status": "awaiting upstream maintainers; prepared answers in docs/MAINTAINER_HANDOFF.md",
+  "cross_platform_evidence_links": {
+    "windows_r2_freeze": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/tree/c8417161125dc33275b7ac615298b449a81e7cf8",
+    "linux_w7900": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/pull/8 (branch linux-w7900/phase5.3-r2-final-ab @ 166c33de)",
+    "linux_gfx1151": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/tree/29b19deff4620d4a70fa55dd861cf8d51f691a0b (branch linux-gfx1151/phase5.3b-r2-crossos-closure)",
+    "p54_replay": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA/tree/c2133423c22ef247dccd31537957e5c85692c98f (branch phase5.4/windows-upstream-merge-readiness; merged to main via RCA PR #9)",
+    "p55_submission": "this branch phase5.5/upstream-pr-submission"
+  },
+  "gate_verdicts": {
+    "S00_environment": "PASS (independent audit)",
+    "S01_develop_refresh": "PASS both rounds (fb023f80 and drift 54b079ca; zero conflicts)",
+    "S02_replay_identity": "PASS (delta from R2 NONE; reconstruction trees match)",
+    "S03_windows_validation": "PASS both rounds (genuine no-STL ctest PASS, 13/13 matrix, bare-env PASS; fresh on final base 54b079ca)",
+    "S04_pr_story": "CONDITIONAL PASS resolved - MAJOR (W7900 YOLO claim) verified against gate L10 evidence; residual MINOR: body length 1121 vs 950-1000 target (detail justified: three-platform validation + honest-skip semantics)",
+    "S05_policy": "PASS (DCO not mandatory; scope/license clean)",
+    "S06_three_reviewers": "A: GO WITH NITS / B: GO WITH NITS / C: GO - zero unresolved technical blockers",
+    "S07_fork_push": "fork created + branch pushed + remote SHA verified 1cc73f1c; diff exactly ten files (audited)",
+    "S08_pr_creation": "PR #13437 created and verified (audited)",
+    "S09_ci_triage": "initial snapshot: 3 checks pending, 0 failures (see CI_STATUS.md for follow-ups)",
+    "S10_maintainer_prep": "docs/MAINTAINER_HANDOFF.md (Q1-Q12)"
+  },
+  "final_verdict": "UPSTREAM_PR_CREATED_CI_PENDING",
+  "evidence_branch": "phase5.5/upstream-pr-submission",
+  "evidence_freeze": "branch frozen after the final record-correction commit; terminal identity pinned by tag phase5.5-evidence-freeze (tag points at the frozen tip; push of that commit is the last write to this branch)",
+  "errata": [
+    {
+      "file": "logs/ci/ci_matrix_phase5_5.json",
+      "field": "patch_id",
+      "issue": "label reads \"R2 payload, base fb023f80\" (hardcoded string in the round-1-adapted script)",
+      "truth": "the same file correctly records unpatched_tree_sha=54b079ca and patched_tree_sha=1cc73f1c; the round-2 run is on base 54b079ca; raw log left unmodified (immutability), label corrected in scripts for any future run",
+      "found_by": "S11 independent audit (MINOR)"
+    }
+  ],
+  "s11_audit": "CONDITIONAL PASS - content fully verified; MAJOR was procedural (branch advanced from ff098c2 to 79b8c0e during the audit while publishing the PR-bot policy snapshot; auditor re-verified all structural checks at 79b8c0e); resolved by this final correction commit + freeze tag"
+}

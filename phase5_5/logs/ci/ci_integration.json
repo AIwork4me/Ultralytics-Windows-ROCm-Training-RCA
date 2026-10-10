@@ -1,0 +1,26 @@
+{
+  "schema": "phase5_5_ci_integration_v1",
+  "gate": "S03",
+  "timestamp": "2026-10-10T07:32:46.315568",
+  "source_tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.5-submission\\projects\\miopen",
+  "source_git_head": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+  "build_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_5_build\\ci_test2",
+  "configure": {
+    "cmd": "BUILD_TESTING=ON (see ci_configure.log)",
+    "exit": 0
+  },
+  "build_target": {
+    "target": "test_hiprtc_selfcontained",
+    "exit": 0
+  },
+  "ctest_discovery": {
+    "exit": 0
+  },
+  "ctest_run": {
+    "exit": 0
+  },
+  "test_exe": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_5_build\\ci_test2\\bin\\test_hiprtc_selfcontained.exe",
+  "test_exe_sha256": "86b0d362d8630ceaf036d6cac06f7fa63503bec045782571de62b2985103ccf6",
+  "over260_files_removed": 1186,
+  "hip_lang_staging": "temporary; removed after"
+}

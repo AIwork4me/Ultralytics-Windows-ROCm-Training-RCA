@@ -1,0 +1,19 @@
+$ C:\Users\rocm\Desktop\YOLO_AMD\phase3_buildtools\Lib\site-packages\cmake\data\bin\ctest.exe -R ^test_hiprtc_selfcontained$ --output-on-failure --test-dir C:\Users\rocm\Desktop\YOLO_AMD\phase5_5_build\ci_test3
+exit=0
+Test project C:/Users/rocm/Desktop/YOLO_AMD/phase5_5_build/ci_test3
+    Start 10: test_hiprtc_selfcontained
+1/1 Test #10: test_hiprtc_selfcontained ........   Passed    0.15 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =   0.19 sec
+
+--- direct positive-mode run (post-ctest, evidence for code-object size) ---
+$ test_hiprtc_selfcontained.exe <submission>/projects/miopen/src/kernels --mode=positive --arch=gfx1151
+PASS: kernel compiled without host STL (5784-byte code object)
+exit=0
+
+--- anchored discovery (mission 5.D exact command) ---
+$ ctest -N -R "^test_hiprtc_selfcontained$" --test-dir <ci_test3>
+  Test #10: test_hiprtc_selfcontained
+Total Tests: 1

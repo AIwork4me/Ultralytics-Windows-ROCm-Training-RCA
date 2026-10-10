@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "gate": "S03",
+  "mission_id": "MIOPEN-HIPRTC-OFFICIAL-UPSTREAM-SUBMISSION",
+  "generated": "2026-10-10",
+  "platform": {
+    "os": "Windows 11",
+    "gpu": "Radeon 8060S (gfx1151)",
+    "rocm": "7.14.0 wheel stack (PyTorch 2.12.0+rocm7.14.0)",
+    "python": "3.13.13"
+  },
+  "target": "FRESH submission-day validation on the ACTUAL PR head tree - not a reprint of historical results. Run TWICE: round 1 on dcd05f33 (base fb023f80, logs/ci_fb023f80_round1/), round 2 on 1cc73f1c (base 54b079ca, logs/ci/) after mid-mission develop drift. Both rounds PASS; identities below are round 2 (the submitted tree).",
+  "results": {
+    "1_cmake_configure_fresh": {"exit": 0, "BUILD_TESTING": "ON", "CMAKE_HIP_ARCHITECTURES": "gfx1151", "log": "logs/ci/ci_configure.log", "build_dir": "phase5_5_build/ci_test2", "note": "fresh dir per round"},
+    "2_build_test_target": {"target": "test_hiprtc_selfcontained", "exit": 0, "log": "logs/ci/ci_build_target.log"},
+    "3_hiprtc_dll_resolution_bare_env": {"verdict": "Passed with PATH=Windows system dirs only; CMake ENVIRONMENT prepend does the work", "log": "logs/ci/ci_ctest_bare_env.log"},
+    "4_ctest_discovery": {"exit": 0, "log": "logs/ci/ci_ctest_discovery.log"},
+    "5_genuine_windows_nostl_ctest": {"verdict": "Passed (NOT skipped) - BOTH rounds", "line_round2": "1/1 Test #10: test_hiprtc_selfcontained Passed 0.25 sec", "log": "logs/ci/ci_ctest_run.log"},
+    "6_negative_unpatched_control": {"verdict": "PASS - exact 'miopen_type_traits.hpp:151:10: fatal error: type_traits file not found' signature as sole error on PRISTINE 54b079ca", "matrix_cell": "negative/unpatched (exact signature)"},
+    "7_adversarial_matrix_13_cells": {"verdict": "13/13 PASS - BOTH rounds", "log": "logs/ci/ci_matrix_phase5_5.json"},
+    "8_ordinary_hiprtc_controls": {"verdict": "PASS (ordinary/unpatched, ordinary/patched)"},
+    "9_with_stl_controls": {"verdict": "PASS (with-stl/unpatched, with-stl/patched)"},
+    "10_exit4_capability_skip_semantics": {"verdict": "PASS (adv: STL reachable via CPATH -> exit 4 INCONCLUSIVE)"},
+    "11_gpu_target": "gfx1151 (configure flag + matrix --arch)",
+    "12_provenance": {
+      "source_git_head": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+      "unpatched_control_sha": "54b079ca753bb3818017d5e724e208c03a43fd5a",
+      "test_exe_sha256": "86b0d362d8630ceaf036d6cac06f7fa63503bec045782571de62b2985103ccf6",
+      "test_exe": "phase5_5_build/ci_test2/bin/test_hiprtc_selfcontained.exe",
+      "round1": {"source_git_head": "dcd05f3351940e6db417051d0854d32a8328e7f5", "unpatched": "fb023f80f92a9996f06145418b1bc60ca026ec5c", "test_exe_sha256": "16a0ac6871f8c8559633e0139581135efdf8acb74e3720aef3b1d59dfe5a4eac"}
+    },
+    "13_clean_git_diff": {"verdict": "PASS - submission worktree clean after both rounds (0 modified files); wheel hip-lang staging removed each time"}
+  },
+  "independent_audit": "S03 auditor re-executed patched positive (exit 0, 5784-byte code object), unpatched positive vs pristine (exit 1, exact field signature), CPATH probe (exit 4), and a stricter env -i bare-env ctest (Passed) during round 1; round 2 used the identical mechanically-adapted scripts on the identical payload.",
+  "scripts": "phase5_5_submission/scripts/{ci_ctest_integration,run_ci_matrix,bare_env_check}.py - mechanical path adaptations of the validated phase5_4 scripts (logic unchanged); build dir ci_test -> ci_test2 for round 2",
+  "rationale_for_minimum_scope": "Both develop deltas since the P5.4-validated base touched nothing in the RTC kernel include closure, patched build semantics, or the ten changed files (all preimage blobs identical). Mission S03 permits minimum fresh validation in this case; the fresh configures did exercise the hipconv v0.4.0 cmake (round 1) and passed."
+}

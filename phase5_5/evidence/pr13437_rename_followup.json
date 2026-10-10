@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "mission_id": "PR13437-UNIT-TEST-FILENAME-CLOSURE",
+  "generated": "2026-10-10",
+  "type": "ADDENDUM to phase5_5 submission evidence (frozen record at tag phase5.5-evidence-freeze / c1417f5 untouched; this file only appends)",
+  "pr": {
+    "url": "https://github.com/ROCm/rocm-libraries/pull/13437",
+    "original_head": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+    "new_head": "806f7e90b6c945b3854fcd16d3daa874018abe35",
+    "base": "develop @ 54b079ca (unchanged)",
+    "fourth_commit": {
+      "sha": "806f7e90b6c945b3854fcd16d3daa874018abe35",
+      "subject": "test(miopen): follow unit-test filename convention for HIPRTC regression",
+      "parent": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+      "sign_off": "NONE (per authorization)"
+    },
+    "original_three_commits_preserved": ["a9a34daa6d013930beed72c7ca7c81e09b59b4b9", "cd3d36b229435c97d236acb193caca8cc9a7a3c7", "1cc73f1c1e7c3831a1eb334a483732178948fc66"],
+    "push": "fast-forward 1cc73f1c..806f7e90 to AIwork4me/rocm-libraries fix/miopen-hiprtc-no-host-stl; NO force",
+    "body_intact": true
+  },
+  "change": {
+    "rename": {
+      "from": "projects/miopen/test/hiprtc_selfcontained.cpp",
+      "to": "projects/miopen/test/test_hiprtc_selfcontained.cpp",
+      "mechanism": "git mv; 100% similarity",
+      "original_blob_sha": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
+      "renamed_blob_sha": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
+      "remote_blob_sha_verified": "aef56d6831499e09ae531d4c935db9a8eec5c5a1 (GitHub contents API on new head)",
+      "identity_preserved": true
+    },
+    "cmake_diff": [
+      "projects/miopen/test/CMakeLists.txt:508 add_executable source argument hiprtc_selfcontained.cpp -> test_hiprtc_selfcontained.cpp (mission CHANGE 2, verbatim)",
+      "projects/miopen/test/CMakeLists.txt:467 EXCLUDE_TESTS key test_hiprtc_selfcontained -> test_test_hiprtc_selfcontained (+2 comment lines)"
+    ],
+    "deviation_note": "Mission specified an exact two-change patch. The rename alone breaks MIOpen's test glob: test/CMakeLists.txt does file(GLOB TEST_SOURCES *.cpp) and registers each source as target test_<basename>; the manual-registration exclusion is keyed on that glob-derived name. First validation round on the two-change patch empirically produced a phantom auto-registered test (session-captured ctest -N output, superseded rerun overwrote the log file): 'Could not find executable .../bin/test_test_hiprtc_selfcontained.exe ... Test #10: test_test_hiprtc_selfcontained / Test #11: test_hiprtc_selfcontained / Total Tests: 2' - an add_test_executable duplicate linking MIOpen_with_plugins whose CTest command lacks the required kernels-dir argument (guaranteed CI failure once workflows are approved). The one-word exclusion-key update (line 467, part of OUR third commit's own registration block, not upstream-owned code) restores the documented exclusion intent. Fresh revalidation then showed 'Total Tests: 1 (Test #10 test_hiprtc_selfcontained only)', identical to round 2.",
+    "production_code_touched": false
+  },
+  "windows_validation": {
+    "procedure": "phase5_5_submission/scripts/ci_rename_validation.py - mechanical adaptation of the validated Phase-5.5 ci_ctest_integration.py + bare_env_check.py + two matrix control cells; fresh build dir phase5_5_build/ci_test3; identical toolchain/flags; evidence in logs/ci_rename/",
+    "cmake_configure": {"exit": 0, "log": "logs/ci_rename/ci_configure.log"},
+    "build_target": {"target": "test_hiprtc_selfcontained", "exit": 0, "log": "logs/ci_rename/ci_build_target.log"},
+    "ctest_discovery": {"exit": 0, "result": "Total Tests: 1 - Test #10 test_hiprtc_selfcontained (phantom absent)", "log": "logs/ci_rename/ci_ctest_discovery.log"},
+    "ctest_run": {"exit": 0, "result": "1/1 Test #10: test_hiprtc_selfcontained Passed 0.15 sec - 100% tests passed - NOT Skipped", "log": "logs/ci_rename/ci_ctest_run.log"},
+    "bare_env_ctest": {"exit": 0, "result": "Passed with PATH=Windows system dirs only; hiprtc0714.dll resolution from the CMake ENVIRONMENT prepend alone", "log": "logs/ci_rename/ci_ctest_bare_env.log"},
+    "direct_positive": "PASS: kernel compiled without host STL (5784-byte code object) exit=0 - size identical to round-2 validated run",
+    "controls": {"ordinary_exit": 0, "ordinary_result": "PASS: ordinary hiprtc control (code object generated)", "with_stl_exit": 0, "with_stl_result": "PASS: kernel compiled with host STL (5784-byte code object)", "log": "logs/ci_rename/ci_controls.json"},
+    "test_exe_sha256": "729bd774921657689018d4080787b485fa181e40b3d250c7c3d7f539fbade045",
+    "prior_round2_exe_sha256": "86b0d362d8630ceaf036d6cac06f7fa63503bec045782571de62b2985103ccf6",
+    "exe_hash_note": "differs from round 2 as expected: RelWithDebInfo embeds the changed source/build path; code-object sizes (positive 5784, ordinary 3824, with-stl 5784) match round 2 exactly, behavior unchanged",
+    "matrix_rerun": "not rerun in full (mission: filename-only change); affected surface revalidated via ctest positive + ordinary + with-stl controls + discovery identity"
+  },
+  "series_identity": {
+    "new_series_concat_sha256_v1": "70b895fa5d43e4e591f0aef3e49e3a0bfb596dd6d76e54dbdb7b9b1f38422375",
+    "historical_three_patch_payloads": {
+      "note": "payloads (diff bodies) of patches 1-3 regenerated from the four-commit series are byte-identical to the frozen submission series files",
+      "patch1_payload_sha256": "dab55a2e419af2a73a4eb30aaebc67c543605bbe65c3a9cf56d16b583d1e66c2",
+      "patch2_payload_sha256": "7e7c62fdac00f5d2d80b29a64b23cfb6a1490d5dffc9cc7b8befd18fac1ef04b",
+      "patch3_payload_sha256": "94c4609582370a69a15e74bdb3c29386898b2ea449ad97380856d3095dd0fe30",
+      "patch4_payload_sha256": "a4d1014ee98551de03e7cb5695316cac114ff66067207bed4f8af4e46af03828"
+    },
+    "frozen_r2_series_reference": "48308f6dccfd80f099a458ad5033f815d95f86d2ab54dba1a0344c976b5a3f02 (3-patch, historical, unchanged)"
+  },
+  "github_after_push": {
+    "pr_head_verified": "806f7e90b6c945b3854fcd16d3daa874018abe35 (4 commits: a9a34daa, cd3d36b2, 1cc73f1c, 806f7e90)",
+    "files": "10 paths, test source listed ONLY as projects/miopen/test/test_hiprtc_selfcontained.cpp",
+    "unit_test_bot_warning": "RESOLVED - therock-pr-bot policy-check comment (id 6091112548) updated 2026-10-10T02:49:08Z (post-push, same second as PR head update): 'All Policy Checks Passed' with 'Unit Test: Pass'; no warning text remains",
+    "bot_run_state": "Libraries PR Bot workflow in_progress - waits on required checks (approval-gated) to conclude; policy phase itself has reported",
+    "precommit_status": "action_required (first-time-contributor approval gating, zero jobs ran - unchanged expected condition, distinct from the filename warning)",
+    "other_workflows": "TheRock CI / Component CI / TheRock Multi-Arch CI / Multi-Arch ASAN / clang-tidy: action_required (same approval gating); labeler, base-freshness, Math CI webhook: pass"
+  },
+  "independent_reviews": {
+    "baseline_subagent": "7/7 PASS (clean tree at 1cc73f1c, blob aef56d68, genuine 4-mode test, sole filename ref CMakeLists:508)",
+    "diff_subagent": "CONFIRMED 6/6 (rename 100% similarity + single CMake hunk; later re-confirmed with the second hunk in final review)",
+    "final_review_subagent": {
+      "persona": "ROCm/MIOpen CI Maintainer",
+      "verdict": "PASS",
+      "blockers": 0,
+      "majors": 0,
+      "minors": 1,
+      "minor_detail": "ci_rename_validation.json hardcodes configure/build exit fields (mitigated: control flow aborts before writing JSON on failure; raw logs carry true exit codes)",
+      "record": "reviews/pr13437_rename_final_review.md"
+    }
+  },
+  "integrity": {
+    "force_push": false,
+    "dco_signoff_added": false,
+    "duplicate_pr_created": false,
+    "frozen_r2_or_p54_records_modified": false,
+    "frozen_evidence_tag": "phase5.5-evidence-freeze @ c1417f5 (unmoved)"
+  },
+  "verdict": "FILENAME_WARNING_RESOLVED (pre-commit/CI approval gating remains pending maintainers, unchanged)"
+}
