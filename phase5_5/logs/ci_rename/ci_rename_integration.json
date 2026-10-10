@@ -1,0 +1,36 @@
+{
+  "schema": "phase5_5_ci_rename_v1",
+  "gate": "PR13437-RENAME",
+  "timestamp": "2026-10-10T10:38:34.133753",
+  "source_tree": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\rocm-libraries-phase5.5-submission\\projects\\miopen",
+  "source_git_head": "1cc73f1c1e7c3831a1eb334a483732178948fc66",
+  "working_state": "rename staged (git mv) + CMake exclusion-key and source-reference edits staged; HEAD still 1cc73f1c",
+  "renamed_source_blob_sha": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
+  "expected_blob_sha": "aef56d6831499e09ae531d4c935db9a8eec5c5a1",
+  "build_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_5_build\\ci_test3",
+  "configure": {
+    "exit": 0
+  },
+  "build_target": {
+    "target": "test_hiprtc_selfcontained",
+    "exit": 0
+  },
+  "ctest_discovery": {
+    "exit": 0
+  },
+  "ctest_run": {
+    "exit": 0
+  },
+  "ctest_bare_env": {
+    "exit": 0
+  },
+  "controls": {
+    "ordinary_exit": 0,
+    "with_stl_exit": 0
+  },
+  "test_exe": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_5_build\\ci_test3\\bin\\test_hiprtc_selfcontained.exe",
+  "test_exe_sha256": "729bd774921657689018d4080787b485fa181e40b3d250c7c3d7f539fbade045",
+  "prior_round2_exe_sha256": "86b0d362d8630ceaf036d6cac06f7fa63503bec045782571de62b2985103ccf6",
+  "over260_files_removed": 1186,
+  "hip_lang_staging": "temporary; removed after"
+}
