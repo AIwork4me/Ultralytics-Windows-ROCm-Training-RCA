@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="1" failures="0" disabled="0" errors="0" time="13.509" timestamp="2026-10-12T22:04:55.892" name="AllTests">
+  <testsuite name="CPU_HipRtcSelfContainedGtest_NONE" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="13.509" timestamp="2026-10-12T22:04:55.893">
+    <testcase name="RtCompilesBatchNormWithoutHostStl" file="C:/w56/projects/miopen/test/gtest/hiprtc_selfcontained_gtest.cpp" line="107" status="run" result="completed" time="13.509" timestamp="2026-10-12T22:04:55.893" classname="CPU_HipRtcSelfContainedGtest_NONE">
+      <properties>
+        <property name="device" value="gfx1151"/>
+        <property name="isolation" value="-nostdinc"/>
+      </properties>
+    </testcase>
+  </testsuite>
+</testsuites>

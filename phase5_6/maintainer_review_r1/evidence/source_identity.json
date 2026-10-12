@@ -1,0 +1,26 @@
+{
+  "A_leg_unpatched": {
+    "commit": "54b079ca753bb3818017d5e724e208c03a43fd5a",
+    "tree": "see git", "build": "C:/ba (worktree C:/wa)",
+    "test_blob": "planted copy of test/gtest/hiprtc_selfcontained.cpp (byte-identical to committed)"
+  },
+  "B_leg_patched": {
+    "commit": "1845028f4942cec5774f19c69227083f0d389ce0",
+    "gtest_commit": "1d2481cf", "cleanup_commit": "1845028f",
+    "build": "C:/b56p (worktree C:/w56)",
+    "test_blob_sha_at_commit": "see git ls-tree 1d2481cf"
+  },
+  "kernel_payload_at_64214f24": {
+    "miopen_freestanding_initializer_list.hpp": "fd2ccb7b7fc3b3cb25bebab9fe1624cd219130e0",
+    "miopen_freestanding_type_traits.hpp": "4a4c568689a124d4a6bb611a0c6a06a368dbb8e0",
+    "miopen_freestanding_utility.hpp": "1e8b06c5e06b3cfa7c50743bfe2906fea2a4f9f7",
+    "miopen_type_traits.hpp": "71b64ed063840b353ef94d00ef8dfe9c4a2ce35c",
+    "miopen_utility.hpp": "44ab2c40ea8a5fcc5264976216d0839a9b7b5aa9",
+    "radix.hpp": "99c29fda93463818b2bb8c91230527098b689687",
+    "tensor_view.hpp": "d7963324b0de98900f105ca07e9264e12ae0b646",
+    "MIOpenBatchNormFwdTrainSpatial.cpp": "38247e46c13f796d80a51acb2d304f86289d8abd"
+  },
+  "toolchain": {"hiprtc": "v.9.0 (hiprtc0714.dll, ROCm 7.14.60850 wheels)",
+                "device": "gfx1151 live (-mcpu in compile args)",
+                "cmake": "Ninja RelWithDebInfo, clang from _rocm_sdk_core"}
+}

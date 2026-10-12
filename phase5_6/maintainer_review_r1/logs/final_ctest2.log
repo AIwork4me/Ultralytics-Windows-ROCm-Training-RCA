@@ -1,0 +1,7 @@
+Test project C:/b56p
+    Start 111: CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl
+1/1 Test #111: CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl ...   Passed   13.51 sec
+
+100% tests passed out of 1
+
+Total Test time (real) =  13.55 sec

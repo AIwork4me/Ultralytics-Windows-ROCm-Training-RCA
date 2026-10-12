@@ -1,0 +1,84 @@
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CPU_HipRtcSelfContained_NONE
+[ RUN      ] CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl
+HIP Library Path: C:\Windows\SYSTEM32\amdhip64_7.dll
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: C:\ba\bin\MIOpenCKGroupedConv_gfx1151.dll
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: MIOpenCKGroupedConv_gfx1151.dll
+MIOpen: Info2 [OpenRuntimeLibraryForDevice] Loaded CK grouped conv library from default path: MIOpenCKGroupedConv_gfx1151.dll
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Info [Handle] stream: 0000000000000000, device_id: 0
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [GetLibPath] Lib Path: "C:\\ba\\bin"
+MIOpen: Info2 [SQLiteBase] Initializing system database file ""
+MIOpen: Info [KernDb] database not present
+MIOpen: Info2 [SQLiteBase] Initializing user database file "C:\\Users\\rocm\\.miopen\\cache\\3.6.2.54b079ca\\gfx1151_20.ukdb"
+MIOpen: Info2 [KernDb] Database created successfully
+MIOpen: Info2 [LoadBinary] Loading binary for: "gtest_rtc_trivial.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_0 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'gtest_rtc_trivial.cpp.obj') AND (kernel_args = '-nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_0 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.0653 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "gtest_rtc_trivial.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_0 -mcpu=gfx1151
+MIOpen: Info [PrintVersion] HIPRTC v.9.0
+MIOpen: Info2 [SaveBinary] Saving binary for: "gtest_rtc_trivial.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_0 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 3.7824 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [LoadBinary] Loading binary for: "gtest_rtc_stl_probe.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_1 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'gtest_rtc_stl_probe.cpp.obj') AND (kernel_args = '-nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_1 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.0594 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "gtest_rtc_stl_probe.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_1 -mcpu=gfx1151
+MIOpen: Info2 [SaveBinary] Saving binary for: "gtest_rtc_stl_probe.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_1 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 1.5933 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [LoadBinary] Loading binary for: "gtest_rtc_stl_use.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_2 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'gtest_rtc_stl_use.cpp.obj') AND (kernel_args = ' -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_2 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.14 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "gtest_rtc_stl_use.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_2 -mcpu=gfx1151
+MIOpen: Info2 [SaveBinary] Saving binary for: "gtest_rtc_stl_use.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_2 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 1.7119 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.obj"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIOPEN_LAYER_NCHW=1 -DMIOPEN_LAYER_NHWC=0 -DMIO_BN_VARIANT=0 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_3 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenBatchNormFwdTrainSpatial.cpp.obj') AND (kernel_args = '-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIOPEN_LAYER_NCHW=1 -DMIOPEN_LAYER_NHWC=0 -DMIO_BN_VARIANT=0 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_3 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.0855 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.obj"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIOPEN_LAYER_NCHW=1 -DMIOPEN_LAYER_NHWC=0 -DMIO_BN_VARIANT=0 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -nostdinc -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_3 -mcpu=gfx1151
+MIOpen: Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
+MIOpen: Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp
+MIOpen: Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-96140-6-3cee9f\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-96140-6-3cee9f\include\batchnorm_functions.hpp:30:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-96140-6-3cee9f\include\configuration.hpp:34:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-96140-6-3cee9f\include\vector_types.hpp:8:
+C:\Users\rocm\AppData\Local\Temp\comgr-96140-6-3cee9f\include\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found
+  151 | #include <type_traits>
+      |          ^~~~~~~~~~~~~
+1 error generated when compiling for gfx1151.
+C:/wa/projects/miopen/test/gtest/hiprtc_selfcontained.cpp(196): error: Value of: Compiles(h, kProgramName, kKernelName, std::string(kBatchNormDfn) + " " + isolation, "")
+  Actual: false
+Expected: true
+MIOpenBatchNormFwdTrainSpatial failed to runtime-compile while no host standard library was reachable: a kernel header has regressed to requiring host-STL includes
+
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [LoadBinary] Loading binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.obj"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIOPEN_LAYER_NCHW=1 -DMIOPEN_LAYER_NHWC=0 -DMIO_BN_VARIANT=0 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_4 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'MIOpenBatchNormFwdTrainSpatial.cpp.obj') AND (kernel_args = '-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIOPEN_LAYER_NCHW=1 -DMIOPEN_LAYER_NHWC=0 -DMIO_BN_VARIANT=0 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_4 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.2042 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.obj"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIOPEN_LAYER_NCHW=1 -DMIOPEN_LAYER_NHWC=0 -DMIO_BN_VARIANT=0 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_4 -mcpu=gfx1151
+MIOpen: Info2 [SaveBinary] Saving binary for: "MIOpenBatchNormFwdTrainSpatial.cpp.obj"; args: -DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_FPMIX=0 -DMIOPEN_USE_BFPMIX=0 -DMIOPEN_LAYER_NCHW=1 -DMIOPEN_LAYER_NHWC=0 -DMIO_BN_VARIANT=0 -DMIO_BN_GRP0=1024 -DMIO_BN_GRP1=1 -DMIO_BN_GRP2=1 -DMIOPEN_GTEST_RTC_NONCE=2172027979843900_4 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 7.0891 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+[  FAILED  ] CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl (13435 ms)
+[----------] 1 test from CPU_HipRtcSelfContained_NONE (13435 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (13435 ms total)
+[  PASSED  ] 0 tests.
+[  FAILED  ] 1 test, listed below:
+[  FAILED  ] CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl
+
+ 1 FAILED TEST

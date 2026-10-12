@@ -1,0 +1,48 @@
+{
+  "mission": "MIOPEN-PR13437-GTEST-ARCHITECTURE-CLOSURE-R1",
+  "date": "2026-10-12",
+  "pr": {"url": "https://github.com/ROCm/rocm-libraries/pull/13437", "number": 13437,
+          "base": "54b079ca753bb3818017d5e724e208c03a43fd5a",
+          "head_before": "64214f24756f117339c9d5c514f61d30d3853d3a",
+          "head_after": "1845028f4942cec5774f19c69227083f0d389ce0",
+          "new_commits": ["1d2481cf", "1845028f"],
+          "push": "fast-forward, no force"},
+  "maintainer_requirement": {
+    "standalone_removed": true,
+    "native_gtest_integrated": "test/gtest/hiprtc_selfcontained.cpp",
+    "runtime_compile_api_reused": "miopen::Handle::AddKernel (handle_test.cpp / miopen_cstdint_lp64.cpp pathway)",
+    "custom_cmake_lines_removed": 131,
+    "custom_cmake_lines_added": 0,
+    "test_names": ["CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl"],
+    "discrete_and_combined": "discrete: target test_hiprtc_selfcontained auto-registered, ran green via ctest; combined: TU in miopen_gtest build graph, check_names wired (configure verified)"
+  },
+  "regression_fidelity": {
+    "actual_batchnorm_kernel": "embedded MIOpenBatchNormFwdTrainSpatial.cpp via empty kernel_src",
+    "genuine_no_stl_probe": "-nostdinc (fallback -nostdinc++) + paired-polarity __has_include probe",
+    "probe_tri_state": "STL_UNREACHABLE / STL_REACHABLE(skip, explicit) / PROBE_BROKEN(fail-closed)",
+    "windows_positive": "PASS (gfx1151, ROCm 7.14 wheels, 5 fresh RTC compiles)",
+    "unpatched_negative": "FAIL at 54b079ca with \"fatal error: 'type_traits' file not found\" (miopen_type_traits.hpp:151, single error)",
+    "ordinary_control": "PASS (P0 trivial kernel, every run)",
+    "with_stl_control": "PASS both legs where ambient STL usable",
+    "code_object_verification": "hipModuleLoadData during AddKernel + SaveBinary entries",
+    "no_false_skip": "inconsistent probes fail; isolation proven before verdicts",
+    "no_false_pass": "runtime nonce defeats persistent+in-process kernel caches; negative leg recompiled (no cached shortcut)"
+  },
+  "review": {
+    "reviewer_a_maintainer": "GO WITH NITS (0 blocker/0 major)",
+    "reviewer_b_hiprtc": "GO WITH NITS (0 blocker; 3 majors resolved: ctest evidence produced green, DLL-PATH/category items documented as inherited-from-precedent)",
+    "reviewer_c_integrity": "PASS (0 blocker/0 major; nit on commit-message wording fixed pre-push)",
+    "open_blockers": 0,
+    "remaining_maintainer_questions": ["CI execution on 1845028f", "possible preference between handle-driven vs compile-only test form"]
+  },
+  "integrity": {
+    "original_five_commits_preserved": true,
+    "production_source_changes_vs_64214f24": "radix.hpp + initializer_list.hpp comment/include cleanup only (1845028f); all other src/ untouched",
+    "amd_copyright_retained": true,
+    "spdx_retained": true,
+    "no_force_push": true,
+    "no_duplicate_pr": true,
+    "no_historical_evidence_rewrite": true
+  },
+  "verdict": "GTEST_MIGRATION_VALIDATED_PR_UPDATED"
+}

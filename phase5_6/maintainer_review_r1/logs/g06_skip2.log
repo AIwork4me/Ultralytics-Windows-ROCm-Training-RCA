@@ -1,0 +1,24 @@
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CPU_HipRtcSelfContained_NONE
+[ RUN      ] CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl
+HIP Library Path: C:\Windows\SYSTEM32\amdhip64_7.dll
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' gtest_rtc_stl_probe.cpp: HIPRTC_ERROR_COMPILATION (6)
+MIOpen: Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: gtest_rtc_stl_probe.cpp
+MIOpen: Warning [BuildHip] C:\Users\rocm\AppData\Local\Temp\comgr-71548-2-a6c5cf\input\gtest_rtc_stl_probe.cpp:5:2: error: MIOPEN_GTEST_STL_REACHABLE
+    5 | #error MIOPEN_GTEST_STL_REACHABLE
+      |  ^
+1 error generated when compiling for gfx1151.
+C:/w56/projects/miopen/test/gtest/hiprtc_selfcontained.cpp(186): Skipped
+host C++ standard library is still reachable under -DMIOPEN_GTEST_G06_FORCE_SKIP=1 (injected by the runtime-compiler environment); the no-STL self-containment condition is NOT tested by this run
+
+[  SKIPPED ] CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl (11863 ms)
+[----------] 1 test from CPU_HipRtcSelfContained_NONE (11863 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (11863 ms total)
+[  PASSED  ] 0 tests.
+[  SKIPPED ] 1 test, listed below:
+[  SKIPPED ] CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl

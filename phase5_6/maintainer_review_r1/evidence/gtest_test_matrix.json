@@ -1,0 +1,11 @@
+{
+  "matrix": [
+    {"leg": "B patched 1845028f", "P0_trivial_isolated": "compile+save", "P1_probe_isolated": "compile+save (STL_UNREACHABLE)", "P2_stl_use_ambient": "compile+save", "BN_isolated": "compile+save+module-load PASS", "BN_ambient": "compile+save PASS", "verdict": "gtest PASSED (13.4-13.7s)"},
+    {"leg": "A unpatched 54b079ca", "P0_trivial_isolated": "compile+save", "P1_probe_isolated": "compile+save (STL_UNREACHABLE)", "P2_stl_use_ambient": "compile+save", "BN_isolated": "FAIL 'type_traits' file not found (single error)", "BN_ambient": "compile+save PASS", "verdict": "gtest FAILED (regression detected)"},
+    {"leg": "forced-skip variant (G06)", "isolation": "no-op define", "P1": "fails (#error reachable)", "P2": "compiles", "verdict": "GTEST_SKIP; ctest '(Skipped)'; JUnit result=skipped"}
+  ],
+  "discovery": {"gtest_list": "CPU_HipRtcSelfContained_NONE.RtCompilesBatchNormWithoutHostStl",
+                 "check_names": "exit 0 (schema + uniqueness 295 files)",
+                 "ctest": "Test #111 under MIOPEN_TEST_ALL=ON; default-Smoke parity with CPU_MiopenCstdintLP64_NONE; YAML CPU_* tiers (standard=pr label) cover it"},
+  "cache": "per-run nonce option in params; LoadBinary misses + SaveBinary writes logged every compile; no cross-leg reuse"
+}
