@@ -1,0 +1,8 @@
+ projects/miopen/src/CMakeLists.txt                 |   1 +
+ .../miopen/src/kernels/miopen_initializer_list.hpp |  45 +++++
+ projects/miopen/src/kernels/miopen_type_traits.hpp | 151 ++++++++++-----
+ projects/miopen/src/kernels/miopen_utility.hpp     |  25 +--
+ projects/miopen/src/kernels/radix.hpp              |   9 +-
+ projects/miopen/src/kernels/tensor_view.hpp        |   2 +-
+ .../miopen/test/gtest/hiprtc_selfcontained.cpp     | 204 +++++++++++++++++++++
+ 7 files changed, 376 insertions(+), 61 deletions(-)

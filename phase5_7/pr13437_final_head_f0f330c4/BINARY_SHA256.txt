@@ -1,0 +1,5 @@
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a  wheel_MIOpen.dll (pristine, restored & verified after D/F)
+c739cb0e143162694c331ef8137e686418d003769ed7ad25c96945fe63a6fb42  C:\bfin\bin\MIOpen.dll (built from clean f0f330c4; swapped into wheel for D/F)
+5f0c3f131ab21c53e729d65f1f8272291b9cdf23ce54374e82fba17c1e61e33e  C:\bfin\bin\test_hiprtc_selfcontained.exe
+aecb6ce4bc2d53d9e1e6100de009eb6823c652fca9e425335a17d426b76c0d7f  C:\bfin\bin\test_kthvalue.exe
+04fdffa6df8f6019e1e13dbf8a1aaba5721157e5241a3cc79d6b6ecbccf98497  negative-control test file (LF-normalized; == f0f330c4 blob of projects/miopen/test/gtest/hiprtc_selfcontained.cpp)

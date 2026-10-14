@@ -1,0 +1,78 @@
+Note: Google Test filter = CPU_HipRtcSelfContained_NONE.*
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CPU_HipRtcSelfContained_NONE
+[ RUN      ] CPU_HipRtcSelfContained_NONE.RtCompilesInlineKernelWithoutHostStl
+HIP Library Path: C:\Windows\SYSTEM32\amdhip64_7.dll
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: C:\bfin\bin\MIOpenCKGroupedConv_gfx1151.dll
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: MIOpenCKGroupedConv_gfx1151.dll
+MIOpen: Info2 [OpenRuntimeLibraryForDevice] Loaded CK grouped conv library from default path: MIOpenCKGroupedConv_gfx1151.dll
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Info [Handle] stream: 0000000000000000, device_id: 0
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [GetLibPath] Lib Path: "C:\\bfin\\bin"
+MIOpen: Info2 [SQLiteBase] Initializing system database file ""
+MIOpen: Info [KernDb] database not present
+MIOpen: Info2 [SQLiteBase] Initializing user database file "C:\\Users\\rocm\\.miopen\\cache\\3.6.2.f0f330c4\\gfx1151_20.ukdb"
+MIOpen: Info2 [KernDb] Database created successfully
+MIOpen: Info2 [LoadBinary] Loading binary for: "gtest_rtc_trivial.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_0 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'gtest_rtc_trivial.cpp.obj') AND (kernel_args = '-nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_0 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.0383 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "gtest_rtc_trivial.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_0 -mcpu=gfx1151
+MIOpen: Info [PrintVersion] HIPRTC v.9.0
+MIOpen: Info2 [SaveBinary] Saving binary for: "gtest_rtc_trivial.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_0 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 2.0636 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [LoadBinary] Loading binary for: "gtest_rtc_stl_probe.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_1 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'gtest_rtc_stl_probe.cpp.obj') AND (kernel_args = '-nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_1 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.067 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "gtest_rtc_stl_probe.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_1 -mcpu=gfx1151
+MIOpen: Info2 [SaveBinary] Saving binary for: "gtest_rtc_stl_probe.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_1 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 1.6823 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [LoadBinary] Loading binary for: "gtest_rtc_stl_use.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=116007495326500_2 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'gtest_rtc_stl_use.cpp.obj') AND (kernel_args = ' -DMIOPEN_GTEST_RTC_NONCE=116007495326500_2 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.0644 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "gtest_rtc_stl_use.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=116007495326500_2 -mcpu=gfx1151
+MIOpen: Info2 [SaveBinary] Saving binary for: "gtest_rtc_stl_use.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=116007495326500_2 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 1.8718 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [default_allocator] GetAvailableMemory 83731566592
+MIOpen: Info2 [default_allocator] hipMalloc 32 at 0000000A00020000 Ok
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [LoadBinary] Loading binary for: "gtest_rtc_selfcontained.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_3 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'gtest_rtc_selfcontained.cpp.obj') AND (kernel_args = '-nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_3 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.1008 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "gtest_rtc_selfcontained.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_3 -mcpu=gfx1151
+MIOpen: Info2 [SaveBinary] Saving binary for: "gtest_rtc_selfcontained.cpp.obj"; args: -nostdinc -DMIOPEN_GTEST_RTC_NONCE=116007495326500_3 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 1.7425 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [run] kernel_name = gtest_rtc_selfcontained, global_work_dim = { 1, 1, 1 }, local_work_dim = { 1, 1, 1 }
+MIOpen: Info2 [default_deallocator] hipFree 32 at 0000000A00020000 Ok
+MIOpen: Info2 [default_allocator] GetAvailableMemory 83723112448
+MIOpen: Info2 [default_allocator] hipMalloc 32 at 0000000A00020000 Ok
+MIOpen: Info2 [AddKernel] Key: gtest_rtc_regression ""
+MIOpen: Info2 [LoadBinary] Loading binary for: "gtest_rtc_selfcontained.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=116007495326500_4 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] SELECT kernel_blob, kernel_hash, uncompressed_size FROM kern_db WHERE (kernel_name = 'gtest_rtc_selfcontained.cpp.obj') AND (kernel_args = ' -DMIOPEN_GTEST_RTC_NONCE=116007495326500_4 -mcpu=gfx1151');
+MIOpen: Info2 [Measure] Db::FindRecord time: 0.0829 ms
+MIOpen: Info2 [LoadBinary] Unable to load binary for: "gtest_rtc_selfcontained.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=116007495326500_4 -mcpu=gfx1151
+MIOpen: Info2 [SaveBinary] Saving binary for: "gtest_rtc_selfcontained.cpp.obj"; args:  -DMIOPEN_GTEST_RTC_NONCE=116007495326500_4 -mcpu=gfx1151
+MIOpen: Info2 [Prepare] INSERT OR REPLACE INTO kern_db(kernel_name, kernel_args, kernel_blob, kernel_hash, uncompressed_size) VALUES(?, ?, ?, ?, ?);
+MIOpen: Info2 [Measure] Db::StoreRecord time: 2.1607 ms
+MIOpen: Info2 [LoadProgram] Skipped attaching a binary to the program for future serialization as it is in permanent file storage
+MIOpen: Info2 [run] kernel_name = gtest_rtc_selfcontained, global_work_dim = { 1, 1, 1 }, local_work_dim = { 1, 1, 1 }
+MIOpen: Info2 [default_deallocator] hipFree 32 at 0000000A00020000 Ok
+[       OK ] CPU_HipRtcSelfContained_NONE.RtCompilesInlineKernelWithoutHostStl (13790 ms)
+[----------] 1 test from CPU_HipRtcSelfContained_NONE (13790 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (13790 ms total)
+[  PASSED  ] 1 test.

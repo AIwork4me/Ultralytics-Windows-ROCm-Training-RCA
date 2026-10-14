@@ -1,0 +1,47 @@
+{
+  "package": "pr13437_final_head_f0f330c4",
+  "created": "2026-10-15",
+  "purpose": "Windows final-HEAD evidence closure for ROCm/rocm-libraries PR #13437",
+  "source": {
+    "repository": "AIwork4me/rocm-libraries (fork of ROCm/rocm-libraries)",
+    "branch": "fix/miopen-hiprtc-no-host-stl",
+    "head_commit": "f0f330c4837a3c4ca9736a8059410cca1a7c2b85",
+    "base_commit": "b8cf0e7b526f4a25c0623f5b2a4fe41e03ede179",
+    "commit_series": ["c6ed813117599081cd3c6138016adcdb4308c6a0", "f0f330c4837a3c4ca9736a8059410cca1a7c2b85"],
+    "diff_vs_base": {"files": 7, "insertions": 376, "deletions": 61},
+    "worktree": "C:/w56 (clean before configure and after build; git status empty)",
+    "cmake_source_dir": "C:/w56/projects/miopen",
+    "runtime_cache_label_embedded_in_logs": "3.6.2.f0f330c4"
+  },
+  "build": {
+    "build_dir": "C:/bfin (created empty this round)",
+    "generator": "Ninja",
+    "build_type": "RelWithDebInfo",
+    "targets": ["MIOpen", "bin/test_hiprtc_selfcontained.exe", "bin/test_kthvalue.exe"],
+    "configure_command": "cmake -S C:/w56/projects/miopen -B C:/bfin -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_C_COMPILER=<wheel clang.exe> -DCMAKE_CXX_COMPILER=<wheel clang++.exe> -DCMAKE_MAKE_PROGRAM=<phase3_buildtools ninja.exe> -DBUILD_DEV=OFF -DBUILD_TESTING=ON -DMIOPEN_TEST_ALL=ON -DMIOPEN_TEST_DISCRETE=ON -DMIOPEN_BACKEND=HIP -DMIOPEN_USE_COMGR=ON -DMIOPEN_BUILD_CK=OFF -DMIOPEN_BUILD_DRIVER=OFF -DMIOPEN_USE_COMPOSABLEKERNEL=OFF -DMIOPEN_TEST_COMPOSABLEKERNEL=OFF -DMIOPEN_ENABLE_AI_IMMED_MODE_FALLBACK=OFF -DMIOPEN_ENABLE_AI_KERNEL_TUNING=OFF -DHALF_INCLUDE_DIR=<phase3_deps cmake_shims/include> -DROCRAND_INCLUDE_DIR=<phase3_deps stage_rocrand> -DUNZIPPER=<phase3_deps tools/bzip2.cmd> -DPython3_EXECUTABLE=<conda base python.exe> -DCMAKE_PREFIX_PATH=<phase3_deps dep_prefix/Library + rocm-cmake + cmake_shims {hip,hip-lang,rocblas,amd_comgr,hiprtc,rocrand,rocm-core,nlohmann_json}> -DFETCHCONTENT_SOURCE_DIR_FRUGALLY_DEEP=<prefetched> -DFETCHCONTENT_SOURCE_DIR_FUNCTIONALPLUS=<prefetched> -DFETCHCONTENT_SOURCE_DIR_GTEST=<prefetched>",
+    "deviations_from_previous_r2_build": [
+      "github.com was unreachable mid-round; frugally-deep v0.15.31, FunctionalPlus v0.2.25 and googletest v1.17.0 were prefetched from codeload.github.com and verified byte-exact against the URL_HASH values declared in cmake/ThirdParty.cmake (49bf5e30..., 9b5e24bb..., 65fab701...); they were injected via FETCHCONTENT_SOURCE_DIR_* so CMake's own download-time hash check did not execute - the manual sha256 verification substitutes for it",
+      "CMAKE_HIP_ARCHITECTURES defaulted to gfx906 (b56p recorded none). No effect on validated paths: the regression and kthvalue kernels compile at runtime through hipRTC with -mcpu=gfx1151 from the live device query; no offline GPU code objects are exercised by the validated tests",
+      "C language enabled implicitly via BUILD_TESTING=ON (b56p had it too; recorded here because the C compiler vars appear in the cache diff)"
+    ],
+    "logs": ["raw/build/configure_bfin.log", "raw/build/build_bfin.log", "raw/build/toolchain.txt"],
+    "configure_attempts_note": "five preliminary configure attempts failed in sequence before the successful one: (1) wrong ROCm root via base-conda hipconfig PATH leak; (2) FetchContent hang on frugally-deep when github.com became unreachable; (3) half-populated eigen3 cache after a partial rerun; (4) BUILD_TESTING/MIOPEN_TEST_DISCRETE omitted so no test targets existed; (5) MIOPEN_USE_COMPOSABLEKERNEL left at its ON default so a CK package was required. Each attempt's log was overwritten by the next - only the final successful configure log is archived. No source file was touched by any attempt"
+  },
+  "post_audit_reruns": {
+    "reason": "Gate A/B audit findings, corrected same round",
+    "E_kthvalue_isolated": "MIOPEN_LOG_LEVEL=6 with USERPROFILE redirected to an empty temp home -> fresh kernel DB (cache label 3.6.2.f0f330c4 preserved); shows 3 fresh per-dtype compiles (Unable-to-load -> SaveBinary) + 27 launches; supersedes the cache-served l6 log",
+    "D_batchnorm_v2": "same swap protocol with tee'd transcript (raw/batchnorm/swap_transcript_v2.log) and UTC banner lines for freshness; numerics identical to run 1 (deterministic, seeded)"
+  },
+  "binaries": {
+    "MIOpen.dll": {"sha256": "c739cb0e143162694c331ef8137e686418d003769ed7ad25c96945fe63a6fb42", "size_bytes": 519294464},
+    "test_hiprtc_selfcontained.exe": {"sha256": "5f0c3f131ab21c53e729d65f1f8272291b9cdf23ce54374e82fba17c1e61e33e"},
+    "test_kthvalue.exe": {"sha256": "aecb6ce4bc2d53d9e1e6100de009eb6823c652fca9e425335a17d426b76c0d7f"},
+    "wheel_MIOpen_dll_pristine": {"sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a", "restored_and_verified_after_runs": true}
+  },
+  "upstream_safety": {
+    "upstream_pr_modified": false,
+    "contributor_branch_pushed": false,
+    "actions_on_amd_repos": "read-only GitHub API queries only",
+    "github_actions_triggered": false
+  }
+}

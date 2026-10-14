@@ -1,0 +1,3 @@
+c739cb0e143162694c331ef8137e686418d003769ed7ad25c96945fe63a6fb42 */c/bfin/bin/MIOpen.dll
+5f0c3f131ab21c53e729d65f1f8272291b9cdf23ce54374e82fba17c1e61e33e */c/bfin/bin/test_hiprtc_selfcontained.exe
+aecb6ce4bc2d53d9e1e6100de009eb6823c652fca9e425335a17d426b76c0d7f */c/bfin/bin/test_kthvalue.exe
