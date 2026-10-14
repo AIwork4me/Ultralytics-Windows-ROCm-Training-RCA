@@ -1,0 +1,12 @@
+
+Microsoft Windows [°æ±¾ 10.0.26200.9457]
+GameViewer Virtual Display Adapter
+AMD Radeon(TM) 8060S Graphics
+--- python/torch ---
+python 3.13.16
+torch 2.12.0+rocm7.14.0
+hip 7.14.60850
+device AMD Radeon(TM) 8060S Graphics
+cap (11, 5)
+--- wheel MIOpen.dll hash (pre-swap verify) ---
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a *C:/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll

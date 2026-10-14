@@ -8,6 +8,21 @@ ROCm PyTorch (Radeon 8060S / gfx1151), while YOLO inference works fine.**
 > independently reproduced engineering investigation. Every claim links to
 > raw logs in [`evidence/`](evidence/).
 
+## Current status (2026-10-15): upstream PR open, final-HEAD evidence published
+
+- Upstream PR: [ROCm/rocm-libraries#13437](https://github.com/ROCm/rocm-libraries/pull/13437)
+  — "MIOpen: make HIPRTC kernel includes self-contained without host STL".
+- Final tested PR SHA: **`f0f330c4837a3c4ca9736a8059410cca1a7c2b85`**
+  (2 commits on develop `b8cf0e7b`; PR open, not merged).
+- Windows final-HEAD evidence package (this round, all five legs re-run
+  against the pinned commit; positive PASS + negative control
+  EXPECTED_FAIL with the exact original signature; three independent
+  audits A/B/C): **[`phase5_7/pr13437_final_head_f0f330c4/`](phase5_7/pr13437_final_head_f0f330c4/)**
+- CI: workflows approval-gated upstream (pending maintainer approval);
+  no local claim about upstream CI results. PR not merged.
+- Historical phases below are frozen snapshots of earlier patch revisions —
+  they document the investigation path, not the current PR HEAD.
+
 ## TL;DR
 
 **Working** (same machine, same stack): `pip install ultralytics` + AMD ROCm
