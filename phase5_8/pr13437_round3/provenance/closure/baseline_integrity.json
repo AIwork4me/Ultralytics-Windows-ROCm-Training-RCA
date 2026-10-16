@@ -1,0 +1,15 @@
+{
+  "head": "b0a52dd14e58af39aecd5c67bd080aeeba43de45",
+  "tracked": 135,
+  "entries": 134,
+  "self_entry": true,
+  "mismatches": [
+    {
+      "path": "./SHA256SUMS.txt",
+      "recorded": "e7cb5625d57d686883230349dda6f9bf29652362f00b790b78041b04b1e5901f",
+      "actual": "3c29cdcc49be47a90e18b975b50b8cf133fe4770e4ac71a14a470e79336954f7"
+    }
+  ],
+  "checkout_blob_mismatches": [],
+  "bytes": 2950273
+}

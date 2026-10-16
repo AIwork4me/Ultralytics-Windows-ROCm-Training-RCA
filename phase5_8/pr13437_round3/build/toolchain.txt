@@ -1,0 +1,5 @@
+=== toolchain ===
+cmake version 4.4.4
+1.13.2.git.kitware.jobserver-pipe-1
+AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:1efe4605317a40d2170d33617075bd5675d0d558)
+Target: x86_64-pc-windows-msvc

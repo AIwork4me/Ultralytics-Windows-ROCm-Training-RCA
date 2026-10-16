@@ -1,0 +1,307 @@
+{
+  "result": "PASS",
+  "scope": "ten retained paired ELF .text sections; kth cache-to-ELF link only",
+  "pairs": [
+    {
+      "pair": "kth_fp32",
+      "text_bytes": 5376,
+      "text_sha256": "1361630c99a580d2f84245b8096145d659808e204e82f2d60e97c7bb50af0ab8",
+      "elf_A_sha256": "804cd6ce008fc2b826a69391ae38c6049bd6c3bab80df9d7ce639808f411dcd5",
+      "elf_B_sha256": "0c421bd472152b715ce5e2706ecd6f93c41778099f43b04cf738bdcd5976cd0c",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynamic",
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab",
+        ".symtab"
+      ]
+    },
+    {
+      "pair": "kth_fp16",
+      "text_bytes": 5504,
+      "text_sha256": "acb38c58821a216ef1568ed862b0962cae5ae1367b64bac237afff5d4e6ca3b0",
+      "elf_A_sha256": "1f66bdfac9a51881637bdc71748330424b7fd72645b56272c55cb3d8884c0ee8",
+      "elf_B_sha256": "f96cce6f5e9eb18f19f0602515db73cf66f8dd76385dc433980856f6d91943e8",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynamic",
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab",
+        ".symtab"
+      ]
+    },
+    {
+      "pair": "kth_bf16",
+      "text_bytes": 5376,
+      "text_sha256": "84fd6b1840e5216bd66425a2534526d57afe5247dcf6ad0b8167c7a5c8b328e4",
+      "elf_A_sha256": "3f3d59a4a81742a0be4833c7d6fa8f58d3b0dee5c3b46a7a7f7b6752b59fb645",
+      "elf_B_sha256": "a2553331a2c3d4eb785f24b2f11f68661cd3772e392352eab7bbc724a1e63fa6",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynamic",
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab",
+        ".symtab"
+      ]
+    },
+    {
+      "pair": "bnx0",
+      "text_bytes": 8832,
+      "text_sha256": "c2b5fa0a8d4db30d9b944704037259d5f87b308d152131da250f76e06a7bd618",
+      "elf_A_sha256": "fd858b1c606a80eca3f0870a3e74e53cba68cae16592fc8ffc8ef1c276946b28",
+      "elf_B_sha256": "b0783ee7eb2f0fa649cf5435c153b618e64da106c95f9933a7c096489083db78",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab"
+      ],
+      "isa_body_equal": true,
+      "isa_instruction_lines": 1289
+    },
+    {
+      "pair": "bnx1",
+      "text_bytes": 3840,
+      "text_sha256": "96e306063d89f27cc8bb4e54eb44feeb21d44e9a59e64a09a6f87d15ed34d024",
+      "elf_A_sha256": "59852d51012c73615d04552407d8711da40ee6734bdad0b3aacb69ad7ba7214c",
+      "elf_B_sha256": "9a0d42a230233c008d02fc3dc8dbd7389f03e9494c225e0a1fd0635cf0806c25",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab"
+      ],
+      "isa_body_equal": true,
+      "isa_instruction_lines": 663
+    },
+    {
+      "pair": "bnx2",
+      "text_bytes": 5888,
+      "text_sha256": "7b12d2324c6d14d80463f98d67229b0789dc3239670dcf88e4b6ef76c1ddf29c",
+      "elf_A_sha256": "7baf5a5d4742a8ff7b1fc15695daabae0c9be20c56cb78e7bb1a9dd994c97517",
+      "elf_B_sha256": "68bb2b3c8f22c2bed81dc82159a8a231f434d2e5d841f43d35dbf6f03672da7a",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab"
+      ],
+      "isa_body_equal": true,
+      "isa_instruction_lines": 974
+    },
+    {
+      "pair": "bnx3",
+      "text_bytes": 2304,
+      "text_sha256": "1bdceb3a2574c296b83f784acafe2a7af4ae2bc1b106dffd5cd7f594d1172e0e",
+      "elf_A_sha256": "9276b94cb1c6c15312cc6857f801cb76253dbae9acac70b71119a5e0635811e4",
+      "elf_B_sha256": "6b8d004640942ee71f103484b744c1a7a38018e0db55d4ab60b2409bd2fa7cb4",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab"
+      ],
+      "isa_body_equal": true,
+      "isa_instruction_lines": 453
+    },
+    {
+      "pair": "bnx4",
+      "text_bytes": 5504,
+      "text_sha256": "552e96cd4bceb8e5deb5a86f3d97371ee6d80975a0767a5b3ec0283c877c54e9",
+      "elf_A_sha256": "ac7d0b194b3e15b12284f94f64ef909a155a6127687070dd69a4a38163d57ec3",
+      "elf_B_sha256": "78a824f48c50b230bb991aa097cff67bbc581a09e7fe2d747bf0860ceb9ffd81",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab"
+      ],
+      "isa_body_equal": true,
+      "isa_instruction_lines": 941
+    },
+    {
+      "pair": "bnx5",
+      "text_bytes": 4864,
+      "text_sha256": "657278b60f25de34e6ee1763f12867a54f3510b64ee44c05bffbbaa2f4bf91b5",
+      "elf_A_sha256": "2b50b3621f2b0eccf0a8b714b557502edca21b35bc0e0f4e1f5f54255658ca5b",
+      "elf_B_sha256": "c8461e650259c9e46b7c4ec5b84e78219b17b1fa45ad374676985a9e5821900a",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab"
+      ],
+      "isa_body_equal": true,
+      "isa_instruction_lines": 820
+    },
+    {
+      "pair": "bnx6",
+      "text_bytes": 4352,
+      "text_sha256": "2fdbe99b9b04d24fa701d307392a46b3513bb660421fd00fe189c00b3a60e112",
+      "elf_A_sha256": "696c0bc80be00b5e7211629b8e0ae3a3197d2b88f9527edda1a6b61b2258893f",
+      "elf_B_sha256": "b24970363ed7674f47d4d3b766b7328598acab686de7d4c2b417fd165d03f52b",
+      "text_equal": true,
+      "note_equal": true,
+      "differing_sections": [
+        ".dynstr",
+        ".gnu.hash",
+        ".hash",
+        ".strtab"
+      ],
+      "isa_body_equal": true,
+      "isa_instruction_lines": 747
+    }
+  ],
+  "cache_snapshots": [
+    {
+      "label": "A",
+      "path": ".miopen/cache/3.6.2.f0f330c4/gfx1151_20.ukdb",
+      "db_sha256": "18f122b2ca13c2b5dde246398d74e5340834194f461cf56aeb7f2457226917cb",
+      "rows": [
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=1 -DIN_OUT_TYPE=ushort -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "d9e9f7428a0d77be774610ccf96e5d25ce049615b3fa9234577435ade2159d79",
+          "elf_sha256": "3f3d59a4a81742a0be4833c7d6fa8f58d3b0dee5c3b46a7a7f7b6752b59fb645",
+          "retained_elf": "raw/perf/kth_bf16_A.elf",
+          "exact_elf_match": true
+        },
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "be5968aae6cbf57af220f990243ad5db2fa12e5ce92d765200d21c886427da10",
+          "elf_sha256": "804cd6ce008fc2b826a69391ae38c6049bd6c3bab80df9d7ce639808f411dcd5",
+          "retained_elf": "raw/perf/kth_fp32_A.elf",
+          "exact_elf_match": true
+        },
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "3b8aabd7da7ecdcd10b01b300e19a44214593b09dfbcc72fb3642e37da7a46af",
+          "elf_sha256": "1f66bdfac9a51881637bdc71748330424b7fd72645b56272c55cb3d8884c0ee8",
+          "retained_elf": "raw/perf/kth_fp16_A.elf",
+          "exact_elf_match": true
+        }
+      ]
+    },
+    {
+      "label": "A",
+      "path": "cache/3.6.2.f0f330c4/gfx1151_20.ukdb",
+      "db_sha256": "18f122b2ca13c2b5dde246398d74e5340834194f461cf56aeb7f2457226917cb",
+      "rows": [
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=1 -DIN_OUT_TYPE=ushort -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "d9e9f7428a0d77be774610ccf96e5d25ce049615b3fa9234577435ade2159d79",
+          "elf_sha256": "3f3d59a4a81742a0be4833c7d6fa8f58d3b0dee5c3b46a7a7f7b6752b59fb645",
+          "retained_elf": "raw/perf/kth_bf16_A.elf",
+          "exact_elf_match": true
+        },
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "be5968aae6cbf57af220f990243ad5db2fa12e5ce92d765200d21c886427da10",
+          "elf_sha256": "804cd6ce008fc2b826a69391ae38c6049bd6c3bab80df9d7ce639808f411dcd5",
+          "retained_elf": "raw/perf/kth_fp32_A.elf",
+          "exact_elf_match": true
+        },
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "3b8aabd7da7ecdcd10b01b300e19a44214593b09dfbcc72fb3642e37da7a46af",
+          "elf_sha256": "1f66bdfac9a51881637bdc71748330424b7fd72645b56272c55cb3d8884c0ee8",
+          "retained_elf": "raw/perf/kth_fp16_A.elf",
+          "exact_elf_match": true
+        }
+      ]
+    },
+    {
+      "label": "B",
+      "path": ".miopen/cache/3.6.2.d4b574ac/gfx1151_20.ukdb",
+      "db_sha256": "a70b9a230ecb8f2c67aec8b7b784f29aee835ed533c1f605eed28b922e989689",
+      "rows": [
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=1 -DIN_OUT_TYPE=ushort -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "353ba261e9034ba87ceae6eb2c32b1494c49a53de72ac6fe16acb69faccd923d",
+          "elf_sha256": "a2553331a2c3d4eb785f24b2f11f68661cd3772e392352eab7bbc724a1e63fa6",
+          "retained_elf": "raw/perf/kth_bf16_B.elf",
+          "exact_elf_match": true
+        },
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "589fe7051ca784a1d6099c88614e5594e92249a06f6cd4a879e96fdd717cb4c3",
+          "elf_sha256": "0c421bd472152b715ce5e2706ecd6f93c41778099f43b04cf738bdcd5976cd0c",
+          "retained_elf": "raw/perf/kth_fp32_B.elf",
+          "exact_elf_match": true
+        },
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "b6c592687f8965abff47eef98fb7cd01c0cc933bb73a75bd19de8dc6c3ae475d",
+          "elf_sha256": "f96cce6f5e9eb18f19f0602515db73cf66f8dd76385dc433980856f6d91943e8",
+          "retained_elf": "raw/perf/kth_fp16_B.elf",
+          "exact_elf_match": true
+        }
+      ]
+    },
+    {
+      "label": "B",
+      "path": "cache/3.6.2.d4b574ac/gfx1151_20.ukdb",
+      "db_sha256": "a70b9a230ecb8f2c67aec8b7b784f29aee835ed533c1f605eed28b922e989689",
+      "rows": [
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=1 -DIN_OUT_TYPE=ushort -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "353ba261e9034ba87ceae6eb2c32b1494c49a53de72ac6fe16acb69faccd923d",
+          "elf_sha256": "a2553331a2c3d4eb785f24b2f11f68661cd3772e392352eab7bbc724a1e63fa6",
+          "retained_elf": "raw/perf/kth_bf16_B.elf",
+          "exact_elf_match": true
+        },
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=0 -DMIOPEN_USE_FP32=1 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=float -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "589fe7051ca784a1d6099c88614e5594e92249a06f6cd4a879e96fdd717cb4c3",
+          "elf_sha256": "0c421bd472152b715ce5e2706ecd6f93c41778099f43b04cf738bdcd5976cd0c",
+          "retained_elf": "raw/perf/kth_fp32_B.elf",
+          "exact_elf_match": true
+        },
+        {
+          "kernel_name": "MIOpenKthvalue.cpp.obj",
+          "args": "-DMIOPEN_USE_FP16=1 -DMIOPEN_USE_FP32=0 -DMIOPEN_USE_BFP16=0 -DIN_OUT_TYPE=half -DLOCAL_SIZE=256 -mcpu=gfx1151",
+          "blob_sha256": "b6c592687f8965abff47eef98fb7cd01c0cc933bb73a75bd19de8dc6c3ae475d",
+          "elf_sha256": "f96cce6f5e9eb18f19f0602515db73cf66f8dd76385dc433980856f6d91943e8",
+          "retained_elf": "raw/perf/kth_fp16_B.elf",
+          "exact_elf_match": true
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Archived caches contain three kthvalue rows per label, not BatchNorm rows.",
+    "BatchNorm historical source/option-set mapping is not independently reconstructed.",
+    "Machine-code equality does not establish whole-program timing equivalence."
+  ]
+}

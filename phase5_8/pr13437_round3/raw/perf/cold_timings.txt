@@ -1,0 +1,13 @@
+=== cold/warm A/B timing (2026-10-16T15:08:27Z) ===
+cold_gtest_A rc=0 wall_s=18.82
+cold_kthvalue_A rc=0 wall_s=18.53
+warm_kthvalue_A rc=0 wall_s=15.23
+cold_gtest_B rc=0 wall_s=21.15
+cold_kthvalue_B rc=0 wall_s=20.36
+warm_kthvalue_B rc=0 wall_s=15.12
+cold_gtest_A rc=0 wall_s=20.43
+cold_kthvalue_A rc=0 wall_s=19.75
+warm_kthvalue_A rc=0 wall_s=15.53
+cold_gtest_B rc=0 wall_s=21.74
+cold_kthvalue_B rc=0 wall_s=19.63
+warm_kthvalue_B rc=0 wall_s=14.53

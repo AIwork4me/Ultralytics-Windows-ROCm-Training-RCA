@@ -1,0 +1,26 @@
+# Agent D — retention, security and publication preparation
+
+Independent inspection on 2026-10-17 Asia/Shanghai. Evidence working package was compared against original commit `b0a52dd14e58af39aecd5c67bd080aeeba43de45`. Machine-readable results are in `agent_d_package_scan.json`; scanner source is `agent_d_final_scan.py`.
+
+## Phase 4 acceptance: PASS
+
+- All 135 originally tracked package files (2,950,273 bytes total before repair) remain present. No file category was deleted. Retaining approximately 2.95 MB is proportionate and avoids weakening independent extraction or historical failed-attempt disclosure.
+- The `.elf` pairs, compressed `.co`, disassemblies, SQLite cache DBs and their original sidecars remain intact. Duplicate trees and empty failed-output artifacts are retained with disclosure because cleanup offers little benefit and original preservation is safer. Independent execution of `scripts/verify_isa_pairs.py` returned PASS for ten `.text` pairs, seven retained BN instruction dumps, and all archived kthvalue cache-to-ELF comparisons. That does not independently establish BN cache/build mapping or whole-program timing non-regression.
+- All existing raw evidence is byte-identical to the original commit except the explicitly approved hostname redaction. `F_r3.log` remains exactly 27,612 bytes. Its 30 changed bytes are all ASCII `X`, solely on lines 71–72. Original digest `89ad020a6913bf30d7439d718dfd374537261e9276286f17a595403dde1aa201`; final digest `6d668973338f03aedf75cca7fbc8a11d4cc814c708324cb6e00e9fc8af84b629`. These match `provenance/LOG_REDACTION.md`. This sanitizes final payload, not earlier published Git history.
+- Newly archived CI logs exactly match their original local captures: gfx942 job, 338,688 bytes / SHA256 `262d44cb5f1880dddfc51d6732b683b10f0a1545e97579abd0465885c3bf44ed`; prior pre-commit job, 35,620 bytes / `2bcecd9bc5827a093a9693883dc6aca0f3485db899b700611d4bfd239a70abda`; local pre-commit run, 3,136 bytes / `4a463a2229a47e92a8ab7a61a0ca34c195aa9bf4aabba34c4ba6aedca55ca778`.
+- All tracked payload bytes were scanned for recognizable GitHub tokens, private-key headers, credential-bearing URLs, sensitive assignments, private IPv4 addresses and Windows machine names. No concrete credential was found. Remaining heuristic matches are desktop-shared prose and Windows SDK version strings, independently reviewed in context. Public Actions runner names, execution timestamps, build IDs and read-only GITHUB_TOKEN permission declarations are historical public-log provenance, not newly disclosed private machine identities. Generic local `rocm` paths remain useful reproduction context. This is a bounded scan, not a cryptographic guarantee that any arbitrary secret format is impossible.
+- Approve package-local `raw/** -whitespace` alongside existing `* -text`: immutable raw logs retain original whitespace/line endings while documentation/new scripts remain subject to normal whitespace diagnostics. This changes Git diff whitespace interpretation only and does not suppress a test or workflow. `git diff --cached --check` emitted no finding after normalization and this narrowly documented policy.
+
+## Phase 5 preparation: no identified publication defect in inspected scope; final gate pending
+
+Read repaired README, reproduction guide, functional and performance reports, gfx942 RCA, review-thread matrix, claim audit and manifest verifier. The scope and limits are appropriately disclosed: FP32 YOLO only; AMP anomaly across three controls; no direct tensorwise A/B identity; negative event minima and all timings inconclusive; historical gfx942 failure does not prove a current-head regression or infrastructure root cause; original header freeze intact.
+
+No staged or unstaged file outside `phase5_8/pr13437_round3/` differs. `git diff origin/main --exit-code -- phase5_7` produced no differences. The initial 52-link pass found only the three expected links to final/retention reports still being authored; these must exist and be rechecked before publication. Manifest has not yet been finalized in the inspected snapshot, so this is not final Phase 5 or Phase 6 approval. Final commit, deterministic manifest and fresh-clone committed-byte verification are required.
+
+## Phase 9 acceptance: PASS for the thread matrix
+
+The published `REVIEW_THREAD_MATRIX.md` maps the same eight unresolved IDs and original concerns as Agent D's independent GraphQL response. Existing contributor replies, seven outdated threads, current-line blank-line thread, 11 resolved threads, already resolved old radix discussion and no newer reviewer confirmation are accurately represented. Viewer permission to resolve is present, but permission alone does not establish reviewer preference or repository convention. Leave existing replies and thread state unchanged and combine one request for confirmation with the current-head CI approval request after final evidence publication. No formal approval is implied.
+
+## Phase 6 publication: PENDING
+
+No push, merge or comment was executed by Agent D. Final approval must be bound to a specific audited commit and current remote HEAD/checks. Use ordinary merge commit with `--match-head-commit`, no bypass flags, and verify MERGED state/main content after the operation. Upstream implementation must never be merged by this mission.

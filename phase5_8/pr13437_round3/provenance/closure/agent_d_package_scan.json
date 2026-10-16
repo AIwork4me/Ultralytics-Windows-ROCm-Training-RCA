@@ -1,0 +1,155 @@
+{
+  "baseline_tracked_files": 135,
+  "baseline_bytes": 2950273,
+  "current_tracked_files": 165,
+  "deleted_original": [],
+  "changed_original": [
+    {
+      "path": "phase5_8/pr13437_round3/.gitattributes",
+      "state": "modified",
+      "before_bytes": 86,
+      "after_bytes": 258
+    },
+    {
+      "path": "phase5_8/pr13437_round3/FUNCTIONAL_REGRESSION_MATRIX.md",
+      "state": "modified",
+      "before_bytes": 4712,
+      "after_bytes": 5820
+    },
+    {
+      "path": "phase5_8/pr13437_round3/GFX942_CI_RCA.md",
+      "state": "modified",
+      "before_bytes": 6107,
+      "after_bytes": 6306
+    },
+    {
+      "path": "phase5_8/pr13437_round3/PERFORMANCE_AB_REPORT.md",
+      "state": "modified",
+      "before_bytes": 6535,
+      "after_bytes": 8634
+    },
+    {
+      "path": "phase5_8/pr13437_round3/PHASE6_CROSS_PLATFORM.md",
+      "state": "modified",
+      "before_bytes": 3344,
+      "after_bytes": 3549
+    },
+    {
+      "path": "phase5_8/pr13437_round3/PHASE8_FINAL_AUDIT.md",
+      "state": "modified",
+      "before_bytes": 5735,
+      "after_bytes": 6415
+    },
+    {
+      "path": "phase5_8/pr13437_round3/README.md",
+      "state": "modified",
+      "before_bytes": 2631,
+      "after_bytes": 4495
+    },
+    {
+      "path": "phase5_8/pr13437_round3/REPLIES_R3.md",
+      "state": "modified",
+      "before_bytes": 4296,
+      "after_bytes": 4656
+    },
+    {
+      "path": "phase5_8/pr13437_round3/pr_body_new.md",
+      "state": "modified",
+      "before_bytes": 7164,
+      "after_bytes": 7379
+    },
+    {
+      "path": "phase5_8/pr13437_round3/raw/yolo/F_r3.log",
+      "state": "modified",
+      "before_bytes": 27612,
+      "after_bytes": 27612
+    }
+  ],
+  "security_hits_without_values": [
+    {
+      "path": "phase5_8/pr13437_round3/PERFORMANCE_AB_REPORT.md",
+      "category": "machine_name",
+      "line": 59,
+      "length": 14
+    },
+    {
+      "path": "phase5_8/pr13437_round3/PERFORMANCE_AB_REPORT.md",
+      "category": "machine_name",
+      "line": 109,
+      "length": 14
+    },
+    {
+      "path": "phase5_8/pr13437_round3/scripts/build_b58.sh",
+      "category": "private_ip",
+      "line": 10,
+      "length": 12
+    },
+    {
+      "path": "phase5_8/pr13437_round3/scripts/run_r3_cold_ab.sh",
+      "category": "private_ip",
+      "line": 7,
+      "length": 12
+    },
+    {
+      "path": "phase5_8/pr13437_round3/scripts/run_r3_negative.sh",
+      "category": "private_ip",
+      "line": 9,
+      "length": 12
+    },
+    {
+      "path": "phase5_8/pr13437_round3/scripts/run_r3_tests.sh",
+      "category": "private_ip",
+      "line": 8,
+      "length": 12
+    }
+  ],
+  "broken_markdown_links": [
+    {
+      "path": "phase5_8/pr13437_round3/PHASE8_FINAL_AUDIT.md",
+      "destination": "EVIDENCE_FINAL_AUDIT.md",
+      "exists": false
+    },
+    {
+      "path": "phase5_8/pr13437_round3/README.md",
+      "destination": "EVIDENCE_RETENTION_AUDIT.md",
+      "exists": false
+    },
+    {
+      "path": "phase5_8/pr13437_round3/README.md",
+      "destination": "EVIDENCE_FINAL_AUDIT.md",
+      "exists": false
+    }
+  ],
+  "markdown_links_checked": 52,
+  "redaction": {
+    "old_sha256": "89ad020a6913bf30d7439d718dfd374537261e9276286f17a595403dde1aa201",
+    "new_sha256": "6d668973338f03aedf75cca7fbc8a11d4cc814c708324cb6e00e9fc8af84b629",
+    "equal_length": true,
+    "replacement_bytes_are_X": true,
+    "changed_lines": [
+      71,
+      72
+    ],
+    "changed_bytes": 30
+  },
+  "ci_log_original_byte_checks": [
+    {
+      "name": "gfx942_job.log",
+      "same_as_original": true,
+      "sha256": "262d44cb5f1880dddfc51d6732b683b10f0a1545e97579abd0465885c3bf44ed",
+      "bytes": 338688
+    },
+    {
+      "name": "precommit_job.log",
+      "same_as_original": true,
+      "sha256": "2bcecd9bc5827a093a9693883dc6aca0f3485db899b700611d4bfd239a70abda",
+      "bytes": 35620
+    },
+    {
+      "name": "precommit_local_run.log",
+      "same_as_original": true,
+      "sha256": "4a463a2229a47e92a8ab7a61a0ca34c195aa9bf4aabba34c4ba6aedca55ca778",
+      "bytes": 3136
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "time_utc": "2026-10-16T16:22:08.598838+00:00",
+  "refs": {
+    "develop": "49bb1f7580a630f4ff1bd76f4bc572273cf38b35",
+    "round2": "f0f330c4837a3c4ca9736a8059410cca1a7c2b85",
+    "round3": "d4b574ac8a039f39976c5f9f4e18adcb074dc237"
+  },
+  "checks": {
+    "integral_constant_true_false_body_identical_to_develop": true,
+    "is_pointer_and_conditional_identical_to_develop": true,
+    "forward_bodies_identical_to_develop": true,
+    "initializer_class_round2_identical_to_round3": true,
+    "round2_round3_unchanged:projects/miopen/test/gtest/hiprtc_selfcontained.cpp": true,
+    "round2_round3_unchanged:projects/miopen/src/CMakeLists.txt": true,
+    "round2_round3_unchanged:projects/miopen/src/kernels/tensor_view.hpp": true,
+    "selection_unchanged:miopen_type_traits.hpp": true,
+    "selection_unchanged:miopen_utility.hpp": true,
+    "selection_unchanged:miopen_initializer_list.hpp": true
+  },
+  "blob_sha256": {
+    "develop:projects/miopen/src/kernels/miopen_type_traits.hpp": "6ab0771ae200b9579af297bd05ee566388fad0bdb0f5779f02c89cfd30ffe325",
+    "develop:projects/miopen/src/kernels/miopen_utility.hpp": "9cbea609ec4003a8d234d582638962bada2e95b001bbddd5fadbcae0de53a5a5",
+    "develop:projects/miopen/src/kernels/radix.hpp": "5f152a25b41a077703660e44f053b3e5d75e4fd4311ab2d1629e7dbe72a5e59c",
+    "develop:projects/miopen/src/kernels/tensor_view.hpp": "88862fddaccd958cb04d8b0d42f21ac1c8e024158cf76a9282b2d6b204a2a1cf",
+    "develop:projects/miopen/src/CMakeLists.txt": "bb6a1f834afc3594391d7b177f7d222e749b1dd5eb05635c24be6a72824c9ae5",
+    "round2:projects/miopen/src/kernels/miopen_type_traits.hpp": "28888a0634c004c17aaf9827626ec6a12b3eeacefa7919aa6c41e532fc38b18e",
+    "round2:projects/miopen/src/kernels/miopen_utility.hpp": "3e1f408e24f099621933f474b5822f4cae6c420500eb9a6d6490cef6c6508d99",
+    "round2:projects/miopen/src/kernels/miopen_initializer_list.hpp": "2f41166da72df5a9a75af4ab09939780ba5906eeef21e772cdbceea28988b370",
+    "round2:projects/miopen/src/kernels/radix.hpp": "bcebc9dbac16c4916d2dce750616c73f71f47750889453d511af75fcd159e2d2",
+    "round2:projects/miopen/src/kernels/tensor_view.hpp": "1a1d5fd9c0a78985e828ae1d9a277b8b9a7ceacb8d8ff2d33503a12339d5e4e4",
+    "round2:projects/miopen/src/CMakeLists.txt": "3728965cd8a1a05601a43aa2ec070d1be83bbd20a94d8c97902d929a4e1c562e",
+    "round2:projects/miopen/test/gtest/hiprtc_selfcontained.cpp": "04fdffa6df8f6019e1e13dbf8a1aaba5721157e5241a3cc79d6b6ecbccf98497",
+    "round3:projects/miopen/src/kernels/miopen_type_traits.hpp": "631d1d5c554abfb199d1dd87de6364730057145b90e456aeadb4d835381086e8",
+    "round3:projects/miopen/src/kernels/miopen_utility.hpp": "107052e9b524e1340e9a4d3f7d3833053f736cbae6dace61015a0efc83b0d043",
+    "round3:projects/miopen/src/kernels/miopen_initializer_list.hpp": "df670308c15ea0aef45d8952e9b65aac02dd7e359a7536342166ce5036632654",
+    "round3:projects/miopen/src/kernels/radix.hpp": "fe60942826ee72ceec2d87db4866659a9b5bb48e55f3f4ecfd6b34be2897607f",
+    "round3:projects/miopen/src/kernels/tensor_view.hpp": "1a1d5fd9c0a78985e828ae1d9a277b8b9a7ceacb8d8ff2d33503a12339d5e4e4",
+    "round3:projects/miopen/src/CMakeLists.txt": "3728965cd8a1a05601a43aa2ec070d1be83bbd20a94d8c97902d929a4e1c562e",
+    "round3:projects/miopen/test/gtest/hiprtc_selfcontained.cpp": "04fdffa6df8f6019e1e13dbf8a1aaba5721157e5241a3cc79d6b6ecbccf98497"
+  }
+}

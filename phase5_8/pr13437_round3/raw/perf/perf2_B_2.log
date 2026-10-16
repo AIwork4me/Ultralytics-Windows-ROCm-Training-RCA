@@ -1,0 +1,10 @@
+MIOpen: Warning [OpenRuntimeLibraryForDevice] CK grouped conv library not found for device gfx1151: 找不到指定的模块。
+
+preloading C:\b58\bin\MIOpen.dll sha256 42d261caec77bf31
+MIOpen.dll loaded from: C:\b58\bin\MIOpen.dll
+post-torch bare-name MIOpen.dll: C:\b58\bin\MIOpen.dll | same handle as preload: True
+torch 2.12.0+rocm7.14.0 | hip 7.14.60850 | AMD Radeon(TM) 8060S Graphics
+bn_20x100x35x45 done
+bn_32x256x56x56 done
+bn_64x512x28x28 done
+PERF_JSON {"bn_fwd_20x100x35x45": {"median_ms": 0.2804, "p95_ms": 0.49433, "min_ms": -0.40767, "max_ms": 0.9448, "n": 200}, "bn_bwd_20x100x35x45": {"median_ms": 0.5814, "p95_ms": 0.9357, "min_ms": 0.19719, "max_ms": 2.34741, "n": 200}, "bn_fwd_32x256x56x56": {"median_ms": 2.80878, "p95_ms": 3.63387, "min_ms": 2.01897, "max_ms": 4.64799, "n": 200}, "bn_bwd_32x256x56x56": {"median_ms": 5.94408, "p95_ms": 7.5538, "min_ms": 4.97762, "max_ms": 8.1151, "n": 200}, "bn_fwd_64x512x28x28": {"median_ms": 3.70922, "p95_ms": 4.50716, "min_ms": 2.53894, "max_ms": 5.54529, "n": 200}, "bn_bwd_64x512x28x28": {"median_ms": 5.86283, "p95_ms": 6.91202, "min_ms": 1.29001, "max_ms": 8.6627, "n": 200}}

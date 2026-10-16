@@ -1,0 +1,3 @@
+torch 2.12.0+rocm7.14.0 | hip 7.14.60850
+MIOpen.dll loaded from: C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_libraries\bin\MIOpen.dll
+AMP_CHECK_RESULT: FAIL

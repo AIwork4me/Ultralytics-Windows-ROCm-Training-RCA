@@ -1,0 +1,33 @@
+{
+  "audit_role": "Agent B independent functional auditor",
+  "utc": "2026-10-16T16:25:24.3428105Z",
+  "source_head": "d4b574ac8a039f39976c5f9f4e18adcb074dc237",
+  "source_status_porcelain": [],
+  "binaries": [
+    {
+      "binary": "MIOpen.dll",
+      "sha256": "42d261caec77bf3149b336d55b12dd388e988da97a84cf79688a6f4af19b23cc"
+    },
+    {
+      "binary": "test_hiprtc_selfcontained.exe",
+      "sha256": "b1f130a01500265a3386ceff2c1bd7817f65d798ef6c81bb3ea6d54239f51f63"
+    },
+    {
+      "binary": "test_kthvalue.exe",
+      "sha256": "47e0fa30778c3d4ee3b407125a6551c8b9264bcb38eb333120d621a5a6df1045"
+    }
+  ],
+  "cmake": [
+    "BUILD_DEV:BOOL=OFF",
+    "CMAKE_BUILD_TYPE:STRING=RelWithDebInfo",
+    "MIOPEN_USE_HIPRTC:BOOL=ON",
+    "CMAKE_HOME_DIRECTORY:INTERNAL=C:/w58/projects/miopen"
+  ],
+  "compiler": [
+    "AMD clang version 23.0.0git (https://github.com/ROCm/llvm-project.git 46fcb339fb61119b337f973c7ca9e710a319fdd0+PATCHED:1efe4605317a40d2170d33617075bd5675d0d558)",
+    "Target: x86_64-pc-windows-msvc",
+    "Thread model: posix",
+    "InstalledDir: C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_core\\lib\\llvm\\bin"
+  ],
+  "validation_scope": "Existing source/build/binary audit; compile-only probes, no GPU rerun or wheel swap"
+}
