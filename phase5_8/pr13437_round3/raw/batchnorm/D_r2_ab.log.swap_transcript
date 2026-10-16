@@ -1,0 +1,9 @@
+=== D_r2ab swap transcript (UTC 2026-10-16T15:01:59Z) ===
+--- pre-swap wheel hash (expect 74b4ee03...) ---
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+--- swap in /c/bfin/bin/MIOpen.dll ---
+c739cb0e143162694c331ef8137e686418d003769ed7ad25c96945fe63a6fb42 */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+D_r2ab exit=0
+--- restore wheel DLL (guaranteed cleanup, UTC 2026-10-16T15:02:21Z) ---
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/Desktop/YOLO_AMD/fin_mission/backup/MIOpen.dll.wheel.bak

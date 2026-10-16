@@ -1,0 +1,72 @@
+[==========] Running 27 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 9 tests from Smoke/GPU_Kthvalue_fwd_FP32
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/0
+HIP Library Path: C:\Windows\SYSTEM32\amdhip64_7.dll
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+PRNG seed: 12345678
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/0 (16652 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/1
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/1 (4 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/2
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/2 (1 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/3
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/3 (5 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/4
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/4 (5 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/5
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/5 (37 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/6
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/6 (34 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/7
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/7 (40 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP32.Test/8
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP32.Test/8 (289 ms)
+[----------] 9 tests from Smoke/GPU_Kthvalue_fwd_FP32 (17072 ms total)
+
+[----------] 9 tests from Smoke/GPU_Kthvalue_fwd_FP16
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/0
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/0 (908 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/1
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/1 (4 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/2
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/2 (1 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/3
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/3 (5 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/4
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/4 (5 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/5
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/5 (37 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/6
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/6 (32 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/7
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/7 (35 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_FP16.Test/8
+[       OK ] Smoke/GPU_Kthvalue_fwd_FP16.Test/8 (279 ms)
+[----------] 9 tests from Smoke/GPU_Kthvalue_fwd_FP16 (1312 ms total)
+
+[----------] 9 tests from Smoke/GPU_Kthvalue_fwd_BFP16
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/0
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/0 (888 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/1
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/1 (4 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/2
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/2 (1 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/3
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/3 (5 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/4
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/4 (5 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/5
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/5 (36 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/6
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/6 (30 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/7
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/7 (38 ms)
+[ RUN      ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/8
+[       OK ] Smoke/GPU_Kthvalue_fwd_BFP16.Test/8 (271 ms)
+[----------] 9 tests from Smoke/GPU_Kthvalue_fwd_BFP16 (1281 ms total)
+
+[----------] Global test environment tear-down
+[==========] 27 tests from 3 test suites ran. (19666 ms total)
+[  PASSED  ] 27 tests.

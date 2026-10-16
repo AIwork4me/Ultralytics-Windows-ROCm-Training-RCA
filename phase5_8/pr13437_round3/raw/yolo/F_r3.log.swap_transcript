@@ -1,0 +1,9 @@
+=== F_r3 swap transcript (UTC 2026-10-16T15:02:33Z) ===
+--- pre-swap wheel hash (expect 74b4ee03...) ---
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+--- swap in /c/b58/bin/MIOpen.dll ---
+42d261caec77bf3149b336d55b12dd388e988da97a84cf79688a6f4af19b23cc */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+F_r3 exit=0
+--- restore wheel DLL (guaranteed cleanup, UTC 2026-10-16T15:06:29Z) ---
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/Desktop/YOLO_AMD/fin_mission/backup/MIOpen.dll.wheel.bak

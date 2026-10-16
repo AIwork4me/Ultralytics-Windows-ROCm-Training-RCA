@@ -1,0 +1,14 @@
+Note: Google Test filter = CPU_HipRtcSelfContained_NONE.RtCompilesInlineKernelWithoutHostStl
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from CPU_HipRtcSelfContained_NONE
+[ RUN      ] CPU_HipRtcSelfContained_NONE.RtCompilesInlineKernelWithoutHostStl
+HIP Library Path: C:\Windows\SYSTEM32\amdhip64_7.dll
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+[       OK ] CPU_HipRtcSelfContained_NONE.RtCompilesInlineKernelWithoutHostStl (21449 ms)
+[----------] 1 test from CPU_HipRtcSelfContained_NONE (21449 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (21449 ms total)
+[  PASSED  ] 1 test.

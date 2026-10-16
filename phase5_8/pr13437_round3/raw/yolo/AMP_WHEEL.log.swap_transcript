@@ -1,0 +1,9 @@
+=== AMP_WHEEL swap transcript (UTC 2026-10-16T15:07:42Z) ===
+--- pre-swap wheel hash (expect 74b4ee03...) ---
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+--- swap in /c/Users/rocm/Desktop/YOLO_AMD/fin_mission/backup/MIOpen.dll.wheel.bak ---
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+AMP_WHEEL exit=1
+--- restore wheel DLL (guaranteed cleanup, UTC 2026-10-16T15:07:48Z) ---
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/miniconda3/envs/yolo_amd/Lib/site-packages/_rocm_sdk_libraries/bin/MIOpen.dll
+74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a */c/Users/rocm/Desktop/YOLO_AMD/fin_mission/backup/MIOpen.dll.wheel.bak

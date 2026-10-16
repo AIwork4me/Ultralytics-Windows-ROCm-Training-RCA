@@ -1,0 +1,14 @@
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+D_RUN_STARTED_UTC 2026-10-16T15:01:13.009200+00:00
+torch 2.12.0+rocm7.14.0 | hip 7.14.60850
+device AMD Radeon(TM) 8060S Graphics
+MIOpen.dll loaded from: C:\Users\rocm\miniconda3\envs\yolo_amd\Lib\site-packages\_rocm_sdk_libraries\bin\MIOpen.dll
+output y: finite=True max_abs_err=9.537e-07
+grad x: finite=True max_abs_err=1.174e-12
+grad weight: finite=True max_abs_err=5.588e-09
+grad bias: finite=True max_abs_err=6.580e-10
+running_mean: finite=True max_abs_err=6.985e-10
+running_var:  finite=True max_abs_err=3.338e-06
+BATCHNORM_VALIDATION: PASS
+D_RUN_ENDED_UTC 2026-10-16T15:01:37.268139+00:00
