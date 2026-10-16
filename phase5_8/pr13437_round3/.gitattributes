@@ -1,2 +1,6 @@
 # Evidence package: byte-exact checkout everywhere so SHA256SUMS.txt verifies
 * -text
+
+# Raw logs/diff snapshots retain original trailing spaces and line endings.
+# This only scopes Git whitespace diagnostics; payload bytes remain hashed.
+raw/** -whitespace

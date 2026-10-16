@@ -1,39 +1,50 @@
-# phase5_8 — PR #13437 Round-3 maintainer-closure evidence (d4b574ac)
+# PR #13437 — Round-3 Windows evidence
 
-Upstream PR: https://github.com/ROCm/rocm-libraries/pull/13437
-Round-3 commit under test: `d4b574ac8a039f39976c5f9f4e18adcb074dc237`
-("MIOpen: minimize HIPRTC fallback diff per maintainer review", on f0f330c4 / develop b8cf0e7b)
-Reviewer: `averinevg`, review #5537906287 ("Thanks, round 2 looks good.") + 8 inline comments.
+Upstream: [ROCm/rocm-libraries#13437](https://github.com/ROCm/rocm-libraries/pull/13437).
+Tested implementation: **`d4b574ac8a039f39976c5f9f4e18adcb074dc237`**.
+Comparator: Round-2 `f0f330c4837a3c4ca9736a8059410cca1a7c2b85`; negative control:
+unpatched `b8cf0e7b526f4a25c0623f5b2a4fe41e03ede179` with the regression test injected.
+Windows 11, Radeon 8060S / gfx1151, ROCm 7.14.0 wheels, torch 2.12.0+rocm7.14.0.
+This package changes evidence only; production code remains frozen.
 
-## Contents
+## Results and limits
 
-| Path | What |
-|---|---|
-| `PHASE0_BASELINE.md` | Live PR/CI/threads state, revision identities, environment |
-| `PHASE1_COMMENT_MATRIX.md` | All 8 third-round comments → exact changes → verification |
-| `ROUND3_CHANGE_JUSTIFICATION.md` | Hunk-by-hunk justification (4 files, +46/−65) |
-| `FUNCTIONAL_REGRESSION_MATRIX.md` | B/C/D/E/F results incl. Round-2↔Round-3 numeric identity and AMP triple-control |
-| `PERFORMANCE_AB_REPORT.md` | ISA-identity evidence (10/10 kernels), ABBA warm benchmarks, cold-compile data |
-| `PHASE6_CROSS_PLATFORM.md` | Linux/cross-platform code-level review + CI evidence categories |
-| `GFX942_CI_RCA.md` | gfx942 GPU-Hang classification (LIKELY_INFRASTRUCTURE) + maintainer reproduce command |
-| `PHASE8_FINAL_AUDIT.md` | Final minimal-diff audit + independent reviewer verdicts (A/B/C/D) |
-| `REPLIES_R3.md` / `pr_body_new.md` | Reviewer-facing replies and updated PR description |
-| `raw/` | All run logs (hiprtc, negative control, batchnorm + swap transcripts, kthvalue, yolo incl. AMP controls, perf legs, ISA dumps) |
-| `provenance/` | Binary SHA256s (build C:\b58 @ d4b574ac) |
-| `build/` | Configure/build logs + toolchain versions |
-| `scripts/` | Every script that produced the above (build, runs, swap driver, benchmarks, cache-blob compare) |
+| Check | Result | Supporting evidence |
+|---|---|---|
+| No-STL HIPRTC gtest | PASS; kernel launch/output assertions, no skip; 5 fresh compiles: 3 isolated, 2 ambient controls | [positive log](raw/hiprtc/B_r3_gtest_run.log) |
+| Unpatched negative control | EXPECTED_FAIL, original missing `type_traits` signature | [negative log](raw/negative_control/C_r3_pristine_run.log) |
+| BatchNorm forward/backward | PASS vs CPU for outputs/gradients; A/B printed error summaries match. Running-variance reference has an estimator limitation | [functional matrix](FUNCTIONAL_REGRESSION_MATRIX.md), [R3 log](raw/batchnorm/D_r3.log), [R2 log](raw/batchnorm/D_r2_ab.log) |
+| kthvalue | PASS 27/27, FP32/FP16/BF16; actual first successful run has a historical `warm` filename | [27-case log](raw/kthvalue/E_r3_kthvalue_warm.log) |
+| YOLO26n COCO8 one epoch | PASS **FP32** smoke training, finite logged losses and completed validation | [training log](raw/yolo/F_r3.log), [redaction disclosure](provenance/LOG_REDACTION.md) |
+| AMP | Precheck anomaly on Round-2, Round-3 and shipping wheel; AMP training unvalidated, root cause unproven | [A](raw/yolo/AMP_A1.log), [B](raw/yolo/AMP_B1.log), [wheel](raw/yolo/AMP_WHEEL.log) |
+| Generated code | Ten matched variants have instruction-identical ISA; scoped device-code evidence | [performance report](PERFORMANCE_AB_REPORT.md), [claim audit](EVIDENCE_CLAIM_AUDIT.md) |
+| Warm GPU-bound BatchNorm | INCONCLUSIVE timing quality (negative event minima); no confirmed material regression in reported medians | [ABBA legs](raw/perf/), [performance report](PERFORMANCE_AB_REPORT.md) |
+| Cold compilation / sub-ms timing | INCONCLUSIVE; drift/noise and small sample | [performance report](PERFORMANCE_AB_REPORT.md) |
+| YOLO paired performance A/B | NOT_RUN; no paired performance claim | [performance report](PERFORMANCE_AB_REPORT.md) |
+| Current-head Linux / gfx942 | Linux local testing unavailable. Previous gfx942 hang remains a LIKELY_INFRASTRUCTURE hypothesis; matched develop-vs-PR testing missing | [cross-platform limits](PHASE6_CROSS_PLATFORM.md), [gfx942 analysis](GFX942_CI_RCA.md) |
 
-## Headline results
+## Review, reproduce and verify
 
-- Functional: no-STL gtest PASS (cache label `3.6.2.d4b574ac`), negative control EXPECTED_FAIL
-  with exact original signature, BatchNorm A/B vs Round-2 **numerically identical**, kthvalue
-  27/27 fresh cache, YOLO26n 1-epoch PASS (AMP-check anomaly reproduced on the pristine
-  shipping wheel ⇒ environment condition).
-- Performance: FP32/FP16/BF16 kthvalue + 7 BatchNorm training kernels
-  **instruction-identical machine code** vs f0f330c4; warm GPU-bound A/B within ±5% (mixed
-  sign); sub-ms and cold-compile comparisons classified INCONCLUSIVE (noise), none reproducible.
-- gfx942 CI GPU Hang: LIKELY_INFRASTRUCTURE (no causal path — hung test's kernels consume no
-  changed header and compile offline in CI; same-day unrelated fleet failures).
+- [Reproduction guide](REPRODUCE.md): pinned sources, environment prerequisites, build/run scripts and offline evidence checks.
+- [Claim-by-claim independent audit](EVIDENCE_CLAIM_AUDIT.md): raw logs, source SHA, environment and limitations.
+- [Final code audit](FINAL_CODE_AUDIT.md) and [review-thread matrix](REVIEW_THREAD_MATRIX.md): all eight requests addressed, no new implementation change.
+- [Retention/security audit](EVIDENCE_RETENTION_AUDIT.md) and [final package audit](EVIDENCE_FINAL_AUDIT.md).
+- [Binary hashes](provenance/binary_sha256_b58.txt), [build logs](build/), [scripts](scripts/), [raw measurements](raw/).
+- [Current CI snapshot](CI_STATUS.md): on 2026-10-17 all seven major workflows at `d4b574ac` remain ACTION_REQUIRED. Maintainer workflow approval and subsequent real results remain outstanding; local pre-commit does not certify GitHub Actions success. No formal APPROVED review exists.
 
-Integrity: `SHA256SUMS.txt` covers every file; subtree `.gitattributes` is `* -text`
-(byte-exact checkout; see phase5_7 for the CRLF rationale).
+SHA256SUMS covers all tracked evidence payload files except the manifest itself, whose
+version is identified by the Git commit. This includes `.gitattributes`; its `* -text`
+rule preserves payload bytes across Windows/POSIX checkouts. Verify from a fresh Git checkout:
+
+```powershell
+python phase5_8/pr13437_round3/scripts/verify_manifest.py
+```
+
+Historical implementation-round notes (`PHASE0_BASELINE.md`, `PHASE8_FINAL_AUDIT.md`, reply
+drafts) preserve earlier snapshots. The closure audits above supply the current interpretation.
+Phase 5.7 is retained unchanged.
+
+Raw logs and diff snapshots retain original trailing spaces. The package-local
+`raw/** -whitespace` attribute scopes Git whitespace diagnostics to preserve forensic
+bytes; it does not change payload hashing, workflow definitions or test execution.
+New audit/API records and tools are stored with LF endings.

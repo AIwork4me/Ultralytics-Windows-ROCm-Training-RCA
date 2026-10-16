@@ -41,11 +41,11 @@ Fresh validation of the current HEAD `d4b574ac` (Windows 11, Radeon 8060S / gfx1
 
 | Environment | Test | Result | Notes |
 | --- | --- | --- | --- |
-| Windows gfx1151 | No-STL regression gtest | PASS | 5 fresh hipRTC compiles under `-nostdinc`, `-mcpu=gfx1151`, fresh cache home; kernel launched and output values verified |
+| Windows gfx1151 | No-STL regression gtest | PASS | 5 fresh hipRTC compiles (3 isolated under `-nostdinc`, 2 ambient controls), `-mcpu=gfx1151`, fresh cache home; kernel launched and output values verified |
 | Windows gfx1151 | Negative control (unpatched tree + same test) | FAIL as intended | exact original signature `miopen_type_traits.hpp:151: fatal error: 'type_traits' file not found` |
-| Windows gfx1151 | BatchNorm2d(100) train fwd+bwd vs CPU | PASS | all outputs/grads/running stats finite, max err 9.537e-07 (output) / ≤3.4e-06 (running stats); numerically identical to the previous head under the same seeds; patched library load proven in-process |
+| Windows gfx1151 | BatchNorm2d(100) train fwd+bwd vs CPU | PASS | all outputs/grads/running stats finite, max err 9.537e-07 (output) / ≤3.4e-06 (running stats); identical printed max-error summaries to the previous head under the same seeds; patched library load proven in-process; running-var reference uses biased variance, so its residual is a tolerance smoke check (see FUNCTIONAL_REGRESSION_MATRIX.md) |
 | Windows gfx1151 | kthvalue gtest (FP32/FP16/BFP16) | PASS | 27/27 through the real runtime-compilation path (radix.hpp), fresh kernel cache |
-| Windows gfx1151 | YOLO26n COCO8 one-epoch training | PASS | no missing-STL error, no MIOpen compile failure; trained in fp32 after Ultralytics' AMP check reported an anomaly — that check fails identically on the untouched shipping-wheel library on this machine right now, so it is an environment condition, not an effect of this patch |
+| Windows gfx1151 | YOLO26n COCO8 one-epoch training | PASS | no missing-STL error, no MIOpen compile failure; trained in fp32 after Ultralytics' AMP check reported an anomaly — that check fails identically on the untouched shipping-wheel library on this machine right now, arguing against a Round-3-specific cause; the anomaly's root cause and AMP training remain unvalidated |
 | Windows gfx1151 | Codegen equivalence | PASS | FP32/FP16/BF16 kthvalue code objects of this head vs the previous head: instruction-identical disassembly |
 
 The identical functional suite passed on the previous head `f0f330c4` (two-commit state after the second review round); detailed logs for both: [AIwork4me/Ultralytics-Windows-ROCm-Training-RCA](https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA) (`phase5_7/` for `f0f330c4`, `phase5_8/` for `d4b574ac`).

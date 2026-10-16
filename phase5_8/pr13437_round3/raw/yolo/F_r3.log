@@ -68,8 +68,8 @@ Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\r3_mission\runs\yolo26n_c
 
 Validating C:\Users\rocm\Desktop\YOLO_AMD\r3_mission\runs\yolo26n_coco8\weights\best.pt...
 Ultralytics 8.4.174  Python-3.13.16 torch-2.12.0+rocm7.14.0 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
-MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
-MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] XXXXXXXXXXXXXXX:C:/w58/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] XXXXXXXXXXXXXXX:C:/w58/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
 YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
 [K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 9.2it/s 0.1s
                    all          4         17      0.551      0.962      0.943      0.669

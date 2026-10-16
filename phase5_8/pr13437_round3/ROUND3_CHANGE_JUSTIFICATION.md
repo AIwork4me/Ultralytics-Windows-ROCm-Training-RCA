@@ -49,14 +49,15 @@ no third-round comment targets them; test file frozen per mission.
 ## Semantic change audit
 
 Expected functional changes in supported configurations: **NONE.**
-- All names, definitions, specializations, and semantics identical to Round-2 in both branches of
-  every conditional (`fallback` / real-STL `#include`).
+- Supported-call behavior is preserved while definition spelling/order restores develop;
+  real-STL include selection is unchanged. This is not a claim that all source text is identical.
 - Declaration-before-use verified for the reordered `integral_constant` (users: `is_same`,
   `is_pointer_helper`, `is_trivially_copyable` — all defined later).
 - `conditional` fwd-decl form: only `conditional<true/false, X, Y>` instantiated (bool template
   args); undefined primary never instantiated — same as develop production code for HIP 6.x.
 - Diagnostic-only change: artificial partial-STL configurations no longer produce the custom
-  `#error`; they fail with the compiler's own missing-header error (requested, intentional).
+  `#error`; arbitrary partial-STL layouts may receive natural compiler diagnostics instead
+  and are not guaranteed consistent or supported (requested guard removal).
 - Formatting/whitespace/comment-only edits elsewhere; no ABI-relevant text touched
   (`miopen_initializer_list.hpp` class body byte-identical).
 

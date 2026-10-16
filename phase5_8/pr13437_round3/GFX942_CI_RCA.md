@@ -3,13 +3,13 @@
 **Failing run:** [TheRock Multi-Arch CI #38596620066](https://github.com/ROCm/rocm-libraries/actions/runs/38596620066) (PR #13437 @ f0f330c4, 2026-10-14T16:16Z push; failure logged 2026-10-15T20:12Z)
 **Failing job:** [116645608429](https://github.com/ROCm/rocm-libraries/actions/runs/38596620066/job/116645608429) — `Linux::release / Test gfx94X-dcgpu / Test miopen / Test miopen (shard 3/4) (gfx94X-dcgpu)`
 
-## 1. What actually happened (from the full job log, `evidence/gfx942_job.log`)
+## 1. What actually happened (from the full job log, [archived job log](raw/ci/gfx942_job.log))
 
 - `miopen_gtest_standard_suite`, shard 3/4 of 4, 5660 tests, PRNG seed 12345678, timeout 3600s.
 - **Last completed test** (20:12:23.58Z): `Standard/GPU_bn_activ_infer_per_act_FP32.PortTest/BNPerActivation_NHWC_N64_C256_H14_W14_softrelu_test_id_43` — OK, 427 ms.
 - **Hung test** (started 20:12:23.58Z): `Standard/GPU_bn_activ_infer_per_act_FP32.PortTest/BNPerActivation_NHWC_N64_C512_H28_W28_softrelu_test_id_47`.
 - 20:12:32.63Z: `HW Exception by GPU node-3 (Agent handle: 0x62c17e0b8d90) reason :GPU Hang` → `Subprocess aborted`, 38.80 s into the suite.
-- **The runner's immediate shard retry re-hung the same way** (second `GPU Hang` report at 20:12:33.08Z, job log lines 4299–4302): the hang is deterministic on that runner within that session, which is the strongest single fact a skeptic would raise; it is consistent both with a runner/hardware fault and with a config-sensitive hang, and is exactly what the requested maintainer rerun (or a matched develop-shard run) would discriminate.
+- **Only one failed invocation is established.** The later `GPU Hang` text is ctest's failure-output replay (`-V --output-on-failure`), not evidence of a second execution. Earlier tests reappear with identical durations while their replay is emitted in milliseconds; total test time remains 38.80 s. The initial report's immediate-retry/determinism inference was incorrect and is withdrawn.
 - The failure is a **hardware exception reported by the runtime**, not a software assert, compile error, or numerical mismatch. It is NOT the original `'type_traits' file not found` defect class.
 
 ## 2. Kernel-path analysis
@@ -24,9 +24,11 @@ The hung test exercises MIOpen BatchNorm+Activation **inference**, per-activatio
   `tensor_view.hpp` / `radix.hpp`) — verified by grep over `projects/miopen/src/kernels/`.
   `tensor_view.hpp` consumers: Getitem, Kthvalue, MultiMarginLoss, PReLU, ReduceSum,
   SoftMarginLoss — no BatchNorm.
-- In the CI Linux build these kernels are compiled **offline** (no
-  `MIOPEN_HIP_RUNTIME_COMPILE`), so the PR's fallback branch is inert there; the real
-  `<type_traits>`/`<utility>`/`<initializer_list>` are used, exactly as in develop.
+- The actual TheRock compile mode/STL reachability is not established by this log.
+  Offline compilation would use real standard headers; runtime compilation also selects
+  them when reachable. MIOpen can use COMGR/HIPRTC, so the earlier assertion that this
+  CI invocation was certainly offline is withdrawn. Direct header-dependency inspection
+  remains useful but does not exclude indirect effects.
 - The earlier `Standard/GPU_bn_activ_infer_per_act_FP32` cases in the same shard
   (C2048, C64, C256 variants, logistic/tanh/relu/softrelu) all PASSED on the same binary
   — including the immediately preceding softrelu C256 case.
@@ -56,22 +58,20 @@ The hung test exercises MIOpen BatchNorm+Activation **inference**, per-activatio
 
 ## 5. Classification
 
-**LIKELY_INFRASTRUCTURE** — confidence: high. Reasoning:
+**LIKELY_INFRASTRUCTURE — reasoned hypothesis, not a proven root cause.** Reasoning:
 
-1. Failure mode is a runtime-reported GPU hardware hang, not a code-defect signature.
-2. The hung test's kernels are unaffected by the PR at the source level (no modified-header
-   consumers) AND at the build level (offline Linux build takes the unmodified real-STL
-   branch of every touched header).
+1. Failure mode is a runtime-reported GPU hang. This alone does not distinguish hardware, infrastructure, runtime or code causes.
+2. No direct modified-header dependency was identified in the analyzed inference source
+   path. The actual compile mode and indirect runtime effects were not fully established.
 3. The same runner fleet shows contemporaneous failures in unrelated components
    (hipkernelprovider, rocsparse, rocfft, gfx1250 sanity) across unrelated PRs and on
    develop itself; maintainers run a gfx942 diagnostic workflow.
 4. Same-suite siblings of the hung case passed seconds earlier on the same binary.
 
 Not classifiable as `BASELINE_FAILURE` (the identical test was not observed failing on a
-matched develop run in available logs) and not `RELATED_REGRESSION` (no causal path from the
-diff to the hung kernel exists). Residual uncertainty acknowledged: GPU hangs can be
-triggered by timing/occupancy shifts from unrelated code changes; only a maintainer rerun
-(or TheRock baseline run of the same shard) can close that residual — requested below.
+matched develop run in available logs) and not established as `RELATED_REGRESSION` (no direct dependency on modified headers was
+identified in the analyzed kernel path). Residual uncertainty acknowledged: GPU hangs can be
+triggered by timing/occupancy shifts from unrelated code changes; a matched develop-versus-PR test on gfx942 is still needed to assess that residual — requested below.
 
 ## 6. Scope restrictions honored
 
