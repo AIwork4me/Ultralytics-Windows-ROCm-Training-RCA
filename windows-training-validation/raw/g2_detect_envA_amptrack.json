@@ -130,5 +130,11 @@
   "_step_patched": true,
   "_max_param_delta": 0.0,
   "_param_sum_before_step": 93011.77772438526,
-  "wall_seconds": 28.5
+  "wall_seconds": 28.5,
+  "loaded_dll": {
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+    "size_bytes": 492380672
+  },
+  "loaded_dll_note": "probe re-run post-hoc (runner aborted at t08 FAIL before probe stage); env DLL state unchanged (official e97891df, hash-verified)"
 }
