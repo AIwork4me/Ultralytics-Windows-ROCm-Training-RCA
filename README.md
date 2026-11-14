@@ -8,18 +8,23 @@ ROCm PyTorch (Radeon 8060S / gfx1151), while YOLO inference works fine.**
 > independently reproduced engineering investigation. Every claim links to
 > raw logs in [`evidence/`](evidence/).
 
-## Current status (2026-10-15): upstream PR open, final-HEAD evidence published
+## Current status (2026-11-14): PR #13437 MERGED upstream; no official Windows package carries the fix yet; release-closure phase started
 
 - Upstream PR: [ROCm/rocm-libraries#13437](https://github.com/ROCm/rocm-libraries/pull/13437)
-  — "MIOpen: make HIPRTC kernel includes self-contained without host STL".
-- Final tested PR SHA: **`f0f330c4837a3c4ca9736a8059410cca1a7c2b85`**
-  (2 commits on develop `b8cf0e7b`; PR open, not merged).
-- Windows final-HEAD evidence package (this round, all five legs re-run
-  against the pinned commit; positive PASS + negative control
-  EXPECTED_FAIL with the exact original signature; three independent
-  audits A/B/C): **[`phase5_7/pr13437_final_head_f0f330c4/`](phase5_7/pr13437_final_head_f0f330c4/)**
-- CI: workflows approval-gated upstream (pending maintainer approval);
-  no local claim about upstream CI results. PR not merged.
+  — "MIOpen: make HIPRTC kernel includes self-contained without host STL" —
+  **MERGED 2026-10-19** (squash `f0a5d2664cf3334161f7b82c02dfcd2213988a8a`).
+- Integrated into TheRock via [ROCm/TheRock#9359](https://github.com/ROCm/TheRock/pull/9359)
+  (MERGED 2026-10-20, submodule bump to `d875648`; ancestry of the fix proven).
+- The 2026-10-15 note below was written while the PR was open — that status is
+  **historical**; the tested SHA `f0f330c4` evidence remains valid for that pre-merge head.
+- **Still true today:** the newest obtainable official Windows PyTorch ROCm wheel
+  (torch 2.12.0+rocm7.14.1 from repo.amd.com) **does not contain the fix** (fix-marker 0 +
+  behavioral EXPECTED_FAIL), TheRock nightlies for gfx1151 are stale (2026-06-12), and no
+  release tag postdates the merge. Full lineage: [`release-provenance/G0_VERDICT.md`](release-provenance/G0_VERDICT.md).
+- New phase (release-to-upstream closure: G0 provenance, G1 primitives, G2 Ultralytics
+  lifecycle, G3 AMP RCA, G4 quality/performance, G5 upstream readiness):
+  **[`docs/release-closure/INDEX.md`](docs/release-closure/INDEX.md)** ·
+  post-merge merged-source validation verdict C+D archived at `C:\YOLO_PR13437_PostMerge`.
 - Historical phases below are frozen snapshots of earlier patch revisions —
   they document the investigation path, not the current PR HEAD.
 
