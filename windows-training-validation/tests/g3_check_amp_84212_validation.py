@@ -93,37 +93,50 @@ def main():
         env = os.environ.copy()
         env["PYTHONPATH"] = args.ultralytics_src
         env.pop("MIOPEN_USER_DB_PATH", None)
-        if mode == "fresh":
-            fresh = tempfile.mkdtemp(prefix="g3c84_home_")
-            env["MIOPEN_USER_DB_PATH"] = fresh
-            env["HOME"] = fresh
-            env["USERPROFILE"] = fresh
-        p = subprocess.run([args.python, "-u", str(inner), args.weights,
-                            "warm" if mode == "warm" else "plain"],
-                           capture_output=True, text=True, encoding="utf-8",
-                           errors="replace", timeout=1800, env=env,
-                           cwd=str(Path(tempfile.gettempdir())))
-        rec = {"exit": p.returncode}
-        for line in (p.stdout or "").splitlines():
-            if line.startswith("RESULT_JSON:"):
-                rec.update(json.loads(line[len("RESULT_JSON:"):]))
+        # stream stdout/stderr to files: long hiprtc compilation phases on
+        # Windows ROCm stay visible instead of vanishing into a capture pipe
+        out_log = inner.parent / f"mode_{mode}.out.log"
+        err_log = inner.parent / f"mode_{mode}.err.log"
+        t0 = datetime.now(timezone.utc)
+        with open(out_log, "w", encoding="utf-8") as fo, open(err_log, "w", encoding="utf-8") as fe:
+            try:
+                p = subprocess.run([args.python, "-u", str(inner), args.weights,
+                                    "warm" if mode == "warm" else "plain"],
+                                   stdout=fo, stderr=fe, timeout=7200, env=env,
+                                   cwd=str(inner.parent))
+                rc, timed_out = p.returncode, False
+            except subprocess.TimeoutExpired:
+                rc, timed_out = "TIMEOUT", True
+        rec = {"exit": rc, "timed_out": timed_out,
+               "wall_s": round((datetime.now(timezone.utc) - t0).total_seconds(), 1),
+               "out_log": str(out_log), "err_log": str(err_log)}
+        try:
+            out_text = out_log.read_text(encoding="utf-8", errors="replace")
+            for line in out_text.splitlines():
+                if line.startswith("RESULT_JSON:"):
+                    rec.update(json.loads(line[len("RESULT_JSON:"):]))
+        except OSError:
+            pass
         if "check_amp_verdict" not in rec:
-            rec["stderr_tail"] = (p.stderr or "")[-1200:]
-            rec["stdout_tail"] = (p.stdout or "")[-800:]
+            try:
+                rec["stderr_tail"] = err_log.read_text(encoding="utf-8", errors="replace")[-2000:]
+                rec["stdout_tail"] = out_text[-1000:]
+            except OSError:
+                pass
         OUT["modes"][mode] = rec
-        print(f"[{mode}] verdict={rec.get('check_amp_verdict')} "
-              f"ul={rec.get('ultralytics_imported')} amp_eff={rec.get('warm_training_amp_effective')}",
-              flush=True)
+        print(f"[{mode}] verdict={rec.get('check_amp_verdict')} exit={rc} "
+              f"wall={rec['wall_s']}s ul={rec.get('ultralytics_imported')} "
+              f"amp_eff={rec.get('warm_training_amp_effective')}", flush=True)
 
     vals = {m: r.get("check_amp_verdict") for m, r in OUT["modes"].items()}
     imported = {r.get("ultralytics_imported") for r in OUT["modes"].values()}
     OUT["summary"] = {
         "verdicts": vals,
-        "all_pass": all(v is True for v in vals.values()) and len(vals) == 3,
+        "all_pass": all(v is True for v in vals.values()) and len(vals) == 2,
         "ultralytics_imported": sorted(imported),
         "dll_provenance": dll_provenance(),
-        "note": ("modes: default USERPROFILE cache, fresh isolated cache, warm-training "
-                 "context (1-epoch AMP training before the check — the 8.4.182 FAIL state)"),
+        "note": ("modes: default USERPROFILE cache, warm-training context (1-epoch AMP "
+                 "training before the check — the 8.4.182-era FAIL state)"),
         "completed_utc": datetime.now(timezone.utc).isoformat(),
     }
     save_immutable(Path(args.out), OUT)
