@@ -1,0 +1,12 @@
+release,tag_or_index,date,rocm_libraries_pointer_or_binary,contains_pr_13437,evidence_basis
+TheRock release,therock-10.1,2026-10-05,pre-merge source,NO,tag predates merge 2026-10-19; gh release list 2026-11-14
+TheRock release,therock-7.14.1,2026-08-31,pre-merge source,NO,tag predates merge; torch wheel marker=0 + behavioral EXPECTED_FAIL
+TheRock release,therock-10.0,2026-08-26,pre-merge source,NO,tag predates merge
+TheRock release,therock-7.14,2026-07-15,pre-merge source,NO,tag predates merge
+TheRock main,branch tip 2026-11-14,submodule 9ea8cfc5,YES,compare API behind_by=0 (ancestor proven)
+TheRock PR #9359,merge b0958085,2026-10-20,submodule d875648,YES,compare API ahead_by=2 behind_by=0
+AMD official torch wheel index,repo.amd.com/rocm/whl-multi-arch,2026-11-14,torch-2.12.0+rocm7.14.1 MIOpen.dll e97891df,NO,fix-marker miopen_initializer_list=0; BN no-STL behavioral EXPECTED_FAIL (C+D mission log)
+AMD official torch wheel index,repo.amd.com/rocm/whl-multi-arch (7.14.0),yolo_amd env,MIOpen.dll 74b4ee03,NO,fix-marker=0 anchor binary
+PyTorch official index,download.pytorch.org/whl,2026-11-14,n/a,NO,no ROCm Windows wheels published at all
+TheRock nightly pip index,rocm.nightlies.amd.com/v2/gfx1151,stale 2026-06-12,torch 2.9.1+rocm7.14.0a20260612,NO,index ends before merge; no post-merge gfx1151 builds
+Source-built (not official),C:\b58m MIOpen.dll,f0a5d266 build 2026-10-19,ed7c67a9,YES,marker=2; loaded-DLL probe PASS (LOADED_DLL_PATCHED_B.json)

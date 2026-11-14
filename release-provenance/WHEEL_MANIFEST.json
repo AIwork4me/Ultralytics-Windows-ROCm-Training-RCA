@@ -1,0 +1,30 @@
+{
+  "generated_utc": "2026-11-14",
+  "note": "AMD's wheel index publishes no checksums; binary identity anchored by locally computed SHA256 of installed payloads. Wheel URL record: C:\\YOLO_PR13437_PostMerge\\evidence\\official_wheel_urls.txt (reconstructed from install log).",
+  "index_url": "https://repo.amd.com/rocm/whl-multi-arch/",
+  "install_command_env_A": "python -m pip install --index-url https://repo.amd.com/rocm/whl-multi-arch/ \"torch[device-gfx1151]==2.12.0+rocm7.14.1\" \"torchvision[device-gfx1151]==0.27.0+rocm7.14.1\" then pip install ultralytics",
+  "wheels_installed_env_A": {
+    "torch": {"filename": "torch-2.12.0+rocm7.14.1-cp313-cp313-win_amd64.whl", "version": "2.12.0+rocm7.14.1", "wheel_sha256": null, "wheel_sha256_note": "not re-downloaded this session; installed-file identity below is the anchor", "installed_torch_lib_hash_basis": "env layout hash recorded in C:\\YOLO_PR13437_PostMerge evidence (mission 2026-10-19)"},
+    "torchvision": {"filename": "torchvision-0.27.0+rocm7.14.1-cp313-cp313-win_amd64.whl", "version": "0.27.0+rocm7.14.1"},
+    "rocm-sdk": ["rocm-sdk-core-7.14.1", "rocm-sdk-libraries-7.14.1", "rocm-sdk-device-gfx1151-7.14.1"],
+    "amd-device": ["amd-torch-device-gfx1151-2.12.0+rocm7.14.1", "amd-torch-device-gfx115x-2.12.0+rocm7.14.1", "amd-torchvision-device-gfx1151-0.27.0+rocm7.14.1"],
+    "ultralytics": "8.4.182 (PyPI)"
+  },
+  "key_binaries_env_A": {
+    "MIOpen.dll": {"path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc", "size_bytes": 492380672, "miopen_version": "3.5.2.cd957402", "fix_marker_miopen_initializer_list": 0, "fix_included": false},
+    "hipdnn_backend.dll": {"loaded_sha256_prefix": "d115a4355b2c", "fix_marker_note": "not the artifact fixed by PR #13437"}
+  },
+  "index_scan_2026_11_14": {
+    "newest_cp313_win_amd64_torch": "torch-2.12.0+rocm7.14.1",
+    "torch_versions_present": ["2.9.1+rocm7.13.0", "2.10.0+rocm7.13.0/7.14.0/7.14.1", "2.11.0+rocm7.13.0/7.14.0/7.14.1", "2.12.0+rocm7.13.0/7.14.0/7.14.1"],
+    "rocm_10x_torch_wheels": "none",
+    "contains_pr_13437": false
+  },
+  "nightly_index_scan_2026_11_14": {
+    "url": "https://rocm.nightlies.amd.com/v2/gfx1151/",
+    "torch_newest_build_date": "2026-06-12 (2.9.1+rocm7.14.0a20260612)",
+    "rocm_sdk_libraries_newest_build_date": "2026-06-12",
+    "contains_pr_13437": false,
+    "note": "gfx1151 nightly index stale (ends 2026-06-12); no post-merge Windows builds available there"
+  }
+}
