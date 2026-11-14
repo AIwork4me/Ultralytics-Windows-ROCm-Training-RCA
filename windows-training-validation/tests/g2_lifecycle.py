@@ -1,4 +1,4 @@
-"""G2 — Ultralytics task lifecycle test (T01–T15) for one task per invocation.
+"""G2 — Ultralytics task lifecycle test (T01–T16) for one task per invocation.
 
     python tests/g2_lifecycle.py --task detect --data coco8.yaml \
         --weights yolo26n.pt --imgsz 640 --workers 0 --amp False \
@@ -6,26 +6,41 @@
 
 Stages:
   main    — T01 pretrained inference, T03 init, T04 1-epoch smoke, T06/T07/T08
-            in-training assertions, T05 4-epoch run interrupted after epoch 1
-            (graceful early-stop), T09/T10 checkpoints, T11 reload, T12 resume,
-            T13 val of saved model, T14 predict of saved model, T15 metric
-            equality across reload.
+            in-training assertions (per-parameter step audit), T05 4-epoch run
+            interrupted after epoch 1 (graceful early-stop), T09/T10 checkpoints
   resume  — (second process) resume the interrupted 4-epoch run, then run
-            T11–T15 and write the merged result JSON.
+            T11–T15; with --amp True additionally runs T16: a dedicated
+            longer AMP training (--amp-updates-epochs, default 10) on
+            --amp-updates-data to establish GENUINE REPEATED optimizer
+            updates (P8 audit: t08 proves semantics, not weight-learning).
 
-All statuses PASS/FAIL/SKIP/BLOCKED with reasons; no silent fallback; GPU
-provenance asserted in-process (torch.version.hip + device + MIOpen ops).
+Step auditing (amp_step_audit.StepRecorder, mission §3.1/§3.2):
+  t07 strict gradient health — under AMP a non-finite SCALED grad is acceptable
+      only as a scaler-sanctioned skipped step; no unconditional AMP PASS.
+  t08 per-parameter tensor deltas — max-abs delta, changed tensor/element
+      counts; int buffers never count as update evidence; classification
+      WARMUP_SKIP / OVERFLOW_SKIP / UPDATED / STUCK_FAILURE / BAD_GRAD_UPDATE.
+  t16 requires >= --amp-min-updated real UPDATED steps with per-parameter
+      evidence + scaler transition trace.
+
+All statuses PASS/FAIL/SKIP/BLOCKED with reasons; SKIP is never counted as
+functional PASS; no silent fallback; GPU provenance asserted in-process.
 """
 from __future__ import annotations
 
 import argparse
 import json
 import math
+import os
 import sys
 import time
 from pathlib import Path
 
 import torch
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from amp_step_audit import (BAD_GRAD_UPDATE, OVERFLOW_SKIP, STUCK_FAILURE, UPDATED,
+                            WARMUP_SKIP, StepRecorder, run_id)
 
 RESULTS: dict = {"tests": {}, "environment": {}, "limitations": []}
 
@@ -35,10 +50,6 @@ def status(name: str, st: str, **fields) -> None:
     print(f"[{st}] {name} {fields if st != 'PASS' else ''}", flush=True)
 
 
-def fail(name: str, detail: str, **fields) -> None:
-    status(name, "FAIL", detail=detail, **fields)
-
-
 def require_gpu() -> bool:
     ok = bool(torch.cuda.is_available()) and bool(torch.version.hip)
     RESULTS["environment"] = {
@@ -46,6 +57,11 @@ def require_gpu() -> bool:
         "hip": torch.version.hip or "",
         "device": torch.cuda.get_device_name(0) if ok else None,
         "gpu_authentic": ok,
+        "python_executable": sys.executable,
+        "run_id": RESULTS.get("run_id"),
+        "environment_id": RESULTS.get("environment_id"),
+        "cache_home_env": {k: os.environ[k] for k in sorted(os.environ)
+                           if any(t in k.upper() for t in ("MIOPE", "MIOPEN", "ROCM", "USERPROFILE", "HIP"))},
     }
     if not ok:
         RESULTS["limitations"].append("GPU/HIP unavailable — lifecycle BLOCKED")
@@ -76,78 +92,6 @@ def read_results_csv(csv_path: Path) -> list[dict]:
     return [dict(zip(header, l.split(","))) for l in lines[1:]]
 
 
-def patch_step(trainer) -> None:
-    """Wrap trainer.optimizer_step once to observe pre-step gradients and the
-    parameter delta across the actual optimizer update (read-only diagnostics;
-    8.4.182 zeroed grads inside optimizer_step and no longer fires
-    on_before_zero_grad, so the official callback API cannot observe them)."""
-    if RESULTS.get("_step_patched"):
-        return
-    RESULTS["_step_patched"] = True
-    original = trainer.optimizer_step
-
-    def wrapped_step():
-        grads = [p.grad for p in trainer.model.parameters() if p.grad is not None]
-        all_finite = bool(grads) and all(torch.isfinite(g).all().item() for g in grads)
-        amp_active = bool(getattr(trainer, "amp", False)) and bool(
-            getattr(getattr(trainer, "scaler", None), "_enabled", False))
-        # Under active AMP the hook inspects grads BEFORE scaler.unscale_, i.e.
-        # in the SCALED domain (x65536): inf there is the normal overflow the
-        # GradScaler is designed to skip. Correctness criterion under AMP:
-        # finite scaled grads OR scaler-handled overflow with finite loss (t06).
-        if amp_active:
-            st = "PASS"
-            note = ("scaled-domain grads (pre-unscale); inf is handled by GradScaler step-skipping; "
-                    "numerical health evidenced by finite losses (t06) and metrics (t13/t15)")
-        else:
-            st = "PASS" if all_finite else "FAIL"
-            note = "FP32 run: unscaled grads must be finite"
-        RESULTS["tests"]["t07_backward_gradient_finite"] = {
-            "status": st,
-            "params_with_grad": len(grads),
-            "all_grads_finite_scaled_domain": all_finite,
-            "amp_active": amp_active,
-            "hook": "trainer.optimizer_step wrapper (pre-step .grad inspection)",
-            "note": note,
-        }
-        RESULTS["_param_sum_before_step"] = sum(
-            float(p.detach().double().abs().sum()) for p in trainer.model.parameters()
-        )
-        original()
-        after = sum(
-            float(p.detach().double().abs().sum()) for p in trainer.model.parameters()
-        )
-        before = RESULTS["_param_sum_before_step"]
-        delta = abs(after - before)
-        prev = RESULTS.get("_max_param_delta", 0.0)
-        RESULTS["_max_param_delta"] = max(prev, delta)
-        lr_now = None
-        try:
-            lr_now = float(trainer.optimizer.param_groups[0]["lr"])
-        except (AttributeError, KeyError, IndexError):
-            pass
-        # warmup starts at lr=0 (first step legitimately changes nothing) —
-        # SKIP until a lr>0 step is observed; lr>0 with no change = real FAIL
-        if RESULTS["_max_param_delta"] > 0:
-            st = "PASS"
-        elif lr_now is not None and lr_now > 0:
-            st = "FAIL"
-        else:
-            st = "SKIP"
-        RESULTS["tests"]["t08_optimizer_step"] = {
-            "status": st,
-            "max_param_abs_sum_delta": RESULTS["_max_param_delta"],
-            "last_step_lr": lr_now,
-            "note": "SKIP=only warmup lr~0 steps observed so far; authoritative on resume stage",
-        }
-
-    trainer.optimizer_step = wrapped_step
-
-
-def batch_start_callback(trainer) -> None:
-    patch_step(trainer)
-
-
 class SimulatedInterrupt(Exception):
     """Raised mid-training from a callback to abort the epoch loop.
 
@@ -162,6 +106,83 @@ def stop_after_epoch_callback(trainer) -> None:
     if trainer.epoch == RESULTS["_stop_after_epoch"]:
         RESULTS["_stopped_epoch"] = trainer.epoch
         raise SimulatedInterrupt(f"simulated interruption after epoch {trainer.epoch}")
+
+
+def attach_recorder(label: str) -> None:
+    """on_train_start callback: attach a fresh per-training StepRecorder."""
+    def _attach(trainer) -> None:
+        rec = StepRecorder(trainer, label=label)
+        rec.attach()
+        RESULTS[f"_rec_{label}"] = rec
+        print(f"[recorder] attached ({label}) amp_effective={bool(trainer.amp)} "
+              f"scaler_enabled={bool(getattr(trainer.scaler, '_enabled', False))}", flush=True)
+    return _attach
+
+
+def record_step_tests(label: str) -> None:
+    """Write t07/t08 records for one stage's recorder into RESULTS['tests']."""
+    rec = RESULTS.pop(f"_rec_{label}", None)
+    if rec is None:
+        return
+    RESULTS.setdefault("_stage_step_records", {})[label] = {
+        "t07": rec.t07_record(), "t08": rec.t08_record(min_updated=1),
+        "counts": rec.counts(), "scaler_trace": rec.scaler_trace(),
+        "steps_summary": [
+            {"i": i, "lr": s["lr"], "class": s["classification"], "health": s["gradient_health"],
+             "amp_active": s["amp_active"], "found_inf": s["found_inf"],
+             "scale": [s["scale_before"], s["scale_after"]],
+             "n_changed": s["params"]["n_tensors_changed"],
+             "n_float": s["params"]["n_tensors_float"],
+             "max_delta": s["params"]["max_abs_tensor_delta"],
+             "buffers_changed": s["params"]["buffers"]["n_buffers_changed"]}
+            for i, s in enumerate(rec.steps)],
+        "steps_full": [{"lr": s["lr"], "class": s["classification"],
+                        "amp_active": s["amp_active"], "found_inf": s["found_inf"],
+                        "params": s["params"], "scaled_grad_census": s["scaled_grad_census"],
+                        "unscaled_grad_census": s["unscaled_grad_census"]}
+                       for s in rec.steps],
+    }
+
+
+def merge_step_tests() -> None:
+    """Combine per-stage step records into final t07/t08 verdicts.
+    FAIL dominates; PASS requires the merged UPDATED count >= min_updated
+    (t08 keeps min_updated=1 inside the lifecycle; t16 is the repeated-update
+    authority); otherwise honest SKIP with the skip composition disclosed."""
+    stages = RESULTS.get("_stage_step_records", {})
+    if not stages:
+        return
+    merged_counts = {}
+    for k in (WARMUP_SKIP, OVERFLOW_SKIP, UPDATED, STUCK_FAILURE, BAD_GRAD_UPDATE):
+        merged_counts[k] = sum(s["counts"].get(k, 0) for s in stages.values())
+    fails7 = [f"{lbl}:{i}" for lbl, s in stages.items() for i in s["t07"].get("failed_step_indices", [])]
+    t07 = {"status": "FAIL" if fails7 else "PASS",
+           "n_steps": sum(s["t07"]["n_steps"] for s in stages.values()),
+           "n_scaler_handled_overflow": sum(s["t07"].get("n_scaler_handled_overflow", 0)
+                                            for s in stages.values()),
+           "failed_step_indices": fails7,
+           "per_stage": {lbl: s["t07"]["status"] for lbl, s in stages.items()},
+           "note": ("strict: non-finite grads acceptable only as scaler-sanctioned "
+                    "skipped steps (G_OK_SKIP); no unconditional AMP PASS")}
+    if merged_counts[STUCK_FAILURE] or merged_counts[BAD_GRAD_UPDATE]:
+        t08 = {"status": "FAIL", "counts": merged_counts,
+               "reason": "STUCK_FAILURE/BAD_GRAD_UPDATE steps present (per-parameter evidence)",
+               "per_stage": {lbl: s["t08"]["status"] for lbl, s in stages.items()}}
+    elif merged_counts[UPDATED] >= 1:
+        t08 = {"status": "PASS", "counts": merged_counts,
+               "per_stage": {lbl: s["t08"]["status"] for lbl, s in stages.items()},
+               "note": ">=1 real parameter update observed (per-parameter evidence); "
+                       "repeated updates are established by t16 for AMP runs"}
+    else:
+        skips = [f"{lbl}: {s['t08'].get('reason', '')}" for lbl, s in stages.items()]
+        t08 = {"status": "SKIP", "counts": merged_counts, "per_stage_reasons": skips,
+               "note": "no real parameter update; every lr>0 step was an intended "
+                       "GradScaler overflow skip — authoritative evidence is t16"}
+    RESULTS["tests"]["t07_backward_gradient_finite"] = t07
+    RESULTS["tests"]["t08_optimizer_step"] = t08
+    RESULTS["step_audit_detail"] = {lbl: {"counts": s["counts"], "scaler_trace": s["scaler_trace"],
+                                          "steps_summary": s["steps_summary"]}
+                                    for lbl, s in stages.items()}
 
 
 def run_main(args) -> None:
@@ -210,16 +231,16 @@ def run_main(args) -> None:
                amp=args.amp, name=args.run_multi,
                exist_ok=True, seed=args.seed, plots=False, val=True)
     RESULTS["_stop_after_epoch"] = args.stop_after_epoch
-    RESULTS["_param_sum_before"] = None
-    RESULTS["_param_sum_after_step"] = None
-    model.add_callback("on_train_batch_start", batch_start_callback)
+    model.add_callback("on_train_start", attach_recorder("main"))
     model.add_callback("on_fit_epoch_end", stop_after_epoch_callback)
     interrupted_cleanly = False
+    ck = {}
     try:
         model.train(**kw4)
     except SimulatedInterrupt as exc:
         interrupted_cleanly = True
         print(f"[interrupt] {exc}", flush=True)
+    record_step_tests("main")
     multi_dir = Path(model.trainer.save_dir)
     rows = read_results_csv(multi_dir / "results.csv")
     last_pt = multi_dir / "weights" / "last.pt"
@@ -237,6 +258,7 @@ def run_main(args) -> None:
     RESULTS["_multi_dir"] = str(multi_dir)
 
     if args.stage == "main":
+        merge_step_tests()
         # write partial state for the resume process
         Path(args.out).write_text(json.dumps(RESULTS, indent=2), encoding="utf-8")
         print(f"MAIN stage done — interrupted run at {multi_dir}", flush=True)
@@ -252,13 +274,9 @@ def run_resume_and_final(args, multi_dir: Path) -> None:
 
     # T12 — resume interrupted training
     model = YOLO(str(last_pt))
-    # observe gradients/optimizer on the resumed training too (fresh records)
-    RESULTS["_step_patched"] = False
-    RESULTS["_max_param_delta"] = 0.0
-    RESULTS["tests"].pop("t07_backward_gradient_finite", None)
-    RESULTS["tests"].pop("t08_optimizer_step", None)
-    model.add_callback("on_train_batch_start", batch_start_callback)
+    model.add_callback("on_train_start", attach_recorder("resume"))
     model.train(resume=True)
+    record_step_tests("resume")
     rows = read_results_csv(multi_dir / "results.csv")
     ok = len(rows) == args.resume_epochs and all(finite_loss_row(rw) for rw in rows)
     status("t12_resume_interrupted", "PASS" if ok else "FAIL",
@@ -319,6 +337,71 @@ def run_resume_and_final(args, multi_dir: Path) -> None:
                 key_ok = False
     status("t15_metrics_before_after_reload", "PASS" if key_ok else "FAIL", max_diffs=diffs)
 
+    merge_step_tests()
+
+    # T16 — dedicated repeated AMP optimizer-update run (AMP track only).
+    # The 4-epoch lifecycle cannot anneal the GradScaler past fp16 overflow on
+    # this stack; a longer, wider run establishes genuine repeated updates.
+    if args.amp:
+        upd_data = args.amp_updates_data or args.data
+        upd = YOLO(args.weights)
+        upd_kwargs = dict(data=upd_data, epochs=args.amp_updates_epochs, device=0,
+                          workers=args.workers, amp=True, name=args.run_ampupd,
+                          exist_ok=True, seed=args.seed, plots=False, val=True)
+        upd_model = upd
+        upd_model.add_callback("on_train_start", attach_recorder("ampupd"))
+        upd_exc = None
+        t0 = time.time()
+        try:
+            upd_model.train(**upd_kwargs)
+        except Exception as exc:  # noqa: BLE001 — recorded, never swallowed
+            upd_exc = f"{type(exc).__name__}: {exc}"
+            raise
+        finally:
+            record_step_tests("ampupd")
+        upd_dir = Path(upd_model.trainer.save_dir)
+        upd_rows = read_results_csv(upd_dir / "results.csv")
+        RESULTS["t16_save_dir"] = str(upd_dir)
+        rec = RESULTS.get("_stage_step_records", {}).get("ampupd")
+        if rec is not None:
+            counts = rec["counts"]
+            upd_records = [s for s in rec["steps_full"] if s["class"] == UPDATED]
+            min_upd = args.amp_min_updated
+            amp_exercised = any(s.get("amp_active") for s in rec["steps_full"])
+            if not amp_exercised:
+                st = "SKIP"
+                reason = ("check_amp fell back to FP32 — no AMP semantics exercised in the "
+                          "dedicated run; t16 measures nothing about AMP here (honest SKIP, "
+                          "never a PASS)")
+            elif counts.get(STUCK_FAILURE) or counts.get(BAD_GRAD_UPDATE):
+                st, reason = "FAIL", "STUCK/BAD_GRAD_UPDATE steps in the dedicated AMP run"
+            elif counts.get(UPDATED, 0) >= min_upd:
+                st = "PASS"
+                reason = (f"{counts.get(UPDATED, 0)} repeated real updates "
+                          f"(>= {min_upd} required) on {upd_data} x{args.amp_updates_epochs}ep")
+            else:
+                st = "SKIP"
+                reason = (f"only {counts.get(UPDATED, 0)}/{min_upd} required updates; "
+                          f"overflow skips n={counts.get(OVERFLOW_SKIP, 0)} — "
+                          f"scaler never annealed past fp16 overflow on this workload")
+            RESULTS["tests"]["t16_amp_repeated_updates"] = {
+                "status": st, "reason": reason, "counts": counts,
+                "min_updated_required": min_upd,
+                "scaler_transitions": rec["scaler_trace"]["scale_transitions"],
+                "per_param_first_updated": (upd_records[0]["params"] if upd_records else None),
+                "fitness_first": upd_rows[0] if upd_rows else None,
+                "fitness_last": upd_rows[-1] if upd_rows else None,
+                "epochs_in_csv": len(upd_rows),
+                "losses_finite_all": all(finite_loss_row(rw) for rw in upd_rows),
+                "wall_s": round(time.time() - t0, 1),
+                "unhandled_exception": upd_exc,
+                "note": "t08 proves optimizer semantics; t16 proves GENUINE REPEATED "
+                        "weight updates (audit M5 closure). BN buffer drift is recorded "
+                        "separately and never counted as update evidence.",
+            }
+        # keep the dedicated run dir for checkpoint/CSV preservation
+        print(f"[t16] dedicated AMP run dir preserved at {upd_dir}", flush=True)
+
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
@@ -336,11 +419,22 @@ def main() -> None:
     ap.add_argument("--project", default="runs")
     ap.add_argument("--run-smoke", default="smoke")
     ap.add_argument("--run-multi", default="multi")
+    ap.add_argument("--run-ampupd", default="ampupd")
+    ap.add_argument("--amp-updates-data", default=None,
+                    help="dataset for the dedicated t16 repeated-updates run (default: --data)")
+    ap.add_argument("--amp-updates-epochs", type=int, default=10)
+    ap.add_argument("--amp-min-updated", type=int, default=3,
+                    help="minimum genuine repeated updates for t16 PASS")
+    ap.add_argument("--run-id", default=None)
+    ap.add_argument("--environment-id", default="unknown")
     ap.add_argument("--out", required=True)
     ap.add_argument("--stage", choices=["main", "resume"], default="resume")
     args = ap.parse_args()
 
     args.amp = args.amp.lower() == "true"
+    RESULTS["run_id"] = args.run_id or run_id()
+    RESULTS["environment_id"] = args.environment_id
+    RESULTS["run_tag"] = f"{args.task}_{args.environment_id}" + ("_amptrack" if args.amp else "")
     if not require_gpu():
         Path(args.out).write_text(json.dumps(RESULTS, indent=2), encoding="utf-8")
         sys.exit(3)
@@ -349,10 +443,13 @@ def main() -> None:
     try:
         if args.stage == "resume":
             # second process: load partial results from the main stage, then
-            # resume the interrupted run and finish T09–T15
+            # resume the interrupted run and finish T09–T16
             partial = json.loads(Path(args.out).read_text(encoding="utf-8"))
             RESULTS["tests"] = partial.get("tests", {})
             RESULTS["limitations"] = partial.get("limitations", [])
+            # carry the main stage's step records so the merged t07/t08 verdict
+            # spans BOTH stages (never silently drop one side's evidence)
+            RESULTS["_stage_step_records"] = partial.get("_stage_step_records", {})
             multi_dir = Path(partial["_multi_dir"])
             run_resume_and_final(args, multi_dir)
         else:
@@ -362,11 +459,13 @@ def main() -> None:
         Path(args.out).write_text(json.dumps(RESULTS, indent=2), encoding="utf-8")
         raise
     RESULTS["wall_seconds"] = round(time.time() - t0, 1)
-    Path(args.out).write_text(json.dumps(RESULTS, indent=2), encoding="utf-8")
     n_pass = sum(1 for t in RESULTS["tests"].values() if t["status"] == "PASS")
+    n_skip = sum(1 for t in RESULTS["tests"].values() if t["status"] == "SKIP")
     n_all = len(RESULTS["tests"])
-    print(f"SUMMARY {args.task}: {n_pass}/{n_all} PASS", flush=True)
+    print(f"SUMMARY {args.task}: {n_pass}/{n_all} PASS ({n_skip} SKIP — "
+          f"SKIP is not functional PASS)", flush=True)
     final = all(t["status"] in ("PASS", "SKIP") for t in RESULTS["tests"].values())
+    Path(args.out).write_text(json.dumps(RESULTS, indent=2), encoding="utf-8")
     sys.exit(0 if final else 1)
 
 

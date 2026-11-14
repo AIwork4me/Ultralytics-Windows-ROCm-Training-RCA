@@ -1,0 +1,9 @@
+# run_id=20261114T131559Z task=detect tag=amptrack environment_id=ENV_A_official amp=True python=C:/Users/rocm/miniconda3/envs/pm13437_official/python.exe started_utc=2026-11-14T13:15:59.430059+00:00
+# exit=0
+{
+  "miopen_path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+  "miopen_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+  "hip": "7.14.60850",
+  "device": "AMD Radeon(TM) 8060S Graphics"
+}
+

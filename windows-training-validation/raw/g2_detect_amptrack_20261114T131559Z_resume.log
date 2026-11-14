@@ -1,0 +1,1333 @@
+# run_id=20261114T131559Z task=detect tag=amptrack environment_id=ENV_A_official amp=True python=C:/Users/rocm/miniconda3/envs/pm13437_official/python.exe started_utc=2026-11-14T13:15:59.430059+00:00
+# exit=0
+--- stdout ---
+New https://pypi.org/project/ultralytics/8.4.212 available  Update with 'pip install -U ultralytics'
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=C:\Users\rocm\miniconda3\envs\pm13437_official\Lib\site-packages\ultralytics\cfg\datasets\coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=4, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.000119, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\multi\weights\last.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=multi, nbs=64, nms=None, opset=None, optimize=False, optimizer=AdamW, overlap_mask=True, patience=100, perspective=0.0, plots=False, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\multi\weights\last.pt, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\multi, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=42, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.0, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 370.4±181.9 MB/s, size: 50.0 KB)
+
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 559.2Kit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 427.3±196.0 MB/s, size: 54.0 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 453.4Kit/s 0.0s
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.937) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+Resuming training C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\multi\weights\last.pt from epoch 3 to 4 total epochs
+[recorder] attached (resume) amp_effective=True scaler_enabled=True
+Using 4 train, 4 val images for fraction=1.0 at imgsz=640
+Using 0 dataloader workers
+Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\multi[0m
+Starting training for 4 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K        3/4     0.332G      1.152      1.824    0.01264         13        640: 0% ──────────── 0/1  13.7s
+[K        3/4     0.332G      1.152      1.824    0.01264         13        640: 100% ━━━━━━━━━━━━ 1/1 13.7s/it 13.7s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 7.8it/s 0.1s
+                   all          4         17      0.857      0.656      0.941      0.669
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K        4/4     0.906G      1.216       2.35    0.02417         13        640: 0% ──────────── 0/1  0.2s
+[K        4/4     0.906G      1.216       2.35    0.02417         13        640: 100% ━━━━━━━━━━━━ 1/1 6.5it/s 0.2s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 13.1it/s 0.1s
+                   all          4         17      0.857      0.656      0.942       0.67
+
+2 epochs completed in 0.004 hours.
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\multi\weights\last.pt, 5.5MB
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\multi\weights\best.pt, 5.5MB
+
+Validating C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\multi\weights\best.pt...
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 22.5it/s 0.0s
+                   all          4         17      0.857      0.657      0.941      0.668
+                person          3         10          1      0.439       0.84      0.362
+                   dog          1          1      0.703          1      0.995      0.597
+                 horse          1          2      0.781          1      0.995      0.795
+              elephant          1          2      0.903        0.5      0.828      0.463
+              umbrella          1          1      0.753          1      0.995      0.895
+          potted plant          1          1          1          0      0.995      0.895
+Speed: 0.3ms preprocess, 4.5ms inference, 0.0ms loss, 1.0ms postprocess per image
+[PASS] t12_resume_interrupted 
+[PASS] t09_save_last_pt 
+[PASS] t10_save_best_pt 
+[PASS] t11_reload_checkpoint 
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 580.5±208.6 MB/s, size: 54.0 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 1.3Mit/s 0.0s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 10.9it/s 0.1s
+                   all          4         17      0.856      0.657      0.942       0.67
+Speed: 0.4ms preprocess, 15.1ms inference, 0.0ms loss, 1.0ms postprocess per image
+Results saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\val-11[0m
+[PASS] t13_gpu_val_saved_model 
+[PASS] t14_gpu_predict_saved_model 
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 926.1±590.7 MB/s, size: 54.0 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 1.2Mit/s 0.0s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 18.8it/s 0.1s
+                   all          4         17      0.856      0.657      0.942       0.67
+Speed: 0.4ms preprocess, 5.1ms inference, 0.0ms loss, 1.0ms postprocess per image
+Results saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\val-12[0m
+[PASS] t15_metrics_before_after_reload 
+New https://pypi.org/project/ultralytics/8.4.212 available  Update with 'pip install -U ultralytics'
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco128.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=12, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=ampupd, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=False, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\ampupd, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=42, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.6±1.0 ms, read: 79.5±32.9 MB/s, size: 41.3 KB)
+
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco128\labels\train2017... 90 images, 1 backgrounds, 0 corrupt: 71% ━━━━━━━━╸─── 91/128 267.2it/s 0.1s<0.1s
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco128\labels\train2017... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 932.7it/s 0.1s
+[34m[1mtrain: [0mNew cache created: C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco128\labels\train2017.cache
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 382.1±133.1 MB/s, size: 81.0 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco128\labels\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 35.8Mit/s 0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+[recorder] attached (ampupd) amp_effective=True scaler_enabled=True
+Using 128 train, 128 val images for fraction=1.0 at imgsz=640
+Using 0 dataloader workers
+Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\ampupd[0m
+Starting training for 12 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{256, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{256, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{256, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{256, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{256, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{256, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{256, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 96}
+b_grid_desc_n_bk_container_{256, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{128, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{64, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{64, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{64, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{64, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{64, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{64, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{64, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 96}
+b_grid_desc_n_bk_container_{64, 96}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{384, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 384}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{384, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 384}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{384, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 384}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{384, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 384}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{384, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 384}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{384, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 384}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{384, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 384}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{384, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 384}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{256, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{256, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{256, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{256, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{256, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{256, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{256, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{256, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{128, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{128, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{128, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{128, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{128, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{128, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{128, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{128, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{6400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 64}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{192, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 192}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{192, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 192}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{192, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 192}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{192, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 192}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{192, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 192}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{192, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 192}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{192, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 192}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{192, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 192}
+a_grid_desc_m_ak_container_{25600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{25600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{256, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 256}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{256, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 256}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{256, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 256}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{256, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 256}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{256, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 256}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{256, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 256}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{256, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 256}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{256, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 256}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{384, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 384}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{384, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 384}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{384, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 384}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{384, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 384}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{384, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 384}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{384, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 384}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{384, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 384}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{384, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 384}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{256, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{256, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{256, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{256, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{256, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{256, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{256, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{256, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 256}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{512, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 512}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{512, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 512}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{512, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 512}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{512, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 512}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{512, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 512}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{512, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 512}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{512, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 512}
+a_grid_desc_m_ak_container_{6400, 256}
+b_grid_desc_n_bk_container_{512, 256}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 512}
+a_grid_desc_m_ak_container_{6400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{6400, 64}
+b_grid_desc_n_bk_container_{128, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{6400, 128}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{25600, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{25600, 128}
+a_grid_desc_m_ak_container_{102400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 128}
+b_grid_desc_n_bk_container_{128, 128}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 128}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{102400, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{102400, 64}
+a_grid_desc_m_ak_container_{409600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 64}
+b_grid_desc_n_bk_container_{64, 64}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+a_grid_desc_m_ak_container_{409600, 32}
+b_grid_desc_n_bk_container_{64, 32}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{409600, 64}
+
+[K       1/12     0.498G      1.836      2.088    0.01057        203        640: 0% ──────────── 0/8  1:02
+[K       1/12      3.16G      1.699      2.031    0.01227        233        640: 12% ━─────────── 1/8 2.7s/it 1:02<18.9s
+[K       1/12      3.16G      1.617      1.998    0.01206        180        640: 25% ━━━───────── 2/8 1.5s/it 1:03<9.0s
+[K       1/12      3.16G      1.595       1.98    0.01216        198        640: 37% ━━━━──────── 3/8 1.2s/it 1:04<5.8s
+[K       1/12      3.16G       1.57      1.938    0.01166        221        640: 50% ━━━━━━────── 4/8 1.3it/s 1:04<3.1s
+[K       1/12      3.17G      1.583      1.917    0.01126        274        640: 62% ━━━━━━━───── 5/8 1.3it/s 1:05<2.3s
+[K       1/12      3.17G      1.579      1.912    0.01074        243        640: 75% ━━━━━━━━━─── 6/8 1.6it/s 1:06<1.2s
+[K       1/12      3.17G       1.56       1.89     0.0106        163        640: 87% ━━━━━━━━━━── 7/8 1.5it/s 1:06<0.7s
+[K       1/12      3.17G       1.56       1.89     0.0106        163        640: 100% ━━━━━━━━━━━━ 8/8 8.3s/it 1:06
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 19.2s/it 5.8s<57.6s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 10.5s/it 10.8s<20.9s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 8.3s/it 16.4s<8.3s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 5.4s/it 21.7s
+                   all        128        929       0.73      0.562      0.654      0.493
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K       2/12       3.1G      1.694      1.811    0.00709        235        640: 0% ──────────── 0/8  0.5s
+[K       2/12      3.11G      1.581      1.674   0.009207        178        640: 12% ━─────────── 1/8 2.4s/it 1.2s<16.6s
+[K       2/12      3.11G      1.608      1.786   0.009452        262        640: 25% ━━━───────── 2/8 1.0s/it 1.6s<6.1s
+[K       2/12      3.11G      1.611      1.841   0.009476        270        640: 37% ━━━━──────── 3/8 1.1it/s 2.4s<4.6s
+[K       2/12      3.11G       1.65      1.849     0.0102        199        640: 50% ━━━━━━────── 4/8 1.5it/s 2.8s<2.7s
+[K       2/12      3.11G       1.66      1.829   0.009969        188        640: 62% ━━━━━━━───── 5/8 1.8it/s 3.2s<1.7s
+[K       2/12      3.11G      1.633       1.81   0.009805        266        640: 75% ━━━━━━━━━─── 6/8 1.6it/s 4.0s<1.2s
+[K       2/12      3.11G      1.623      1.809   0.009892        242        640: 87% ━━━━━━━━━━── 7/8 1.9it/s 4.4s<0.5s
+[K       2/12      3.11G      1.623      1.809   0.009892        242        640: 100% ━━━━━━━━━━━━ 8/8 1.8it/s 4.4s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.0it/s 0.3s<2.9s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.7it/s 0.6s<1.2s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 1.9it/s 1.0s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.0it/s 1.3s
+                   all        128        929      0.732      0.564      0.668      0.504
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K       3/12      3.63G      1.486      1.622   0.008306         94        640: 0% ──────────── 0/8  0.4s
+[K       3/12      3.63G      1.515      1.633    0.01114        120        640: 12% ━─────────── 1/8 2.3s/it 1.1s<16.4s
+[K       3/12      3.63G      1.406      1.504     0.0116         79        640: 25% ━━━───────── 2/8 1.1it/s 1.5s<5.5s
+[K       3/12      3.63G      1.379      1.459    0.01163        104        640: 37% ━━━━──────── 3/8 1.5it/s 1.8s<3.2s
+[K       3/12      3.63G      1.396      1.482    0.01086        172        640: 50% ━━━━━━────── 4/8 1.8it/s 2.2s<2.2s
+[K       3/12      3.63G      1.435      1.496    0.01074         98        640: 62% ━━━━━━━───── 5/8 1.7it/s 3.0s<1.8s
+[K       3/12      3.63G      1.433      1.476    0.01022        104        640: 75% ━━━━━━━━━─── 6/8 2.0it/s 3.3s<1.0s
+[K       3/12      3.63G      1.465      1.533    0.00998        127        640: 87% ━━━━━━━━━━── 7/8 2.2it/s 3.7s<0.5s
+[K       3/12      3.63G      1.465      1.533    0.00998        127        640: 100% ━━━━━━━━━━━━ 8/8 2.2it/s 3.7s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.1it/s 0.3s<2.8s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.7it/s 0.6s<1.2s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.1it/s 0.9s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.2it/s 1.2s
+                   all        128        929      0.776      0.571      0.671      0.504
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K       4/12      3.63G      1.409      1.494   0.009733        136        640: 0% ──────────── 0/8  0.4s
+[K       4/12      3.63G       1.57      1.508    0.01047         98        640: 12% ━─────────── 1/8 2.4s/it 1.1s<16.5s
+[K       4/12      3.63G      1.597      1.558   0.009841        138        640: 25% ━━━───────── 2/8 1.1it/s 1.5s<5.5s
+[K       4/12      3.63G      1.571      1.597   0.009492        116        640: 37% ━━━━──────── 3/8 1.6it/s 1.8s<3.2s
+[K       4/12      3.63G      1.495      1.539    0.01013         77        640: 50% ━━━━━━────── 4/8 1.9it/s 2.2s<2.1s
+[K       4/12      3.63G      1.518        1.6   0.009587        144        640: 62% ━━━━━━━───── 5/8 1.8it/s 2.9s<1.7s
+[K       4/12      3.63G      1.486      1.571   0.009662        102        640: 75% ━━━━━━━━━─── 6/8 2.0it/s 3.3s<1.0s
+[K       4/12      3.63G      1.481       1.55    0.00968         89        640: 87% ━━━━━━━━━━── 7/8 2.2it/s 3.7s<0.5s
+[K       4/12      3.63G      1.481       1.55    0.00968         89        640: 100% ━━━━━━━━━━━━ 8/8 2.2it/s 3.7s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.1it/s 0.3s<2.8s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.8it/s 0.6s<1.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.1it/s 0.9s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.2it/s 1.2s
+                   all        128        929      0.658      0.643      0.685      0.512
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K       5/12      3.63G      1.507      1.486   0.008836        144        640: 0% ──────────── 0/8  0.4s
+[K       5/12      3.63G      1.604      1.586   0.008766        102        640: 12% ━─────────── 1/8 2.3s/it 1.1s<16.4s
+[K       5/12      3.63G       1.52      1.466   0.008711         83        640: 25% ━━━───────── 2/8 1.1it/s 1.5s<5.5s
+[K       5/12      3.63G      1.556      1.511   0.008669         86        640: 37% ━━━━──────── 3/8 1.6it/s 1.8s<3.2s
+[K       5/12      3.63G      1.519      1.519    0.00882        122        640: 50% ━━━━━━────── 4/8 1.9it/s 2.2s<2.1s
+[K       5/12      3.63G      1.487      1.501   0.008866        157        640: 62% ━━━━━━━───── 5/8 1.7it/s 2.9s<1.7s
+[K       5/12      3.63G      1.445      1.476   0.009388         77        640: 75% ━━━━━━━━━─── 6/8 2.0it/s 3.3s<1.0s
+[K       5/12      3.63G      1.505      1.502   0.009242        117        640: 87% ━━━━━━━━━━── 7/8 2.2it/s 3.7s<0.5s
+[K       5/12      3.63G      1.505      1.502   0.009242        117        640: 100% ━━━━━━━━━━━━ 8/8 2.2it/s 3.7s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.1it/s 0.3s<2.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.8it/s 0.6s<1.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.1it/s 0.9s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.3it/s 1.2s
+                   all        128        929       0.73      0.624      0.692      0.516
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K       6/12      3.63G      1.389      1.345   0.008971        124        640: 0% ──────────── 0/8  0.4s
+[K       6/12      3.63G      1.462      1.401   0.008393        132        640: 12% ━─────────── 1/8 2.3s/it 1.1s<16.1s
+[K       6/12      3.63G      1.358       1.44   0.009808         79        640: 25% ━━━───────── 2/8 1.1it/s 1.4s<5.4s
+[K       6/12      3.63G        1.3       1.43   0.009648         72        640: 37% ━━━━──────── 3/8 1.6it/s 1.8s<3.2s
+[K       6/12      3.63G      1.289      1.397   0.009707         99        640: 50% ━━━━━━────── 4/8 1.9it/s 2.2s<2.1s
+[K       6/12      3.63G      1.347      1.423   0.009657        157        640: 62% ━━━━━━━───── 5/8 1.8it/s 2.9s<1.7s
+[K       6/12      3.63G       1.37      1.425   0.009517        114        640: 75% ━━━━━━━━━─── 6/8 2.0it/s 3.3s<1.0s
+[K       6/12      3.63G      1.349      1.409   0.009709        118        640: 87% ━━━━━━━━━━── 7/8 2.2it/s 3.6s<0.5s
+[K       6/12      3.63G      1.349      1.409   0.009709        118        640: 100% ━━━━━━━━━━━━ 8/8 2.2it/s 3.6s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.1it/s 0.3s<2.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.8it/s 0.6s<1.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.1it/s 0.9s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.3it/s 1.2s
+                   all        128        929      0.736      0.624      0.694      0.522
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K       7/12      3.63G      1.132      1.309   0.008803        127        640: 0% ──────────── 0/8  0.4s
+[K       7/12      3.63G      1.265      1.327    0.00828        135        640: 12% ━─────────── 1/8 2.3s/it 1.1s<15.9s
+[K       7/12      3.63G      1.288      1.442   0.008721        106        640: 25% ━━━───────── 2/8 1.1it/s 1.4s<5.4s
+[K       7/12      3.63G      1.354        1.5   0.008777        104        640: 37% ━━━━──────── 3/8 1.6it/s 1.8s<3.1s
+[K       7/12      3.63G      1.342      1.491   0.008827         92        640: 50% ━━━━━━────── 4/8 1.9it/s 2.2s<2.1s
+[K       7/12      3.63G      1.427      1.494   0.008799        163        640: 62% ━━━━━━━───── 5/8 1.8it/s 2.9s<1.7s
+[K       7/12      3.63G      1.391      1.484   0.009579         74        640: 75% ━━━━━━━━━─── 6/8 2.0it/s 3.3s<1.0s
+[K       7/12      3.63G      1.413      1.478   0.009611         96        640: 87% ━━━━━━━━━━── 7/8 2.2it/s 3.6s<0.4s
+[K       7/12      3.63G      1.413      1.478   0.009611         96        640: 100% ━━━━━━━━━━━━ 8/8 2.2it/s 3.6s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.1it/s 0.3s<2.6s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.8it/s 0.6s<1.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.1it/s 0.9s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.2it/s 1.2s
+                   all        128        929      0.749      0.627      0.697      0.527
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K       8/12      3.63G      1.451      1.548   0.009731        119        640: 0% ──────────── 0/8  0.4s
+[K       8/12      3.63G      1.489      1.543   0.008816        147        640: 12% ━─────────── 1/8 2.3s/it 1.1s<16.1s
+[K       8/12      3.63G      1.446      1.456   0.008609        133        640: 25% ━━━───────── 2/8 1.1it/s 1.4s<5.6s
+[K       8/12      3.63G      1.396      1.432    0.00903        131        640: 37% ━━━━──────── 3/8 1.5it/s 1.8s<3.2s
+[K       8/12      3.63G      1.411      1.482   0.009351         71        640: 50% ━━━━━━────── 4/8 1.9it/s 2.2s<2.1s
+[K       8/12      3.63G      1.434      1.446   0.009073        108        640: 62% ━━━━━━━───── 5/8 1.7it/s 3.0s<1.7s
+[K       8/12      3.63G      1.442      1.431   0.009245        110        640: 75% ━━━━━━━━━─── 6/8 2.0it/s 3.3s<1.0s
+[K       8/12      3.63G      1.428      1.424   0.009172         75        640: 87% ━━━━━━━━━━── 7/8 2.2it/s 3.7s<0.4s
+[K       8/12      3.63G      1.428      1.424   0.009172         75        640: 100% ━━━━━━━━━━━━ 8/8 2.2it/s 3.7s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.1it/s 0.3s<2.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.8it/s 0.6s<1.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.1it/s 0.9s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.3it/s 1.2s
+                   all        128        929      0.713      0.639      0.697       0.53
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K       9/12      3.63G      1.392      1.241    0.00877         99        640: 0% ──────────── 0/8  0.4s
+[K       9/12      3.63G      1.292      1.223   0.008479        116        640: 12% ━─────────── 1/8 2.3s/it 1.1s<16.1s
+[K       9/12      3.63G      1.311      1.308   0.008606         99        640: 25% ━━━───────── 2/8 1.1it/s 1.4s<5.5s
+[K       9/12      3.63G      1.364      1.348    0.00862        116        640: 37% ━━━━──────── 3/8 1.6it/s 1.8s<3.2s
+[K       9/12      3.63G      1.393      1.446    0.00857         91        640: 50% ━━━━━━────── 4/8 1.9it/s 2.2s<2.1s
+[K       9/12      3.63G      1.388      1.422   0.008323        147        640: 62% ━━━━━━━───── 5/8 1.7it/s 2.9s<1.7s
+[K       9/12      3.63G      1.394      1.437   0.008744        139        640: 75% ━━━━━━━━━─── 6/8 2.0it/s 3.3s<1.0s
+[K       9/12      3.63G      1.389      1.407   0.008856         82        640: 87% ━━━━━━━━━━── 7/8 2.2it/s 3.7s<0.5s
+[K       9/12      3.63G      1.389      1.407   0.008856         82        640: 100% ━━━━━━━━━━━━ 8/8 2.2it/s 3.7s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.1it/s 0.3s<2.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.8it/s 0.6s<1.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.1it/s 0.9s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.3it/s 1.2s
+                   all        128        929      0.703      0.641      0.697      0.527
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K      10/12      3.63G      1.569      1.384   0.008917        136        640: 0% ──────────── 0/8  0.4s
+[K      10/12      3.63G      1.472       1.31   0.008363        125        640: 12% ━─────────── 1/8 2.3s/it 1.1s<16.2s
+[K      10/12      3.63G      1.491      1.367   0.008826        123        640: 25% ━━━───────── 2/8 1.0it/s 1.5s<5.8s
+[K      10/12      3.63G      1.476      1.377   0.008772        113        640: 37% ━━━━──────── 3/8 1.6it/s 1.8s<3.2s
+[K      10/12      3.63G      1.451      1.367   0.008763        107        640: 50% ━━━━━━────── 4/8 2.0it/s 2.2s<2.0s
+[K      10/12      3.63G      1.438      1.392   0.009027        112        640: 62% ━━━━━━━───── 5/8 1.9it/s 2.7s<1.5s
+[K      10/12      3.63G      1.425      1.379   0.009221         83        640: 75% ━━━━━━━━━─── 6/8 2.2it/s 3.1s<0.9s
+[K      10/12      3.63G       1.42      1.377   0.009012        100        640: 87% ━━━━━━━━━━── 7/8 2.4it/s 3.4s<0.4s
+[K      10/12      3.63G       1.42      1.377   0.009012        100        640: 100% ━━━━━━━━━━━━ 8/8 2.3it/s 3.4s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.5it/s 0.2s<2.0s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 2.4it/s 0.4s<0.8s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.8it/s 0.7s<0.4s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 4.2it/s 1.0s
+                   all        128        929      0.692      0.651      0.699      0.528
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K      11/12      3.63G      1.691      1.628   0.009055        123        640: 0% ──────────── 0/8  0.3s
+[K      11/12      3.63G      1.478       1.41    0.00888        140        640: 12% ━─────────── 1/8 1.8s/it 0.9s<12.6s
+[K      11/12      3.63G      1.408       1.32   0.008604         90        640: 25% ━━━───────── 2/8 1.3it/s 1.2s<4.7s
+[K      11/12      3.63G      1.383      1.313   0.008481        115        640: 37% ━━━━──────── 3/8 1.8it/s 1.6s<2.8s
+[K      11/12      3.63G      1.428      1.329   0.008845        112        640: 50% ━━━━━━────── 4/8 2.1it/s 1.9s<1.9s
+[K      11/12      3.63G      1.405      1.325   0.009127         90        640: 62% ━━━━━━━───── 5/8 2.0it/s 2.5s<1.5s
+[K      11/12      3.63G      1.405      1.323    0.00929        123        640: 75% ━━━━━━━━━─── 6/8 2.2it/s 2.8s<0.9s
+[K      11/12      3.63G      1.398      1.337   0.009459        106        640: 87% ━━━━━━━━━━── 7/8 2.4it/s 3.2s<0.4s
+[K      11/12      3.63G      1.398      1.337   0.009459        106        640: 100% ━━━━━━━━━━━━ 8/8 2.5it/s 3.2s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.2s/it 0.4s<3.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.8it/s 0.6s<1.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.2it/s 0.9s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.3it/s 1.2s
+                   all        128        929       0.69      0.651      0.701       0.53
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K      12/12      3.63G      1.668      1.364   0.007627        141        640: 0% ──────────── 0/8  0.4s
+[K      12/12      3.63G      1.495      1.338   0.007922         93        640: 12% ━─────────── 1/8 2.0s/it 1.0s<14.0s
+[K      12/12      3.63G       1.44      1.342   0.008107        150        640: 25% ━━━───────── 2/8 1.2it/s 1.3s<5.0s
+[K      12/12      3.63G      1.424      1.342   0.008367         87        640: 37% ━━━━──────── 3/8 1.7it/s 1.7s<3.0s
+[K      12/12      3.63G      1.372      1.309   0.008081        101        640: 50% ━━━━━━────── 4/8 2.0it/s 2.0s<2.0s
+[K      12/12      3.63G      1.409      1.344   0.007878        136        640: 62% ━━━━━━━───── 5/8 1.9it/s 2.7s<1.6s
+[K      12/12      3.63G      1.442       1.38   0.008323        111        640: 75% ━━━━━━━━━─── 6/8 2.2it/s 3.0s<0.9s
+[K      12/12      3.63G      1.394      1.355   0.008455         75        640: 87% ━━━━━━━━━━── 7/8 2.4it/s 3.4s<0.4s
+[K      12/12      3.63G      1.394      1.355   0.008455         75        640: 100% ━━━━━━━━━━━━ 8/8 2.4it/s 3.4s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.3it/s 0.2s<2.2s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 2.1it/s 0.5s<0.9s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.5it/s 0.8s<0.4s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 3.9it/s 1.0s
+                   all        128        929      0.688      0.651      0.699      0.533
+
+12 epochs completed in 0.041 hours.
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\ampupd\weights\last.pt, 5.5MB
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\ampupd\weights\best.pt, 5.5MB
+
+Validating C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\ampupd\weights\best.pt...
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.7it/s 0.2s<1.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 2.9it/s 0.4s<0.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 3.4it/s 0.6s<0.3s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 5.2it/s 0.8s
+                   all        128        929      0.689      0.651      0.698       0.53
+                person         61        254      0.858      0.715      0.803      0.566
+               bicycle          3          6      0.597      0.264      0.387       0.29
+                   car         12         46      0.601      0.261      0.343      0.189
+            motorcycle          4          5      0.675      0.833      0.938      0.773
+              airplane          5          6      0.905          1      0.995      0.929
+                   bus          5          7      0.807      0.571      0.794      0.735
+                 train          3          3      0.666          1      0.995      0.907
+                 truck          5         12      0.571      0.417      0.454      0.291
+                  boat          2          6      0.665      0.667      0.712      0.485
+         traffic light          4         14      0.654      0.214      0.266       0.16
+             stop sign          2          2      0.767          1      0.995      0.696
+                 bench          5          9      0.875      0.775      0.795      0.517
+                  bird          2         16      0.934          1      0.995      0.716
+                   cat          4          4      0.814          1      0.995      0.827
+                   dog          9          9      0.981      0.889      0.961      0.778
+                 horse          1          2      0.706          1      0.995      0.795
+              elephant          4         17       0.95      0.941      0.945      0.804
+                  bear          1          1      0.446          1      0.995      0.995
+                 zebra          2          4      0.853          1      0.995       0.97
+               giraffe          4          9       0.86          1      0.984      0.777
+              backpack          4          6       0.54      0.333      0.436      0.244
+              umbrella          4         18      0.555      0.763      0.748      0.508
+               handbag          9         19      0.559     0.0713      0.173      0.104
+                   tie          6          7      0.813      0.714      0.723      0.584
+              suitcase          2          4      0.657          1      0.995      0.676
+               frisbee          5          5       0.72        0.8      0.755      0.651
+                  skis          1          1      0.489          1      0.995      0.298
+             snowboard          2          7      0.566      0.714      0.708      0.569
+           sports ball          6          6      0.571        0.5      0.523      0.317
+                  kite          2         10        0.6        0.4      0.415      0.152
+          baseball bat          4          4          1          0      0.281      0.106
+        baseball glove          4          7          1       0.42      0.425      0.249
+            skateboard          3          5      0.621        0.4      0.559      0.372
+         tennis racket          5          7      0.604      0.429      0.577      0.332
+                bottle          6         18      0.542      0.389       0.48      0.335
+            wine glass          5         16      0.537        0.5      0.736      0.357
+                   cup         10         36      0.834      0.389      0.576       0.38
+                  fork          6          6      0.529      0.167      0.396      0.256
+                 knife          7         16      0.811      0.438       0.69      0.476
+                 spoon          5         22       0.58        0.5      0.528      0.273
+                  bowl          9         28      0.753      0.786      0.783       0.67
+                banana          1          1          1          0      0.199      0.119
+              sandwich          2          2      0.631          1      0.995      0.995
+                orange          1          4          1      0.427      0.773      0.554
+              broccoli          4         11      0.411      0.182      0.363      0.272
+                carrot          3         24       0.59      0.833      0.774       0.53
+               hot dog          1          2      0.551          1      0.828      0.828
+                 pizza          5          5      0.672          1      0.995      0.847
+                 donut          2         14      0.605          1      0.979        0.9
+                  cake          4          4      0.591          1      0.995      0.895
+                 chair          9         35      0.654      0.433      0.556      0.326
+                 couch          5          6      0.704      0.833      0.867      0.652
+          potted plant          9         14       0.72      0.714      0.812      0.508
+                   bed          3          3      0.679          1      0.995      0.672
+          dining table         10         13      0.472       0.62      0.654      0.486
+                toilet          2          2      0.552        0.5      0.662      0.645
+                    tv          2          2      0.684          1      0.995      0.821
+                laptop          2          3      0.629          1      0.913      0.801
+                 mouse          2          2          1          0     0.0413     0.0289
+                remote          5          8      0.733        0.5      0.585      0.482
+            cell phone          5          8      0.679       0.25      0.302      0.218
+             microwave          3          3      0.416          1      0.753      0.664
+                  oven          5          5      0.512        0.6      0.545      0.415
+                  sink          4          6      0.477        0.5      0.366      0.262
+          refrigerator          5          5      0.798        0.8       0.88      0.677
+                  book          6         29      0.411      0.207      0.382      0.214
+                 clock          8          9      0.753      0.889      0.885      0.727
+                  vase          2          2      0.542          1      0.995      0.895
+              scissors          1          1          1          0          0          0
+            teddy bear          6         21      0.703      0.762      0.777      0.519
+            toothbrush          2          5      0.687      0.884      0.881      0.579
+Speed: 0.1ms preprocess, 1.9ms inference, 0.0ms loss, 0.8ms postprocess per image
+[t16] dedicated AMP run dir preserved at C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\detect\ampupd
+SUMMARY detect: 14/15 PASS (1 SKIP — SKIP is not functional PASS)
+
+--- stderr ---
+

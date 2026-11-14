@@ -1,8 +1,18 @@
 {
-  "action": "restore",
-  "utc": "2026-11-14T12:19:29.761275+00:00",
-  "before_sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
-  "after_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
-  "env_b_dll_now": "OFFICIAL_WHEEL",
-  "target": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll"
+  "action": "swap-in",
+  "utc": "2026-11-14T13:30:05.646135+00:00",
+  "before_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+  "after_sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+  "env_b_dll_now": "SOURCE_BUILT_PATCHED",
+  "target": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+  "history": [
+    {
+      "action": "restore",
+      "utc": "2026-11-14T12:19:29.761275+00:00",
+      "before_sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+      "after_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "env_b_dll_now": "OFFICIAL_WHEEL",
+      "target": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll"
+    }
+  ]
 }
