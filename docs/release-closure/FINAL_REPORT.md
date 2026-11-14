@@ -88,3 +88,51 @@ Date: 2026-11-14 · Branch: `work/windows-rocm-training-release-closure` · Repo
 **P0（立即）**：① ~~重启机器 → env B DLL restore + 哈希验证~~ **已完成（2026-11-14 19:39，僵尸自清，restore 哈希过）** ② 等待/查询首个 post-merge 官方 wheel（输入：RELEASE_LINEAGE §4 清单；动作：逐周扫描 AMD index；收益：GO-C 解锁的第一步）
 **P1（官方 wheel 落地后）**：③ 用官方 wheel 重跑 G1/G2/G3 全套（输入：本仓库全部 harness，参数不变；退出条件：官方 wheel 上 no-STL G1 全绿 + G2 7×14 + AMP 有效；收益：GO-A/B/C 全部转为无条件 PASS）
 **P2（并行）**：④ Owner 审阅 4 份 PR 草稿并批准提交（输入：upstream-readiness/*；收益：进入 Ultralytics/MIOpen maintainer 流程）⑤ 接入 gfx1100/gfx1200/Linux 机器运行平台模板（收益：支持范围扩大到实际验证的家族）
+
+---
+
+## K. P9 证据加固批次报告（mission P9–P12 §3/§4，2026-11-14 深夜）
+
+### K.1 测试正确性修复（§3.1/§3.2 — P8 审计遗留全关闭）
+
+| 审计遗留 | 修复 | 证据 |
+|---|---|---|
+| t08 聚合 Σ\|θ\| 可掩盖张量变化（取消抵消）且无法识别跳步 | 重写为 per-parameter tensor delta（float64、逐 tensor max-abs + 变更 tensor/元素计数；BN buffer 单列、永不计入更新证据） | `tests/amp_step_audit.py` + CPU 对抗套件 34/34（含取消抵消陷阱用例——旧方法在此用例下确实漏判，新方法捕获） |
+| t07 对 AMP 梯度无条件 PASS | 严格分类：scaled 域非有限仅在 scaler 认定（found_inf）且跳步时接受（G_OK_SKIP 单列事件）；步进执行带非有限梯度 = BAD_GRAD_UPDATE（FAIL） | 同上 + ENV A/B 复跑记录 |
+| t08 FAIL"机制未证"（audit B-F2） | **每步重分类证明**：生命周期 lr>0 步均为预期 GradScaler 溢出跳步（found_inf=true、scale 减半）——t08 如实 SKIP（绝不计入 PASS） | `raw/g2_detect_amptrack_20261114T131559Z.json`（ENV A，in-process `e97891df`） |
+| audit M5"仅 1 次真实更新，非学会训练" | **t16 新测试**：12-epoch coco128 专项运行 = **24 次真实重复更新**/29 步机（1 warmup + 4 溢出跳步），每次更新 366/366 float tensor 变更（max delta 2.48e-05），scaler 退火 65536→2048 | 同上 t16 记录 |
+| log 文件名按任务键碰撞（§3.4） | run_id 化不可变输出 `g2_{task}_{tag}_{runid}.*`，冲突即 fail；runner 写 run_id/env_id 进每个日志头 | `scripts/g2_runner.py` + 新 raw 记录 |
+
+### K.2 G4 修复（§3.3）
+
+- **31 vs 30 根因**：上游 `final_eval()` 在训练循环后 `self.epoch += 1` 再触发一次 `on_fit_epoch_end`（"log best metrics at step epochs+1"，8.4.174 与 8.4.182 源码一致）——**30 个训练 epoch 正确，第 31 个是上游有意的 final-eval 回调，非过训练**；旧 harness 把每个回调当训练 epoch 记账（重复条目的 epoch_time/lr/mem 均为陈旧值——最终验证只重算 metrics/fitness）。
+- harness 重写：configured vs observed 对账块（csv 行=训练回调=30、final_eval=1 才 reconciled）、in-process DLL probe（训练后）、results.csv 原文内嵌（B-F9"CSV 已保留"虚假声明根治）、逐 epoch wall 采样、checkpoint 元数据、run_id 不可变输出。
+- **ENV A/B 重跑**（消除 audit M4 第三环境限定）：ENV A `e97891df` 30/30 对账 fitness 0.505→0.602；ENV B `ed7c67a9` 30/30 对账 0.505→0.603。A/B：ENV A AMP 有效 1.43× 慢/VRAM−33%（微负载，含每 mode DLL probe）；ENV B check_amp 回退 → amp_leg 如实 SKIP（ratio=null，"NOT AN AMP MEASUREMENT"）。
+
+### K.3 证据合同 v2 + 对抗自测（§3.4）
+
+- verifier 286 检查：断言重算（t07/t08/t16 从内嵌证据重导出，声称与证据矛盾即 FAIL）、SKIP≠PASS、PASS 必须带 GPU+binary 双溯源、run_id 必须出现在对应日志、environment_id 跨日志一致、**同环境 DLL SHA 一致性（污染探测器）**、硬件一致性、G4 epoch 对账强制、claims 表逐行证据文件存在性。
+- 对抗 fixtures `scripts/test_verify_release_closure.py`：已知好树 ACCEPT + 11 类已知坏记录（坏状态词表/全 SKIP 冒充/声称与证据矛盾/run_id 不一致/缺日志/缺 DLL/跨环境 DLL 污染/硬件冲突/epoch 未对账/缺 CSV/claims 引用不存在文件）**全部 REJECTED 12/12**。
+- 防御记录：历史记录按 legacy 合同豁免断言重算（缺失新字段不构成违规——重算旧记录会制造假违规而非发现真违规）。
+
+### K.4 AMP 修复转向（§4.2 — 上游已自行修复）
+
+- **发现**：ultralytics **8.4.197（PR #26967，2026-11-01）重新设计 check_amp**——未训练 YOLO26n（免下载权重）+ 逐层 Conv2d/Attention 在 AMP 下从自身 FP32 输入重算 + 相对范数 ≤5% 容差（NaN/Inf 按比较语义天然失败），并移除 trainer 的 callbacks 备份 hack。我们的 PR-C（IoU matcher 替换 amp_allclose）**对 main 已过时**——不提交重复/过期补丁（mission §9）。
+- PR-C 的 matcher 保留为**验证套件**：CPU 对抗 26/26（重排序/NMS 平局/类别翻转/增删检测/空预测/退化框/小大框/NaN/Inf/坏算子/边界），归档真张量 5/5，GPU 捕获（ENV A default 0.423px、ENV B fresh 0.423px、default 0.497px、warm-training 0.497px——均 old=new=5/5，5 类真张量负对照全捕获）。历史 0.7606px 态今日不可精确复现（cache 演化已记录；该幅度由合成 0.76px 用例覆盖）。
+- **8.4.212 新 check 在 gfx1151 验证**（default/fresh/warm-training 三态 × ENV A/B）：`raw/g3_checkamp84212_*.json`（批次 3）。
+
+### K.5 真实 AMP 学习（§4.4 — M5 遗留彻底关闭）
+
+imagenette2-160（真实照片 10 类 9469 train）匹配 FP32-vs-AMP classify × 6 epochs，全步审计：
+- **ENV A（官方 wheel）**：FP32 887 次更新 top1 0.935→0.973；AMP 887 次更新 top1 0.935→0.970（Δ−0.23%，正常 AMP 方差）、AMP 有效、0 溢出跳步、losses 全有限、**AMP 212.7s vs FP32 265.8s = 1.25× 快**（代表性负载，非微负载）
+- **ENV B**：FP32 PASS（同 887/top1 0.973）；AMP leg check_amp 回退 → 如实 SKIP（FP32-vs-fallback top1 完全一致——同种子同数学）
+- 判定：PASS 要求"稳定训练 + 有意义的成功更新次数 + 可信任务指标"——**887 次 per-parameter 验证更新 + top1 97% 达标**；"top1 增益是否来自 BN running-stat"的疑虑由 887 次真实权重更新直接消除。
+
+### K.6 EvaluateInvokers（§4.3 — 状态：不可隔离复现，RCA 未决）
+
+- 无 Ultralytics 最小复现（9 个纯 torch conv 配置 × fp16/fp32 × fresh-cache Find 路径 × 2 环境）：**0 次触发**（`raw/g3_evi_*.json`，repeat 对确定性一致）。
+- 结论：异常为**全训练负载下的稀有间歇事件**（历史：ENV B 4×、官方 1× 于中止尝试、干净复跑 0×）——按 mission §4.3 要求"无法充分复现时不猜测"，以精确 Issue 提交（历史日志证据 + 隔离复现阴性结果 + 请求 maintainer 指认触发条件），RCA 标注 unresolved。
+
+### K.7 P10 矩阵复跑（§5.1 L1 全绿）
+
+7 任务 FP32 生命周期（detect/segment/classify/pose/obb/semantic/depth）× 新 per-parameter harness，**全部 14/14 PASS**（t08 每任务 per-parameter 证据）+ detect workers 2/4 各 14/14 —— 共 126 测试全 PASS，全部 in-process DLL probe `ed7c67a9`（ENV B patched）。L2 代表性数据集运行 = K.5 imagenette（classify 轨道）。

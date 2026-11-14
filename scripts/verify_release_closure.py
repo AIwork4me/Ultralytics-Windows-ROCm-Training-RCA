@@ -95,10 +95,15 @@ def recompute_t08(rec: dict, detail: dict | None) -> str:
     return "SKIP"
 
 
-def recompute_t16(rec: dict) -> str:
+def recompute_t16(rec: dict, steps_full: list | None = None) -> str:
+    """t16 verdict recomputation. The harness classifies fallback (no AMP step
+    ever active) as SKIP regardless of update counts — an FP32 run with 887
+    updates proves nothing about AMP (mission §4.4)."""
     counts = rec.get("counts") or {}
     if counts.get("STUCK_FAILURE", 0) or counts.get("BAD_GRAD_UPDATE", 0):
         return "FAIL"
+    if steps_full is not None and not any(s.get("amp_active") for s in steps_full):
+        return "SKIP"  # check_amp fallback: no AMP semantics exercised
     if counts.get("UPDATED", 0) >= (rec.get("min_updated_required") or 1):
         return "PASS"
     return "SKIP"
@@ -216,7 +221,10 @@ def audit_g2_json(jf: Path, d: dict, audit: Audit, dll_by_env: dict, devices: se
                         f"claimed {claimed} but embedded evidence recomputes to {actual}")
         if tname == "t16_amp_repeated_updates" and tname in tests:
             claimed = tests[tname].get("status")
-            actual = fn(tests[tname])
+            ssr = d.get("_stage_step_records") or {}
+            amp = (ssr.get("ampupd") or (sad.get("ampupd") if isinstance(sad.get("ampupd"), dict) else {}))
+            steps_full = (amp or {}).get("steps_full")
+            actual = fn(tests[tname], steps_full)
             audit.check(f"assertion:{name}:{tname}", claimed == actual,
                         f"claimed {claimed} but embedded counts recompute to {actual}")
 
@@ -258,12 +266,36 @@ def audit_g3_json(jf: Path, d: dict, audit: Audit, devices: set) -> None:
     if env.get("device"):
         devices.add(env["device"])
     if "run_id" in d:
-        prov = d.get("dll_provenance") or {}
-        audit.check(f"dll-probe:{name}", bool((prov.get("miopen_loaded") or {}).get("sha256")),
-                    "P9-era G3 record without in-process DLL probe")
-        audit.check(f"negctrl:{name}",
-                    d.get("summary", {}).get("negative_controls_all_caught") is True,
-                    "paired-box record without all negative controls caught")
+        # record types: paired-box (repeats), learning (runs), evi-repro (probes)
+        if "probes" in d:  # EvaluateInvokers repro: probes ran in subprocesses on
+            # the target env; parent never inits the GPU, so the in-process probe
+            # lives in a sibling *_loaddll.json (same convention as g2)
+            audit.check(f"probes-present:{name}", bool(d.get("probes")),
+                        "evi record without probe list")
+            audit.check(f"probe-python-recorded:{name}", bool(d.get("python")),
+                        "evi record without target-env python recorded")
+            sibling = jf.parent / f"{jf.stem}_loaddll.json"
+            has = sibling.is_file() and bool(
+                ((json.loads(sibling.read_text(encoding="utf-8")).get("miopen_loaded")) or {}).get("sha256"))
+            audit.check(f"dll-probe:{name}", has,
+                        "evi record without sibling loaded-DLL probe")
+        elif "runs" in d:  # matched FP32-vs-AMP learning: per-run probes
+            runs = d["runs"]
+            probes = [r.get("dll_provenance") for r in runs.values()]
+            shas = {(p or {}).get("miopen_loaded", {}).get("sha256") if p else None for p in probes}
+            audit.check(f"dll-probe:{name}", all(probes) and None not in shas and len(shas) == 1,
+                        f"learning record missing/inconsistent per-run DLL probes: {shas}")
+            for tag, r in runs.items():
+                audit.check(f"learning-verdict:{name}:{tag}",
+                            r.get("verdict") in ALLOWED,
+                            f"bad learning verdict {r.get('verdict')!r}")
+        else:  # paired-box capture
+            prov = d.get("dll_provenance") or {}
+            audit.check(f"dll-probe:{name}", bool((prov.get("miopen_loaded") or {}).get("sha256")),
+                        "P9-era G3 record without in-process DLL probe")
+            audit.check(f"negctrl:{name}",
+                        d.get("summary", {}).get("negative_controls_all_caught") is True,
+                        "paired-box record without all negative controls caught")
     elif "gpu_authentic" in env:
         audit.check(f"gpu-provenance:{name}", bool(env.get("hip")) and env.get("gpu_authentic"),
                     "AMP audit run without HIP provenance")
@@ -307,6 +339,8 @@ def main() -> None:
                 continue
             audit_g2_json(jf, d, audit, dll_by_env, devices)
         for jf in sorted(raw.glob("g3_*.json")):
+            if jf.name.endswith("_loaddll.json"):
+                continue  # sibling probe output (same convention as g2)
             try:
                 audit_g3_json(jf, json.loads(jf.read_text(encoding="utf-8")), audit, devices)
             except json.JSONDecodeError:

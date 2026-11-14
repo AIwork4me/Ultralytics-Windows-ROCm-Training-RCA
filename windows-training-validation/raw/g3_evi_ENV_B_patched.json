@@ -1,0 +1,226 @@
+{
+  "environment_id": "ENV_B_patched",
+  "run_id": "g3evi_ENV_B_patched_20261114T134012Z",
+  "python": "C:/Users/rocm/miniconda3/envs/pm13437_merged/python.exe",
+  "started_utc": "2026-11-14T14:18:01.588406+00:00",
+  "probes": [
+    {
+      "config": {
+        "dtype": "fp16",
+        "conv": {
+          "in": 3,
+          "out": 8,
+          "k": 3,
+          "stride": 1,
+          "pad": 1,
+          "batch": 4,
+          "hw": 32
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 21.92, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 0,
+      "repeat_of": null
+    },
+    {
+      "config": {
+        "dtype": "fp16",
+        "conv": {
+          "in": 3,
+          "out": 16,
+          "k": 3,
+          "stride": 2,
+          "pad": 1,
+          "batch": 8,
+          "hw": 64
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 15.33, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 1,
+      "repeat_of": null
+    },
+    {
+      "config": {
+        "dtype": "fp16",
+        "conv": {
+          "in": 16,
+          "out": 32,
+          "k": 5,
+          "stride": 1,
+          "pad": 2,
+          "batch": 16,
+          "hw": 64
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 11.3, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 2,
+      "repeat_of": null
+    },
+    {
+      "config": {
+        "dtype": "fp16",
+        "conv": {
+          "in": 32,
+          "out": 64,
+          "k": 3,
+          "stride": 2,
+          "pad": 1,
+          "batch": 16,
+          "hw": 128
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 11.09, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 3,
+      "repeat_of": null
+    },
+    {
+      "config": {
+        "dtype": "fp32",
+        "conv": {
+          "in": 3,
+          "out": 8,
+          "k": 3,
+          "stride": 1,
+          "pad": 1,
+          "batch": 4,
+          "hw": 32
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 20.24, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 4,
+      "repeat_of": null
+    },
+    {
+      "config": {
+        "dtype": "fp32",
+        "conv": {
+          "in": 3,
+          "out": 16,
+          "k": 3,
+          "stride": 2,
+          "pad": 1,
+          "batch": 8,
+          "hw": 64
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 12.18, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 5,
+      "repeat_of": null
+    },
+    {
+      "config": {
+        "dtype": "fp32",
+        "conv": {
+          "in": 16,
+          "out": 32,
+          "k": 5,
+          "stride": 1,
+          "pad": 2,
+          "batch": 16,
+          "hw": 64
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 12.36, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 6,
+      "repeat_of": null
+    },
+    {
+      "config": {
+        "dtype": "fp32",
+        "conv": {
+          "in": 32,
+          "out": 64,
+          "k": 3,
+          "stride": 2,
+          "pad": 1,
+          "batch": 16,
+          "hw": 128
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 11.91, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 7,
+      "repeat_of": null
+    },
+    {
+      "config": {
+        "dtype": "fp16",
+        "conv": {
+          "in": 3,
+          "out": 8,
+          "k": 3,
+          "stride": 1,
+          "pad": 1,
+          "batch": 4,
+          "hw": 32
+        }
+      },
+      "exit": 0,
+      "cache": "fresh_home_2",
+      "evaluate_invokers_lines": 0,
+      "invalid_elapsed_lines": 0,
+      "stdout_tail": "{\"wall_s\": 21.68, \"loss_finite\": true, \"torch\": \"2.12.0+rocm7.14.1\", \"hip\": \"7.14.60850\"}",
+      "stderr_excerpt": "",
+      "stderr_bytes": 599,
+      "probe_index": 8,
+      "repeat_of": 0
+    }
+  ],
+  "summary": {
+    "probes_total": 9,
+    "probes_with_evaluate_invokers_error": 0,
+    "probes_with_invalid_elapsed": 0,
+    "probes_failed": 0,
+    "probes_timeout": 0,
+    "repeat_deterministic": true,
+    "anomaly_reproduced": false
+  },
+  "limitations": [],
+  "completed_utc": "2026-11-14T14:20:54.658880+00:00"
+}

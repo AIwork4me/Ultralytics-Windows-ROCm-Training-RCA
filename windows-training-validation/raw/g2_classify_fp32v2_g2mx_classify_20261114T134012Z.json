@@ -189594,5 +189594,11 @@
       ]
     }
   },
-  "wall_seconds": 232.7
+  "wall_seconds": 232.7,
+  "loaded_dll": {
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+    "size_bytes": 520364032
+  },
+  "runner_completed_utc": "2026-11-14T13:52:19.580721+00:00"
 }
