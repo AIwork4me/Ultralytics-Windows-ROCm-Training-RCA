@@ -5,8 +5,8 @@
     "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\python.exe",
     "python_version": "3.13.16",
     "os": "Windows 11 build 10.0.26200",
-    "timestamp_utc": "2026-11-14T04:53:38.744222+00:00",
-    "process_pid": 3476
+    "timestamp_utc": "2026-11-14T06:32:59.821532+00:00",
+    "process_pid": 20252
   },
   "workload": {
     "torch_version": "2.12.0+rocm7.14.1",

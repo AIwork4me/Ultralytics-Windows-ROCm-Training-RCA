@@ -1,0 +1,129 @@
+{
+  "environment": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "ultralytics": "8.4.182",
+    "amp_native_dtype_support": true,
+    "gpu_authentic": true
+  },
+  "sections": {
+    "a_primitives": {
+      "conv2d_autocast": {
+        "output_dtype": "torch.float16",
+        "grad_finite": true,
+        "weight_grad_dtype": "torch.float32"
+      },
+      "linear_bn_loss_autocast": {
+        "bn_out_dtype": "torch.float32",
+        "linear_out_dtype": "torch.float16",
+        "grad_finite": true
+      },
+      "gradscaler_normal_step": {
+        "param_changed": true,
+        "scale_after": 65536.0
+      },
+      "gradscaler_inf_skip": {
+        "param_unchanged_on_inf": true,
+        "scale_reduced_on_inf": true
+      },
+      "section_status": "PASS"
+    },
+    "b_precheck_decomposition": {
+      "repeats": 5,
+      "passed": 5,
+      "runs": [
+        {
+          "fp32_shape": [
+            5,
+            6
+          ],
+          "amp_shape": [
+            5,
+            6
+          ],
+          "shape_equal": true,
+          "fp32_finite": true,
+          "amp_finite": true,
+          "max_abs_diff": 0.26416015625,
+          "max_rel_diff": 0.017106279730796814,
+          "allclose_atol_0.5": true
+        },
+        {
+          "fp32_shape": [
+            5,
+            6
+          ],
+          "amp_shape": [
+            5,
+            6
+          ],
+          "shape_equal": true,
+          "fp32_finite": true,
+          "amp_finite": true,
+          "max_abs_diff": 0.26416015625,
+          "max_rel_diff": 0.017106279730796814,
+          "allclose_atol_0.5": true
+        },
+        {
+          "fp32_shape": [
+            5,
+            6
+          ],
+          "amp_shape": [
+            5,
+            6
+          ],
+          "shape_equal": true,
+          "fp32_finite": true,
+          "amp_finite": true,
+          "max_abs_diff": 0.26416015625,
+          "max_rel_diff": 0.017106279730796814,
+          "allclose_atol_0.5": true
+        },
+        {
+          "fp32_shape": [
+            5,
+            6
+          ],
+          "amp_shape": [
+            5,
+            6
+          ],
+          "shape_equal": true,
+          "fp32_finite": true,
+          "amp_finite": true,
+          "max_abs_diff": 0.26416015625,
+          "max_rel_diff": 0.017106279730796814,
+          "allclose_atol_0.5": true
+        },
+        {
+          "fp32_shape": [
+            5,
+            6
+          ],
+          "amp_shape": [
+            5,
+            6
+          ],
+          "shape_equal": true,
+          "fp32_finite": true,
+          "amp_finite": true,
+          "max_abs_diff": 0.26416015625,
+          "max_rel_diff": 0.017106279730796814,
+          "allclose_atol_0.5": true
+        }
+      ],
+      "precheck_would_pass": true,
+      "imgsz_note": "check_amp semantics replicated incl. batch=8 and imgsz=max(256, stride*4)"
+    },
+    "c_real_check_amp": {
+      "check_amp_returned": true,
+      "log_lines": [
+        "\u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...",
+        "\u001b[34m\u001b[1mAMP: \u001b[0mchecks passed \u2705"
+      ]
+    }
+  },
+  "limitations": []
+}

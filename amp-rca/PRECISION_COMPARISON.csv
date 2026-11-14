@@ -1,0 +1,6 @@
+env,miopen_dll,miopen_version,cache_home,precheck_result,fp32_n_det,amp_n_det,max_abs_diff_px,x1_diff,y1_diff,x2_diff,y2_diff,conf_diff,cls_diff,fp32_finite,amp_finite,check_amp_returned
+B_patched,ed7c67a9,3.6.2.f0a5d266,fresh_isolated,PASS_5of5,5,5,0.2333,0.1596,0.1764,0.1323,0.2333,0.0016,0.0,true,true,true
+B_patched,ed7c67a9,3.6.2.f0a5d266,default_warm,FAIL_0of5,5,5,0.7606,0.6830,0.1311,0.0730,0.7606,0.0043,0.0,true,true,false
+A_official,e97891df,3.5.2.cd957402,default_warm,PASS_5of5,5,5,within_0.5,n/a,n/a,n/a,n/a,n/a,0.0,true,true,true
+A_official,e97891df,3.5.2.cd957402,fresh_isolated,PASS_5of5,5,5,within_0.5,n/a,n/a,n/a,n/a,n/a,0.0,true,true,true
+A_official,e97891df,3.5.2.cd957402,default_warm_10ep_training,autocast_active,,-,, scaler_anneal_65536_to_8192,,,,,real_step_delta=-0.006332,,,fitness_0.662_to_0.696,

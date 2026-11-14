@@ -1,0 +1,130 @@
+{
+  "tests": {
+    "t01_gpu_pretrained_inference": {
+      "status": "PASS",
+      "n_results": 4
+    },
+    "t03_gpu_training_init": {
+      "status": "PASS",
+      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\semantic\\smoke"
+    },
+    "t04_one_epoch_smoke": {
+      "status": "PASS",
+      "epochs_in_csv": 1,
+      "losses": {
+        "epoch": "1",
+        "time": "3.19621",
+        "train/ce_loss": "0.09351",
+        "train/dice_loss": "0.32641",
+        "train/aux_loss": "0.03997",
+        "metrics/mIoU": "0.61255",
+        "metrics/pixel_acc": "0.96441",
+        "val/ce_loss": "0.12533",
+        "val/dice_loss": "0.32602",
+        "val/aux_loss": "0",
+        "lr/pg0": "0.000435",
+        "lr/pg1": "0.000435",
+        "lr/pg2": "0.000435"
+      }
+    },
+    "t09_save_last_pt": {
+      "status": "PASS",
+      "epoch_field": -1,
+      "has_optimizer": false,
+      "note": "post-completion last.pt (final strip) on multi-epoch run"
+    },
+    "t10_save_best_pt": {
+      "status": "PASS",
+      "fitness": null,
+      "note": "multi-epoch run"
+    },
+    "t05_multi_epoch_interrupted": {
+      "status": "PASS",
+      "planned_epochs": 4,
+      "completed_before_interrupt": 2,
+      "last_pt_epoch": 1,
+      "last_pt_resumable": true,
+      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\semantic\\multi"
+    },
+    "t06_loss_finite_throughout": {
+      "status": "PASS",
+      "epochs_checked": 2
+    },
+    "t07_backward_gradient_finite": {
+      "status": "PASS",
+      "params_with_grad": 184,
+      "all_grads_finite": true,
+      "hook": "trainer.optimizer_step wrapper (pre-step .grad inspection)"
+    },
+    "t08_optimizer_step": {
+      "status": "PASS",
+      "max_param_abs_sum_delta": 0.6286097728589084,
+      "last_step_lr": 0.00014645,
+      "note": "SKIP=only warmup lr~0 steps observed so far; authoritative on resume stage"
+    },
+    "t12_resume_interrupted": {
+      "status": "PASS",
+      "rows_after_resume": 4,
+      "expected": 4
+    },
+    "t11_reload_checkpoint": {
+      "status": "PASS"
+    },
+    "t13_gpu_val_saved_model": {
+      "status": "PASS",
+      "metrics": {
+        "metrics/mIoU": 0.6114287972450256,
+        "metrics/pixel_acc": 0.964614987373352,
+        "fitness": 0.6114287972450256
+      }
+    },
+    "t14_gpu_predict_saved_model": {
+      "status": "PASS",
+      "detections": null,
+      "task_result_attr": null
+    },
+    "t15_metrics_before_after_reload": {
+      "status": "PASS",
+      "max_diffs": {
+        "metrics/mIoU": 0.0,
+        "metrics/pixel_acc": 0.0,
+        "fitness": 0.0
+      }
+    }
+  },
+  "environment": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "gpu_authentic": true
+  },
+  "limitations": [],
+  "args": {
+    "task": "semantic",
+    "data": "cityscapes8.yaml",
+    "weights": "yolo26n-sem.pt",
+    "model_yaml": "None",
+    "infer_source": "C:/Users/rocm/Desktop/YOLO_AMD/datasets/cityscapes8/images/val",
+    "imgsz": "640",
+    "workers": "0",
+    "amp": "False",
+    "seed": "42",
+    "resume_epochs": "4",
+    "stop_after_epoch": "1",
+    "project": "runs",
+    "run_smoke": "smoke",
+    "run_multi": "multi",
+    "out": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-training-validation\\raw\\g2_semantic_fp32.json",
+    "stage": "resume"
+  },
+  "_step_patched": true,
+  "_max_param_delta": 0.6286097728589084,
+  "_param_sum_before_step": 66950.1595196724,
+  "wall_seconds": 28.2,
+  "loaded_dll": {
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+    "size_bytes": 520364032
+  },
+  "runner_completed_utc": "2026-11-14T05:17:15.406516+00:00"
+}

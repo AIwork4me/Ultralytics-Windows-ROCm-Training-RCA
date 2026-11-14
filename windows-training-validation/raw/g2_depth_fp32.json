@@ -6,27 +6,27 @@
     },
     "t03_gpu_training_init": {
       "status": "PASS",
-      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\detect\\smoke"
+      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\depth\\smoke"
     },
     "t04_one_epoch_smoke": {
       "status": "PASS",
       "epochs_in_csv": 1,
       "losses": {
         "epoch": "1",
-        "time": "1.92059",
-        "train/box_loss": "1.15153",
-        "train/cls_loss": "1.82918",
-        "train/l1_loss": "0.01258",
-        "metrics/precision(B)": "0.84966",
-        "metrics/recall(B)": "0.6529",
-        "metrics/mAP50(B)": "0.94543",
-        "metrics/mAP50-95(B)": "0.70185",
-        "val/box_loss": "1.60417",
-        "val/cls_loss": "0.99131",
-        "val/l1_loss": "0.01205",
-        "lr/pg0": "0.000119",
-        "lr/pg1": "0.000119",
-        "lr/pg2": "0.000119"
+        "time": "1.69648",
+        "train/dlog_loss": "0.50179",
+        "train/dgrad_loss": "0.03864",
+        "metrics/delta1": "0.08573",
+        "metrics/delta2": "0.17079",
+        "metrics/delta3": "0.25522",
+        "metrics/abs_rel": "4.05112",
+        "metrics/rmse": "11.0885",
+        "metrics/silog": "171.097",
+        "val/dlog_loss": "1.74422",
+        "val/dgrad_loss": "1.04647",
+        "lr/pg0": "0.002",
+        "lr/pg1": "0.002",
+        "lr/pg2": "0.002"
       }
     },
     "t09_save_last_pt": {
@@ -46,7 +46,7 @@
       "completed_before_interrupt": 2,
       "last_pt_epoch": 1,
       "last_pt_resumable": true,
-      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\detect\\multi"
+      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\depth\\multi"
     },
     "t06_loss_finite_throughout": {
       "status": "PASS",
@@ -54,14 +54,14 @@
     },
     "t07_backward_gradient_finite": {
       "status": "PASS",
-      "params_with_grad": 366,
+      "params_with_grad": 265,
       "all_grads_finite": true,
       "hook": "trainer.optimizer_step wrapper (pre-step .grad inspection)"
     },
     "t08_optimizer_step": {
       "status": "PASS",
-      "max_param_abs_sum_delta": 0.012015178144793026,
-      "last_step_lr": 4.006333333333334e-05,
+      "max_param_abs_sum_delta": 314.902839335773,
+      "last_step_lr": 0.0006733333333333334,
       "note": "SKIP=only warmup lr~0 steps observed so far; authoritative on resume stage"
     },
     "t12_resume_interrupted": {
@@ -75,24 +75,29 @@
     "t13_gpu_val_saved_model": {
       "status": "PASS",
       "metrics": {
-        "metrics/precision(B)": 0.8539633520221002,
-        "metrics/recall(B)": 0.6561133806626166,
-        "metrics/mAP50(B)": 0.9438888888888889,
-        "metrics/mAP50-95(B)": 0.6875785984848484,
-        "fitness": 0.6875785984848484
+        "metrics/delta1": 0.8578101396560669,
+        "metrics/delta2": 0.9980519860982895,
+        "metrics/delta3": 1.0,
+        "metrics/abs_rel": 0.09619627147912979,
+        "metrics/rmse": 0.20219042897224426,
+        "metrics/silog": 11.207056641578674,
+        "fitness": 0.8578101396560669
       }
     },
     "t14_gpu_predict_saved_model": {
       "status": "PASS",
-      "boxes": 2
+      "detections": null,
+      "task_result_attr": null
     },
     "t15_metrics_before_after_reload": {
       "status": "PASS",
       "max_diffs": {
-        "metrics/precision(B)": 0.0,
-        "metrics/recall(B)": 0.0,
-        "metrics/mAP50(B)": 0.0,
-        "metrics/mAP50-95(B)": 0.0,
+        "metrics/delta1": 0.0,
+        "metrics/delta2": 0.0,
+        "metrics/delta3": 0.0,
+        "metrics/abs_rel": 0.0,
+        "metrics/rmse": 0.0,
+        "metrics/silog": 0.0,
         "fitness": 0.0
       }
     }
@@ -105,11 +110,11 @@
   },
   "limitations": [],
   "args": {
-    "task": "detect",
-    "data": "coco8.yaml",
-    "weights": "yolo26n.pt",
+    "task": "depth",
+    "data": "depth8.yaml",
+    "weights": "yolo26n-depth.pt",
     "model_yaml": "None",
-    "infer_source": "C:/Users/rocm/Desktop/YOLO_AMD/datasets/coco8/images/val",
+    "infer_source": "C:/Users/rocm/Desktop/YOLO_AMD/datasets/depth8-png/images/train",
     "imgsz": "640",
     "workers": "0",
     "amp": "False",
@@ -119,17 +124,17 @@
     "project": "runs",
     "run_smoke": "smoke",
     "run_multi": "multi",
-    "out": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-training-validation\\raw\\g2_detect_fp32.json",
+    "out": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-training-validation\\raw\\g2_depth_fp32.json",
     "stage": "resume"
   },
   "_step_patched": true,
-  "_max_param_delta": 0.012015178144793026,
-  "_param_sum_before_step": 93011.77772438526,
-  "wall_seconds": 27.2,
+  "_max_param_delta": 314.902839335773,
+  "_param_sum_before_step": 52236.242950737476,
+  "wall_seconds": 24.3,
   "loaded_dll": {
     "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
     "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
     "size_bytes": 520364032
   },
-  "runner_completed_utc": "2026-11-14T04:53:54.652019+00:00"
+  "runner_completed_utc": "2026-11-14T05:18:30.697904+00:00"
 }

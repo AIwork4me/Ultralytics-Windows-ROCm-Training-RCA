@@ -1,0 +1,48 @@
+{
+  "tool": "probe_loaded_miopen.py",
+  "purpose": "G0.3 actual-loaded-DLL proof (Windows API, post-MIOpen-op)",
+  "environment": {
+    "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\python.exe",
+    "python_version": "3.13.16",
+    "os": "Windows 11 build 10.0.26200",
+    "timestamp_utc": "2026-11-14T05:05:09.563377+00:00",
+    "process_pid": 11060
+  },
+  "workload": {
+    "torch_version": "2.12.0+rocm7.14.1",
+    "torch_version_hip": "7.14.60850",
+    "cuda_is_available": true,
+    "device_name": "AMD Radeon(TM) 8060S Graphics",
+    "device_count": 1,
+    "hip_runtime_reported": "7.14.60850",
+    "workload_output_device": "cuda:0",
+    "workload_loss_float": 0.5002452731132507,
+    "loss_finite": true,
+    "grad_conv_weight_finite": true,
+    "optimizer_changed_weights": true,
+    "bn_running_var_finite": true
+  },
+  "loaded_rocm_modules": {
+    "miopen.dll": {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+      "size_bytes": 520364032
+    },
+    "hipdnn_backend.dll": {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_backend.dll",
+      "sha256": "d115a4355b2c601be236025c3cbd530540c689e27d0742b34ddb62fc7063835f",
+      "size_bytes": 2172928
+    },
+    "miopenckgroupedconv_gfx1151.dll": {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpenCKGroupedConv_gfx1151.dll",
+      "sha256": "7c1fcc259fcfc738fa0d15aa717e7d91ebf93e00a6e334f10f26dc828b34da65",
+      "size_bytes": 305966080
+    }
+  },
+  "miopen_loaded": {
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+    "size_bytes": 520364032
+  },
+  "loaded_module_count_total": 128
+}

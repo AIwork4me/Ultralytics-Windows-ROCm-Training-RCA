@@ -1,0 +1,153 @@
+{
+  "tests": {
+    "t01_gpu_pretrained_inference": {
+      "status": "PASS",
+      "n_results": 4
+    },
+    "t03_gpu_training_init": {
+      "status": "PASS",
+      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\pose\\smoke"
+    },
+    "t04_one_epoch_smoke": {
+      "status": "PASS",
+      "epochs_in_csv": 1,
+      "losses": {
+        "epoch": "1",
+        "time": "9.24184",
+        "train/box_loss": "1.64691",
+        "train/pose_loss": "1.89278",
+        "train/kobj_loss": "0.28235",
+        "train/cls_loss": "1.47061",
+        "train/l1_loss": "0.01795",
+        "train/rle_loss": "2.65964",
+        "metrics/precision(B)": "0.2493",
+        "metrics/recall(B)": "0.71429",
+        "metrics/mAP50(B)": "0.18123",
+        "metrics/mAP50-95(B)": "0.0597",
+        "metrics/precision(P)": "0.02007",
+        "metrics/recall(P)": "0.07143",
+        "metrics/mAP50(P)": "0.00203",
+        "metrics/mAP50-95(P)": "0.00028",
+        "val/box_loss": "2.47752",
+        "val/pose_loss": "8.05629",
+        "val/kobj_loss": "0.47744",
+        "val/cls_loss": "3.03167",
+        "val/l1_loss": "0.05203",
+        "val/rle_loss": "0",
+        "lr/pg0": "0.002",
+        "lr/pg1": "0.002",
+        "lr/pg2": "0.002"
+      }
+    },
+    "t09_save_last_pt": {
+      "status": "PASS",
+      "epoch_field": -1,
+      "has_optimizer": false,
+      "note": "post-completion last.pt (final strip) on multi-epoch run"
+    },
+    "t10_save_best_pt": {
+      "status": "PASS",
+      "fitness": null,
+      "note": "multi-epoch run"
+    },
+    "t05_multi_epoch_interrupted": {
+      "status": "PASS",
+      "planned_epochs": 4,
+      "completed_before_interrupt": 2,
+      "last_pt_epoch": 1,
+      "last_pt_resumable": true,
+      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\pose\\multi"
+    },
+    "t06_loss_finite_throughout": {
+      "status": "PASS",
+      "epochs_checked": 2
+    },
+    "t07_backward_gradient_finite": {
+      "status": "PASS",
+      "params_with_grad": 498,
+      "all_grads_finite": true,
+      "hook": "trainer.optimizer_step wrapper (pre-step .grad inspection)"
+    },
+    "t08_optimizer_step": {
+      "status": "PASS",
+      "max_param_abs_sum_delta": 17.44729789631674,
+      "last_step_lr": 0.0006733333333333334,
+      "note": "SKIP=only warmup lr~0 steps observed so far; authoritative on resume stage"
+    },
+    "t12_resume_interrupted": {
+      "status": "PASS",
+      "rows_after_resume": 4,
+      "expected": 4
+    },
+    "t11_reload_checkpoint": {
+      "status": "PASS"
+    },
+    "t13_gpu_val_saved_model": {
+      "status": "PASS",
+      "metrics": {
+        "metrics/precision(B)": 0.9741419575409893,
+        "metrics/recall(B)": 0.7142857142857143,
+        "metrics/mAP50(B)": 0.8744178253119429,
+        "metrics/mAP50-95(B)": 0.6945611764705883,
+        "metrics/precision(P)": 0.7788628049996421,
+        "metrics/recall(P)": 0.5714285714285714,
+        "metrics/mAP50(P)": 0.6157121212121213,
+        "metrics/mAP50-95(P)": 0.4099348484848485,
+        "fitness": 1.104496024955437
+      }
+    },
+    "t14_gpu_predict_saved_model": {
+      "status": "PASS",
+      "boxes": 9
+    },
+    "t15_metrics_before_after_reload": {
+      "status": "PASS",
+      "max_diffs": {
+        "metrics/precision(B)": 0.0,
+        "metrics/recall(B)": 0.0,
+        "metrics/mAP50(B)": 0.0,
+        "metrics/mAP50-95(B)": 0.0,
+        "metrics/precision(P)": 0.0,
+        "metrics/recall(P)": 0.0,
+        "metrics/mAP50(P)": 0.0,
+        "metrics/mAP50-95(P)": 0.0,
+        "fitness": 0.0
+      }
+    }
+  },
+  "environment": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "gpu_authentic": true
+  },
+  "limitations": [],
+  "args": {
+    "task": "pose",
+    "data": "coco8-pose.yaml",
+    "weights": "yolo26n-pose.pt",
+    "model_yaml": "None",
+    "infer_source": "C:/Users/rocm/Desktop/YOLO_AMD/datasets/coco8-pose/images/val",
+    "imgsz": "640",
+    "workers": "0",
+    "amp": "False",
+    "seed": "42",
+    "resume_epochs": "4",
+    "stop_after_epoch": "1",
+    "project": "runs",
+    "run_smoke": "smoke",
+    "run_multi": "multi",
+    "out": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-training-validation\\raw\\g2_pose_fp32.json",
+    "stage": "resume"
+  },
+  "_step_patched": true,
+  "_max_param_delta": 17.44729789631674,
+  "_param_sum_before_step": 144257.75669550896,
+  "wall_seconds": 29.0,
+  "loaded_dll": {
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+    "size_bytes": 520364032
+  },
+  "runner_completed_utc": "2026-11-14T05:05:25.670846+00:00"
+}
