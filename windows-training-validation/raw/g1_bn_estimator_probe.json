@@ -1,0 +1,50 @@
+{
+ "what": "g1_bn_estimator_probe persisted output (audit fix B-F3: 6.8e-08 figure was prose-only; re-run 2026-11-14 to persist evidence)",
+ "executed_utc": "2026-11-14T12:19:18Z(approx, between swap-in 12:19:07Z and restore 12:19:29Z)",
+ "environment": {
+  "label": "ENV B (pm13437_merged) with SOURCE_BUILT_PATCHED MIOpen swapped in, same as original G1-STL-debugging context",
+  "miopen_sha256_during_run": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+  "swapin_restore_state_file": "windows-training-validation/environment/ENVB_DLL_STATE.json",
+  "python": "C:/Users/rocm/miniconda3/envs/pm13437_merged/python.exe (3.13.16)",
+  "torch": "2.12.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "miopen_cache_home": "fresh: C:/Users/rocm/Desktop/YOLO_AMD/r2_work/bnprobe_cache_home (USERPROFILE redirect, did not exist before run)"
+ },
+ "probe_script": "windows-training-validation/tests/g1_bn_estimator_probe.py (seed 1234, deterministic)",
+ "raw_stdout_copy_note": "console log had GBK bytes; JSON payload byte-identical ASCII (parsed below); full log kept at the raw_stdout path",
+ "raw_stdout": "C:/Users/rocm/Desktop/YOLO_AMD/r2_work/bnprobe_stdout.log",
+ "probe_output": {
+  "rm_vs_unbiased_max_abs": 1.8669710222241065e-10,
+  "rm_vs_unbiased_max_rel": 1.0212795843753353e-06,
+  "rv_vs_unbiased_max_abs": 6.812470521033731e-08,
+  "rv_vs_biased_max_abs": 3.0777284731886567e-06,
+  "rv_gpu_first4": [
+   1.0017109,
+   1.0005186,
+   1.0013589,
+   0.9987599
+  ],
+  "rv_unb_first4": [
+   1.0017109,
+   1.0005186,
+   1.0013589,
+   0.9987599
+  ],
+  "rv_bias_first4": [
+   1.0017078,
+   1.0005156,
+   1.0013558,
+   0.9987569
+  ],
+  "eval_manualref_max_abs": 4.4853522940258017e-07,
+  "cpu_bn_rv_vs_unbiased": 0.001539790290135068,
+  "cpu_bn_rv_vs_biased": 0.0015428942613211483
+ },
+ "claims_check": {
+  "claimed_rv_vs_unbiased_max_abs": "6.8e-08",
+  "recomputed_rv_vs_unbiased_max_abs": 6.812470521033731e-08,
+  "reproduces_claim": true,
+  "closer_to_unbiased_than_biased_by_factor": 45.17786115457039,
+  "conclusion": "GPU BN running stats follow the UNBIASED estimator per PyTorch semantics; old biased-estimator caveat resolved with persisted evidence"
+ }
+}

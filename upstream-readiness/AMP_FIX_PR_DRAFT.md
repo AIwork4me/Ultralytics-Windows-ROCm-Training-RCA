@@ -14,8 +14,8 @@ b = ... autocast ...                                                    # AMP
 return a.shape == b.shape and torch.allclose(a, b.float(), atol=0.5)
 ```
 
-On Windows ROCm stacks, fp16 conv kernels move box coordinates by **0.15–0.76 px** with
-**identical detections, classes and confidences (Δconf ≤ 0.004)**. When the delta exceeds the
+On Windows ROCm stacks, fp16 conv kernels move box coordinates by **0.07–0.76 px** with
+**identical detections, classes and confidences (Δconf ≤ 0.0043)**. When the delta exceeds the
 hard-coded 0.5 px, the check reports "Anomalies were detected with AMP on your system" and
 training **silently falls back to FP32**. The outcome flips on MIOpen cache state (kernel
 selection) — measured deterministic 5/5 PASS in one state and 0/5 FAIL in another on the same
@@ -61,7 +61,8 @@ MIOpen cache change on ROCm, and that a synthetic 1-px coordinate perturbation b
 
 - `amp-rca/ROOT_CAUSE.md` (layered RCA), `amp-rca/PRECISION_COMPARISON.csv`
 - Raw JSONs: `g3_amp_envB_patched.json` (PASS 5/5, max diff 0.2333), `g3_amp_envB_defaulthome.json` (FAIL 0/5, max diff 0.7606, conf ≤ 0.0043, cls = 0)
-- Real AMP training success once the check passes: `g3_amp10_envA.json` (GradScaler anneal + real updates + fitness 0.662→0.696)
+- AMP machinery verification once the check passes: `g3_amp10_envA.json` (GradScaler anneal semantics correct, 3/4 steps overflow-skipped, ≥1 real update — **not a weight-learning demonstration**; fitness gains occurred at skipped-step epochs, audit M5)
+- **Disclosure (audit o5)**: the proposed replacement matcher has **never been executed anywhere** — including as a local CPU simulation — before this draft; validate it (e.g., CPU-only run against archived FP32/AMP box tensors) and check the NMS tie-reordering assumption before submission.
 
 ## Reviewer checklist
 

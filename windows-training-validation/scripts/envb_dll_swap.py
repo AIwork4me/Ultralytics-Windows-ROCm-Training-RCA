@@ -71,6 +71,18 @@ def main() -> None:
              "target": str(TARGET)}
     sf = Path(args.state_file)
     sf.parent.mkdir(parents=True, exist_ok=True)
+    # append transition history (audit fix A-F2: the file previously held only the
+    # latest action, so the swap-in record survived only via a git commit)
+    history = []
+    if sf.is_file():
+        try:
+            prev = json.loads(sf.read_text(encoding="utf-8"))
+            history = prev.get("history", [])
+            if prev.get("action"):          # legacy single-action record
+                history = history + [prev]
+        except json.JSONDecodeError:
+            pass
+    state["history"] = history[-19:]        # cap the chain, newest last
     sf.write_text(json.dumps(state, indent=2), encoding="utf-8")
     print(json.dumps(state, indent=2))
 

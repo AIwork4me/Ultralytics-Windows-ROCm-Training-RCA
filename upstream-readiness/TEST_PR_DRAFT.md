@@ -12,6 +12,8 @@ It must not damage CPU/CUDA CI.
 ## Proposed test — `tests/test_windows_rocm_training.py`
 
 ```python
+import math
+
 import pytest
 import torch
 

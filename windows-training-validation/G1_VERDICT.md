@@ -26,7 +26,7 @@ All with CPU float64 references, declared tolerances, NaN/Inf checks, device che
 | Leg group | Mode | Reps | Result |
 |---|---|---|---|
 | ENV B patched | STL visible | 3 independent cold cache homes | **16/16 PASS ×3** (`reports/G1_MATRIX_pm13437_merged_stl.json`) |
-| ENV B patched | **host STL hidden** (VCToolsInstallDir redirect + INCLUDE='') | 3 independent cold cache homes | **16/16 PASS ×3** (`reports/G1_MATRIX_pm13437_merged_nostl.json`) |
+| ENV B patched | **host STL hidden** (VCToolsInstallDir redirect + INCLUDE='') | 3 independent cold cache homes | **16/16 PASS ×3** (`reports/G1_MATRIX_nostl.json` — filename corrected 2026-11-14 audit m3) |
 | gtest `CPU_HipRtcSelfContained_NONE.RtCompilesInlineKernelWithoutHostStl` | ambient + no-STL | 3 fresh cache homes ×2 variants | **PASS ×6** (`raw/gtest_nostl_r*.log`; real HIPRTC compiles 12–16 s each; cache `.ukdb` created per home) |
 | ENV A official | STL visible | 1 cold | **16/16 PASS** (`reports/G1_MATRIX_pm13437_official_stl.json`) — pre-fix wheel works normally when host STL present |
 | ENV A official | host STL hidden | 1 cold | **EXPECTED_FAIL with exact #3956 signature** (`reports/G1_NEGATIVE_CONTROL.json`; raw stderr carries all four signature elements) |
@@ -41,7 +41,7 @@ Ultralytics-failure signature.
 ## Honest changelog (failures found & fixed during this gate)
 
 1. **First envB STL matrix run: 13/16** — all three failures were **test-reference bugs**, not GPU bugs, each root-caused before any fix:
-   - BN train forward: reference double-applied the running-stat update (read post-update running stats). Isolated probe (`tests/g1_bn_estimator_probe.py`) proved GPU running_var matches the unbiased float64 reference to **6.8e-08** and matches PyTorch semantics (old "biased estimator" caveat from phase5_7/5_8 is resolved: this stack uses the unbiased estimator correctly).
+   - BN train forward: reference double-applied the running-stat update (read post-update running stats). Isolated probe (`tests/g1_bn_estimator_probe.py`) proved GPU running_var matches the unbiased float64 reference to **6.8e-08** and matches PyTorch semantics (old "biased estimator" caveat from phase5_7/5_8 is resolved: this stack uses the unbiased estimator correctly). **Evidence persisted 2026-11-14 (audit fix B-F3)**: `raw/g1_bn_estimator_probe.json` — deterministic re-run reproduces `rv_vs_unbiased_max_abs = 6.812e-08` (45× closer to the unbiased than the biased reference), ENV-B patched-DLL context, fresh cache home.
    - BN eval: reference wrongly used this-batch statistics instead of running statistics.
    - kthvalue bf16: my value grid created bf16 ties (bf16 spacing = 2 above 256), making the returned index implementation-defined; value agreed (256.0) but index differed. Fixed with tie-free exactly-representable grids per dtype.
 2. **Negative-control verdict initially read UNEXPECTED_FAIL** — Python's RuntimeError carries only `miopenStatusUnknownError`; the full signature lives on stderr. Runner now re-derives the signature from captured stderr. No GPU behavior change involved.
@@ -51,7 +51,7 @@ Ultralytics-failure signature.
 - ENV B is **source-built**, not an official wheel (G0 BLOCKED_RELEASE) — G1 PASS therefore validates the MIOpen binary built from the merged PR, not a shipped package.
 - No cache-hit masking: every leg ran a fresh USERPROFILE cache home; `.ukdb`/cache artifacts enumerated per leg (`cache_files_created` in runner reports).
 - gfx1100/gfx1200/Linux legs: BLOCKED_HARDWARE (not connected).
-- Two zombie processes incident (see `environment/INCIDENT_ZOMBIE_PROCESSES.md`): env-B restore deferred; env-B remains intentionally in patched state for G2/G3.
+- Two zombie processes incident (see `environment/INCIDENT_ZOMBIE_PROCESSES.md`): **resolved 2026-11-14 19:39** — zombies self-cleared (no reboot needed), env-B restored to official wheel and hash-verified `e97891df`. The G1/G2/G3 legs above ran while env-B was intentionally in the patched state.
 - 1/15 GPU processes today hung at normal exit (exit-time cleanup hang) — recorded for G4.3.
 
 ## G1 PASS condition — met

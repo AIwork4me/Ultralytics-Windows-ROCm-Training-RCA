@@ -1,6 +1,6 @@
 # G2 VERDICT — Complete Ultralytics Training Lifecycle
 
-Date: 2026-11-14 · Env B (source-built patched MIOpen `ed7c67a9`, torch 2.12.0+rocm7.14.1, ultralytics 8.4.182) · GPU provenance: per-task in-process loaded-DLL probe (all `ed7c67a9…`) · **Verdict: PASS (FP32 track, 7/7 tasks)** · AMP track: runs PASS; AMP effectiveness differs by environment (see G3)
+Date: 2026-11-14 · Env B (source-built patched MIOpen `ed7c67a9`, torch 2.12.0+rocm7.14.1, ultralytics 8.4.182) · GPU provenance: per-task in-process loaded-DLL probe (all `ed7c67a9…`) · **Verdict: PASS (FP32 track, 7/7 tasks)** · AMP track: ENV B run completes 14/14 but `check_amp` falls back to FP32; ENV A run **13/14** (t08 FAIL — see AMP track section)
 
 ## Task matrix verified against installed source (G2.1 — no guessing)
 
@@ -15,7 +15,7 @@ Harness: `tests/g2_lifecycle.py` + `scripts/g2_runner.py`. T12 = interrupt after
 
 | Task | Weights | Result | Evidence |
 |---|---|---|---|
-| detect | yolo26n.pt | **14/14 PASS** | `raw/g2_detect_fp32.json` (moved: workers2/4 copies share record) — canonical record re-created in extras chain |
+| detect | yolo26n.pt | **14/14 PASS** | `raw/g2_detect_fp32.json` (canonical record restored from git `593160e` during the 2026-11-14 audit: the runner's task-keyed output filename had been overwritten by the AMP-track rerun) |
 | segment | yolo26n-seg.pt | **14/14 PASS** | `raw/g2_segment_fp32.json` |
 | classify | yolo26n-cls.pt | **14/14 PASS** | `raw/g2_classify_fp32.json` |
 | pose | yolo26n-pose.pt | **14/14 PASS** | `raw/g2_pose_fp32.json` |
@@ -23,7 +23,7 @@ Harness: `tests/g2_lifecycle.py` + `scripts/g2_runner.py`. T12 = interrupt after
 | semantic | yolo26n-sem.pt | **14/14 PASS** | `raw/g2_semantic_fp32.json` |
 | depth | yolo26n-depth.pt | **14/14 PASS** | `raw/g2_depth_fp32.json` |
 
-Per task: T01 pretrained GPU inference · T03 init · T04 1-epoch smoke · T05 4-epoch interrupted · T06 loss finite every epoch · T07 backward gradients finite (post-warmup steps) · T08 optimizer really updates params (ΔΣ|θ|>0 at lr>0) · T09/T10 checkpoints (integrity incl. final-strip semantics) · T11 reload · T12 resume completes 4 epochs · T13 val of saved model · T14 predict of saved model · T15 metrics identical across reload.
+Per task: T01 pretrained GPU inference · T03 init · T04 1-epoch smoke · T05 4-epoch interrupted · T06 loss finite every epoch · T07 backward gradients finite (post-warmup steps) · T08 optimizer really updates params (ΔΣ|θ|>0 at lr>0) · T09/T10 checkpoints (integrity incl. final-strip semantics) · T11 reload · T12 resume completes 4 epochs · T13 val of saved model · T14 predict of saved model · T15 metrics identical across reload. **Note: this harness revision defines no T02** (IDs jump T01→T03 by design), so "14/14" always means 14 executed of 14 defined.
 
 Example final metrics (detect, 4 epochs, mAP50 = 0.9418 / mAP50-95 = 0.6704): `raw/g2_detect_envA_amptrack.json` t13.
 
@@ -37,7 +37,8 @@ Example final metrics (detect, 4 epochs, mAP50 = 0.9418 / mAP50-95 = 0.6704): `r
 ## AMP track (G2.4) — separate runs, separate records
 
 - ENV B amp=True lifecycle: 14/14 PASS, but `trainer_amp_effective=False` — **check_amp fell back to FP32** (see G3: cache-state-dependent precheck). Runs complete, losses finite; NOT an AMP PASS.
-- ENV A amp=True lifecycle: 14/14 PASS with **AMP effective** (official wheel precheck passes). 10-epoch probe proves real weight updates under AMP (`raw/g3_amp10_envA.json`). FP32 PASS never claimed as AMP PASS anywhere.
+- ENV A amp=True lifecycle: **13/14 — t08 FAIL** (`raw/g2_detect_envA_amptrack.json`: `_max_param_delta = 0.0` at `last_step_lr = 4.006e-05`; consistent with a GradScaler overflow-skip of the measured step, mechanism unproven — the earlier claim of "14/14" here was wrong and was corrected in the 2026-11-14 audit). AMP **was effective** during the run (official wheel precheck passes; `trainer_amp_effective=true`). 10-epoch probe records scaler anneal semantics + 1 real update (`raw/g3_amp10_envA.json`). FP32 PASS never claimed as AMP PASS anywhere. A clean re-run of this leg with correct log names was executed 2026-11-14 — see `raw/g2_detect_envA_amptrack_rerun.json` + `raw/README.md`.
+- Log-naming defect: `g2_runner.py` writes task-keyed log filenames only (`g2_detect_main.log`…), so AMP-track/ENV variants overwrote each other. The four scrambled logs are preserved in `raw/scrambled_logs_20261114/` with a mapping in `raw/README.md`.
 
 ## Honest changelog (defects found in the harness, all root-caused before rerun)
 

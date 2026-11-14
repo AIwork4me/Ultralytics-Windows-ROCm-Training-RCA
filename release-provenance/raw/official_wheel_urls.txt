@@ -1,0 +1,13 @@
+# official_wheel_urls.txt — wheel URLs of the official install (2026-10-19)
+# NOTE: AMD's simple HTML index publishes no checksums and pip's log lists filenames;
+# URLs below are reconstructed as <index>/<project>/<filename> from the resolved filenames
+# in logs/official_pip_install.log. Binary identity is anchored by locally computed SHA256
+# of installed artifacts (see binaries_sha256.txt), not by these URLs.
+https://repo.amd.com/rocm/whl-multi-arch/torch/torch-2.12.0+rocm7.14.1-cp313-cp313-win_amd64.whl
+https://repo.amd.com/rocm/whl-multi-arch/torchvision/torchvision-0.27.0+rocm7.14.1-cp313-cp313-win_amd64.whl
+https://repo.amd.com/rocm/whl-multi-arch/rocm-sdk-core/rocm_sdk_core-7.14.1-py3-none-win_amd64.whl
+https://repo.amd.com/rocm/whl-multi-arch/rocm-sdk-libraries/rocm_sdk_libraries-7.14.1-py3-none-win_amd64.whl
+https://repo.amd.com/rocm/whl-multi-arch/rocm-sdk-device-gfx1151/rocm_sdk_device_gfx1151-7.14.1-py3-none-win_amd64.whl
+https://repo.amd.com/rocm/whl-multi-arch/torch/amd_torch_device_gfx1151-2.12.0+rocm7.14.1-py3-none-win_amd64.whl
+https://repo.amd.com/rocm/whl-multi-arch/torch/amd_torch_device_gfx115x-2.12.0+rocm7.14.1-py3-none-win_amd64.whl
+https://repo.amd.com/rocm/whl-multi-arch/torchvision/amd_torchvision_device_gfx1151-0.27.0+rocm7.14.1-py3-none-win_amd64.whl

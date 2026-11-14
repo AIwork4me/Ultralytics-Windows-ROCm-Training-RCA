@@ -1,0 +1,267 @@
+{
+  "generated": "2026-10-19T15:06:19.741648+00:00",
+  "machine_dlls": [
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "size": 492380672,
+      "mtime": "2026-10-19T14:07:04.512102+00:00",
+      "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 12
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpenCKGroupedConv_gfx1151.dll",
+      "size": 305966080,
+      "mtime": "2026-10-19T14:07:22.747645+00:00",
+      "sha256": "7c1fcc259fcfc738fa0d15aa717e7d91ebf93e00a6e334f10f26dc828b34da65",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 0
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_plugins\\engines\\miopen_plugin.dll",
+      "size": 500736,
+      "mtime": "2026-10-19T14:07:04.925461+00:00"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "size": 492380672,
+      "mtime": "2026-10-19T14:07:04.512102+00:00",
+      "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 12
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpenCKGroupedConv_gfx1151.dll",
+      "size": 305966080,
+      "mtime": "2026-10-19T14:07:22.747645+00:00",
+      "sha256": "7c1fcc259fcfc738fa0d15aa717e7d91ebf93e00a6e334f10f26dc828b34da65",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 0
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_plugins\\engines\\miopen_plugin.dll",
+      "size": 500736,
+      "mtime": "2026-10-19T14:07:04.925461+00:00"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "size": 492380672,
+      "mtime": "2026-10-16T15:35:03.252093+00:00",
+      "sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 12
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpenCKGroupedConv_gfx1151.dll",
+      "size": 305966080,
+      "mtime": "2026-10-07T01:17:42.909717+00:00",
+      "sha256": "f67654a630cd5409b84af03878b2a1f98c5d2ed89eb996f3e058b8983de87c3d",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 0
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_plugins\\engines\\miopen_plugin.dll",
+      "size": 500736,
+      "mtime": "2026-10-07T01:17:31.934405+00:00"
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "size": 492380672,
+      "mtime": "2026-10-07T01:17:31.536543+00:00",
+      "sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 12
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpenCKGroupedConv_gfx1151.dll",
+      "size": 305966080,
+      "mtime": "2026-10-07T01:17:42.909717+00:00",
+      "sha256": "f67654a630cd5409b84af03878b2a1f98c5d2ed89eb996f3e058b8983de87c3d",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 0
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\miniconda3\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_plugins\\engines\\miopen_plugin.dll",
+      "size": 500736,
+      "mtime": "2026-10-07T01:17:31.934405+00:00"
+    },
+    {
+      "path": "C:\\b58\\bin\\MIOpen.dll",
+      "size": 519292416,
+      "mtime": "2026-10-16T14:58:59.646799+00:00",
+      "sha256": "42d261caec77bf3149b336d55b12dd388e988da97a84cf79688a6f4af19b23cc",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 2,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\b58m\\bin\\MIOpen.dll",
+      "size": 520364032,
+      "mtime": "2026-10-19T14:18:41.068199+00:00",
+      "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 2,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\bwp\\bin\\MIOpen.dll",
+      "size": 519288320,
+      "mtime": "2026-10-14T16:01:52.497170+00:00",
+      "sha256": "fe0c28474bda47e51ab70c0c10eaf41808797dcf7b19e69a0b26b212f66b43eb",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 12
+      }
+    },
+    {
+      "path": "C:\\b56p\\bin\\MIOpen.dll",
+      "size": 519294464,
+      "mtime": "2026-10-14T16:01:03.818575+00:00",
+      "sha256": "9ab946076f7ca8d4985df0e6a55ce44af5e8e59292fa3de5277904f3d5daf4b1",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 2,
+        "miopen_type_traits": 18
+      }
+    },
+    {
+      "path": "C:\\ba\\bin\\MIOpen.dll",
+      "size": 519288320,
+      "mtime": "2026-10-12T14:31:47.480839+00:00",
+      "sha256": "f1acc2cae4581b6f7d09bd8a19aa493fb003c905b71db7c4a386a2f9d2dd5b85",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 12
+      }
+    },
+    {
+      "path": "C:\\bfin\\bin\\MIOpen.dll",
+      "size": 519294464,
+      "mtime": "2026-10-14T22:02:00.432096+00:00",
+      "sha256": "c739cb0e143162694c331ef8137e686418d003769ed7ad25c96945fe63a6fb42",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 2,
+        "miopen_type_traits": 18
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\build_phase3\\bin\\MIOpen.dll",
+      "size": 518645760,
+      "mtime": "2026-10-07T13:29:54.644781+00:00",
+      "sha256": "9fa28af5d3b99ab7f099c5b9647bd30a9ed759d9a95d2cba29710228ce139f71",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase4_build\\miopen\\bin\\MIOpen.dll",
+      "size": 465298432,
+      "mtime": "2026-10-08T03:31:48.267784+00:00",
+      "sha256": "b32d6310817a225ff81cfe8de3dfe2a0d5c525caa845bad1f4d2304abc6aa721",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_1_build\\miopen\\bin\\MIOpen.dll",
+      "size": 430097408,
+      "mtime": "2026-10-08T07:30:20.648131+00:00",
+      "sha256": "9a7744029ccdf421f8ee2df588b02e35e9b5c829a7079f6dc18411cd0adb11e7",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_1_r2_build\\miopen\\bin\\MIOpen.dll",
+      "size": 363044864,
+      "mtime": "2026-10-09T04:12:04.028631+00:00",
+      "sha256": "48a1eee23d17078d7583602c28066b6615afdea86891344917c8d00c6ddcc88a",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_4_build\\miopen\\bin\\MIOpen.dll",
+      "size": 328163328,
+      "mtime": "2026-10-09T12:21:50.884486+00:00",
+      "sha256": "44d43887011856e5a3e8c670355239ba9c4012cb7453af5578e4b3bf8a240089",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\phase5_build\\miopen\\bin\\MIOpen.dll",
+      "size": 465300992,
+      "mtime": "2026-10-08T06:07:08.335774+00:00",
+      "sha256": "d5974dad0da85b3b9849b5f678fff13b3e678ae14029b98aa0cd87dded9f9a36",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\review_r1_build\\ci_gtest\\bin\\MIOpen.dll",
+      "size": 416066560,
+      "mtime": "2026-10-12T14:12:16.192678+00:00",
+      "sha256": "5286ff07f32d0bb4cd06a98953e7dec53f45ef0e3a1caa3e9c8bc56bfe592771",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 16
+      }
+    },
+    {
+      "path": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\review_r1_build\\miopen\\bin\\MIOpen.dll",
+      "size": 415967232,
+      "mtime": "2026-10-12T14:02:03.496133+00:00",
+      "sha256": "1ac21b4c7f5b6ffa7f7c6a5e12a0ed23fbef34598e5f128c3e5551b740d88e75",
+      "version": null,
+      "postfix_markers": {
+        "miopen_initializer_list": 0,
+        "miopen_type_traits": 16
+      }
+    }
+  ]
+}

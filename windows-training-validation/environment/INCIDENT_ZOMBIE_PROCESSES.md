@@ -29,3 +29,12 @@ Both keep `...\pm13437_merged\...\_rocm_sdk_libraries\bin\MIOpen.dll` mapped, so
 exit-time GPU cleanup hang on this driver/HIP stack (7.14.60850). The other was
 force-killed mid-op (expected behavior). Recorded as a stability observation, not
 a functional failure; new processes unaffected.
+
+## RESOLVED — 2026-11-14 19:39 local
+
+All three zombie PIDs (29152/10940/43404) cleared on their own — **no reboot needed**.
+`envb_dll_swap.py --action restore` executed successfully (exit 0):
+
+- before: `ed7c67a9…` (SOURCE_BUILT_PATCHED) → after: `e97891df…` (**OFFICIAL_WHEEL**, expected hash match)
+- `ENVB_DLL_STATE.json` now records the restore; `verify_release_closure.py` re-run after restore: 184 checks, 0 violations, exit 0.
+- ENV B is back to pristine official-wheel state.

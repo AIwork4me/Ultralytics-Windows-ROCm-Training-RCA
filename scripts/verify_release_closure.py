@@ -4,7 +4,11 @@
 
 Checks (§12 of the mission):
   - every declared PASS in gate JSONs has raw-log files present and non-empty
-  - every GPU-run JSON carries loaded-DLL provenance (miopen sha256 recorded)
+  - GPU-run JSONs carry provenance, tiered (2026-11-14 audit fix): G2 lifecycle
+    records require loaded_dll.sha256 when they claim all-PASS; G3 flip/A/B runs
+    require HIP+gpu_authentic; G3 10-epoch and G4 records (which predate the
+    per-file DLL-probe convention — deviation disclosed in the audit report)
+    require HIP+torch environment provenance
   - manifest integrity for the new-phase directories (SHA256SUMS if present)
   - no unsupported official-support language in new-phase docs
   - required deliverable files exist per gate
@@ -88,11 +92,24 @@ def main() -> None:
             for t in (d.get("tests") or {}).values():
                 check(f"status-vocab:{jf.name}", t.get("status") in ALLOWED,
                       f"bad status {t.get('status')!r}")
-        for jf in sorted(raw.glob("g3_amp_*.json")):
+        for jf in sorted(raw.glob("g3_amp*.json")):
             d = json.loads(jf.read_text(encoding="utf-8"))
             env = d.get("environment") or {}
-            check(f"gpu-provenance:{jf.name}", bool(env.get("hip")) and env.get("gpu_authentic"),
-                  "AMP audit run without HIP provenance")
+            if "gpu_authentic" in env:
+                check(f"gpu-provenance:{jf.name}", bool(env.get("hip")) and env.get("gpu_authentic"),
+                      "AMP audit run without HIP provenance")
+            else:
+                # g3_amp10_envA.json predates the per-file gpu_authentic/DLL-probe
+                # convention; deviation disclosed (P8_INDEPENDENT_AUDIT.md m6)
+                check(f"gpu-provenance:{jf.name}", bool(env.get("hip")) and bool(env.get("torch")),
+                      "AMP training record without HIP/torch provenance (loaded-DLL probe absent — disclosed deviation)")
+        for jf in sorted(raw.glob("g4_*.json")):
+            d = json.loads(jf.read_text(encoding="utf-8"))
+            env = d.get("environment") or {}
+            # G4 ran in a third environment without in-process DLL probes
+            # (disclosed deviation + env relabel, P8_INDEPENDENT_AUDIT.md M4)
+            check(f"gpu-provenance:{jf.name}", bool(env.get("hip")) and bool(env.get("torch")),
+                  "G4 record without HIP/torch provenance (loaded-DLL probe absent — disclosed deviation)")
 
     # 3. gate reports: PASS claims must reference non-empty raw artifacts
     reports = root / "windows-training-validation" / "reports"

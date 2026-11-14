@@ -1,6 +1,8 @@
 # PERFORMANCE REPORT — G4.4 matched A/B + honest scope
 
-## Matched A/B — FP32 vs AMP (official wheel ENV A, identical seed/data/epochs)
+## Matched A/B — FP32 vs AMP (third environment — see correction, identical seed/data/epochs)
+
+> **Environment corrected 2026-11-14 (audit M4)**: this A/B ran on the miniconda **base** env — python 3.13.13, ultralytics 8.4.174, torch 2.12.0+**rocm7.14.0** official wheel (pre-fix MIOpen `74b4ee03`, host STL visible) — **not** on ENV A (`pm13437_official`, 7.14.1/8.4.182) as previously labeled. Env evidence: `g2_work/g4_perf_console.log:2` + the JSON's own torch string. No in-process DLL probe was captured for G4 runs (disclosed deviation).
 
 `windows-training-validation/tests/g4_perf_ab.py` · coco8 detect 10 epochs · batch 16 · workers 2 · 2026-11-14
 
@@ -24,8 +26,8 @@
 
 ## Raw samples
 
-`raw/g4_perf_ab_envA.json` (per-run records) + per-epoch CSVs retained in `g2_work/runs/detect/perfab_{fp32,amp}/results.csv` (regenerable run dirs; JSON carries the authoritative numbers).
+`raw/g4_perf_ab_envA.json` (per-run records; **the filename's "envA" suffix is a mislabel** — content records torch 7.14.0, see correction above). The run dirs `g2_work/runs/detect/perfab_{fp32,amp}` were **removed by the script after the run** (`g4_perf_ab.py` calls `rmtree`) — the earlier claim that per-epoch CSVs were retained was false (audit fix B-F9); the JSON carries the authoritative numbers and the runs are regenerable with the same seed.
 
 ## Cross-check note (epoch-time source)
 
-G4.1 long run (ENV B): epoch 0 = 122.8 s (cold HIPRTC compile) vs steady state 6.8 s — cold-compile latency is a one-time cost per cache home; warm steady-state is the comparable figure.
+G4.1 long run (third environment): epoch 0 = 122.8 s (cold HIPRTC compile) vs steady state ~7 s (6.55–7.09) — cold-compile latency is a one-time cost per cache home; warm steady-state is the comparable figure.

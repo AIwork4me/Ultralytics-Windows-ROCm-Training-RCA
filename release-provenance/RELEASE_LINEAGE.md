@@ -42,7 +42,7 @@ Latest). **Zero release tags postdate the merge** → no official release can co
 
 | Channel | Newest state observed | Contains fix? |
 |---|---|---|
-| AMD official PyTorch index `repo.amd.com/rocm/whl-multi-arch/` (cp313 win_amd64) | torch 2.12.0+rocm7.14.1 (+ torchvision 0.27.0) | **NO** — behavioral proof: BN fails exact #3956 signature with hidden host STL (`C:\YOLO_PR13437_PostMerge\logs\official\batchnorm_nostl_vctools.log`); fix-marker `miopen_initializer_list` = 0 in installed MIOpen.dll `e97891df…` |
+| AMD official PyTorch index `repo.amd.com/rocm/whl-multi-arch/` (cp313 win_amd64) | torch 2.12.0+rocm7.14.1 (+ torchvision 0.27.0) | **NO** — behavioral proof: BN fails exact #3956 signature with hidden host STL (historical: `C:\YOLO_PR13437_PostMerge\logs\official\batchnorm_nostl_vctools.log`, in-repo copy `raw/batchnorm_nostl_vctools_C+D_mission.log`; re-confirmed 2026-11-14 on `windows-training-validation/raw/envA_nostl_neg.log`); fix-marker `miopen_initializer_list` = 0 in installed MIOpen.dll `e97891df…` (raw count records: `raw/miopen_dll_inventory_raw.json`) |
 | PyTorch official `download.pytorch.org/whl/` Windows | **no ROCm wheels at all** (0 matches `rocm…win_amd64` in torch index) | N/A |
 | TheRock nightly pip index `rocm.nightlies.amd.com/v2/gfx1151/` | **stale at 2026-06-12** (torch + rocm-sdk-libraries-gfx1151); no 7.14.1+/post-merge builds | **NO** |
 | TheRock S3 dev artifacts (`therock-nightly-artifacts`, windows platform dir) | not a pip index; no installable official Windows wheel with fix located | UNKNOWN (no public wheel found) |
@@ -59,3 +59,8 @@ is the gating event for release closure — see G0_VERDICT.md.
    `repo.amd.com/rocm/whl-multi-arch/` (or nightlies resume for gfx1151).
 3. Installed `_rocm_sdk_libraries/bin/MIOpen.dll` contains fix-marker
    `miopen_initializer_list` ≥ 1 and passes the no-STL BatchNorm gtest/Python probe.
+4. Cross-check `download.pytorch.org/whl/torch/` for any ROCm **Windows** wheel (as of
+   2026-11-14 there are none — a future appearance would be a new release channel to
+   scan; audit fix A-F6). Also note the AMD multi-arch index now carries a
+   torch-2.13.0+rocm7.14.0 **linux_x86_64** series (observed 2026-11-14, no Windows
+   wheel) — track it in the weekly scan (audit obs A-F8).
