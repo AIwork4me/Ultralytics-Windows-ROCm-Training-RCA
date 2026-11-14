@@ -1,13 +1,20 @@
 # HANDOFF — Release-to-Upstream Closure 交接文档
 
-写于 2026-11-14 收工（P8 独立审计批次后更新）· 分支 `work/windows-rocm-training-release-closure` · HEAD 见 git log（本文件随审计批次提交推送）
+写于 2026-11-14 收工（P8 独立审计批次后更新；**P9 批次 2026-11-14 深夜更新**）· 分支 `work/windows-rocm-training-release-closure` · HEAD 见 git log（本文件随审计批次提交推送）
 
 ## 1. 一分钟状态
 
-**任务**：Windows ROCm YOLO 训练 Release-to-Upstream Closure（P0–P8，十个 todo 大项）。
-**已完成**：P0–P8 全部实质完成并有证据；**P8 独立三视角审计已执行**（上次会话被取消的那次，本次复跑完成，见 `P8_INDEPENDENT_AUDIT.md`）：三视角均 PASS-WITH-FINDINGS，11 项 MAJOR 全部处置（文档重标/复跑定案/证据持久化），9 项 MINOR 修复，verifier 扩容 184→**218 检查 exit 0**。
-**Verdict（审计后维持）**：GO-A **CONDITIONAL PASS** · GO-B **CONDITIONAL PASS**（AMP 范围诚实收窄：机制语义而非"学会训练"）· GO-C **NO-GO（BLOCKED_RELEASE，外部阻塞）**。
-**唯一决定性阻塞**：截至 2026-11-14 没有任何官方发行包包含 PR #13437 修复（审计 A 经 live API 复核后维持）。
+**任务**：Windows ROCm YOLO 训练 Release-to-Upstream Closure（P0–P8），**P9–P12 证据加固批次进行中（mission P9-P12，§3 P8-findings-closure + §4 AMP fix/validation）**。
+**P9 已完成**（全部有 raw 证据）：
+- **§3.1/3.2 t07/t08 重写**：per-parameter tensor-delta + GradScaler 全插桩 + 严格 t07（无无条件 AMP PASS）+ skip/failure 分类；CPU 对抗套件 34/34（GPU 前抓出 4 个插桩真 bug）；**ENV A amptrack 复跑 14/15 PASS + t16 = 24 次真实重复参数更新**（audit M5 关闭）；历史 t08 FAIL 按步重分类为"预期溢出跳步"（机制已证）。
+- **§3.3 G4 epoch 记账**：31 vs 30 根因 = 上游 `final_eval()` epoch+1 best-metrics 回调（8.4.174/8.4.182 源码验证）——30 个训练 epoch 正确，非过训练；harness 重写（对账块 + in-process DLL probe + 内嵌 results.csv + wall samples + checkpoint 元数据）。
+- **§3.4 证据合同 v2**：verifier 286 检查（断言重算/SKIP≠PASS/run-id+env-id 跨日志一致/按环境 DLL 一致防污染/硬件一致性/claims→证据引用对账）；对抗 fixtures 12/12 已知坏记录全部被拒。
+- **G4 在 ENV A/B 重跑完成**（第三环境限定消除）：ENV A `e97891df`、ENV B `ed7c67a9`，30/30 对账，fitness 0.505→0.602/0.603；A/B：ENV A AMP 有效 1.43×/VRAM−33%；ENV B check_amp 回退被如实标记（ratio=null，"NOT AN AMP MEASUREMENT"）。
+- **官方 wheel 周扫**（2026-11-14 13:32Z）：最新 Windows wheel 仍为 torch-2.12.0+rocm7.14.1 → BLOCKED_RELEASE 维持（`release-provenance/raw/official_wheel_rescan_20261114.json`）。
+- **重大发现（§4.2）**：上游已在 **8.4.197（PR #26967，2026-11-01）重新设计 check_amp**（未训练模型 + 逐层相对范数 ≤5%，取代 amp_allclose）——PR-C（IoU matcher 替换）对 main 已过时，不再提交重复补丁；转向**验证新 check 在 gfx1151 的表现**（含历史 FAIL 的 warm-training 态），IoU matcher 保留为证据套件（CPU 26/26 + 归档真张量 + GPU 负对照全捕获）。
+- **§4.4 真实 AMP 学习**：t16 24 次更新已在生命周期内证明；imagenette2-160 代表性数据集 FP32-vs-AMP 对照运行在 P9 批次 2 中执行。
+**Verdict**：GO-A **CONDITIONAL PASS（升级）** · GO-B **CONDITIONAL PASS（升级）** · GO-C **NO-GO（BLOCKED_RELEASE 维持，外部阻塞）**——见 `GO_NO_GO.md` P9 addendum。
+**唯一决定性阻塞**：截至 2026-11-14 13:32Z 没有任何官方发行包包含 PR #13437 修复。
 
 ## 2. 本日关键发现（按重要性）
 
@@ -33,18 +40,21 @@
 
 工具链位置（仓库外，本机）：ENV A `pm13437_official`（pristine 官方 wheel）/ ENV B `pm13437_merged` / 源码构建 `C:\b58m`（f0a5d266）/ `C:\b58`（d4b574ac）/ 工作目录 `C:\Users\rocm\Desktop\YOLO_AMD\g2_work`（runs + weights）/ 数据集 `C:\Users\rocm\Desktop\YOLO_AMD\datasets`（含 imagenette2-160，sha256 `64d0c485…`）/ 历史验证 `C:\YOLO_PR13437_PostMerge`。
 
-## 4. 未完成事项（按优先级）
+## 4. 未完成事项（按优先级 — P9 更新）
 
 | # | 事项 | 动作 | 状态 |
 |---|---|---|---|
-| 1 | ~~P8 独立二审~~ | **已执行（2026-11-14 晚）**：三视角（溯源/技术验证/RCA+一致性）并行只读审计，对照 raw 证据重算；结论与处置见 `P8_INDEPENDENT_AUDIT.md` | ✅ 完成 |
-| 2 | ~~env B DLL 恢复~~ | **已解决（2026-11-14 19:39）：僵尸自行清除（无需重启），restore 执行成功，哈希验证 `e97891df…` = OFFICIAL_WHEEL**；swap 脚本已升级为追加式转换历史 | ✅ 完成 |
-| 3 | 官方 wheel 扫描 | 每周检查 repo.amd.com index 是否出现 >7.14.1 版本（2026-11-14 已观察到 torch-2.13.0+rocm7.14.0 **linux_x86_64** 系列，无 Windows wheel——加入扫描范围）；出现后按 `RELEASE_LINEAGE.md` §4 清单重跑 G0 → G1/G2/G3 全套（harness 全部现成，改 `--python` 参数即可） | ⏳ 外部事件 |
-| 4 | 上游提交 | 4 PR 草稿 + 1 Issue 草稿**已按审计修正**（M3/m3/m9/M5/o4/o5）等 Owner 审阅批准（任务边界：未经批准不得向上游提交/评论） | ⏳ Owner |
+| 1 | ~~P8 独立二审~~ | 已执行（2026-11-14 晚） | ✅ 完成 |
+| 2 | ~~env B DLL 恢复~~ | 已解决（2026-11-14 19:39 restore 哈希过；P9 批次内 swap-in/restore 双向再验证） | ✅ 完成 |
+| 3 | 官方 wheel 扫描 | **2026-11-14 13:32Z 已扫**：最新仍为 torch-2.12.0+rocm7.14.1（`release-provenance/raw/official_wheel_rescan_20261114.json`）；出现 >7.14.1 后按 `RELEASE_LINEAGE.md` §4 清单重跑 G0→G1/G2/G3 | ⏳ 外部事件 |
+| 4 | 上游提交 | **授权变更：mission P9-P12 §1 明确授权提交**（草稿限定被取代）；PR-C 已被上游 8.4.197 (#26967) 取代——改为提交 gfx1151 验证数据 Issue/评论 + EvaluateInvokers Issue；不提交重复补丁 | ⏳ P12 执行中 |
 | 5 | 跨架构 | gfx1100/gfx1200/Linux 接入后按 `platform-matrix/*` 模板命令执行 | ⏳ BLOCKED_HARDWARE |
-| 6 | **G4 在 ENV A/B 重跑**（审计新增） | 给 `g4_long_run.py`/`g4_perf_ab.py` 加 in-process DLL probe 后在 ENV A/B 重跑长训+A/B，彻底消除"第三环境"限定 | ⏳ 可选增强 |
-| 7 | **g3 harness 溯源升级**（审计新增） | `g3_amp_rca.py` meta() 加每文件 DLL sha + cache-home 记录（m6）；归档 MINIMAL_REPRO JSON 输出（m7） | ⏳ 可选增强 |
-| 8 | **PR-C matcher CPU 仿真**（审计新增） | 提交上游前用归档张量做 CPU-only 仿真验证 IoU matcher（C-o5）+ NMS tie-reordering 假设 | ⏳ 提交前必做 |
+| 6 | ~~G4 在 ENV A/B 重跑~~ | **P9 完成**：ENV A/B 各 30ep 长训 + 匹配 A/B，全部带 in-process DLL probe + epoch 对账 + CSV 保全 | ✅ 完成 |
+| 7 | ~~g3 harness 溯源升级~~ | **P9 完成**：新 g3 harness（paired-boxes/learning/repro）全部自带 dll_provenance + cache-home 记录 | ✅ 完成 |
+| 8 | ~~PR-C matcher CPU 仿真~~ | **P9 完成**（26/26 + 归档真张量 5/5 + GPU 负对照 5/5 全捕获）；PR-C 本身被 #26967 取代 | ✅ 完成 |
+| 9 | **8.4.197+ 新 check_amp 在 gfx1151 验证**（P9 新增） | `g3_check_amp_84212_validation.py`（PYTHONPATH 注入 8.4.212，default/fresh/warm 三态，ENV A/B） | ⏳ 批次 3 |
+| 10 | **P10 全 7 任务矩阵复跑**（P9 新增） | 新 harness × 7 任务 FP32（ENV B patched）+ workers 2/4 + amptrack ENV B——批次 2 执行中 | ⏳ 批次 2 |
+| 11 | **EvaluateInvokers 最小复现**（P9 新增） | `g3_evaluateinvokers_repro.py`（无 Ultralytics、逐 config 子进程、fresh-cache Find 路径）——批次 2 执行中；结果决定 Issue 形态 | ⏳ 批次 2 |
 
 ## 5. 复现快速命令（下次会话直接用）
 

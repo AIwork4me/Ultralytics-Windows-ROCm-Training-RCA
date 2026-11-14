@@ -1,0 +1,153 @@
+{
+  "environment": {
+    "captured_utc": "2026-11-14T13:34:40.159901+00:00",
+    "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\python.exe",
+    "python_version": "3.13.16",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "cuda_available": true,
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "device_count": 1,
+    "total_mem_gb": 78.2,
+    "ultralytics": "8.4.182",
+    "cache_home_env": {
+      "TORCH_CPP_LOG_LEVEL": "ERROR",
+      "USERPROFILE": "C:\\Users\\rocm",
+      "ZHIPU_API_KEY": "3d8c3220d1904190831100115cb0f425.TFeWhNg7HSrDES1y"
+    }
+  },
+  "runs": {
+    "fp32": {
+      "run_id": "g4perf_envB_20261114T133003Z_fp32",
+      "amp_requested": false,
+      "amp_effective": false,
+      "scaler_enabled": false,
+      "wall_s": 27.8,
+      "epochs_configured": 10,
+      "epochs_completed": 10,
+      "epochs_reconciled": true,
+      "mean_epoch_s": 2.78,
+      "train_imgs_per_s_lower_bound": 5.8,
+      "peak_vram_gb": 1.28,
+      "final_fitness": 0.67251,
+      "results_csv_text": "epoch,time,train/box_loss,train/cls_loss,train/l1_loss,metrics/precision(B),metrics/recall(B),metrics/mAP50(B),metrics/mAP50-95(B),val/box_loss,val/cls_loss,val/l1_loss,lr/pg0,lr/pg1,lr/pg2\n1,14.9003,1.15153,1.82918,0.01258,0.55341,0.96144,0.94326,0.66405,1.58254,0.97144,0.01154,0,0,0\n2,15.9338,1.21692,2.35214,0.02416,0.55341,0.96144,0.94326,0.66405,1.58254,0.97144,0.01154,3.57397e-05,3.57397e-05,3.57397e-05\n3,16.6795,1.07066,2.77694,0.01984,0.55341,0.96144,0.94326,0.66405,1.58254,0.97144,0.01154,6.36253e-05,6.36253e-05,6.36253e-05\n4,17.4414,1.02996,1.59252,0.0123,0.86019,0.65494,0.9446,0.67829,1.55919,1.04501,0.01159,8.3657e-05,8.3657e-05,8.3657e-05\n5,18.1621,0.63139,1.10302,0.00561,0.86019,0.65494,0.9446,0.67829,1.55919,1.04501,0.01159,7.1876e-05,7.1876e-05,7.1876e-05\n6,18.9011,1.20297,1.77187,0.02483,0.86019,0.65494,0.9446,0.67829,1.55919,1.04501,0.01159,6.0095e-05,6.0095e-05,6.0095e-05\n7,19.6579,0.84291,1.50098,0.01444,0.85931,0.65572,0.94271,0.67009,1.55552,1.05228,0.01182,4.8314e-05,4.8314e-05,4.8314e-05\n8,20.4026,0.66403,0.8471,0.00776,0.85931,0.65572,0.94271,0.67009,1.55552,1.05228,0.01182,3.6533e-05,3.6533e-05,3.6533e-05\n9,21.1407,0.80119,1.09312,0.00827,0.85931,0.65572,0.94271,0.67009,1.55552,1.05228,0.01182,2.4752e-05,2.4752e-05,2.4752e-05\n10,21.8817,0.74015,1.00456,0.00824,0.85335,0.66082,0.94326,0.67251,1.5411,1.05765,0.01161,1.2971e-05,1.2971e-05,1.2971e-05\n",
+      "dll_provenance": {
+        "probe": "Toolhelp32Snapshot in-process",
+        "modules": {
+          "amdhip64_7.dll": {
+            "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll",
+            "sha256": "1c7bad4e8ddefc456e5c073d89b59ee0bcfbcda461a5ada145370fe9941df033",
+            "size_bytes": 22097408
+          },
+          "miopen.dll": {
+            "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+            "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+            "size_bytes": 520364032
+          },
+          "hipdnn_backend.dll": {
+            "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_backend.dll",
+            "sha256": "d115a4355b2c601be236025c3cbd530540c689e27d0742b34ddb62fc7063835f",
+            "size_bytes": 2172928
+          },
+          "miopenckgroupedconv_gfx1151.dll": {
+            "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpenCKGroupedConv_gfx1151.dll",
+            "sha256": "7c1fcc259fcfc738fa0d15aa717e7d91ebf93e00a6e334f10f26dc828b34da65",
+            "size_bytes": 305966080
+          }
+        },
+        "miopen_loaded": {
+          "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+          "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+          "size_bytes": 520364032
+        },
+        "probe_error": null,
+        "loaded_module_count_total": 162
+      },
+      "started_utc": "2026-11-14T13:35:09.110624+00:00"
+    },
+    "amp": {
+      "run_id": "g4perf_envB_20261114T133003Z_amp",
+      "amp_requested": true,
+      "amp_effective": false,
+      "scaler_enabled": false,
+      "wall_s": 11.1,
+      "epochs_configured": 10,
+      "epochs_completed": 10,
+      "epochs_reconciled": true,
+      "mean_epoch_s": 1.11,
+      "train_imgs_per_s_lower_bound": 14.4,
+      "peak_vram_gb": 1.32,
+      "final_fitness": 0.67251,
+      "results_csv_text": "epoch,time,train/box_loss,train/cls_loss,train/l1_loss,metrics/precision(B),metrics/recall(B),metrics/mAP50(B),metrics/mAP50-95(B),val/box_loss,val/cls_loss,val/l1_loss,lr/pg0,lr/pg1,lr/pg2\n1,0.24982,1.15153,1.82918,0.01258,0.55341,0.96144,0.94326,0.66405,1.58254,0.97144,0.01154,0,0,0\n2,0.996836,1.21692,2.35214,0.02416,0.55341,0.96144,0.94326,0.66405,1.58254,0.97144,0.01154,3.57397e-05,3.57397e-05,3.57397e-05\n3,1.76618,1.07066,2.77694,0.01984,0.55341,0.96144,0.94326,0.66405,1.58254,0.97144,0.01154,6.36253e-05,6.36253e-05,6.36253e-05\n4,2.49237,1.02996,1.59252,0.0123,0.86019,0.65494,0.9446,0.67829,1.55919,1.04501,0.01159,8.3657e-05,8.3657e-05,8.3657e-05\n5,3.23928,0.63139,1.10302,0.00561,0.86019,0.65494,0.9446,0.67829,1.55919,1.04501,0.01159,7.1876e-05,7.1876e-05,7.1876e-05\n6,4.00546,1.20297,1.77187,0.02483,0.86019,0.65494,0.9446,0.67829,1.55919,1.04501,0.01159,6.0095e-05,6.0095e-05,6.0095e-05\n7,4.76738,0.84291,1.50097,0.01444,0.85931,0.65572,0.94271,0.67009,1.55552,1.05228,0.01182,4.8314e-05,4.8314e-05,4.8314e-05\n8,5.52384,0.66403,0.8471,0.00776,0.85931,0.65572,0.94271,0.67009,1.55552,1.05228,0.01182,3.6533e-05,3.6533e-05,3.6533e-05\n9,6.26108,0.80119,1.09312,0.00827,0.85931,0.65572,0.94271,0.67009,1.55552,1.05228,0.01182,2.4752e-05,2.4752e-05,2.4752e-05\n10,7.00618,0.74015,1.00456,0.00824,0.85335,0.66082,0.94326,0.67251,1.5411,1.05765,0.01161,1.2971e-05,1.2971e-05,1.2971e-05\n",
+      "dll_provenance": {
+        "probe": "Toolhelp32Snapshot in-process",
+        "modules": {
+          "amdhip64_7.dll": {
+            "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll",
+            "sha256": "1c7bad4e8ddefc456e5c073d89b59ee0bcfbcda461a5ada145370fe9941df033",
+            "size_bytes": 22097408
+          },
+          "miopen.dll": {
+            "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+            "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+            "size_bytes": 520364032
+          },
+          "hipdnn_backend.dll": {
+            "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_backend.dll",
+            "sha256": "d115a4355b2c601be236025c3cbd530540c689e27d0742b34ddb62fc7063835f",
+            "size_bytes": 2172928
+          },
+          "miopenckgroupedconv_gfx1151.dll": {
+            "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpenCKGroupedConv_gfx1151.dll",
+            "sha256": "7c1fcc259fcfc738fa0d15aa717e7d91ebf93e00a6e334f10f26dc828b34da65",
+            "size_bytes": 305966080
+          }
+        },
+        "miopen_loaded": {
+          "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+          "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+          "size_bytes": 520364032
+        },
+        "probe_error": null,
+        "loaded_module_count_total": 162
+      },
+      "started_utc": "2026-11-14T13:35:21.182031+00:00",
+      "leg_status": "AMP_FALLBACK_TO_FP32 \u2014 check_amp disabled AMP; this leg is NOT an AMP measurement"
+    }
+  },
+  "interpretation": [
+    "matched A/B: same wheel/environment, machine, seed/data/epochs \u2014 measures FP32-vs-AMP behavior on identical work only",
+    "img/s is a lower bound (full-batch estimate); tiny smoke datasets are dominated by dataloader/compile overheads \u2014 not throughput benchmarks",
+    "per-epoch results.csv text is embedded verbatim (audit B-F9: the old harness deleted run dirs and falsely claimed CSVs were retained)",
+    "NO cross-environment performance-parity claim may be derived from this harness (mission P9.3.7): ENV A (official MIOpen) and ENV B (patched source-built MIOpen) are different runtimes"
+  ],
+  "summary": {
+    "fp32_mean_epoch_s": 2.78,
+    "amp_mean_epoch_s": 1.11,
+    "amp_leg_valid": false,
+    "amp_vs_fp32_epoch_ratio": null,
+    "ratio_scope": "NOT AN AMP MEASUREMENT: AMP fell back to FP32 (check_amp); ratio compares FP32 vs FP32-fallback",
+    "fp32_peak_vram_gb": 1.28,
+    "amp_peak_vram_gb": 1.32,
+    "both_epochs_completed": true,
+    "both_reconciled": true,
+    "miopen_sha_fp32": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+    "miopen_sha_amp": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a"
+  },
+  "run_id": "g4perf_envB_20261114T133003Z",
+  "environment_id": "ENV_B_patched",
+  "args": {
+    "out": "C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA\\windows-training-validation\\raw\\g4_perf_ab_ENV_B_p9.json",
+    "data": "coco8.yaml",
+    "epochs": "10",
+    "batch": "16",
+    "workers": "2",
+    "weights": "yolo26n.pt",
+    "seed": "42",
+    "run_id": "g4perf_envB_20261114T133003Z",
+    "environment_id": "ENV_B_patched"
+  },
+  "started_utc": "2026-11-14T13:34:40.216953+00:00",
+  "completed_utc": "2026-11-14T13:35:21.184920+00:00"
+}

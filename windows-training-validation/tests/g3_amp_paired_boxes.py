@@ -54,6 +54,10 @@ def main():
     ap.add_argument("--environment-id", default="unknown")
     ap.add_argument("--cache-label", default="default",
                     help="MIOpen cache-home label for the archive metadata")
+    ap.add_argument("--warm-training", action="store_true",
+                    help="reproduce the historical 'training context' cache state: run a "
+                         "1-epoch AMP training BEFORE the captures in the same process "
+                         "(the 0.7606px FAIL state of g3_amp_envB_defaulthome.json)")
     args = ap.parse_args()
 
     OUT = {"environment": {}, "repeats": [], "negative_controls": [], "summary": {}}
@@ -74,6 +78,20 @@ def main():
     yolo_obj = YOLO(str(weights))            # exactly what check_amp passes as m
     nn_module = yolo_obj.model.cuda().eval()  # the outer `model` closure (stride/device)
     device = torch.device("cuda:0")
+
+    warm_meta = None
+    if args.warm_training:
+        # build the TRAINING-CONTEXT cache first (conv shapes chosen by actual
+        # training) — reproduces the kernel-selection state that produced the
+        # historical 0.7606px crossing on ENV B default home
+        tr = YOLO(str(weights))
+        tr.train(data="coco8.yaml", epochs=1, device=0, workers=0, amp=True,
+                 name=f"warmctx_{OUT['run_id']}", exist_ok=True, plots=False, seed=42)
+        warm_meta = {"warm_training_amp_effective": bool(getattr(tr.trainer, "amp", None)),
+                     "warm_save_dir": str(tr.trainer.save_dir)}
+        OUT["warm_training"] = warm_meta
+        print(f"[warm] training-context cache built amp_effective={warm_meta['warm_training_amp_effective']}",
+              flush=True)
 
     captures = []
     for i in range(args.repeats):

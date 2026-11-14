@@ -1,0 +1,21 @@
+{
+  "scan": "weekly official-wheel rescan (mission P9.5.3 / HANDOFF item 3)",
+  "scanned_utc": "2026-11-14T13:32:17.978177+00:00",
+  "url": "https://repo.amd.com/rocm/whl-multi-arch/torch/",
+  "windows_cp313_wheels_desc": [
+    "torch-2.12.0+rocm7.14.1-cp313-cp313-win_amd64",
+    "torch-2.12.0+rocm7.14.0-cp313-cp313-win_amd64",
+    "torch-2.11.0+rocm7.14.1-cp313-cp313-win_amd64",
+    "torch-2.11.0+rocm7.14.0-cp313-cp313-win_amd64",
+    "torch-2.11.0+rocm7.13.0-cp313-cp313-win_amd64",
+    "torch-2.10.0+rocm7.14.1-cp313-cp313-win_amd64",
+    "torch-2.10.0+rocm7.14.0-cp313-cp313-win_amd64",
+    "torch-2.10.0+rocm7.13.0-cp313-cp313-win_amd64",
+    "torch-2.9.1+rocm7.13.0-cp313-cp313-win_amd64"
+  ],
+  "newest_windows_wheel": "torch-2.12.0+rocm7.14.1-cp313-cp313-win_amd64",
+  "still_contains_fix": false,
+  "method": "index page grep for cp313 win_amd64; fix absence established by G0 behavioral+marker proof chain (RELEASE_LINEAGE \u00a74); release scan covers VERSION only",
+  "conclusion": "no official Windows wheel newer than torch-2.12.0+rocm7.14.1 \u2014 BLOCKED_RELEASE stands",
+  "note_sort_fix": "2026-11-14: newest-wheel field corrected \u2014 initial string sort placed 2.9.1 above 2.12.0; semantic version sort applied"
+}

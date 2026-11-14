@@ -41,3 +41,15 @@
 ## One-line summary
 
 **The engineering is done and evidenced; the release channel and the human approvals are the remaining gates.** A Windows developer still cannot get the fixed MIOpen from any official wheel today — that is the single decisive blocker (BLOCKED_RELEASE), and until it clears, "official support" language is forbidden everywhere in this repo (screened by the verifier's pattern scan and audited line-by-line in P8_INDEPENDENT_AUDIT.md).
+
+---
+
+## P9 addendum (2026-11-14, mission P9–P12 §3/§4) — evidence hardening re-verdict
+
+Verdicts **maintained**; conditions upgraded from prose-scoped to per-step-proven:
+
+**GO-A (upgrade)**: G4 long-run + matched A/B re-executed **on ENV A and ENV B separately** with in-process DLL probes (`raw/g4_long_run_ENV_A_p9.json` `e97891df…` / `raw/g4_long_run_ENV_B_p9.json` `ed7c67a9…`) — the P8 "third environment" caveat (audit M4) is **eliminated**; both runs reconcile configured=observed=30 epochs with the upstream `final_eval` epoch+1 callback accounting proven from source (8.4.174 + 8.4.182).
+
+**GO-B (upgrade)**: AMP scope upgrades from "scaler semantics + ≥1 update" to **genuine repeated updates**: t16 records 24 real optimizer updates (per-parameter, all 366 tensors changed per step, scaler anneal 65536→2048) on the official wheel (`raw/g2_detect_amptrack_20261114T131559Z.json`); the historical t08 FAIL is per-step reclassified as **intended GradScaler overflow skips** (mechanism previously "plausible-unproven"). Representative-dataset learning validation: see `raw/g3_amp_learning_*.json` (P9 §4.4). The AMP **precheck** false-failure design flaw was independently fixed upstream in 8.4.197 (PR #26967, per-layer relative-norm design replacing `amp_allclose`); validation of the new check on gfx1151: `raw/g3_checkamp84212_*.json`.
+
+**GO-C (unchanged)**: official-wheel rescan 2026-11-14 13:32Z — newest Windows wheel remains torch-2.12.0+rocm7.14.1 (`release-provenance/raw/official_wheel_rescan_20261114.json`) → **BLOCKED_RELEASE stands**. Upstream submission now authorized by the Owner (mission §1); submit only what validated evidence supports.

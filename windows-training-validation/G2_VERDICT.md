@@ -52,3 +52,13 @@ Example final metrics (detect, 4 epochs, mAP50 = 0.9418 / mAP50-95 = 0.6704): `r
 ## G2 PASS condition — met (FP32 track)
 
 All seven currently-supported tasks complete the full T01–T15 lifecycle on the real Windows ROCm GPU with parameter updates, checkpoint integrity, resume, and metric persistence. AMP is validated separately in G3 (works on official wheel; cache-state-dependent fallback on ENV B documented).
+
+## P9 addendum (2026-11-14, mission §3.1/§3.2) — t07/t08 rewritten + t16 added
+
+Harness v2 (`tests/g2_lifecycle.py` + `tests/amp_step_audit.py`): t08 now verifies **actual per-parameter tensor deltas** (float64, max-abs per tensor + changed tensor/element counts; the old aggregate `Σ|θ|` could conceal cancellation; BN buffers are recorded separately and never count as update evidence); t07 is **strict under AMP** (non-finite scaled grads acceptable only as a scaler-sanctioned skipped step — no unconditional PASS); every step is classified `WARMUP_SKIP / OVERFLOW_SKIP / UPDATED / STUCK_FAILURE / BAD_GRAD_UPDATE` from the GradScaler's own `found_inf` flag; instrumentation itself proven by a 34/34 CPU adversarial suite (`tests/test_amp_step_audit_cpu.py`, incl. the aggregate-cancellation trap and an FP32-NaN-must-not-be-an-overflow-skip case).
+
+**AMP track re-run on ENV A (official wheel, in-process probe `e97891df…`, run_id `20261114T131559Z`): `raw/g2_detect_amptrack_20261114T131559Z.json` — 14/15 PASS + 1 honest SKIP.**
+
+- **The historical t08 FAIL is resolved**: the reclassified record shows the lifecycle's lr>0 steps were **intended GradScaler overflow skips** (per-step `found_inf=true`, scale halved) — a mechanism that was "plausible-unproven" in the P8 audit is now per-step proven, and SKIP is reported honestly (never counted as PASS).
+- **t16 (new) PASS: 24 genuine repeated optimizer updates** out of 29 step opportunities (1 warmup + 4 overflow skips) on coco128 ×12 epochs — per-parameter evidence: all 366 float tensors changed per update, max delta 2.48e-05; scaler anneal trace 65536→2048. This supersedes the 10-epoch probe's "1 real update" (audit M5) — **genuine repeated weight updates are now established on the official wheel**.
+- Harness defect fixed (§3.4): task-keyed log-filename collisions eliminated — every run now writes `g2_{task}_{tag}_{run_id}*.json/log` immutable outputs.
