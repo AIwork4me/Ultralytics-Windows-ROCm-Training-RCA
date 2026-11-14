@@ -1,0 +1,170 @@
+# command: C:\Users\rocm\miniconda3\envs\pm13437_merged\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\windows-training-validation\tests\g1_primitives.py --out windows-training-validation\raw\envB_nostl_rep1.result.json
+# exit_code: 0
+# mode: nostl expect_fail: False
+# USERPROFILE: windows-training-validation\raw\cache_homes\envB_nostl_rep1
+# VCToolsInstallDir: windows-training-validation\raw\cache_homes\envB_nostl_rep1\fakevc
+# INCLUDE: 
+
+--- stdout ---
+{
+  "total": 16,
+  "pass": 16,
+  "failed": [],
+  "status": "PASS"
+}
+
+--- stderr ---
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [OpenDynamicLibrary] Loading Composable Kernel dynamic library: C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\_rocm_sdk_libraries\bin\MIOpenCKGroupedConv_gfx1151.dll
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Info [Handle] stream: 0000000000000000, device_id: 0
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [] MIOPEN_FIND_MODE = DYNAMIC_HYBRID(5)
+MIOpen: Info [AmdRocmMetadataVersionDetect] ROCm MD version AMDHSA_COv3, HIP version 7.14.60850, MIOpen version 3.6.2.f0a5d266
+MIOpen: Info [GetSolutions] 
+MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx115128.HIP.fdb.txt"
+MIOpen: Info [Measure] ReadonlyRamDb::Prefetch time: 0.041 ms
+MIOpen: Info [Prefetch] File is unreadable: "windows-training-validation\\raw\\cache_homes\\envB_nostl_rep1\\.miopen\\db\\gfx115128.HIP.3_6_2_f0a5d266.ufdb.txt"
+MIOpen: Info [Measure] RamDb::Prefetch time: 0.0382 ms
+MIOpen: Info [GetWorkSpaceSize] 110592
+MIOpen: Info [FindConvFwdAlgorithm] requestAlgoCount = 1, workspace = 110592
+MIOpen: Info [GetSolutions] 
+MIOpen: Info [TryLoad] Find-db regenerating.
+MIOpen: Info [FindConvolution] Find Start: 3-32-32-3x3-8-32-32-2-1x1-1x1-1x1-0-NCHW-FP32-F, findMode: DYNAMIC_HYBRID(5)
+MIOpen: Info [FindSolutionImpl] GemmFwdRest (not searchable)
+MIOpen: Info [FindSolutionImpl] ConvBinWinogradRxSf3x2
+MIOpen: Info [Measure] ReadonlyRamDb::Prefetch time: 0.0001 ms
+MIOpen: Info [Prefetch] File is unreadable: "windows-training-validation\\raw\\cache_homes\\envB_nostl_rep1\\.miopen\\db\\gfx115128.HIP.3_6_2_f0a5d266.udb.txt"
+MIOpen: Info [Measure] RamDb::Prefetch time: 0.022 ms
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: ConvBinWinogradRxSf3x2
+MIOpen: Info [GetDefaultPerformanceConfig] 40
+MIOpen: Info [FindSolutionImpl] ConvBinWinogradRxSf2x3g1 (not searchable)
+MIOpen: Info [GetDefaultPerformanceConfig] 40
+MIOpen: Info [FindSolutionImpl] ConvDirectNaiveConvFwd (not searchable)
+MIOpen: Info [KernDb] database not present
+MIOpen: Info [PrintVersionImpl] COMgr v.3.3.0
+MIOpen: Info [Do] 8: warning: argument unused during compilation: '-Xclang -no-disable-free' [-Wunused-command-line-argument]
+
+MIOpen: Info [PrintVersionImpl] COMgr v.3.3.0
+MIOpen: Info [Do] 8: warning: argument unused during compilation: '-Xclang -no-disable-free' [-Wunused-command-line-argument]
+
+MIOpen: Info [PrintVersion] HIPRTC v.9.0
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionFwdAlgoGEMM:GemmFwdRest
+MIOpen: Info [EvaluateInvokers] solution(current vs best):GemmFwdRest: : 0.127187 < 3.40282e+38
+MIOpen: Info [EvaluateInvokers] Selected: GemmFwdRest: : 0.127187, workspace_sz = 110592
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionFwdAlgoWinograd:ConvBinWinogradRxSf3x2
+MIOpen: Info [EvaluateInvokers] solution(current vs best):ConvBinWinogradRxSf3x2: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f3x2_stride1/: 0.0421 < 3.40282e+38
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionFwdAlgoWinograd:ConvBinWinogradRxSf2x3g1
+MIOpen: Info [EvaluateInvokers] solution(current vs best):ConvBinWinogradRxSf2x3g1: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f2x3_stride1/: 0.0374143 < 0.0421
+MIOpen: Info [EvaluateInvokers] Selected: ConvBinWinogradRxSf2x3g1: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f2x3_stride1/: 0.0374143, workspace_sz = 0
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionFwdAlgoDirect:ConvDirectNaiveConvFwd
+MIOpen: Info [EvaluateInvokers] Skipped naive solver miopenConvolutionFwdAlgoDirect:ConvDirectNaiveConvFwd: exceeded 300% of best non-naive time (0.037414 ms)
+MIOpen: Info [FindConvolution] Find Ended: 3-32-32-3x3-8-32-32-2-1x1-1x1-1x1-0-NCHW-FP32-F
+MIOpen: Info [FindConvolution] miopenConvolutionFwdAlgoWinograd	0.0374143	0
+MIOpen: Info [FillFindReturnParameters] FW Chosen Algorithm: ConvBinWinogradRxSf2x3g1 , 0, 0.0374143
+MIOpen: Info [ConvolutionForward] algo = 3, workspace = 0
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [Handle] stream: 0000000000000000, device_id: 0
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [GetSolutions] 
+MIOpen: Info [Measure] RamDb::Prefetch time: 6.7034 ms
+MIOpen: Info [GetWorkSpaceSize] 110592
+MIOpen: Info [FindConvBwdDataAlgorithm] requestAlgoCount = 1, workspace = 110592
+MIOpen: Info [GetSolutions] 
+MIOpen: Info [TryLoad] Find-db regenerating.
+MIOpen: Info [FindConvolution] Find Start: 8-32-32-3x3-3-32-32-2-1x1-1x1-1x1-0-NCHW-FP32-B, findMode: DYNAMIC_HYBRID(5)
+MIOpen: Info [FindSolutionImpl] GemmBwdRest (not searchable)
+MIOpen: Info [FindSolutionImpl] ConvBinWinogradRxSf3x2
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: ConvBinWinogradRxSf3x2
+MIOpen: Info [GetDefaultPerformanceConfig] 40
+MIOpen: Info [FindSolutionImpl] ConvBinWinogradRxSf2x3g1 (not searchable)
+MIOpen: Info [GetDefaultPerformanceConfig] 40
+MIOpen: Info [FindSolutionImpl] ConvDirectNaiveConvBwd (not searchable)
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdDataAlgoGEMM:GemmBwdRest
+MIOpen: Info [EvaluateInvokers] solution(current vs best):GemmBwdRest: : 0.111829 < 3.40282e+38
+MIOpen: Info [EvaluateInvokers] Selected: GemmBwdRest: : 0.111829, workspace_sz = 110592
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdDataAlgoWinograd:ConvBinWinogradRxSf3x2
+MIOpen: Info [EvaluateInvokers] solution(current vs best):ConvBinWinogradRxSf3x2: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f3x2_stride1/: 0.0472714 < 3.40282e+38
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdDataAlgoWinograd:ConvBinWinogradRxSf2x3g1
+MIOpen: Info [EvaluateInvokers] solution(current vs best):ConvBinWinogradRxSf2x3g1: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f2x3_stride1/: 0.0369 < 0.0472714
+MIOpen: Info [EvaluateInvokers] Selected: ConvBinWinogradRxSf2x3g1: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f2x3_stride1/: 0.0369, workspace_sz = 0
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdDataAlgoDirect:ConvDirectNaiveConvBwd
+MIOpen: Info [EvaluateInvokers] Skipped naive solver miopenConvolutionBwdDataAlgoDirect:ConvDirectNaiveConvBwd: exceeded 300% of best non-naive time (0.036900 ms)
+MIOpen: Info [FindConvolution] Find Ended: 8-32-32-3x3-3-32-32-2-1x1-1x1-1x1-0-NCHW-FP32-B
+MIOpen: Info [FindConvolution] miopenConvolutionBwdDataAlgoWinograd	0.0369	0
+MIOpen: Info [FillFindReturnParameters] BWD Chosen Algorithm: ConvBinWinogradRxSf2x3g1 , 0, 0.0369
+MIOpen: Info [ConvolutionBackwardData] algo = 3, workspace = 0
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [GetSolutions] 
+MIOpen: Info [Measure] RamDb::Prefetch time: 5.3363 ms
+MIOpen: Info [GetWorkSpaceSize] 110592
+MIOpen: Info [FindConvBwdWeightsAlgorithm] requestAlgoCount = 1, workspace = 110592
+MIOpen: Info [GetSolutions] 
+MIOpen: Info [TryLoad] Find-db regenerating.
+MIOpen: Info [FindConvolution] Find Start: 8-32-32-3x3-3-32-32-2-1x1-1x1-1x1-0-NCHW-FP32-W, findMode: DYNAMIC_HYBRID(5)
+MIOpen: Info [FindSolutionImpl] GemmWrwUniversal (not searchable)
+MIOpen: Info [FindSolutionImpl] ConvBinWinogradRxSf3x2
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: ConvBinWinogradRxSf3x2
+MIOpen: Info [GetDefaultPerformanceConfig] 40
+MIOpen: Info [FindSolutionImpl] ConvBinWinogradRxSf2x3
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: ConvBinWinogradRxSf2x3
+MIOpen: Info [GetDefaultPerformanceConfig] 40
+MIOpen: Info [FindSolutionImpl] ConvBinWinogradRxSf2x3g1 (not searchable)
+MIOpen: Info [GetDefaultPerformanceConfig] 40
+MIOpen: Info [FindSolutionImpl] ConvDirectNaiveConvWrw (not searchable)
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdWeightsAlgoGEMM:GemmWrwUniversal
+MIOpen: Info [EvaluateInvokers] solution(current vs best):GemmWrwUniversal: : 0.175806 < 3.40282e+38
+MIOpen: Info [EvaluateInvokers] Selected: GemmWrwUniversal: : 0.175806, workspace_sz = 110592
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdWeightsAlgoWinograd:ConvBinWinogradRxSf3x2
+MIOpen: Info [EvaluateInvokers] solution(current vs best):ConvBinWinogradRxSf3x2: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f3x2_stride1/: 0.157014 < 3.40282e+38
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdWeightsAlgoWinograd:ConvBinWinogradRxSf2x3
+MIOpen: Info [EvaluateInvokers] solution(current vs best):ConvBinWinogradRxSf2x3: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f2x3_stride1/: 0.104783 < 0.157014
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdWeightsAlgoWinograd:ConvBinWinogradRxSf2x3g1
+MIOpen: Info [EvaluateInvokers] solution(current vs best):ConvBinWinogradRxSf2x3g1: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f2x3_stride1/: 0.109733 >= 0.104783
+MIOpen: Info [EvaluateInvokers] Selected: ConvBinWinogradRxSf2x3: miopenSp3AsmConv_v30_3_1_gfx11_fp32_f2x3_stride1/: 0.104783, workspace_sz = 0
+MIOpen: Info [EvaluateInvokers] Evaluating Solver: miopenConvolutionBwdWeightsAlgoDirect:ConvDirectNaiveConvWrw
+MIOpen: Info [EvaluateInvokers] Skipped naive solver miopenConvolutionBwdWeightsAlgoDirect:ConvDirectNaiveConvWrw: exceeded 300% of best non-naive time (0.104783 ms)
+MIOpen: Info [FindConvolution] Find Ended: 8-32-32-3x3-3-32-32-2-1x1-1x1-1x1-0-NCHW-FP32-W
+MIOpen: Info [FindConvolution] miopenConvolutionBwdWeightsAlgoWinograd	0.104783	0
+MIOpen: Info [FillFindReturnParameters] BWrW Chosen Algorithm: ConvBinWinogradRxSf2x3 , 0, 0.104783
+MIOpen: Info [ConvolutionBackwardWeights] algo = 3, workspace = 0
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [FindSolutionImpl] BnFwdTrainingSpatial
+MIOpen: Info [Prefetch] File is unreadable: "windows-training-validation\\raw\\cache_homes\\envB_nostl_rep1\\.miopen\\db\\batchnorm_gfx115128.HIP.3_6_2_f0a5d266.udb.txt"
+MIOpen: Info [Measure] RamDb::Prefetch time: 0.0421 ms
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: BnFwdTrainingSpatial
+MIOpen: Info [GetDefaultPerformanceConfig] Variant1-1
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [FindSolutionImpl] BnBwdTrainingSpatial
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: BnBwdTrainingSpatial
+MIOpen: Info [GetDefaultPerformanceConfig] Variant1-1
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [FindSolutionImpl] BnFwdInference (not searchable)
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [FindSolutionImpl] BnFwdTrainingSpatial
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: BnFwdTrainingSpatial
+MIOpen: Info [GetDefaultPerformanceConfig] Variant0-1
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [FindSolutionImpl] BnBwdTrainingSpatial
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: BnBwdTrainingSpatial
+MIOpen: Info [GetDefaultPerformanceConfig] Variant0-1
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [FindSolutionImpl] BnFwdTrainingSpatial
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: BnFwdTrainingSpatial
+MIOpen: Info [GetDefaultPerformanceConfig] Variant0-1
+MIOpen: Info [get_device_name] Raw device name: gfx1151
+MIOpen: Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen: Info [FindSolutionImpl] BnBwdTrainingSpatial
+MIOpen: Info [FindSolutionImpl] Perf Db: record not found for: BnBwdTrainingSpatial
+MIOpen: Info [GetDefaultPerformanceConfig] Variant0-1
+

@@ -1,0 +1,196 @@
+{
+  "environment": {
+    "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\python.exe",
+    "torch": "2.12.0+rocm7.14.1",
+    "torch_version_hip": "7.14.60850",
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "cuda_available": true,
+    "hip_present": true
+  },
+  "results": [
+    {
+      "name": "gemm_fp32",
+      "status": "PASS",
+      "forward_device": "cuda:0",
+      "max_abs_err": 3.814697265625e-05,
+      "max_rel_err": 0.0010431463597342372,
+      "atol": 0.0001,
+      "rtol": 0.0001
+    },
+    {
+      "name": "conv2d_forward",
+      "status": "PASS",
+      "max_abs_err": 3.5762786865234375e-07,
+      "max_rel_err": 0.0016224272549152374,
+      "atol": 0.0002,
+      "rtol": 0.002
+    },
+    {
+      "name": "conv2d_backward",
+      "status": "PASS",
+      "grad_input": {
+        "max_abs_err": 5.820766091346741e-11,
+        "max_rel_err": 0.0007189581519924104,
+        "atol": 0.0002,
+        "rtol": 0.002
+      },
+      "grad_weight": {
+        "max_abs_err": 1.30385160446167e-08,
+        "max_rel_err": 3.4066260923282243e-06,
+        "atol": 0.0002,
+        "rtol": 0.002
+      },
+      "grad_bias": {
+        "max_abs_err": 3.725290298461914e-09,
+        "max_rel_err": 3.636615986124525e-07,
+        "atol": 0.0002,
+        "rtol": 0.002
+      }
+    },
+    {
+      "name": "batchnorm2d_train_forward",
+      "status": "PASS",
+      "output": {
+        "max_abs_err": 4.76837158203125e-07,
+        "max_rel_err": 0.0005810888833366334,
+        "atol": 0.0002,
+        "rtol": 0.002
+      },
+      "running_mean": {
+        "max_abs_err": 1.2732925824820995e-10,
+        "max_rel_err": 3.6393348636920564e-06,
+        "atol": 0.0001,
+        "rtol": 0.0001
+      },
+      "running_var": {
+        "max_abs_err": 1.1920928955078125e-07,
+        "max_rel_err": 1.1920126041786716e-07,
+        "atol": 0.0001,
+        "rtol": 0.0001
+      },
+      "running_var_estimator": "unbiased (PyTorch semantics)"
+    },
+    {
+      "name": "batchnorm2d_train_backward",
+      "status": "PASS",
+      "grad_input": {
+        "max_abs_err": 3.928107839001882e-12,
+        "max_rel_err": 0.07386019080877304,
+        "atol": 0.0002,
+        "rtol": 0.002
+      },
+      "grad_weight": {
+        "max_abs_err": 2.9802322387695312e-08,
+        "max_rel_err": 2.3842096652515465e-07,
+        "atol": 0.0002,
+        "rtol": 0.002
+      },
+      "grad_bias": {
+        "max_abs_err": 2.240994945168495e-09,
+        "max_rel_err": 2240.994873046875,
+        "atol": 0.0002,
+        "rtol": 0.002
+      }
+    },
+    {
+      "name": "batchnorm2d_eval",
+      "status": "PASS",
+      "max_abs_err": 4.76837158203125e-07,
+      "max_rel_err": 1.645329064103862e-07,
+      "atol": 0.0002,
+      "rtol": 0.002
+    },
+    {
+      "name": "batchnorm1d_2d_input",
+      "status": "PASS",
+      "max_abs_err": 2.384185791015625e-07,
+      "max_rel_err": 5.361782768886769e-06,
+      "atol": 0.0002,
+      "rtol": 0.002
+    },
+    {
+      "name": "batchnorm1d_3d_input",
+      "status": "PASS",
+      "output": {
+        "max_abs_err": 2.384185791015625e-07,
+        "max_rel_err": 5.710358891519718e-06,
+        "atol": 0.0002,
+        "rtol": 0.002
+      }
+    },
+    {
+      "name": "batchnorm3d",
+      "status": "PASS",
+      "max_abs_err": 2.384185791015625e-07,
+      "max_rel_err": 1.190664988826029e-06,
+      "atol": 0.0002,
+      "rtol": 0.002
+    },
+    {
+      "name": "groupnorm",
+      "status": "PASS",
+      "max_abs_err": 4.76837158203125e-07,
+      "max_rel_err": 3.7435755075421184e-05,
+      "atol": 0.0002,
+      "rtol": 0.002
+    },
+    {
+      "name": "layernorm",
+      "status": "PASS",
+      "max_abs_err": 2.384185791015625e-07,
+      "max_rel_err": 1.545149461890105e-05,
+      "atol": 0.0002,
+      "rtol": 0.002
+    },
+    {
+      "name": "kthvalue_fp32",
+      "status": "PASS",
+      "value": 2048.0,
+      "expected": 2048.0,
+      "index": 1027,
+      "expected_index": 1027
+    },
+    {
+      "name": "kthvalue_fp16",
+      "status": "PASS",
+      "value": 512.0,
+      "expected": 512.0,
+      "index": 948,
+      "expected_index": 948
+    },
+    {
+      "name": "kthvalue_bf16",
+      "status": "PASS",
+      "value": 125.0,
+      "expected": 125.0,
+      "index": 37,
+      "expected_index": 37
+    },
+    {
+      "name": "optimizer_step",
+      "status": "PASS",
+      "updated": [
+        1.899999976158142,
+        -1.2000000476837158,
+        0.550000011920929
+      ],
+      "expected": [
+        1.899999976158142,
+        -1.2000000476837158,
+        0.550000011920929
+      ],
+      "param_actually_changed": true
+    },
+    {
+      "name": "gpu_synchronization",
+      "status": "PASS",
+      "elapsed_ms": 0.1200999990105629
+    }
+  ],
+  "summary": {
+    "total": 16,
+    "pass": 16,
+    "failed": [],
+    "status": "PASS"
+  }
+}

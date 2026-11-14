@@ -1,0 +1,17 @@
+# command: C:\Users\rocm\miniconda3\envs\pm13437_merged\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\windows-training-validation\tests\g1_primitives.py --out windows-training-validation\raw\envB_stl_rep1.result.json
+# exit_code: 0
+# mode: stl expect_fail: False
+# USERPROFILE: windows-training-validation\raw\cache_homes\envB_stl_rep1
+# VCToolsInstallDir: (system)
+# INCLUDE: (system)
+
+--- stdout ---
+{
+  "total": 16,
+  "pass": 16,
+  "failed": [],
+  "status": "PASS"
+}
+
+--- stderr ---
+

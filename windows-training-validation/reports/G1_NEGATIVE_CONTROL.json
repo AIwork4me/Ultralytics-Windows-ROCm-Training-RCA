@@ -1,0 +1,47 @@
+{
+  "runner": "g1_runner.py",
+  "mode": "nostl",
+  "expect_fail": true,
+  "python": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\python.exe",
+  "started_utc": "2026-11-14T03:23:27.787143+00:00",
+  "legs": [
+    {
+      "leg": "envA_nostl_neg",
+      "exit_code": 4,
+      "cache_home": "windows-training-validation\\raw\\cache_homes\\envA_nostl_neg",
+      "cache_files_created": [
+        ".miopen\\cache\\3.5.2.cd957402\\gfx1151_20.ukdb"
+      ],
+      "cache_files_count": 1,
+      "stderr_signature": {
+        "hiprtc_compilation_error": true,
+        "type_traits_missing": true,
+        "batchnorm_fwd_train_spatial": true,
+        "code_object_build_failed": true
+      },
+      "stderr_signature_matched": true,
+      "result": {
+        "environment": {
+          "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\python.exe",
+          "torch": "2.12.0+rocm7.14.1",
+          "torch_version_hip": "7.14.60850",
+          "device": "AMD Radeon(TM) 8060S Graphics",
+          "cuda_available": true,
+          "hip_present": true
+        },
+        "expect_stl_fail": {
+          "status": "UNEXPECTED_FAIL",
+          "signature": {
+            "hiprtc_compilation_error": false,
+            "type_traits_missing": false,
+            "batchnorm_fwd_train_spatial": false,
+            "miopen_status_unknown": true
+          },
+          "message_excerpt": "miopenStatusUnknownError"
+        }
+      }
+    }
+  ],
+  "verdict": "PASS",
+  "finished_utc": "2026-11-14T03:23:31.131205+00:00"
+}
