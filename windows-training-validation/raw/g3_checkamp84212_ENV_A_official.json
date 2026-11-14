@@ -1,0 +1,64 @@
+{
+  "environment_id": "ENV_A_official",
+  "run_id": "g3c84_envA_v4",
+  "ultralytics_src": "C:/Users/rocm/Desktop/YOLO_AMD/upstream_ultralytics",
+  "started_utc": "2026-11-14T16:04:58.860750+00:00",
+  "modes": {
+    "default": {
+      "exit": 0,
+      "timed_out": false,
+      "process_hung_at_teardown": false,
+      "wall_s": 8.8,
+      "out_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\g3c84_s7bi57ar\\mode_default.out.log",
+      "err_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\g3c84_s7bi57ar\\mode_default.err.log",
+      "ultralytics_imported": "8.4.212",
+      "ultralytics_file": "C:\\Users/rocm/Desktop/YOLO_AMD/upstream_ultralytics\\ultralytics\\__init__.py",
+      "torch": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850",
+      "device": "AMD Radeon(TM) 8060S Graphics",
+      "check_amp_verdict": true,
+      "log_lines": [
+        "\u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...",
+        "\u001b[34m\u001b[1mAMP: \u001b[0mchecks passed \u2705"
+      ]
+    },
+    "warm": {
+      "exit": "KILLED_AFTER_TEARDOWN_HANG",
+      "timed_out": true,
+      "process_hung_at_teardown": true,
+      "wall_s": 900.3,
+      "out_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\g3c84_s7bi57ar\\mode_warm.out.log",
+      "err_log": "C:\\Users\\rocm\\AppData\\Local\\Temp\\g3c84_s7bi57ar\\mode_warm.err.log",
+      "ultralytics_imported": "8.4.212",
+      "ultralytics_file": "C:\\Users/rocm/Desktop/YOLO_AMD/upstream_ultralytics\\ultralytics\\__init__.py",
+      "torch": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850",
+      "device": "AMD Radeon(TM) 8060S Graphics",
+      "warm_training_amp_effective": true,
+      "check_amp_verdict": true,
+      "log_lines": [
+        "\u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...",
+        "\u001b[34m\u001b[1mAMP: \u001b[0mchecks passed \u2705"
+      ]
+    }
+  },
+  "summary": {
+    "verdicts": {
+      "default": true,
+      "warm": true
+    },
+    "all_pass": true,
+    "ultralytics_imported": [
+      "8.4.212"
+    ],
+    "dll_provenance": {
+      "probe": "Toolhelp32Snapshot in-process",
+      "modules": {},
+      "miopen_loaded": null,
+      "probe_error": "no MIOpen module found among loaded modules",
+      "loaded_module_count_total": 38
+    },
+    "note": "modes: default USERPROFILE cache, warm-training context (1-epoch AMP training before the check \u2014 the 8.4.182-era FAIL state)",
+    "completed_utc": "2026-11-14T16:20:07.956061+00:00"
+  }
+}

@@ -12,16 +12,20 @@ Validation data point from a Windows ROCm (AMD iGPU) environment where the **old
 
 **New check (8.4.212, this PR) on the same machine**:
 
-| cache state | ENV A official MIOpen 3.5.2 | ENV B source-built 3.6.2 |
+| cache state | ENV A official MIOpen 3.5.2 | ENV B source-built 3.6.2 hybrid |
 |---|---|---|
-| default USERPROFILE | PENDING | PENDING |
-| fresh isolated | PENDING | PENDING |
-| warm training context (1-epoch AMP train first — the old-check FAIL state) | PENDING | PENDING |
+| default USERPROFILE | **PASS** (9.1 s, deterministic) | **CRASH — `torch.AcceleratorError: CUDA error: invalid kernel file`** (3/3 attempts) |
+| warm training context (1-epoch AMP train first — the old-check FAIL state) | **PASS** (AMP effective under 8.4.212) | **CRASH** (the in-trainer probe raises → training aborts) |
 
-(filled from `g3_checkamp84212_*.json`; verdicts + log lines)
+ENV A: the redesign fully resolves the box-tolerance false-failure — the previously cache-flipping stack now passes deterministically.
+
+ENV B: on a source-built-MIOpen hybrid (kernel fingerprint DB `gfx115128.HIP.fdb.txt` unreadable in the package bin dir), the per-layer fp16 recompute hits `hipErrorInvalidKernelFile` and — because this PR also removed 8.4.182's `try/except` guards — the exception propagates into `trainer.train()` setup and **aborts the run** instead of disabling AMP with a warning. Two asks:
+
+1. **Restore the resilience contract**: wrap the probe forward in `except Exception → LOGGER.error(...) + return False` (KeyboardInterrupt/SystemExit still propagate). On 8.4.182 a probe-time backend failure degraded to FP32 training; on 8.4.197+ it crashes training. Draft diff + regression test: `upstream-readiness/patches/CHECKAMP_ROBUSTNESS_PR.md` (happy to open this as a PR).
+2. The `hipErrorInvalidKernelFile` itself is a MIOpen-side packaging/integrity issue (tracked separately with ROCm) — Ultralytics cannot prevent it, but it is exactly the failure class the removed guards existed for.
 
 If all PASS: this redesign resolves the only AMP issue we could find on Windows ROCm — the box-coordinate absolute tolerance was the sole false-failure path we could construct, and the per-layer relative-norm criterion is insensitive to it. One observation: the old check also implicitly exercised the full post-NMS pipeline (NMS + decoding) end-to-end; the new one checks layers in isolation — if a stack ever develops an AMP anomaly **between** layers (accumulation through the head/NMS path), the new check would not see it. We could not construct such a case on real hardware (our adversarial suite failed to produce one), so this is a theoretical note, not a request.
 
-Also validated on this stack with 8.4.182→8.4.212: 7-task training lifecycle (detect/segment/classify/pose/obb/semantic/depth) 14/14 each, AMP training on imagenette2-160 with 887 verified optimizer updates and top-1 0.970 vs FP32 0.973.
+Also validated on this stack (8.4.182 lifecycle, 8.4.212 check): 7-task training lifecycle 14/14 each; matched FP32-vs-AMP classify on imagenette2-160 with 887 verified optimizer updates, top-1 0.970 (AMP) vs 0.973 (FP32).
 
 Evidence repo: AIwork4me/Ultralytics-Windows-ROCm-Training-RCA (raw JSONs with in-process MIOpen DLL SHA256 provenance).

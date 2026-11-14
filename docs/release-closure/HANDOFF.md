@@ -52,7 +52,8 @@
 | 6 | ~~G4 在 ENV A/B 重跑~~ | **P9 完成**：ENV A/B 各 30ep 长训 + 匹配 A/B，全部带 in-process DLL probe + epoch 对账 + CSV 保全 | ✅ 完成 |
 | 7 | ~~g3 harness 溯源升级~~ | **P9 完成**：新 g3 harness（paired-boxes/learning/repro）全部自带 dll_provenance + cache-home 记录 | ✅ 完成 |
 | 8 | ~~PR-C matcher CPU 仿真~~ | **P9 完成**（26/26 + 归档真张量 5/5 + GPU 负对照 5/5 全捕获）；PR-C 本身被 #26967 取代 | ✅ 完成 |
-| 9 | **8.4.197+ 新 check_amp 在 gfx1151 验证**（P9 新增） | `g3_check_amp_84212_validation.py`（PYTHONPATH 注入 8.4.212，default/fresh/warm 三态，ENV A/B） | ⏳ 批次 3 |
+| 9 | ~~8.4.197+ 新 check_amp 在 gfx1151 验证~~ | **P9 完成**：ENV A 官方 wheel 全 PASS（default 9.1s + warm 态，8.4.212 下 amp 有效）；**ENV B 混合态确定性崩溃 3/3**（hipErrorInvalidKernelFile，逐层 fp16 重算路径；根因 = 混合 bin 目录 fdb 不可读 → 运行时编译产生坏 kernel 对象），且 #26967 移除了异常守卫 → 探针异常会炸训练而非降级 AMP——上游健壮性 PR 草稿就绪（`upstream-readiness/patches/CHECKAMP_ROBUSTNESS_PR.md`） | ✅ 完成 |
+| 9b | **ENV B DLL restore 待执行** | 4 个 HIP teardown 僵尸锁住 MIOpen.dll（WinError 32，与 P8 事件同型；僵尸最终自清）；恢复命令：`python windows-training-validation/scripts/envb_dll_swap.py --action restore --state-file windows-training-validation/environment/ENVB_DLL_STATE.json`（脚本自带双向哈希验证） | ⏳ 僵尸清除后执行 |
 | 10 | **P10 全 7 任务矩阵复跑**（P9 新增） | 新 harness × 7 任务 FP32（ENV B patched）+ workers 2/4 + amptrack ENV B——批次 2 执行中 | ⏳ 批次 2 |
 | 11 | **EvaluateInvokers 最小复现**（P9 新增） | `g3_evaluateinvokers_repro.py`（无 Ultralytics、逐 config 子进程、fresh-cache Find 路径）——批次 2 执行中；结果决定 Issue 形态 | ⏳ 批次 2 |
 

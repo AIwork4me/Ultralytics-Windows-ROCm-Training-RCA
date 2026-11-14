@@ -266,8 +266,31 @@ def audit_g3_json(jf: Path, d: dict, audit: Audit, devices: set) -> None:
     if env.get("device"):
         devices.add(env["device"])
     if "run_id" in d:
-        # record types: paired-box (repeats), learning (runs), evi-repro (probes)
-        if "probes" in d:  # EvaluateInvokers repro: probes ran in subprocesses on
+        # record types: paired-box (repeats), learning (runs), evi-repro (probes),
+        # checkamp-validation (modes — subprocess GPU checks on a PYTHONPATH-
+        # injected ultralytics tree; the outer process never initializes HIP,
+        # so in-process DLL provenance is not applicable by design)
+        if "modes" in d and "ultralytics_imported" in d.get("summary", {}):
+            vals = d["summary"].get("verdicts") or {}
+            audit.check(f"checkamp-verdicts:{name}", bool(vals),
+                        f"checkamp record without verdict map: {vals}")
+            # a None verdict is honest ONLY when the mode carries crash evidence
+            for m, r in (d.get("modes") or {}).items():
+                if r.get("check_amp_verdict") is None:
+                    crash = "AcceleratorError" in (r.get("stderr_tail") or "") or \
+                            "invalid kernel" in (r.get("stderr_tail") or "")
+                    audit.check(f"checkamp-crash-evidence:{name}:{m}", crash,
+                                f"mode {m} has no verdict AND no archived crash evidence")
+            audit.check(f"checkamp-version:{name}",
+                        any(v == "8.4.212" for v in (d["summary"].get("ultralytics_imported") or []))
+                        or any("upstream_ultralytics" in (r.get("stderr_tail") or "")
+                               for r in (d.get("modes") or {}).values()),
+                        f"validated tree version not traceable: {d['summary'].get('ultralytics_imported')}")
+            for m, r in (d.get("modes") or {}).items():
+                audit.check(f"checkamp-mode:{name}:{m}", isinstance(r.get("check_amp_verdict"), bool)
+                            or r.get("exit") != 0,
+                            f"mode {m} lacks a verdict and did not exit cleanly")
+        elif "probes" in d:  # EvaluateInvokers repro: probes ran in subprocesses on
             # the target env; parent never inits the GPU, so the in-process probe
             # lives in a sibling *_loaddll.json (same convention as g2)
             audit.check(f"probes-present:{name}", bool(d.get("probes")),
