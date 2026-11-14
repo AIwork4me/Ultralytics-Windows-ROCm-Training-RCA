@@ -9,6 +9,7 @@ with every claim tied to raw logs and machine-readable verdicts.
 |---|---|
 | [PHASE0_REPOSITORY_AUDIT.md](PHASE0_REPOSITORY_AUDIT.md) | repo audit, historical-evidence re-verification (171-file manifest PASS, 10/10 ISA pairs PASS), baseline environment |
 | [BASELINE_STATE.json](BASELINE_STATE.json) | machine-readable baseline (envs, binaries, upstream facts, discrepancies) |
+| [HANDOFF.md](HANDOFF.md) | 交接文档（会话状态、发现、待办、复现命令、陷阱） |
 | [EXECUTION_PLAN.md](EXECUTION_PLAN.md) | gate map P0–P8 with blocking rules |
 | [CLAIMS_AND_EVIDENCE.md](CLAIMS_AND_EVIDENCE.md) | running claims ledger (updated per gate) |
 
