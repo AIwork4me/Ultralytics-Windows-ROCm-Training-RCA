@@ -93,28 +93,51 @@ def main():
         env = os.environ.copy()
         env["PYTHONPATH"] = args.ultralytics_src
         env.pop("MIOPEN_USER_DB_PATH", None)
-        # stream stdout/stderr to files: long hiprtc compilation phases on
-        # Windows ROCm stay visible instead of vanishing into a capture pipe
+        # stream stdout/stderr to files; Popen+kill so a HIP teardown hang
+        # (known gfx1151 flake: the child finishes its work, writes
+        # RESULT_JSON, then spins in driver cleanup and never exits) cannot
+        # wedge the harness — the streamed log is authoritative evidence
         out_log = inner.parent / f"mode_{mode}.out.log"
         err_log = inner.parent / f"mode_{mode}.err.log"
         t0 = datetime.now(timezone.utc)
         with open(out_log, "w", encoding="utf-8") as fo, open(err_log, "w", encoding="utf-8") as fe:
+            proc = subprocess.Popen([args.python, "-u", str(inner), args.weights,
+                                     "warm" if mode == "warm" else "plain"],
+                                    stdout=fo, stderr=fe, env=env,
+                                    cwd=str(inner.parent))
+            result_json_seen = None
+            hung_at_teardown = False
             try:
-                p = subprocess.run([args.python, "-u", str(inner), args.weights,
-                                    "warm" if mode == "warm" else "plain"],
-                                   stdout=fo, stderr=fe, timeout=7200, env=env,
-                                   cwd=str(inner.parent))
-                rc, timed_out = p.returncode, False
+                proc.wait(timeout=900)
+                rc = proc.returncode
             except subprocess.TimeoutExpired:
-                rc, timed_out = "TIMEOUT", True
-        rec = {"exit": rc, "timed_out": timed_out,
+                # parse what the child already wrote before killing it
+                try:
+                    txt = out_log.read_text(encoding="utf-8", errors="replace")
+                    for line in txt.splitlines():
+                        if line.startswith("RESULT_JSON:"):
+                            result_json_seen = json.loads(line[len("RESULT_JSON:"):])
+                except OSError:
+                    pass
+                hung_at_teardown = bool(result_json_seen)
+                proc.kill()
+                try:
+                    proc.wait(timeout=30)
+                except Exception:  # noqa: BLE001 — unkillable ghost is recorded
+                    pass
+                rc = f"KILLED_AFTER_{'TEARDOWN_HANG' if hung_at_teardown else 'NO_RESULT'}"
+        rec = {"exit": rc, "timed_out": not isinstance(rc, int),
+               "process_hung_at_teardown": hung_at_teardown,
                "wall_s": round((datetime.now(timezone.utc) - t0).total_seconds(), 1),
                "out_log": str(out_log), "err_log": str(err_log)}
+        if result_json_seen:
+            rec.update(result_json_seen)
         try:
             out_text = out_log.read_text(encoding="utf-8", errors="replace")
-            for line in out_text.splitlines():
-                if line.startswith("RESULT_JSON:"):
-                    rec.update(json.loads(line[len("RESULT_JSON:"):]))
+            if not result_json_seen:
+                for line in out_text.splitlines():
+                    if line.startswith("RESULT_JSON:"):
+                        rec.update(json.loads(line[len("RESULT_JSON:"):]))
         except OSError:
             pass
         if "check_amp_verdict" not in rec:
