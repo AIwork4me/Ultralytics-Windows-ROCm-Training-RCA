@@ -1,0 +1,46 @@
+=== targeted: test_checks ===
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.13.16, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\rocm\Desktop\YOLO_AMD\p17_env27203\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\P19B\pr27203
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+[1mcollecting ... [0mWARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+WARNING No GPU stats available.
+Searching for 2 idle GPUs with free memory >= 30.0% and free utilization >= 30.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+collected 1 item
+
+tests/test_cuda.py::test_checks [32mPASSED[0m
+
+============================ slowest 30 durations =============================
+
+(3 durations < 0.005s hidden.  Use -vv to show these durations.)
+[32m============================== [32m[1m1 passed[0m[32m in 0.17s[0m[32m ==============================[0m
+RC_CHECKS=0
+=== targeted: test_amp ===
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.13.16, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\rocm\Desktop\YOLO_AMD\p17_env27203\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\P19B\pr27203
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+[1mcollecting ... [0mWARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+WARNING No GPU stats available.
+Searching for 2 idle GPUs with free memory >= 30.0% and free utilization >= 30.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+collected 1 item
+
+tests/test_cuda.py::test_amp [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx115128.HIP.fdb.txt"
+[34m[1mAMP: [0mchecks passed 
+[32mPASSED[0m
+
+============================ slowest 30 durations =============================
+13.62s call     tests/test_cuda.py::test_amp
+
+(2 durations < 0.005s hidden.  Use -vv to show these durations.)
+[32m============================= [32m[1m1 passed[0m[32m in 13.77s[0m[32m ==============================[0m
+RC_AMP=127

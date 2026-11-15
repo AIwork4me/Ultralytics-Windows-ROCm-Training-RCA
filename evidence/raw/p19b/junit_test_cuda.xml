@@ -1,0 +1,1009 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="1" tests="10" time="322.243" timestamp="2026-11-15T21:22:06.429716+08:00" hostname="DESKTOP-IF0424E"><testcase classname="tests.test_cuda" name="test_checks" time="0.001" /><testcase classname="tests.test_cuda" name="test_amp" time="10.736" /><testcase classname="tests.test_cuda" name="test_onnx_dynamic_spatial_outputs" time="0.632"><failure message="torch.onnx.OnnxExporterError: Module onnx is not installed!">model_bytes = b'\x08\x07\x12\x07pytorch\x1a\x062.12.0:\xd6\x85\xa7\x15\n6\n\x0eonnx::Conv_234\x12\x0eonnx::Conv_246\x1a\nIdentity_0"...08\x01\x123\n\x02\x08\x01\n\x03\x08\x80\x04\n\x13\x12\x11Reluoutput0_dim_2\n\x13\x12\x11Reluoutput0_dim_3B\x02\x10\x0e'
+custom_opsets = {}
+
+    def _add_onnxscript_fn(
+        model_bytes: bytes,
+        custom_opsets: Mapping[str, int],
+    ) -&gt; bytes:
+        """Insert model-included custom onnx-script function into ModelProto"""
+        try:
+&gt;           import onnx
+E           ModuleNotFoundError: No module named 'onnx'
+
+C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\onnx_proto_utils.py:183: ModuleNotFoundError
+
+The above exception was the direct cause of the following exception:
+
+tmp_path = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0')
+
+    @pytest.mark.skipif(not DEVICES, reason="No CUDA devices available")
+    def test_onnx_dynamic_spatial_outputs(tmp_path):
+        """Run a real feature backbone with fixed batch and dynamic spatial outputs on CUDA."""
+        from torchvision.models import resnet18
+    
+        from ultralytics.nn.backends.onnx import ONNXBackend
+        from ultralytics.utils.export import torch2onnx
+    
+        model = torch.nn.Sequential(*list(resnet18(weights=None).children())[:-2]).eval()
+        im = torch.randn(1, 3, 64, 96)
+&gt;       file = torch2onnx(model, im, tmp_path / "features.onnx", dynamic={"images": {2: "height", 3: "width"}})
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_cuda.py:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64...ndowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx'))
+kwargs = {'dynamic': {'images': {2: 'height', 3: 'width'}}}
+
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        """Apply thread-safety to the decorated function or method."""
+        with self.lock:
+&gt;           return f(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^
+
+ultralytics\utils\__init__.py:578: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model = Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64,...e)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    )
+  )
+)
+im = tensor([[[[-1.2635, -1.1039, -0.6904,  ...,  0.1010,  1.5701,  1.9356],
+          [ 0.1709,  0.3652, -0.6194,  ...,  0..., -1.3194,  ..., -0.3466, -0.3795, -1.1831],
+          [ 0.1014,  0.5889,  0.2538,  ...,  1.2735,  0.9323, -1.9301]]]])
+output_file = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx')
+opset = 14, input_names = ['images'], output_names = ['output0']
+dynamic = {'images': {2: 'height', 3: 'width'}}
+
+    @ThreadingLocked()
+    def torch2onnx(
+        model: torch.nn.Module,
+        im: torch.Tensor | tuple[torch.Tensor, ...],
+        output_file: Path | str,
+        opset: int = 14,
+        input_names: list[str] | None = None,
+        output_names: list[str] | None = None,
+        dynamic: dict | None = None,
+    ) -&gt; str:
+        """Export a PyTorch model to ONNX format.
+    
+        Args:
+            model (torch.nn.Module): The PyTorch model to export.
+            im (torch.Tensor | tuple[torch.Tensor, ...]): Example input tensor(s) for tracing.
+            output_file (Path | str): Path to save the exported ONNX file.
+            opset (int): ONNX opset version to use for export.
+            input_names (list[str] | None): List of input tensor names. Defaults to ``["images"]``.
+            output_names (list[str] | None): List of output tensor names. Defaults to ``["output0"]``.
+            dynamic (dict | None): Dictionary specifying dynamic axes for inputs and outputs.
+    
+        Returns:
+            (str): Path to the exported ONNX file.
+        """
+        if input_names is None:
+            input_names = ["images"]
+        if output_names is None:
+            output_names = ["output0"]
+        kwargs = {"dynamo": False} if TORCH_2_4 else {}
+&gt;       torch.onnx.export(
+            model,
+            im,
+            output_file,
+            opset_version=opset,
+            input_names=input_names,
+            output_names=output_names,
+            dynamic_axes=dynamic,
+            **kwargs,
+        )
+
+ultralytics\utils\export\engine.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model = Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64,...e)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    )
+  )
+)
+args = tensor([[[[-1.2635, -1.1039, -0.6904,  ...,  0.1010,  1.5701,  1.9356],
+          [ 0.1709,  0.3652, -0.6194,  ...,  0..., -1.3194,  ..., -0.3466, -0.3795, -1.1831],
+          [ 0.1014,  0.5889,  0.2538,  ...,  1.2735,  0.9323, -1.9301]]]])
+f = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx')
+kwargs = None, verbose = None, input_names = ['images']
+output_names = ['output0'], opset_version = 14, dynamo = False
+external_data = True, dynamic_shapes = None, custom_translation_table = None
+report = False, optimize = True, verify = False, profile = False
+dump_exported_program = False, artifacts_dir = '.', export_params = True
+keep_initializers_as_inputs = False
+dynamic_axes = {'images': {2: 'height', 3: 'width'}}
+training = &lt;TrainingMode.EVAL: 0&gt;
+operator_export_type = &lt;OperatorExportTypes.ONNX: 0&gt;, do_constant_folding = True
+custom_opsets = None, export_modules_as_functions = False
+autograd_inlining = True
+
+    def export(
+        model: torch.nn.Module
+        | torch.export.ExportedProgram
+        | torch.jit.ScriptModule
+        | torch.jit.ScriptFunction,
+        args: tuple[Any, ...] = (),
+        f: str | os.PathLike | None = None,
+        *,
+        kwargs: dict[str, Any] | None = None,
+        verbose: bool | None = None,
+        input_names: Sequence[str] | None = None,
+        output_names: Sequence[str] | None = None,
+        opset_version: int | None = None,
+        dynamo: bool = True,
+        # Dynamo only options
+        external_data: bool = True,
+        dynamic_shapes: dict[str, Any] | tuple[Any, ...] | list[Any] | None = None,
+        custom_translation_table: dict[Callable, Callable] | None = None,
+        report: bool = False,
+        optimize: bool = True,
+        verify: bool = False,
+        profile: bool = False,
+        dump_exported_program: bool = False,
+        artifacts_dir: str | os.PathLike = ".",
+        # BC options
+        export_params: bool = True,
+        keep_initializers_as_inputs: bool = False,
+        dynamic_axes: Mapping[str, Mapping[int, str]]
+        | Mapping[str, Sequence[int]]
+        | None = None,
+        # Deprecated options
+        training: _C_onnx.TrainingMode = _C_onnx.TrainingMode.EVAL,
+        operator_export_type: _C_onnx.OperatorExportTypes = _C_onnx.OperatorExportTypes.ONNX,
+        do_constant_folding: bool = True,
+        custom_opsets: Mapping[str, int] | None = None,
+        export_modules_as_functions: bool | Collection[type[torch.nn.Module]] = False,
+        autograd_inlining: bool = True,
+    ) -&gt; ONNXProgram | None:
+        r"""Exports a model into ONNX format.
+    
+        Setting ``dynamo=True`` enables the new ONNX export logic
+        which is based on :class:`torch.export.ExportedProgram` and a more modern
+        set of translation logic. This is the recommended and default way to export models
+        to ONNX.
+    
+        When ``dynamo=True``:
+    
+        The exporter tries the following strategies to get an ExportedProgram for conversion to ONNX.
+    
+        #. If the model is already an ExportedProgram, it will be used as-is.
+        #. Use :func:`torch.export.export` and set ``strict=False``.
+        #. Use :func:`torch.export.export` and set ``strict=True``.
+    
+        Args:
+            model: The model to be exported.
+            args: Example positional inputs. Any non-Tensor arguments will be hard-coded into the
+                exported model; any Tensor arguments will become inputs of the exported model,
+                in the order they occur in the tuple.
+            f: Path to the output ONNX model file. E.g. "model.onnx". This argument is kept for
+                backward compatibility. It is recommended to leave unspecified (None)
+                and use the returned :class:`torch.onnx.ONNXProgram` to serialize the model
+                to a file instead.
+            kwargs: Optional example keyword inputs.
+            verbose: Whether to enable verbose logging.
+            input_names: names to assign to the input nodes of the graph, in order.
+            output_names: names to assign to the output nodes of the graph, in order.
+            opset_version: The version of the
+                `default (ai.onnx) opset &lt;https://github.com/onnx/onnx/blob/master/docs/Operators.md&gt;`_
+                to target. You should set ``opset_version`` according to the supported opset versions
+                of the runtime backend or compiler you want to run the exported model with.
+                Leave as default (``None``) to use the recommended version, or refer to
+                the ONNX operators documentation for more information.
+            dynamo: Whether to export the model with ``torch.export`` ExportedProgram instead of TorchScript.
+            external_data: Whether to save the model weights as an external data file.
+                This is required for models with large weights that exceed the ONNX file size limit (2GB).
+                When False, the weights are saved in the ONNX file with the model architecture.
+            dynamic_shapes: A dictionary or a tuple of dynamic shapes for the model inputs. Refer to
+                :func:`torch.export.export` for more details. This is only used (and preferred) when dynamo is True.
+                Note that dynamic_shapes is designed to be used when the model is exported with dynamo=True, while
+                dynamic_axes is used when dynamo=False.
+            custom_translation_table: A dictionary of custom decompositions for operators in the model.
+                The dictionary should have the callable target in the fx Node as the key (e.g. ``torch.ops.aten.stft.default``),
+                and the value should be a function that builds that graph using ONNX Script. This option
+                is only valid when dynamo is True.
+            report: Whether to generate a markdown report for the export process. This option
+                is only valid when dynamo is True.
+            optimize: Whether to optimize the exported model. This option
+                is only valid when dynamo is True. Default is True.
+            verify: Whether to verify the exported model using ONNX Runtime. This option
+                is only valid when dynamo is True.
+            profile: Whether to profile the export process. This option
+                is only valid when dynamo is True.
+            dump_exported_program: Whether to dump the :class:`torch.export.ExportedProgram` to a file.
+                This is useful for debugging the exporter. This option is only valid when dynamo is True.
+            artifacts_dir: The directory to save the debugging artifacts like the report and the serialized
+                exported program. This option is only valid when dynamo is True.
+            export_params: **When ``f`` is specified**: If false, parameters (weights) will not be exported.
+    
+                You can also leave it unspecified and use the returned :class:`torch.onnx.ONNXProgram`
+                to control how initializers are treated when serializing the model.
+            keep_initializers_as_inputs: **When ``f`` is specified**: If True, all the
+                initializers (typically corresponding to model weights) in the
+                exported graph will also be added as inputs to the graph. If False,
+                then initializers are not added as inputs to the graph, and only
+                the user inputs are added as inputs.
+    
+                Set this to True if you intend to supply model weights at runtime.
+                Set it to False if the weights are static to allow for better optimizations
+                (e.g. constant folding) by backends/runtimes.
+    
+                You can also leave it unspecified and use the returned :class:`torch.onnx.ONNXProgram`
+                to control how initializers are treated when serializing the model.
+            dynamic_axes:
+                Deprecated: Prefer specifying ``dynamic_shapes`` when ``dynamo=True``.
+    
+                By default the exported model will have the shapes of all input and output tensors
+                set to exactly match those given in ``args``. To specify axes of tensors as
+                dynamic (i.e. known only at run-time), set ``dynamic_axes`` to a dict with schema:
+    
+                * KEY (str): an input or output name. Each name must also be provided in ``input_names`` or
+                    ``output_names``.
+                * VALUE (dict or list): If a dict, keys are axis indices and values are axis names. If a
+                    list, each element is an axis index.
+    
+                For example::
+    
+                    class SumModule(torch.nn.Module):
+                        def forward(self, x):
+                            return torch.sum(x, dim=1)
+    
+    
+                    torch.onnx.export(
+                        SumModule(),
+                        (torch.ones(2, 2),),
+                        "onnx.pb",
+                        input_names=["x"],
+                        output_names=["sum"],
+                    )
+    
+                Produces::
+    
+                    input {
+                      name: "x"
+                      ...
+                          shape {
+                            dim {
+                              dim_value: 2  # axis 0
+                            }
+                            dim {
+                              dim_value: 2  # axis 1
+                    ...
+                    output {
+                      name: "sum"
+                      ...
+                          shape {
+                            dim {
+                              dim_value: 2  # axis 0
+                    ...
+    
+                While::
+    
+                    torch.onnx.export(
+                        SumModule(),
+                        (torch.ones(2, 2),),
+                        "onnx.pb",
+                        input_names=["x"],
+                        output_names=["sum"],
+                        dynamic_axes={
+                            # dict value: manually named axes
+                            "x": {0: "my_custom_axis_name"},
+                            # list value: automatic names
+                            "sum": [0],
+                        },
+                    )
+    
+                Produces::
+    
+                    input {
+                      name: "x"
+                      ...
+                          shape {
+                            dim {
+                              dim_param: "my_custom_axis_name"  # axis 0
+                            }
+                            dim {
+                              dim_value: 2  # axis 1
+                    ...
+                    output {
+                      name: "sum"
+                      ...
+                          shape {
+                            dim {
+                              dim_param: "sum_dynamic_axes_1"  # axis 0
+                    ...
+    
+            training: Deprecated option. Instead, set the training mode of the model before exporting.
+            operator_export_type: Deprecated option. Only ONNX is supported.
+            do_constant_folding: Deprecated option.
+            custom_opsets: Deprecated option.
+            export_modules_as_functions: Deprecated option.
+            autograd_inlining: Deprecated option.
+    
+        Returns:
+            :class:`torch.onnx.ONNXProgram` if dynamo is True, otherwise None.
+    
+        .. versionchanged:: 2.6
+            ``training`` is now deprecated. Instead, set the training mode of the model before exporting.
+            ``operator_export_type`` is now deprecated. Only ONNX is supported.
+            ``do_constant_folding`` is now deprecated. It is always enabled.
+            ``export_modules_as_functions`` is now deprecated.
+            ``autograd_inlining`` is now deprecated.
+        .. versionchanged:: 2.7
+            ``optimize`` is now True by default.
+        .. versionchanged:: 2.9
+            ``dynamo`` is now True by default.
+        .. versionchanged:: 2.11
+            ``fallback`` option has been removed.
+        """
+        if dynamo is True or isinstance(
+            model, (torch.export.ExportedProgram, ExportableModule)
+        ):
+            from torch.onnx._internal.exporter import _compat
+    
+            if isinstance(args, torch.Tensor):
+                args = (args,)
+    
+            return _compat.export_compat(
+                model,
+                args,
+                f,
+                kwargs=kwargs,
+                export_params=export_params,
+                verbose=verbose,
+                input_names=input_names,
+                output_names=output_names,
+                opset_version=opset_version,
+                custom_translation_table=custom_translation_table,
+                dynamic_axes=dynamic_axes,
+                keep_initializers_as_inputs=keep_initializers_as_inputs,
+                external_data=external_data,
+                dynamic_shapes=dynamic_shapes,
+                report=report,
+                optimize=optimize,
+                verify=verify,
+                profile=profile,
+                dump_exported_program=dump_exported_program,
+                artifacts_dir=artifacts_dir,
+            )
+        else:
+            import warnings
+    
+            from ._internal.torchscript_exporter.utils import export
+    
+            warnings.warn(
+                "You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, "
+                "the new torch.export-based ONNX exporter has become the default. "
+                "Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. "
+                "For exporting control flow: "
+                "https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html",
+                category=DeprecationWarning,
+                stacklevel=2,
+            )
+    
+            if dynamic_shapes:
+                raise ValueError(
+                    "The exporter only supports dynamic shapes "
+                    "through parameter dynamic_axes when dynamo=False."
+                )
+    
+&gt;           export(
+                model,
+                args,
+                f,  # type: ignore[arg-type]
+                kwargs=kwargs,
+                export_params=export_params,
+                verbose=verbose is True,
+                input_names=input_names,
+                output_names=output_names,
+                opset_version=opset_version,
+                dynamic_axes=dynamic_axes,
+                keep_initializers_as_inputs=keep_initializers_as_inputs,
+                training=training,
+                operator_export_type=operator_export_type,
+                do_constant_folding=do_constant_folding,
+                custom_opsets=custom_opsets,
+                export_modules_as_functions=export_modules_as_functions,
+                autograd_inlining=autograd_inlining,
+            )
+
+C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\__init__.py:334: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model = Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64,...e)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    )
+  )
+)
+args = (tensor([[[[-1.2635, -1.1039, -0.6904,  ...,  0.1010,  1.5701,  1.9356],
+          [ 0.1709,  0.3652, -0.6194,  ...,  ...-1.3194,  ..., -0.3466, -0.3795, -1.1831],
+          [ 0.1014,  0.5889,  0.2538,  ...,  1.2735,  0.9323, -1.9301]]]]),)
+f = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx')
+kwargs = None, export_params = True, verbose = False
+training = &lt;TrainingMode.EVAL: 0&gt;, input_names = ['images']
+output_names = ['output0'], operator_export_type = &lt;OperatorExportTypes.ONNX: 0&gt;
+opset_version = 14, do_constant_folding = True
+dynamic_axes = {'images': {2: 'height', 3: 'width'}}
+keep_initializers_as_inputs = False, custom_opsets = None
+export_modules_as_functions = False, autograd_inlining = True
+
+    def export(
+        model: torch.nn.Module | torch.jit.ScriptModule | torch.jit.ScriptFunction,
+        args: tuple[Any, ...] | torch.Tensor,
+        f: str,
+        *,
+        kwargs: dict[str, Any] | None = None,
+        export_params: bool = True,
+        verbose: bool = False,
+        training: _C_onnx.TrainingMode = _C_onnx.TrainingMode.EVAL,
+        input_names: Sequence[str] | None = None,
+        output_names: Sequence[str] | None = None,
+        operator_export_type: _C_onnx.OperatorExportTypes = _C_onnx.OperatorExportTypes.ONNX,
+        opset_version: int | None = None,
+        do_constant_folding: bool = True,
+        dynamic_axes: Mapping[str, Mapping[int, str]]
+        | Mapping[str, Sequence[int]]
+        | None = None,
+        keep_initializers_as_inputs: bool | None = None,
+        custom_opsets: Mapping[str, int] | None = None,
+        export_modules_as_functions: bool | Collection[type[torch.nn.Module]] = False,
+        autograd_inlining: bool = True,
+    ) -&gt; None:
+        r"""Exports a model into ONNX format.
+    
+        If ``model`` is not a :class:`torch.jit.ScriptModule` nor a
+        :class:`torch.jit.ScriptFunction`, this runs
+        ``model`` once in order to convert it to a TorchScript graph to be exported
+        (the equivalent of :func:`torch.jit.trace`). Thus this has the same limited support
+        for dynamic control flow as :func:`torch.jit.trace`.
+    
+        Args:
+            model: The model to be exported.
+            args:
+    
+                args can be structured either as:
+    
+                1. ONLY A TUPLE OF ARGUMENTS::
+    
+                    args = (x, y, z)
+    
+                The tuple should contain model inputs such that ``model(*args)`` is a valid
+                invocation of the model. Any non-Tensor arguments will be hard-coded into the
+                exported model; any Tensor arguments will become inputs of the exported model,
+                in the order they occur in the tuple.
+    
+                2. A TENSOR::
+    
+                    args = torch.Tensor([1])
+    
+                This is equivalent to a 1-ary tuple of that Tensor.
+    
+                3. A TUPLE OF ARGUMENTS ENDING WITH A DICTIONARY OF NAMED ARGUMENTS::
+    
+                    args = (x, {"y": input_y, "z": input_z})
+    
+                All but the last element of the tuple will be passed as non-keyword arguments,
+                and named arguments will be set from the last element. If a named argument is
+                not present in the dictionary, it is assigned the default value, or None if a
+                default value is not provided.
+    
+                .. warning::
+                    This behavior will be deprecated in a future release. Please use the
+                    kwargs argument instead.
+    
+                .. note::
+                    If a dictionary is the last element of the args tuple, it will be
+                    interpreted as containing named arguments. In order to pass a dict as the
+                    last non-keyword arg, provide an empty dict as the last element of the args
+                    tuple. For example, instead of::
+    
+                        torch.onnx.export(
+                            model,
+                            (
+                                x,
+                                # WRONG: will be interpreted as named arguments
+                                {y: z},
+                            ),
+                            "test.onnx.pb",
+                        )
+    
+                    Write::
+    
+                        torch.onnx.export(model, (x, {y: z}, {}), "test.onnx.pb")
+    
+            f: Path to the output ONNX model file. E.g. "model.onnx".
+            kwargs: Named arguments to the model.
+            export_params: If True, all parameters will
+                be exported. Set this to False if you want to export an untrained model.
+                In this case, the exported model will first take all of its parameters
+                as arguments, with the ordering as specified by ``model.state_dict().values()``
+            verbose: if True, prints a description of the
+                model being exported to stdout. In addition, the final ONNX graph will include the
+                field ``doc_string``` from the exported model which mentions the source code locations
+                for ``model``. If True, ONNX exporter logging will be turned on.
+            training:
+                * ``TrainingMode.EVAL``: export the model in inference mode.
+                * ``TrainingMode.PRESERVE``: export the model in inference mode if model.training is
+                    False and in training mode if model.training is True.
+                * ``TrainingMode.TRAINING``: export the model in training mode. Disables optimizations
+                    which might interfere with training.
+            input_names (list of str, default empty list): names to assign to the
+                input nodes of the graph, in order.
+            output_names (list of str, default empty list): names to assign to the
+                output nodes of the graph, in order.
+            operator_export_type (enum, default OperatorExportTypes.ONNX):
+    
+                .. warning::
+                    This option will be deprecated in a future release. Future exported
+                    graphs will always use the default opset domain.
+    
+                * ``OperatorExportTypes.ONNX``: Export all ops as regular ONNX ops
+                    (in the default opset domain).
+                * ``OperatorExportTypes.ONNX_FALLTHROUGH``: Try to convert all ops
+                    to standard ONNX ops in the default opset domain. If unable to do so
+                    (e.g. because support has not been added to convert a particular torch op to ONNX),
+                    fall back to exporting the op into a custom opset domain without conversion. Applies
+                    to `custom ops &lt;https://pytorch.org/tutorials/advanced/torch_script_custom_ops.html&gt;`_
+                    as well as ATen ops. For the exported model to be usable, the runtime must support
+                    these non-standard ops.
+                * ``OperatorExportTypes.ONNX_ATEN``: All ATen ops (in the TorchScript namespace "aten")
+                    are exported as ATen ops (in opset domain "org.pytorch.aten").
+                    `ATen &lt;https://pytorch.org/cppdocs/#aten&gt;`_ is PyTorch's built-in tensor library, so
+                    this instructs the runtime to use PyTorch's implementation of these ops.
+    
+                    .. warning::
+    
+                        Models exported this way are probably runnable only by Caffe2.
+    
+                        This may be useful if the numeric differences in implementations of operators are
+                        causing large differences in behavior between PyTorch and Caffe2 (which is more
+                        common on untrained models).
+    
+                * ``OperatorExportTypes.ONNX_ATEN_FALLBACK``: Try to export each ATen op
+                    (in the TorchScript namespace "aten") as a regular ONNX op. If we are unable to do so
+                    (e.g. because support has not been added to convert a particular torch op to ONNX),
+                    fall back to exporting an ATen op. See documentation on OperatorExportTypes.ONNX_ATEN for
+                    context.
+                    For example::
+    
+                        graph(%0 : Float):
+                        %3 : int = prim::Constant[value=0]()
+                        # conversion unsupported
+                        %4 : Float = aten::triu(%0, %3)
+                        # conversion supported
+                        %5 : Float = aten::mul(%4, %0)
+                        return (%5)
+    
+                    Assuming ``aten::triu`` is not supported in ONNX, this will be exported as::
+    
+                        graph(%0 : Float):
+                        %1 : Long() = onnx::Constant[value={0}]()
+                        # not converted
+                        %2 : Float = aten::ATen[operator="triu"](%0, %1)
+                        # converted
+                        %3 : Float = onnx::Mul(%2, %0)
+                        return (%3)
+    
+                    .. warning::
+    
+                        Models exported this way are probably runnable only by Caffe2.
+    
+            opset_version (int, default 18): The version of the
+                `default (ai.onnx) opset &lt;https://github.com/onnx/onnx/blob/master/docs/Operators.md&gt;`_
+                to target. Must be &gt;= 7.
+            do_constant_folding: Apply the constant-folding optimization.
+                Constant-folding will replace some of the ops that have all constant inputs
+                with pre-computed constant nodes.
+            dynamic_axes:
+    
+                By default the exported model will have the shapes of all input and output tensors
+                set to exactly match those given in ``args``. To specify axes of tensors as
+                dynamic (i.e. known only at run-time), set ``dynamic_axes`` to a dict with schema:
+    
+                * KEY (str): an input or output name. Each name must also be provided in ``input_names`` or
+                    ``output_names``.
+                * VALUE (dict or list): If a dict, keys are axis indices and values are axis names. If a
+                    list, each element is an axis index.
+    
+                For example::
+    
+                    class SumModule(torch.nn.Module):
+                        def forward(self, x):
+                            return torch.sum(x, dim=1)
+    
+    
+                    torch.onnx.export(
+                        SumModule(),
+                        (torch.ones(2, 2),),
+                        "onnx.pb",
+                        input_names=["x"],
+                        output_names=["sum"],
+                    )
+    
+                Produces::
+    
+                    input {
+                      name: "x"
+                      ...
+                          shape {
+                            dim {
+                              dim_value: 2  # axis 0
+                            }
+                            dim {
+                              dim_value: 2  # axis 1
+                    ...
+                    output {
+                      name: "sum"
+                      ...
+                          shape {
+                            dim {
+                              dim_value: 2  # axis 0
+                    ...
+    
+                While::
+    
+                    torch.onnx.export(
+                        SumModule(),
+                        (torch.ones(2, 2),),
+                        "onnx.pb",
+                        input_names=["x"],
+                        output_names=["sum"],
+                        dynamic_axes={
+                            # dict value: manually named axes
+                            "x": {0: "my_custom_axis_name"},
+                            # list value: automatic names
+                            "sum": [0],
+                        },
+                    )
+    
+                Produces::
+    
+                    input {
+                      name: "x"
+                      ...
+                          shape {
+                            dim {
+                              dim_param: "my_custom_axis_name"  # axis 0
+                            }
+                            dim {
+                              dim_value: 2  # axis 1
+                    ...
+                    output {
+                      name: "sum"
+                      ...
+                          shape {
+                            dim {
+                              dim_param: "sum_dynamic_axes_1"  # axis 0
+                    ...
+    
+            keep_initializers_as_inputs: If True, all the
+                initializers (typically corresponding to parameters) in the
+                exported graph will also be added as inputs to the graph. If False,
+                then initializers are not added as inputs to the graph, and only
+                the non-parameter inputs are added as inputs.
+                This may allow for better optimizations (e.g. constant folding) by
+                backends/runtimes.
+    
+                If True, `deduplicate_initializers` pass will not be executed. This means
+                initializers with duplicated values will not be deduplicated and
+                will be treated as distinct inputs to the graph. This allows different
+                input initializers to be supplied at the runtime following export.
+    
+                If ``opset_version &lt; 9``, initializers MUST be part of graph
+                inputs and this argument will be ignored and the behavior will be
+                equivalent to setting this argument to True.
+    
+            custom_opsets (dict[str, int], default empty dict): A dict with schema:
+    
+                * KEY (str): opset domain name
+                * VALUE (int): opset version
+    
+                If a custom opset is referenced by ``model`` but not mentioned in this dictionary,
+                the opset version is set to 1. Only custom opset domain name and version should be
+                indicated through this argument.
+    
+            export_modules_as_functions: Flag to enable
+                exporting all ``nn.Module`` forward calls as local functions in ONNX. Or a set to indicate the
+                particular types of modules to export as local functions in ONNX.
+                This feature requires ``opset_version`` &gt;= 15, otherwise the export will fail. This is because
+                ``opset_version`` &lt; 15 implies IR version &lt; 8, which means no local function support.
+                Module variables will be exported as function attributes. There are two categories of function
+                attributes.
+    
+                1. Annotated attributes: class variables that have type annotations via
+                `PEP 526-style &lt;https://www.python.org/dev/peps/pep-0526/#class-and-instance-variable-annotations&gt;`_
+                will be exported as attributes.
+                Annotated attributes are not used inside the subgraph of ONNX local function because
+                they are not created by PyTorch JIT tracing, but they may be used by consumers
+                to determine whether or not to replace the function with a particular fused kernel.
+    
+                2. Inferred attributes: variables that are used by operators inside the module. Attribute names
+                will have prefix "inferred::". This is to differentiate from predefined attributes retrieved from
+                python module annotations. Inferred attributes are used inside the subgraph of ONNX local function.
+    
+                * ``False`` (default): export ``nn.Module`` forward calls as fine grained nodes.
+                * ``True``: export all ``nn.Module`` forward calls as local function nodes.
+                * Set of type of nn.Module: export ``nn.Module`` forward calls as local function nodes,
+                    only if the type of the ``nn.Module`` is found in the set.
+    
+            autograd_inlining: Flag used to control whether to inline autograd functions.
+                Refer to https://github.com/pytorch/pytorch/pull/74765 for more details.
+    
+        Raises:
+            :class:`torch.onnx.errors.CheckerError`: If the ONNX checker detects an invalid ONNX graph.
+            :class:`torch.onnx.errors.UnsupportedOperatorError`: If the ONNX graph cannot be exported because it
+                uses an operator that is not supported by the exporter.
+            :class:`torch.onnx.errors.OnnxExporterError`: Other errors that can occur during export.
+                All errors are subclasses of :class:`errors.OnnxExporterError`.
+        """
+        if operator_export_type != _C_onnx.OperatorExportTypes.ONNX:
+            warnings.warn(
+                "Setting `operator_export_type` to something other than default is deprecated. "
+                "The option will be removed in a future release.",
+                stacklevel=2,
+                category=DeprecationWarning,
+            )
+        if training == _C_onnx.TrainingMode.TRAINING:
+            warnings.warn(
+                "Setting `training` to something other than default is deprecated. "
+                "The option will be removed in a future release. Please set the training mode "
+                "before exporting the model.",
+                stacklevel=2,
+                category=DeprecationWarning,
+            )
+    
+        args = (args,) if isinstance(args, torch.Tensor) else args
+        if kwargs is not None:
+            args = args + (kwargs,)
+    
+&gt;       _export(
+            model,
+            args,
+            f,
+            export_params,
+            verbose,
+            training,
+            input_names,
+            output_names,
+            operator_export_type=operator_export_type,
+            opset_version=opset_version,
+            do_constant_folding=do_constant_folding,
+            dynamic_axes=dynamic_axes,
+            keep_initializers_as_inputs=keep_initializers_as_inputs,
+            custom_opsets=custom_opsets,
+            export_modules_as_functions=export_modules_as_functions,
+            autograd_inlining=autograd_inlining,
+        )
+
+C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\utils.py:552: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model = Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64,...e)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    )
+  )
+)
+args = (tensor([[[[-1.2635, -1.1039, -0.6904,  ...,  0.1010,  1.5701,  1.9356],
+          [ 0.1709,  0.3652, -0.6194,  ...,  ...-1.3194,  ..., -0.3466, -0.3795, -1.1831],
+          [ 0.1014,  0.5889,  0.2538,  ...,  1.2735,  0.9323, -1.9301]]]]),)
+f = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx')
+export_params = True, verbose = False, training = &lt;TrainingMode.EVAL: 0&gt;
+input_names = ['images'], output_names = ['output0']
+operator_export_type = &lt;OperatorExportTypes.ONNX: 0&gt;, export_type = None
+opset_version = 14, do_constant_folding = True
+dynamic_axes = {'images': {2: 'height', 3: 'width'}}
+keep_initializers_as_inputs = False, fixed_batch_size = False
+custom_opsets = {}, add_node_names = True, onnx_shape_inference = True
+export_modules_as_functions = False, autograd_inlining = True
+
+    def _export(
+        model,
+        args,
+        f,
+        export_params=True,
+        verbose=False,
+        training=_C_onnx.TrainingMode.EVAL,
+        input_names=None,
+        output_names=None,
+        operator_export_type=_C_onnx.OperatorExportTypes.ONNX,
+        export_type=None,
+        opset_version=None,
+        do_constant_folding=True,
+        dynamic_axes=None,
+        keep_initializers_as_inputs=None,
+        fixed_batch_size=False,
+        custom_opsets=None,
+        add_node_names=True,
+        onnx_shape_inference=True,
+        export_modules_as_functions: Any = False,
+        autograd_inlining=True,
+    ):
+        if GLOBALS.in_onnx_export is not False:
+            raise AssertionError("GLOBALS.in_onnx_export must be False")
+    
+        _trigger_symbolic_function_registration()
+    
+        if isinstance(model, torch.nn.DataParallel):
+            raise ValueError(
+                "torch.nn.DataParallel is not supported by ONNX "
+                "exporter, please use 'attribute' module to "
+                "unwrap model from torch.nn.DataParallel. Try "
+                "torch.onnx.export(model.module, ...)"
+            )
+    
+        GLOBALS.onnx_shape_inference = onnx_shape_inference
+    
+        if opset_version is None:
+            opset_version = _constants.ONNX_DEFAULT_OPSET
+    
+        if opset_version &gt; _constants.ONNX_TORCHSCRIPT_EXPORTER_MAX_OPSET:
+            warnings.warn(
+                f"Exporting to ONNX opset version {opset_version} is not supported. "
+                f"by 'torch.onnx.export()'. "
+                f"The highest opset version supported is {_constants.ONNX_TORCHSCRIPT_EXPORTER_MAX_OPSET}. "
+                f"To use a newer opset version, consider 'torch.onnx.export(..., dynamo=True)'. ",
+                stacklevel=2,
+                category=errors.OnnxExporterWarning,
+            )
+    
+        if export_modules_as_functions and opset_version &lt; 15:
+            raise ValueError(
+                "`export_modules_as_functions` is not supported for `opset_version` &lt; 15."
+                "This is because `opset_version` &lt; 15 implies IR version &lt; 8, which means "
+                "no local function support. "
+            )
+        if not operator_export_type:
+            operator_export_type = _C_onnx.OperatorExportTypes.ONNX
+    
+        # By default, training=TrainingMode.EVAL,
+        # which is good because running a model in training mode could result in
+        # internal buffers getting updated, dropout getting applied, etc.
+        # If you really know what you're doing, you can turn
+        # training=TrainingMode.TRAINING or training=TrainingMode.PRESERVE,
+        # (to preserve whatever the original training mode was.)
+        GLOBALS.export_onnx_opset_version = opset_version
+        GLOBALS.operator_export_type = operator_export_type
+    
+        try:
+            GLOBALS.in_onnx_export = True
+            _autograd_inlining_previous = GLOBALS.autograd_inlining
+            GLOBALS.autograd_inlining = autograd_inlining
+    
+            module_typenames_to_export_as_functions: set[str] = set()
+            if isinstance(model, (torch.nn.Module, torch.jit.ScriptModule)):
+                module_typenames_to_export_as_functions = _setup_trace_module_map(
+                    model, export_modules_as_functions
+                )
+    
+            with exporter_context(model, training, verbose):
+                val_keep_init_as_ip = _decide_keep_init_as_input(
+                    keep_initializers_as_inputs,
+                    operator_export_type,
+                    opset_version,
+                )
+                val_add_node_names = _decide_add_node_names(
+                    add_node_names, operator_export_type
+                )
+                val_do_constant_folding = _decide_constant_folding(
+                    do_constant_folding, operator_export_type, training
+                )
+                # Normally f can be a file-like object, but for large models, the external data format requires a
+                # valid `model_file_location`. Code in export.cpp will enforce this.
+                if isinstance(f, str):
+                    model_file_location = f
+                else:
+                    model_file_location = ""
+                args = _decide_input_format(model, args)
+                if dynamic_axes is None:
+                    dynamic_axes = {}
+                _validate_dynamic_axes(dynamic_axes, model, input_names, output_names)
+    
+                graph, params_dict, torch_out = _model_to_graph(
+                    model,
+                    args,
+                    verbose,
+                    input_names,
+                    output_names,
+                    operator_export_type,
+                    val_do_constant_folding,
+                    fixed_batch_size=fixed_batch_size,
+                    training=training,
+                    dynamic_axes=dynamic_axes,
+                )
+    
+                if custom_opsets is None:
+                    custom_opsets = {}
+    
+                _C._jit_pass_dce_allow_deleting_nodes_with_side_effects(graph)
+                node_attr_to_name = {}  # type: ignore[var-annotated]
+                if module_typenames_to_export_as_functions:
+                    # NOTE: cannot call DCE after this pass. DCE will remove function definition nodes.
+                    node_attr_to_name = _C._jit_pass_onnx_function_extraction(
+                        graph,
+                        module_typenames_to_export_as_functions,
+                        list(params_dict.keys()),
+                    )
+    
+                if keep_initializers_as_inputs is not True:
+                    params_dict = _C._jit_pass_onnx_deduplicate_initializers(  # type: ignore[assignment]
+                        graph,
+                        params_dict,  # type: ignore[arg-type]
+                        getattr(model, "training", False),  # type: ignore[arg-type]
+                    )
+                _C._jit_pass_onnx_assign_scoped_names_for_node_and_value(graph)
+                defer_weight_export = False
+                if export_params:
+                    (
+                        proto,
+                        export_map,
+                        _val_use_external_data_format,
+                        _node_names,
+                    ) = graph._export_onnx(  # type: ignore[attr-defined]
+                        params_dict,
+                        opset_version,
+                        dynamic_axes,
+                        defer_weight_export,
+                        operator_export_type,
+                        not verbose,
+                        val_keep_init_as_ip,
+                        custom_opsets,
+                        val_add_node_names,
+                        model_file_location,
+                        node_attr_to_name,
+                    )
+                else:
+                    (
+                        proto,
+                        export_map,
+                        _,
+                        _,
+                    ) = graph._export_onnx(  # type: ignore[attr-defined]
+                        {},
+                        opset_version,
+                        dynamic_axes,
+                        defer_weight_export,
+                        operator_export_type,
+                        not verbose,
+                        val_keep_init_as_ip,
+                        custom_opsets,
+                        val_add_node_names,
+                        model_file_location,
+                        node_attr_to_name,
+                    )
+                # insert function_proto into model_proto.
+&gt;               proto = onnx_proto_utils._add_onnxscript_fn(
+                    proto,
+                    custom_opsets,
+                )
+
+C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\utils.py:1588: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model_bytes = b'\x08\x07\x12\x07pytorch\x1a\x062.12.0:\xd6\x85\xa7\x15\n6\n\x0eonnx::Conv_234\x12\x0eonnx::Conv_246\x1a\nIdentity_0"...08\x01\x123\n\x02\x08\x01\n\x03\x08\x80\x04\n\x13\x12\x11Reluoutput0_dim_2\n\x13\x12\x11Reluoutput0_dim_3B\x02\x10\x0e'
+custom_opsets = {}
+
+    def _add_onnxscript_fn(
+        model_bytes: bytes,
+        custom_opsets: Mapping[str, int],
+    ) -&gt; bytes:
+        """Insert model-included custom onnx-script function into ModelProto"""
+        try:
+            import onnx
+        except ImportError as e:
+&gt;           raise errors.OnnxExporterError("Module onnx is not installed!") from e
+E           torch.onnx.OnnxExporterError: Module onnx is not installed!
+
+C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\onnx_proto_utils.py:185: OnnxExporterError</failure></testcase><testcase classname="tests.test_cuda" name="test_semantic_loss_all_ignore_amp[1]" time="0.449" /><testcase classname="tests.test_cuda" name="test_semantic_loss_all_ignore_amp[3]" time="0.299" /><testcase classname="tests.test_cuda" name="test_train" time="170.012" /><testcase classname="tests.test_cuda" name="test_train_cold_process_nonzero_device" time="0.000"><skipped type="pytest.skip" message="requires an idle CUDA device with nonzero index">C:\P19B\pr27203\tests\test_cuda.py:173: requires an idle CUDA device with nonzero index</skipped></testcase><testcase classname="tests.test_cuda" name="test_track_exported_model[False]" time="9.261" /><testcase classname="tests.test_cuda" name="test_track_exported_model[320]" time="6.706" /><testcase classname="tests.test_cuda" name="test_autobatch" time="122.301" /></testsuite></testsuites>

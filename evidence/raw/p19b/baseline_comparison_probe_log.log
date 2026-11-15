@@ -1,0 +1,20 @@
+=== AFTER (PR d8fe65c8) plain ===
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+PROBE_JSON:{"mode": "plain", "python": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe", "cuda_visible_devices_env": "<unset>", "torch": "2.12.0+rocm7.14.1", "torch_cuda_device_count": 1, "torch_cuda_is_available": true, "ul_cuda_device_count": 1, "ul_cuda_is_available": true, "parse_device_minus1": "0", "device0_name": "AMD Radeon(TM) 8060S Graphics", "cuda_alloc_ok": true, "cuda_alloc_device": "cuda:0"}
+=== AFTER (PR d8fe65c8) CUDA_VISIBLE_DEVICES=0 ===
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+PROBE_JSON:{"mode": "cvd0", "python": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe", "cuda_visible_devices_env": "0", "torch": "2.12.0+rocm7.14.1", "torch_cuda_device_count": 1, "torch_cuda_is_available": true, "ul_cuda_device_count": 1, "ul_cuda_is_available": true, "parse_device_minus1": "0", "device0_name": "AMD Radeon(TM) 8060S Graphics", "cuda_alloc_ok": true, "cuda_alloc_device": "cuda:0"}
+=== BEFORE (main 3e59149) plain ===
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable.
+PROBE_JSON:{"mode": "plain", "python": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe", "cuda_visible_devices_env": "<unset>", "torch": "2.12.0+rocm7.14.1", "torch_cuda_device_count": 1, "torch_cuda_is_available": true, "ul_cuda_device_count": 0, "ul_cuda_is_available": false, "parse_device_minus1": "", "device0_name": "AMD Radeon(TM) 8060S Graphics", "cuda_alloc_ok": true, "cuda_alloc_device": "cuda:0"}
+=== BEFORE (main 3e59149) CUDA_VISIBLE_DEVICES=0 ===
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable.
+PROBE_JSON:{"mode": "cvd0", "python": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe", "cuda_visible_devices_env": "0", "torch": "2.12.0+rocm7.14.1", "torch_cuda_device_count": 1, "torch_cuda_is_available": true, "ul_cuda_device_count": 0, "ul_cuda_is_available": false, "parse_device_minus1": "", "device0_name": "AMD Radeon(TM) 8060S Graphics", "cuda_alloc_ok": true, "cuda_alloc_device": "cuda:0"}
