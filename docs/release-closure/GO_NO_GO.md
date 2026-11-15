@@ -87,3 +87,21 @@ Verdicts: **GO-A CONDITIONAL PASS(维持,证据面扩大)** · **GO-B CONDITIONA
 **环境状态**:ENV B 还原与 E5 单组件实验仍被 P13 记录的 ghost 锁阻塞(P14 重核验:6 个 ghost 进程 CIM 可见、taskkill "无实例"、DLL 写锁 err32,`p14_ghost_recheck.json`);invalid-kernel 根因维持 UNRESOLVED。
 
 **GATE 状态**:G1 ✅ · G2 ⏳(#27198 open / #13437 已合) · G3 ❌ BLOCKED_RELEASE · G4 ❌ NOT_MET(Issue #14 零回应,BLOCKED_INDEPENDENT_USER_TEST)。
+
+---
+
+## P15 addendum (2026-11-15, mission P15) — CURRENT authoritative verdict
+
+Verdicts: **GO-A CONDITIONAL PASS(维持, P15 证据面再扩大)** · **GO-B CONDITIONAL PASS(维持, 全链金路径 P15 重跑)** · **GO-C NO-GO(BLOCKED_RELEASE 今日实测维持)** · **GATE 4 NOT_MET(维持)** · **GATE 5 NOT_RUN(NVIDIA_COMPARISON_BLOCKED_HARDWARE)** · **GATE 6 IN_PROGRESS/BLOCKED_RUNNER**
+
+**P15 上游贡献(两项, 均未合并)**:
+1. **#27198 → `fc72b4e`**: 按现行 AGENTS.md 冷审后测试收缩(6 个 mock 重测试 → 2 个聚焦契约, −79/+13, 删 torch>=1.13 兼容垫片); CI 15 pass/6 skip/0 fail。**无人工评审 — 不作接受宣称**。
+2. **#27203 (新开, `78b5b15`→`a1be048`)**: P15 冷审新缺陷 — 上游 `cuda_device_count()`(nvidia-smi)与 `GPUInfo.select_idle_gpu()`(NVML)双 NVIDIA-only 门使 `tests/test_cuda.py` 在健康 AMD HIP 实机整文件静默跳过; 修复后 gfx1151 实测 SKIP→**PASS**; bot MEDIUM(indices=[] 语义)已修复并答复。
+
+**GO-A/B(P15 GPU 全链, 官方发布栈 torch 2.12.0+rocm7.14.1 + released 8.4.182, gfx1151)**: amp-probe(autocast fp16 dtype 证明 + GradScaler 8/8 真实更新)→ smoke w0/w2/w4/暖缓存全 PASS(23.1–23.5s)→ 30ep COCO128(mAP50-95 0.4927→0.5980→0.5851)→ 硬中断(PID 11452, epoch≥20)→ 新进程恢复(from epoch 22, lr0=0.000119 还原)→ best.pt val 0.5949 → 重载推理 6 框。证据 `release-provenance/raw/p15_gfx1151/`。
+
+**GO-C(P15.1 复扫)**: 双官方通道索引无新 Windows wheel; 决定构件 `rocm_sdk_libraries-10.1.0` 与 P14 预修复版逐字节同尺寸(118,645,973)+ Last-Modified 2026-10-05(早于合并)→ 未重建, **BLOCKED_RELEASE 维持**; 无新材料故未评论 #15862(反骚扰规则)。
+
+**P15.5**: NVIDIA UX parity 契约**预注册冻结** + `scripts/p15/nvidia_reference.py` 就绪; NVIDIA 侧全 NOT_RUN, 零捏造值。
+
+**GATE 状态**: G1 ⚠️(一类完成/二类 BLOCKED_HARDWARE → 任务书口径 NOT_MET) · G2 ⏳(#27198/#27203 open 等人工评审) · G3 ❌ BLOCKED_RELEASE · G4 ❌ NOT_MET(#14 今日实测 0 评论) · G5 ❌ NOT_RUN(对照硬件缺失) · G6 ⏳(Layer A 随两 PR 上行; Layer B BLOCKED_RUNNER, 本地 runner 契约已交付)。安全事项维持: owner 须轮换 ZHIPU_API_KEY。详见 `P15_FINAL_GO_NO_GO.md`。

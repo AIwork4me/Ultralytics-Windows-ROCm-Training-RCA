@@ -1,0 +1,61 @@
+{
+  "contract": "P15_NVIDIA_UX_PARITY_CONTRACT.md (frozen 2026-11-15, pre-registered before any measurement)",
+  "generated_utc": "2026-11-15",
+  "verdicts": {
+    "UX_PARITY_ACHIEVED": false,
+    "nvidia_side_status": "NVIDIA_COMPARISON_BLOCKED_HARDWARE",
+    "radeon_side_status": "EXECUTED_GFX1151 (official released stack)",
+    "gate5_status": "NOT_RUN (blocked on real NVIDIA Windows hardware)"
+  },
+  "radeon_gfx1151": {
+    "host": {
+      "gpu": "AMD Radeon(TM) 8060S Graphics (gfx1151)",
+      "driver": "32.0.22032.6002",
+      "windows_build": "10.0.26200",
+      "python": "3.13.16",
+      "torch": "2.12.0+rocm7.14.1 (official AMD wheel, whl-multi-arch channel)",
+      "ultralytics": "8.4.182 (released PyPI)",
+      "miopen_dll_provenance": "official wheel only (ENV A); no source-built substitution in any P15 leg"
+    },
+    "legs": {
+      "A_install": "PASS — official wheel index + pip only; no manual DLL work; provenance in P14 wheel audit",
+      "B_train_command": "PASS — standard YOLO API train with device=0, no AMD-specific code changes (p15_run.py driver = plain ultralytics calls)",
+      "C_validate_predict": "PASS — model.val (mAP50-95 0.5949) and model.predict (6 boxes) on reloaded best.pt",
+      "D_amp": "PASS — check_amp True; autocast fp16 engaged on HIP (dtype proof); GradScaler 8/8 real parameter updates; see P15_AMP_NUMERICAL_ACCEPTANCE.md",
+      "E_checkpoints": "PASS — best.pt/last.pt saved (SHA256 b606f877…/recorded), reload works",
+      "F_resume": "PASS — hard kill PID 11452 after epoch >= 20 (21 rows), process dead, last.pt intact, new process resumed 'from epoch 22 to 30', lr/scheduler restored (lr0=0.000119), 30 rows final",
+      "G_error_messages": "PASS — carried P14 golden-path evidence (CPU-only refusal exit=2; missing dataset actionable; corrupt checkpoint FileNotFoundError)",
+      "H_user_intervention": "PASS — zero undocumented manual operations across all legs",
+      "I_reproducibility": "PASS — driver scripts + frozen contract + lockfile retained; fresh-process smoke reruns pass",
+      "J_reliability": "PASS — 30-epoch run clean; workers 0/2/4 + fresh/warm cache all PASS; no unexplained backend failure"
+    },
+    "secondary": {
+      "smoke_wall_seconds": {"w0_fresh": 23.4, "w2_fresh": 23.5, "w4_fresh": 23.3, "w2_warm": 23.1},
+      "epochs_30_wall": "minutes-scale on COCO128 (see orchestrate logs)",
+      "learning_curve_mAP50-95": {"epoch1": 0.49268, "peak_epoch22": 0.59799, "epoch30": 0.58514},
+      "best_val_mAP50-95": 0.5949
+    },
+    "raw_evidence": "release-provenance/raw/p15_gfx1151/"
+  },
+  "nvidia_windows": {
+    "status": "NOT_RUN",
+    "blocking_reason": "no physical NVIDIA Windows machine available to the RCA project",
+    "prepared_reference_test": "scripts/p15/nvidia_reference.py (identical leg schema, ready to execute)",
+    "host": null,
+    "legs": {
+      "A_install": "NOT_RUN",
+      "B_train_command": "NOT_RUN",
+      "C_validate_predict": "NOT_RUN",
+      "D_amp": "NOT_RUN",
+      "E_checkpoints": "NOT_RUN",
+      "F_resume": "NOT_RUN",
+      "G_error_messages": "NOT_RUN",
+      "H_user_intervention": "NOT_RUN",
+      "I_reproducibility": "NOT_RUN",
+      "J_reliability": "NOT_RUN"
+    },
+    "raw_evidence": null
+  },
+  "comparative_conclusions": [],
+  "anti_fabrication_note": "No NVIDIA value on this file is measured; all are null/NOT_RUN. Comparative conclusions are intentionally empty until real NVIDIA hardware evidence arrives. Hardware speed differences are not parity criteria (contract §0)."
+}

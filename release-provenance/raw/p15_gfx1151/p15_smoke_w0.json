@@ -1,0 +1,21 @@
+{
+  "leg": "smoke",
+  "tag": "p15_smoke_w0",
+  "workers": 0,
+  "warm_cache": false,
+  "amp_precheck": true,
+  "wall_seconds": 23.4,
+  "epochs_completed": 2,
+  "finished_utc": "2026-11-15T03:17:14.526524+00:00",
+  "env": {
+    "utc": "2026-11-15T03:17:14.526552+00:00",
+    "python": "3.13.16",
+    "torch": "2.12.0+rocm7.14.1",
+    "torch_hip": "7.14.60850",
+    "ultralytics": "8.4.182",
+    "device_name": "AMD Radeon(TM) 8060S Graphics",
+    "device_count_torch": 1,
+    "device_count_checks_fn": 0,
+    "miopen_python_module": false
+  }
+}

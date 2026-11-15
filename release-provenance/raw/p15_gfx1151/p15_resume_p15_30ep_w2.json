@@ -1,0 +1,19 @@
+{
+  "leg": "resume_new_process",
+  "run_id": "p15_30ep_w2",
+  "rows_before_resume": 22,
+  "rows_after_resume": 31,
+  "last_row": "30,56.0832,1.26977,1.14665,0.00882,0.82816,0.67974,0.76922,0.58514,1.24656,1.08038,0.00828,5.117e-06,5.117e-06,5.117e-06",
+  "finished_utc": "2026-11-15T03:23:58.407665+00:00",
+  "env": {
+    "utc": "2026-11-15T03:23:58.407688+00:00",
+    "python": "3.13.16",
+    "torch": "2.12.0+rocm7.14.1",
+    "torch_hip": "7.14.60850",
+    "ultralytics": "8.4.182",
+    "device_name": "AMD Radeon(TM) 8060S Graphics",
+    "device_count_torch": 1,
+    "device_count_checks_fn": 0,
+    "miopen_python_module": false
+  }
+}
