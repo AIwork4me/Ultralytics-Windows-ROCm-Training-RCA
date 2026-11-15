@@ -77,3 +77,10 @@ cd C:/Users/rocm/Desktop/YOLO_AMD/g2_work && python C:/Users/rocm/Desktop/YOLO_A
 - 后台长跑必须 `-u` + 重定向文件（否则管道缓冲看不到进度）；结束后 `tasklist` 查残留 python——本机 HIP 退出清理会偶发挂起变僵尸（约 1/20），僵尸不影响新进程但锁 DLL 写替换。
 - S3 慢下载用 8 段 Range 并行 + 字节精确校验（SIZE 必须先从响应头 `Content-Range` 取真实值——本日因猜 SIZE 多耗 30 分钟）。
 - 硬件：iGPU 共享内存 78GB，conv 冷编译 ~30-60s/kernel；MIOpen cache 用 USERPROFILE 重定向隔离。
+
+## 7. P16 附录(2026-11-15,三里程碑收官批次)
+
+- **远程状态冻结**:`P16_BASELINE.md`(两 PR open+mergeable,CI 15/6/0;issue #14 仍 0 回复;#15862 仍无维护者回应)。
+- **M1 修复**:#27198 描述与 live diff 对齐(2 测试)+ FDB 因果断言按 P13 否证结论淡化;#27203 no-NVML fallback 契约加固(mem_get_info 真实 free-memory 判据 / 索引存在性与去重 / util 判据不可测时显式披露警告)——自审发现严格"util>0→[]"语义会让上游 test_cuda.py(`min_util_fraction=0.3`)在 AMD 上重新全 SKIP,回归 PR 头版目标,已改为披露式选择;推送经 Git Data API(force=false 快进,git-over-HTTPS 当日故障)。
+- **M2 重验**:whl-multi-arch 最新仍 `torch-2.12.0+rocm7.14.1`;whl-next 最新仍 `rocm_sdk_core/libraries-10.1.0` + `torch-2.14.0+rocm10.1.0`(无 10.2.0);`rocm_sdk_libraries-10.1.0` 重下载 SHA256 与 P15 审计副本逐字节一致,内嵌 MIOpen.dll(496,074,240 B,`266d716b…`,版本串 `3.6.1.39d8d603`,`miopen_initializer_list`=0)→ **BLOCKED_RELEASE 维持**,缺口仍为"2026-10-19 之后的 MIOpen→Windows SDK→发布周期"。详见 `P16_OFFICIAL_WHEEL_BINARY_AUDIT.md`。
+- 陷阱新增:pytest 传测试路径须用 `C:/` 形式(`::` 节点符与 Git Bash `/c/` 路径不兼容);ruff/pytest 相对路径调用必须同命令内 `cd` 到 worktree。
