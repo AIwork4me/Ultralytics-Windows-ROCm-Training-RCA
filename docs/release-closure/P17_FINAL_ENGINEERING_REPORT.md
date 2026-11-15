@@ -96,7 +96,15 @@ Python 3.13.16 / torch 2.12.0+rocm7.14.1 / HIP 7.14.60850 / MIOpen.dll(官方 wh
 
 ## 15. 证据仓库提交 SHA
 
-本报告随 P17 证据包提交至 `AIwork4me/Ultralytics-Windows-ROCm-Training-RCA` 分支 `work/windows-rocm-training-release-closure`(提交 SHA 见该分支推送后的最新 commit;P17 证据 27 文件 + 4 报告,SHA256 清单 `evidence/p17/SHA256SUMS_P17.txt`)。
+本报告随 P17 证据包提交至 `AIwork4me/Ultralytics-Windows-ROCm-Training-RCA` 分支 `work/windows-rocm-training-release-closure`(提交 SHA 见该分支推送后的最新 commit)。
+
+归档清单(全部在 `evidence/p17/`,SHA256 见 `SHA256SUMS_P17.txt`,109 条):
+
+- 原始日志/脚本/结果 JSON:A1(A1 log/result)、A2 训练日志 ×3、A2 复现脚本、A3/A4 注入脚本+结果、B 套件脚本+结果、B6 CVD=0、pytest 原始输出 ×3(a6/b8)、组合 smoke(c_smoke/5/9/128/amp64 日志+结果)、模块枚举(modules_toolhelp.txt,MIOpen.dll 来源实证)、环境来源脚本
+- 训练 runs 产物(`runs/`,81 个文件,args.yaml/results.csv/曲线图/混淆矩阵等,8 个 run 目录,权重除外)
+- checkpoint 清单 `CHECKPOINT_SHA256SUMS.txt`(10 个 .pt 共 ~55MB,仅本地留存,SHA256 可复核)
+- 组合树完整审阅 patch `p17_combined_750b5061_vs_main.diff`(4 文件 +87/−21,相对 upstream/main 3e59149)
+- `P17_ENVIRONMENT_PROVENANCE.json`
 
 ## 16. 仍需第二 GPU 或 NVIDIA 的事项
 

@@ -1,0 +1,10 @@
+bcb7f0e8a258ebfbed174fe7860f15cb658a88c92aa0218edf37c71b9baca2fd  (local-only, not committed) runs/c_smoke/weights/best.pt
+da928559043869ea2bbd767441b1e7c84fc92cdd14b3bbf0c393400dfc031ef6  (local-only, not committed) runs/c_smoke/weights/last.pt
+eab1c2110e35bbd7ad3b9469447823fe8be476d82ab871efb56d6be794bd6fd9  (local-only, not committed) runs/c_smoke5/weights/best.pt
+a4b1035aede66a3c50fc36f320c519a0446d48eefc5ca6f484107a5037e0f812  (local-only, not committed) runs/c_smoke5/weights/last.pt
+255b677c3b03a34648fcd48bd667521c8bfab4658de31308ca77492e60dc7784  (local-only, not committed) runs/c_smoke9/weights/best.pt
+fc18dd5ff2bdaa38be9e9156802eba396fdc15e81d4217983fb71ecfc3cdd2a3  (local-only, not committed) runs/c_smoke9/weights/last.pt
+2d1c8b4d15ac45c93d6148868923196636e208989aebeda40b7a61aa29887d8c  (local-only, not committed) runs/detect/train-2/weights/best.pt
+55e3be051c16f14bb486b87ac414b130aca358daa21137187d9617bee5917828  (local-only, not committed) runs/detect/train-2/weights/last.pt
+d2990dfd382fd48d79f3bc21e10a12229dbc4eece4eb03fde932561d5bfd9a71  (local-only, not committed) runs/detect/train-3/weights/best.pt
+5cdaa8fdd5b6d045c3b2b15fb8b9eb343df3370ecde4a77d1b4f4ba46c69c938  (local-only, not committed) runs/detect/train-3/weights/last.pt
