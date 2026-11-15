@@ -1,0 +1,21 @@
+{
+ "run_id": "p132_checkamp_real_20261115T000107Z",
+ "utc": "2026-11-15T00:01:08.567115+00:00",
+ "mode": "default_cache",
+ "python": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\python.exe",
+ "torch": "2.12.0+rocm7.14.1",
+ "device": "AMD Radeon(TM) 8060S Graphics",
+ "cache_home": "<default USERPROFILE/.miopen>",
+ "dll": {
+  "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll": "ed7c67a909307b21",
+  "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll": "e97891df7ea0ba2b",
+  "C:\\Users\\rocm\\miniconda3\\envs\\yolo_amd\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll": "74b4ee038803606e"
+ },
+ "log_records": [
+  "INFO: \u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...",
+  "INFO: \u001b[34m\u001b[1mAMP: \u001b[0mchecks passed \u2705"
+ ],
+ "check_amp_verdict": true,
+ "raised": false,
+ "wall_s": 11.2
+}
