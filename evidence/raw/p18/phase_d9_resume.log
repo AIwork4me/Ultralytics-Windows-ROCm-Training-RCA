@@ -1,0 +1,27 @@
+{
+  "stage": "start",
+  "interrupt": {
+    "was_alive_at_kill": true,
+    "returncode": 1
+  },
+  "interrupted_ckpt": {
+    "epoch": 3,
+    "has_optimizer_state": true,
+    "has_train_args": true,
+    "epochs_planned": 6
+  },
+  "resume_exit": 0,
+  "resume": {
+    "pre": {
+      "epoch_in_ckpt": 3,
+      "has_optimizer": true,
+      "best_fitness": 0.05186
+    },
+    "post": {
+      "final_epoch": 5,
+      "epochs_arg": 6
+    },
+    "n_csv_rows": 7
+  },
+  "D9_pass": true
+}

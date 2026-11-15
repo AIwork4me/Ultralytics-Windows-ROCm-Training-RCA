@@ -1,0 +1,96 @@
+Ultralytics 8.4.213  Python-3.12.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon RX 7900 XTX, 24560MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=8, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=C:/P18/assets/coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:/P18/assets/yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=runs_b_amp, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=C:\P18\scratch, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P18\scratch\runs_b_amp, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=42, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 988.7±485.0 MB/s, size: 50.0 KB)
+[K[34m[1mtrain: [0mScanning C:\P18\assets\coco8\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4  0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 1177.6±659.2 MB/s, size: 54.0 KB)
+[K[34m[1mval: [0mScanning C:\P18\assets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4  0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+Plotting labels to C:\P18\scratch\runs_b_amp\labels.jpg... 
+Using 4 train, 4 val images for fraction=1.0 at imgsz=64
+Using 0 dataloader workers
+Logging results to [1mC:\P18\scratch\runs_b_amp[0m
+Starting training for 1 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        1/1     0.213G      2.864      7.858     0.0864         13         64: 0% ──────────── 0/1  8.6s[K        1/1     0.213G      2.864      7.858     0.0864         13         64: 100% ━━━━━━━━━━━━ 1/1 8.6s/it 8.6s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 15.3it/s 0.1s
+                   all          4         17      0.181      0.183      0.171     0.0519
+
+1 epochs completed in 0.003 hours.
+Optimizer stripped from C:\P18\scratch\runs_b_amp\weights\last.pt, 5.5MB
+Optimizer stripped from C:\P18\scratch\runs_b_amp\weights\best.pt, 5.5MB
+
+Validating C:\P18\scratch\runs_b_amp\weights\best.pt...
+Ultralytics 8.4.213  Python-3.12.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon RX 7900 XTX, 24560MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+MIOpen(HIP): Error [EvaluateInvokers] DESKTOP-S6VG7J7:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:373: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 43.3it/s 0.0s
+                   all          4         17      0.181      0.183      0.171     0.0519
+                person          3         10     0.0833        0.1     0.0317     0.0127
+                   dog          1          1          0          0          0          0
+                 horse          1          2          0          0          0          0
+              elephant          1          2          0          0          0          0
+              umbrella          1          1          1          1      0.995      0.298
+          potted plant          1          1          0          0          0          0
+Speed: 0.1ms preprocess, 1.7ms inference, 0.0ms loss, 0.8ms postprocess per image
+Results saved to [1mC:\P18\scratch\runs_b_amp[0m
+RESULT_JSON_BEGIN
+{
+  "tag": "amp",
+  "amp_flag": true,
+  "ultralytics_file": "C:\\P18\\pr27198\\ultralytics\\__init__.py",
+  "torch": "2.12.0+rocm7.14.1",
+  "device_name": "AMD Radeon RX 7900 XTX",
+  "last_pt_exists": true,
+  "last_pt_sha256": "24ac061048413b6ad30b31b70130d541536256d43e2017a72fd3bb10b7d1a300",
+  "n_weight_tensors_compared": 594,
+  "max_abs_weight_delta": 0.734375,
+  "weights_changed": true,
+  "loss_rows": [
+    {
+      "train/box_loss": 2.86399,
+      "train/cls_loss": 7.85836,
+      "train/l1_loss": 0.0864,
+      "val/box_loss": 2.99253,
+      "val/cls_loss": 5.43572,
+      "val/l1_loss": 0.0439
+    }
+  ],
+  "loss_finite": true,
+  "trainer_amp_in_checkpoint": true,
+  "epoch_in_checkpoint": -1
+}
+RESULT_JSON_END

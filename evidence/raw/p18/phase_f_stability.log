@@ -1,0 +1,101 @@
+{
+  "results": [
+    {
+      "stage": "cold0",
+      "file": "C:\\P18\\combined\\ultralytics\\__init__.py",
+      "amp_fwd_bwd": true,
+      "mem_after_alloc": {
+        "free_gb": 23.74,
+        "total_gb": 23.98
+      },
+      "ckpt_saved": true,
+      "ckpt_reload_predict": true,
+      "mem_released_gb": -0.5,
+      "total_s": 17.6,
+      "rc": 0,
+      "crash": false
+    },
+    {
+      "stage": "cold1",
+      "file": "C:\\P18\\combined\\ultralytics\\__init__.py",
+      "amp_fwd_bwd": true,
+      "mem_after_alloc": {
+        "free_gb": 23.74,
+        "total_gb": 23.98
+      },
+      "ckpt_saved": true,
+      "ckpt_reload_predict": true,
+      "mem_released_gb": -0.5,
+      "total_s": 17.7,
+      "rc": 0,
+      "crash": false
+    },
+    {
+      "stage": "cold2",
+      "file": "C:\\P18\\combined\\ultralytics\\__init__.py",
+      "amp_fwd_bwd": true,
+      "mem_after_alloc": {
+        "free_gb": 23.74,
+        "total_gb": 23.98
+      },
+      "ckpt_saved": true,
+      "ckpt_reload_predict": true,
+      "mem_released_gb": -0.5,
+      "total_s": 17.4,
+      "rc": 0,
+      "crash": false
+    },
+    {
+      "stage": "warm(2 trains 1 proc)",
+      "rc": 0,
+      "crash": false,
+      "detail": " {\"stage\": \"warm\", \"file\": \"C:\\\\P18\\\\combined\\\\ultralytics\\\\__init__.py\", \"amp_fwd_bwd\": true, \"mem_after_alloc\": {\"free_gb\": 23.74, \"total_gb\": 23.98}, \"ckpt_saved\": true, \"ckpt_reload_predict\": true"
+    },
+    {
+      "stage": "workers0",
+      "file": "C:\\P18\\combined\\ultralytics\\__init__.py",
+      "amp_fwd_bwd": true,
+      "mem_after_alloc": {
+        "free_gb": 23.74,
+        "total_gb": 23.98
+      },
+      "ckpt_saved": true,
+      "ckpt_reload_predict": true,
+      "mem_released_gb": -0.5,
+      "total_s": 17.3,
+      "rc": 0,
+      "crash": false
+    },
+    {
+      "stage": "workers2",
+      "file": "C:\\P18\\combined\\ultralytics\\__init__.py",
+      "amp_fwd_bwd": true,
+      "mem_after_alloc": {
+        "free_gb": 23.74,
+        "total_gb": 23.98
+      },
+      "ckpt_saved": true,
+      "ckpt_reload_predict": true,
+      "mem_released_gb": -0.5,
+      "total_s": 18.6,
+      "rc": 0,
+      "crash": false
+    },
+    {
+      "stage": "workers4",
+      "file": "C:\\P18\\combined\\ultralytics\\__init__.py",
+      "amp_fwd_bwd": true,
+      "mem_after_alloc": {
+        "free_gb": 23.74,
+        "total_gb": 23.98
+      },
+      "ckpt_saved": true,
+      "ckpt_reload_predict": true,
+      "mem_released_gb": -0.5,
+      "total_s": 17.3,
+      "rc": 0,
+      "crash": false
+    }
+  ],
+  "all_pass": true
+}

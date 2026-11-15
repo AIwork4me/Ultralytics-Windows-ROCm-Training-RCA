@@ -1,0 +1,172 @@
+{
+  "pr": 27198,
+  "head_sha": "e5ac8593db60880b92b3e3cbd2e11ee3a7344034",
+  "verdict": "GFX1100_PHYSICAL_SOURCE_VALIDATED",
+  "gpu": "AMD Radeon RX 7900 XTX (gfx1100)",
+  "stack": "torch 2.12.0+rocm7.14.1 / hip 7.14.60850 / Windows 11 26300 / ENGINEERING_REFERENCE (MIOpen shim)",
+  "B1_check_amp_real_gpu": {
+    "ultralytics_file": "C:\\P18\\pr27198\\ultralytics\\__init__.py",
+    "ultralytics_version": "8.4.213",
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon RX 7900 XTX",
+    "check_amp_result": true
+  },
+  "B2_exception_boundary": {
+    "cases": [
+      {
+        "name": "RuntimeError@construction -> caught/False",
+        "expect": "caught",
+        "inject": "construction",
+        "returned": false,
+        "outcome": "caught",
+        "error_log_excerpt": "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (RuntimeError: simulated backend failure). AMP will be disabled during training as a precaution. This error is not necessari",
+        "pass": true
+      },
+      {
+        "name": "OutOfMemoryError@construction -> caught/False",
+        "expect": "caught",
+        "inject": "construction",
+        "returned": false,
+        "outcome": "caught",
+        "error_log_excerpt": "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (OutOfMemoryError: CUDA out of memory. (simulated)). AMP will be disabled during training as a precaution. This error is not",
+        "pass": true
+      },
+      {
+        "name": "AcceleratorError@construction -> caught/False",
+        "expect": "caught",
+        "inject": "construction",
+        "returned": false,
+        "outcome": "caught",
+        "error_log_excerpt": "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (AcceleratorError: simulated accelerator error). AMP will be disabled during training as a precaution. This error is not nec",
+        "pass": true
+      },
+      {
+        "name": "ValueError@construction -> propagate",
+        "expect": "propagate",
+        "inject": "construction",
+        "propagated": "ValueError",
+        "outcome": "propagate",
+        "error_log_excerpt": null,
+        "pass": true
+      },
+      {
+        "name": "TypeError@construction -> propagate",
+        "expect": "propagate",
+        "inject": "construction",
+        "propagated": "TypeError",
+        "outcome": "propagate",
+        "error_log_excerpt": null,
+        "pass": true
+      },
+      {
+        "name": "KeyboardInterrupt -> propagate",
+        "expect": "propagate",
+        "inject": "construction",
+        "propagated": "KeyboardInterrupt",
+        "outcome": "propagate",
+        "error_log_excerpt": null,
+        "pass": true
+      },
+      {
+        "name": "SystemExit -> propagate",
+        "expect": "propagate",
+        "inject": "construction",
+        "propagated": "SystemExit",
+        "outcome": "propagate",
+        "error_log_excerpt": null,
+        "pass": true
+      },
+      {
+        "name": "RuntimeError@forward REAL_GPU -> caught/False",
+        "expect": "caught",
+        "inject": "forward",
+        "returned": false,
+        "outcome": "caught",
+        "error_log_excerpt": "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (RuntimeError: hipErrorInvalidKernelFile (simulated mid-forward)). AMP will be disabled during training as a precaution. Thi",
+        "pass": true
+      }
+    ],
+    "provenance": {
+      "ultralytics_file": "C:\\P18\\pr27198\\ultralytics\\__init__.py",
+      "torch": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850",
+      "device": "AMD Radeon RX 7900 XTX"
+    },
+    "inheritance_facts": {
+      "OutOfMemoryError_mro": [
+        "OutOfMemoryError",
+        "RuntimeError",
+        "Exception",
+        "BaseException"
+      ],
+      "OOM_is_RuntimeError": true,
+      "AcceleratorError": "present",
+      "AcceleratorError_mro": [
+        "AcceleratorError",
+        "RuntimeError",
+        "Exception",
+        "BaseException"
+      ],
+      "AcceleratorError_is_RuntimeError": true
+    },
+    "healthy_control_check_amp": true,
+    "all_pass": true
+  },
+  "B3_amp_train": {
+    "tag": "amp",
+    "amp_flag": true,
+    "ultralytics_file": "C:\\P18\\pr27198\\ultralytics\\__init__.py",
+    "torch": "2.12.0+rocm7.14.1",
+    "device_name": "AMD Radeon RX 7900 XTX",
+    "last_pt_exists": true,
+    "last_pt_sha256": "24ac061048413b6ad30b31b70130d541536256d43e2017a72fd3bb10b7d1a300",
+    "n_weight_tensors_compared": 594,
+    "max_abs_weight_delta": 0.734375,
+    "weights_changed": true,
+    "loss_rows": [
+      {
+        "train/box_loss": 2.86399,
+        "train/cls_loss": 7.85836,
+        "train/l1_loss": 0.0864,
+        "val/box_loss": 2.99253,
+        "val/cls_loss": 5.43572,
+        "val/l1_loss": 0.0439
+      }
+    ],
+    "loss_finite": true,
+    "trainer_amp_in_checkpoint": true,
+    "epoch_in_checkpoint": -1
+  },
+  "B4_fp32_control": {
+    "tag": "fp32",
+    "amp_flag": false,
+    "ultralytics_file": "C:\\P18\\pr27198\\ultralytics\\__init__.py",
+    "torch": "2.12.0+rocm7.14.1",
+    "device_name": "AMD Radeon RX 7900 XTX",
+    "last_pt_exists": true,
+    "last_pt_sha256": "2cde148f39e3e335ba9a807dd17ff680eb285447a9587b5ecfad004172e4f043",
+    "n_weight_tensors_compared": 594,
+    "max_abs_weight_delta": 0.734375,
+    "weights_changed": true,
+    "loss_rows": [
+      {
+        "train/box_loss": 2.41336,
+        "train/cls_loss": 8.32726,
+        "train/l1_loss": 0.06405,
+        "val/box_loss": 2.96995,
+        "val/cls_loss": 5.24949,
+        "val/l1_loss": 0.04236
+      }
+    ],
+    "loss_finite": true,
+    "trainer_amp_in_checkpoint": false,
+    "epoch_in_checkpoint": -1
+  },
+  "B5_upstream_test_amp": "SKIPPED on this branch (root cause: tests/__init__.py import-time cuda_device_count() requires nvidia-smi; the fix is PR #27203; log phase_b5_test_amp.log)",
+  "phase_g": {
+    "ruff_ci_exact": "All checks passed (both worktrees)",
+    "ci_head": "all green incl. Tests (windows-latest, 3.13, latest): success",
+    "findings": "none blocking; no broad except (RuntimeError only); programming errors and interrupts propagate (live-verified); NVIDIA healthy path untouched"
+  }
+}

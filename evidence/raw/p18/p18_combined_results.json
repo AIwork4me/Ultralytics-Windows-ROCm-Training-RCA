@@ -1,0 +1,72 @@
+{
+  "base": "upstream main 3e59149d4e047019e759dc8feec09208fa09163d",
+  "merge_head": "c052cea5e (local temp, not pushed)",
+  "merges": [
+    "#27198 e5ac8593 (no-ff)",
+    "#27203 563ff46e (no-ff), no conflicts"
+  ],
+  "D1_D8": {
+    "provenance": {
+      "ultralytics_file": "C:\\P18\\combined\\ultralytics\\__init__.py",
+      "torch": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850"
+    },
+    "D1_detection": {
+      "torch_available": true,
+      "checks_available": true,
+      "counts_agree": true,
+      "name": "AMD Radeon RX 7900 XTX"
+    },
+    "D2_auto_select": {
+      "parse_device_-1": "0",
+      "select_idle_gpu": [
+        0
+      ]
+    },
+    "D3_check_amp": true,
+    "D4_train": {
+      "last_pt": true,
+      "best_pt": true
+    },
+    "D5_params": {
+      "n": 594,
+      "max_delta": 0.734375,
+      "changed": true
+    },
+    "D6_reload": {
+      "task": "detect",
+      "nc": 80,
+      "weights_loaded": true
+    },
+    "D7_validation": {
+      "map50": 0.1711111111111111,
+      "map50_95": 0.05186111111111111,
+      "maps_computed": true
+    },
+    "D8_inference": {
+      "source": "C:\\P18\\combined\\ultralytics\\assets\\bus.jpg",
+      "n_boxes": 0,
+      "device": null
+    },
+    "D1_to_D8_pass": "True"
+  },
+  "D8_inference_320px": {
+    "n_boxes": 5,
+    "device": "cuda:0",
+    "conf": [
+      0.8308,
+      0.8245,
+      0.7629,
+      0.5541
+    ]
+  },
+  "D9_interrupt_resume": "PASS: killed alive subprocess at epoch 3/6 (returncode 1); interrupted ckpt had optimizer state + train_args; NEW process resumed to final_epoch 5/6, results.csv 7 rows, resume exit 0 (log phase_d9_resume.log)",
+  "phase_f_stability": "7/7 PASS: cold x3 fresh processes, warm (2 trains 1 process), workers 0/2/4 (Windows DataLoader multiprocess OK); every stage: AMP fwd/bwd finite, checkpoint saved, reload+predict OK, exit 0, ~17-19s",
+  "phase_e": {
+    "official_golden_path": "BLOCKED_RELEASE",
+    "blockers": [
+      "rocm-sdk-libraries 10.1.0 wheel still lacks MIOpen #13437 fix: BatchNorm train forward/backward fails with miopenStatusUnknownError WITHOUT shim (torch 2.14.0+rocm10.1.0, hip 7.16.26385; log pip_venv101.log)",
+      "PR #27198/#27203 not merged upstream; released ultralytics 8.4.213 does not contain the fixes"
+    ]
+  }
+}

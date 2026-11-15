@@ -1,0 +1,75 @@
+a_grid_desc_m_ak_container_{131072, 160}
+b_grid_desc_n_bk_container_{64, 160}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{131072, 64}
+a_grid_desc_m_ak_container_{131072, 160}
+b_grid_desc_n_bk_container_{64, 160}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{131072, 64}
+a_grid_desc_m_ak_container_{131072, 160}
+b_grid_desc_n_bk_container_{64, 160}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{131072, 64}
+a_grid_desc_m_ak_container_{131072, 160}
+b_grid_desc_n_bk_container_{64, 160}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{131072, 64}
+a_grid_desc_m_ak_container_{131072, 160}
+b_grid_desc_n_bk_container_{64, 160}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{131072, 64}
+a_grid_desc_m_ak_container_{131072, 160}
+b_grid_desc_n_bk_container_{64, 160}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{131072, 64}
+a_grid_desc_m_ak_container_{131072, 160}
+b_grid_desc_n_bk_container_{64, 160}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{131072, 64}
+a_grid_desc_m_ak_container_{131072, 160}
+b_grid_desc_n_bk_container_{64, 160}
+e_grid_desc_mblock_mperblock_nblock_nperblock_container_{131072, 64}
+{
+  "phase": "A",
+  "gpu_math": {
+    "fp32_matmul": {
+      "finite": true,
+      "checksum": 21007.423828125,
+      "ms": 187.5
+    },
+    "fp16_matmul": {
+      "finite": true,
+      "rel_err_vs_fp32": 0.0003599571355152875
+    },
+    "fp32_conv2d_backward": {
+      "finite_out": true,
+      "finite_grad_x": true,
+      "finite_grad_w": true
+    },
+    "fp16_conv2d_backward": {
+      "finite_out": true,
+      "finite_grad_x": true,
+      "finite_grad_w": true
+    },
+    "optimizer_step": {
+      "max_abs_weight_delta": 0.005612559616565704,
+      "params_changed": true,
+      "finite": true
+    }
+  },
+  "runtime_identity": {
+    "loaded_rocm_torch_dlls": [],
+    "driver_version": "32.0.21030.2001"
+  },
+  "a1_detection": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "cuda": null,
+    "available": true,
+    "device_count": 1,
+    "device_name": "AMD Radeon RX 7900 XTX",
+    "gcn_arch_name": "gfx1100",
+    "total_memory_gb": 23.98,
+    "multi_processor_count": 48
+  },
+  "a2_memory": {
+    "free_bytes": 25597083648,
+    "total_bytes": 25753026560,
+    "free_fraction": 0.9939
+  },
+  "env_hiprtc_append": "-IC:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\scripts\\miopen_shims",
+  "executable": "C:\\P18\\venv\\Scripts\\python.exe"
+}
