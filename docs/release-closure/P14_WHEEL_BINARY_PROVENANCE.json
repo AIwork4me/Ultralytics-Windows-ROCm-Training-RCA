@@ -1,0 +1,67 @@
+{
+  "mission": "P14.1 official Windows wheel binary provenance audit",
+  "generated_utc": "2026-11-15T02:30:00Z",
+  "channel_matrix": [
+    {
+      "channel_url": "https://repo.amd.com/rocm/whl-multi-arch/",
+      "rescan_utc": "2026-11-15T01:50:00Z",
+      "newest_windows_torch": "torch-2.12.0+rocm7.14.1-cp310..cp313-win_amd64",
+      "windows_versions": ["2.9.1+rocm7.13.0", "2.10.0+rocm7.13.0", "2.10.0+rocm7.14.0", "2.10.0+rocm7.14.1", "2.11.0+rocm7.13.0", "2.11.0+rocm7.14.0", "2.11.0+rocm7.14.1", "2.12.0+rocm7.14.0", "2.12.0+rocm7.14.1"],
+      "changed_since_p13": false
+    },
+    {
+      "channel_url": "https://stable.repo.amd.com/rocm/whl-next/",
+      "rescan_utc": "2026-11-15T01:45:00Z",
+      "newest_windows_torch": "torch-2.14.0+rocm10.1.0-cp310..cp314-win_amd64 (2.14.0+rocm10.0.0 windows absent)",
+      "windows_versions": ["2.11.0+rocm10.0.0", "2.12.0+rocm10.0.0", "2.12.0+rocm10.1.0", "2.13.0+rocm10.0.0", "2.13.0+rocm10.1.0", "2.14.0+rocm10.1.0"],
+      "windows_sdks": ["rocm_sdk_libraries-10.0.0", "rocm_sdk_libraries-10.1.0", "rocm_sdk_core-10.0.0", "rocm_sdk_core-10.1.0", "rocm_sdk_device_gfx1151-10.0.0", "rocm_sdk_device_gfx1151-10.1.0", "rocm-bootstrap-0.1.0/0.2.0/0.3.0", "rocm-10.0.0/10.1.0 (sdist meta)"],
+      "changed_since_p13": true,
+      "note": "P13 scan covered whl-multi-arch only; whl-next is a second official channel with newer Windows wheels. Discovery itself does NOT imply fix presence."
+    }
+  ],
+  "downloaded_wheels": [
+    {"file": "torch-2.13.0+rocm10.1.0-cp313-cp313-win_amd64.whl", "bytes": 113301808, "sha256": "434fcff23c564984cb3edff4b2b2a9c5b1cf2610432adcd03844c35bc00b15f4", "source_url": "https://stable.repo.amd.com/rocm/whl-next/torch/torch-2.13.0%2Brocm10.1.0-cp313-cp313-win_amd64.whl"},
+    {"file": "amd_torch_device_gfx1151-2.13.0+rocm10.1.0-cp313-cp313-win_amd64.whl", "bytes": 48528517, "sha256": "bdbdf86f8a70456b40c006c7a632f238ef5be6f4f331eefeb8d95e44582c155c", "source_url": "https://stable.repo.amd.com/rocm/whl-next/amd-torch-device-gfx1151/amd_torch_device_gfx1151-2.13.0%2Brocm10.1.0-cp313-cp313-win_amd64.whl"},
+    {"file": "rocm_sdk_libraries-10.1.0-py3-none-win_amd64.whl", "bytes": 118645973, "sha256": "0c34bafbb4aa626cc710d8b130bb314f591194c3d79eeb5892b755ea0be06159", "source_url": "https://stable.repo.amd.com/rocm/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.1.0-py3-none-win_amd64.whl"},
+    {"file": "rocm_sdk_core-10.1.0-py3-none-win_amd64.whl", "bytes": 776978384, "sha256": "b12f1c4cde14ed1cd8864006d17586c6b1e6a4e4695b9597cfe04ed7715e952f", "source_url": "https://stable.repo.amd.com/rocm/whl-next/rocm-sdk-core/rocm_sdk_core-10.1.0-py3-none-win_amd64.whl"},
+    {"file": "rocm-10.1.0.tar.gz (sdist, built to rocm-10.1.0-py3-none-any.whl sha256 47f3f523f680cb689c71c8d82fae271a06f0ecdd1a15718078ce9b116f87305e by pip)", "bytes": 27536, "sha256": null, "source_url": "https://stable.repo.amd.com/rocm/whl-next/rocm/rocm-10.1.0.tar.gz"}
+  ],
+  "miopen_binary_provenance": [
+    {
+      "package": "rocm_sdk_libraries-10.1.0-py3-none-win_amd64.whl",
+      "entry": "_rocm_sdk_libraries/bin/MIOpen.dll",
+      "bytes": 496074240,
+      "sha256": "266d716bab4aaf4ec3bb7492d35f6b65473982bc38f22b14235863a15c1429b4",
+      "embedded_version_string": "3.6.1.39d8d603",
+      "embedded_build_commit": "39d8d60365d2272a5366f76ccb3bfba24b219eaf",
+      "build_commit_date_utc": "2026-09-16T15:50:01Z",
+      "pr13437_merge_commit": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a (2026-10-19T09:27:09Z)",
+      "contains_pr13437": false,
+      "marker_miopen_initializer_list": 0,
+      "verdict": "PRE_FIX"
+    },
+    {
+      "package": "torch-2.14.0+rocm10.1.0",
+      "contains_pr13437": false,
+      "method": "dependency inference: torch 2.14.0+rocm10.1.0 Requires-Dist rocm[libraries]~=10.1.0 -> same rocm_sdk_libraries-10.1.0 -> same PRE_FIX MIOpen.dll; no separate binary audit needed",
+      "verdict": "PRE_FIX (inferred, dependency-pinned)"
+    },
+    {
+      "package": "torch-2.12.0+rocm7.14.1 (whl-multi-arch, historical official)",
+      "miopen_dll_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "embedded_version_string": "3.5.2.cd957402",
+      "contains_pr13437": false,
+      "marker_miopen_initializer_list": 0,
+      "verdict": "PRE_FIX (re-confirmed 2026-11-15)"
+    }
+  ],
+  "reference_binaries_calibration": [
+    {"env": "pm13437_official (ENV A)", "miopen_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc", "version": "3.5.2.cd957402", "marker_initializer_list": 0, "known_state": "PRE_FIX (validated in P13437 mission)"},
+    {"env": "pm13437_merged (ENV B)", "miopen_sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a", "version": "3.6.2.f0a5d266", "marker_initializer_list": 2, "known_state": "POST_FIX (source build of merge commit)"},
+    {"env": "yolo_amd", "miopen_sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a", "version": "3.5.2 era (7.14.0 wheel)", "marker_initializer_list": 0, "known_state": "PRE_FIX"},
+    {"env": "p14_whlnext (installed)", "miopen_sha256": "266d716bab4aaf4ec3bb7492d35f6b65473982bc38f22b14235863a15c1429b4", "version": "3.6.1.39d8d603", "marker_initializer_list": 0, "known_state": "PRE_FIX"}
+  ],
+  "marker_method": "PR #13437 added self-contained freestanding kernel headers (projects/miopen/src/kernels/miopen_initializer_list.hpp etc.). POST_FIX binaries embed the header names as HIPRTC kernel-source strings. Calibration: pre-fix official DLLs contain 0 occurrences; merged-source build contains 2. miopen_type_traits alone is NOT a discriminator (12 occurrences in pre-fix binaries).",
+  "runtime_confirmation": "torch 2.13.0+rocm10.1.0 wheel stack installs and runs real GPU compute on Radeon 8060S (gfx1151) with current driver (torch.version.hip=7.16.26385, cuda.is_available=True, GPU tensor op finite). The channel is functionally usable once a fixed SDK ships.",
+  "conclusion": "No official Windows channel (whl-multi-arch OR whl-next) ships a MIOpen.dll containing the PR #13437 fix. BLOCKED_RELEASE stands. New-channel runtime failure signature identical to historical issue #3956."
+}
