@@ -1,0 +1,21 @@
+{
+  "captured_utc": "2026-11-15T02:29:27.784874+00:00",
+  "purpose": "P14.7 re-verification of P13 ghost/DLL-lock state",
+  "ghost_processes_cim_enumerated": [
+    "36628",
+    "28240",
+    "34416",
+    "27856",
+    "48228",
+    "3136"
+  ],
+  "ghost_identities": "pm13437_official/merged python.exe running P13-session inner.py harnesses (temp dirs g3c84_*) + p132_checkamp_real.py default_cache",
+  "taskkill_result": "all 6: \u6ca1\u6709\u6b64\u4efb\u52a1\u7684\u5b9e\u4f8b\u5728\u8fd0\u884c (no instance running) \u2014 unkillable user-mode zombie kernel-cleanup state, same signature as P13 record",
+  "envb_miopen_dll_lock_probe": {
+    "exclusive_write_open_handle": -1,
+    "getlasterror": 32,
+    "verdict": "STILL_LOCKED"
+  },
+  "envb_dll_state": "SOURCE_BUILT_PATCHED (ed7c67a9) unchanged; no unsafe replacement performed",
+  "conclusion": "ENV B restore + E5 one-component test remain BLOCKED by persistent ghosts; P14.3 golden-path and P14.1 wheel legs ran in separate envs/processes, unaffected"
+}
