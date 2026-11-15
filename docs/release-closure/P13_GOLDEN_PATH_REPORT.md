@@ -2,6 +2,8 @@
 
 日期:2026-11-15 · 状态:**PROCEDURE_READY / 实机验证有限 / BLOCKED_INDEPENDENT_USER_TEST**
 
+> **P14 修订(2026-11-15)**:§1 原第 26 行 `m.save("best.pt") / YOLO("best.pt")` 不是可执行的保存/重载序列(ultralytics 的 `train()` 自动落盘 best.pt/last.pt,无需手动 save;重载用 `YOLO("best.pt")`)。可执行替代与全部自动化脚本见 `golden-path/`(P14.3,已在本机 MODE B 实测全流程通过):`verify_environment.py → train.py → validate.py → verify_checkpoint.py → resume.py`;resume 用 **last.pt + resume=True**(恢复优化器/调度器状态),与重开成品模型区分。
+
 ## 1. Golden Path 程序(写给从未参与本项目的开发者)
 
 前提(仅官方渠道,无任何手动 DLL/编译器补偿):

@@ -1,0 +1,27 @@
+{
+  "captured_utc": "2026-11-15T02:16:53.806093+00:00",
+  "checks": {},
+  "python": "3.13.16",
+  "os": "Windows-11-10.0.26200-SP0",
+  "torch": "2.12.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "device_name": "AMD Radeon(TM) 8060S Graphics",
+  "device_capability": [
+    11,
+    5
+  ],
+  "device_count": 1,
+  "total_mem_gb": 78.2,
+  "ultralytics": "8.4.182",
+  "torchvision": "0.27.0+rocm7.14.1",
+  "miopen": {
+    "loaded": true,
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+    "bytes": 492380672,
+    "embedded_version_strings": [
+      "3.5.2.cd957402"
+    ],
+    "pr13437_marker_miopen_initializer_list": 0
+  }
+}

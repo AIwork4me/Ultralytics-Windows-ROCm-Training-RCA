@@ -1,0 +1,11 @@
+# Golden Path reference lock (MODE B, official channels) — machine-verified 2026-11-15
+# Verified combination on AMD Radeon 8060S (gfx1151), Windows 11 26200, Python 3.13.
+# Install (matching channels):
+#   pip install torch==2.12.0+rocm7.14.1 torchvision==0.27.0+rocm7.14.1 --index-url https://repo.amd.com/rocm/whl-multi-arch/
+#   pip install ultralytics==8.4.182
+# NOTE: these are the versions this acceptance run used — not a claim of minimums.
+torch==2.12.0+rocm7.14.1
+torchvision==0.27.0+rocm7.14.1
+ultralytics==8.4.182
+# transitive ROCm SDK packages pulled by the official wheel (recorded identity):
+#   rocm==7.14.1 rocm-sdk-core==7.14.1 rocm-sdk-libraries==7.14.1 rocm-sdk-device-gfx1151==7.14.1 rocm-bootstrap==0.1.0
