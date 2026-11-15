@@ -17,6 +17,7 @@
 | ultralytics import | `C:\P19B\pr27203\ultralytics\__init__.py`, version 8.4.213 (PYTHONPATH isolation; editable finder loses to system-site packages — documented in §7) |
 | Machine state | **Clean reboot 2026-11-15T20:49:03** before all runs; 8 stale HIP processes from P17/P18 cleared; no `MIOPEN_*` overrides; no zombie processes during any P19B run |
 | torch lib SHA256 | `aotriton_v2.dll` `f093102dd7ddd71dfcb510eee03631a8ff10f55576062d6b1abd5064f372a3ba` (see environment.json) |
+| HIP runtime provenance | Official AMD wheel stack, no host shims: `torch 2.12.0+rocm7.14.1` wheel + pip `_rocm_sdk_core`/`_rocm_sdk_libraries` (amdhip64_7.dll, hiprtc0714.dll, MIOpen.dll) + `amd-torch-device-gfx1151` 2.12.0+rocm7.14.1 + Windows driver 32.0.22032.6002. No HIPRTC shim, no STL redirect, no wheel-byte modification, no `MIOPEN_*` env overrides during any P19B run. MIOpen anomalies observed are stock-stack issues (`gfx115128.HIP.fdb.txt` unreadable shipped find-db; CK grouped-conv symbols missing for gfx1151). |
 
 Environment freeze: `evidence/raw/p19b/environment.json` (captured post-reboot, pre-tests).
 
