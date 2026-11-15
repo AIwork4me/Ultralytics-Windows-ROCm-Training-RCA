@@ -1,0 +1,111 @@
+{
+  "mission": "P19",
+  "phase": "A",
+  "captured_at": "2026-11-15T12:19:26.224964+00:00",
+  "os": {
+    "windows": "Windows-11-10.0.26300-SP0",
+    "version": "10.0.26300",
+    "machine": "AMD64"
+  },
+  "driver": {
+    "adapters": [
+      {
+        "Name": "AMD Radeon RX 7900 XTX",
+        "DriverVersion": "32.0.21030.2001",
+        "AdapterRAM": 4293918720
+      },
+      {
+        "Name": "Intel(R) UHD Graphics 770",
+        "DriverVersion": "32.0.101.6129",
+        "AdapterRAM": 2147479552
+      },
+      {
+        "Name": "GameViewer Virtual Display Adapter",
+        "DriverVersion": "15.6.5.199",
+        "AdapterRAM": null
+      },
+      {
+        "Name": "Microsoft Remote Display Adapter",
+        "DriverVersion": "10.0.26100.9818",
+        "AdapterRAM": null
+      }
+    ]
+  },
+  "smart_app_control": {
+    "VerifiedAndReputablePolicyState": 0,
+    "interpretation": "0=Off 1=On"
+  },
+  "python": {
+    "executable": "C:\\P19\\venv\\Scripts\\python.exe",
+    "version": "3.12.16 (main, Oct 26 2026, 14:10:56) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "torch": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "cuda": null,
+    "is_available": true,
+    "device_count": 1,
+    "get_device_name_0": "AMD Radeon RX 7900 XTX",
+    "device_0": {
+      "name": "AMD Radeon RX 7900 XTX",
+      "gcn_arch_name": "gfx1100",
+      "multi_processor_count": 48,
+      "total_memory": 25753026560
+    },
+    "mem_get_info_0": {
+      "free": 25597083648,
+      "total": 25753026560
+    }
+  },
+  "gpu_compute": {
+    "fp32": {
+      "loss": 0.6732654571533203,
+      "finite": true
+    },
+    "amp": {
+      "loss": 0.6607409715652466,
+      "finite": true
+    },
+    "optimizer_step_changed_weights": true
+  },
+  "miopen": {
+    "loaded_paths": [
+      "C:\\P19\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll"
+    ],
+    "sha256": {
+      "C:\\P19\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc"
+    }
+  },
+  "nvidia_smi": "FileNotFoundError (not installed)",
+  "ultralytics": {
+    "__file__": "C:\\P19\\pr27203\\ultralytics\\__init__.py",
+    "__version__": "8.4.213",
+    "git_head": "d8fe65c8c1052cb4305f3cec1be9cb909538dcf1",
+    "cuda_is_available": true,
+    "cuda_device_count": 1,
+    "torch_device_count": 1,
+    "checks_match_torch": true,
+    "gpuinfo": {
+      "nvml_available": false,
+      "gpu_stats_len": 0,
+      "select_idle_gpu_count1": [
+        0
+      ],
+      "select_idle_gpu_count2": [
+        0
+      ],
+      "select_idle_gpu_indices_empty": [],
+      "select_idle_gpu_indices_0": [
+        0
+      ]
+    }
+  },
+  "runtime_env": {
+    "HIPRTC_COMPILE_OPTIONS_APPEND": "-IC:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\scripts\\miopen_shims",
+    "MIOPEN_USER_CACHE_PATH": "<default>",
+    "MIOPEN_SYSTEM_CACHE_PATH": "<default>",
+    "CUDA_VISIBLE_DEVICES": "<unset>",
+    "runtime_type": "ENGINEERING_REFERENCE (MIOpen freestanding-header shim via HIPRTC_COMPILE_OPTIONS_APPEND; AMD wheel bytes unchanged)"
+  },
+  "verdict": "PASS"
+}

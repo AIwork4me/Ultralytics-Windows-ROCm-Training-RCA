@@ -1,0 +1,34 @@
+{
+  "mission": "P19",
+  "phase": "E2",
+  "harness": "disposable RCA (no upstream source changes)",
+  "v1_result": "INCONCLUSIVE (auto AdamW lr=1.19e-4, accumulate=32, 16 batches, zero param delta)",
+  "ultralytics_file": "C:\\P19\\pr27203\\ultralytics\\__init__.py",
+  "harness_train_args": "epochs=8, imgsz=64, batch=2, nbs=2, optimizer=SGD, lr0=0.01, device=0",
+  "scaler": {
+    "scale_at_start": 65536.0,
+    "scale_at_end": 2048.0
+  },
+  "optimizer_step_count": 11,
+  "amp_resolved": true,
+  "raw_trainer_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 355,
+    "max_abs_delta": 0.019881397485733032,
+    "mean_abs_delta": 0.0019684291621876477,
+    "all_finite": true
+  },
+  "loaded_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 219,
+    "max_abs_delta": 0.004608154296875,
+    "mean_abs_delta": 0.000377665289112779,
+    "all_finite": true
+  },
+  "checkpoint": {
+    "path": "C:\\P19\\scratch\\runs_e2\\weights\\last.pt",
+    "exists": true,
+    "size": 5468421
+  },
+  "verdict": "PASS"
+}

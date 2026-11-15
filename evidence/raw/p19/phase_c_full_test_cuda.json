@@ -1,0 +1,59 @@
+{
+  "mission": "P19",
+  "phase": "C",
+  "command": "pytest tests/test_cuda.py",
+  "cwd": "C:\\P19\\pr27203",
+  "pytest": "9.2.0",
+  "exit_code": 1,
+  "git_sha": "d8fe65c8c1052cb4305f3cec1be9cb909538dcf1",
+  "collected_items": 188,
+  "executed_after_conftest_slow_filter": 10,
+  "conftest_note": "tests/conftest.py removes slow-marked items unless --slow is passed; 178 slow items (onnx matrix, engine matrix, multi-device, benchmarks, SAM) were removed from collection by upstream design; plain `pytest tests/test_cuda.py` matches the maintainer's exact command and CI's non-slow default",
+  "passed": [
+    "test_checks",
+    "test_amp",
+    "test_semantic_loss_all_ignore_amp[1]",
+    "test_semantic_loss_all_ignore_amp[3]",
+    "test_train",
+    "test_track_exported_model[False]",
+    "test_track_exported_model[320]",
+    "test_autobatch"
+  ],
+  "passed_count": 8,
+  "failed": [
+    {
+      "node": "tests/test_cuda.py::test_onnx_dynamic_spatial_outputs",
+      "assert": "AssertionError: assert 'CUDAExecutionProvider' in ['CPUExecutionProvider']"
+    }
+  ],
+  "failed_count": 1,
+  "skipped": [
+    {
+      "node": "tests/test_cuda.py::test_train_cold_process_nonzero_device",
+      "reason": "requires an idle CUDA device with nonzero index (single-GPU machine)",
+      "classification": "ENVIRONMENT (expected on 1x gfx1100)"
+    }
+  ],
+  "skipped_count": 1,
+  "duration_s": 387.39,
+  "durations_s": {
+    "175.08": "tests/test_cuda.py::test_train",
+    "117.85": "tests/test_cuda.py::test_autobatch",
+    "71.01": "tests/test_cuda.py::test_onnx_dynamic_spatial_outputs",
+    "10.80": "tests/test_cuda.py::test_track_exported_model[False]",
+    "6.61": "tests/test_cuda.py::test_track_exported_model[320]",
+    "5.42": "tests/test_cuda.py::test_amp",
+    "0.27": "tests/test_cuda.py::test_semantic_loss_all_ignore_amp[1]",
+    "0.13": "tests/test_cuda.py::test_semantic_loss_all_ignore_amp[3]"
+  },
+  "failure_classification": [
+    {
+      "node": "tests/test_cuda.py::test_onnx_dynamic_spatial_outputs",
+      "assert": "assert 'CUDAExecutionProvider' in ['CPUExecutionProvider']",
+      "classification": "NVIDIA_ONLY_UNSUPPORTED",
+      "evidence": "onnxruntime 1.32.0 (PyPI CPU wheel) provides only AzureExecutionProvider/CPUExecutionProvider on Windows ROCm; no ROCm CUDA-EP build exists for this platform; the ONNX export itself succeeded on GPU and the test RAN (DEVICES=[0]) rather than being skipped, which is the PR working as intended",
+      "pr_regression": false
+    }
+  ],
+  "verdict": "GATE3_FAIL_NONZERO_EXIT (1 failed / 8 passed / 1 skipped); single failure is NVIDIA-only onnxruntime provider, not PR-scope"
+}
