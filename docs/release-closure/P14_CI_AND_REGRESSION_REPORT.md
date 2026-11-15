@@ -9,6 +9,7 @@
 - 14 pass(CLA / Docs / Assets / actions / codecov / IsolatedExports / Tests×6(含 windows-latest py3.13、ubuntu py3.8+torch1.8.0 兼容腿)/ Benchmarks×3)
 - 6 skipping(GPU、AMD_GPU、RaspberryPi、SlowTests、Conda、NVIDIA_Jetson)—— **skipping 一律不计 PASS**
 - 0 fail;ubuntu-26.04-arm Tests 在取证时点 pending(最终状态以远端为准,P14 收尾时复验)
+- **收尾复验(2026-11-15,`gh pr checks 27198` 实测)**:最终 **15 pass / 6 skip / 0 fail** —— pending 的 ubuntu-26.04-arm Tests 已通过;skipping 集合不变,0 fail 维持
 - Ruff:本会话实测 repo 默认规则集下 clean(注意:本机全局 ruff 有过期配置会误报 BLE001/S110,须 `ruff check --isolated` 或 CI 为准)
 
 **本仓库 Layer A 新增**:
