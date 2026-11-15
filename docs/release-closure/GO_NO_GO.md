@@ -69,3 +69,21 @@ Verdicts: **GO-A CONDITIONAL PASS(maintained)** · **GO-B CONDITIONAL PASS(maint
 **Verifier 权威计数对账**:565(P9 wave-3 中间值)→ **575 checks / 0 violations @ HEAD**(本会话实测,exit 0);dated 历史文档保持不动,活文档(本文件、Draft PR #13 body)已更正。
 
 **GATE 状态**:G1 ✅(ENV A/B 工程正确) · G2 ⏳(#27198 open 等复审;#13437 已合) · G3 ❌ BLOCKED_RELEASE · G4 ❌ NOT_MET(依赖 G3;Golden Path 文档就绪度见 `P13_GOLDEN_PATH_REPORT.md`,独立用户测试 BLOCKED_INDEPENDENT_USER_TEST)。
+
+---
+
+## P14 addendum (2026-11-15, mission P14) — CURRENT authoritative verdict
+
+Verdicts: **GO-A CONDITIONAL PASS(维持,证据面扩大)** · **GO-B CONDITIONAL PASS(维持,质量精修)** · **GO-C NO-GO(BLOCKED_RELEASE 维持并升级为双通道+运行时证据)** · **GATE 4 NOT_MET(维持)** · **新增:安全事件已处置(owner 须轮换密钥)**
+
+**GO-B(P14.2)**:PR #27198 推进至 `090e378` —— ① 探针异常日志改为真实陈述(不再把后端异常错报为"AMP 数值异常",新增 FP32 关联诊断);② 删除与既有 `test_cuda.py::test_amp` 重复的健康正控测试(官方指南去重),保留 6 个 CPU 故障注入测试;实机复验(gfx1151):健康 True / 注入 False+新消息、6/6 CPU 测试绿、ruff clean、CI **15 pass / 6 skip / 0 fail**。仍未合并(等待人工复审)。见 `P14_PR27198_UPSTREAM_READINESS.md`。
+
+**GO-C(P14.1 证据升级)**:发现**第二官方通道** `stable.repo.amd.com/rocm/whl-next/` 提供 Windows torch 2.13.0/2.14.0+rocm10.1.0(推翻 P13"通道未前进"表述)——但二进制溯源(内嵌版本 `3.6.1.39d8d603`,构建点 2026-09-16 < 合并 2026-10-19;修复标记 0)+ **运行时三腿 no-STL 对照**(A 官方 7.14.1 FAIL / B whl-next 10.1.0 FAIL 逐字同签名 / C 合并源码参照 PASS)证实仍无修复 → **BLOCKED_RELEASE 维持**;#15862 已更新(含切点与运行时证据、路由问题)。正面发现:whl-next 新栈在 gfx1151 可真实 GPU 计算(修复轮发布后可直接作基座)。见 `P14_OFFICIAL_WINDOWS_WHEEL_AUDIT.md`、`P14_NO_STL_COMPARISON.json`。
+
+**GO-A(P14.3)**:可执行 Golden Path 套件(`golden-path/` 十件套)在本机官方栈 MODE B **全流程实测 PASS**(环境验证/冒烟/20ep 代表训练 mAP 0.4919→0.5603/验证/检查点核验/真实中断→跨进程续训 epoch 15→20/错误 UX exit-2 拒绝 CPU);P13 报告不可执行表达式已修订。见 `P14_GOLDEN_PATH_EXECUTION_REPORT.md`。人工实机证据 ≠ GATE 4(独立用户)。
+
+**安全事件(P14.0 发现)**:P9 时代 21 个已推送证据 JSON 含宿主 `ZHIPU_API_KEY` 实值(公开仓库)。HEAD 已全量脱敏 + `scripts/scan_secrets.py` 常设防护(`e3398d4`);**git 历史旧 blob 仍在 → owner 必须轮换该密钥**;历史改写留 owner 决定。
+
+**环境状态**:ENV B 还原与 E5 单组件实验仍被 P13 记录的 ghost 锁阻塞(P14 重核验:6 个 ghost 进程 CIM 可见、taskkill "无实例"、DLL 写锁 err32,`p14_ghost_recheck.json`);invalid-kernel 根因维持 UNRESOLVED。
+
+**GATE 状态**:G1 ✅ · G2 ⏳(#27198 open / #13437 已合) · G3 ❌ BLOCKED_RELEASE · G4 ❌ NOT_MET(Issue #14 零回应,BLOCKED_INDEPENDENT_USER_TEST)。
