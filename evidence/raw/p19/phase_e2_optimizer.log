@@ -1,0 +1,130 @@
+Ultralytics 8.4.213  Python-3.12.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon RX 7900 XTX, 24560MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=2, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=8, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:/P19/scratch/yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=runs_e2, nbs=2, nms=None, opset=None, optimize=False, optimizer=SGD, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=C:\P19\scratch, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P19\scratch\runs_e2, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=42, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 1018.6±499.3 MB/s, size: 50.0 KB)
+[K[34m[1mtrain: [0mScanning C:\Users\Rocm\Desktop\YOLO\YOLO26_ROCm_Day1_Labs\datasets\coco8\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4  0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 1130.4±607.3 MB/s, size: 54.0 KB)
+[K[34m[1mval: [0mScanning C:\Users\Rocm\Desktop\YOLO\YOLO26_ROCm_Day1_Labs\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4  0.0s
+[34m[1moptimizer:[0m SGD(lr=0.01, momentum=0.937) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+Plotting labels to C:\P19\scratch\runs_e2\labels.jpg... 
+Using 4 train, 4 val images for fraction=1.0 at imgsz=64
+Using 0 dataloader workers
+Logging results to [1mC:\P19\scratch\runs_e2[0m
+Starting training for 8 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        1/8     0.197G      3.102      8.287    0.08162          4         64: 0% ──────────── 0/2  1.4s[K        1/8     0.197G      3.129      8.116    0.09659          9         64: 100% ━━━━━━━━━━━━ 2/2 1.4it/s 1.4s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 17.6it/s 0.1s
+                   all          4         17      0.182      0.183      0.171     0.0353
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        2/8     0.197G      3.463      7.356     0.2038         10         64: 100% ━━━━━━━━━━━━ 2/2 24.3it/s 0.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 33.1it/s 0.0s
+                   all          4         17      0.194      0.183      0.174     0.0363
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        3/8     0.213G      1.959      5.258    0.06636          4         64: 50% ━━━━━━────── 1/2 2.6it/s 0.1s<0.4s[K        3/8     0.213G      1.959      5.258    0.06636          4         64: 100% ━━━━━━━━━━━━ 2/2 17.1it/s 0.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 33.5it/s 0.0s
+                   all          4         17      0.208      0.183      0.174     0.0363
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        4/8     0.213G          3      7.841     0.1091          9         64: 100% ━━━━━━━━━━━━ 2/2 20.4it/s 0.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 34.0it/s 0.0s
+                   all          4         17          0          0          0          0
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        5/8     0.213G      2.856       6.96      0.114         10         64: 100% ━━━━━━━━━━━━ 2/2 23.0it/s 0.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 33.7it/s 0.0s
+                   all          4         17          0          0          0          0
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        6/8     0.213G      3.114      7.665     0.1453          3         64: 100% ━━━━━━━━━━━━ 2/2 22.9it/s 0.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 38.1it/s 0.0s
+                   all          4         17          0          0          0          0
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        7/8     0.213G      2.554      7.815     0.1054          3         64: 100% ━━━━━━━━━━━━ 2/2 22.4it/s 0.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 33.8it/s 0.0s
+                   all          4         17          0          0          0          0
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        8/8     0.213G      2.739      7.107    0.08955          3         64: 100% ━━━━━━━━━━━━ 2/2 23.4it/s 0.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 34.1it/s 0.0s
+                   all          4         17          0          0          0          0
+
+8 epochs completed in 0.001 hours.
+Optimizer stripped from C:\P19\scratch\runs_e2\weights\last.pt, 5.5MB
+Optimizer stripped from C:\P19\scratch\runs_e2\weights\best.pt, 5.5MB
+
+Validating C:\P19\scratch\runs_e2\weights\best.pt...
+Ultralytics 8.4.213  Python-3.12.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon RX 7900 XTX, 24560MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 48.9it/s 0.0s
+                   all          4         17      0.208      0.183      0.174     0.0363
+                person          3         10       0.25        0.1     0.0475      0.019
+                   dog          1          1          0          0          0          0
+                 horse          1          2          0          0          0          0
+              elephant          1          2          0          0          0          0
+              umbrella          1          1          1          1      0.995      0.199
+          potted plant          1          1          0          0          0          0
+Speed: 0.1ms preprocess, 1.7ms inference, 0.0ms loss, 0.5ms postprocess per image
+Results saved to [1mC:\P19\scratch\runs_e2[0m
+{
+  "optimizer_step_count": 11,
+  "amp_resolved": true,
+  "scaler": {
+    "scale_at_start": 65536.0,
+    "scale_at_end": 2048.0
+  },
+  "raw_trainer_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 355,
+    "max_abs_delta": 0.019881397485733032,
+    "mean_abs_delta": 0.0019684291621876477,
+    "all_finite": true
+  },
+  "loaded_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 219,
+    "max_abs_delta": 0.004608154296875,
+    "mean_abs_delta": 0.000377665289112779,
+    "all_finite": true
+  },
+  "checkpoint": {
+    "path": "C:\\P19\\scratch\\runs_e2\\weights\\last.pt",
+    "exists": true,
+    "size": 5468421
+  },
+  "verdict": "PASS"
+}

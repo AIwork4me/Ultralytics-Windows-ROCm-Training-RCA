@@ -1,0 +1,69 @@
+diff --git a/ultralytics/utils/autodevice.py b/ultralytics/utils/autodevice.py
+index 12cd71a26e1..add4a3b1688 100644
+--- a/ultralytics/utils/autodevice.py
++++ b/ultralytics/utils/autodevice.py
+@@ -153,7 +153,8 @@ def select_idle_gpu(
+ 
+         Notes:
+             Returns fewer than 'count' if not enough qualify or exist.
+-            Returns empty list if NVML stats are unavailable or no GPUs meet the criteria.
++            Returns the first 'count' devices unchecked if NVML stats are unavailable, e.g. on AMD GPUs.
++            Returns empty list if no GPUs meet the criteria.
+         """
+         assert min_memory_fraction <= 1.0, f"min_memory_fraction must be <= 1.0, got {min_memory_fraction}"
+         assert min_util_fraction <= 1.0, f"min_util_fraction must be <= 1.0, got {min_util_fraction}"
+@@ -167,8 +168,10 @@ def select_idle_gpu(
+ 
+         self.refresh_stats()
+         if not self.gpu_stats:
+-            LOGGER.warning("NVML stats unavailable.")
+-            return []
++            import torch
++
++            LOGGER.warning("NVML stats unavailable, selecting the first CUDA devices without idle checks.")
++            return list(range(torch.cuda.device_count()) if indices is None else indices)[:count]
+ 
+         # Filter and sort eligible GPUs
+         eligible_gpus = [
+diff --git a/ultralytics/utils/checks.py b/ultralytics/utils/checks.py
+index bfad3c58cdb..cbe33e61ca1 100644
+--- a/ultralytics/utils/checks.py
++++ b/ultralytics/utils/checks.py
+@@ -1142,10 +1142,10 @@ def strip_auth(v):
+ 
+ 
+ def cuda_device_count() -> int:
+-    """Get the number of NVIDIA GPUs available in the environment.
++    """Get the number of NVIDIA or AMD GPUs available in the environment.
+ 
+     Returns:
+-        (int): The number of NVIDIA GPUs available.
++        (int): The number of GPUs available to PyTorch CUDA.
+     """
+     if IS_JETSON:
+         # NVIDIA Jetson does not fully support nvidia-smi and therefore use PyTorch instead
+@@ -1157,20 +1157,17 @@ def cuda_device_count() -> int:
+                 ["nvidia-smi", "--query-gpu=count", "--format=csv,noheader,nounits"], encoding="utf-8"
+             )
+ 
+-            # Take the first line and strip any leading/trailing white space
+-            first_line = output.strip().split("\n", 1)[0]
+-
+-            return int(first_line)
++            return int(output.strip().split("\n", 1)[0])  # first line
+         except (subprocess.CalledProcessError, FileNotFoundError, ValueError):
+-            # If the command fails, nvidia-smi is not found, or output is not an integer, assume no GPUs are available
+-            return 0
++            # nvidia-smi failed, is not found or returned no integer, so count PyTorch devices, e.g. AMD GPUs or none
++            return torch.cuda.device_count()
+ 
+ 
+ def cuda_is_available() -> bool:
+     """Check if CUDA is available in the environment.
+ 
+     Returns:
+-        (bool): True if one or more NVIDIA GPUs are available, False otherwise.
++        (bool): True if one or more NVIDIA or AMD GPUs are available, False otherwise.
+     """
+     return cuda_device_count() > 0
+ 

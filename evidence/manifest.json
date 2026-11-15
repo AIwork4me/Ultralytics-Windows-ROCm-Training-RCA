@@ -607,5 +607,173 @@
     "command": "P18 reproducible validation script (see file header for usage)",
     "sha256": "2270eec08018690fdbd59328b4eb075dcb84a8a7b9b7a485d9298700401c8dd8",
     "size_bytes": 4129
+  },
+  {
+    "path": "evidence/raw/p19/environment.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "merged P19 environment + runtime provenance (this script)",
+    "sha256": "3cb33a5e642463aea8daedc44a0317ad65e5d3da4695cdc2dd7d578fd6166a78",
+    "size_bytes": 3068
+  },
+  {
+    "path": "evidence/raw/p19/runtime_provenance.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "merged P19 runtime provenance (this script)",
+    "sha256": "b9fd9ea1d5fc03087f047782edd724e21782f28ca93fa9443fb1f31cf74b43e8",
+    "size_bytes": 1155
+  },
+  {
+    "path": "evidence/raw/p19/P19_PHASE_A_ENV_GPU.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "python C:/P19/scratch/phase_a_gpu_preflight.py",
+    "sha256": "fc48bfe0775b62c3e7ef27e826532464909046c22aae760eca24add9b5aaa1ce",
+    "size_bytes": 3195
+  },
+  {
+    "path": "evidence/raw/p19/phase_a_gpu_preflight.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "python C:/P19/scratch/phase_a_gpu_preflight.py",
+    "sha256": "2c0fa34caf6890d215d987052e017a41f3ad815862a3265b934e798484902af1",
+    "size_bytes": 2426
+  },
+  {
+    "path": "evidence/raw/p19/p19_pip_freeze.txt",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "pip freeze (P19 venv, after amd-torchvision-device-gfx1100 install)",
+    "sha256": "0163619d4ae33c34b5a39f3f20aac65f359beae1516db3d595cb7c9e04a60492",
+    "size_bytes": 1461
+  },
+  {
+    "path": "evidence/raw/p19/pip_torch_install.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "pip install torch/torchvision/torchaudio + device wheels (AMD multi-arch index)",
+    "sha256": "32f4127e12d0bc36417f6202889af86da7e5c0e153edb4ac87d2f5882779ce90",
+    "size_bytes": 3552
+  },
+  {
+    "path": "evidence/raw/p19/phase_b_maintainer_train.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1 (UTF-8 copy of PS redirect; attempt 2, exit 0)",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "size_bytes": 0
+  },
+  {
+    "path": "evidence/raw/p19/phase_b_maintainer_train_attempt1.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "attempt 1 (exit 1): torchvision.ops.nms hipErrorInvalidDeviceFunction - missing amd-torchvision-device-gfx1100 wheel (AMD_PACKAGE_DEPENDENCY, not PR regression)",
+    "sha256": "558e01e593070c9a8807487b77ae34b2f7f1139a223fa8cc6dd19a21a2af03d4",
+    "size_bytes": 9946
+  },
+  {
+    "path": "evidence/raw/p19/phase_b_maintainer_train.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "structured Phase B evidence",
+    "sha256": "d88a385ae1390d204f33aefc90cd41f51588920df1e9eb5e300b19b473095f72",
+    "size_bytes": 2474
+  },
+  {
+    "path": "evidence/raw/p19/phase_c_full_test_cuda.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "pytest tests/test_cuda.py (UTF-8 copy of PS redirect; 8 passed/1 failed/1 skipped, exit 1)",
+    "sha256": "221d6f317fa9c6cc2e7dcf6c91b29c3251be94674bbf42ad19c53161da726804",
+    "size_bytes": 11839
+  },
+  {
+    "path": "evidence/raw/p19/phase_c_targeted_diagnostics.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "pytest tests/test_cuda.py::test_checks + ::test_train_cold_process_nonzero_device -v -rs",
+    "sha256": "33e40545615df5cf899762d979d045727e2c8b1f5ab0519083247a490c16161b",
+    "size_bytes": 564
+  },
+  {
+    "path": "evidence/raw/p19/phase_c_full_test_cuda.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "structured Phase C evidence with failure classifications",
+    "sha256": "778f678963f02e8818608abb0725272cb62b573836e5b597cd69e835d661ea64",
+    "size_bytes": 2695
+  },
+  {
+    "path": "evidence/raw/p19/baseline_vs_pr.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "Phase D A/B: upstream main 3e59149d vs PR d8fe65c8 on identical host",
+    "sha256": "612f0f64787f5d7f38bf93064f4ffc91f9f0bf7cb4233df78ee4a88705eb5d24",
+    "size_bytes": 1388
+  },
+  {
+    "path": "evidence/raw/p19/phase_d_leg_main.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "python C:/P19/scratch/phase_d_baseline_probe.py main (PYTHONPATH=C:/P19/baseline-main)",
+    "sha256": "4f00b36e6738f0bd227ac4bab44bb018191e561d5390d0f94d109cb47f88473b",
+    "size_bytes": 432
+  },
+  {
+    "path": "evidence/raw/p19/phase_d_leg_pr.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "python C:/P19/scratch/phase_d_baseline_probe.py pr",
+    "sha256": "339ba09ada716f4284dd375b58922d21770e970e1c6a38651ba96261ad1f9091",
+    "size_bytes": 445
+  },
+  {
+    "path": "evidence/raw/p19/phase_f_no_nvml_contract.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "python C:/P19/scratch/phase_f_no_nvml_contract.py (subprocess CVD matrix)",
+    "sha256": "448fd4542fc1a0f71ff1ba050ea5254032b3437f07e8050d31182260a82be460",
+    "size_bytes": 10596
+  },
+  {
+    "path": "evidence/raw/p19/phase_f_no_nvml_contract.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "python C:/P19/scratch/phase_f_no_nvml_contract.py",
+    "sha256": "03e613749aeb334782bbc6ef75651891ada50175537f3a831c3e2f3a91a5831b",
+    "size_bytes": 9073
+  },
+  {
+    "path": "evidence/raw/p19/phase_e_optimizer.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "python C:/P19/scratch/phase_e_optimizer_evidence.py (v1: INCONCLUSIVE by design analysis)",
+    "sha256": "05213ffffd408d7bd9ac4ad5f32881b0447cfc0c98e04521834461cc0bf3d735",
+    "size_bytes": 11787
+  },
+  {
+    "path": "evidence/raw/p19/phase_e2_optimizer.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "python C:/P19/scratch/phase_e2_optimizer_evidence.py (v2: 11 steps, 355/366 tensors changed)",
+    "sha256": "851d6749f8ac21ce9d6fbf71a0ea2f720253b1baa243f52df8340d6fb59deded",
+    "size_bytes": 12020
+  },
+  {
+    "path": "evidence/raw/p19/phase_e2_optimizer_evidence.json",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "structured Phase E2 evidence",
+    "sha256": "f23eaddc7552c2827aa95714c621857c7f9320ce22d43f9e03d147335484158b",
+    "size_bytes": 1088
+  },
+  {
+    "path": "evidence/raw/p19/pr27203_d8fe65c.diff",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "gh api pulls/27203 (diff) at frozen head",
+    "sha256": "9c084f46e71c0b938babf7e966b7344d24ffd32d68c050334ea6c4971f0e28e9",
+    "size_bytes": 3087
+  },
+  {
+    "path": "evidence/raw/p19/test_cuda.py.frozen",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "tests/test_cuda.py @ d8fe65c8 (gh api contents)",
+    "sha256": "a701a373f943164277888df051217429bc431daa07d876daa34cf3980e5e1b8e",
+    "size_bytes": 12403
+  },
+  {
+    "path": "evidence/raw/p19/AGENTS_md.frozen",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "AGENTS.md @ d8fe65c8 (gh api contents)",
+    "sha256": "458fca7ea64734626ae51acfb0b995011eaef84bbb9dcdd38dcdb13b625121ad",
+    "size_bytes": 13552
+  },
+  {
+    "path": "evidence/raw/p19/ci_status_frozen_head.log",
+    "timestamp": "2026-11-15T12:41:46.547521+00:00",
+    "command": "gh pr checks 27203 @ d8fe65c8",
+    "sha256": "6fc02a601d51bbb1b298a977187bc18e07d96aa5b41e08df568ab7417a50b31e",
+    "size_bytes": 2497
   }
 ]

@@ -1,0 +1,97 @@
+{
+  "mission": "P19",
+  "purpose": "Maintainer-requested validation of Ultralytics PR #27203 @ d8fe65c8 on Windows gfx1100",
+  "maintainer_request": {
+    "comment": "https://github.com/ultralytics/ultralytics/pull/27203#issuecomment-6893882839",
+    "user": "glenn-jocher",
+    "at": "2026-11-15T11:51:03Z",
+    "commands": [
+      "yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1",
+      "pytest tests/test_cuda.py"
+    ]
+  },
+  "pr": {
+    "head": "d8fe65c8c1052cb4305f3cec1be9cb909538dcf1",
+    "state": "OPEN/MERGEABLE",
+    "files": 2,
+    "diff": "+12/-12 vs main (3e59149d4 at test time)"
+  },
+  "os": {
+    "windows": "Windows-11-10.0.26300-SP0",
+    "version": "10.0.26300",
+    "machine": "AMD64"
+  },
+  "driver": {
+    "adapters": [
+      {
+        "Name": "AMD Radeon RX 7900 XTX",
+        "DriverVersion": "32.0.21030.2001",
+        "AdapterRAM": 4293918720
+      },
+      {
+        "Name": "Intel(R) UHD Graphics 770",
+        "DriverVersion": "32.0.101.6129",
+        "AdapterRAM": 2147479552
+      },
+      {
+        "Name": "GameViewer Virtual Display Adapter",
+        "DriverVersion": "15.6.5.199",
+        "AdapterRAM": null
+      },
+      {
+        "Name": "Microsoft Remote Display Adapter",
+        "DriverVersion": "10.0.26100.9818",
+        "AdapterRAM": null
+      }
+    ]
+  },
+  "smart_app_control": {
+    "VerifiedAndReputablePolicyState": 0,
+    "interpretation": "0=Off 1=On"
+  },
+  "gpu": {
+    "name": "AMD Radeon RX 7900 XTX",
+    "gcn_arch_name": "gfx1100",
+    "multi_processor_count": 48,
+    "total_memory": 25753026560
+  },
+  "python": {
+    "executable": "C:\\P19\\venv\\Scripts\\python.exe",
+    "version": "3.12.16 (main, Oct 26 2026, 14:10:56) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "torch": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "cuda": null,
+    "is_available": true,
+    "device_count": 1,
+    "get_device_name_0": "AMD Radeon RX 7900 XTX",
+    "device_0": {
+      "name": "AMD Radeon RX 7900 XTX",
+      "gcn_arch_name": "gfx1100",
+      "multi_processor_count": 48,
+      "total_memory": 25753026560
+    },
+    "mem_get_info_0": {
+      "free": 25597083648,
+      "total": 25753026560
+    }
+  },
+  "miopen": {
+    "loaded_paths": [
+      "C:\\P19\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll"
+    ],
+    "sha256": {
+      "C:\\P19\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc"
+    }
+  },
+  "nvidia_smi": "FileNotFoundError (not installed)",
+  "runtime_env": {
+    "HIPRTC_COMPILE_OPTIONS_APPEND": "-IC:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\scripts\\miopen_shims",
+    "MIOPEN_USER_CACHE_PATH": "<default>",
+    "MIOPEN_SYSTEM_CACHE_PATH": "<default>",
+    "CUDA_VISIBLE_DEVICES": "<unset>",
+    "runtime_type": "ENGINEERING_REFERENCE (MIOpen freestanding-header shim via HIPRTC_COMPILE_OPTIONS_APPEND; AMD wheel bytes unchanged)"
+  },
+  "phase_a_verdict": "PASS"
+}

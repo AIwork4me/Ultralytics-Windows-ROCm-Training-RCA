@@ -1,0 +1,14 @@
+{
+  "leg": "main",
+  "ultralytics_file": "C:\\P19\\baseline-main\\ultralytics\\__init__.py",
+  "git_head": "3e59149d4e047019e759dc8feec09208fa09163d",
+  "torch_device_count": 1,
+  "torch_is_available": true,
+  "cuda_device_count()": 0,
+  "cuda_is_available()": false,
+  "nvml_available": false,
+  "select_idle_gpu(count=1)": [],
+  "parse_device('-1')": "",
+  "test_cuda_DEVICES": [],
+  "test_checks_would_pass": false
+}
