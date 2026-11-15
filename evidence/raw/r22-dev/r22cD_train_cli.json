@@ -1,0 +1,46 @@
+{
+  "run_id": "R22C-D-20261115",
+  "mission": "R21",
+  "timestamp": "2026-11-15T15:41:03.654583+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "ENGINEERING_REFERENCE",
+  "command": "yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1",
+  "exit_code": 0,
+  "duration_s": null,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\scratch\\train-R22C\\train_stdout.log",
+  "parsed_facts": {
+    "gpu_selected": {
+      "device": "CUDA:0",
+      "name": "AMD Radeon RX 7900 XTX"
+    },
+    "amp_check": "PASSED",
+    "epoch_completed": true,
+    "losses_finite": true,
+    "validation_completed": true,
+    "cpu_fallback": false,
+    "losses_found": 1
+  },
+  "checkpoints": [
+    {
+      "path": "C:\\RadeonYOLO\\scratch\\train-R22C\\runs\\detect\\train\\weights\\best.pt",
+      "sha256": "ae4994cd2a8ac50149073d159db0c2da7d64f7cc9aa25fd7c09d52e55e98b141",
+      "bytes": 5521797
+    },
+    {
+      "path": "C:\\RadeonYOLO\\scratch\\train-R22C\\runs\\detect\\train\\weights\\last.pt",
+      "sha256": "179d3d664fd791f48ec6c85799212860dc756bbaec10caeba6554a226d7eceb9",
+      "bytes": 5521797
+    }
+  ],
+  "standard_command_no_extra_params": true,
+  "validation_note": "COCO8 mAP is a smoke metric, not a model-quality benchmark"
+}

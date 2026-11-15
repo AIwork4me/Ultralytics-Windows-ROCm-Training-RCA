@@ -1,0 +1,106 @@
+{
+  "run_id": "R22C-B2-CLEAN-20261115",
+  "mission": "R21",
+  "timestamp": "2026-11-15T15:50:35.757476+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "OFFICIAL_PRE_FIX",
+  "command": "python verify_torchvision_ops.py",
+  "exit_code": 0,
+  "duration_s": 8.87,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\evidence\\r22-dev\\r22cB2_torch_gates_clean.log",
+  "gates": {
+    "cuda_available": {
+      "status": "PASS",
+      "detail": {
+        "device_count": 1
+      }
+    },
+    "device_identity": {
+      "status": "PASS",
+      "detail": {
+        "name": "AMD Radeon RX 7900 XTX",
+        "capability": [
+          11,
+          0
+        ],
+        "gfx_target": "gfx1100"
+      }
+    },
+    "fp32_gemm": {
+      "status": "PASS",
+      "detail": {
+        "sum": 8095.9912109375
+      }
+    },
+    "fp16_gemm": {
+      "status": "PASS",
+      "detail": {
+        "sum": 1921.19384765625
+      }
+    },
+    "autograd": {
+      "status": "PASS",
+      "detail": {
+        "loss": 4052.07177734375
+      }
+    },
+    "conv2d_fwd_bwd": {
+      "status": "PASS",
+      "detail": {
+        "out_shape": [
+          4,
+          16,
+          64,
+          64
+        ]
+      }
+    },
+    "batchnorm_fwd_bwd": {
+      "status": "PASS",
+      "detail": {
+        "out_shape": [
+          8,
+          16,
+          32,
+          32
+        ]
+      }
+    },
+    "torchvision_nms_gpu": {
+      "status": "PASS",
+      "detail": {
+        "keep": [
+          0,
+          2
+        ],
+        "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6"
+      }
+    },
+    "tensor_lifetime": {
+      "status": "PASS",
+      "detail": {
+        "cycles": 50
+      }
+    }
+  },
+  "cpu_fallback_used": false,
+  "miopen_identity": {
+    "loaded": true,
+    "path": "C:\\RadeonYOLO\\venvs\\r22-dev\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+    "bytes": 501333504,
+    "embedded_version_strings": [
+      "3.6.3.4e7d93e3"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  }
+}
