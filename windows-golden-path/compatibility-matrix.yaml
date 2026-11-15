@@ -1,0 +1,84 @@
+# Windows Radeon YOLO compatibility matrix (R21 harness)
+# Source of truth for "which official stack can be installed together".
+# Facts below come from frozen P14/P16 binary audits and the 2026-11-15 R21
+# five-channel scan (wheel_discovery.json). Update ONLY from scan/audit output.
+
+channels:
+  multi-arch:
+    index: https://repo.amd.com/rocm/whl-multi-arch/
+    newest_torch: 2.12.0+rocm7.14.1        # frozen P16 re-audit (pre-fix MIOpen)
+    sdk_family: "7.x"
+    layout: flat per-package dirs (torch/, rocm-sdk-libraries/, ...)
+  stable:
+    index: https://stable.repo.amd.com/rocm/whl-next/
+    newest_torch: 2.14.0+rocm10.1.0
+    sdk_family: "10.x"
+    layout: TheRock whl-next
+    notes: rocm-sdk-libraries 10.1.0 wheel byte-identical to P14 audit (pre-fix)
+  rc:
+    index: https://rc.repo.amd.com/rocm/whl-next/
+    newest_torch: 2.15.0+rocm10.2.0rc2
+    sdk_family: "10.x (rc)"
+    layout: TheRock whl-next
+    notes: discovered by R21 scan 2026-11-15; gfx1100 AND gfx1151 device wheels present
+  nightly:
+    index: https://nightly.repo.amd.com/rocm/whl-next/
+    newest_torch: 2.16.0a0+rocm10.3.0a20261115
+    sdk_family: "10.x (alpha)"
+    layout: TheRock whl-next
+    notes: gfx1100 device wheels NOT listed on 2026-11-15 scan (gfx1151 only)
+  dev:
+    index: https://dev.repo.amd.com/rocm/whl-next/
+    newest_torch: 2.16.0a0+git<sha>.devrocm10.2.0.dev0.<sha>
+    sdk_family: "10.x (dev)"
+    layout: TheRock whl-next
+    notes: version strings embed git SHAs — direct source-ancestry signal
+
+rules:
+  - id: no-cross-family-mixing
+    statement: "Never mix ROCm 7.x and 10.x wheel components in one environment"
+    enforcement: resolve_package_set.py rocm_family_mix check
+  - id: device-wheel-required
+    statement: >
+      torch[device-gfxXXXX] stacks require BOTH the per-arch device wheel
+      (amd-torch-device-gfx1100) AND the family wheel (amd-torch-device-gfx110x);
+      a missing family wheel historically produced silent SDPA garbage (P18 trap)
+    enforcement: resolve_package_set.py device_wheel_present check + verify_torchvision_ops.py gates
+  - id: torchvision-device-wheel
+    statement: >
+      torchvision needs its own amd-torchvision-device-gfxXXXX wheel; without it
+      torchvision.ops.nms fails hipErrorInvalidDeviceFunction (P18/P19 evidence)
+    enforcement: verify_torchvision_ops.py classifies as TORCHVISION_DEVICE_WHEEL_MISSING
+  - id: torch-must-be-hip-build
+    statement: "torch must be an AMD HIP build (+rocm local version); CPU or other-vendor substitution is refused"
+    enforcement: resolve_package_set.py torch_is_amd_hip check + verify_provenance.py
+  - id: miopen-fix-detection
+    statement: >
+      PR #13437 presence requires BINARY evidence (miopen_initializer_list marker
+      in MIOpen.dll, build commit string) AND RUNTIME no-STL behavior; a newer
+      version number alone proves nothing
+    enforcement: verify_provenance.py + verify_miopen_nostl.py
+  - id: python-abi
+    statement: "wheel python_tag must match the venv interpreter (cp312/cp313/cp314 observed)"
+    enforcement: resolve_package_set.py tag check
+
+verified_stacks:
+  - name: engref-7.14.1 (engineering reference, gfx1100)
+    channel: multi-arch
+    torch: 2.12.0+rocm7.14.1
+    torchvision: 0.27.0+rocm7.14.1
+    extra_wheels: [amd-torch-device-gfx1100, amd-torch-device-gfx110x, amd-torchvision-device-gfx1100]
+    ultralytics: 8.4.214
+    miopen_fix: absent-in-wheel (shim HIPRTC_COMPILE_OPTIONS_APPEND used; ENGINEERING_REFERENCE)
+    physically_validated: true   # P19/R21 on RX 7900 XTX
+  - name: whlnext-10.1.0
+    channel: stable
+    torch: 2.14.0+rocm10.1.0
+    miopen_fix: absent (P16 byte-identical re-audit)
+    physically_validated: false  # installs + GPU compute proven on gfx1151 (P14); not gate-run
+  - name: rc-10.2.0rc2
+    channel: rc
+    torch: 2.15.0+rocm10.2.0rc2
+    torchvision: 0.29.2+rocm10.2.0rc2
+    miopen_fix: "PENDING R21 binary audit (this mission)"
+    physically_validated: false

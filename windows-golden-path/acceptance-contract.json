@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Windows Radeon YOLO Golden Path acceptance contract (R21 harness / R22 gates)",
+  "description": "Machine-checkable gate definitions. A gate is PASS only when its required evidence record exists, validates against the common evidence schema, and its embedded assertions recompute to the claimed verdict (generate_report.py full enforces the false-PASS rules).",
+  "runtime_class_verdict_limits": {
+    "OFFICIAL_STABLE": ["OFFICIAL_STABLE_PASS", "OFFICIAL_STABLE_FAIL"],
+    "OFFICIAL_CANDIDATE": ["DEV_CANDIDATE_PASS", "NIGHTLY_CANDIDATE_PASS", "RC_CANDIDATE_PASS", "CANDIDATE_FAIL"],
+    "OFFICIAL_PRE_FIX": ["OFFICIAL_PRE_FIX_EXPECTED_FAIL"],
+    "ENGINEERING_REFERENCE": ["ENGINEERING_REFERENCE_PASS", "ENGINEERING_REFERENCE_FAIL"],
+    "BLOCKED_ENVIRONMENT": ["BLOCKED_ENVIRONMENT"],
+    "INCONCLUSIVE": ["INCONCLUSIVE"]
+  },
+  "evidence_schema_required_keys": [
+    "run_id", "mission", "timestamp", "gpu_name", "gfx_target", "windows_build",
+    "driver_version", "python", "torch", "torchvision", "hip", "runtime_class",
+    "command", "exit_code", "duration_s", "pass_fail_skip", "failure_classification",
+    "raw_log_path"
+  ],
+  "strict_types": {
+    "exit_code": "int (never bool)",
+    "booleans": "true/false JSON literals only (never \"True\"/\"False\" strings)",
+    "pass_fail_skip": ["PASS", "FAIL", "EXPECTED_FAIL", "SKIP", "BLOCKED", "NOT_RUN", "INCONCLUSIVE"],
+    "failure_classification": ["SOURCE_REGRESSION", "MIOPEN_HIPRTC_COMPILATION", "MIOPEN_RUNTIME_KERNEL", "HIP_KERNEL_IMAGE_FAILURE", "TORCHVISION_DEVICE_WHEEL_MISSING", "DEPENDENCY_CONFLICT", "GPU_DEVICE_SELECTION", "CHECKPOINT_RESUME_FAILURE", "UNSUPPORTED_BACKEND", "ENVIRONMENT_BLOCKER", "INCONCLUSIVE", null]
+  },
+  "gates": {
+    "G0_provenance": {
+      "script": "verify_provenance.py",
+      "requires": ["loaded_miopen_dll.sha256", "loaded_miopen_dll.pr13437_marker_miopen_initializer_list", "wheel_lock[].sha256", "workarounds", "source_lineage"],
+      "pass_condition": "official channel URL set + every wheel SHA256 recorded + loaded MIOpen.dll identity recorded + no workaround detected (else class downgrades to ENGINEERING_REFERENCE) + build lineage traceable (PROVENANCE_INCOMPLETE blocks OFFICIAL_STABLE)",
+      "r21_note": "on the engineering-reference stack this gate classifies, it does not pass officially"
+    },
+    "G1_miopen_nostl": {
+      "script": "verify_miopen_nostl.py --leg official",
+      "requires": ["leg_detail.exit_code", "leg_detail.stderr_tail", "classification"],
+      "pass_condition": "BatchNorm2d(100) (20,100,35,45) fwd+bwd finite under VCToolsInstallDir redirect + empty INCLUDE + fresh cache, NO HIPRTC shim; marker alone is insufficient",
+      "pre_fix_expected": "HIPRTC_ERROR_COMPILATION(6) / 'type_traits' file not found / miopenStatusUnknownError → OFFICIAL_PRE_FIX_EXPECTED_FAIL"
+    },
+    "G2_torch_torchvision_gpu": {
+      "script": "verify_torchvision_ops.py",
+      "requires": ["gates"],
+      "pass_condition": "all 9 gates PASS on GPU; no CPU fallback; torchvision.ops.nms failure with hipErrorInvalidDeviceFunction classifies AMD_PACKAGE_DEPENDENCY_MISSING (not a MIOpen regression)"
+    },
+    "G3_ultralytics_cli": {
+      "script": "train_yolo.ps1 (+ generate_report.py train-summary)",
+      "requires": ["parsed_facts", "checkpoints", "exit_code"],
+      "pass_condition": "exact command 'yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1', released ultralytics==8.4.214 (non-editable), genuine GPU via device=-1, AMP recorded, epoch+val complete, last.pt+best.pt hashed, exit 0"
+    },
+    "G4_optimizer_update": {
+      "script": "audit_optimizer.py",
+      "requires": ["optimizer_step_count", "raw_trainer_model_delta", "gradscaler", "autocast_participation"],
+      "pass_condition": "≥1 real optimizer step + named_parameters delta > 1e-9 on ≥1 tensor (buffers excluded) + all finite + per-step scaler history recorded; harness-disclosed as supplementary"
+    },
+    "G5_checkpoint_resume": {
+      "script": "verify_checkpoint_resume.py",
+      "requires": ["stages", "checkpoint_sha256"],
+      "pass_condition": "checkpoint complete → controlled interrupt → NEW process resume=True → epoch continuity → best.pt GPU inference in third process; INCONCLUSIVE sub-gates allowed only where API state is not exposed"
+    },
+    "G6_gfx1100_physical": {
+      "pass_condition": "G1..G5 physically executed on gfx1100 hardware with per-record gpu_name + gfx_target provenance"
+    },
+    "G7_gfx1151_physical": {
+      "pass_condition": "G1..G5 physically executed on gfx1151 hardware (Radeon 8060S) — never fabricated; portable runner identical bytes"
+    },
+    "G8_reliability": {
+      "script": "run_stability.py",
+      "pass_condition": "≥10 independent training processes per arch, cold+warm cache classes both covered (fresh USERPROFILE = cold; process restart alone is NOT cold), zero unexplained anomaly-family failures"
+    },
+    "G9_clean_windows": {
+      "evidence_classes": ["HOST_REUSE_FRESH_VENV", "CLEAN_WINDOWS_INSTALL"],
+      "pass_condition": "CLEAN_WINDOWS_INSTALL requires a newly installed / demonstrably clean controlled Windows image: no historical ROCm caches, no host MSVC STL dependency, no DLL substitution, no HIPRTC injection, no dev checkout shadowing, no PYTHONPATH overrides; on a development host this gate is BLOCKED_INFRASTRUCTURE"
+    }
+  },
+  "verdicts": {
+    "full_golden_path": "WINDOWS_RADEON_YOLO_GOLDEN_PATH_PASS requires G0..G9 ALL PASS on OFFICIAL_STABLE runtime class",
+    "candidate_ceiling": "dev/nightly/rc candidates can earn *_CANDIDATE_PASS only; functional PASS never promotes channel class"
+  }
+}
