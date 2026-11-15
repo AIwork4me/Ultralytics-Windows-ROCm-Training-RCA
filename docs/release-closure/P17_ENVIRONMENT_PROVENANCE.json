@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-11-15T15:27:04.345727+08:00",
+  "mission": "P17",
+  "os": {
+    "caption": "Microsoft Windows 11 \u5bb6\u5ead\u7248 \u4e2d\u6587\u7248",
+    "build": "26200"
+  },
+  "gpu": {
+    "name": "AMD Radeon(TM) 8060S Graphics",
+    "driver": "32.0.22032.6002",
+    "arch": "gfx1151",
+    "logical_cpus": "32",
+    "mem_get_info_bytes": {
+      "free": 83786756096,
+      "total": 83954728960
+    }
+  },
+  "python": {
+    "version": "3.13.16 | packaged by Anaconda, Inc. | (main, Oct  1 2026, 20:20:25) [MSC v.1942 64 bit (AMD64)]",
+    "executable": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27198\\Scripts\\python.exe"
+  },
+  "torch": {
+    "version": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "cuda_available": true,
+    "device_count": 1,
+    "device_name": "AMD Radeon(TM) 8060S Graphics",
+    "capability": "11.5",
+    "gpu_matmul_ok": true
+  },
+  "miopen": {
+    "loaded_path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+    "size": 520364032
+  },
+  "rocm_pip_packages": {
+    "rocm": "7.14.1",
+    "rocm-bootstrap": "0.1.0",
+    "rocm-sdk-core": "7.14.1",
+    "rocm-sdk-device-gfx1151": "7.14.1",
+    "rocm-sdk-libraries": "7.14.1"
+  },
+  "hip_ghost_processes": {
+    "count": 8,
+    "note": "taskkill /F ineffective (P16 also observed); each burns ~1 CPU core; GPU memory free ~= total so GPU-side interference negligible",
+    "details": [
+      "36628|11/14/2026 22:55:50|C:/Users/rocm/miniconda3/envs/pm13437_official/python.exe -u C:\\Users\\rocm\\AppData\\Local\\Temp\\g3c84_wg1t4i0w\\inner.py yolo26n.pt plain",
+      "28240|11/14/2026 23:11:12|C:/Users/rocm/miniconda3/envs/pm13437_official/python.exe -u C:\\Users\\rocm\\AppData\\Local\\Temp\\g3c84_rabrphq1\\inner.py yolo26n.pt warm",
+      "34416|11/14/2026 23:19:04|C:/Users/rocm/miniconda3/envs/pm13437_merged/python.exe -u C:\\Users\\rocm\\AppData\\Local\\Temp\\g3c84_9qrqidfo\\inner.py yolo26n.pt plain",
+      "27856|11/14/2026 23:43:53|C:/Users/rocm/miniconda3/envs/pm13437_official/python.exe -u C:\\Users\\rocm\\AppData\\Local\\Temp\\g3c84_r21htxmg\\inner.py yolo26n.pt warm",
+      "48228|11/15/2026 08:01:07|C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\python.exe -u p132_checkamp_real.py default_cache",
+      "3136|11/15/2026 08:14:31|C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\python.exe -u inner.py",
+      "36872|11/15/2026 15:27:04|C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27198\\Scripts\\python.exe env_provenance.py",
+      "41228|11/15/2026 15:27:04|C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27198\\Scripts\\python.exe env_provenance.py"
+    ]
+  },
+  "git": {
+    "pr27198_head": "e5ac8593db60880b92b3e3cbd2e11ee3a7344034",
+    "pr27203_head": "563ff46e0c3347cc68db420e1b268a22a456e317",
+    "worktree_27198": "C:/Users/rocm/Desktop/YOLO_AMD/p17_pr27198",
+    "worktree_27203": "C:/Users/rocm/Desktop/YOLO_AMD/p17_pr27203",
+    "venv_27198": "C:/Users/rocm/Desktop/YOLO_AMD/p17_env27198",
+    "venv_27203": "C:/Users/rocm/Desktop/YOLO_AMD/p17_env27203",
+    "import_method": "PYTHONPATH-prepended worktree (pip editable finder is appended after PathFinder by pip 26 and is shadowed by base-env 8.4.182 install)",
+    "upstream_head_confirmed_via_api": {
+      "pr27198": "2026-11-15T07:01:24Z",
+      "pr27203": "2026-11-15T07:01:24Z"
+    }
+  },
+  "engineering_reference": {
+    "flag": null,
+    "note": "MIOpen.dll comes from the official PyTorch ROCm wheel companion pip packages (_rocm_sdk_libraries). No patched/redirected DLL detected in this run."
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "injection_type": "CONTROL_FLOW_INJECTION",
+  "results": {
+    "RuntimeError": {
+      "caught": true,
+      "returned": false,
+      "is_false": true,
+      "logged_error": true,
+      "log_includes_exception_type": true,
+      "log_includes_exception_message": true,
+      "log_includes_not_amp_specific_disclaimer": true,
+      "log_includes_no_fp32_health_guarantee": true,
+      "log_claims_numerical_anomaly": false
+    },
+    "torch.cuda.OutOfMemoryError": {
+      "caught": true,
+      "returned": false,
+      "is_false": true,
+      "logged_error": true,
+      "log_includes_exception_type": true,
+      "log_includes_exception_message": true,
+      "log_includes_not_amp_specific_disclaimer": true,
+      "log_includes_no_fp32_health_guarantee": true,
+      "log_claims_numerical_anomaly": false
+    },
+    "torch.AcceleratorError": {
+      "caught": true,
+      "returned": false,
+      "is_false": true,
+      "logged_error": true,
+      "log_includes_exception_type": true,
+      "log_includes_exception_message": true,
+      "log_includes_not_amp_specific_disclaimer": true,
+      "log_includes_no_fp32_health_guarantee": true,
+      "log_claims_numerical_anomaly": false
+    },
+    "ValueError": {
+      "propagated": true,
+      "raised_type": "ValueError",
+      "check_amp_result_when_raised": null
+    },
+    "TypeError": {
+      "propagated": true,
+      "raised_type": "TypeError",
+      "check_amp_result_when_raised": null
+    },
+    "KeyboardInterrupt": {
+      "propagated": true,
+      "raised_type": "KeyboardInterrupt",
+      "check_amp_result_when_raised": null
+    },
+    "SystemExit": {
+      "propagated": true,
+      "raised_type": "SystemExit",
+      "check_amp_result_when_raised": null
+    }
+  },
+  "timestamp": "2026-11-15T15:51:57.758606+08:00"
+}

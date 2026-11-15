@@ -1,0 +1,30 @@
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.13.16, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\rocm\Desktop\YOLO_AMD\p17_env27198\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rocm\Desktop\YOLO_AMD\p17_pr27198
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+[1mcollecting ... [0mcollected 2 items
+
+tests/test_cuda.py::test_checks [31mFAILED[0m
+tests/test_cuda.py::test_amp [33mSKIPPED[0m (No CUDA devices available)
+
+================================== FAILURES ===================================
+[31m[1m_________________________________ test_checks _________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_checks[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Validate CUDA settings against torch CUDA functions."""[39;49;00m[90m[39;49;00m
+>       [94massert[39;49;00m torch.cuda.is_available() == CUDA_IS_AVAILABLE[90m[39;49;00m
+[1m[31mE       AssertionError: assert True == False[0m
+[1m[31mE        +  where True = <function is_available at 0x00000230FFA853A0>()[0m
+[1m[31mE        +    where <function is_available at 0x00000230FFA853A0> = <module 'torch.cuda' from 'C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\torch\\cuda\\__init__.py'>.is_available[0m
+[1m[31mE        +      where <module 'torch.cuda' from 'C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\torch\\cuda\\__init__.py'> = torch.cuda[0m
+
+[1m[31mtests\test_cuda.py[0m:37: AssertionError
+============================ slowest 30 durations =============================
+0.04s call     tests/test_cuda.py::test_checks
+
+(4 durations < 0.005s hidden.  Use -vv to show these durations.)
+[36m[1m=========================== short test summary info ===========================[0m
+[31mFAILED[0m tests/test_cuda.py::[1mtest_checks[0m - AssertionError: assert True == False
+[31m======================== [31m[1m1 failed[0m, [33m1 skipped[0m[31m in 0.24s[0m[31m =========================[0m

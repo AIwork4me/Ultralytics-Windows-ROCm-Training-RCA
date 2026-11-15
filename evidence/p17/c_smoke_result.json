@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-11-15T16:35:12.169915+08:00",
+  "tree": "750b5061a0a7c397a15dd53641285b8b2dce1ded",
+  "S1_device_detection": {
+    "cuda_is_available": true,
+    "cuda_device_count": 1,
+    "torch_count": 1
+  },
+  "S2_parse_device_-1": "0",
+  "S3_check_amp": {
+    "result": false,
+    "probe_log": [
+      "\u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...",
+      "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (AcceleratorError: CUDA error: invalid kernel file\nSearch for `hipErrorInvalidKernelFile' in https://rocm.docs.amd.com/projects/HIP/en/latest/index.html for more information.\nCUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\nFor debugging consider passing AMD_SERIALIZE_KERNEL=3\nDevice-side assertion tracking was not enabled by user.). AMP will be disabled during training as a precaution. This error is not necessarily AMP-specific \u2014 if FP32 training also fails with the same error, the problem is your GPU backend/runtime rather than AMP."
+    ]
+  },
+  "S4_train_completed": true,
+  "S5_params_changed": "0/366",
+  "S6_checkpoint_exists": true,
+  "S7_val": {
+    "ok": true,
+    "map50": 0.1711111111111111
+  },
+  "S7_val_predict": "AttributeError: 'Results' object has no attribute 'device'. See valid attributes below.\nA class for storing and manipulating inference results.\n\nThis class provides comprehensive functionality for handling inference results from various Ultralytics models,\nincluding detection, instance segmentation, semantic segmen"
+}
