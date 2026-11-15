@@ -53,3 +53,19 @@ Verdicts **maintained**; conditions upgraded from prose-scoped to per-step-prove
 **GO-B (upgrade)**: AMP scope upgrades from "scaler semantics + ≥1 update" to **genuine repeated updates**: t16 records 24 real optimizer updates (per-parameter, all 366 tensors changed per step, scaler anneal 65536→2048) on the official wheel (`raw/g2_detect_amptrack_20261114T131559Z.json`); the historical t08 FAIL is per-step reclassified as **intended GradScaler overflow skips** (mechanism previously "plausible-unproven"). Representative-dataset learning validation: see `raw/g3_amp_learning_*.json` (P9 §4.4). The AMP **precheck** false-failure design flaw was independently fixed upstream in 8.4.197 (PR #26967, per-layer relative-norm design replacing `amp_allclose`); validation of the new check on gfx1151: `raw/g3_checkamp84212_*.json`.
 
 **GO-C (unchanged)**: official-wheel rescan 2026-11-14 13:32Z — newest Windows wheel remains torch-2.12.0+rocm7.14.1 (`release-provenance/raw/official_wheel_rescan_20261114.json`) → **BLOCKED_RELEASE stands**. Upstream submission now authorized by the Owner (mission §1); submit only what validated evidence supports.
+
+---
+
+## P13 addendum (2026-11-15, mission P13) — CURRENT authoritative verdict
+
+Verdicts: **GO-A CONDITIONAL PASS(maintained)** · **GO-B CONDITIONAL PASS(maintained,scope+)** · **GO-C NO-GO(BLOCKED_RELEASE 维持)** · **GATE 4 NOT_MET(依赖 GO-C)**
+
+**GO-B(P13.1 scope upgrade)**:upstream PR #27198 按评审 MEDIUM 发现扩展为**探针全生命周期守卫**(probe-model 构建 + `.to(device)` 搬移 + forward),异常分类策略显式化(OOM/构建/搬移/forward/中断传播),7/7 回归测试绿(gfx1151 实机,含真实 GPU 健康正控),Docs CI 绿,CLA 已由 Owner 本人签署,torch 1.8 兼容修复已推。**未合并 — 保持"提交≠上游解决"原则。** 见 `P13_PR27198_CLOSURE.md`。
+
+**GO-A(P13.2 scope correction,如实降级一处表述)**:P9 的 "ENV B 混合态确定性崩溃根因 = fdb 不可读" 假设被 P13 受控实验**部分推翻**:"unreadable" = 文件不存在(bin 目录两环境均无 FDB,官方 3.5.2 不发起该查找,属 3.6.2 行为差异);该警告非致命(128/128 层 fp16 重算全过);崩溃在 P13 同 env/DLL/缓存下 **3 种独立配置均不可复现** → 根因 **UNRESOLVED**(三候选已归档),P9 会话内 3/3 崩溃证据保留不改写。见 `P13_INVALID_KERNEL_FILE_RCA.md`。
+
+**GO-C(P13.3 sharpened)**:2026-11-15 复扫官方 index 最新仍 `torch-2.12.0+rocm7.14.1`;TheRock 全部公开 tag(10.1=2026-09-25 等)**早于**修复合并(2026-10-19)→ "无任何含修复的 release 切片"坐实;torch-2.13.0 仅 linux。**BLOCKED_RELEASE 维持**,已向 #15862 提交发布链切点证据评论。
+
+**Verifier 权威计数对账**:565(P9 wave-3 中间值)→ **575 checks / 0 violations @ HEAD**(本会话实测,exit 0);dated 历史文档保持不动,活文档(本文件、Draft PR #13 body)已更正。
+
+**GATE 状态**:G1 ✅(ENV A/B 工程正确) · G2 ⏳(#27198 open 等复审;#13437 已合) · G3 ❌ BLOCKED_RELEASE · G4 ❌ NOT_MET(依赖 G3;Golden Path 文档就绪度见 `P13_GOLDEN_PATH_REPORT.md`,独立用户测试 BLOCKED_INDEPENDENT_USER_TEST)。
