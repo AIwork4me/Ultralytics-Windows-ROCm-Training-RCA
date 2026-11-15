@@ -128,7 +128,7 @@
     "environment_id": "ENV_B_patched",
     "cache_home_env": {
       "USERPROFILE": "C:\\Users\\rocm",
-      "ZHIPU_API_KEY": "3d8c3220d1904190831100115cb0f425.TFeWhNg7HSrDES1y"
+      "ZHIPU_API_KEY": "[REDACTED]"
     }
   },
   "limitations": [],
