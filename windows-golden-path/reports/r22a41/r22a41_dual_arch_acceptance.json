@@ -1,0 +1,371 @@
+{
+  "mission": "R22A.4",
+  "verdict": "R22_DEV_DUAL_ARCH_SUPPLEMENTAL_VALIDATED",
+  "verdict_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)",
+  "gfx1100": {
+    "facts": {
+      "gpu_architecture": "gfx1100",
+      "gpu_name": "AMD Radeon RX 7900 XTX",
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "adamw_auto_selected": true,
+      "autocast_forward": "48/48",
+      "low_precision_dtype_observed": "torch.float16",
+      "low_precision_op_samples": 48,
+      "step_attempts": 11,
+      "effective_updates": 6,
+      "nonfinite_skip_or_backoff": 5,
+      "named_param_delta": "366/366",
+      "workers_configured": 8,
+      "worker_identities_observed": 13,
+      "runs_in_matrix": 6,
+      "derived_cache_roles": [
+        "cold",
+        "cold",
+        "cache_priming",
+        "warm",
+        "warm",
+        "warm"
+      ],
+      "monitor_health": "independent-corroboration",
+      "part_a_verdict": "ADAMW_AMP_MULTISTEP_PASS",
+      "part_b_verdict": "WORKERS8_SHORT_RELIABILITY_PASS"
+    },
+    "combined": {
+      "verdict": "R22A2_GFX1100_SUPPLEMENTAL_PASS",
+      "reasons": [],
+      "part_a_recomputed": {
+        "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+        "failure_classification": null,
+        "schema": "r22a2-flat",
+        "adapter": "r22a2-flat-v1",
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX / gfx1100"
+          },
+          {
+            "check": "optimizer_requested_auto",
+            "ok": true,
+            "detail": "requested='auto' (harness must not force an optimizer)"
+          },
+          {
+            "check": "optimizer_resolved_adamw",
+            "ok": true,
+            "detail": "optimizer=auto resolved to AdamW (8.4.x iterations heuristic: >10000 → MuSGD else AdamW)"
+          },
+          {
+            "check": "amp_resolved",
+            "ok": true,
+            "detail": "trainer amp=True"
+          },
+          {
+            "check": "forward_autocast_active",
+            "ok": true,
+            "detail": "48 forward samples with autocast enabled"
+          },
+          {
+            "check": "step_accounting_consistent",
+            "ok": true,
+            "detail": "6 effective of 11 step calls"
+          },
+          {
+            "check": "min_updates",
+            "ok": true,
+            "detail": "6 confirmed parameter-update events (sentinel/checksum deltas); 11 python-level step calls; 11 scaler attempts (minimum required: 3)"
+          },
+          {
+            "check": "grads_finite_all_groups",
+            "ok": true,
+            "detail": "finite grads at every CONFIRMED update across all groups (skipped nonfinite steps recorded separately — they are the GradScaler working as designed, not failures)"
+          },
+          {
+            "check": "nonzero_parameter_deltas",
+            "ok": true,
+            "detail": "366 parameter tensors changed beyond 1e-9"
+          },
+          {
+            "check": "parameter_deltas_finite",
+            "ok": true,
+            "detail": "max_abs_delta finite for every parameter tensor"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "train() returned normally / process exit 0"
+          }
+        ]
+      },
+      "part_b_overall": {
+        "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+        "reason": "exact matrix satisfied: 2 COLD (distinct homes) + 1 CACHE_PRIMING + 3 WARM (shared home + 1 ADDITIONAL justified warm sample(s)), all 6 PASS with workers=8 verified OS-level and clean shutdown",
+        "derived_cache_roles": [
+          "cold",
+          "cold",
+          "cache_priming",
+          "warm",
+          "warm",
+          "warm"
+        ],
+        "log_authenticity": null
+      },
+      "monitor_exception_disclosure": null,
+      "runtime_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)"
+    },
+    "physical_training_functional": "PHYSICAL_TRAINING_FUNCTIONAL_PASS",
+    "release_grade_evidence": "RELEASE_GRADE_EVIDENCE_ACCEPTED"
+  },
+  "gfx1151": {
+    "facts": {
+      "gpu_architecture": "gfx1151",
+      "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "adamw_auto_selected": true,
+      "autocast_forward": "48/48",
+      "low_precision_dtype_observed": "float16",
+      "low_precision_op_samples": 48,
+      "step_attempts": 11,
+      "effective_updates": 7,
+      "nonfinite_skip_or_backoff": 4,
+      "named_param_delta": "366/366",
+      "workers_configured": 8,
+      "worker_identities_observed": 13,
+      "runs_in_matrix": 6,
+      "derived_cache_roles": [
+        "cold",
+        "cold",
+        "cache_priming",
+        "warm",
+        "warm",
+        "warm"
+      ],
+      "monitor_health": "recorded",
+      "part_a_verdict": "ADAMW_AMP_MULTISTEP_PASS",
+      "part_b_verdict": "WORKERS8_SHORT_RELIABILITY_PASS"
+    },
+    "combined": {
+      "verdict": "R22A3_GFX1151_SUPPLEMENTAL_PASS",
+      "reasons": [],
+      "part_a_recomputed": {
+        "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+        "failure_classification": null,
+        "schema": "r22a3-nested",
+        "adapter": "r22a3-nested-v1",
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon(TM) 8060S Graphics / gfx1151"
+          },
+          {
+            "check": "optimizer_requested_auto",
+            "ok": true,
+            "detail": "requested='auto' (harness must not force an optimizer)"
+          },
+          {
+            "check": "optimizer_resolved_adamw",
+            "ok": true,
+            "detail": "args.optimizer rewritten to 'AdamW'"
+          },
+          {
+            "check": "amp_resolved",
+            "ok": true,
+            "detail": "trainer amp=True"
+          },
+          {
+            "check": "forward_autocast_active",
+            "ok": true,
+            "detail": "48 forward samples with autocast enabled"
+          },
+          {
+            "check": "step_accounting_consistent",
+            "ok": true,
+            "detail": "7 effective of 11 step calls, 4 found_inf skips observed"
+          },
+          {
+            "check": "min_updates",
+            "ok": true,
+            "detail": "7 confirmed parameter-update events (sentinel/checksum deltas); 11 python-level step calls; 11 scaler attempts (minimum required: 3)"
+          },
+          {
+            "check": "grads_finite_all_groups",
+            "ok": true,
+            "detail": "finite grads at every CONFIRMED update across all groups (skipped nonfinite steps recorded separately — they are the GradScaler working as designed, not failures)"
+          },
+          {
+            "check": "nonzero_parameter_deltas",
+            "ok": true,
+            "detail": "366 parameter tensors changed beyond 1e-9"
+          },
+          {
+            "check": "parameter_deltas_finite",
+            "ok": true,
+            "detail": "max_abs_delta finite for every parameter tensor"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "train() returned normally / process exit 0"
+          }
+        ]
+      },
+      "part_b_overall": {
+        "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+        "reason": "exact matrix satisfied: 2 COLD (distinct homes) + 1 CACHE_PRIMING + 3 WARM (shared home + 1 ADDITIONAL justified warm sample(s)), all 6 PASS with workers=8 verified OS-level and clean shutdown",
+        "derived_cache_roles": [
+          "cold",
+          "cold",
+          "cache_priming",
+          "warm",
+          "warm",
+          "warm"
+        ],
+        "log_authenticity": null
+      },
+      "monitor_exception_disclosure": null,
+      "runtime_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)"
+    },
+    "physical_training_functional": "PHYSICAL_TRAINING_FUNCTIONAL_PASS",
+    "release_grade_evidence": "RELEASE_GRADE_EVIDENCE_ACCEPTED"
+  },
+  "monitor_exception_disclosures": {
+    "gfx1151": {
+      "found_in": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8.log",
+      "classified_as": "MONITOR_PROCESS_EXIT_RACE",
+      "raw_exception": "psutil.NoSuchProcess (pre-R22A.4 harness revision)",
+      "affected_runs": [
+        "R22A3-B-R1"
+      ],
+      "disposition": "function-level training PASS preserved: independent per-run identity/sighting evidence (13 identities × 33–148 sightings, all with ppid+create_time) substantiates all five runs; the sampler-thread death is disclosed, not deleted; R22A.4 harness records monitor health explicitly and fails closed"
+    }
+  },
+  "additional_sample_provenance": {
+    "run_id": "R22A4-B-ADD1",
+    "RECEIPT_RUNTIME_CLASS": "INCONCLUSIVE",
+    "AUTHORITATIVE_PACKAGE_PROVENANCE": "DEV_LOCK_VERIFIED",
+    "RUNTIME_IDENTITY_MATCH": "MATCH",
+    "identity_checks": {
+      "package_lock": "DEV_LOCK_VERIFIED",
+      "torch": "MATCH",
+      "ultralytics": "MATCH",
+      "loaded_miopen_dll_sha256": "MATCH",
+      "gfx_target": "MATCH",
+      "gpu_name": "RECORDED",
+      "wheel_identity": "MATCH"
+    },
+    "ACCEPTANCE_DISPOSITION": "PROVENANCE_ACCEPTED_DEV",
+    "ceiling": "DEV_CANDIDATE",
+    "note": "receipt runtime_class is preserved verbatim; acceptance for an INCONCLUSIVE receipt flows ONLY from the committed DEV package lock hash + full runtime-identity agreement with the frozen same-pack receipts (fail-closed: absent->INCONCLUSIVE, conflicting->NO_GO)"
+  },
+  "notes": [
+    "every cell recomputed from frozen raw records via versioned adapters",
+    "cache roles derived from home identity only (fresh-home first use = CACHE_PRIMING, never pre-warmed)",
+    "no dGPU vs APU performance comparison is made or implied",
+    "effective-update counts (6 gfx1100 / 7 gfx1151) are factual observations of different hardware runs, not targets",
+    "additional-sample (INCONCLUSIVE receipt) acceptance flows only from the committed DEV package-lock hash + runtime identity match (runtime_provenance_gate); the receipt's own runtime_class field is preserved verbatim"
+  ],
+  "input_evidence": [
+    {
+      "path": "evidence/raw/r22a2-gfx1100/R22A2_ADAMW_AMP.json",
+      "git_blob_sha256": "115d5c2163ae30c8d14253332a3420bf4e6cca5da52362b121a28cf7f5965cc6"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/cold_matrix_stability_runs.json",
+      "git_blob_sha256": "45c398c641930253998a98d55b2c9e1b86cda54cfe2d78890e7d183a306a865e"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/warm_matrix_stability_runs.json",
+      "git_blob_sha256": "2266b8719860f781c32eca9a98c160beb62368abd193d1798e18b8276a5496cb"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/additional_matrix_stability_runs.json",
+      "git_blob_sha256": "9be29b407b3004e14e766457de6c55aaebade1a3e8c3341a696988f5a7a5f2cd"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/additional_run01_child.log",
+      "git_blob_sha256": "925dbe714e2f1c617ab3568f09670b3a7597ae1d65e27b6e8076dd2d27225293"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/cold_run01_child.log",
+      "git_blob_sha256": "4c2a63853a97b0d63a6d68f8df5a478d2c57a94913e15396f3f404ff79bd8819"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/cold_run02_child.log",
+      "git_blob_sha256": "c9dd6da74baad3f29fcb57249856371cdd783a3552b462a5d5a807c75beebb20"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/warm_run01_child.log",
+      "git_blob_sha256": "277908d95488c8c8dbb72c329548675c23019f7ef15f37385c3560f51a027b97"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/warm_run02_child.log",
+      "git_blob_sha256": "3fd3fc06f42cf1c853e7838ff49fd46439c76738a0f8f3e259db21dbe1b2e474"
+    },
+    {
+      "path": "evidence/raw/r22a2-gfx1100/runs/warm_run03_child.log",
+      "git_blob_sha256": "efd9c471dbbcd9a4b77c533b8587de0b2d9aab6f40a2718e59e17d2b42461c19"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/R22A3_ADAMW_AMP.json",
+      "git_blob_sha256": "9694c71089acc49cb1ff15151d16d622ae999fcf6a19abf501f51f52a957d927"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8.json",
+      "git_blob_sha256": "207f8772f97c4e7370de40477ef61283774e6ccee37091ef50d81004679eebc6"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8_RUNS.json",
+      "git_blob_sha256": "fe99e6e23fc06dd7ccd20bbd4cb7c5d6cc5c902a2bd89c6f135f0d9c3ef09b23"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/R22A3_PROCESS_LIFECYCLE.json",
+      "git_blob_sha256": "19d64a1e7c8a87fdb11e30992255a8639599185f270fb92ee48910ffb95f5347"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8_WARM_ADDITIONAL.json",
+      "git_blob_sha256": "15d6b5c46241fd7a0c6c1c3686e200d214cf700232a07762e11b01c495489dcb"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8_WARM_ADDITIONAL_RUNS.json",
+      "git_blob_sha256": "039c1eb2fac9eb46854efff5285855acb31107196a6049bcdec3854588634e11"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run01.log",
+      "git_blob_sha256": "bf2ea6b4059332440e527ea7ae57ebe3a3a75fe595557d1be873417561641062"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run02.log",
+      "git_blob_sha256": "bc4fb368a20f7dac012f237dc92471f218ed474db4221aa619670270eb851af5"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run03.log",
+      "git_blob_sha256": "51d151f0ff7cb1acce06abd988d2d2932d3672a329b35d3c381ca5d2ec8cb727"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run04.log",
+      "git_blob_sha256": "e0336d76371ff62a47624ec4b5e0ab2f01c59aa772c6fd26129b1f2c85031357"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run05.log",
+      "git_blob_sha256": "f60da8a5720a64dd01ef97bce76aa3306290069eea8baea80d19f9e184aabdb5"
+    },
+    {
+      "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run06_additional.log",
+      "git_blob_sha256": "fde739a2461ba3b9c257030bb051764d5cc3cc2fff0cb5ed1abc1550c79788a2"
+    },
+    {
+      "path": "evidence/raw/r22a-gfx1151/R22A_GFX1151_PACKAGE_LOCK.json",
+      "git_blob_sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533"
+    }
+  ],
+  "harness_code_sha256": {
+    "supplemental_acceptance.py": "0eee580dbd1f97e815f2cab01f289464c6ab75c5c942cab6f8e3238127aff97a",
+    "run_stability.py": "e384f24b842d9091aebb5e17658632ee9b03a665a3a80558b828520e44a2b130",
+    "audit_adamw_amp.py": "29de25aec292266c66a24eb16fcdd88abf9823b850864c47242fef68c7f5d58a",
+    "gp_lib.py": "1bee98ebfb08082142bfd17e2cf553f38582ca621b8a6110ff2c48d72025fcf5"
+  },
+  "schema_adapters": {
+    "gfx1100": "r22a2-flat-v1",
+    "gfx1151": "r22a3-nested-v1"
+  }
+}
