@@ -1464,10 +1464,11 @@
  },
  {
   "path": "evidence/raw/r22a3-gfx1151/SHA256SUMS.txt",
-  "timestamp": "2026-11-16T10:10:09.375322+00:00",
+  "timestamp": "2026-11-16T15:11:31.494530+00:00",
   "command": "R22A.3 mission artifacts (Part A default AdamW+AMP audit, Part B workers=8 matrix, combined acceptance)",
-  "sha256": "b87f4c24827dae3c193ff0cb8cddb9ead0d2154bd5c33e05a09781b70a96b9db",
-  "size_bytes": 1562
+  "sha256": "d0477d4d5e64721bb49ad5662222cc65900056357903caaf89cf23003531aae4",
+  "size_bytes": 2923,
+  "note": "R22A.4: refreshed after appending recovered runs/ entries"
  },
  {
   "path": "windows-golden-path/reports/r22a3-gfx1151/report.json",
@@ -1482,5 +1483,82 @@
   "command": "R22A.3 mission artifacts (Part A default AdamW+AMP audit, Part B workers=8 matrix, combined acceptance)",
   "sha256": "2eb1c56cd2ea28529dd8b20a6d68d19ae6b9246d551b873f5734653181a26b38",
   "size_bytes": 8975
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run01.log",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "bf2ea6b4059332440e527ea7ae57ebe3a3a75fe595557d1be873417561641062",
+  "size_bytes": 24207
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run01_facts.json",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "64b1bf8a770ebc4b1ccee1a7deb13fe17823e2b5456d6ac237c5d6cdb636a4bb",
+  "size_bytes": 1108
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run02.log",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "bc4fb368a20f7dac012f237dc92471f218ed474db4221aa619670270eb851af5",
+  "size_bytes": 22634
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run02_facts.json",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "7f3e5b429c134fa17f42e83abca19762f78f602a74a23b08376bdfd9f0258e56",
+  "size_bytes": 1109
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run03.log",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "51d151f0ff7cb1acce06abd988d2d2932d3672a329b35d3c381ca5d2ec8cb727",
+  "size_bytes": 24528
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run03_facts.json",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "cbcac196b680f16e50b0373935c65282e83c303c18c0dfdae90a30b9d3ae6f09",
+  "size_bytes": 1099
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run04.log",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "e0336d76371ff62a47624ec4b5e0ab2f01c59aa772c6fd26129b1f2c85031357",
+  "size_bytes": 16243
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run04_facts.json",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "8f551b4a2a3cbf600436c235208df5291a9046912e1dab7751d0d09a430b339a",
+  "size_bytes": 1099
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run05.log",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "f60da8a5720a64dd01ef97bce76aa3306290069eea8baea80d19f9e184aabdb5",
+  "size_bytes": 16243
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run05_facts.json",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "7c482fc2a149f16b1e0b32963c94ef9a3a2025e014b281957f3063d5b87c5dba",
+  "size_bytes": 1099
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_sample_run01.py",
+  "timestamp": "2026-11-16T15:11:19.343578+00:00",
+  "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
+  "sha256": "4f4f7530c32f9e108776834c4a953551e5655d2eaa9c0ff25879b70596028143",
+  "size_bytes": 3422
  }
 ]

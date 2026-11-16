@@ -1,0 +1,155 @@
+New https://pypi.org/project/ultralytics/8.4.215 available  Update with 'pip install -U ultralytics'
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, idle checks skipped.
+Ultralytics 8.4.214  Python-3.12.16 torch-2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 101293MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco128.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=256, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=C:\RadeonYOLO\R22A3\scratch\workers8\run04, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\RadeonYOLO\R22A3\scratch\workers8\run04\train, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=104, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 660.9±349.8 MB/s, size: 61.5 KB)
+
+[K[34m[1mtrain: [0mScanning C:\RadeonYOLO\R22A3\scratch\workers8\run03\datasets\coco128\labels\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128  0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 701.2±180.1 MB/s, size: 67.1 KB)
+
+[K[34m[1mval: [0mScanning C:\RadeonYOLO\R22A3\scratch\workers8\run03\datasets\coco128\labels\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128  0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+Plotting labels to C:\RadeonYOLO\R22A3\scratch\workers8\run04\train\labels.jpg... 
+Using 128 train, 128 val images for fraction=1.0 at imgsz=256
+Using 8 dataloader workers
+Logging results to [1mC:\RadeonYOLO\R22A3\scratch\workers8\run04\train[0m
+Starting training for 1 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+
+[K        1/1     0.139G      2.216      2.828    0.02504        103        256: 0% ──────────── 0/8  29.0s
+[K        1/1     0.463G      2.165      2.775    0.02385        104        256: 25% ━━━───────── 2/8 3.2it/s 29.2s<1.9s
+[K        1/1     0.463G      2.082      2.847    0.02389        104        256: 37% ━━━━──────── 3/8 3.7it/s 29.4s<1.4s
+[K        1/1     0.469G      2.131      2.951    0.02271        115        256: 50% ━━━━━━────── 4/8 5.6it/s 29.5s<0.7s
+[K        1/1     0.479G      2.129       2.87    0.02266         88        256: 62% ━━━━━━━───── 5/8 6.7it/s 29.6s<0.4s
+[K        1/1      0.48G      2.113      2.828    0.02298        130        256: 87% ━━━━━━━━━━── 7/8 8.4it/s 29.7s<0.1s
+[K        1/1      0.48G      2.113      2.828    0.02298        130        256: 100% ━━━━━━━━━━━━ 8/8 3.7s/it 29.7s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 28.4s/it 8.5s<1:25
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 1.4it/s 8.7s<1.4s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 2.4it/s 9.0s<0.4s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 2.3s/it 9.2s
+                   all        128        929      0.635      0.439      0.471      0.338
+
+1 epochs completed in 0.012 hours.
+Optimizer stripped from C:\RadeonYOLO\R22A3\scratch\workers8\run04\train\weights\last.pt, 5.5MB
+Optimizer stripped from C:\RadeonYOLO\R22A3\scratch\workers8\run04\train\weights\best.pt, 5.5MB
+
+Validating C:\RadeonYOLO\R22A3\scratch\workers8\run04\train\weights\best.pt...
+Ultralytics 8.4.214  Python-3.12.16 torch-2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 101293MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 2.3it/s 0.1s<1.3s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 3.9it/s 0.3s<0.5s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 4.8it/s 0.4s<0.2s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 6.9it/s 0.6s
+                   all        128        929      0.635      0.439      0.473      0.337
+                person         61        254      0.688      0.465      0.532      0.345
+               bicycle          3          6      0.358      0.167      0.167       0.15
+                   car         12         46      0.526      0.109     0.0915     0.0603
+            motorcycle          4          5      0.546          1      0.995      0.764
+              airplane          5          6      0.834      0.833      0.899      0.639
+                   bus          5          7      0.438      0.571      0.614      0.555
+                 train          3          3      0.753          1      0.995      0.734
+                 truck          5         12      0.402     0.0833       0.15     0.0575
+                  boat          2          6      0.453      0.333      0.472      0.346
+         traffic light          4         14       0.56      0.143      0.151      0.118
+             stop sign          2          2          1          0      0.247      0.099
+                 bench          5          9      0.461      0.111       0.14     0.0951
+                  bird          2         16      0.791      0.712      0.748      0.359
+                   cat          4          4       0.45       0.75      0.828      0.687
+                   dog          9          9      0.558      0.561      0.693       0.52
+                 horse          1          2       0.53        0.5      0.695      0.283
+              elephant          4         17       0.85       0.67       0.79      0.573
+                  bear          1          1      0.533          1      0.995      0.895
+                 zebra          2          4      0.835          1      0.995      0.945
+               giraffe          4          9      0.808      0.889      0.885      0.692
+              backpack          4          6          1      0.233      0.335      0.112
+              umbrella          4         18      0.691      0.333      0.446      0.196
+               handbag          9         19          1          0       0.01    0.00826
+                   tie          6          7      0.621      0.286      0.415      0.322
+              suitcase          2          4      0.406      0.863      0.794      0.639
+               frisbee          5          5      0.617        0.6      0.595      0.475
+                  skis          1          1      0.334          1      0.995      0.597
+             snowboard          2          7          1      0.686      0.764      0.397
+           sports ball          6          6          0          0    0.00717    0.00287
+                  kite          2         10      0.984        0.2      0.261     0.0796
+          baseball bat          4          4          1          0          0          0
+        baseball glove          4          7      0.715      0.286      0.285      0.159
+            skateboard          3          5      0.481        0.4      0.495      0.313
+         tennis racket          5          7      0.506      0.286      0.305      0.218
+                bottle          6         18      0.289      0.167      0.204      0.141
+            wine glass          5         16      0.492      0.125      0.139      0.119
+                   cup         10         36      0.696       0.25      0.279      0.197
+                  fork          6          6      0.538      0.167      0.225      0.178
+                 knife          7         16      0.447      0.375      0.304      0.194
+                 spoon          5         22      0.698     0.0455     0.0833     0.0311
+                  bowl          9         28      0.671      0.464      0.547      0.412
+                banana          1          1      0.239          1      0.332      0.103
+              sandwich          2          2      0.362        0.5      0.414      0.381
+                orange          1          4          1          0      0.355      0.135
+              broccoli          4         11      0.444      0.182      0.158      0.151
+                carrot          3         24          1      0.123      0.431      0.302
+               hot dog          1          2      0.528          1      0.663      0.622
+                 pizza          5          5      0.568        0.8      0.895       0.75
+                 donut          2         14      0.878      0.929      0.986      0.758
+                  cake          4          4      0.599      0.747      0.788      0.665
+                 chair          9         35      0.591      0.286       0.33      0.169
+                 couch          5          6      0.472        0.5      0.709      0.478
+          potted plant          9         14          1      0.313      0.509      0.295
+                   bed          3          3      0.552      0.667       0.83      0.474
+          dining table         10         13       0.37      0.498      0.456      0.368
+                toilet          2          2        0.5        0.5      0.606      0.562
+                    tv          2          2      0.517          1      0.828      0.745
+                laptop          2          3          1          0      0.335      0.301
+                 mouse          2          2          1          0          0          0
+                remote          5          8          1      0.367      0.389       0.23
+            cell phone          5          8          1          0          0          0
+             microwave          3          3       0.37      0.667       0.68      0.358
+                  oven          5          5       0.25        0.4      0.284      0.251
+                  sink          4          6      0.222      0.167      0.235      0.152
+          refrigerator          5          5      0.556        0.4      0.387       0.23
+                  book          6         29          1          0      0.155     0.0482
+                 clock          8          9      0.703      0.667      0.727      0.538
+                  vase          2          2      0.374          1      0.448      0.408
+              scissors          1          1          1          0          0          0
+            teddy bear          6         21       0.66       0.37      0.461      0.288
+            toothbrush          2          5      0.743        0.4      0.637      0.429
+Speed: 0.0ms preprocess, 1.0ms inference, 0.0ms loss, 0.9ms postprocess per image
+Results saved to [1mC:\RadeonYOLO\R22A3\scratch\workers8\run04\train[0m
+STABILITY_CHILD_DONE 80.8s
