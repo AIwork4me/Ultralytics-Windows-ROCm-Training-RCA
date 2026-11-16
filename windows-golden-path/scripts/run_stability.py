@@ -1047,7 +1047,7 @@ def main() -> None:
             device=args.device, project=run_dir, name="train", seed=100 + i,
             workers=args.workers, data=args.data, extra=extra,
             facts_path=run_dir / "child_facts.json", run_id=run_id,
-            batch_arg=str(args.batch), imgsz=str(args.imgsz)), encoding="utf-8")
+            batch_arg=str(args.batch), imgsz_arg=str(args.imgsz)), encoding="utf-8")
         child_src = child.read_text(encoding="utf-8")
         safe, why = child_spawn_safe(child_src)
         guard_ok = child_has_main_guard(child_src)
