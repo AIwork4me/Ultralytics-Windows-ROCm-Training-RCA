@@ -13,9 +13,9 @@
   "runtime_class": "OFFICIAL_CANDIDATE",
   "wheel_lock": "evidence/raw/r22-dev-rerun/resolved_wheel_lock.json (46 artifacts, audit ok, families [10])",
   "miopen_dll_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
-  "mission": "R22A2",
+  "mission": "R22A2.1",
   "run_id": "R22A2-ACCEPT",
-  "timestamp": "2026-11-16T09:16:40.498009+00:00",
+  "timestamp": "2026-11-16T11:55:14.026328+00:00",
   "part_a": {
     "verdict": "ADAMW_AMP_MULTISTEP_PASS",
     "checks": [
@@ -111,9 +111,10 @@
   },
   "part_b": {
     "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
-    "reason": "all 5 runs PASS with workers=8 verified OS-level and clean shutdown",
-    "cold": "2/2",
-    "warm": "3/3",
+    "reason": "exact matrix satisfied: 2 COLD (distinct homes) + 1 CACHE_PRIMING + 3 WARM (shared home), all 6 PASS with workers=8 verified OS-level and clean shutdown",
+    "classification": "2 COLD + 1 CACHE_PRIMING + 2 WARM + 1 ADDITIONAL WARM",
+    "cold": "2/2 PASS (distinct fresh homes)",
+    "warm_family": "priming 1/1 PASS; qualifying pre-warmed 3/3 PASS (2 original + 1 ADDITIONAL)",
     "resolved_num_workers": [
       8
     ],
@@ -122,10 +123,12 @@
       "cold-run2": 13,
       "warm-run1": 13,
       "warm-run2": 13,
-      "warm-run3": 13
+      "warm-run3": 13,
+      "additional-run1": 13
     },
     "orphan_workers_total": 0,
-    "child_main_guard_all_runs": true
+    "child_main_guard_all_runs": true,
+    "hardened_gate_rescan": "all 6 runs PASS under the P0-C exit-0 anomaly scan; 2 priming-run logs carry the documented benign MIOPEN_FIND_TIMING_DIAGNOSTIC (classified, preserved)"
   },
   "combined_verdict": "R22A2_GFX1100_SUPPLEMENTAL_PASS",
   "combined_requires_both": true,
@@ -138,5 +141,6 @@
       "attempt 3: PASS (measurement corrected; system under test unchanged)"
     ],
     "part_b": "single execution per matrix (cold 2 + warm 3), no reruns"
-  }
+  },
+  "r22a21_reconciliation": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_RECONCILIATION.json"
 }

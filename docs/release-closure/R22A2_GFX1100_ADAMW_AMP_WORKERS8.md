@@ -1,5 +1,10 @@
 # R22A.2 — GFX1100 AdamW+AMP & Windows workers=8 Targeted Supplemental Validation
 
+> **R22A.2.1 addendum (evidence completeness & fail-closed hardening)** — see
+> [§8](#8-r22a21-evidence-completeness--fail-closed-hardening) below. Part A
+> verdict unchanged; Part B verdict re-derived honestly as 2 COLD + 1
+> CACHE_PRIMING + 2 WARM + 1 ADDITIONAL WARM. Raw evidence byte-frozen.
+
 **Verdicts**
 
 | Part | Verdict |
@@ -207,3 +212,74 @@ Evidence: `evidence/raw/r22a2-gfx1100/` (+ per-run child logs), checksums in
 `SHA256SUMS.txt`, checkpoints local-only with SHA256 ledger
 (`R22A2_CHECKPOINTS_LOCAL.json`). Machine verdict authority:
 `R22A2_ACCEPTANCE_REPORT.json`.
+
+## 8. R22A.2.1 — Evidence completeness & fail-closed hardening
+
+**P0-A — restored the missing raw evidence.** The 8 files under
+`evidence/raw/r22a2-gfx1100/runs/` (5 child logs, 2 matrix
+`stability_runs.json`, 1 generated child source) were silently dropped from
+the original commit by the repo-wide `.gitignore` rule `runs/` while
+`SHA256SUMS.txt` had hashed the working-tree copies. Every file was verified
+against its **frozen** SHA256SUMS value from the `C:\RadeonYOLO\R22A2`
+originals before staging (`git add -f`); no synthetic replacements exist.
+(The r21 `wheel-scan` pair flagged by a pre-scan was a false alarm from a
+backslash path join — those files were committed since `3021e70`; the sums
+parser now normalizes separators.)
+
+**P0-B — verifier audits evidence against the exact Git tree.** New checks:
+every `evidence/manifest.json` entry and every SHA256SUMS entry must resolve
+to a **committed** file whose blob content matches the declared hash; a
+checksum matching only a local/uncommitted file is a violation; missing
+files → nonzero exit; `r22a2*` packs additionally require every committed
+evidence file to carry a manifest entry; fail-closed when git/HEAD is
+unavailable. This immediately caught and fixed a real pre-existing defect:
+two r22a-gfx1151 manifest entries stale since `dfc3863` (hashes refreshed
+with per-entry disclosure). Six new self-test scenarios (18/18) including a
+gitignore-trap fixture reproducing the P0-A mechanism.
+
+**P0-C — worker gate rejects anomalies even at exit 0.** `evaluate_single_run`
+now scans the raw log for fatal signatures on every path. Exit 0 +
+`hipErrorInvalidKernelFile` → NO-GO; exit 0 + DataLoader-worker crash →
+NO-GO. The only matching pattern in the frozen logs — MIOpen
+`EvaluateInvokers` "Invalid elapsed time" — is a documented **benign**
+find-mode diagnostic (observed only in the two cache-priming runs, both
+completed exit 0 with full training/validation); it is classified
+(`MIOPEN_FIND_TIMING_DIAGNOSTIC`) with rationale and preserved verbatim,
+never silently discarded. Re-scan of all five frozen child logs under the
+hardened gate: **0 fatal, 5/5 PASS** (2 benign-classified).
+
+**P0-D — matrix size and cache contract.** The strict contract now requires
+exactly 2 COLD runs with distinct fresh homes, at most one CACHE_PRIMING run
+on the shared warm home, and exactly 3 qualifying pre-warmed runs; unique run
+identities; no duplicate/missing records; a single run can never satisfy it.
+Honest re-classification of the original matrix: warm_run01 (119.1s, first
+use of the fresh shared home) is **CACHE_PRIMING**, not a pre-warmed run —
+the original "warm 3/3" wording over-counted. Corrected shape:
+**2 COLD + 1 CACHE_PRIMING + 2 WARM**, which alone is NO-GO under the strict
+criterion. Per the explicit P0-D allowance, exactly **ONE additional short
+warm run** was executed on the committed hardened harness
+(`home_pre_existed=true` recorded, 26.0s — genuine pre-warmed timing),
+labeled **ADDITIONAL sample, not a replacement** for any earlier result.
+Final matrix: 2 COLD + 1 PRIMING + 2 WARM + 1 ADDITIONAL = 3 qualifying
+pre-warmed → `WORKERS8_SHORT_RELIABILITY_PASS` with roles
+`[cold, cold, cache_priming, warm, warm, warm]`. All five original physical
+records are byte-unchanged.
+
+**P1 — timestamps and source identity.** Future runs record
+`started_utc` at process launch, `finished_utc` after exit, and
+`orphan_scan.scanned_at` at scan time (demonstrated on the additional run:
+11:52:35 < 11:53:01 < 11:53:03). The frozen records' `started_utc` is NOT
+overwritten — the reconciliation file records that it represents post-run
+recording time. Source identity is now three-way distinguished:
+integration base `8147729`; the frozen runs executed **uncommitted** harness
+modifications (later committed as `78729e4`/`ee85a9b`); the additional run
+executed committed `c07aa9b…`. See
+`evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_RECONCILIATION.json`.
+
+**Final R22A.2.1 verdicts** — Part A: `ADAMW_AMP_MULTISTEP_PASS` (unchanged;
+no contradicting evidence). Part B: `WORKERS8_SHORT_RELIABILITY_PASS`
+(supported by complete logs: 6 runs, all committed, all rescanned under the
+hardened gate). Combined: `R22A2_GFX1100_SUPPLEMENTAL_PASS`
+(`DEV_SUPPLEMENTAL_VALIDATED`; no Stable claim). CPU contract 108/108;
+verifier self-test 18/18; no historical raw evidence modified; failed-attempt
+logs (`attempt1/attempt2`) preserved.

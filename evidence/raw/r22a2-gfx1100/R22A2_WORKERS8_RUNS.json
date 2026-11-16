@@ -1,24 +1,20 @@
 {
-  "source_head": "81477298bb25af892a457b57b4401e8c96fb9b15",
   "integration_base": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "code_under_test_frozen_runs": "harness working tree at execution time (uncommitted modifications later committed as 78729e4/ee85a9b)",
+  "code_under_test_additional_run": "c07aa9b07af3a6305d88011c328772eb19284151",
   "gpu_name": "AMD Radeon RX 7900 XTX",
   "gfx_target": "gfx1100",
   "windows_build": "10.0.26300.0",
   "driver_version": "32.0.21030.2001",
-  "python": "3.12.16",
-  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
-  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
-  "hip": "7.18.26441",
-  "ultralytics": "8.4.214",
   "runtime_class": "OFFICIAL_CANDIDATE",
-  "wheel_lock": "evidence/raw/r22-dev-rerun/resolved_wheel_lock.json (46 artifacts, audit ok, families [10])",
-  "miopen_dll_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
-  "mission": "R22A2",
   "run_id": "R22A2-B-RUNS",
-  "timestamp": "2026-11-16T09:16:40.495705+00:00",
+  "timestamp": "2026-11-16T11:55:14.026328+00:00",
   "runs": [
     {
+      "matrix": "cold",
       "run": 1,
+      "sample_class": "original",
+      "cache_role": "cold",
       "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
       "pid": 4836,
       "started_utc": "2026-11-16T09:06:28.530354+00:00",
@@ -64,11 +60,13 @@
       "gpu_name": "AMD Radeon RX 7900 XTX",
       "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
       "status": "PASS",
-      "failure_classification": null,
-      "matrix": "cold"
+      "failure_classification": null
     },
     {
+      "matrix": "cold",
       "run": 2,
+      "sample_class": "original",
+      "cache_role": "cold",
       "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
       "pid": 8152,
       "started_utc": "2026-11-16T09:08:29.392786+00:00",
@@ -114,11 +112,13 @@
       "gpu_name": "AMD Radeon RX 7900 XTX",
       "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
       "status": "PASS",
-      "failure_classification": null,
-      "matrix": "cold"
+      "failure_classification": null
     },
     {
+      "matrix": "warm",
       "run": 1,
+      "sample_class": "original",
+      "cache_role": "cache_priming",
       "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
       "pid": 25620,
       "started_utc": "2026-11-16T09:12:27.206981+00:00",
@@ -164,11 +164,13 @@
       "gpu_name": "AMD Radeon RX 7900 XTX",
       "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
       "status": "PASS",
-      "failure_classification": null,
-      "matrix": "warm"
+      "failure_classification": null
     },
     {
+      "matrix": "warm",
       "run": 2,
+      "sample_class": "original",
+      "cache_role": "warm",
       "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
       "pid": 18396,
       "started_utc": "2026-11-16T09:13:10.528385+00:00",
@@ -214,11 +216,13 @@
       "gpu_name": "AMD Radeon RX 7900 XTX",
       "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
       "status": "PASS",
-      "failure_classification": null,
-      "matrix": "warm"
+      "failure_classification": null
     },
     {
+      "matrix": "warm",
       "run": 3,
+      "sample_class": "original",
+      "cache_role": "warm",
       "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
       "pid": 15880,
       "started_utc": "2026-11-16T09:13:37.828614+00:00",
@@ -264,8 +268,155 @@
       "gpu_name": "AMD Radeon RX 7900 XTX",
       "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
       "status": "PASS",
-      "failure_classification": null,
-      "matrix": "warm"
+      "failure_classification": null
+    },
+    {
+      "matrix": "additional",
+      "run": 1,
+      "sample_class": "ADDITIONAL",
+      "cache_role": "warm",
+      "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
+      "pid": 20664,
+      "started_utc": "2026-11-16T11:52:35.155487+00:00",
+      "finished_utc": "2026-11-16T11:53:01.180210+00:00",
+      "home_pre_existed": true,
+      "exit_code": 0,
+      "duration_s": 26.0,
+      "cache_class": "warm(shared-isolated-USERPROFILE)",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "cache_expectation": "warm",
+      "requested_workers": 8,
+      "resolved_num_workers": 8,
+      "resolved_n_batches": 8,
+      "amp_enabled_child": true,
+      "optimizer_class_child": "AdamW",
+      "worker_activity_observed": true,
+      "worker_pids_observed": [
+        3096,
+        3588,
+        7212,
+        7588,
+        14132,
+        14152,
+        17200,
+        17348,
+        18368,
+        18512,
+        24184,
+        26680,
+        28392
+      ],
+      "peak_concurrent_workers": 13,
+      "monitor_samples": 24,
+      "orphan_workers_alive": 0,
+      "orphan_scan": {
+        "scanned_at": "2026-11-16T11:53:03.441589+00:00",
+        "orphan_pids": [],
+        "orphan_count": 0
+      },
+      "checkpoint_path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\last.pt",
+      "checkpoint_exists": true,
+      "log": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\child.log",
+      "log_sha256": "bb60ee4d82d0f6bf4d13975547e365aa3e90472faf56e26396e7c1b83efd3b26",
+      "child_has_main_guard": true,
+      "gpu_name": "AMD Radeon RX 7900 XTX",
+      "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+      "status": "PASS",
+      "failure_classification": null
+    }
+  ],
+  "per_run_verdicts_under_hardened_gate": [
+    {
+      "matrix": "cold",
+      "run": 1,
+      "sample_class": "original",
+      "cache_role": "cold",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\home",
+      "duration_s": 119.6,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": [
+        {
+          "signature": "MIOpen: Error [EvaluateInvokers]",
+          "classification": "MIOPEN_FIND_TIMING_DIAGNOSTIC",
+          "rationale": "MIOpen solver-find timing diagnostic emitted during first-use kernel-finder evaluation; observed ONLY in cache-priming runs (r22a2 cold_run01 / warm_run01), both of which completed exit 0 with full training, validation and checkpoints \u2014 the finder discards the invalid elapsed-time entry and continues",
+          "raw_line": "MIOpen: Error [EvaluateInvokers] DESKTOP-S6VG7J7:C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:545: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0"
+        }
+      ]
+    },
+    {
+      "matrix": "cold",
+      "run": 2,
+      "sample_class": "original",
+      "cache_role": "cold",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\home",
+      "duration_s": 118.6,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": []
+    },
+    {
+      "matrix": "warm",
+      "run": 1,
+      "sample_class": "original",
+      "cache_role": "cache_priming",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "duration_s": 119.1,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": [
+        {
+          "signature": "MIOpen: Error [EvaluateInvokers]",
+          "classification": "MIOPEN_FIND_TIMING_DIAGNOSTIC",
+          "rationale": "MIOpen solver-find timing diagnostic emitted during first-use kernel-finder evaluation; observed ONLY in cache-priming runs (r22a2 cold_run01 / warm_run01), both of which completed exit 0 with full training, validation and checkpoints \u2014 the finder discards the invalid elapsed-time entry and continues",
+          "raw_line": "MIOpen: Error [EvaluateInvokers] DESKTOP-S6VG7J7:C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:545: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0"
+        }
+      ]
+    },
+    {
+      "matrix": "warm",
+      "run": 2,
+      "sample_class": "original",
+      "cache_role": "warm",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "duration_s": 41.0,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": []
+    },
+    {
+      "matrix": "warm",
+      "run": 3,
+      "sample_class": "original",
+      "cache_role": "warm",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "duration_s": 25.0,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": []
+    },
+    {
+      "matrix": "additional",
+      "run": 1,
+      "sample_class": "ADDITIONAL",
+      "cache_role": "warm",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "duration_s": 26.0,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": []
     }
   ]
 }

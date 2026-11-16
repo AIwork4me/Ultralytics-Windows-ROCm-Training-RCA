@@ -30,6 +30,11 @@
       "path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run03\\train\\weights\\last.pt",
       "sha256": "888433f6fcf72467ff0b638f9fd1de760e52bf950a6d6ed77b0b6d137ed80128",
       "size": 5475397
+    },
+    "additional_run01": {
+      "path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\last.pt",
+      "sha256": "6148b806ea29f1101ecf14940b59e7daee3c3082d2ee9da897cb7ba36e8f807c",
+      "size": 5475397
     }
   }
 }

@@ -1,0 +1,476 @@
+{
+  "integration_base": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "code_under_test_frozen_runs": "harness working tree at execution time (uncommitted modifications later committed as 78729e4/ee85a9b)",
+  "code_under_test_additional_run": "c07aa9b07af3a6305d88011c328772eb19284151",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "mission": "R22A2.1",
+  "run_id": "R22A2-RECONCILE",
+  "timestamp": "2026-11-16T11:55:14.025045+00:00",
+  "p0a_evidence_restoration": {
+    "root_cause": "repo-wide .gitignore 'runs/' rule silently excluded evidence/raw/r22a2-gfx1100/runs/ from git add while SHA256SUMS.txt hashed the working-tree copies",
+    "restored_files": 8,
+    "verification": "every file verified against its FROZEN SHA256SUMS value from the C:/RadeonYOLO/R22A2 originals before staging; no synthetic replacements"
+  },
+  "p0c_hardened_gate_rescan_of_frozen_logs": [
+    {
+      "matrix": "cold",
+      "run": 1,
+      "sample_class": "original",
+      "cache_role": "cold",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\home",
+      "duration_s": 119.6,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": [
+        {
+          "signature": "MIOpen: Error [EvaluateInvokers]",
+          "classification": "MIOPEN_FIND_TIMING_DIAGNOSTIC",
+          "rationale": "MIOpen solver-find timing diagnostic emitted during first-use kernel-finder evaluation; observed ONLY in cache-priming runs (r22a2 cold_run01 / warm_run01), both of which completed exit 0 with full training, validation and checkpoints \u2014 the finder discards the invalid elapsed-time entry and continues",
+          "raw_line": "MIOpen: Error [EvaluateInvokers] DESKTOP-S6VG7J7:C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:545: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0"
+        }
+      ]
+    },
+    {
+      "matrix": "cold",
+      "run": 2,
+      "sample_class": "original",
+      "cache_role": "cold",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\home",
+      "duration_s": 118.6,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": []
+    },
+    {
+      "matrix": "warm",
+      "run": 1,
+      "sample_class": "original",
+      "cache_role": "cache_priming",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "duration_s": 119.1,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": [
+        {
+          "signature": "MIOpen: Error [EvaluateInvokers]",
+          "classification": "MIOPEN_FIND_TIMING_DIAGNOSTIC",
+          "rationale": "MIOpen solver-find timing diagnostic emitted during first-use kernel-finder evaluation; observed ONLY in cache-priming runs (r22a2 cold_run01 / warm_run01), both of which completed exit 0 with full training, validation and checkpoints \u2014 the finder discards the invalid elapsed-time entry and continues",
+          "raw_line": "MIOpen: Error [EvaluateInvokers] DESKTOP-S6VG7J7:C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:545: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0"
+        }
+      ]
+    },
+    {
+      "matrix": "warm",
+      "run": 2,
+      "sample_class": "original",
+      "cache_role": "warm",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "duration_s": 41.0,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": []
+    },
+    {
+      "matrix": "warm",
+      "run": 3,
+      "sample_class": "original",
+      "cache_role": "warm",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "duration_s": 25.0,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": []
+    },
+    {
+      "matrix": "additional",
+      "run": 1,
+      "sample_class": "ADDITIONAL",
+      "cache_role": "warm",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "duration_s": 26.0,
+      "exit_code": 0,
+      "verdict": "PASS",
+      "classification": null,
+      "fatal_anomalies": [],
+      "benign_anomalies": []
+    }
+  ],
+  "p0d_honest_classification": {
+    "frozen_matrix": "2 COLD + 1 CACHE_PRIMING + 2 WARM (the original 'warm 3/3' counted the priming run as pre-warmed)",
+    "priming_evidence": "warm-run1 duration 119.1s (compile) vs warm-run2/3 41.0s/25.0s; first use of the fresh shared home",
+    "additional_sample": {
+      "label": "ADDITIONAL \u2014 not a replacement for any earlier result",
+      "justification": "strict contract requires exactly 3 qualifying pre-warmed runs; the frozen matrix supplies 2. R22A.2.1 P0-D permits at most ONE additional short warm run after explicit justification. Executed on the committed hardened harness (c07aa9b07af3).",
+      "duration_s": 26.0,
+      "verdict": "PASS",
+      "home_pre_existed": true
+    },
+    "final_matrix": "2 COLD + 1 CACHE_PRIMING + 2 WARM + 1 ADDITIONAL WARM = 3 qualifying pre-warmed runs"
+  },
+  "p1_timestamp_reconciliation": {
+    "defect": "in the frozen records started_utc was assigned at record-build time (after process exit and orphan scan), so it represents post-run recording time, not actual process start",
+    "frozen_records": "original timestamps preserved verbatim \u2014 never overwritten; this note is the authoritative reading",
+    "fixed_code": "future runs record started_utc at Popen launch, finished_utc after exit, orphan_scan.scanned_at at scan",
+    "additional_run_timestamps": {
+      "started_utc": "2026-11-16T11:52:35.155487+00:00",
+      "finished_utc": "2026-11-16T11:53:01.180210+00:00",
+      "orphan_scanned_at": "2026-11-16T11:53:03.441589+00:00"
+    }
+  },
+  "source_identity": {
+    "integration_base": "81477298bb25af892a457b57b4401e8c96fb9b15",
+    "code_under_test": {
+      "frozen_five_runs": "harness working tree at execution time (uncommitted modifications later committed as 78729e4/ee85a9b)",
+      "additional_run": "c07aa9b07af3a6305d88011c328772eb19284151"
+    },
+    "note": "the base commit is NOT the executed source revision for the frozen runs \u2014 they executed uncommitted harness modifications"
+  },
+  "matrix_evaluation": {
+    "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+    "reason": "exact matrix satisfied: 2 COLD (distinct homes) + 1 CACHE_PRIMING + 3 WARM (shared home), all 6 PASS with workers=8 verified OS-level and clean shutdown",
+    "run_verdicts": [
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "anomaly_evidence": {
+          "fatal": [],
+          "benign": [
+            {
+              "signature": "MIOpen: Error [EvaluateInvokers]",
+              "classification": "MIOPEN_FIND_TIMING_DIAGNOSTIC",
+              "rationale": "MIOpen solver-find timing diagnostic emitted during first-use kernel-finder evaluation; observed ONLY in cache-priming runs (r22a2 cold_run01 / warm_run01), both of which completed exit 0 with full training, validation and checkpoints \u2014 the finder discards the invalid elapsed-time entry and continues",
+              "raw_line": "MIOpen: Error [EvaluateInvokers] DESKTOP-S6VG7J7:C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:545: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0"
+            }
+          ]
+        },
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "no_fatal_anomaly_signatures",
+            "ok": true,
+            "detail": "no fatal signatures; 1 benign documented diagnostic(s) classified & preserved"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "anomaly_evidence": {
+          "fatal": [],
+          "benign": []
+        },
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "no_fatal_anomaly_signatures",
+            "ok": true,
+            "detail": "no fatal HIP/MIOpen/worker signatures in raw log"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "anomaly_evidence": {
+          "fatal": [],
+          "benign": [
+            {
+              "signature": "MIOpen: Error [EvaluateInvokers]",
+              "classification": "MIOPEN_FIND_TIMING_DIAGNOSTIC",
+              "rationale": "MIOpen solver-find timing diagnostic emitted during first-use kernel-finder evaluation; observed ONLY in cache-priming runs (r22a2 cold_run01 / warm_run01), both of which completed exit 0 with full training, validation and checkpoints \u2014 the finder discards the invalid elapsed-time entry and continues",
+              "raw_line": "MIOpen: Error [EvaluateInvokers] DESKTOP-S6VG7J7:C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:545: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0"
+            }
+          ]
+        },
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "no_fatal_anomaly_signatures",
+            "ok": true,
+            "detail": "no fatal signatures; 1 benign documented diagnostic(s) classified & preserved"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run01\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "anomaly_evidence": {
+          "fatal": [],
+          "benign": []
+        },
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "no_fatal_anomaly_signatures",
+            "ok": true,
+            "detail": "no fatal HIP/MIOpen/worker signatures in raw log"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run02\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "anomaly_evidence": {
+          "fatal": [],
+          "benign": []
+        },
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "no_fatal_anomaly_signatures",
+            "ok": true,
+            "detail": "no fatal HIP/MIOpen/worker signatures in raw log"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run03\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "anomaly_evidence": {
+          "fatal": [],
+          "benign": []
+        },
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "no_fatal_anomaly_signatures",
+            "ok": true,
+            "detail": "no fatal HIP/MIOpen/worker signatures in raw log"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\last.pt"
+          }
+        ]
+      }
+    ],
+    "roles": [
+      "cold",
+      "cold",
+      "cache_priming",
+      "warm",
+      "warm",
+      "warm"
+    ]
+  },
+  "final_verdicts": {
+    "part_a": "ADAMW_AMP_MULTISTEP_PASS",
+    "part_b": "WORKERS8_SHORT_RELIABILITY_PASS",
+    "combined": "R22A2_GFX1100_SUPPLEMENTAL_PASS",
+    "maximum_classification": "DEV_SUPPLEMENTAL_VALIDATED"
+  }
+}
