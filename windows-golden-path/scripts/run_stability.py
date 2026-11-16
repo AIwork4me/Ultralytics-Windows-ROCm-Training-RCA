@@ -1192,19 +1192,26 @@ def main() -> None:
     verdict = "PASS" if n_pass == len(runs) and runs else "FAIL"
     matrix_evaluation = None
     workers8_overall = None
-    if args.workers > 0:
-        warm_expected = max(len(runs) - cold_runs, 0)
-        workers8_overall = overall_workers8_verdict(runs, cold_runs, warm_expected)
+    if args.workers > 0 and args.strict_matrix:
+        # The FULL matrix-size contract is enforced only under --strict-matrix
+        # (a single invocation covering the whole planned composition).
+        # Partial invocations — e.g. ONE additional justified warm sample —
+        # carry per-run verdicts; the acceptance-level matrix is derived
+        # across invocations by supplemental_acceptance (CPU-testable).
+        matrix_evaluation = evaluate_workers_matrix({
+            "runs": runs,
+            "child_has_main_guard": all(r.get("child_has_main_guard") for r in runs
+                                        if r.get("run")),
+            "gpu_name": gpu_name0,
+            "expected_cold": args.expected_cold,
+            "expected_warm": args.expected_warm,
+        })
+        workers8_overall = {"verdict": matrix_evaluation["verdict"],
+                            "problems": [matrix_evaluation["reason"]]
+                            if matrix_evaluation.get("reason") else []}
         verdict = "PASS" \
-            if workers8_overall["verdict"] == "WORKERS8_SHORT_RELIABILITY_PASS" else "FAIL"
-        if args.strict_matrix:
-            matrix_evaluation = evaluate_workers_matrix({
-                "runs": runs,
-                "child_has_main_guard": all(r.get("child_has_main_guard") for r in runs),
-                "gpu_name": gpu_name0,
-                "expected_cold": args.expected_cold,
-                "expected_warm": args.expected_warm,
-            })
+            if matrix_evaluation["verdict"] == "WORKERS8_SHORT_RELIABILITY_PASS" \
+            else "FAIL"
 
     record = {
         "run_id": args.run_id, "mission": args.mission, "timestamp": gp_lib.now_utc(),
