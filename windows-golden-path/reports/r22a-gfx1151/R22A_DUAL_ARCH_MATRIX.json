@@ -1,0 +1,89 @@
+{
+  "run_id": "R22A-DUAL-ARCH-MATRIX",
+  "timestamp": "2026-11-16T02:04:39.460077+00:00",
+  "therock_snapshot": "ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "snapshot_identical_both_arch": true,
+  "gfx1100": {
+    "source": "frozen evidence/raw/r22-dev-rerun + reports/r22-dev-rerun-orchestrated",
+    "gpu_class": "discrete dGPU (RX 7900 XTX class host)",
+    "python_tag": "cp312",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "ultralytics": "8.4.214",
+    "rocm_sdk_libraries_sha256": "dac27df54d5f659e50e8b098fd751386930b08c607f9272c5d25b3c27f0b7d56",
+    "verdict": "DEV_CANDIDATE_PASS",
+    "gates": {
+      "G0_provenance": "PASS",
+      "G1_miopen_nostl": "PASS",
+      "G2_torch_torchvision_gpu": "PASS",
+      "G3_ultralytics_cli": "PASS",
+      "G4_optimizer_update": "PASS",
+      "G5_checkpoint_resume": "PASS",
+      "G8_reliability": "PASS"
+    },
+    "g8_cold": null,
+    "device_minus_1_selects_gpu": true
+  },
+  "gfx1151": {
+    "source": "live run C:/RadeonYOLO/R22A/evidence/r22-candidate (this mission)",
+    "gpu_class": "APU (Radeon 8060S, Ryzen AI MAX+ 395)",
+    "gpu_name": "AMD Radeon(TM",
+    "python_tag": "cp312",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "ultralytics": "8.4.214",
+    "rocm_sdk_libraries_sha256": "dac27df54d5f659e50e8b098fd751386930b08c607f9272c5d25b3c27f0b7d56",
+    "verdict": "DEV_CANDIDATE_PASS (recomputed from gate evidence)",
+    "g3": {
+      "command": "yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1",
+      "exit": 0,
+      "amp_check": "PASSED",
+      "epoch_completed": true,
+      "gpu": "CUDA:0",
+      "n_checkpoints": 2
+    },
+    "g4": {
+      "amp_resolved": true,
+      "optimizer": "SGD",
+      "fused": false,
+      "steps": 184,
+      "tensors_changed": 359,
+      "tensors_total": 366,
+      "all_finite": true,
+      "scaler_backoffs": 3
+    },
+    "g5": {
+      "pass": "PASS",
+      "epochs_continuity": null,
+      "resume_process": null,
+      "inference_third_process": null
+    },
+    "g8": {
+      "pass": "PASS",
+      "n_pass": 10,
+      "n_total": 10,
+      "cache_class": "cold(fresh-USERPROFILE per run)",
+      "anomaly_tally": {}
+    }
+  },
+  "shared_provenance": {
+    "shared_packages_identical": true,
+    "n_shared": 43,
+    "arch_specific_gfx1151": [
+      "amd-torch-device-gfx1151",
+      "amd-torchvision-device-gfx1151",
+      "rocm-sdk-device-gfx1151"
+    ],
+    "arch_specific_gfx1100": [
+      "amd-torch-device-gfx1100",
+      "amd-torchvision-device-gfx1100",
+      "rocm-sdk-device-gfx1100"
+    ],
+    "dependency_differences": [],
+    "embedded_miopen_version": "3.6.3.4e7d93e3 (both arch; wheel byte-identical)",
+    "fix_ancestry": "f0a5d266 ancestor of 4e7d93e3, behind_by=0 (live GitHub compare)"
+  },
+  "notes": [
+    "raw wall-time NOT compared: APU vs dGPU differ in bandwidth/memory topology/TDP (mission section 14 forbids performance claims without controlled benchmark)",
+    "G9 classification both hosts: HOST_REUSE_FRESH_VENV"
+  ],
+  "R22_DEV_DUAL_ARCH_VALIDATED": true
+}

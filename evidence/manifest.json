@@ -1034,5 +1034,341 @@
     "command": "archived 2026-11-15T16:02:56Z (R21 mission)",
     "sha256": "c0b75461b19967a41432c679ea5888ebe517ad4ddea8398384318dc81ceed583",
     "size_bytes": 4151
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/g3_train_run_outputs/args.yaml",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "8b5acaf9c8ab4c2fb184e5bb50a4f6f7c64cf136a314fe456b3db17a2a54c825",
+    "size_bytes": 1773
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/g3_train_run_outputs/results.csv",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "46997585fe30adf3fe644650e22cd0cc29fd61eff9b225ba5d090e104c121f1a",
+    "size_bytes": 307
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gate_status.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "90e2a12e79d0a28d0dab74e614d0dbf21c82d20abdf920d2b685c0c6b96f051f",
+    "size_bytes": 1474
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpA_provenance.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "28ad7b4e2a416197531f6f15a5d23c928b16a886b4ad099346b04c5c7e3aad5f",
+    "size_bytes": 21966
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpA_provenance.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "b7e4567bb8368193853ffeee16276fe98b1b2393b3e6c52720ad3c353ddd6c95",
+    "size_bytes": 7062
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpB_torch_gates.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "1338ef75a812a83529d87bf7d064a41cffa72653733159897e6fd8a43e2f300d",
+    "size_bytes": 2648
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpB_torch_gates.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "c232518167c4187e1c55c9af5e37766dfff30e9b96d69938bce2d5dcae5410be",
+    "size_bytes": 468
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpC_nostl.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "3da797dd2a36603df38531c2a409245b17709095bd71296887e690d3d27c5a87",
+    "size_bytes": 2306
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpC_nostl.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "d93950220a3720c2807e2a58b0832f29c6aa7620610c56e5d084b46fd0383f0b",
+    "size_bytes": 288
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpD_train_cli.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "89fbe869598e1b4b5fdb0a0e9ed252f1f8c989fa00de260cb65a185259659e77",
+    "size_bytes": 1276
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpD_train_cli.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "7c75baeb0a6e59bce8b27410cae4612e45c70cf6ef96e1185c17aae34fd34c79",
+    "size_bytes": 498
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/attempt1_g3_first_failure/gpD_train_stdout.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "b75252114c04197ad18c374c9d76ba0faf84806d3e8c5f4e47e89e22527c5d86",
+    "size_bytes": 11097
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/g8_cold_stability_runs.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "d316efbc617e3196738cc2ab15a2f462329f9d23a5d7b271bb65a6825f1c86c9",
+    "size_bytes": 2514
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/g8_warm_stability_runs.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "26343eb7da5dff03a65f434032d49dcf725ce5c549bffbbbecf4fd1255aba535",
+    "size_bytes": 708
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gate_status.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "79603cab077c83e8bf7ba2a5e556c6b9ff92f767d1a04d6c43960f94c6c46e17",
+    "size_bytes": 2634
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpA_provenance.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "dde5d258a37e9434e811ebe710f830c20a51f5203cd453fe468e707a6fed3da9",
+    "size_bytes": 21966
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpA_provenance.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "06e0d3aa1e8293e079c5680e2bfc3677cc4e61a585e9af300334870969742b1d",
+    "size_bytes": 7062
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpB_torch_gates.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "f318b32cb6363018c114df37a37c1adad76298f86561d22a91218f7cbd689c52",
+    "size_bytes": 2649
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpB_torch_gates.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "c42491bbde615ffa334681f6323fc1bbc41d446a47f210340b98473474d8a01e",
+    "size_bytes": 934
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpC_nostl.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "d06443845c69944a7f8eba4cf153fc2dc29da8e17d9067a60dc520c29034d6b5",
+    "size_bytes": 2306
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpC_nostl.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "fd114b219f4d5990e6359a746e94c2ba5a36c026f1a00283bdcb9fab86c367a9",
+    "size_bytes": 574
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpD_train_cli.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "15bed513e50c958016374491d856b36c1cd4c27811b2aa4014e016ad45866f55",
+    "size_bytes": 1728
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpD_train_cli.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "03207a7cb17e9ffbf8b32a47fb742e7da9013d4b634c3bd86f4ae9c1b33ee417",
+    "size_bytes": 994
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpD_train_stdout.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "b52f4c39b9e443e39d0cea9fb86b7b1643d65f42e66a99bc48ba0f49d7c1aeab",
+    "size_bytes": 9156
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpE_optimizer.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "0fa6b46b24866102b6dbb4f8e33a5c3854eecbbda90c8475ac124ac4056dbebb",
+    "size_bytes": 2537
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpE_optimizer.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "2fbf8fd5535b3cd9871a6e046bc4a98c29362bbb0ba8cec608c58f2bc8022438",
+    "size_bytes": 69902
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpF_resume.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "3d059addda2d60cf696c69752c6507120af9b4b7193849094c76b02ef37e8975",
+    "size_bytes": 1942
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpF_resume.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "56bf1d0260aa84db9f56a33a0bce191950fdfbda764ce3e3b5012fc175d04d18",
+    "size_bytes": 1012
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpH2_stability_warm.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "9ea6eea928e345348d0d05eae84fe4ee7e2c543da23672a6bc11010502b717df",
+    "size_bytes": 1802
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpH_stability.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "e19a8539e186a3b3a4da498844530460a864ea6c0ecef94662f09ec1b800d34c",
+    "size_bytes": 3784
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/gpH_stability.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "68f4d8edd34ac014780fd246243bab68ee9c3c6411a6b37458242343d0bc0603",
+    "size_bytes": 734
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_BINARY_PROVENANCE.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "9f81d2c3d37150efa8e6752c895f4e44d975e6973fc5eef2dccbcb069ce35ab7",
+    "size_bytes": 1569
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/r22a_channel_binary_audit_gfx1151.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "942e38cf86959dfbdcfe4d2620c78d9cc3211fa8bcaf01dc3b85f706d90c2e4d",
+    "size_bytes": 2701
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_ENVIRONMENT_BASELINE.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "474fff741585eaf9b5341844702ddff412336df6d05de30d2cb53e2fbd779e1e",
+    "size_bytes": 4827
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_GATES.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "add665f3ade847470496c07ec9514f66088772d7b900458243614c8cc1b32187",
+    "size_bytes": 2122
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_GFX1100_VS_GFX1151_LOCK_DIFF.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "8bd3df6c3e68985715926e9b9751079ddcb0b6189638d0afbe2116a2bcb5324b",
+    "size_bytes": 18620
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_GFX1151_PACKAGE_LOCK.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+    "size_bytes": 27091
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_PACKAGE_LOCK.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+    "size_bytes": 27091
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_RELIABILITY.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "d2c87c29e7d03aa56b4cb6b7645ab76e0f47b5400a03951fc4aab587751f3c62",
+    "size_bytes": 857
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_SOURCE_ANCESTRY.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "79bc74086fb59f5bfbddd9093e8ab1bb799f988801799278003c1abacebae704",
+    "size_bytes": 866
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/R22A_WHEEL_DISCOVERY.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "a367453979966b2c9c99a44d40c02e7a66960d671d7f854ae0774de20b1b5eaf",
+    "size_bytes": 2193791
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/stageA_cpu_contract_pytest.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "343df087bed9df5af88e49a0816d166fac7314ad599631bd4d9bdcae08e4a04c",
+    "size_bytes": 101
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/stageA_host_probe.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "571b4fd475d8eef8c7ceb78764324f2c20a48855c9356689d2fe4833e1a8c77f",
+    "size_bytes": 1354
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/stageA_rca_verifier.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "9a1e56cd587d569c0bb400882d3a563a0eb19094e3136b411abe7c6777fc4886",
+    "size_bytes": 220
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/stageA_verifier_selftest.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "29a59873eecb9dd6322758ab1174ce5b8bee391503b1fac4afe497769b47f9e9",
+    "size_bytes": 25
+  },
+  {
+    "path": "evidence/raw/r22a-gfx1151/stageC_gpu_probe.log",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance)",
+    "sha256": "a0a3ed239cba9c03407c2243ac3fb0465347b4e8449b86535e1b2cec934f6060",
+    "size_bytes": 431
+  },
+  {
+    "path": "windows-golden-path/reports/r22a-gfx1151/R22A_DUAL_ARCH_MATRIX.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission report artifacts",
+    "sha256": "d587143a8e53d134a6d3856dac9d3e7c6fa19cbdb34dc5de32615b9a0ae0b4b8",
+    "size_bytes": 3205
+  },
+  {
+    "path": "windows-golden-path/reports/r22a-gfx1151/report.json",
+    "timestamp": "2026-11-16T02:05:26.948818+00:00",
+    "command": "R22A mission report artifacts",
+    "sha256": "bfa808818ae28bfc07d6a72c93b88a2413ff92a1481880ec6c269d767438a76a",
+    "size_bytes": 3141
   }
 ]

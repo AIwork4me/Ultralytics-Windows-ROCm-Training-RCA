@@ -1,0 +1,106 @@
+{
+  "run_id": "GP-B-20261116-093332",
+  "mission": "R21",
+  "timestamp": "2026-11-16T01:33:52.926946+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python verify_torchvision_ops.py",
+  "exit_code": 0,
+  "duration_s": 14.45,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\R22A\\evidence\\r22-candidate\\gpB_torch_gates.log",
+  "gates": {
+    "cuda_available": {
+      "status": "PASS",
+      "detail": {
+        "device_count": 1
+      }
+    },
+    "device_identity": {
+      "status": "PASS",
+      "detail": {
+        "name": "AMD Radeon(TM) 8060S Graphics",
+        "capability": [
+          11,
+          5
+        ],
+        "gfx_target": "gfx1151"
+      }
+    },
+    "fp32_gemm": {
+      "status": "PASS",
+      "detail": {
+        "sum": -22728.517578125
+      }
+    },
+    "fp16_gemm": {
+      "status": "PASS",
+      "detail": {
+        "sum": -7686.35302734375
+      }
+    },
+    "autograd": {
+      "status": "PASS",
+      "detail": {
+        "loss": 3948.62109375
+      }
+    },
+    "conv2d_fwd_bwd": {
+      "status": "PASS",
+      "detail": {
+        "out_shape": [
+          4,
+          16,
+          64,
+          64
+        ]
+      }
+    },
+    "batchnorm_fwd_bwd": {
+      "status": "PASS",
+      "detail": {
+        "out_shape": [
+          8,
+          16,
+          32,
+          32
+        ]
+      }
+    },
+    "torchvision_nms_gpu": {
+      "status": "PASS",
+      "detail": {
+        "keep": [
+          0,
+          2
+        ],
+        "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6"
+      }
+    },
+    "tensor_lifetime": {
+      "status": "PASS",
+      "detail": {
+        "cycles": 50
+      }
+    }
+  },
+  "cpu_fallback_used": false,
+  "miopen_identity": {
+    "loaded": true,
+    "path": "C:\\RadeonYOLO\\R22A\\venvs\\r22-candidate\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+    "bytes": 501333504,
+    "embedded_version_strings": [
+      "3.6.3.4e7d93e3"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  }
+}

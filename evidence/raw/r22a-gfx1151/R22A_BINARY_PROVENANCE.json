@@ -1,0 +1,37 @@
+{
+  "run_id": "R22A-BINARY-PROVENANCE",
+  "timestamp": "2026-11-16T01:24:24.420735+00:00",
+  "gfx_target": "gfx1151",
+  "therock_snapshot": "ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "rocm_sdk_libraries_wheel": {
+    "version": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "url": "https://dev.repo.amd.com/rocm/core/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.3.0.dev0%2Bff5769655eeb1b91a46bce9edc16d87ca0efe7b6-py3-none-win_amd64.whl",
+    "sha256_lock": "dac27df54d5f659e50e8b098fd751386930b08c607f9272c5d25b3c27f0b7d56",
+    "sha256_recomputed": "dac27df54d5f659e50e8b098fd751386930b08c607f9272c5d25b3c27f0b7d56",
+    "match": true
+  },
+  "embedded_miopen_dll": {
+    "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+    "version_strings": [
+      "3.6.3.4e7d93e3"
+    ],
+    "build_commit": "4e7d93e3",
+    "marker_miopen_initializer_list": 2,
+    "marker_note": "screening signal only; ancestry is the authority"
+  },
+  "loaded_dll_verified_at_G0": "pending (verify_provenance.py inside venv)",
+  "source_ancestry": {
+    "compare": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a...4e7d93e34d3572405ca93b93021439ea9716824a",
+    "status": "ahead",
+    "ahead_by": 604,
+    "behind_by": 0,
+    "fix_is_ancestor": true,
+    "therock_submodule_pointer": "4e7d93e34d3572405ca93b93021439ea9716824a"
+  },
+  "lock_diff_summary": {
+    "SHARED_PACKAGES_IDENTICAL": true,
+    "ARCH_SPECIFIC_PACKAGES_DIFFER": true,
+    "DEPENDENCY_DIFFERENCES": [],
+    "INCOMPATIBLE_DIFFERENCES": []
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "run_id": "GP-OfficialCandidate-20261116-093332",
+  "timestamp": "2026-11-16T02:05:26.948818+00:00",
+  "mode": "OfficialCandidate",
+  "overall": "GO",
+  "gates": [
+    {
+      "status": "PASS",
+      "gate": "G0_provenance",
+      "ended_utc": "2026-11-16T01:33:38.0719089Z",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "status": "PASS",
+      "gate": "G2_torch_torchvision_gpu",
+      "ended_utc": "2026-11-16T01:33:55.6448038Z",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "status": "PASS",
+      "gate": "G1_miopen_nostl",
+      "ended_utc": "2026-11-16T01:34:13.4708395Z",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "status": "PASS",
+      "gate": "G3_ultralytics_cli",
+      "ended_utc": "2026-11-16T01:34:55.4403258Z",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "status": "PASS",
+      "gate": "G4_optimizer_update",
+      "ended_utc": "2026-11-16T01:36:20.5723640Z",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "status": "PASS",
+      "gate": "G5_checkpoint_resume",
+      "ended_utc": "2026-11-16T01:38:42.1568685Z",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "status": "PASS",
+      "gate": "G8_reliability",
+      "ended_utc": "2026-11-16T01:59:15.1773436Z",
+      "accepted": true,
+      "exit_code": 0
+    },
+    {
+      "status": "PASS",
+      "gate": "REPORT_generate_report_full",
+      "ended_utc": "2026-11-16T01:59:15.3866773Z",
+      "accepted": true,
+      "exit_code": 0
+    }
+  ],
+  "attempt1_disclosure": {
+    "note": "attempt 1 stopped NO-GO at G3: training itself exited 0 with checkpoints saved (mAP50 0.941) but env-prep settings.json runs_dir override displaced checkpoints out of the gate's workdir scan; harness/stack defect NONE; env-prep corrected (runs_dir removed) before attempt 2; full archive in attempt1_g3_first_failure/",
+    "attempt1_gates": [
+      "G0 PASS",
+      "G2 PASS",
+      "G1 PASS",
+      "G3 FAIL(env-prep)"
+    ]
+  },
+  "max_verdict_allowed": "DEV_CANDIDATE_PASS"
+}
