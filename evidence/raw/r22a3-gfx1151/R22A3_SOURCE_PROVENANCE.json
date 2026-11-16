@@ -1,0 +1,40 @@
+{
+  "run_id": "R22A3-PROV",
+  "mission": "R22A.3",
+  "timestamp": "2026-11-16T10:07:17.078916+00:00",
+  "branch": "feature/r22a3-gfx1151-adamw-workers8",
+  "integration_base_sha": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "integration_base_note": "remote work/windows-rocm-training-release-closure HEAD at mission start (GitHub API verified, then git-fetched); base tree == PR #16 head d13c975 tree 1617237e",
+  "feature_head_at_time_of_runs": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "harness_scripts": {
+    "windows-golden-path/scripts/audit_adamw_amp.py": {
+      "sha256": "96456e485c1c1770ccf941ca62fa10ba5409aa687a8e050fc10f1426ab2a982c",
+      "role": "Part A default optimizer=auto->AdamW + AMP audit"
+    },
+    "windows-golden-path/scripts/run_stability.py": {
+      "sha256": "f27bbfa526c8e2b9817219e02dfb898a84ea1b2dbd132cb0603613dd99befdfa",
+      "role": "Part B workers=8 matrix (minimal extension of the accepted R21/R22 runner; historical defaults preserved)"
+    },
+    "windows-golden-path/scripts/r22a3_acceptance.py": {
+      "sha256": "3cc92f91e91111091dc401dbe913e5297d5fdd6c3ecfcfa92c92071530ba198c",
+      "role": "combined acceptance recomputation"
+    },
+    "windows-golden-path/scripts/gp_lib.py": {
+      "sha256": "1bee98ebfb08082142bfd17e2cf553f38582ca621b8a6110ff2c48d72025fcf5",
+      "role": "shared evidence library (UNCHANGED from baseline 8147729)"
+    }
+  },
+  "frozen_stack_reference": {
+    "wheel_lock": "evidence/raw/r22a-gfx1151/R22A_GFX1151_PACKAGE_LOCK.json",
+    "wheel_lock_sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+    "loaded_miopen_dll_sha256_expected": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91"
+  },
+  "attempted_runs_disclosure": {
+    "note": "Part A executed 4 attempts with the IDENTICAL bounded workload; attempts 1-3 failed in post-training harness receipt/instrumentation code only (training itself completed each time); all attempt logs preserved in this directory; no PASS-shopping: the stack-under-test trained successfully in every attempt",
+    "A1": "evidence writer raised missing-required-key (command) AFTER completed training \u2014 log R22A3_ADAMW_AMP_A1_ATTEMPT1.log",
+    "A2": "torch.dtype not JSON serializable AFTER completed training \u2014 log R22A3_ADAMW_AMP_A2_ATTEMPT2.log",
+    "A3": "sentinel selection empty (trainer builds its own model instance; id-match against pre-training snapshot found nothing) \u2014 evidence R22A3_ADAMW_AMP_A3_ATTEMPT3.json; stack physically trained (366/366 params changed) but per-step effectiveness unobserved",
+    "A4": "instrument repaired and CPU-verified (verify_instrument_cpu) before the final run \u2014 ADAMW_AMP_MULTISTEP_PASS"
+  },
+  "environment_baseline": "R22A3_ENVIRONMENT_BASELINE.json (FROZEN STACK CONFIRMED, zero drift)"
+}

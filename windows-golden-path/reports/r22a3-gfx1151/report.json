@@ -1,0 +1,70 @@
+{
+  "mission": "R22A.3",
+  "generated_utc": "2026-11-16T10:06:59.269667+00:00",
+  "base_sha": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "feature_head_at_runs": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "environment": {
+    "gpu": "AMD Radeon(TM) 8060S Graphics",
+    "gfx_target": "gfx1151",
+    "windows": "10.0.26200.0",
+    "driver": "32.0.22032.6002",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "hip": "7.18.26441",
+    "ultralytics": "8.4.214",
+    "miopen_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+    "wheel_lock_sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+    "runtime_class": "OFFICIAL_CANDIDATE"
+  },
+  "part_a": {
+    "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+    "optimizer_requested": "auto",
+    "optimizer_resolved": "AdamW",
+    "optimizer_class": "AdamW",
+    "lr_auto": 0.000119,
+    "amp_resolved": true,
+    "autocast_dtype_observed": "float16",
+    "autocast_forward_samples": {
+      "sampled": 48,
+      "enabled": 48
+    },
+    "attempted_steps": 11,
+    "effective_updates": 7,
+    "found_inf_skips": 4,
+    "scaler_backoffs": 4,
+    "params_changed": "366/366",
+    "all_finite": true,
+    "checkpoint_sha256": "4e72b1034f71953471815bfb9bbd006f2b4caca4d1ed4493da9ace0e0bef0e84",
+    "attempts": "A1-A3 harness-receipt/instrument failures disclosed+preserved; A4 final (see SOURCE_PROVENANCE)"
+  },
+  "part_b": {
+    "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+    "cold": "2/2",
+    "warm": "3/3",
+    "requested_workers": 8,
+    "resolved_workers_each_run": [
+      8
+    ],
+    "distinct_worker_pids_each_run": [
+      13
+    ],
+    "shutdown": "CLEAN x5",
+    "anomalies": {}
+  },
+  "combined": {
+    "verdict": "R22A3_GFX1151_SUPPLEMENTAL_PASS",
+    "reasons": [],
+    "part_a_recomputed": {
+      "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+      "failure_classification": null
+    },
+    "part_b_overall": {
+      "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+      "problems": [],
+      "cold_pass": "2/2",
+      "warm_pass": "3/3",
+      "n_planned": 5
+    },
+    "runtime_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)"
+  }
+}
