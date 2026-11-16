@@ -1466,11 +1466,11 @@
  },
  {
   "path": "evidence/raw/r22a3-gfx1151/SHA256SUMS.txt",
-  "timestamp": "2026-11-16T15:11:31.494530+00:00",
+  "timestamp": "2026-11-16T15:17:18.894681+00:00",
   "command": "R22A.3 mission artifacts (Part A default AdamW+AMP audit, Part B workers=8 matrix, combined acceptance)",
-  "sha256": "d0477d4d5e64721bb49ad5662222cc65900056357903caaf89cf23003531aae4",
-  "size_bytes": 2923,
-  "note": "R22A.4: refreshed after appending recovered runs/ entries"
+  "sha256": "0acdc3b452cb0df1ed1a3ed116a00712c57b66708440255b8e7e98ff2ab999a7",
+  "size_bytes": 3598,
+  "note": "R22A.4: refreshed after additional-warm-sample entries"
  },
  {
   "path": "windows-golden-path/reports/r22a3-gfx1151/report.json",
@@ -1564,5 +1564,40 @@
   "command": "R22A.4 P0-A class evidence recovery: original per-run child logs/facts/sample-child from C:/RadeonYOLO/R22A3/scratch/workers8 (LF-normalized SHA256 verified equal to each frozen raw_log_sha256 BEFORE staging; original bytes preserved, no synthetic replacement)",
   "sha256": "4f4f7530c32f9e108776834c4a953551e5655d2eaa9c0ff25879b70596028143",
   "size_bytes": 3422
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8_WARM_ADDITIONAL.json",
+  "timestamp": "2026-11-16T15:17:18.894681+00:00",
+  "command": "R22A.4 sec5/13 minimum focused GPU probe: ONE additional justified warm sample (sample_class=additional, home_pre_existed=true) on the retained shared warm-home-b completing 2 COLD + 3 qualifying WARM for gfx1151; unified committed harness; run-id R22A4-B-ADD1; exit 0, workers 8/8, 13 identities, peak 13, monitor health fully recorded",
+  "sha256": "15d6b5c46241fd7a0c6c1c3686e200d214cf700232a07762e11b01c495489dcb",
+  "size_bytes": 11109
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8_WARM_ADDITIONAL_RUNS.json",
+  "timestamp": "2026-11-16T15:17:18.894681+00:00",
+  "command": "R22A.4 sec5/13 minimum focused GPU probe: ONE additional justified warm sample (sample_class=additional, home_pre_existed=true) on the retained shared warm-home-b completing 2 COLD + 3 qualifying WARM for gfx1151; unified committed harness; run-id R22A4-B-ADD1; exit 0, workers 8/8, 13 identities, peak 13, monitor health fully recorded",
+  "sha256": "039c1eb2fac9eb46854efff5285855acb31107196a6049bcdec3854588634e11",
+  "size_bytes": 8412
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run06_additional.log",
+  "timestamp": "2026-11-16T15:17:18.894681+00:00",
+  "command": "R22A.4 sec5/13 minimum focused GPU probe: ONE additional justified warm sample (sample_class=additional, home_pre_existed=true) on the retained shared warm-home-b completing 2 COLD + 3 qualifying WARM for gfx1151; unified committed harness; run-id R22A4-B-ADD1; exit 0, workers 8/8, 13 identities, peak 13, monitor health fully recorded",
+  "sha256": "fde739a2461ba3b9c257030bb051764d5cc3cc2fff0cb5ed1abc1550c79788a2",
+  "size_bytes": 16029
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run06_additional_facts.json",
+  "timestamp": "2026-11-16T15:17:18.894681+00:00",
+  "command": "R22A.4 sec5/13 minimum focused GPU probe: ONE additional justified warm sample (sample_class=additional, home_pre_existed=true) on the retained shared warm-home-b completing 2 COLD + 3 qualifying WARM for gfx1151; unified committed harness; run-id R22A4-B-ADD1; exit 0, workers 8/8, 13 identities, peak 13, monitor health fully recorded",
+  "sha256": "49eac05a05aef927bc1b383d6b5a865c79f237996a1eee6400f55badf33cf63f",
+  "size_bytes": 1115
+ },
+ {
+  "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run06_additional_run_record.json",
+  "timestamp": "2026-11-16T15:17:18.894681+00:00",
+  "command": "R22A.4 sec5/13 minimum focused GPU probe: ONE additional justified warm sample (sample_class=additional, home_pre_existed=true) on the retained shared warm-home-b completing 2 COLD + 3 qualifying WARM for gfx1151; unified committed harness; run-id R22A4-B-ADD1; exit 0, workers 8/8, 13 identities, peak 13, monitor health fully recorded",
+  "sha256": "f1c1d9f8af32517bb6ffeb90e2008bbeb37fb3b41370c15d4297eff803b75142",
+  "size_bytes": 7918
  }
 ]
