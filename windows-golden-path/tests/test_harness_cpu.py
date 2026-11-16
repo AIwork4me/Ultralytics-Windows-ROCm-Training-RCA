@@ -531,3 +531,166 @@ class TestGateOrchestrationStatic:
         # no install command may run before the mode gate
         assert "-m venv" not in src.split("# --- explicitly labeled")[0]
 
+
+
+# --- package source policy: adversarial origin audit (R22A.1 P0) --------------
+# The frozen locks recorded gpu_stack_origin_official_channel.ok=false with
+# violations=["rocm-bootstrap"] because a NAME-PREFIX rule treated every
+# rocm* artifact as native stack. The corrected policy classifies per
+# artifact: native AMD stack = exact official channel; approved pure-Python
+# PyPI bootstrap = exact pinned verified artifact; third-party unconstrained.
+# audit_lock() must recompute this from URLs + metadata and NEVER trust a
+# serialized rules_checked.ok value.
+class TestPackageOriginPolicy:
+    DEV = gp_lib.OFFICIAL_CHANNELS["dev"]
+    TORCH_DEV = "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6"
+    BOOTSTRAP_URL = ("https://files.pythonhosted.org/packages/0c/b6/30144880b8e2bad4e9991b"
+                     "08352c7cec17931b5d26b1f9108192f4f17d91/rocm_bootstrap-0.3.0-py3-none-any.whl")
+    BOOTSTRAP_SHA = gp_lib.APPROVED_PYPI_BOOTSTRAP["rocm-bootstrap"]["sha256"]
+
+    def _pkg(self, name, version, url, sha=None):
+        return {"name": name, "version": version, "url": url,
+                "sha256": sha if sha is not None else "ab" * 32}
+
+    def _lock(self, packages, rules_checked=None):
+        return {"channel": "dev", "channel_url": self.DEV,
+                "packages": packages,
+                "rules_checked": rules_checked if rules_checked is not None else {}}
+
+    def _installed(self, lock):
+        # audit_lock checks coverage for installed gpu-stack names only
+        return {p["name"].lower(): p["version"] for p in lock["packages"]
+                if p["name"].lower().startswith(("torch", "torchvision", "rocm", "amd-torch"))}
+
+    def _valid_packages(self):
+        return [
+            self._pkg("torch", self.TORCH_DEV,
+                      self.DEV + "torch/torch-2.15.0-cp312-cp312-win_amd64.whl"),
+            self._pkg("torchvision", "0.29.2+gitb2281111.devrocm10.3.0.dev0",
+                      self.DEV + "torchvision/torchvision-0.29.2-py3-none-win_amd64.whl"),
+            self._pkg("rocm", "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+                      self.DEV + "rocm/rocm-10.3.0.dev0.tar.gz"),
+            self._pkg("rocm-sdk-core", "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+                      self.DEV + "rocm-sdk-core/rocm_sdk_core-10.3.0.dev0-py3-none-win_amd64.whl"),
+            self._pkg("rocm-sdk-libraries", "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+                      self.DEV + "rocm-sdk-libraries/rocm_sdk_libraries-10.3.0.dev0-py3-none-win_amd64.whl"),
+            self._pkg("rocm-bootstrap", "0.3.0", self.BOOTSTRAP_URL,
+                      sha=self.BOOTSTRAP_SHA),
+            self._pkg("numpy", "2.5.5",
+                      "https://files.pythonhosted.org/packages/np/numpy-2.5.5-cp312-cp312-win_amd64.whl"),
+        ]
+
+    def _audit(self, lock):
+        vp = load_module("verify_provenance")
+        return vp.audit_lock(lock, self._installed(lock), None)
+
+    # 1. PyPI bootstrap with verified identity PASSES
+    def test_pypi_bootstrap_verified_identity_passes(self):
+        res = self._audit(self._lock(self._valid_packages()))
+        assert res["ok"] is True, res["failures"]
+        assert res["package_origin_audit"]["ok"] is True
+        assert res["package_origin_audit"]["classes"] == {
+            "native_amd_gpu_stack": 5, "approved_pypi_bootstrap": 1, "third_party": 1}
+        assert res["rocm_family_mix_audit"]["families"] == ["10"]
+
+    # 2. PyPI torch substitution FAILS
+    def test_pypi_torch_substitution_fails(self):
+        pkgs = self._valid_packages()
+        pkgs[0] = self._pkg("torch", "2.15.0",
+                            "https://files.pythonhosted.org/packages/aa/torch-2.15.0-cp312-cp312-win_amd64.whl")
+        res = self._audit(self._lock(pkgs))
+        assert res["ok"] is False
+        assert any("torch" in f and "non-official" in f for f in res["failures"])
+
+    # 3. PyPI MIOpen/ROCm native binary (rocm-sdk-libraries) FAILS
+    def test_pypi_rocm_native_binary_fails(self):
+        pkgs = self._valid_packages()
+        pkgs[4] = self._pkg("rocm-sdk-libraries", "10.3.0.dev0",
+                            "https://files.pythonhosted.org/packages/aa/rocm_sdk_libraries-10.3.0.dev0-py3-none-win_amd64.whl")
+        res = self._audit(self._lock(pkgs))
+        assert res["ok"] is False
+        assert any("rocm-sdk-libraries" in f and "substitution" in f
+                   for f in res["failures"])
+
+    # 4. unknown bootstrap source FAILS (not served by PyPI)
+    def test_unknown_bootstrap_source_fails(self):
+        pkgs = self._valid_packages()
+        pkgs[5] = self._pkg("rocm-bootstrap", "0.3.0",
+                            "https://example.com/wheels/rocm_bootstrap-0.3.0-py3-none-any.whl",
+                            sha=self.BOOTSTRAP_SHA)
+        res = self._audit(self._lock(pkgs))
+        assert res["ok"] is False
+        assert any("unknown bootstrap source" in f for f in res["failures"])
+
+    # 4b. approved bootstrap name but WRONG version / WRONG sha FAILS
+    def test_bootstrap_wrong_version_and_wrong_sha_fail(self):
+        for bad in (("0.9.9", self.BOOTSTRAP_SHA), ("0.3.0", "cd" * 32)):
+            pkgs = self._valid_packages()
+            pkgs[5] = self._pkg("rocm-bootstrap", bad[0], self.BOOTSTRAP_URL,
+                                sha=bad[1])
+            res = self._audit(self._lock(pkgs))
+            assert res["ok"] is False, bad
+
+    # 5. forged rules_checked.ok=true FAILS (audit recomputes from URLs)
+    def test_forged_rules_checked_ok_true_fails(self):
+        pkgs = self._valid_packages()
+        pkgs[0] = self._pkg("torch", "2.15.0",
+                            "https://files.pythonhosted.org/packages/aa/torch-2.15.0-cp312-cp312-win_amd64.whl")
+        forged = {"gpu_stack_origin_official_channel": {"ok": True, "violations": []},
+                  "rocm_family_mix": {"ok": True}, "device_wheel_present": True,
+                  "torch_is_amd_hip": True}
+        res = self._audit(self._lock(pkgs, rules_checked=forged))
+        assert res["ok"] is False, "forged rules_checked.ok=true must not pass"
+        assert res["package_origin_audit"]["ok"] is False
+        assert "rules_checked never read" in res["package_origin_audit"]["recomputed_from"]
+
+    # 6. missing SHA256 FAILS (native stack and bootstrap alike)
+    def test_missing_sha256_fails(self):
+        pkgs = self._valid_packages()
+        pkgs[0] = self._pkg("torch", self.TORCH_DEV,
+                            self.DEV + "torch/torch-2.15.0-cp312-cp312-win_amd64.whl",
+                            sha="")
+        res = self._audit(self._lock(pkgs))
+        assert res["ok"] is False
+        assert any("no valid SHA256" in f for f in res["failures"])
+        pkgs[5] = self._pkg("rocm-bootstrap", "0.3.0", self.BOOTSTRAP_URL, sha="")
+        res = self._audit(self._lock(pkgs))
+        assert res["ok"] is False
+        assert any("does not match the verified PyPI artifact" in f
+                   for f in res["failures"])
+
+    # 7. mixed ROCm family FAILS (recomputed, not read from rules_checked)
+    def test_mixed_rocm_family_fails(self):
+        pkgs = self._valid_packages()
+        pkgs[3] = self._pkg("rocm-sdk-core", "8.2.0",
+                            self.DEV + "rocm-sdk-core/rocm_sdk_core-8.2.0-py3-none-win_amd64.whl")
+        res = self._audit(self._lock(pkgs))
+        assert res["ok"] is False
+        assert any("mixed ROCm families" in f for f in res["failures"])
+        assert res["rocm_family_mix_audit"]["families"] == ["10", "8"]
+
+    # regression: BOTH frozen 46-artifact DEV locks pass the corrected policy.
+    # Each lock = 45 wheels + 1 official ROCm source distribution (the rocm
+    # sdist). Their historical rules_checked.gpu_stack_origin_official_channel
+    # .ok=false (violations=["rocm-bootstrap"]) stays frozen in the files; the
+    # corrected audit recomputes from URLs and PASSES.
+    def test_frozen_dev_locks_pass_corrected_validation(self):
+        root = HERE.parents[1]
+        n_expected = {"native_amd_gpu_stack": 8, "approved_pypi_bootstrap": 1,
+                      "third_party": 37}
+        for rel in ("evidence/raw/r22-dev-rerun/resolved_wheel_lock.json",
+                    "evidence/raw/r22a-gfx1151/R22A_PACKAGE_LOCK.json"):
+            lock = json.loads((root / rel).read_text(encoding="utf-8"))
+            assert len(lock["packages"]) == 46
+            # exactly one non-wheel artifact: the official ROCm source dist
+            non_whl = [p for p in lock["packages"]
+                       if not p.get("wheel_filename", "").endswith(".whl")]
+            assert [(p["name"], p["wheel_filename"].rsplit(".", 1)[-1])
+                    for p in non_whl] == [("rocm", "gz")], rel
+            historical = lock["rules_checked"]["gpu_stack_origin_official_channel"]
+            assert historical["ok"] is False \
+                and historical["violations"] == ["rocm-bootstrap"], rel
+            res = self._audit(lock)
+            assert res["ok"] is True, (rel, res["failures"])
+            assert res["package_origin_audit"]["classes"] == n_expected, rel
+            assert res["rocm_family_mix_audit"]["families"] == ["10"], rel

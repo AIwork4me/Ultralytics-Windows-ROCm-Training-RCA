@@ -140,6 +140,103 @@ def torch_wheel_is_amd_hip(version: str, url: str | None) -> bool:
     return parsed["is_amd_rocm_local"] and (url_is_official_amd(url) if url else False)
 
 
+# --- package source policy (mission R22A.1 P0) -------------------------------
+# Three source classes, evaluated per resolved artifact from its OWN URL and
+# metadata (never from a serialized rules_checked verdict):
+#   native_amd_gpu_stack    — torch/torchvision/rocm*/amd-torch* artifacts
+#                             (incl. the official ROCm source distribution);
+#                             native AMD GPU stack bytes MUST resolve from the
+#                             EXACT matching official AMD release channel.
+#                             PyPI can NEVER supply torch, torchvision,
+#                             rocm-sdk-libraries or an AMD device wheel.
+#   approved_pypi_bootstrap — explicitly approved AMD-authored PURE-PYTHON
+#                             bootstrap components distributed through PyPI;
+#                             accepted ONLY as the exact pinned artifact below
+#                             (identity = version + SHA256 + PyPI host), not by
+#                             name alone.
+#   third_party             — ordinary third-party Python dependencies (PyPI);
+#                             origin not constrained by the GPU-stack contract.
+PYPI_HOSTS = ("https://pypi.org/", "https://files.pythonhosted.org/")
+APPROVED_PYPI_BOOTSTRAP = {
+    "rocm-bootstrap": {
+        "version": "0.3.0",
+        "sha256": "62d0160ecdd86f7132dbab9aec257cb2c96327df2592b0633aa6bb56399cc095",
+        "artifact": "rocm_bootstrap-0.3.0-py3-none-any.whl",
+        "note": "AMD-authored pure-Python bootstrap (no native code); the exact "
+                "verified PyPI artifact is byte-identical in the frozen gfx1100 "
+                "and gfx1151 46-artifact DEV locks",
+    },
+}
+NATIVE_STACK_PREFIXES = ("torch", "torchvision", "rocm", "amd-torch")
+
+
+def dist_key(name: str) -> str:
+    """Canonical distribution-name key (PEP 503-ish: lowercase, dashes)."""
+    return (name or "").lower().replace("_", "-")
+
+
+def is_native_amd_gpu_stack(name: str) -> bool:
+    """Native AMD GPU stack artifact? Approved pure-Python bootstrap names are
+    carved out first — 'rocm-bootstrap' starts with 'rocm' but ships no
+    native code, so the prefix match alone must not classify it."""
+    k = dist_key(name)
+    return k not in APPROVED_PYPI_BOOTSTRAP and k.startswith(NATIVE_STACK_PREFIXES)
+
+
+def url_is_pypi(url: str) -> bool:
+    return bool(url) and any(url.startswith(h) for h in PYPI_HOSTS)
+
+
+def classify_package_origin(name: str, version: str, url: str,
+                            sha256: str | None, channel: str | None = None) -> dict:
+    """Independent per-artifact source-policy evaluation (R22A.1 P0).
+
+    Classifies ONLY from the artifact's URL + metadata — a serialized
+    rules_checked.ok value is never an input, so a forged ok=true cannot pass.
+    When `channel` is given, native-stack artifacts must additionally resolve
+    from THAT exact official channel (not merely any official one).
+    """
+    k = dist_key(name)
+    host = (url or "").split("/")[2] if "://" in (url or "") else None
+    out: dict = {"package": name, "url_host": host}
+    if k in APPROVED_PYPI_BOOTSTRAP:
+        spec = APPROVED_PYPI_BOOTSTRAP[k]
+        out["class"] = "approved_pypi_bootstrap"
+        why: list[str] = []
+        if not url_is_pypi(url or ""):
+            why.append(f"bootstrap {name} not served by PyPI (host {host!r}) — "
+                       "unknown bootstrap source")
+        if str(version or "") != spec["version"]:
+            why.append(f"bootstrap {name} version {version!r} != approved "
+                       f"{spec['version']!r}")
+        if str(sha256 or "").lower() != spec["sha256"]:
+            why.append(f"bootstrap {name} SHA256 {str(sha256 or '')[:12]!r}… does "
+                       f"not match the verified PyPI artifact "
+                       f"{spec['sha256'][:12]}…")
+        out["ok"] = not why
+        out["violations"] = why
+        return out
+    if is_native_amd_gpu_stack(k):
+        out["class"] = "native_amd_gpu_stack"
+        chan = url_channel(url or "")
+        why = []
+        if chan is None:
+            why.append(f"native AMD stack artifact {name} resolved from "
+                       f"non-official origin {host!r} — PyPI/look-alike "
+                       "substitution is forbidden")
+        elif channel is not None and chan != channel:
+            why.append(f"native AMD stack artifact {name} resolved from channel "
+                       f"{chan!r}, expected the exact channel {channel!r}")
+        out["resolved_channel"] = chan
+        out["ok"] = not why
+        out["violations"] = why
+        return out
+    out["class"] = "third_party"
+    out["ok"] = True
+    out["violations"] = []
+    return out
+
+
 def rocm_family_of(package: str, version: str) -> str | None:
     """ROCm family of a package version: the rocm local segment when present
     (torch/torchvision), else the public version for rocm-sdk*/rocm packages
