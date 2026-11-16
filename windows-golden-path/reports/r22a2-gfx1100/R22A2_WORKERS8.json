@@ -1,0 +1,263 @@
+{
+  "source_head": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "integration_base": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "ultralytics": "8.4.214",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "wheel_lock": "evidence/raw/r22-dev-rerun/resolved_wheel_lock.json (46 artifacts, audit ok, families [10])",
+  "miopen_dll_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+  "mission": "R22A2",
+  "run_id": "R22A2-B",
+  "timestamp": "2026-11-16T09:16:40.495705+00:00",
+  "part": "B \u2014 Windows workers=8 short reliability",
+  "cold": {
+    "n": 2,
+    "verdict": "PASS",
+    "runs": [
+      1,
+      2
+    ]
+  },
+  "warm": {
+    "n": 3,
+    "verdict": "PASS",
+    "runs": [
+      1,
+      2,
+      3
+    ]
+  },
+  "workers_requested": 8,
+  "resolved_num_workers_all_runs": [
+    8
+  ],
+  "peak_concurrent_workers_per_run": {
+    "cold-run1": 13,
+    "cold-run2": 13,
+    "warm-run1": 13,
+    "warm-run2": 13,
+    "warm-run3": 13
+  },
+  "orphan_workers_total": 0,
+  "exit_code": 0,
+  "pass_fail_skip": "PASS",
+  "contract": {
+    "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+    "reason": "all 5 runs PASS with workers=8 verified OS-level and clean shutdown",
+    "run_verdicts": [
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run01\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run02\\train\\weights\\last.pt"
+          }
+        ]
+      },
+      {
+        "verdict": "PASS",
+        "classification": null,
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX"
+          },
+          {
+            "check": "workers_requested_8",
+            "ok": true,
+            "detail": "requested_workers=8 (contract=8)"
+          },
+          {
+            "check": "workers_effective_8",
+            "ok": true,
+            "detail": "resolved_num_workers=8 (requested 8)"
+          },
+          {
+            "check": "worker_activity_observed",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+          },
+          {
+            "check": "peak_workers_reached_8",
+            "ok": true,
+            "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "STABILITY_CHILD_DONE marker present"
+          },
+          {
+            "check": "checkpoint_present",
+            "ok": true,
+            "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run03\\train\\weights\\last.pt"
+          }
+        ]
+      }
+    ]
+  },
+  "note": "peak 13 > 8 because train (8) and val (8) loader worker sets overlap in the OS snapshot window; contract requires >=8 verified OS-level"
+}

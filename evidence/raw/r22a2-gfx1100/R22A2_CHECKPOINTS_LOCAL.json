@@ -1,0 +1,35 @@
+{
+  "note": "checkpoints kept locally (never committed); sha256 recorded per mission \u00a711",
+  "part_a_last_pt": {
+    "path": "C:\\RadeonYOLO\\R22A2\\scratch\\adamw_run\\weights\\last.pt",
+    "sha256": "cf34ed65be27cb4d2c51e8685642ed2fe8d290eb3866ea1d4f64cc0c9b9a8d22",
+    "size": 5474501
+  },
+  "part_b": {
+    "cold_run01": {
+      "path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\train\\weights\\last.pt",
+      "sha256": "5cc930128dc4fbf61fc5b68beca9fb98a965b8488fac3fa95567a0cd3744bf96",
+      "size": 5475397
+    },
+    "cold_run02": {
+      "path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\train\\weights\\last.pt",
+      "sha256": "ae03a560e83e4a625835d30c07d77ab80643e902de28934a6fca5622c2d5c2d9",
+      "size": 5475397
+    },
+    "warm_run01": {
+      "path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run01\\train\\weights\\last.pt",
+      "sha256": "8dd61ee99fec6203ae7e5e43709119bbe197bfe6fdfa100b5faa9dde89b7c2bf",
+      "size": 5475397
+    },
+    "warm_run02": {
+      "path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run02\\train\\weights\\last.pt",
+      "sha256": "c6d0152c2af7abdb7322dc3578fa824d93e1d1abdfd9b58b9b0f143792135b09",
+      "size": 5475397
+    },
+    "warm_run03": {
+      "path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\warm\\run03\\train\\weights\\last.pt",
+      "sha256": "888433f6fcf72467ff0b638f9fd1de760e52bf950a6d6ed77b0b6d137ed80128",
+      "size": 5475397
+    }
+  }
+}
