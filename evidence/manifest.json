@@ -1833,16 +1833,18 @@
  },
  {
   "path": "windows-golden-path/reports/r22a4/gfx1151_supplemental_acceptance.json",
-  "timestamp": "2026-11-16T15:24:30.077246+00:00",
+  "timestamp": "2026-11-16T15:25:23.312284+00:00",
   "command": "R22A.4 derived reconciliation artifacts (gap matrix, dual-arch acceptance, per-arch unified acceptance) \u2014 DERIVED_RECONCILIATION recomputed from IMMUTABLE_RAW_EVIDENCE via versioned adapters",
-  "sha256": "62c48f91d76398ef8bbda5a7e00b493f868deedc9907349bf2bb88cba727f16a",
-  "size_bytes": 3380
+  "sha256": "7686294baf72bda48b09fdb7c7afcbbce530dfae4e21c5742ccbabed87598fc4",
+  "size_bytes": 3380,
+  "note": "R22A.4: hash aligned to committed blob"
  },
  {
   "path": "windows-golden-path/reports/r22a4/dual_arch_acceptance.json",
-  "timestamp": "2026-11-16T15:24:30.077246+00:00",
+  "timestamp": "2026-11-16T15:25:23.312284+00:00",
   "command": "R22A.4 derived reconciliation artifacts (gap matrix, dual-arch acceptance, per-arch unified acceptance) \u2014 DERIVED_RECONCILIATION recomputed from IMMUTABLE_RAW_EVIDENCE via versioned adapters",
-  "sha256": "1ee1e93667f64dd4e5bd3f7717df6f1d1ada46d5ffb942ef2d4a2f5b26f1ff36",
-  "size_bytes": 9408
+  "sha256": "a0e72cdb14f96c4552b608d7eab954d9f683e7fff2e032fd591b9af29f863c17",
+  "size_bytes": 9408,
+  "note": "R22A.4: hash aligned to committed blob"
  }
 ]
