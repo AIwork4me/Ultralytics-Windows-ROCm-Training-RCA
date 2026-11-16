@@ -1,6 +1,6 @@
 {
   "run_id": "R22A-DUAL-ARCH-MATRIX",
-  "timestamp": "2026-11-16T02:04:39.460077+00:00",
+  "timestamp": "2026-11-16T02:21:31.698235+00:00",
   "therock_snapshot": "ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
   "snapshot_identical_both_arch": true,
   "gfx1100": {
@@ -26,7 +26,7 @@
   "gfx1151": {
     "source": "live run C:/RadeonYOLO/R22A/evidence/r22-candidate (this mission)",
     "gpu_class": "APU (Radeon 8060S, Ryzen AI MAX+ 395)",
-    "gpu_name": "AMD Radeon(TM",
+    "gpu_name": "AMD Radeon(TM) 8060S Graphics",
     "python_tag": "cp312",
     "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
     "ultralytics": "8.4.214",

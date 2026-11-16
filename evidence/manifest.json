@@ -1184,10 +1184,10 @@
   },
   {
     "path": "evidence/raw/r22a-gfx1151/gpD_train_cli.json",
-    "timestamp": "2026-11-16T02:05:26.948818+00:00",
-    "command": "R22A mission (gfx1151 DEV acceptance)",
-    "sha256": "15bed513e50c958016374491d856b36c1cd4c27811b2aa4014e016ad45866f55",
-    "size_bytes": 1728
+    "timestamp": "2026-11-16T02:21:57.904376+00:00",
+    "command": "R22A mission (gfx1151 DEV acceptance) [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
+    "sha256": "3a20a266bcfc77981b1d8f18ac1e1d4a8405b3649e388798b2d39359004425f3",
+    "size_bytes": 1750
   },
   {
     "path": "evidence/raw/r22a-gfx1151/gpD_train_cli.log",
@@ -1359,16 +1359,16 @@
   },
   {
     "path": "windows-golden-path/reports/r22a-gfx1151/R22A_DUAL_ARCH_MATRIX.json",
-    "timestamp": "2026-11-16T02:05:26.948818+00:00",
-    "command": "R22A mission report artifacts",
-    "sha256": "d587143a8e53d134a6d3856dac9d3e7c6fa19cbdb34dc5de32615b9a0ae0b4b8",
-    "size_bytes": 3205
+    "timestamp": "2026-11-16T02:21:57.904376+00:00",
+    "command": "R22A mission report artifacts [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
+    "sha256": "93ab86babfaa4fa7160742a4fcf3386d28cacfebdd800e328d25797c9e82753b",
+    "size_bytes": 3221
   },
   {
     "path": "windows-golden-path/reports/r22a-gfx1151/report.json",
-    "timestamp": "2026-11-16T02:05:26.948818+00:00",
-    "command": "R22A mission report artifacts",
-    "sha256": "bfa808818ae28bfc07d6a72c93b88a2413ff92a1481880ec6c269d767438a76a",
-    "size_bytes": 3141
+    "timestamp": "2026-11-16T02:21:57.904376+00:00",
+    "command": "R22A mission report artifacts [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
+    "sha256": "95f669858580ab1b8e0f00827c29d09d808868a64c8cd6e5e2defee1552aa1d7",
+    "size_bytes": 3136
   }
 ]

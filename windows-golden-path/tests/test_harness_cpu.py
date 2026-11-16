@@ -159,6 +159,15 @@ Results saved to runs\\detect\\train2
         f = load_module("generate_report").parse_train_log("using CPU device=cpu")
         assert f["cpu_fallback"] is True
 
+    def test_gpu_name_with_parens_not_truncated(self):
+        # R22A gfx1151 regression: "[^,)]+" truncated "AMD Radeon(TM) 8060S
+        # Graphics" to "AMD Radeon(TM" (first ')' inside the name ended the
+        # match), corrupting gpu_name/gfx_target in the G3 evidence record
+        f = load_module("generate_report").parse_train_log(
+            "CUDA:0 (AMD Radeon(TM) 8060S Graphics, 101293MiB)")
+        assert f["gpu_selected"]["device"] == "CUDA:0"
+        assert f["gpu_selected"]["name"] == "AMD Radeon(TM) 8060S Graphics"
+
 
 # --- reproducer shape contract ---------------------------------------------------
 def test_nostl_reproducer_uses_historical_shape():

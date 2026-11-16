@@ -79,7 +79,11 @@ def parse_train_log(text: str) -> dict:
         "losses_finite": None, "validation_completed": False,
         "cpu_fallback": "using CPU" in text or "device=cpu" in text.lower(),
     }
-    m = re.search(r"(CUDA:\d+|cpu)\s*\(([^,)]+)", text)
+    # GPU names may contain parentheses (e.g. "AMD Radeon(TM) 8060S Graphics")
+    # — anchor on the trailing ", NNNNMiB)" so the full name survives; the old
+    # [^,)]+ pattern truncated at the first ')' inside the name (R22A gfx1151)
+    m = (re.search(r"(CUDA:\d+|cpu)\s*\((.+?),\s*[\d.]+\s*[GM]iB\)", text)
+         or re.search(r"(CUDA:\d+|cpu)\s*\(([^,)]+)", text))
     if m:
         facts["gpu_selected"] = {"device": m.group(1), "name": m.group(2).strip()}
     if re.search(r"AMP:\s*checks passed", text):

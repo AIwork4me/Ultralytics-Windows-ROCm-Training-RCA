@@ -1,6 +1,6 @@
 {
-  "run_id": "GP-FULL-20261116-093332",
-  "generated_utc": "2026-11-16T01:59:15.370666+00:00",
+  "run_id": "GP-FULL-R22A-REGEN",
+  "generated_utc": "2026-11-16T02:21:31.597098+00:00",
   "sequence": "candidate",
   "channel": "dev",
   "contract": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-golden-path\\acceptance-contract.json",

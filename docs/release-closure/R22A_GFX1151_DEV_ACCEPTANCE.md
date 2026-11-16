@@ -71,8 +71,16 @@
 - 原始日志、逐 gate JSON（含内嵌断言）、命令、退出码、wheel/DLL/checkpoint SHA256、缓存身份：`evidence/raw/r22a-gfx1151/`
 - 汇总报告：`windows-golden-path/reports/r22a-gfx1151/report.json`（generate_report full，含 false-PASS 防护）+ `gate_status.json`（overall GO）
 - `evidence/manifest.json` append-only 追加（196 条）；`SHA256SUMS.txt` 覆盖 46 个证据文件
-- 复验：CPU contract 45/45、RCA verifier 575/0、verifier 自测 12/12（提交树）；PR HEAD 复核见最终评审节
+- 复验：CPU contract 46/46（含新增回归测试）、RCA verifier 575/0、verifier 自测 12/12（提交树）；PR HEAD 复核见最终评审节
 - 未提交任何 wheel 二进制或 .pt checkpoint
+
+**独立复核发现的 harness 缺陷与最小修复（披露）**：复核重算时发现 G3 记录的 `gpu_name` 被截断为
+`AMD Radeon(TM`、`gfx_target=unknown` — `generate_report.py` 训练日志解析正则 `[^,)]+` 在 GPU 名内嵌
+括号（"(TM)"）处提前终止。原始日志（已归档 `gpD_train_stdout.log`）一直包含完整行
+`CUDA:0 (AMD Radeon(TM) 8060S Graphics, 101293MiB)`；其余 6 个 gate 记录身份字段均正确。修复：正则改为
+锚定尾部 `, NNNNMiB)`（旧模式保留为无内存后缀日志的回退）；新增 CPU 回归测试
+`test_gpu_name_with_parens_not_truncated`；G3 摘要与 full report 由**未改变的归档原始日志字节**确定性
+再生成（orchestrator 原始输出原样保留于 `reports/gp-20261116-093332/`）。训练未重跑。
 
 ## H. 发布边界
 
