@@ -1846,5 +1846,45 @@
   "sha256": "a0e72cdb14f96c4552b608d7eab954d9f683e7fff2e032fd591b9af29f863c17",
   "size_bytes": 9408,
   "note": "R22A.4: hash aligned to committed blob"
+ },
+ {
+  "path": "docs/release-closure/R22A41_MANIFEST_RECONCILIATION.md",
+  "timestamp": "2026-11-16T23:52:01.156381+00:00",
+  "command": "R22A.4.1 final integration freeze \u2014 DERIVED_RECONCILIATION artifacts (manifest/runtime-provenance audits, consistency matrix, freeze record, deterministic dual-arch acceptance recompute) from IMMUTABLE_RAW_EVIDENCE",
+  "sha256": "2bed12dba66ee70e34d6ca540599e75de03ef6c42f4d9b5f873531c91f26d2fb",
+  "size_bytes": 7624,
+  "note": "R22A.4.1: derived audit artifact, hash aligned to committed blob (LF)"
+ },
+ {
+  "path": "docs/release-closure/R22A41_RUNTIME_PROVENANCE_AUDIT.md",
+  "timestamp": "2026-11-16T23:52:01.156381+00:00",
+  "command": "R22A.4.1 final integration freeze \u2014 DERIVED_RECONCILIATION artifacts (manifest/runtime-provenance audits, consistency matrix, freeze record, deterministic dual-arch acceptance recompute) from IMMUTABLE_RAW_EVIDENCE",
+  "sha256": "23700b46303a10ef2790e1b27fb662dc4c8b36b662c9c52cc502fea418e22332",
+  "size_bytes": 5815,
+  "note": "R22A.4.1: derived audit artifact, hash aligned to committed blob (LF)"
+ },
+ {
+  "path": "docs/release-closure/R22A41_FINAL_CONSISTENCY_MATRIX.md",
+  "timestamp": "2026-11-16T23:52:01.156381+00:00",
+  "command": "R22A.4.1 final integration freeze \u2014 DERIVED_RECONCILIATION artifacts (manifest/runtime-provenance audits, consistency matrix, freeze record, deterministic dual-arch acceptance recompute) from IMMUTABLE_RAW_EVIDENCE",
+  "sha256": "43c367a89c52b3700eef85ed4b4b89abe7d9671fd6370e9a7f906d461d50d24c",
+  "size_bytes": 5755,
+  "note": "R22A.4.1: derived audit artifact, hash aligned to committed blob (LF)"
+ },
+ {
+  "path": "docs/release-closure/R22A41_FINAL_FREEZE.md",
+  "timestamp": "2026-11-16T23:52:01.156381+00:00",
+  "command": "R22A.4.1 final integration freeze \u2014 DERIVED_RECONCILIATION artifacts (manifest/runtime-provenance audits, consistency matrix, freeze record, deterministic dual-arch acceptance recompute) from IMMUTABLE_RAW_EVIDENCE",
+  "sha256": "28f15e09d7577d162ab969867a01bd750e71730612c3941b8a4dd334469b1c47",
+  "size_bytes": 5739,
+  "note": "R22A.4.1: derived audit artifact, hash aligned to committed blob (LF)"
+ },
+ {
+  "path": "windows-golden-path/reports/r22a41/r22a41_dual_arch_acceptance.json",
+  "timestamp": "2026-11-16T23:52:01.156381+00:00",
+  "command": "R22A.4.1 final integration freeze \u2014 DERIVED_RECONCILIATION artifacts (manifest/runtime-provenance audits, consistency matrix, freeze record, deterministic dual-arch acceptance recompute) from IMMUTABLE_RAW_EVIDENCE",
+  "sha256": "ea2d28603d5e5ef6362cf62552ada76bcb86dfa2afc78a9bb312fdb6eb7d3e5d",
+  "size_bytes": 15222,
+  "note": "R22A.4.1: derived audit artifact, hash aligned to committed blob (LF)"
  }
 ]
