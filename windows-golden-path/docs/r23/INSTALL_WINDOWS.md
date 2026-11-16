@@ -3,6 +3,13 @@
 Step-by-step for a beginner. Commands are the exact ones validated by the
 R21 harness run (evidence: `evidence/raw/r21/`).
 
+> **READ FIRST (R21.1 TASK E):** the stack documented below is the
+> ENGINEERING-REFERENCE (pre-#13437) stack. Following these steps is an
+> **engineering demonstration**, not a supported no-workaround install: without
+> Visual Studio Build Tools on this machine, training fails at the first
+> BatchNorm (issue #3956). `quickstart.ps1` therefore defaults to a fail-closed
+> status mode — use `-Mode EngineeringDemonstration` to run this flow.
+
 ## 1. Check your GPU
 
 - RX 7900 XTX → gfx1100 path (this page)

@@ -155,8 +155,8 @@ def main() -> None:
                         if any(d.metadata['Name'] == 'torchvision' for d in im.distributions()) else None),
         "hip": torch.version.hip,
         "runtime_class": gp_lib.classify_runtime(
-        gp_lib.detect_workarounds(), args.channel,
-        (_m if (_m := gp_lib.loaded_miopen_identity()).get("loaded") else None),
+            gp_lib.detect_workarounds(), args.channel,
+            (_m if (_m := gp_lib.loaded_miopen_identity()).get("loaded") else None)),
         "command": f"python {Path(__file__).name}",
         "exit_code": exit_code, "duration_s": round(time.time() - t0, 2),
         "pass_fail_skip": "PASS" if exit_code == 0 else "FAIL",

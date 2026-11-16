@@ -126,8 +126,8 @@ def main() -> None:
                         if any(d.metadata['Name'] == 'torchvision' for d in im.distributions()) else None),
         "hip": torch.version.hip,
         "runtime_class": gp_lib.classify_runtime(
-        gp_lib.detect_workarounds(), args.channel,
-        (_m if (_m := gp_lib.loaded_miopen_identity()).get("loaded") else None),
+            gp_lib.detect_workarounds(), args.channel,
+            (_m if (_m := gp_lib.loaded_miopen_identity()).get("loaded") else None)),
         "command": f"python run_stability.py --runs {args.runs} "
                    f"{'--cold' if args.cold else '--warm'} --device {args.device}",
         "exit_code": 0 if verdict == "PASS" else 1,

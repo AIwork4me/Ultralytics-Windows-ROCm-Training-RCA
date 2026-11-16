@@ -1,18 +1,72 @@
-# Quickstart PowerShell script (R23 DRAFT — not release-qualified)
-# Commands below were physically verified on RX 7900 XTX / Win11 26300 with
-# the official multi-arch index on 2026-11-15 (R21 evidence).
-# BLOCKER (disclosed): official STABLE MIOpen.dll is pre-#13437; training on
-# machines WITHOUT Visual Studio Build Tools will hit HIPRTC 'type_traits'
-# not found. Do not publish until R22 OFFICIAL_STABLE_PASS.
-
+# Quickstart PowerShell script (R23 DRAFT — FAIL-CLOSED, R21.1 TASK E)
+#
+# The DEFAULT path refuses to install anything: every official channel that
+# carries a Windows MIOpen wheel today still ships the PRE-#13437 MIOpen.dll
+# (stable 10.1.0 byte-identical pre-fix, rc 10.2.0rc2 branch-cut pre-fix,
+# multi-arch 7.14.1 pre-fix). A default quickstart that installs a known
+# pre-fix release and then runs a training would reproduce issue #3956 on
+# every machine without Visual Studio Build Tools — so it must not do that.
+#
+#   -Mode Status                     (DEFAULT) print the current gate status
+#                                    and exit 3 — nothing installed, nothing run
+#   -Mode EngineeringDemonstration  EXPLICITLY-LABELED engineering mode: installs
+#                                    the engineering-reference stack and runs the
+#                                    demo train. The engref MIOpen.dll is pre-fix:
+#                                    the documented HIPRTC 'type_traits' failure
+#                                    is expected on machines WITHOUT VS Build
+#                                    Tools. This is a demonstration, NOT a
+#                                    release-qualified install.
+#   -Mode OfficialStable            always refused here until R22 issues
+#                                    OFFICIAL_STABLE_PASS (exit 4)
 param(
     [string]$Root = "C:\YOLO",
     [ValidateSet("gfx1100", "gfx1151")][string]$Gfx = "gfx1100",
-    [string]$Python = "python"
+    [string]$Python = "python",
+    [ValidateSet("Status", "EngineeringDemonstration", "OfficialStable")][string]$Mode = "Status"
 )
 $ErrorActionPreference = "Stop"
 
-Write-Host "== Radeon YOLO quickstart ($Gfx) — DRAFT, blocker disclosed =="
+Write-Host "== Radeon YOLO quickstart ($Gfx) — R23 DRAFT, fail-closed =="
+Write-Host "== Mode: $Mode =="
+
+if ($Mode -eq "OfficialStable") {
+    Write-Host "REFUSED: OFFICIAL_STABLE_PASS has not been issued by the R22 gates."
+    Write-Host "Blocker: all official channels currently carry the PRE-#13437 MIOpen.dll"
+    Write-Host "        (see windows-golden-path/reports/R22_RELEASE_GATE_MATRIX.json)."
+    Write-Host "Until a post-fix stable wheel exists, there is no supported no-workaround"
+    Write-Host "install path. See docs/r23/TROUBLESHOOTING.md (blocked-release documentation)."
+    exit 4
+}
+
+if ($Mode -ne "EngineeringDemonstration") {
+    # DEFAULT = fail closed BEFORE touching the machine (R21.1 TASK E)
+    Write-Host ""
+    Write-Host "STATUS (no install performed):"
+    Write-Host "  stable channel : BLOCKED_OFFICIAL_ARTIFACT (MIOpen.dll pre-#13437, marker 0)"
+    Write-Host "  rc channel     : BLOCKED_OFFICIAL_ARTIFACT (10.2.0rc2 branch cut before fix merge, behind_by=92)"
+    Write-Host "  multi-arch 7.x : PRE-FIX (MIOpen.dll 266d716b..., marker 0)"
+    Write-Host "  nightly/dev    : POST-FIX libraries exist; candidate-level only (DEV_CANDIDATE_PASS on gfx1100),"
+    Write-Host "                    gfx1100 device wheels missing on nightly as of 2026-11-15"
+    Write-Host ""
+    Write-Host "This script will NOT install a known pre-fix release and claim normal"
+    Write-Host "no-workaround training readiness. To run an explicitly labeled engineering"
+    Write-Host "demonstration on the pre-fix engineering-reference stack (requires Visual"
+    Write-Host "Studio Build Tools on this machine; reproduces Ultralytics issue #3956"
+    Write-Host "otherwise), re-run with:"
+    Write-Host "  powershell -File quickstart.ps1 -Mode EngineeringDemonstration"
+    Write-Host "See windows-golden-path/reports/R22_RELEASE_GATE_MATRIX.json for gate status."
+    exit 3
+}
+
+# --- explicitly labeled engineering demonstration -----------------------------
+Write-Host ""
+Write-Host "======================================================================="
+Write-Host " ENGINEERING DEMONSTRATION — NOT a release-qualified install."
+Write-Host " Stack: multi-arch 7.14.1 engineering reference (MIOpen.dll PRE-#13437)."
+Write-Host " On machines WITHOUT Visual Studio Build Tools the training below is"
+Write-Host " expected to fail with the documented HIPRTC 'type_traits' issue #3956."
+Write-Host "======================================================================="
+Write-Host ""
 
 # 1) clean venv
 & $Python -m venv "$Root\venv"
@@ -41,11 +95,15 @@ if ($Gfx -eq "gfx1100") {
 # 4) verify GPU
 & "$Root\venv\Scripts\python.exe" -c "import torch; assert torch.cuda.is_available(); print('GPU OK:', torch.cuda.get_device_name(0))"
 
-# 5) standard first training (COCO8 smoke)
+# 5) standard first training (COCO8 smoke) — expected to FAIL without VS Build Tools
 New-Item -ItemType Directory -Force -Path "$Root\run1" | Out-Null
 Push-Location "$Root\run1"
 & "$Root\venv\Scripts\yolo.exe" train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1
 $code = $LASTEXITCODE
 Pop-Location
 Write-Host "train exit code: $code  (best.pt/last.pt under $Root\run1\runs\detect\train\weights)"
+if ($code -ne 0) {
+    Write-Host "Non-zero exit is the EXPECTED pre-fix behavior without VS Build Tools (issue #3956)."
+    Write-Host "This exit code is a demonstration result, not a readiness claim."
+}
 exit $code

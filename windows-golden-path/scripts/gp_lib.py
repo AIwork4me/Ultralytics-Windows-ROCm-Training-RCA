@@ -74,6 +74,90 @@ def now_utc() -> str:
     return datetime.now(tz=timezone.utc).isoformat()
 
 
+# --- AMD ROCm local-version parsing (mission R21.1 TASK C) -------------------
+# R22 dev-channel torch wheels use local versions like
+#   2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91...   (observed)
+# while stable/rc/multi-arch use
+#   2.12.0+rocm7.14.1 / 2.14.0+rocm10.1.0 / 2.15.0+rocm10.2.0rc2
+# A plain "+rocm" substring test rejects every dev wheel; these helpers parse
+# the actual local segment instead, and vendor origin is additionally checked
+# against the exact official channel URL (never a substring alone).
+_ROCM_LOCAL_RE = re.compile(r"(?:^|[.\-_])[a-z0-9]*rocm(\d+(?:\.\d+){0,2})", re.IGNORECASE)
+
+
+def parse_rocm_local_version(version: str) -> dict:
+    """Parse an AMD ROCm local version segment (PEP 440 local part).
+
+    Accepts URL-encoded input (%2B == '+'), as discovery files store versions
+    exactly as they appear in index hrefs. Returns facts used by the vendor
+    validation; is_amd_rocm_local is about the VERSION ONLY — callers must
+    additionally verify the wheel's source URL against OFFICIAL_CHANNELS.
+    """
+    v = (version or "").replace("%2B", "+").replace("%2b", "+")
+    local = v.split("+", 1)[1] if "+" in v else ""
+    m = _ROCM_LOCAL_RE.search(local) if local else None
+    return {
+        "version": v,
+        "local_segment": local or None,
+        "rocm_version": m.group(1) if m else None,
+        "rocm_family": (m.group(1).split(".")[0] if m else None),
+        "is_amd_rocm_local": bool(m),
+    }
+
+
+def url_channel(url: str) -> str | None:
+    """Which official AMD channel does a resolved URL belong to?
+
+    Accepts both the channel root itself (…/rocm/whl-next/<pkg>/…) and the
+    per-family sub-index layout the dev index actually serves
+    (…/rocm/pytorch/whl-next/<pkg>/…) — both on the exact channel host
+    (<channel>.repo.amd.com; multi-arch on repo.amd.com). Anything else
+    (pypi.org, files.pythonhosted.org, a look-alike host) is NOT official."""
+    if not url:
+        return None
+    for chan, root in OFFICIAL_CHANNELS.items():
+        if url.startswith(root):
+            rest = url[len(root):]
+            if rest and "/" in rest:
+                return chan
+    m = re.match(r"https://([a-z0-9\-]+)\.repo\.amd\.com/rocm/", url)
+    if m and m.group(1) in OFFICIAL_CHANNELS:
+        return m.group(1)
+    return None
+
+
+def url_is_official_amd(url: str) -> bool:
+    """True only when the URL belongs to an exact official AMD channel."""
+    return url_channel(url) is not None
+
+
+def torch_wheel_is_amd_hip(version: str, url: str | None) -> bool:
+    """Vendor validation for a torch wheel: AMD ROCm local version AND origin
+    from an exact official AMD channel. Neither signal alone is sufficient
+    (a CPU wheel could be renamed with a rocm-looking local version; a genuine
+    dev wheel does not carry the literal '+rocm' substring)."""
+    parsed = parse_rocm_local_version(version)
+    return parsed["is_amd_rocm_local"] and (url_is_official_amd(url) if url else False)
+
+
+def rocm_family_of(package: str, version: str) -> str | None:
+    """ROCm family of a package version: the rocm local segment when present
+    (torch/torchvision), else the public version for rocm-sdk*/rocm packages
+    (their public version IS the ROCm version, e.g. 10.3.0.dev0+ff576965).
+    rocm-bootstrap and friends are excluded (their 0.x version is not a ROCm
+    family)."""
+    parsed = parse_rocm_local_version(version)
+    if parsed["rocm_family"]:
+        return parsed["rocm_family"]
+    name = (package or "").lower()
+    if name == "rocm" or name.startswith("rocm-sdk"):
+        pub = (version or "").split("+")[0]
+        m = re.match(r"(\d+)\.", pub)
+        if m:
+            return m.group(1)
+    return None
+
+
 def sha256_file(p: Path) -> str:
     h = hashlib.sha256()
     with open(p, "rb") as f:
@@ -172,7 +256,13 @@ def classify_runtime(workarounds: dict, channel: str | None,
         return "ENGINEERING_REFERENCE"
     if miopen is not None and miopen.get("loaded"):
         if miopen.get("pr13437_marker_miopen_initializer_list", 0) > 0:
-            return "OFFICIAL_CANDIDATE" if channel in ("dev", "nightly", "rc") else "OFFICIAL_STABLE"
+            # fail-closed: OFFICIAL_STABLE requires the EXPLICIT stable channel;
+            # an unlabelled post-fix stack can never claim stable
+            if channel == "stable":
+                return "OFFICIAL_STABLE"
+            if channel in ("dev", "nightly", "rc"):
+                return "OFFICIAL_CANDIDATE"
+            return "INCONCLUSIVE"
         return "OFFICIAL_PRE_FIX"
     return "INCONCLUSIVE"
 
@@ -182,7 +272,8 @@ def windows_build() -> str:
         out = subprocess.run(
             ["powershell", "-NoProfile", "-Command",
              "[System.Environment]::OSVersion.Version.ToString()"],
-            capture_output=True, text=True, timeout=30).stdout.strip()
+            capture_output=True, timeout=30,
+            encoding="utf-8", errors="replace").stdout.strip()
         return out or platform.version()
     except Exception:
         return platform.version()
@@ -195,7 +286,8 @@ def gpu_driver_facts() -> dict:
             ["powershell", "-NoProfile", "-Command",
              "Get-CimInstance Win32_VideoController | Where-Object {$_.Name -match 'AMD|Radeon'}"
              " | Select-Object -First 1 Name,DriverVersion | ConvertTo-Json -Compress"],
-            capture_output=True, text=True, timeout=60)
+            capture_output=True, timeout=60,
+            encoding="utf-8", errors="replace")
         return json.loads(out.stdout) if out.stdout.strip() else {}
     except Exception:
         return {}

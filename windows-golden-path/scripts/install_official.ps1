@@ -50,15 +50,22 @@ if ($bad -gt 0) { Write-Error "$bad wheel(s) failed hash verification — NOTHIN
 Write-Output "[$naming] $($lock.packages.Count) wheel hashes verified"
 
 # 3) install verified local wheels (order: deps resolved by pip from the same set)
+# PS 5.1 trap: $ErrorActionPreference=Stop + `*>>` redirection turns the FIRST
+# pip stderr line into a terminating NativeCommandError — which would crash
+# the retry path below. Native-call failure handling here is explicit
+# ($LASTEXITCODE checks), so stderr must not throw.
+$ErrorActionPreference = "Continue"
 $wheels = $lock.packages | ForEach-Object { $_.local_path }
 & $vpy -m pip install --no-index --no-warn-script-location $wheels *>> $installLog
 if ($LASTEXITCODE -ne 0) {
     # ultralytics may need public PyPI deps (e.g. matplotlib); retry with PyPI
     # allowlisted as --extra-index while keeping exact local wheel bytes first
+    # (also allows sdist-only meta-packages e.g. `rocm` to fetch build deps)
     Write-Output "[$naming] offline install incomplete; retrying with PyPI for pure-python deps (AMD wheels still local verified bytes)"
     & $vpy -m pip install --extra-index-url https://pypi.org/simple --no-warn-script-location $wheels *>> $installLog
     if ($LASTEXITCODE -ne 0) { Write-Error "pip install failed (see $installLog)"; exit 2 }
 }
+$ErrorActionPreference = "Stop"
 
 # 4) record installed distribution versions vs lock
 & $vpy -m pip freeze *>> $installLog

@@ -24,6 +24,7 @@ param(
     [Parameter(Mandatory = $true)][string]$WorkDir,
     [Parameter(Mandatory = $true)][string]$OutJson,
     [Parameter(Mandatory = $true)][string]$RunId,
+    [string]$Channel = "",
     [string]$ExtraArgs = ""
 )
 $ErrorActionPreference = "Continue"
@@ -71,7 +72,10 @@ $cjson = if ($ckpts -and @($ckpts).Count -gt 0) {
 $cfile = Join-Path $WorkDir "checkpoints.json"
 Set-Content -Path $cfile -Value $cjson -Encoding UTF8
 $vpy = Join-Path $VenvDir "Scripts\python.exe"
+$chanArg = @()
+if ($Channel -ne "") { $chanArg = @("--channel", $Channel) }
 & $vpy -I (Join-Path $PSScriptRoot "generate_report.py") train-summary `
     --run-id $RunId --log $log --exit-code $exit --out $OutJson `
-    --checkpoints-json-file $cfile --command $cmd
+    --checkpoints-json-file $cfile --command $cmd @chanArg
+if ($LASTEXITCODE -ne 0 -and $exit -eq 0) { $exit = $LASTEXITCODE }  # summary gate fails closed
 exit $exit

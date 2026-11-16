@@ -8,6 +8,13 @@
 > publishable only after R22 OFFICIAL_STABLE_PASS. The commands below are
 > REAL and were verified on an RX 7900 XTX machine — the blocker is the
 > package content, not the commands.
+>
+> **FAIL-CLOSED quickstart (R21.1 TASK E):** `quickstart.ps1` now defaults to
+> `-Mode Status` — it prints the gate status, installs nothing, and exits 3.
+> The install-and-train flow runs only under the explicitly labeled
+> `-Mode EngineeringDemonstration` (pre-fix stack; the #3956 failure without
+> VS Build Tools is the expected demo result). `-Mode OfficialStable` is
+> refused (exit 4) until R22 issues OFFICIAL_STABLE_PASS.
 
 ## What you need
 

@@ -124,6 +124,8 @@ def main() -> None:
     ap.add_argument("--leg", choices=["official", "engineering"], required=True)
     ap.add_argument("--expect", choices=["FAIL", "CANDIDATE", "STABLE"], default="FAIL",
                     help="official-leg expectation for the wheel under test")
+    ap.add_argument("--channel", default=None,
+                    help="stack channel (runtime classification of the official leg)")
     ap.add_argument("--scratch-root", default=None)
     ap.add_argument("--timeout", type=int, default=900)
     args = ap.parse_args()
@@ -134,6 +136,7 @@ def main() -> None:
     classification, failure_class = classify(args.leg, leg["exit_code"],
                                              leg["stderr_tail"], args.expect)
     ambient_shim = os.environ.get("HIPRTC_COMPILE_OPTIONS_APPEND")
+    miopen_ident = gp_lib.loaded_miopen_identity()
     import importlib.metadata as im
 
     record = {
@@ -146,7 +149,10 @@ def main() -> None:
                         if any(d.metadata['Name'] == 'torchvision' for d in im.distributions()) else None),
         "hip": torch.version.hip,
         "runtime_class": ("ENGINEERING_REFERENCE" if args.leg == "engineering"
-                          or ambient_shim else "OFFICIAL_PRE_FIX"),
+                          or ambient_shim
+                          else gp_lib.classify_runtime(
+                              {"any_workaround_present": False},  # child env: shim popped
+                              args.channel, miopen_ident)),
         "command": f"python verify_miopen_nostl.py --leg {args.leg} --expect {args.expect}",
         "exit_code": leg["exit_code"], "duration_s": round(time.time() - t0, 1),
         "pass_fail_skip": ("PASS" if classification.endswith("_PASS")
@@ -160,7 +166,7 @@ def main() -> None:
         "reproducer_shape": [20, 100, 35, 45],
         "reproducer_op": "nn.BatchNorm2d(100) forward+backward",
         "expectation": args.expect,
-        "miopen_identity_in_parent": gp_lib.loaded_miopen_identity(),
+        "miopen_identity_in_parent": miopen_ident,
     }
     record["gfx_target"] = gp_lib.gfx_from_device_name(record["gpu_name"] or "")
     gp_lib.write_evidence(record, Path(args.out))

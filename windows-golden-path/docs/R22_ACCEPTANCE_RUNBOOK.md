@@ -50,6 +50,18 @@ verify_provenance → verify_torchvision_ops → verify_miopen_nostl(official le
 verify_checkpoint_resume → run_stability (10×, `--cold` extra pass) →
 generate_report full.
 
+**Fail-closed orchestration (R21.1):** every gate invocation is wrapped in
+`Invoke-Gate` — an individual exit-code check after EVERY gate, an immediate
+NO-GO stop when a mandatory gate fails or crashes, and a durable
+`<evidence>\gate_status.json`. The harness NEVER succeeds merely because
+`generate_report.py` exited 0; its own recorded gate statuses decide the final
+exit code. `generate_report.py full` additionally requires `--sequence
+(engref|candidate|stable)` and reconciles the records against
+`gate_status.json` (hand-written evidence without orchestrator records cannot
+earn a PASS). Exit codes: 0 = verdict PASS at the sequence ceiling; 1 =
+evidence violations; 2 = NO-GO missing/unscoped gates; 3 = NO-GO gate not
+passing.
+
 ## 4. gfx1151 (Radeon 8060S) — same bytes, second machine
 
 Repeat steps 1-3 with `-Gfx gfx1151`; device wheels:
