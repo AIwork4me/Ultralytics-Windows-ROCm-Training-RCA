@@ -1,0 +1,48 @@
+# Lightweight CPU-only contract validation for the Windows Golden Path harness.
+#
+# Purpose (mission R21.1 section 10): fail on a contract or false-PASS
+# regression without any GPU, AMD wheel download, or large CI framework.
+#
+# What each step guards:
+#   compileall  - committed-bytes SyntaxError class (the 31526a1 defect where
+#                 four gate scripts were committed with an unclosed paren and
+#                 evidence could only have come from uncommitted working copies)
+#   pytest      - 45 CPU contract tests incl. 17 adversarial fail-closed
+#                 controls (missing/failed/hidden-failed gates, synthetic or
+#                 hand-written evidence, DEV->stable promotion, ...)
+#   verifier    - repo release-closure evidence audit (575 checks) plus its
+#                 12 adversarial self-tests proving the verifier itself
+#                 rejects known-bad records
+name: cpu-contract
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cpu-contract:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install minimal test dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir pytest
+
+      - name: Committed harness sources compile (SyntaxError regression gate)
+        run: python -m compileall -q windows-golden-path
+
+      - name: CPU contract tests (adversarial, fail-closed)
+        run: python -m pytest windows-golden-path/tests -q
+
+      - name: Release-closure evidence verifier + adversarial self-tests
+        run: python scripts/verify_release_closure.py
