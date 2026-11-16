@@ -746,13 +746,29 @@ def dual_input_evidence(root: Path) -> list[dict]:
     return out
 
 
-def dual_harness_code_sha() -> dict:
-    """SHA256 of the harness sources that PRODUCED this report (working-tree
-    bytes of the running code; becomes the committed identity at freeze)."""
+def dual_harness_code_sha(root: Path) -> dict:
+    """SHA256 of the harness sources that PRODUCED this report — hashed as
+    COMMITTED BLOBS (git cat-file at HEAD), never as working-tree bytes:
+    a CRLF checkout must not change the recorded identity. Falls back to
+    LF-normalized working bytes when git is unavailable."""
     here = Path(__file__).resolve().parent
-    return {n: hashlib.sha256((here / n).read_bytes()).hexdigest()
-            for n in ("supplemental_acceptance.py", "run_stability.py",
-                      "audit_adamw_amp.py", "gp_lib.py")}
+    root = Path(root).resolve()
+    out = {}
+    for n in ("supplemental_acceptance.py", "run_stability.py",
+              "audit_adamw_amp.py", "gp_lib.py"):
+        rel = (here / n).resolve().relative_to(root).as_posix()
+        try:
+            blob = subprocess.run(
+                ["git", "cat-file", "blob", f"HEAD:{rel}"], cwd=str(root),
+                capture_output=True, timeout=30).stdout
+        except Exception:
+            blob = b""
+        if blob:
+            out[n] = hashlib.sha256(blob).hexdigest()
+        else:
+            out[n] = hashlib.sha256(
+                (here / n).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+    return out
 
 
 def _load(p: str) -> dict:
@@ -829,7 +845,7 @@ def main() -> None:
         # evidence identity (committed blobs) + harness code identity +
         # adapter versions. No timestamp: the dual report stays deterministic.
         rep["input_evidence"] = dual_input_evidence(root)
-        rep["harness_code_sha256"] = dual_harness_code_sha()
+        rep["harness_code_sha256"] = dual_harness_code_sha(root)
         rep["schema_adapters"] = {
             arch: rep[arch]["combined"]["part_a_recomputed"].get("adapter")
             for arch in ("gfx1100", "gfx1151")}
@@ -863,8 +879,12 @@ def main() -> None:
         }
         rep["pass_fail_skip"] = rep["combined"]["verdict"]
 
+    # newline="\n" keeps the committed report bytes hash-identical across
+    # platforms (no CRLF translation on Windows — same convention the runner
+    # uses for child logs)
     Path(args.out).write_text(json.dumps(rep, indent=2, ensure_ascii=False,
-                                         default=repr), encoding="utf-8")
+                                         default=repr), encoding="utf-8",
+                                         newline="\n")
     verdict = rep.get("verdict") or rep.get("combined", {}).get("verdict")
     print(json.dumps({"verdict": verdict} if args.dual else rep["combined"],
                      indent=2, default=repr))
