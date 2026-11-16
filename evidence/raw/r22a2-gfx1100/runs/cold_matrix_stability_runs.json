@@ -1,0 +1,174 @@
+[
+  {
+    "run": 1,
+    "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
+    "pid": 4836,
+    "started_utc": "2026-11-16T09:06:28.530354+00:00",
+    "exit_code": 0,
+    "duration_s": 119.6,
+    "cache_class": "cold(fresh-USERPROFILE)",
+    "home_dir": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\home",
+    "cache_expectation": "cold",
+    "requested_workers": 8,
+    "resolved_num_workers": 8,
+    "resolved_n_batches": 8,
+    "amp_enabled_child": true,
+    "optimizer_class_child": "AdamW",
+    "worker_activity_observed": true,
+    "worker_pids_observed": [
+      1016,
+      1568,
+      1692,
+      5784,
+      9772,
+      9876,
+      14564,
+      18316,
+      18484,
+      19012,
+      22672,
+      25028,
+      25432
+    ],
+    "peak_concurrent_workers": 13,
+    "monitor_samples": 111,
+    "orphan_workers_alive": 0,
+    "orphan_scan": {
+      "scanned_at": "2026-11-16T09:06:28.530354+00:00",
+      "orphan_pids": [],
+      "orphan_count": 0
+    },
+    "checkpoint_path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\train\\weights\\last.pt",
+    "checkpoint_exists": true,
+    "log": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\child.log",
+    "log_sha256": "a7ed5fa9f12f5043a2bf9555296fbfd2c1f0fbea9a1b1574c01e49a3c2aa7a22",
+    "child_has_main_guard": true,
+    "gpu_name": "AMD Radeon RX 7900 XTX",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "status": "PASS",
+    "failure_classification": null,
+    "worker_contract_checks": [
+      {
+        "check": "physical_gpu_identity",
+        "ok": true,
+        "detail": "AMD Radeon RX 7900 XTX"
+      },
+      {
+        "check": "workers_requested_8",
+        "ok": true,
+        "detail": "requested_workers=8 (contract=8)"
+      },
+      {
+        "check": "workers_effective_8",
+        "ok": true,
+        "detail": "resolved_num_workers=8 (requested 8)"
+      },
+      {
+        "check": "worker_activity_observed",
+        "ok": true,
+        "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+      },
+      {
+        "check": "peak_workers_reached_8",
+        "ok": true,
+        "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+      },
+      {
+        "check": "training_completed",
+        "ok": true,
+        "detail": "STABILITY_CHILD_DONE marker present"
+      },
+      {
+        "check": "checkpoint_present",
+        "ok": true,
+        "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run01\\train\\weights\\last.pt"
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
+    "pid": 8152,
+    "started_utc": "2026-11-16T09:08:29.392786+00:00",
+    "exit_code": 0,
+    "duration_s": 118.6,
+    "cache_class": "cold(fresh-USERPROFILE)",
+    "home_dir": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\home",
+    "cache_expectation": "cold",
+    "requested_workers": 8,
+    "resolved_num_workers": 8,
+    "resolved_n_batches": 8,
+    "amp_enabled_child": true,
+    "optimizer_class_child": "AdamW",
+    "worker_activity_observed": true,
+    "worker_pids_observed": [
+      2536,
+      3544,
+      3636,
+      4192,
+      4784,
+      8320,
+      12500,
+      14024,
+      15072,
+      16912,
+      26148,
+      26604,
+      26996
+    ],
+    "peak_concurrent_workers": 13,
+    "monitor_samples": 110,
+    "orphan_workers_alive": 0,
+    "orphan_scan": {
+      "scanned_at": "2026-11-16T09:08:29.392786+00:00",
+      "orphan_pids": [],
+      "orphan_count": 0
+    },
+    "checkpoint_path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\train\\weights\\last.pt",
+    "checkpoint_exists": true,
+    "log": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\child.log",
+    "log_sha256": "da312853a3fa72e4d70522efd1d0e0bb7c8b9e1680c26595093e153b56a0e30a",
+    "child_has_main_guard": true,
+    "gpu_name": "AMD Radeon RX 7900 XTX",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "status": "PASS",
+    "failure_classification": null,
+    "worker_contract_checks": [
+      {
+        "check": "physical_gpu_identity",
+        "ok": true,
+        "detail": "AMD Radeon RX 7900 XTX"
+      },
+      {
+        "check": "workers_requested_8",
+        "ok": true,
+        "detail": "requested_workers=8 (contract=8)"
+      },
+      {
+        "check": "workers_effective_8",
+        "ok": true,
+        "detail": "resolved_num_workers=8 (requested 8)"
+      },
+      {
+        "check": "worker_activity_observed",
+        "ok": true,
+        "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+      },
+      {
+        "check": "peak_workers_reached_8",
+        "ok": true,
+        "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+      },
+      {
+        "check": "training_completed",
+        "ok": true,
+        "detail": "STABILITY_CHILD_DONE marker present"
+      },
+      {
+        "check": "checkpoint_present",
+        "ok": true,
+        "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\cold\\run02\\train\\weights\\last.pt"
+      }
+    ]
+  }
+]

@@ -533,80 +533,91 @@
  },
  {
   "path": "scripts/p18/archive_evidence.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "eb18a8b1fdddd065b0b2f7970263a5f651e593665b151403dea741b87c4fc6ce",
-  "size_bytes": 4040
+  "sha256": "3e77c1ec475e1b973bf0428e80f1b9290f4aa2fa480c5a5e1381146792ca0cef",
+  "size_bytes": 4128,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/build_results_json.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "84e206c53f4a792330e067800087cda953aec828ffc2f7a068c6dc32092e0cbc",
-  "size_bytes": 4584
+  "sha256": "a01bd72896a31d18b3adae0bbca8bae6d97725d835f1cae46f1882b775763ea4",
+  "size_bytes": 4662,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_a_gpu_basic.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "22c1be7af0b3202b78c34ca1420eb24d239f2ac84f76783e5e863582993bf54c",
-  "size_bytes": 6733
+  "sha256": "ee0141065ea8745c69eb29679ebbef8db6aca6f44ee03d107ed7c6a0a2250ffc",
+  "size_bytes": 6915,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_b1_check_amp.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "d13a846e1c057c832c12af66e6a89df954cc9f2bc7d23dafd4fee1121e888a43",
-  "size_bytes": 1137
+  "sha256": "02352b4edcea2dd9c9181304e1ff76426b46054f2a118be577d10c3e26104fb5",
+  "size_bytes": 1175,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_b2_exception_boundary.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "7c7e4e4c52d6a4d4185d499c2bab407ee2e8680bfa3d566f9316cd494fbbd010",
-  "size_bytes": 5861
+  "sha256": "e08807399d54a2c277b8be98713ea036755477d19187c9b0512b9844b83872ad",
+  "size_bytes": 6006,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_b34_train.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "0aefc345e9c50406bbfbdcbad4b514c545318e26b9aee0b364a297b56c4e263e",
-  "size_bytes": 3578
+  "sha256": "c8523e03e0a9f74e0c30260c5d54d2077d041f0ac3e6e2eacf13dd9bbcc5cf39",
+  "size_bytes": 3685,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_c7_cvd_probe.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "b13360bc14fb0ebd7c1383a9ab551a070f02fe29075fd2c255f8833c151ee6c3",
-  "size_bytes": 2013
+  "sha256": "6c33d5a106b025b3f726d413ffb229dc80405ed08c1f227bbb40d9020d8c1881",
+  "size_bytes": 2068,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_c_device_discovery.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "ab29bbdcd7f31988a25c75191d2949037dafe2acdfbc7e55ca7d15cb67bf73ea",
-  "size_bytes": 7542
+  "sha256": "883623dce6d9eda761feb80aa7d048416dfbc44b2afb175a51ef70bfc44f8af4",
+  "size_bytes": 7723,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_d9_resume.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "400aaac5020f532c8c6173f3668096572e01d36d0fdf98187d35a70eb43ccdf3",
-  "size_bytes": 4502
+  "sha256": "3c2ec40c3b0ca5184e33398510edbc28992ede786a1cbe32220de43c542b8854",
+  "size_bytes": 4628,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_d_combined.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "278b6674b71141824db5b0e24d06a6a95ae025909988d28c95806a24244503fb",
-  "size_bytes": 4341
+  "sha256": "f04f6707a90a3fd607573c42b8b457eee3a20602f4f355f043fc83e7a24f391b",
+  "size_bytes": 4447,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "scripts/p18/phase_f_stability.py",
-  "timestamp": "2026-11-15T11:47:12.014621+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "2270eec08018690fdbd59328b4eb075dcb84a8a7b9b7a485d9298700401c8dd8",
-  "size_bytes": 4129
+  "sha256": "b10482948f392dc73d6b00d4e65281803c8d3317d6f12c1494652a2b8067cd1b",
+  "size_bytes": 4228,
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "evidence/raw/p19/environment.json",
@@ -1367,11 +1378,11 @@
  },
  {
   "path": "windows-golden-path/reports/r22a-gfx1151/report.json",
-  "timestamp": "2026-11-16T15:13:26.315101+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "R22A mission report artifacts [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
-  "sha256": "b9cb572a041240281e21c3618b0ac55ab015416b449ee03b76c6afeac1e7abea",
-  "size_bytes": 3027,
-  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit)"
+  "sha256": "95f669858580ab1b8e0f00827c29d09d808868a64c8cd6e5e2defee1552aa1d7",
+  "size_bytes": 3136,
+  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit) | R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "evidence/raw/r22a3-gfx1151/R22A3_ACCEPTANCE_REPORT.json",
@@ -1474,11 +1485,11 @@
  },
  {
   "path": "windows-golden-path/reports/r22a3-gfx1151/report.json",
-  "timestamp": "2026-11-16T15:13:26.315107+00:00",
+  "timestamp": "2026-11-16T15:22:43.329833+00:00",
   "command": "R22A.3 mission artifacts (Part A default AdamW+AMP audit, Part B workers=8 matrix, combined acceptance)",
-  "sha256": "19adacf77d244658eb995bdac9f530ee483f8577f56cd9f1ddbbd1f670276a62",
-  "size_bytes": 2341,
-  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit)"
+  "sha256": "6b6ec466ea5e54224c59d83c6a7c52916aedea9a92df78b550bed5dac4c66e13",
+  "size_bytes": 2410,
+  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit) | R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
  },
  {
   "path": "docs/release-closure/R22A3_GFX1151_ADAMW_AMP_WORKERS8.md",
@@ -1599,5 +1610,211 @@
   "command": "R22A.4 sec5/13 minimum focused GPU probe: ONE additional justified warm sample (sample_class=additional, home_pre_existed=true) on the retained shared warm-home-b completing 2 COLD + 3 qualifying WARM for gfx1151; unified committed harness; run-id R22A4-B-ADD1; exit 0, workers 8/8, 13 identities, peak 13, monitor health fully recorded",
   "sha256": "f1c1d9f8af32517bb6ffeb90e2008bbeb37fb3b41370c15d4297eff803b75142",
   "size_bytes": 7918
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_ACCEPTANCE_REPORT.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "49df4df8a961eb5f3e32d61248b5e61138916c35f5327d32b62c3122711f0a57",
+  "size_bytes": 5615,
+  "note": "R22A.2.1: derived report honestly re-derived (see R22A2_WORKERS8_RECONCILIATION.json)"
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_ADAMW_AMP.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "audit_adamw_amp.py --epochs 3 --batch 8 --imgsz 256 --workers 0 (optimizer=auto) on gfx1100",
+  "sha256": "115d5c2163ae30c8d14253332a3420bf4e6cca5da52362b121a28cf7f5965cc6",
+  "size_bytes": 8971
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_ADAMW_AMP.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "c859890b0df412cc90ab04b248c95a892c0814b8279b744269c42bda8da66108",
+  "size_bytes": 21451
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_ADAMW_AMP_attempt1_harness_bug.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "b5cd9bbfbe668fa4784629e89713fcba55845871e814e706d0ce05cd757749d3",
+  "size_bytes": 8116
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_ADAMW_AMP_attempt2_contract_semantics.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "d9c3760e52e546658584e248c740a88cd78624ce5ef644d95ddf459c4490047a",
+  "size_bytes": 21430
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_CHECKPOINTS_LOCAL.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "dda282a078cdae992b1e9d9ce70eb38e33e39d9d2f29ce81a8d29ca7fd0e7a22",
+  "size_bytes": 1743
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_ENVIRONMENT.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "6859ba71184ddc95d5e123f6e88506a9054ae1d622c7d83166d4235268aedd01",
+  "size_bytes": 3586
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_PROCESS_LIFECYCLE.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "8f031286aaa20a43a300c0b07b08f2029036beaa5afe5ee3d543afe641286afb",
+  "size_bytes": 4957
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_SOURCE_PROVENANCE.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "e37a673e9a82db4d1f8e407043902786ef8c6713afc195363f288f6b8aa33c66",
+  "size_bytes": 3195
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "cfa42d266332b9cbeefa251b606652ea53d6e16d0fe1896423ab8495adcaf255",
+  "size_bytes": 12901,
+  "note": "R22A.2.1: derived report honestly re-derived (see R22A2_WORKERS8_RECONCILIATION.json)"
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_COLD.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "run_stability.py --runs 2 --cold --workers 8 --data coco128-r22a2 --batch 16 --imgsz 256",
+  "sha256": "0933eb7d0dbcd0e9d149d560946f4718d258ec0be09db2a3817f262c877cd9dd",
+  "size_bytes": 44133
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_COLD.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "5c345c946b2c15a4887ff2685c73c2cc748bbf40a5eee30da22b2d3440b0e9f9",
+  "size_bytes": 155
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_RUNS.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "1507908f8e5e8537f50549702a052fc86b4a63fe4acd2ea374eab93fe6ffce0a",
+  "size_bytes": 15030,
+  "note": "R22A.2.1: derived report honestly re-derived (see R22A2_WORKERS8_RECONCILIATION.json)"
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_WARM.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "run_stability.py --runs 3 --warm-home <shared> --workers 8 --data coco128-r22a2 --batch 16 --imgsz 256",
+  "sha256": "322ab9f8b0569bd66872dc44bd0d2aedd0872353177f0b336ed03f691e7d28fa",
+  "size_bytes": 61738
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_WARM.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "c079e2b1172a21a447262de7718dd2c6291ed0defd4b7991f8855cdf7d899aa9",
+  "size_bytes": 213
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/child_sample_cold_run01.py",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "4db20b720c21aba5bcb95552e454064e0ca45abcd5e261a200943b4b7270c612",
+  "size_bytes": 1373
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/cold_matrix_stability_runs.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "45c398c641930253998a98d55b2c9e1b86cda54cfe2d78890e7d183a306a865e",
+  "size_bytes": 5355
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/cold_run01_child.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "4c2a63853a97b0d63a6d68f8df5a478d2c57a94913e15396f3f404ff79bd8819",
+  "size_bytes": 18302
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/cold_run02_child.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "c9dd6da74baad3f29fcb57249856371cdd783a3552b462a5d5a807c75beebb20",
+  "size_bytes": 17606
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/warm_matrix_stability_runs.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "2266b8719860f781c32eca9a98c160beb62368abd193d1798e18b8276a5496cb",
+  "size_bytes": 8009
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/warm_run01_child.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "277908d95488c8c8dbb72c329548675c23019f7ef15f37385c3560f51a027b97",
+  "size_bytes": 18622
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/warm_run02_child.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "3fd3fc06f42cf1c853e7838ff49fd46439c76738a0f8f3e259db21dbe1b2e474",
+  "size_bytes": 15903
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/warm_run03_child.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "efd9c471dbbcd9a4b77c533b8587de0b2d9aab6f40a2718e59e17d2b42461c19",
+  "size_bytes": 15898
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/SHA256SUMS.txt",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2 supplemental evidence (see R22A2_ACCEPTANCE_REPORT.json)",
+  "sha256": "9111c803a21f008ada69f9c6c8b9e20f1ee9eceb7de47858e9b16b1d46e53ab9",
+  "size_bytes": 3433
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_RECONCILIATION.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2.1 derived reconciliation (roles, hardened rescan, source identity, timestamps)",
+  "sha256": "77e3cb931551ec5f95ebfc9a4e79988c291f318568cec80b0667734ede4e53a4",
+  "size_bytes": 18376
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_WARM_ADDITIONAL.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "run_stability.py --runs 1 --warm-home <shared,primed> --workers 8 (ADDITIONAL sample, hardened harness @ committed HEAD)",
+  "sha256": "66f7aadeec1c3212279541bce8127aabd237f1b2b8ef8a27faf33f37477e1b13",
+  "size_bytes": 21269
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_WARM_ADDITIONAL.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2.1 evidence (see reconciliation)",
+  "sha256": "91a17ac5edaac735308704ab05313d1dd8929f7d12df4f32a9e4f4c0b9cf5ed6",
+  "size_bytes": 94
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/additional_matrix_stability_runs.json",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2.1 evidence (see reconciliation)",
+  "sha256": "9be29b407b3004e14e766457de6c55aaebade1a3e8c3341a696988f5a7a5f2cd",
+  "size_bytes": 3037
+ },
+ {
+  "path": "evidence/raw/r22a2-gfx1100/runs/additional_run01_child.log",
+  "timestamp": "2026-11-16T11:56:11.887069+00:00",
+  "command": "R22A.2.1 evidence (see reconciliation)",
+  "sha256": "925dbe714e2f1c617ab3568f09670b3a7597ae1d65e27b6e8076dd2d27225293",
+  "size_bytes": 15942
  }
 ]

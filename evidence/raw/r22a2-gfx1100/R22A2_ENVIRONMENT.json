@@ -1,0 +1,64 @@
+{
+ "label": "R22A2-post-run",
+ "captured_utc": "2026-11-16T09:15:36.441327+00:00",
+ "python": "3.12.16",
+ "python_executable": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe",
+ "os": "Windows-11-10.0.26300-SP0",
+ "windows_build": "10.0.26300.0",
+ "gpu_name_cim": "AMD Radeon RX 7900 XTX",
+ "driver_version": "32.0.21030.2001",
+ "gfx_target": "gfx1100",
+ "workarounds": {
+  "hiprtc_compile_options_append": null,
+  "hiprtc_include_injection": false,
+  "miopen_env_overrides": {},
+  "miopen_path_redirection": [],
+  "any_workaround_present": false
+ },
+ "env": {
+  "PATH": "C:\\Users\\Rocm\\bin;C:\\Program Files\\Git\\ucrt64\\bin;C:\\Program Files\\Git\\usr\\local\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\ucrt64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\Rocm\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\WINDOWS\\System32\\OpenSSH;C:\\Program Files\\GitHub CLI;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs;C:\\Users\\Rocm\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Rocm\\AppData\\Local\\Microsoft\\WinGet\\Packages\\astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\Rocm\\AppData\\Roaming\\npm;C:\\Users\\Rocm\\AppData\\Local\\Programs\\ZCode\\resources\\tools\\ripgrep;C:\\Users\\Rocm\\AppData\\Local\\Programs\\ZCode\\resources\\tools\\ugrep;C:\\Program Files\\nodejs;C:\\Program Files\\Git\\usr\\bin\\vendor_perl;C:\\Program Files\\Git\\usr\\bin\\core_perl",
+  "INCLUDE": null,
+  "LIB": null,
+  "VCToolsInstallDir": null,
+  "HIP_PATH": null,
+  "ROCM_PATH": null,
+  "PYTHONPATH": null,
+  "HIPRTC_COMPILE_OPTIONS_APPEND": null
+ },
+ "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+ "hip": "7.18.26441",
+ "torch_cuda_available": true,
+ "device_count": 1,
+ "gpu_name_torch": "AMD Radeon RX 7900 XTX",
+ "miopen": {
+  "loaded": true,
+  "path": "C:\\RadeonYOLO\\venvs\\r22-dev\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+  "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+  "bytes": 501333504,
+  "embedded_version_strings": [
+   "3.6.3.4e7d93e3"
+  ],
+  "pr13437_marker_miopen_initializer_list": 2
+ },
+ "packages": {
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "ultralytics": "8.4.214",
+  "rocm-sdk-libraries": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "rocm-sdk-core": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "amd-torch-device-gfx1100": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "amd-torch-device-gfx1151": null,
+  "amd-torchvision-device-gfx1100": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "amd-torchvision-device-gfx1151": null
+ },
+ "preflight_disclosure": {
+  "hiprtc_user_env_var_present_at_host": true,
+  "handling": "HIPRTC_COMPILE_OPTIONS_APPEND stripped from every R22A.2 GPU process env at orchestration (env -u) and defensively inside run_stability.py; user-level env NOT modified",
+  "reason": "var originates from YOLO26 Day1 labs shim work; accepted R22 dev-rerun evidence recorded it absent; stripping restores the exact accepted baseline condition"
+ },
+ "gpu_idle_check": {
+  "post_runs_python_procs": 0,
+  "note": "no orphan processes after Part A + Part B"
+ },
+ "disk_free_gb_c": 511
+}

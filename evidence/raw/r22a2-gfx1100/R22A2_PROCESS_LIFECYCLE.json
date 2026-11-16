@@ -1,0 +1,183 @@
+{
+  "source_head": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "integration_base": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "ultralytics": "8.4.214",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "wheel_lock": "evidence/raw/r22-dev-rerun/resolved_wheel_lock.json (46 artifacts, audit ok, families [10])",
+  "miopen_dll_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+  "mission": "R22A2",
+  "run_id": "R22A2-B-LIFECYCLE",
+  "timestamp": "2026-11-16T09:16:40.496710+00:00",
+  "per_run": [
+    {
+      "matrix": "cold",
+      "run": 1,
+      "pid": 4836,
+      "started_utc": "2026-11-16T09:06:28.530354+00:00",
+      "duration_s": 119.6,
+      "exit_code": 0,
+      "worker_pids_observed": [
+        1016,
+        1568,
+        1692,
+        5784,
+        9772,
+        9876,
+        14564,
+        18316,
+        18484,
+        19012,
+        22672,
+        25028,
+        25432
+      ],
+      "peak_concurrent_workers": 13,
+      "monitor_samples": 111,
+      "orphan_scan": {
+        "scanned_at": "2026-11-16T09:06:28.530354+00:00",
+        "orphan_pids": [],
+        "orphan_count": 0
+      },
+      "worker_shutdown_outcome": "clean \u2014 0 survivors at +2s scan",
+      "child_has_main_guard": true
+    },
+    {
+      "matrix": "cold",
+      "run": 2,
+      "pid": 8152,
+      "started_utc": "2026-11-16T09:08:29.392786+00:00",
+      "duration_s": 118.6,
+      "exit_code": 0,
+      "worker_pids_observed": [
+        2536,
+        3544,
+        3636,
+        4192,
+        4784,
+        8320,
+        12500,
+        14024,
+        15072,
+        16912,
+        26148,
+        26604,
+        26996
+      ],
+      "peak_concurrent_workers": 13,
+      "monitor_samples": 110,
+      "orphan_scan": {
+        "scanned_at": "2026-11-16T09:08:29.392786+00:00",
+        "orphan_pids": [],
+        "orphan_count": 0
+      },
+      "worker_shutdown_outcome": "clean \u2014 0 survivors at +2s scan",
+      "child_has_main_guard": true
+    },
+    {
+      "matrix": "warm",
+      "run": 1,
+      "pid": 25620,
+      "started_utc": "2026-11-16T09:12:27.206981+00:00",
+      "duration_s": 119.1,
+      "exit_code": 0,
+      "worker_pids_observed": [
+        1212,
+        4020,
+        8228,
+        9524,
+        10260,
+        11648,
+        11688,
+        14524,
+        14536,
+        18192,
+        21820,
+        23976,
+        26604
+      ],
+      "peak_concurrent_workers": 13,
+      "monitor_samples": 110,
+      "orphan_scan": {
+        "scanned_at": "2026-11-16T09:12:27.206981+00:00",
+        "orphan_pids": [],
+        "orphan_count": 0
+      },
+      "worker_shutdown_outcome": "clean \u2014 0 survivors at +2s scan",
+      "child_has_main_guard": true
+    },
+    {
+      "matrix": "warm",
+      "run": 2,
+      "pid": 18396,
+      "started_utc": "2026-11-16T09:13:10.528385+00:00",
+      "duration_s": 41.0,
+      "exit_code": 0,
+      "worker_pids_observed": [
+        8920,
+        9556,
+        12364,
+        13184,
+        13784,
+        14680,
+        22248,
+        23200,
+        23840,
+        23976,
+        25156,
+        26512,
+        28484
+      ],
+      "peak_concurrent_workers": 13,
+      "monitor_samples": 38,
+      "orphan_scan": {
+        "scanned_at": "2026-11-16T09:13:10.528385+00:00",
+        "orphan_pids": [],
+        "orphan_count": 0
+      },
+      "worker_shutdown_outcome": "clean \u2014 0 survivors at +2s scan",
+      "child_has_main_guard": true
+    },
+    {
+      "matrix": "warm",
+      "run": 3,
+      "pid": 15880,
+      "started_utc": "2026-11-16T09:13:37.828614+00:00",
+      "duration_s": 25.0,
+      "exit_code": 0,
+      "worker_pids_observed": [
+        3420,
+        7016,
+        9920,
+        11928,
+        12324,
+        13708,
+        16940,
+        17308,
+        20288,
+        20420,
+        21332,
+        24420,
+        27976
+      ],
+      "peak_concurrent_workers": 13,
+      "monitor_samples": 23,
+      "orphan_scan": {
+        "scanned_at": "2026-11-16T09:13:37.828614+00:00",
+        "orphan_pids": [],
+        "orphan_count": 0
+      },
+      "worker_shutdown_outcome": "clean \u2014 0 survivors at +2s scan",
+      "child_has_main_guard": true
+    }
+  ],
+  "post_matrix_python_processes_remaining": 0,
+  "observation_method": "OS-level CIM process-tree snapshots under the training child PID (0.8s cadence) + child-reported train_loader.num_workers; no private torch internals as sole proof"
+}
