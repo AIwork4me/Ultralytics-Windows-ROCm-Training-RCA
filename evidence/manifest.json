@@ -1359,17 +1359,19 @@
  },
  {
   "path": "windows-golden-path/reports/r22a-gfx1151/R22A_DUAL_ARCH_MATRIX.json",
-  "timestamp": "2026-11-16T02:21:57.904376+00:00",
+  "timestamp": "2026-11-16T15:13:26.315076+00:00",
   "command": "R22A mission report artifacts [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
-  "sha256": "93ab86babfaa4fa7160742a4fcf3386d28cacfebdd800e328d25797c9e82753b",
-  "size_bytes": 3221
+  "sha256": "6e4d7601edb7fde2883ebd0631c180eb4d0f070325d30d60ce01cd0abb5e1f76",
+  "size_bytes": 5302,
+  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit)"
  },
  {
   "path": "windows-golden-path/reports/r22a-gfx1151/report.json",
-  "timestamp": "2026-11-16T02:21:57.904376+00:00",
+  "timestamp": "2026-11-16T15:13:26.315101+00:00",
   "command": "R22A mission report artifacts [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
-  "sha256": "95f669858580ab1b8e0f00827c29d09d808868a64c8cd6e5e2defee1552aa1d7",
-  "size_bytes": 3136
+  "sha256": "b9cb572a041240281e21c3618b0ac55ab015416b449ee03b76c6afeac1e7abea",
+  "size_bytes": 3027,
+  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit)"
  },
  {
   "path": "evidence/raw/r22a3-gfx1151/R22A3_ACCEPTANCE_REPORT.json",
@@ -1472,10 +1474,11 @@
  },
  {
   "path": "windows-golden-path/reports/r22a3-gfx1151/report.json",
-  "timestamp": "2026-11-16T10:10:09.375322+00:00",
+  "timestamp": "2026-11-16T15:13:26.315107+00:00",
   "command": "R22A.3 mission artifacts (Part A default AdamW+AMP audit, Part B workers=8 matrix, combined acceptance)",
-  "sha256": "6b6ec466ea5e54224c59d83c6a7c52916aedea9a92df78b550bed5dac4c66e13",
-  "size_bytes": 2410
+  "sha256": "19adacf77d244658eb995bdac9f530ee483f8577f56cd9f1ddbbd1f670276a62",
+  "size_bytes": 2341,
+  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit)"
  },
  {
   "path": "docs/release-closure/R22A3_GFX1151_ADAMW_AMP_WORKERS8.md",
