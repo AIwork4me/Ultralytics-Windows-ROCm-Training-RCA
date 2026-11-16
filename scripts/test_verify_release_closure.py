@@ -81,7 +81,7 @@ def lifecycle_record(rid: str = RID, **over) -> dict:
     return rec
 
 
-def build_good_tree(root: Path) -> None:
+def build_good_tree(root: Path, trap_uncommitted: bool = False) -> None:
     req = {
         "release-provenance": ["G0_VERDICT.md", "RELEASE_LINEAGE.md", "RELEASE_MATRIX.csv",
                                "WHEEL_MANIFEST.json", "BINARY_PROVENANCE.json", "LOADED_DLL_REPORT.json"],
@@ -109,6 +109,51 @@ def build_good_tree(root: Path) -> None:
           "| # | Claim | Status | Class | Evidence |\n|---|---|---|---|---|\n"
           f"| C1 | synthetic lifecycle works | PASS | PROVEN | `windows-training-validation/raw/{stem}.json` |\n")
 
+    # --- R22A.2.1 P0-B fixture: git-backed evidence pack --------------------
+    # a runs/ directory exercises the .gitignore trap class that dropped the
+    # 8 r22a2 raw files: without `git add -f`, sums entries resolve to nothing.
+    import hashlib as _hl
+    pack = root / "evidence" / "raw" / "r22a2-gfx1100-test"
+    pack_files = {
+        "R22A2_TEST.json": b'{"ok": true}\n',
+        "runs/cold_run01_child.log": b"child output\nSTABILITY_CHILD_DONE 1.0s\n",
+        "runs/child_sample_cold_run01.py": b"def main():\n    pass\n",
+    }
+    for rel, content in pack_files.items():
+        (pack / rel).parent.mkdir(parents=True, exist_ok=True)
+        (pack / rel).write_bytes(content)  # exact bytes — hashes must match them
+    sums_lines = [f"{_hl.sha256(v).hexdigest()}  {(pack / rel).relative_to(root).as_posix()}"
+                  for rel, v in pack_files.items()]
+    sums_bytes = ("\n".join(sums_lines) + "\n").encode("utf-8")
+    sums_path = pack / "SHA256SUMS.txt"
+    sums_path.write_bytes(sums_bytes)
+    manifest = [{"path": (pack / rel).relative_to(root).as_posix(),
+                 "timestamp": "2026-11-16T00:00:00Z", "command": "fixture",
+                 "sha256": _hl.sha256(v).hexdigest(),
+                 "size_bytes": len(v)}
+                for rel, v in pack_files.items()]
+    manifest.append({"path": sums_path.relative_to(root).as_posix(),
+                     "timestamp": "2026-11-16T00:00:00Z", "command": "fixture",
+                     "sha256": _hl.sha256(sums_bytes).hexdigest(),
+                     "size_bytes": len(sums_bytes)})
+    write(root / "evidence" / "manifest.json", manifest)
+    # commit the tree (the evidence pack integrity is verified against HEAD).
+    # The fixture repo mirrors the REAL defect conditions: a repo-wide
+    # `runs/` gitignore rule, and no CRLF translation so tree bytes == the
+    # bytes the checksums were computed from.
+    write(root / ".gitignore", "runs/\n")
+    for args in (["git", "init", "-q"], ["git", "config", "user.email", "t@t"],
+                 ["git", "config", "user.name", "t"],
+                 ["git", "config", "core.autocrlf", "false"], ["git", "add", "-A"]):
+        subprocess.run([*args], cwd=root, check=True, capture_output=True)
+    if not trap_uncommitted:
+        # without -f the gitignore rule silently drops runs/ — the exact
+        # R22A.2 evidence-loss mechanism; the good tree commits it explicitly
+        subprocess.run(["git", "add", "-f", str(pack / "runs")], cwd=root,
+                       check=True, capture_output=True)
+    subprocess.run(["git", "commit", "-q", "-m", "fixture"], cwd=root,
+                   check=True, capture_output=True)
+
 
 def run_verifier(root: Path) -> tuple[int, dict]:
     proc = subprocess.run([sys.executable, "-I", str(VERIFIER), "--root", str(root)],
@@ -134,9 +179,12 @@ def has_violation(res: dict, needle: str) -> bool:
 def main() -> None:
     good_root = Path(tempfile.mkdtemp(prefix="vfix_good_"))
     build_good_tree(good_tree := good_root)
-    rc, res = run_verifier(good_tree)
+    rc, res = run_verifier(good_root)
     check("known-good synthetic tree ACCEPTED (exit 0)",
           rc == 0 and res["ok"] is True, json.dumps(res.get("violations", [])))
+    check("valid complete evidence pack ACCEPTED (zero git-tree violations)",
+          res["ok"] is True and not any("git-tree" in v for v in res.get("violations", [])),
+          json.dumps([v for v in res.get("violations", []) if "git-tree" in v]))
 
     cases = []
 
@@ -246,6 +294,68 @@ def main() -> None:
         check(f"REJECTS: {case_name}", rejected and has_violation(res, needle),
               f"rc={rc} violations={res.get('violations')}" if not rejected or not has_violation(res, needle) else "")
         shutil.rmtree(root, ignore_errors=True)
+
+    # --- R22A.2.1 P0-B: evidence integrity against the exact Git tree -------
+    PACK = "evidence/raw/r22a2-gfx1100-test"
+
+    def commit_tree(root: Path, msg: str) -> None:
+        subprocess.run(["git", "add", "-A"], cwd=root, check=True, capture_output=True)
+        subprocess.run(["git", "commit", "-q", "-m", msg], cwd=root,
+                       check=True, capture_output=True)
+
+    def mk_p0b_root(mutator=None) -> Path:
+        root = Path(tempfile.mkdtemp(prefix="vfix_p0b_"))
+        build_good_tree(root)
+        if mutator:
+            mutator(root)
+        return root
+
+    p0b: list[tuple[str, Path, str]] = []
+
+    def m_sums_missing_log(root: Path):
+        (root / PACK / "runs" / "cold_run01_child.log").unlink()
+        commit_tree(root, "drop raw log")
+    p0b.append(("missing raw log in Git tree", mk_p0b_root(m_sums_missing_log),
+                f"git-tree:sums:{PACK}/runs/cold_run01_child.log"))
+
+    def m_sums_missing_source(root: Path):
+        (root / PACK / "runs" / "child_sample_cold_run01.py").unlink()
+        commit_tree(root, "drop source sample")
+    p0b.append(("missing generated-source sample in Git tree",
+                mk_p0b_root(m_sums_missing_source),
+                f"git-tree:sums:{PACK}/runs/child_sample_cold_run01.py"))
+
+    def m_manifest_entry_missing(root: Path):
+        mp = root / "evidence" / "manifest.json"
+        entries = json.loads(mp.read_text(encoding="utf-8"))
+        mp.write_text(json.dumps(
+            [e for e in entries if not e["path"].endswith("cold_run01_child.log")],
+            indent=2), encoding="utf-8")
+        commit_tree(root, "drop manifest entry")
+    p0b.append(("committed evidence file without manifest entry",
+                mk_p0b_root(m_manifest_entry_missing),
+                f"git-tree:pack-complete:{PACK}/runs/cold_run01_child.log"))
+
+    def m_hash_mismatch(root: Path):
+        write(root / PACK / "R22A2_TEST.json", '{"ok": false, "tampered": true}\n')
+        commit_tree(root, "tamper content")
+    p0b.append(("committed file hash mismatch vs declared checksum",
+                mk_p0b_root(m_hash_mismatch),
+                f"git-tree:manifest:{PACK}/R22A2_TEST.json"))
+
+    root_uncommitted = Path(tempfile.mkdtemp(prefix="vfix_uncommitted_"))
+    build_good_tree(root_uncommitted, trap_uncommitted=True)
+    p0b.append(("checksum matches only a local UNCOMMITTED file",
+                root_uncommitted,
+                f"git-tree:sums:{PACK}/runs/cold_run01_child.log"))
+
+    for name, root, needle in p0b:
+        rc, res = run_verifier(root)
+        rejected = rc != 0 and res.get("ok") is False
+        check(f"REJECTS: {name}", rejected and has_violation(res, needle),
+              f"rc={rc} violations={[v for v in res.get('violations', []) if 'git-tree' in v]}")
+        shutil.rmtree(root, ignore_errors=True)
+
     shutil.rmtree(good_root, ignore_errors=True)
 
     print(f"SUMMARY {PASS}/{PASS + FAIL} checks PASS")

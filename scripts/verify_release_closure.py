@@ -59,6 +59,117 @@ def sha256(p: Path) -> str:
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
+# --- R22A.2.1 P0-B: evidence integrity against the EXACT GIT TREE -----------
+
+def git_tree_sha256(root: Path) -> dict[str, str] | None:
+    """path -> SHA256 of blob content AT HEAD (the committed tree, not the
+    working directory — a checksum matching a local but uncommitted file is
+    NOT sufficient). Returns None when git/HEAD is unavailable (callers
+    fail-closed on that)."""
+    import subprocess as _sp
+    try:
+        names = _sp.run(["git", "ls-tree", "-r", "--name-only", "HEAD"],
+                        capture_output=True, text=True, cwd=root, timeout=120)
+        if names.returncode != 0:
+            return None
+        paths = [p for p in names.stdout.splitlines() if p.strip()]
+        batch = _sp.Popen(["git", "cat-file", "--batch"], stdin=_sp.PIPE,
+                          stdout=_sp.PIPE, cwd=root)
+        out: dict[str, str] = {}
+        for path in paths:
+            batch.stdin.write(f"HEAD:{path}".encode("utf-8") + b"\n")
+            batch.stdin.flush()
+            header = batch.stdout.readline().decode("utf-8", "replace").strip()
+            if not header or header.endswith(" missing"):
+                out[path] = None  # type: ignore[assignment]
+                continue
+            _sha, _kind, size = header.split(" ", 2)
+            body = batch.stdout.read(int(size))
+            batch.stdout.read(1)  # trailing newline
+            out[path] = hashlib.sha256(body).hexdigest()
+        batch.stdin.close()
+        batch.wait(timeout=60)
+        return out
+    except (OSError, ValueError, _sp.TimeoutExpired):
+        return None
+
+
+def audit_git_tree_evidence(root: Path, audit) -> dict | None:
+    """P0-B contract: every manifest entry and every SHA256SUMS entry must
+    resolve to a COMMITTED file whose content matches its declared hash.
+    Missing files, hash mismatches, and worktree-only (uncommitted) files are
+    violations; historical manifests are read, never rewritten."""
+    tree = git_tree_sha256(root)
+    if tree is None:
+        audit.check("git-tree:available", False,
+                    "git tree unavailable — evidence cannot be verified against "
+                    "the exact Git tree (fail-closed)")
+        return None
+    audit.check("git-tree:available", True, f"{len(tree)} tracked paths at HEAD")
+
+    manifest_path = root / "evidence" / "manifest.json"
+    entries: list = []
+    if manifest_path.is_file():
+        try:
+            entries = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            audit.check("git-tree:manifest-readable", False, "manifest.json unreadable")
+        for e in entries:
+            p = str(e.get("path") or "")
+            declared = str(e.get("sha256") or "")
+            actual = tree.get(p)
+            if actual is None:
+                audit.check(f"git-tree:manifest:{p}", False,
+                            "manifest entry resolves to no committed file "
+                            "(uncommitted or missing)")
+            elif actual != declared:
+                audit.check(f"git-tree:manifest:{p}", False,
+                            f"committed content hash {actual[:12]}… != manifest "
+                            f"{declared[:12]}…")
+
+    # converse completeness for the CURRENT-era packs (r22a2*): every committed
+    # evidence file must carry a manifest entry. Historical phase packs are
+    # untouched by this rule (their manifests predate the contract).
+    manifest_paths = {str(e.get("path") or "") for e in entries}
+    for pack in sorted((root / "evidence" / "raw").glob("r22a2*")):
+        if not pack.is_dir():
+            continue
+        for f in sorted(pack.rglob("*")):
+            if f.is_file():
+                rel = f.relative_to(root).as_posix()
+                audit.check(f"git-tree:pack-complete:{rel}", rel in manifest_paths,
+                            "committed r22a2* evidence file with no manifest entry")
+
+    sums_files = [root / "evidence" / "SHA256SUMS.txt"]
+    sums_files += sorted((root / "evidence" / "raw").glob("*/SHA256SUMS.txt"))
+    sums_files += sorted((root / "windows-golden-path" / "reports").glob("*/SHA256SUMS.txt"))
+    for sf in sums_files:
+        if not sf.is_file():
+            continue
+        base = sf.parent
+        for ln in sf.read_text(encoding="utf-8", errors="replace").splitlines():
+            ln = ln.rstrip("\r\n")
+            if not ln.strip() or ln.startswith("#"):
+                continue
+            parts = ln.split(None, 1)
+            if len(parts) != 2:
+                audit.check(f"git-tree:sums-parse:{sf.name}", False,
+                            f"unparseable line {ln[:60]!r}")
+                continue
+            declared, rel = parts[0], parts[1].strip().lstrip("*").replace("\\", "/")
+            rel = rel if rel.count("/") >= 2 else f"{base.relative_to(root).as_posix()}/{rel}"
+            actual = tree.get(rel)
+            if actual is None:
+                audit.check(f"git-tree:sums:{rel}", False,
+                            f"{sf.name} entry resolves to no committed file "
+                            "(uncommitted or missing)")
+            elif actual != declared:
+                audit.check(f"git-tree:sums:{rel}", False,
+                            f"committed content hash {actual[:12]}… != declared "
+                            f"{declared[:12]}… ({sf.name})")
+    return tree
+
+
 class Audit:
     def __init__(self) -> None:
         self.checks: list[dict] = []
@@ -440,6 +551,10 @@ def main() -> None:
                         paths.append(r)  # found elsewhere in repo
                 audit.check(f"claim-evidence:{cid}", bool(paths),
                             f"{status} claim cites no existing evidence file: {evidence_cell[:120]!r}")
+
+    # 7. R22A.2.1 P0-B: manifest/SHA256SUMS evidence integrity vs the exact
+    #    Git tree — every referenced file must be COMMITTED and hash-match
+    audit_git_tree_evidence(root, audit)
 
     n = len(audit.checks)
     summary = {"ok": audit.ok, "n_checks": n, "n_violations": len(audit.violations),

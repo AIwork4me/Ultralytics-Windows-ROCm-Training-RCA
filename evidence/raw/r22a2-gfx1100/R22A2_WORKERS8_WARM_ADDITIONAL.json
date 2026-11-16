@@ -1,0 +1,140 @@
+{
+  "run_id": "R22A2-B-WARM-ADDITIONAL",
+  "mission": "R22A2.1",
+  "timestamp": "2026-11-16T11:53:03.463197+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python run_stability.py --runs 1 --warm-home C:\\RadeonYOLO\\R22A2\\cache\\warm-home --device -1 --workers 8 --data C:/RadeonYOLO/R22A2/cache/datasets/coco128-r22a2.yaml",
+  "exit_code": 0,
+  "duration_s": 29.5,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\stability_runs.json",
+  "runs": [
+    {
+      "run": 1,
+      "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
+      "pid": 20664,
+      "started_utc": "2026-11-16T11:52:35.155487+00:00",
+      "finished_utc": "2026-11-16T11:53:01.180210+00:00",
+      "home_pre_existed": true,
+      "exit_code": 0,
+      "duration_s": 26.0,
+      "cache_class": "warm(shared-isolated-USERPROFILE)",
+      "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+      "cache_expectation": "warm",
+      "requested_workers": 8,
+      "resolved_num_workers": 8,
+      "resolved_n_batches": 8,
+      "amp_enabled_child": true,
+      "optimizer_class_child": "AdamW",
+      "worker_activity_observed": true,
+      "worker_pids_observed": [
+        3096,
+        3588,
+        7212,
+        7588,
+        14132,
+        14152,
+        17200,
+        17348,
+        18368,
+        18512,
+        24184,
+        26680,
+        28392
+      ],
+      "peak_concurrent_workers": 13,
+      "monitor_samples": 24,
+      "orphan_workers_alive": 0,
+      "orphan_scan": {
+        "scanned_at": "2026-11-16T11:53:03.441589+00:00",
+        "orphan_pids": [],
+        "orphan_count": 0
+      },
+      "checkpoint_path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\last.pt",
+      "checkpoint_exists": true,
+      "log": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\child.log",
+      "log_sha256": "bb60ee4d82d0f6bf4d13975547e365aa3e90472faf56e26396e7c1b83efd3b26",
+      "log_text": "New https://pypi.org/project/ultralytics/8.4.215 available  Update with 'pip install -U ultralytics'\nWARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found\nSearching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...\nWARNING NVML stats unavailable, idle checks skipped.\nUltralytics 8.4.214  Python-3.12.16 torch-2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6 CUDA:0 (AMD Radeon RX 7900 XTX, 24560MiB)\n\u001b[34m\u001b[1mengine\\trainer: \u001b[0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=C:/RadeonYOLO/R22A2/cache/datasets/coco128-r22a2.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=256, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=101, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None\n\n                   from  n    params  module                                       arguments                     \n  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 \n  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                \n  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      \n  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                \n  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     \n  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              \n  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           \n  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              \n  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           \n  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        \n 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 \n 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          \n 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           \n 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           \n 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          \n 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           \n 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            \n 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                \n 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           \n 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           \n 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              \n 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           \n 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]\n 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] \nYOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs\n\nTransferred 708/708 items from pretrained weights\n\u001b[34m\u001b[1mAMP: \u001b[0mrunning Automatic Mixed Precision (AMP) checks...\n\u001b[34m\u001b[1mAMP: \u001b[0mchecks passed \n\u001b[34m\u001b[1mtrain: \u001b[0mFast image access  (ping: 0.0±0.0 ms, read: 725.2±259.8 MB/s, size: 50.1 KB)\n\n\u001b[K\u001b[34m\u001b[1mtrain: \u001b[0mScanning C:\\RadeonYOLO\\R22A2\\cache\\datasets\\coco128\\labels\\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128  0.0s\n\u001b[34m\u001b[1mval: \u001b[0mFast image access  (ping: 0.0±0.0 ms, read: 768.7±92.8 MB/s, size: 43.9 KB)\n\n\u001b[K\u001b[34m\u001b[1mval: \u001b[0mScanning C:\\RadeonYOLO\\R22A2\\cache\\datasets\\coco128\\labels\\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128  0.0s\n\u001b[34m\u001b[1moptimizer:\u001b[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... \n\u001b[34m\u001b[1moptimizer:\u001b[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)\nPlotting labels to C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\labels.jpg... \nUsing 128 train, 128 val images for fraction=1.0 at imgsz=256\nUsing 8 dataloader workers\nLogging results to \u001b[1mC:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\u001b[0m\nStarting training for 1 epochs...\nClosing dataloader mosaic\n\n      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size\n\n\u001b[K        1/1     0.121G      2.515      3.081    0.02352        157        256: 0% ──────────── 0/8  3.1s\n\u001b[K        1/1     0.467G      2.281      2.734     0.0238         69        256: 25% ━━━───────── 2/8 4.7it/s 3.3s<1.3s\n\u001b[K        1/1     0.467G      2.151      2.687    0.02508         79        256: 37% ━━━━──────── 3/8 5.6it/s 3.4s<0.9s\n\u001b[K        1/1     0.484G      2.132      2.752    0.02394        124        256: 62% ━━━━━━━───── 5/8 9.7it/s 3.5s<0.3s\n\u001b[K        1/1     0.484G       2.07      2.706     0.0232        104        256: 100% ━━━━━━━━━━━━ 8/8 2.2it/s 3.6s\n\n\u001b[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 5.6s/it 1.7s<16.9s\n\u001b[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 2.0it/s 1.9s<1.0s\n\u001b[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 3.2it/s 2.0s<0.3s\n\u001b[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 1.8it/s 2.2s\n                   all        128        929      0.605      0.452      0.476      0.337\n\n1 epochs completed in 0.002 hours.\nOptimizer stripped from C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\last.pt, 5.5MB\nOptimizer stripped from C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\best.pt, 5.5MB\n\nValidating C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\best.pt...\nUltralytics 8.4.214  Python-3.12.16 torch-2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6 CUDA:0 (AMD Radeon RX 7900 XTX, 24560MiB)\nYOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs\n\n\u001b[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 3.1it/s 0.2s<0.6s\n\u001b[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 4.8it/s 0.3s<0.2s\n\u001b[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 9.6it/s 0.4s\n                   all        128        929      0.631      0.441      0.476      0.338\n                person         61        254       0.68      0.472      0.534      0.344\n               bicycle          3          6      0.379      0.167      0.167      0.149\n                   car         12         46      0.515      0.109     0.0927     0.0609\n            motorcycle          4          5      0.536          1      0.962      0.746\n              airplane          5          6      0.715      0.833      0.899       0.69\n                   bus          5          7       0.44      0.571      0.616      0.556\n                 train          3          3      0.732          1      0.995      0.734\n                 truck          5         12      0.292     0.0833      0.148     0.0568\n                  boat          2          6      0.544      0.333      0.493      0.355\n         traffic light          4         14       0.56      0.143       0.15      0.118\n             stop sign          2          2          1          0      0.247      0.124\n                 bench          5          9      0.454      0.111      0.142      0.085\n                  bird          2         16      0.721      0.648      0.669      0.322\n                   cat          4          4      0.456       0.75      0.845      0.663\n                   dog          9          9       0.55      0.545      0.694      0.525\n                 horse          1          2       0.53        0.5      0.695      0.283\n              elephant          4         17      0.854      0.687      0.782      0.573\n                  bear          1          1      0.534          1      0.995      0.895\n                 zebra          2          4      0.833          1      0.995      0.964\n               giraffe          4          9      0.806      0.889      0.885      0.694\n              backpack          4          6          1      0.228      0.335      0.112\n              umbrella          4         18      0.636      0.333      0.435        0.2\n               handbag          9         19          1          0     0.0111    0.00892\n                   tie          6          7      0.607      0.286      0.415      0.322\n              suitcase          2          4      0.552      0.932      0.825      0.609\n               frisbee          5          5      0.611        0.6      0.595      0.475\n                  skis          1          1      0.327          1      0.995      0.597\n             snowboard          2          7          1      0.701      0.764      0.394\n           sports ball          6          6          0          0    0.00717    0.00287\n                  kite          2         10      0.884        0.2      0.261      0.079\n          baseball bat          4          4          1          0          0          0\n        baseball glove          4          7      0.712      0.286      0.285      0.159\n            skateboard          3          5      0.475        0.4      0.495      0.302\n         tennis racket          5          7      0.551      0.286      0.307      0.221\n                bottle          6         18      0.286      0.167      0.203      0.142\n            wine glass          5         16      0.517      0.125       0.14      0.119\n                   cup         10         36      0.696       0.25      0.281      0.198\n                  fork          6          6      0.537      0.167      0.236      0.184\n                 knife          7         16      0.439      0.375      0.311        0.2\n                 spoon          5         22      0.688     0.0455     0.0821     0.0315\n                  bowl          9         28      0.674      0.464      0.546       0.41\n                banana          1          1      0.241          1      0.497      0.136\n              sandwich          2          2      0.356        0.5      0.414      0.381\n                orange          1          4          1          0      0.341      0.128\n              broccoli          4         11      0.472      0.182      0.158      0.151\n                carrot          3         24          1      0.122      0.428      0.299\n               hot dog          1          2      0.532          1      0.663      0.622\n                 pizza          5          5      0.552        0.8      0.895      0.752\n                 donut          2         14      0.879      0.929      0.986      0.749\n                  cake          4          4      0.591       0.75      0.788      0.665\n                 chair          9         35      0.526      0.286      0.333      0.168\n                 couch          5          6      0.468        0.5      0.692      0.469\n          potted plant          9         14          1      0.328      0.502      0.294\n                   bed          3          3      0.593      0.667      0.863      0.533\n          dining table         10         13      0.434      0.591      0.471       0.37\n                toilet          2          2      0.494        0.5      0.695      0.615\n                    tv          2          2      0.516          1      0.828      0.745\n                laptop          2          3          1          0      0.335      0.301\n                 mouse          2          2          1          0          0          0\n                remote          5          8          1      0.367      0.388      0.229\n            cell phone          5          8          1          0          0          0\n             microwave          3          3      0.347      0.667       0.68      0.358\n                  oven          5          5      0.243        0.4      0.284      0.251\n                  sink          4          6      0.213      0.167      0.234      0.151\n          refrigerator          5          5      0.555        0.4      0.355      0.213\n                  book          6         29          1          0      0.154     0.0478\n                 clock          8          9      0.737      0.667      0.728      0.538\n                  vase          2          2      0.362          1      0.448      0.408\n              scissors          1          1          1          0          0          0\n            teddy bear          6         21      0.666       0.38      0.452      0.287\n            toothbrush          2          5      0.724        0.4      0.635      0.424\nSpeed: 0.0ms preprocess, 0.6ms inference, 0.0ms loss, 0.8ms postprocess per image\nResults saved to \u001b[1mC:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\u001b[0m\nR22A2_WORKERS resolved=8 n_batches=8 amp=True optimizer=AdamW requested=8\nR22A2_PID 3096\nSTABILITY_CHILD_DONE 24.6s\n",
+      "child_has_main_guard": true,
+      "gpu_name": "AMD Radeon RX 7900 XTX",
+      "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+      "status": "PASS",
+      "failure_classification": null,
+      "worker_contract_checks": [
+        {
+          "check": "physical_gpu_identity",
+          "ok": true,
+          "detail": "AMD Radeon RX 7900 XTX"
+        },
+        {
+          "check": "workers_requested_8",
+          "ok": true,
+          "detail": "requested_workers=8 (contract=8)"
+        },
+        {
+          "check": "workers_effective_8",
+          "ok": true,
+          "detail": "resolved_num_workers=8 (requested 8)"
+        },
+        {
+          "check": "worker_activity_observed",
+          "ok": true,
+          "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+        },
+        {
+          "check": "peak_workers_reached_8",
+          "ok": true,
+          "detail": "peak_concurrent_workers=13 — all 8 must actually run"
+        },
+        {
+          "check": "no_fatal_anomaly_signatures",
+          "ok": true,
+          "detail": "no fatal HIP/MIOpen/worker signatures in raw log"
+        },
+        {
+          "check": "training_completed",
+          "ok": true,
+          "detail": "STABILITY_CHILD_DONE marker present"
+        },
+        {
+          "check": "checkpoint_present",
+          "ok": true,
+          "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\last.pt"
+        }
+      ],
+      "anomaly_evidence": {
+        "fatal": [],
+        "benign": []
+      },
+      "cache_role": "warm"
+    }
+  ],
+  "n_pass": 1,
+  "n_total": 1,
+  "anomaly_tally": {},
+  "cache_roles": [
+    "warm"
+  ],
+  "matrix_evaluation": null,
+  "workers_requested": 8,
+  "cache_class": "warm(shared-isolated-USERPROFILE)",
+  "child_spawn_safety": {
+    "main_guard_present": true,
+    "freeze_support": true,
+    "note": "Windows spawn re-imports child.py in every worker; the guard prevents recursive training processes"
+  },
+  "environment_disclosure": {
+    "hiprtc_compile_options_append_removed_from_child_env": null,
+    "note": "host-level shim var (if present) is stripped from child env so runs execute on the official stack unmodified; global env untouched"
+  },
+  "note": "independent training PROCESSES; cache classes tracked separately; unexplained kernel/runtime failures block stable readiness"
+}

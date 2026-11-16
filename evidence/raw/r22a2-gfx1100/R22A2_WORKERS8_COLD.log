@@ -1,0 +1,4 @@
+[run 1/2] exit=0 PASS resolved_workers=8 peak=13  (119.6s)
+[run 2/2] exit=0 PASS resolved_workers=8 peak=13  (118.6s)
+STABILITY: PASS (2/2)
+COLD_EXIT=0

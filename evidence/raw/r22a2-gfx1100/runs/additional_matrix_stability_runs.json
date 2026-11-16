@@ -1,0 +1,100 @@
+[
+  {
+    "run": 1,
+    "command": "C:\\RadeonYOLO\\venvs\\r22-dev\\Scripts\\python.exe -I child.py (workers=8)",
+    "pid": 20664,
+    "started_utc": "2026-11-16T11:52:35.155487+00:00",
+    "finished_utc": "2026-11-16T11:53:01.180210+00:00",
+    "home_pre_existed": true,
+    "exit_code": 0,
+    "duration_s": 26.0,
+    "cache_class": "warm(shared-isolated-USERPROFILE)",
+    "home_dir": "C:\\RadeonYOLO\\R22A2\\cache\\warm-home",
+    "cache_expectation": "warm",
+    "requested_workers": 8,
+    "resolved_num_workers": 8,
+    "resolved_n_batches": 8,
+    "amp_enabled_child": true,
+    "optimizer_class_child": "AdamW",
+    "worker_activity_observed": true,
+    "worker_pids_observed": [
+      3096,
+      3588,
+      7212,
+      7588,
+      14132,
+      14152,
+      17200,
+      17348,
+      18368,
+      18512,
+      24184,
+      26680,
+      28392
+    ],
+    "peak_concurrent_workers": 13,
+    "monitor_samples": 24,
+    "orphan_workers_alive": 0,
+    "orphan_scan": {
+      "scanned_at": "2026-11-16T11:53:03.441589+00:00",
+      "orphan_pids": [],
+      "orphan_count": 0
+    },
+    "checkpoint_path": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\last.pt",
+    "checkpoint_exists": true,
+    "log": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\child.log",
+    "log_sha256": "bb60ee4d82d0f6bf4d13975547e365aa3e90472faf56e26396e7c1b83efd3b26",
+    "child_has_main_guard": true,
+    "gpu_name": "AMD Radeon RX 7900 XTX",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "status": "PASS",
+    "failure_classification": null,
+    "worker_contract_checks": [
+      {
+        "check": "physical_gpu_identity",
+        "ok": true,
+        "detail": "AMD Radeon RX 7900 XTX"
+      },
+      {
+        "check": "workers_requested_8",
+        "ok": true,
+        "detail": "requested_workers=8 (contract=8)"
+      },
+      {
+        "check": "workers_effective_8",
+        "ok": true,
+        "detail": "resolved_num_workers=8 (requested 8)"
+      },
+      {
+        "check": "worker_activity_observed",
+        "ok": true,
+        "detail": "peak_concurrent_workers=13 via OS process-tree snapshots"
+      },
+      {
+        "check": "peak_workers_reached_8",
+        "ok": true,
+        "detail": "peak_concurrent_workers=13 \u2014 all 8 must actually run"
+      },
+      {
+        "check": "no_fatal_anomaly_signatures",
+        "ok": true,
+        "detail": "no fatal HIP/MIOpen/worker signatures in raw log"
+      },
+      {
+        "check": "training_completed",
+        "ok": true,
+        "detail": "STABILITY_CHILD_DONE marker present"
+      },
+      {
+        "check": "checkpoint_present",
+        "ok": true,
+        "detail": "C:\\RadeonYOLO\\R22A2\\scratch\\workers8\\additional\\run01\\train\\weights\\last.pt"
+      }
+    ],
+    "anomaly_evidence": {
+      "fatal": [],
+      "benign": []
+    },
+    "cache_role": "warm"
+  }
+]
