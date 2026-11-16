@@ -1,0 +1,34 @@
+{
+  "run_id": "R22_RELEASE_GATE_MATRIX-20261115",
+  "generated_utc": "2026-11-15",
+  "gfx1100_gate_status": {
+    "G0_official_artifact_provenance": {
+      "status": "PASS_DEV_CANDIDATE_ONLY",
+      "detail": "dev channel rocm-sdk-libraries 10.3.0.dev0+ff576965: TheRock ff576965 (2026-11-05) -> rocm-libraries submodule 4e7d93e3 -> compare f0a5d266...4e7d93e3 behind_by=0 ahead_by=604 (fix PROVEN in source). Stable/rc channels have NO post-fix artifact.",
+      "stable_status": "BLOCKED_OFFICIAL_ARTIFACT"
+    },
+    "G1_miopen_nostl": {"status": "see evidence/r22-dev/r22cC_nostl.json", "expect": "DEV_CANDIDATE"},
+    "G2_torch_torchvision_gpu": {"status": "see evidence/r22-dev/r22cB_torch_gates.json"},
+    "G3_ultralytics_cli": {"status": "see evidence/r22-dev/r22cD_train_cli.json"},
+    "G4_optimizer_update": {"status": "see evidence/r22-dev/r22cE_optimizer.json"},
+    "G5_checkpoint_resume": {"status": "see evidence/r22-dev/r22cF_resume.json"},
+    "G6_gfx1100_physical": {"status": "PHYSICAL (RX 7900 XTX, driver 32.0.21030.2001, Win 26300)"},
+    "G7_gfx1151_physical": {"status": "NOT_RUN_THIS_HOST", "detail": "portable runner ready; execute unchanged on Radeon 8060S machine"},
+    "G8_reliability": {"status": "PARTIAL", "detail": "R22 target >=10 independent runs per arch + cold+warm; R21-scale 3 warm + 2 cold executed tonight as harness validation; full 10-run matrix belongs to candidate/stable acceptance on both archs"},
+    "G9_clean_windows": {"status": "BLOCKED_INFRASTRUCTURE", "detail": "this host is a development machine; CLEAN_WINDOWS_INSTALL requires a fresh/controlled Windows image; HOST_REUSE_FRESH_VENV evidence earned instead"}
+  },
+  "channel_verdicts_20261115": {
+    "multi-arch": {"newest": "torch 2.12.0+rocm7.14.1", "fix": "ABSENT", "proof": "P14/P16 frozen audits + R21-D1 live runtime FAIL"},
+    "stable": {"newest": "torch 2.14.0+rocm10.1.0 / rocm-sdk-libraries 10.1.0", "fix": "ABSENT", "proof": "P16 byte-identical re-audit (DLL 266d716b..., marker 0)"},
+    "rc": {"newest": "torch 2.15.0+rocm10.2.0rc2 / rocm-sdk-libraries 10.2.0rc2", "fix": "ABSENT", "proof": "R21 audit: wheel ffbf6c77..., DLL 2a3a026c... version 3.6.2.8faffed0f marker=0; GitHub compare f0a5d266...8faffed0f diverged behind_by=92 (rc cut from a pre-merge branch despite post-merge build date 2026-11-06)"},
+    "nightly": {"newest": "torch 2.16.0a0+rocm10.3.0a20261115 / rocm-sdk-libraries 10.3.0a20261115", "fix": "PRESENT_IN_LIBRARIES", "proof": "wheel 33f5ea8a..., DLL version 3.6.3.9ea8cfc5 marker=2; 9ea8cfc5 = TheRock main submodule 2026-11-14, compare f0a5d266...9ea8cfc5 behind_by=0 ahead_by=1011 (re-verified 2026-11-15)", "caveat": "gfx1100 device wheels NOT listed on nightly (gfx1151 only) - full gfx1100 stack not installable from nightly"},
+    "dev": {"newest": "torch 2.15.0/2.16.0a0+git... / rocm-sdk-libraries 10.3.0.dev0+<therock-sha>", "fix": "PRESENT", "proof": "installed set 10.3.0.dev0+ff576965: submodule 4e7d93e3 behind_by=0 (also d318a1c3 -> 7b33c3d9 behind_by=0); gfx1100 + gfx1151 device wheels listed", "ceiling": "DEV_CANDIDATE_PASS at most"}
+  },
+  "watchlist": [
+    {"when": "rocm-sdk-libraries >10.1.0 appears on stable whl-next", "action": "binary audit (marker+version commit) + ancestry compare + full OfficialStable gates"},
+    {"when": "10.2.0rc3+ or 10.3.0rc appears on rc channel", "action": "same audit chain - rc2 was pre-fix (behind_by=92), rc3 must be re-proven, not assumed"},
+    {"when": "gfx1100 device wheels appear on nightly", "action": "nightly full-stack gates become possible for gfx1100 (libraries already post-fix)"},
+    {"when": "TheRock cuts a release tag >= 2026-10-20 (e.g. therock-10.2/10.3)", "action": "that is the expected stable-cut event; run the whole R22 OfficialStable sequence"},
+    {"when": "rocm-libraries#15862 gets an owner/artifact reply", "action": "cross-check the promised artifact against this matrix before any retest"}
+  ]
+}

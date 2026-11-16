@@ -1,0 +1,46 @@
+{
+  "run_id": "R21-E1-20261115",
+  "mission": "R21",
+  "timestamp": "2026-11-15T15:21:18.251468+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.12.0+rocm7.14.1",
+  "torchvision": "0.27.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "runtime_class": "ENGINEERING_REFERENCE",
+  "command": "yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1",
+  "exit_code": 0,
+  "duration_s": null,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\scratch\\train-R21E1f\\train_stdout.log",
+  "parsed_facts": {
+    "gpu_selected": {
+      "device": "CUDA:0",
+      "name": "AMD Radeon RX 7900 XTX"
+    },
+    "amp_check": "PASSED",
+    "epoch_completed": true,
+    "losses_finite": true,
+    "validation_completed": true,
+    "cpu_fallback": false,
+    "losses_found": 1
+  },
+  "checkpoints": [
+    {
+      "path": "C:\\RadeonYOLO\\scratch\\train-R21E1f\\runs\\detect\\train\\weights\\best.pt",
+      "sha256": "c4a5b5eee4366922bc4b5634410c80f9da855054de887ab6e6ade23f916c252c",
+      "bytes": 5521797
+    },
+    {
+      "path": "C:\\RadeonYOLO\\scratch\\train-R21E1f\\runs\\detect\\train\\weights\\last.pt",
+      "sha256": "06dbe34d39d9e45ec45ccfddf30679e743aed430168962fe9bda852b39baf179",
+      "bytes": 5521797
+    }
+  ],
+  "standard_command_no_extra_params": true,
+  "validation_note": "COCO8 mAP is a smoke metric, not a model-quality benchmark"
+}

@@ -1,0 +1,5 @@
+[train_yolo.ps1] yolo executable: C:\RadeonYOLO\venvs\r22-dev\Scripts\yolo.exe
+[train_yolo.ps1] EXACT COMMAND: yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1
+[train_yolo.ps1] exit code: 0
+TRAIN_SUMMARY: PASS (exit=0)
+D_EXIT=0

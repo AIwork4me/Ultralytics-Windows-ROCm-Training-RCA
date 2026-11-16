@@ -1,0 +1,65 @@
+{
+    "gates":  [
+                  {
+                      "status":  "PASS",
+                      "gate":  "G0_provenance",
+                      "ended_utc":  "2026-11-16T00:05:51.8955730Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "G2_torch_torchvision_gpu",
+                      "ended_utc":  "2026-11-16T00:06:03.5491002Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "G1_miopen_nostl",
+                      "ended_utc":  "2026-11-16T00:06:17.4334262Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "G3_ultralytics_cli",
+                      "ended_utc":  "2026-11-16T00:06:41.2206938Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "G4_optimizer_update",
+                      "ended_utc":  "2026-11-16T00:07:13.7147545Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "G5_checkpoint_resume",
+                      "ended_utc":  "2026-11-16T00:08:30.9391753Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "G8_reliability",
+                      "ended_utc":  "2026-11-16T00:25:46.9162327Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "REPORT_generate_report_full",
+                      "ended_utc":  "2026-11-16T00:25:47.0566079Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  }
+              ],
+    "updated":  "2026-11-16T00:25:47.0661427Z",
+    "contract":  "gate exit code != 0 OR gate crash =\u003e NO-GO stop; report exit 0 alone never yields success",
+    "overall":  "GO",
+    "mode":  "OfficialCandidate",
+    "run_id":  "GP-OfficialCandidate-20261116-080547"
+}

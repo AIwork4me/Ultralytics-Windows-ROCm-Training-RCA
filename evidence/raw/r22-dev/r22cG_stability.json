@@ -1,0 +1,54 @@
+{
+  "run_id": "R22C-G-20261115",
+  "mission": "R21",
+  "timestamp": "2026-11-15T15:45:27.042722+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "ENGINEERING_REFERENCE",
+  "command": "python run_stability.py --runs 3 --warm --device -1",
+  "exit_code": 0,
+  "duration_s": 72.4,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\scratch\\r22c-stability\\stability_runs.json",
+  "runs": [
+    {
+      "run": 1,
+      "exit_code": 0,
+      "duration_s": 23.6,
+      "cache_class": "warm(process-level)",
+      "log": "C:\\RadeonYOLO\\scratch\\r22c-stability\\run01\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 2,
+      "exit_code": 0,
+      "duration_s": 23.6,
+      "cache_class": "warm(process-level)",
+      "log": "C:\\RadeonYOLO\\scratch\\r22c-stability\\run02\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 3,
+      "exit_code": 0,
+      "duration_s": 24.7,
+      "cache_class": "warm(process-level)",
+      "log": "C:\\RadeonYOLO\\scratch\\r22c-stability\\run03\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    }
+  ],
+  "n_pass": 3,
+  "n_total": 3,
+  "anomaly_tally": {},
+  "cache_class": "warm",
+  "note": "independent training PROCESSES; cache classes tracked separately; unexplained kernel/runtime failures block stable readiness"
+}

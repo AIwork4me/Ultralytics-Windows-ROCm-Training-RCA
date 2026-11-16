@@ -1,0 +1,52 @@
+{
+  "run_id": "GP-F-20261116-080547",
+  "mission": "R21",
+  "timestamp": "2026-11-16T00:08:29.481677+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python verify_checkpoint_resume.py --epochs 8 --kill-after-epoch 2 --device -1",
+  "exit_code": 0,
+  "duration_s": 75.8,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\scratch\\gpres-20261116-080547\\lifecycle_summary.log",
+  "stages": {
+    "wait_for_checkpoint": {
+      "ok": true,
+      "epochs_done": 3,
+      "waited_s": 25.9
+    },
+    "child1_returncode": 1,
+    "rows_at_kill": 3,
+    "checkpoint_resumability": {
+      "checked": true,
+      "has_optimizer_state": true,
+      "ckpt_epoch": 1
+    },
+    "resume_exit": 0,
+    "resume_done_marker": true,
+    "resume_state_evidence_logged": true,
+    "final_epoch_rows": 9,
+    "last_epoch_value": 8,
+    "epoch_continuity": true,
+    "infer_exit": 0,
+    "infer_ok": true
+  },
+  "resume_semantics": "resume=True (training state), not weights-only load",
+  "checkpoint_sha256": {
+    "last.pt": "7368c9d0631f3d362e45be4c4a08fd416ff4e83b299ab54537e5f7a544a30d52",
+    "best.pt": "79ffac0b7947a3e70b2f5b63cd4a94bb80a45884e97820ad14a10b76863e068d"
+  },
+  "logs": {
+    "stage1": "C:\\RadeonYOLO\\scratch\\gpres-20261116-080547\\stage1.log",
+    "stage3_resume": "C:\\RadeonYOLO\\scratch\\gpres-20261116-080547\\stage3.log",
+    "stage4_infer": "C:\\RadeonYOLO\\scratch\\gpres-20261116-080547\\stage4.log"
+  }
+}

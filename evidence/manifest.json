@@ -775,5 +775,264 @@
     "command": "gh pr checks 27203 @ d8fe65c8",
     "sha256": "6fc02a601d51bbb1b298a977187bc18e07d96aa5b41e08df568ab7417a50b31e",
     "size_bytes": 2497
+  },
+  {
+    "path": "evidence/raw/r21/R21_ENVIRONMENT_BASELINE.json",
+    "timestamp": "2026-11-15T16:02:11.276492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "aa48c31191227fa605eb6887a3353df669cfbe35c6e44e3becfb364fddb26fbb",
+    "size_bytes": 4066
+  },
+  {
+    "path": "evidence/raw/r21/r21A_provenance.json",
+    "timestamp": "2026-11-15T16:02:11.282492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "c77c6ef40469c9663168ed798449ac0c744b4254fd9929fa6fde22c8591ca803",
+    "size_bytes": 3701
+  },
+  {
+    "path": "evidence/raw/r21/r21A2_torch_gates.json",
+    "timestamp": "2026-11-15T16:02:11.287493+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "3cbf008e9a7ec705451d7aeca651e4c177dce3742f8be7679fc666fb2bb07a48",
+    "size_bytes": 2431
+  },
+  {
+    "path": "evidence/raw/r21/r21D1_nostl_official.json",
+    "timestamp": "2026-11-15T16:02:11.292492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "888b08efc390d7703d1b2071df794665e32630e1b5de94a1a4c27a4b3eec5802",
+    "size_bytes": 4095
+  },
+  {
+    "path": "evidence/raw/r21/r21D2_nostl_engref.json",
+    "timestamp": "2026-11-15T16:02:11.297492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "e91f010f2e9a12d749b9e92d25fc14fe412ba7436791f29239cf925fae4d0957",
+    "size_bytes": 2258
+  },
+  {
+    "path": "evidence/raw/r21/r21E1_train_cli.json",
+    "timestamp": "2026-11-15T16:02:11.301493+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "d21cd4c5730697ddbb70673599f1fa5997f16bb8050486f105c9e19cd5056ee2",
+    "size_bytes": 1571
+  },
+  {
+    "path": "evidence/raw/r21/r21E2_optimizer.json",
+    "timestamp": "2026-11-15T16:02:11.302492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "eb7c38f77d9283fff83b214b2786eefeb825423c2a49fdca816edee4c5c56567",
+    "size_bytes": 2366
+  },
+  {
+    "path": "evidence/raw/r21/r21E3_resume.json",
+    "timestamp": "2026-11-15T16:02:11.303493+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "fe0342458a5024933c35f0b07c6d64beb08c782ffc297863a3b819554082535e",
+    "size_bytes": 1725
+  },
+  {
+    "path": "evidence/raw/r21/r21F_stability.json",
+    "timestamp": "2026-11-15T16:02:11.304492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "cf1602e93e5aa092c7235edc0c8088a13d834a7198a9242f583f2d63bfd5c17d",
+    "size_bytes": 1649
+  },
+  {
+    "path": "evidence/raw/r21/r21-engref-lock.json",
+    "timestamp": "2026-11-15T16:02:11.305492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "b5c79c62ab45bba85d9f01e45452dfeddbd7819e65c19dbdc6ccefc739204e22",
+    "size_bytes": 19631
+  },
+  {
+    "path": "evidence/raw/r21/wheel-scan/candidate_matrix.json",
+    "timestamp": "2026-11-15T16:02:11.306492+00:00",
+    "command": "discover_official_wheels.py (R21)",
+    "sha256": "f6fdfaf3d2f5183e328951232f3ad34473b4f9c48c02027cedf5da18981811b6",
+    "size_bytes": 235053
+  },
+  {
+    "path": "evidence/raw/r21/wheel-scan/wheel_discovery.json",
+    "timestamp": "2026-11-15T16:02:11.316492+00:00",
+    "command": "discover_official_wheels.py (R21)",
+    "sha256": "103c71cb13a860a9fcc20e551e8a42f349e4eb60b1fe3038d33f9253c191f58b",
+    "size_bytes": 5499032
+  },
+  {
+    "path": "evidence/raw/r21/r21E1_train_cli.log",
+    "timestamp": "2026-11-15T16:02:11.322493+00:00",
+    "command": "raw log companion",
+    "sha256": "99d3c0b092e2dcdd7bececeade221b954acd061193ddf8345cc5144f192662b7",
+    "size_bytes": 240
+  },
+  {
+    "path": "evidence/raw/r21/r21E3_resume.log",
+    "timestamp": "2026-11-15T16:02:11.323492+00:00",
+    "command": "raw log companion",
+    "sha256": "58412940b97d0b123f81e0463b877f6536017fc551c1eccf19a7b0fd2f710d8e",
+    "size_bytes": 516
+  },
+  {
+    "path": "evidence/raw/r21/r22cC_nostl.log",
+    "timestamp": "2026-11-15T16:02:11.323492+00:00",
+    "command": "raw log companion",
+    "sha256": "dc8374530700b380f82049fea960ba9260072e395ff667d89b2d2b1e3bcf37d7",
+    "size_bytes": 143
+  },
+  {
+    "path": "evidence/raw/r21/r22cD_train_cli.log",
+    "timestamp": "2026-11-15T16:02:11.324492+00:00",
+    "command": "raw log companion",
+    "sha256": "2675d4bed3b5242d944f580eb40d4d3bda841511ad981614ba3f34a52e787289",
+    "size_bytes": 246
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cA_provenance.json",
+    "timestamp": "2026-11-15T16:02:11.381492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "a8b83b797bb4aa23ef8d689902843985c2160dc202dcb0cb7ccbc38da339b496",
+    "size_bytes": 4069
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cB_torch_gates.json",
+    "timestamp": "2026-11-15T16:02:11.382492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "e4e064c76e24f74d68ce7d7b7df977f4aaa71e255111306a1546bdcf20f5b197",
+    "size_bytes": 2611
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cC_nostl.json",
+    "timestamp": "2026-11-15T16:02:11.383492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "f8bad54d1e3b43c2db388b205e064bb068fec33ffc4dfae63e589e49f508e715",
+    "size_bytes": 2361
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cD_train_cli.json",
+    "timestamp": "2026-11-15T16:02:11.384492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "3a5caf10c7e3dd6cef05037db0f66d514a179ec8a73a1528c511336d6f63b761",
+    "size_bytes": 1687
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cE_optimizer.json",
+    "timestamp": "2026-11-15T16:02:11.384492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "d3654c824ab03c8ad8ed0ce7e753e6773dd53e921aa2b0bf346985dc2a5a4857",
+    "size_bytes": 2493
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cF_resume.json",
+    "timestamp": "2026-11-15T16:02:11.385492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "0bf692bea180513b4deab3a8e17a5af662d50b42330e9b931764ff0216cac421",
+    "size_bytes": 1869
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cG_stability.json",
+    "timestamp": "2026-11-15T16:02:11.386493+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "c06e4f7f33e7651a6385dfe9c5532a7b7dc04d6a472fc079de6c9c6a99285464",
+    "size_bytes": 1788
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cG2_stability_cold.json",
+    "timestamp": "2026-11-15T16:02:11.387492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "543ffa12293a172caca7409dd635b5dddce341cebc4bab92bf2550f6a2ca3f9a",
+    "size_bytes": 1597
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cA2_provenance_clean.json",
+    "timestamp": "2026-11-15T16:02:11.388493+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "1361187b88d4d7bae423c43e04e7c32025e0dda9232307d8de52ea14322723b7",
+    "size_bytes": 4006
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cB2_torch_gates_clean.json",
+    "timestamp": "2026-11-15T16:02:11.389492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "6294c2041c68b97e5c3847768668456548f1597e3dfb5083b721d32e2b9acbca",
+    "size_bytes": 2620
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cD2_train_cli_clean.json",
+    "timestamp": "2026-11-15T16:02:11.389492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "8d9aa04015123668625a2492cfc6924cd9b0ab7bc490320901ea6adf96682f2c",
+    "size_bytes": 1692
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cE2_optimizer_clean.json",
+    "timestamp": "2026-11-15T16:02:11.390492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "63361da3cfe0c2aed1fdaec3581bc4a7d99e658bcaee7a14b79a564893fa7c9f",
+    "size_bytes": 2503
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cF2_resume_clean.json",
+    "timestamp": "2026-11-15T16:02:11.391493+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "3b32ca60fc8ddaf7a0deeebeb83656fa19d26cea0b1c8df9747d45d07d1bf198",
+    "size_bytes": 1874
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cG3_stability_clean_cold.json",
+    "timestamp": "2026-11-15T16:02:11.392492+00:00",
+    "command": "archived 2026-11-15T16:02:11Z (R21 mission)",
+    "sha256": "4d365b58c8a81d13bf800ec4edc23dd9086735fbf0cecaa99a44468f01e38ad4",
+    "size_bytes": 1601
+  },
+  {
+    "path": "evidence/raw/r22-dev/r21E1_train_cli.log",
+    "timestamp": "2026-11-15T16:02:11.392492+00:00",
+    "command": "raw log companion",
+    "sha256": "99d3c0b092e2dcdd7bececeade221b954acd061193ddf8345cc5144f192662b7",
+    "size_bytes": 240
+  },
+  {
+    "path": "evidence/raw/r22-dev/r21E3_resume.log",
+    "timestamp": "2026-11-15T16:02:11.393493+00:00",
+    "command": "raw log companion",
+    "sha256": "58412940b97d0b123f81e0463b877f6536017fc551c1eccf19a7b0fd2f710d8e",
+    "size_bytes": 516
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cC_nostl.log",
+    "timestamp": "2026-11-15T16:02:11.394492+00:00",
+    "command": "raw log companion",
+    "sha256": "dc8374530700b380f82049fea960ba9260072e395ff667d89b2d2b1e3bcf37d7",
+    "size_bytes": 143
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22cD_train_cli.log",
+    "timestamp": "2026-11-15T16:02:11.395493+00:00",
+    "command": "raw log companion",
+    "sha256": "2675d4bed3b5242d944f580eb40d4d3bda841511ad981614ba3f34a52e787289",
+    "size_bytes": 246
+  },
+  {
+    "path": "evidence/raw/r21/r21E1_train_stdout.log",
+    "timestamp": "2026-11-15T16:02:11.427021+00:00",
+    "command": "R21 raw scratch copy",
+    "sha256": "3a95f457f3323e72f8ca7172dc889f58fb1ccf82cfc146a5019a9624c4ece9d7",
+    "size_bytes": 8468
+  },
+  {
+    "path": "evidence/raw/r21/r21E1_checkpoints.json",
+    "timestamp": "2026-11-15T16:02:11.428467+00:00",
+    "command": "R21 raw scratch copy",
+    "sha256": "8f426bf3aa5bedba5e6bf62027a21a3a3585bc3be67cccae6b309c9379629efb",
+    "size_bytes": 366
+  },
+  {
+    "path": "evidence/raw/r22-dev/r22_channel_binary_audit.json",
+    "timestamp": "2026-11-15T16:02:56.758513+00:00",
+    "command": "archived 2026-11-15T16:02:56Z (R21 mission)",
+    "sha256": "c0b75461b19967a41432c679ea5888ebe517ad4ddea8398384318dc81ceed583",
+    "size_bytes": 4151
   }
 ]

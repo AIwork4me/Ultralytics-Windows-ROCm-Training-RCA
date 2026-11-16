@@ -1,0 +1,106 @@
+{
+  "run_id": "R21-A2-20261115",
+  "mission": "R21",
+  "timestamp": "2026-11-15T15:11:30.433464+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.12.0+rocm7.14.1",
+  "torchvision": "0.27.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "runtime_class": "ENGINEERING_REFERENCE",
+  "command": "python verify_torchvision_ops.py",
+  "exit_code": 0,
+  "duration_s": 10.53,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\evidence\\r21\\r21A2_torch_gates.log",
+  "gates": {
+    "cuda_available": {
+      "status": "PASS",
+      "detail": {
+        "device_count": 1
+      }
+    },
+    "device_identity": {
+      "status": "PASS",
+      "detail": {
+        "name": "AMD Radeon RX 7900 XTX",
+        "capability": [
+          11,
+          0
+        ],
+        "gfx_target": "gfx1100"
+      }
+    },
+    "fp32_gemm": {
+      "status": "PASS",
+      "detail": {
+        "sum": -14134.6318359375
+      }
+    },
+    "fp16_gemm": {
+      "status": "PASS",
+      "detail": {
+        "sum": -2755.75146484375
+      }
+    },
+    "autograd": {
+      "status": "PASS",
+      "detail": {
+        "loss": 4001.73388671875
+      }
+    },
+    "conv2d_fwd_bwd": {
+      "status": "PASS",
+      "detail": {
+        "out_shape": [
+          4,
+          16,
+          64,
+          64
+        ]
+      }
+    },
+    "batchnorm_fwd_bwd": {
+      "status": "PASS",
+      "detail": {
+        "out_shape": [
+          8,
+          16,
+          32,
+          32
+        ]
+      }
+    },
+    "torchvision_nms_gpu": {
+      "status": "PASS",
+      "detail": {
+        "keep": [
+          0,
+          2
+        ],
+        "torchvision": "0.27.0+rocm7.14.1"
+      }
+    },
+    "tensor_lifetime": {
+      "status": "PASS",
+      "detail": {
+        "cycles": 50
+      }
+    }
+  },
+  "cpu_fallback_used": false,
+  "miopen_identity": {
+    "loaded": true,
+    "path": "C:\\RadeonYOLO\\venvs\\r21-engref\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+    "bytes": 492380672,
+    "embedded_version_strings": [
+      "3.5.2.cd957402"
+    ],
+    "pr13437_marker_miopen_initializer_list": 0
+  }
+}
