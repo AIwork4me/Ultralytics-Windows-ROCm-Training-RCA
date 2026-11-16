@@ -1,0 +1,92 @@
+{
+  "run_id": "R22A4-ACCEPT-1151",
+  "mission": "R22A.4",
+  "timestamp": "2026-11-16T15:19:19.293748+00:00",
+  "arch": "gfx1151",
+  "part_a_record": "evidence/raw/r22a3-gfx1151/R22A3_ADAMW_AMP.json",
+  "part_b_record": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8_RUNS.json",
+  "combined": {
+    "verdict": "R22A3_GFX1151_SUPPLEMENTAL_PASS",
+    "reasons": [],
+    "part_a_recomputed": {
+      "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+      "failure_classification": null,
+      "schema": "r22a3-nested",
+      "adapter": "r22a3-nested-v1",
+      "checks": [
+        {
+          "check": "physical_gpu_identity",
+          "ok": true,
+          "detail": "AMD Radeon(TM) 8060S Graphics / gfx1151"
+        },
+        {
+          "check": "optimizer_requested_auto",
+          "ok": true,
+          "detail": "requested='auto' (harness must not force an optimizer)"
+        },
+        {
+          "check": "optimizer_resolved_adamw",
+          "ok": true,
+          "detail": "args.optimizer rewritten to 'AdamW'"
+        },
+        {
+          "check": "amp_resolved",
+          "ok": true,
+          "detail": "trainer amp=True"
+        },
+        {
+          "check": "forward_autocast_active",
+          "ok": true,
+          "detail": "48 forward samples with autocast enabled"
+        },
+        {
+          "check": "step_accounting_consistent",
+          "ok": true,
+          "detail": "7 effective of 11 step calls, 4 found_inf skips observed"
+        },
+        {
+          "check": "min_updates",
+          "ok": true,
+          "detail": "7 confirmed parameter-update events (sentinel/checksum deltas); 11 python-level step calls; 11 scaler attempts (minimum required: 3)"
+        },
+        {
+          "check": "grads_finite_all_groups",
+          "ok": true,
+          "detail": "finite grads at every CONFIRMED update across all groups (skipped nonfinite steps recorded separately — they are the GradScaler working as designed, not failures)"
+        },
+        {
+          "check": "nonzero_parameter_deltas",
+          "ok": true,
+          "detail": "366 parameter tensors changed beyond 1e-9"
+        },
+        {
+          "check": "parameter_deltas_finite",
+          "ok": true,
+          "detail": "max_abs_delta finite for every parameter tensor"
+        },
+        {
+          "check": "training_completed",
+          "ok": true,
+          "detail": "train() returned normally / process exit 0"
+        }
+      ]
+    },
+    "part_b_overall": {
+      "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+      "reason": "exact matrix satisfied: 2 COLD (distinct homes) + 1 CACHE_PRIMING + 3 WARM (shared home + 1 ADDITIONAL justified warm sample(s)), all 6 PASS with workers=8 verified OS-level and clean shutdown",
+      "derived_cache_roles": [
+        "cold",
+        "cold",
+        "cache_priming",
+        "warm",
+        "warm",
+        "warm"
+      ],
+      "log_authenticity": null
+    },
+    "monitor_exception_disclosure": null,
+    "runtime_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)"
+  },
+  "pass_fail_skip": "R22A3_GFX1151_SUPPLEMENTAL_PASS",
+  "note": "combined verdict recomputed from embedded facts of the evidence records via versioned adapters; claimed verdicts are inputs only, never authority"
+}

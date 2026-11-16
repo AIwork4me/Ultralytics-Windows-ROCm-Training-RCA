@@ -277,20 +277,34 @@ def runs_from_unified_receipt(receipt, log_dir: Path | None) -> list[dict]:
     runs = receipt.get("runs") if isinstance(receipt, dict) else receipt
     out = []
     for r in runs or []:
+        over = {}
+        if r.get("matrix") is None and str(r.get("sample_class") or "") == "additional":
+            # keep matrix/run identity distinct from original-matrix runs
+            over["matrix"] = "additional"
         if r.get("log_text"):
-            out.append(_base_run_record(r))
+            out.append(_base_run_record(r, **over))
             continue
         idx = r.get("run")
         log_text, ver = None, {"log": None, "exists": False, "sha_match": None}
         if log_dir is not None and idx is not None:
+            exp_sha = r.get("log_sha256") or r.get("raw_log_sha256")
             cands = [Path(log_dir) / f"run{idx:02d}" / "child.log"] + \
-                sorted(Path(log_dir).glob(f"*run{idx:02d}*.log"))
+                sorted(Path(log_dir).glob(f"*run{idx:02d}*.log")) + \
+                sorted(Path(log_dir).glob("*additional*.log"))
+            fallback = None
             for c in cands:
-                if c.is_file():
-                    log_text, ver = load_log_text(c, r.get("log_sha256")
-                                                  or r.get("raw_log_sha256"))
+                if not c.is_file():
+                    continue
+                txt, v = load_log_text(c, exp_sha)
+                if v.get("sha_match") is True:
+                    log_text, ver = txt, v  # SHA decides, not name order
                     break
-        out.append(_base_run_record(r, log_text=log_text, _log_verification=ver))
+                if fallback is None:
+                    fallback = (txt, v)
+            if log_text is None and fallback is not None:
+                log_text, ver = fallback
+        out.append(_base_run_record(r, log_text=log_text,
+                                    _log_verification=ver, **over))
     return out
 
 
@@ -587,7 +601,7 @@ def main() -> None:
             if args.additional_runs:
                 add_log_dir = root / GFX_PACKS["gfx1151"] / "runs"
                 runs += runs_from_unified_receipt(_load(args.additional_runs), add_log_dir)
-            gpu_b = part_b.get("gpu_name")
+            gpu_b = part_b.get("gpu_name") if isinstance(part_b, dict) else None
         else:
             runs = runs_from_r22a2_pack(root)
             gpu_b = part_a.get("gpu_name")
