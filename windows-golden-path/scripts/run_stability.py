@@ -113,6 +113,43 @@ ANOMALY_SIGNATURES = {
 
 WORKER_REQ = 8  # R22A.2 Part B contract count
 
+# Documented BENIGN diagnostics (R22A.2.1 P0-C): matched against the raw log
+# on EVERY path — including exit_code == 0 — classified with rationale and
+# preserved verbatim, never silently discarded and never fatal. Membership is
+# evidence-grounded: each entry cites where it was observed completing cleanly.
+BENIGN_DOCUMENTED = {
+    "MIOpen: Error [EvaluateInvokers]": {
+        "classification": "MIOPEN_FIND_TIMING_DIAGNOSTIC",
+        "rationale": "MIOpen solver-find timing diagnostic emitted during "
+                     "first-use kernel-finder evaluation; observed ONLY in "
+                     "cache-priming runs (r22a2 cold_run01 / warm_run01), "
+                     "both of which completed exit 0 with full training, "
+                     "validation and checkpoints — the finder discards the "
+                     "invalid elapsed-time entry and continues",
+    },
+}
+
+
+def _raw_line(log_text: str, signature: str) -> str:
+    for ln in log_text.splitlines():
+        if signature in ln:
+            return ln[:300]
+    return signature
+
+
+def scan_run_anomalies(log_text: str) -> dict:
+    """Scan a raw run log for fatal signatures AND documented benign
+    diagnostics. Fatal signatures fail the run regardless of exit code; benign
+    ones are recorded with rationale and raw text."""
+    fatal = [{"signature": sig, "classification": fc,
+              "raw_line": _raw_line(log_text, sig)}
+             for sig, fc in ANOMALY_SIGNATURES.items() if sig in log_text]
+    benign = [{"signature": sig, "classification": meta["classification"],
+               "rationale": meta["rationale"],
+               "raw_line": _raw_line(log_text, sig)}
+              for sig, meta in BENIGN_DOCUMENTED.items() if sig in log_text]
+    return {"fatal": fatal, "benign": benign}
+
 
 def classify_run(exit_code: int, output: str) -> dict:
     anomalies = sorted({fc for sig, fc in ANOMALY_SIGNATURES.items() if sig in output})
@@ -125,7 +162,13 @@ def classify_run(exit_code: int, output: str) -> dict:
 # --- R22A.2 Part B: pure CPU-testable worker contract (mission §9) -----------
 
 def evaluate_single_run(run: dict) -> dict:
-    """Acceptance contract for ONE workers run (observed facts only)."""
+    """Acceptance contract for ONE workers run (observed facts only).
+
+    R22A.2.1 P0-C: the raw log is scanned for fatal anomaly signatures on
+    EVERY path — a fatal HIP/MIOpen/worker error must not be silently ignored
+    just because exit_code == 0. Documented benign diagnostics are classified
+    with rationale and preserved, never discarded.
+    """
     checks: list[dict] = []
 
     def check(name, ok, why):
@@ -169,14 +212,30 @@ def evaluate_single_run(run: dict) -> dict:
                  f"peak_concurrent_workers={peak} — all {WORKER_REQ} must actually run"):
         return {"verdict": "FAIL", "classification": "WORKER_COUNT_NOT_MET", "checks": checks}
 
+    # --- P0-C: anomaly scan applies on ALL exit paths, including exit 0 ------
+    scan = scan_run_anomalies(log)
+    if scan["fatal"]:
+        first = scan["fatal"][0]
+        return {"verdict": "FAIL", "classification": first["classification"],
+                "anomaly_evidence": scan,
+                "checks": checks + [{"check": "no_fatal_anomaly_signatures", "ok": False,
+                                     "detail": f"exit_code={exit_code} but raw log contains "
+                                               f"{first['signature']!r} ({first['classification']})"}]}
+    benign_note = (f"no fatal signatures; {len(scan['benign'])} benign documented "
+                   "diagnostic(s) classified & preserved"
+                   if scan["benign"] else "no fatal HIP/MIOpen/worker signatures in raw log")
+    check("no_fatal_anomaly_signatures", True, benign_note)
+
     if exit_code == 124:
         return {"verdict": "FAIL", "classification": "DATALOADER_TIMEOUT",
+                "anomaly_evidence": scan,
                 "checks": checks + [{"check": "bounded_execution", "ok": False,
                                      "detail": "per-run timeout exceeded"}]}
 
     orphans = int(run.get("orphan_workers_alive") or 0)
     if orphans:
         return {"verdict": "FAIL", "classification": "WORKER_SHUTDOWN_FAILURE",
+                "anomaly_evidence": scan,
                 "checks": checks + [{"check": "no_orphan_workers", "ok": False,
                                      "detail": f"{orphans} worker processes survived parent exit"}]}
 
@@ -186,23 +245,63 @@ def evaluate_single_run(run: dict) -> dict:
         if base["status"] == "FAIL" and base.get("anomalies"):
             cls = base["failure_classification"]  # specific signature found
         return {"verdict": "FAIL", "classification": cls,
+                "anomaly_evidence": scan,
                 "checks": checks + [{"check": "process_exit_zero", "ok": False,
                                      "detail": f"exit_code={exit_code}"}]}
 
     if not check("training_completed", done_marker, "STABILITY_CHILD_DONE marker present"):
         return {"verdict": "FAIL", "classification": "TRAINING_INCOMPLETE",
-                "checks": checks}
+                "anomaly_evidence": scan, "checks": checks}
 
     if not check("checkpoint_present", bool(run.get("checkpoint_exists")),
                  str(run.get("checkpoint_path"))):
-        return {"verdict": "FAIL", "classification": "CHECKPOINT_MISSING", "checks": checks}
+        return {"verdict": "FAIL", "classification": "CHECKPOINT_MISSING",
+                "anomaly_evidence": scan, "checks": checks}
 
-    return {"verdict": "PASS", "classification": None, "checks": checks}
+    return {"verdict": "PASS", "classification": None,
+            "anomaly_evidence": scan, "checks": checks}
+
+
+def assign_cache_roles(runs: list) -> list:
+    """Derive each run's honest cache role from its own record (P0-D).
+
+    cold expectation → 'cold'. Warm-family runs sharing one retained home:
+    the FIRST use of a fresh home is 'cache_priming' (it populates the cache
+    identity — it is NOT a pre-warmed run); subsequent runs on the same home
+    are 'warm'. When the record carries an explicit home_pre_existed flag
+    (future runner), that direct evidence wins; otherwise derivation is by
+    first-seen order of the home, which matches the sequential execution.
+    """
+    seen_homes: dict = {}
+    out = []
+    for i, r in enumerate(runs):
+        exp = r.get("cache_expectation")
+        home = r.get("home_dir")
+        if exp == "cold":
+            role = "cold"
+        elif "home_pre_existed" in r and r["home_pre_existed"] is not None:
+            role = "warm" if r["home_pre_existed"] else "cache_priming"
+        elif home not in seen_homes:
+            seen_homes[home] = i
+            role = "cache_priming"
+        else:
+            role = "warm"
+        out.append({**r, "cache_role": role})
+    return out
 
 
 def evaluate_workers_matrix(matrix: dict) -> dict:
-    """Acceptance contract for the five-run workers=8 matrix (mission §8/§9)."""
+    """Acceptance contract for the workers=8 short-reliability matrix (P0-D).
+
+    Requires the EXACT intended shape: `expected_cold` (default 2) cold runs
+    with DISTINCT fresh cache homes, at most one cache_priming run per warm
+    home, and exactly `expected_warm` (default 3) qualifying pre-warmed runs
+    on ONE shared retained home. A single successful run can never satisfy
+    the matrix; duplicate or missing records are NO-GO.
+    """
     runs = matrix.get("runs") or []
+    expected_cold = int(matrix.get("expected_cold") or 2)
+    expected_warm = int(matrix.get("expected_warm") or 3)
     synthetic = bool(matrix.get("harness_fixture")) or not matrix.get("gpu_name")
     child_guard_ok = bool(matrix.get("child_has_main_guard"))
 
@@ -211,44 +310,74 @@ def evaluate_workers_matrix(matrix: dict) -> dict:
     if not child_guard_ok:
         return {"verdict": "NO_GO",
                 "reason": "child script lacks Windows spawn __main__ guard"}
-
     if not runs:
         return {"verdict": "NO_GO", "reason": "no runs recorded"}
+
+    # unique run identities: no duplicate (matrix, run) keys, no duplicate logs
+    ids = [(r.get("matrix"), r.get("run")) for r in runs]
+    shas = [r.get("log_sha256") for r in runs]
+    if len(set(map(str, ids))) != len(runs):
+        return {"verdict": "NO_GO", "reason": "duplicate run identities in matrix"}
+    if len(set(shas)) != len(runs):
+        return {"verdict": "NO_GO", "reason": "duplicate raw logs (same sha256 twice)"}
+
+    roled = assign_cache_roles(runs)
+    colds = [r for r in roled if r["cache_role"] == "cold"]
+    primes = [r for r in roled if r["cache_role"] == "cache_priming"]
+    warms = [r for r in roled if r["cache_role"] == "warm"]
+
+    if len(colds) != expected_cold:
+        return {"verdict": "NO_GO",
+                "reason": f"matrix size: expected exactly {expected_cold} cold runs, "
+                          f"found {len(colds)} — a partial matrix can never earn the verdict",
+                "roles": [r["cache_role"] for r in roled]}
+    if len(warms) != expected_warm:
+        return {"verdict": "NO_GO",
+                "reason": f"matrix size: expected exactly {expected_warm} qualifying "
+                          f"pre-warmed runs, found {len(warms)} "
+                          "(cache_priming runs do not qualify as pre-warmed)",
+                "roles": [r["cache_role"] for r in roled]}
+    if len(primes) > 1:
+        return {"verdict": "NO_GO",
+                "reason": f"{len(primes)} cache_priming runs — the shared warm home "
+                          "must be primed exactly once",
+                "roles": [r["cache_role"] for r in roled]}
+    cold_homes = {r.get("home_dir") for r in colds}
+    if len(cold_homes) != len(colds):
+        return {"verdict": "NO_GO",
+                "reason": "cold runs must each use a DISTINCT fresh cache home",
+                "roles": [r["cache_role"] for r in roled]}
+    warm_family_homes = {r.get("home_dir") for r in primes + warms}
+    if len(warm_family_homes) > 1:
+        return {"verdict": "NO_GO",
+                "reason": "warm-family runs must SHARE one retained cache home",
+                "roles": [r["cache_role"] for r in roled]}
 
     verdicts = [evaluate_single_run(r) for r in runs]
     n_pass = sum(1 for v in verdicts if v["verdict"] == "PASS")
     timeouts = sum(1 for r in runs if int(r.get("exit_code") or 0) == 124)
     n_total = len(runs)
 
-    cold_labels = [r.get("cache_class") for r in runs if r.get("cache_expectation") == "cold"]
-    cold_homes = {r.get("home_dir") for r in runs if r.get("cache_expectation") == "cold"}
-    warm_homes = {r.get("home_dir") for r in runs if r.get("cache_expectation") == "warm"}
-    if len(cold_labels) > 1 and len(cold_homes) != len({r.get("run") for r in runs
-                                                        if r.get("cache_expectation") == "cold"}):
-        return {"verdict": "NO_GO",
-                "reason": "cold runs must each use a FRESH isolated cache identity"}
-    if len(warm_homes) > 1:
-        return {"verdict": "NO_GO",
-                "reason": "warm runs must SHARE one retained isolated cache identity"}
-
     if timeouts:
         return {"verdict": "NO_GO",
                 "reason": f"{timeouts} run(s) timed out — a timeout fails even if "
                           "another run later succeeds",
-                "run_verdicts": verdicts}
+                "run_verdicts": verdicts, "roles": [r["cache_role"] for r in roled]}
     if n_pass != n_total:
         return {"verdict": "NO_GO",
                 "reason": f"{n_pass}/{n_total} runs PASS — one failure is overall NO-GO "
                           "(a diagnostic follow-up cannot erase it)",
-                "run_verdicts": verdicts}
+                "run_verdicts": verdicts, "roles": [r["cache_role"] for r in roled]}
     if any(v["verdict"] == "INCONCLUSIVE" for v in verdicts):
         return {"verdict": "INCONCLUSIVE",
                 "reason": "worker activity evidence inconclusive in at least one run",
-                "run_verdicts": verdicts}
+                "run_verdicts": verdicts, "roles": [r["cache_role"] for r in roled]}
     return {"verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
-            "reason": f"all {n_total} runs PASS with workers={WORKER_REQ} verified "
-                      "OS-level and clean shutdown",
-            "run_verdicts": verdicts}
+            "reason": f"exact matrix satisfied: {len(colds)} COLD (distinct homes) + "
+                      f"{len(primes)} CACHE_PRIMING + {len(warms)} WARM (shared home), "
+                      f"all {n_total} PASS with workers={WORKER_REQ} verified OS-level "
+                      "and clean shutdown",
+            "run_verdicts": verdicts, "roles": [r["cache_role"] for r in roled]}
 
 
 def child_has_main_guard(child_src: str) -> bool:
@@ -368,6 +497,17 @@ def main() -> None:
     ap.add_argument("--work-dir", required=True)
     ap.add_argument("--device", default="-1")
     ap.add_argument("--per-run-timeout", type=int, default=900)
+    ap.add_argument("--expected-cold", type=int, default=2,
+                    help="matrix contract: exact cold-run count (R22A.2: 2)")
+    ap.add_argument("--expected-warm", type=int, default=3,
+                    help="matrix contract: exact QUALIFYING pre-warmed count "
+                         "excluding the cache_priming run (R22A.2: 3)")
+    ap.add_argument("--strict-matrix", action="store_true",
+                    help="enforce the FULL matrix size contract within THIS "
+                         "invocation (only meaningful when one invocation runs "
+                         "the entire cold+warm sequence); default: per-run "
+                         "contract + recorded roles, full verdict derived "
+                         "across invocations by the report builder")
     args = ap.parse_args()
 
     work = Path(args.work_dir)
@@ -403,6 +543,11 @@ def main() -> None:
         log = run_dir / "child.log"
         t1 = time.time()
         cmd = [sys.executable, "-I", str(child)]
+        # P1: timestamps at the actual moment they name, not at record build time
+        started_utc = gp_lib.now_utc()
+        home_pre_existed = None
+        if warm_home and not args.cold:
+            home_pre_existed = any(warm_home.iterdir())
         with open(log, "w", encoding="utf-8", errors="replace") as lf:
             proc = subprocess.Popen(cmd, stdout=lf, stderr=subprocess.STDOUT,
                                     cwd=str(run_dir), env=env,
@@ -422,6 +567,7 @@ def main() -> None:
             if mon:
                 mon.stop_event.set()
                 mon.join(timeout=10)
+        finished_utc = gp_lib.now_utc()
         rc = 124 if timed_out else (proc.returncode if proc.returncode is not None else -1)
         dur = round(time.time() - t1, 1)
         out = log.read_text(encoding="utf-8", errors="replace")
@@ -437,7 +583,9 @@ def main() -> None:
 
         run_rec = {
             "run": i, "command": f"{sys.executable} -I child.py (workers={args.workers})",
-            "pid": pid, "started_utc": gp_lib.now_utc(),
+            "pid": pid,
+            "started_utc": started_utc, "finished_utc": finished_utc,
+            "home_pre_existed": home_pre_existed,
             "exit_code": rc, "duration_s": dur,
             "cache_class": cache_note, "home_dir": home_dir,
             "cache_expectation": "cold" if args.cold else "warm",
@@ -468,6 +616,7 @@ def main() -> None:
             run_rec["status"] = verdict["verdict"]
             run_rec["failure_classification"] = verdict.get("classification")
             run_rec["worker_contract_checks"] = verdict["checks"]
+            run_rec["anomaly_evidence"] = verdict.get("anomaly_evidence")
         runs.append(run_rec)
         peak = (mon.peak_concurrent if mon else None)
         print(f"[run {i}/{args.runs}] exit={rc} {run_rec['status']} "
@@ -484,13 +633,28 @@ def main() -> None:
         verdict = "PASS" if n_pass == len(runs) and runs else "FAIL"
         failure_classification = (tally and next(iter(tally))) or None
     else:
-        matrix = evaluate_workers_matrix({
-            "runs": runs,
-            "child_has_main_guard": all(r["child_has_main_guard"] for r in runs),
-            "gpu_name": torch.cuda.get_device_name(0) if torch.cuda.device_count() else None,
-        })
-        verdict = "PASS" if matrix["verdict"] == "WORKERS8_SHORT_RELIABILITY_PASS" else "FAIL"
-        failure_classification = matrix.get("reason")
+        # roles are ALWAYS derived and recorded; the FULL matrix-size contract
+        # is only enforced in-process when --strict-matrix (a single invocation
+        # that runs the entire cold+warm sequence). Partial invocations carry
+        # per-run verdicts — the five-run acceptance is derived across
+        # invocations by the report builder (CPU-testable evaluate_* funcs).
+        roled = assign_cache_roles(runs)
+        for r, with_role in zip(runs, roled):
+            r["cache_role"] = with_role["cache_role"]
+        if args.strict_matrix:
+            matrix = evaluate_workers_matrix({
+                "runs": runs,
+                "child_has_main_guard": all(r["child_has_main_guard"] for r in runs),
+                "gpu_name": torch.cuda.get_device_name(0) if torch.cuda.device_count() else None,
+                "expected_cold": args.expected_cold,
+                "expected_warm": args.expected_warm,
+            })
+            verdict = "PASS" if matrix["verdict"] == "WORKERS8_SHORT_RELIABILITY_PASS" else "FAIL"
+            failure_classification = matrix.get("reason")
+        else:
+            matrix = None
+            verdict = "PASS" if n_pass == len(runs) and runs else "FAIL"
+            failure_classification = None if verdict == "PASS" else "PER_RUN_FAILURE"
 
     record = {
         "run_id": args.run_id, "mission": args.mission, "timestamp": gp_lib.now_utc(),
@@ -514,6 +678,8 @@ def main() -> None:
         "raw_log_path": str(work / "stability_runs.json"),
         "runs": runs, "n_pass": n_pass, "n_total": len(runs),
         "anomaly_tally": tally,
+        "cache_roles": [r.get("cache_role") for r in runs],
+        "matrix_evaluation": matrix,
         "workers_requested": args.workers,
         "cache_class": ("cold(fresh-USERPROFILE per run)" if args.cold
                         else ("warm(shared-isolated-USERPROFILE)" if warm_home else "warm")),

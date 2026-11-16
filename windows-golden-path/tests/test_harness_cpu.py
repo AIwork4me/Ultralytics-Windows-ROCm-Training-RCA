@@ -858,7 +858,11 @@ class TestAdamwAmpContract:
 # =============================================================================
 # R22A.2 Part B — Windows workers=8 acceptance contract (CPU-only)
 # =============================================================================
+_worker_fixture_seq = {"n": 0}
+
+
 def worker_run(**over):
+    _worker_fixture_seq["n"] += 1
     r = {
         "gpu_name": "AMD Radeon RX 7900 XTX", "harness_fixture": False,
         "requested_workers": 8, "resolved_num_workers": 8,
@@ -868,7 +872,8 @@ def worker_run(**over):
         "checkpoint_exists": True, "checkpoint_path": "run/weights/last.pt",
         "cache_class": "warm(shared-isolated-USERPROFILE)",
         "cache_expectation": "warm", "home_dir": "C:/r22a2/cache/warm-home",
-        "run": 1, "child_has_main_guard": True,
+        "matrix": "warm", "run": 1, "child_has_main_guard": True,
+        "log_sha256": f"fixture-sha-{_worker_fixture_seq['n']:04d}",
     }
     r.update(over)
     return r
@@ -880,6 +885,21 @@ def worker_matrix(runs, **over):
          "gpu_name": "AMD Radeon RX 7900 XTX"}
     m.update(over)
     return m
+
+
+def full_matrix_runs(n_warm=3, **over_per_run):
+    """The exact physical R22A.2 shape: 2 COLD (distinct fresh homes) +
+    1 CACHE_PRIMING (first use of the shared warm home) + n_warm pre-warmed."""
+    runs = [worker_run(run=i, matrix="cold", cache_expectation="cold",
+                       home_dir=f"C:/h/cold{i}",
+                       cache_class="cold(fresh-USERPROFILE)")
+            for i in (1, 2)]
+    runs.append(worker_run(run=1, matrix="warm", cache_expectation="warm",
+                           home_dir="C:/h/warm", duration_s=119.1, **over_per_run))
+    runs += [worker_run(run=i, matrix="warm", cache_expectation="warm",
+                        home_dir="C:/h/warm", **over_per_run)
+             for i in range(2, 2 + n_warm)]
+    return runs
 
 
 class TestWorkersContract:
@@ -937,56 +957,158 @@ class TestWorkersContract:
         assert r2["verdict"] == "FAIL"
 
     def test_five_pass_runs_pass_matrix(self):
-        runs = [worker_run(run=i, cache_expectation="cold" if i <= 2 else "warm",
-                           home_dir=f"C:/h/cold{i}" if i <= 2 else "C:/h/warm",
-                           cache_class="cold(fresh-USERPROFILE)" if i <= 2
-                           else "warm(shared-isolated-USERPROFILE)")
-                for i in range(1, 6)]
-        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        # the FULL exact shape: 2 COLD + 1 CACHE_PRIMING + 3 WARM
+        r = self.rs.evaluate_workers_matrix(worker_matrix(full_matrix_runs()))
         assert r["verdict"] == "WORKERS8_SHORT_RELIABILITY_PASS", r
+        assert r["roles"] == ["cold", "cold", "cache_priming", "warm", "warm", "warm"]
+
+    def test_frozen_five_run_matrix_is_no_go_under_strict_contract(self):
+        # P0-D honest reclassification: the ORIGINAL frozen matrix was
+        # 2 COLD + 1 CACHE_PRIMING + 2 WARM (only 2 pre-warmed runs) — it can
+        # no longer satisfy the strict 3-pre-warmed contract by itself
+        r = self.rs.evaluate_workers_matrix(worker_matrix(full_matrix_runs(n_warm=2)))
+        assert r["verdict"] == "NO_GO"
+        assert "qualifying pre-warmed" in r["reason"]
+        assert r["roles"] == ["cold", "cold", "cache_priming", "warm", "warm"]
+
+    def test_single_successful_run_cannot_satisfy_matrix(self):
+        r = self.rs.evaluate_workers_matrix(worker_matrix([worker_run()]))
+        assert r["verdict"] == "NO_GO" and "matrix size" in r["reason"]
+
+    def test_missing_warm_run_is_no_go_even_if_all_pass(self):
+        runs = full_matrix_runs(n_warm=2)
+        assert all(self.rs.evaluate_single_run(x)["verdict"] == "PASS" for x in runs)
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "NO_GO" and "matrix size" in r["reason"]
 
     def test_one_timeout_is_no_go(self):
-        runs = [worker_run(run=i) for i in range(1, 6)]
-        runs[2] = worker_run(run=3, exit_code=124)
+        runs = full_matrix_runs()
+        runs[4] = worker_run(run=3, matrix="warm", cache_expectation="warm",
+                             home_dir="C:/h/warm", exit_code=124)
         r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
         assert r["verdict"] == "NO_GO" and "timed out" in r["reason"]
 
-    def test_four_of_five_pass_is_no_go(self):
-        runs = [worker_run(run=i) for i in range(1, 6)]
-        runs[4] = worker_run(run=5, exit_code=1)
+    def test_five_of_six_pass_is_no_go(self):
+        runs = full_matrix_runs()
+        runs[5] = worker_run(run=4, matrix="warm", cache_expectation="warm",
+                             home_dir="C:/h/warm", exit_code=1)
         r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
-        assert r["verdict"] == "NO_GO" and "4/5" in r["reason"]
+        assert r["verdict"] == "NO_GO" and "5/6" in r["reason"]
 
     def test_exit0_but_orphans_is_no_go(self):
-        runs = [worker_run(run=i) for i in range(1, 6)]
-        runs[0] = worker_run(run=1, orphan_workers_alive=3)
+        runs = full_matrix_runs()
+        runs[0] = worker_run(run=1, matrix="cold", cache_expectation="cold",
+                             home_dir="C:/h/cold1", orphan_workers_alive=3)
         r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
         assert r["verdict"] == "NO_GO"
 
     def test_missing_child_main_guard_is_no_go(self):
-        runs = [worker_run(run=i) for i in range(1, 6)]
         r = self.rs.evaluate_workers_matrix(
-            worker_matrix(runs, child_has_main_guard=False))
+            worker_matrix(full_matrix_runs(), child_has_main_guard=False))
         assert r["verdict"] == "NO_GO" and "__main__ guard" in r["reason"]
 
-    def test_cold_runs_sharing_home_rejected(self):
-        runs = [worker_run(run=1, cache_expectation="cold", home_dir="C:/h/same",
-                           cache_class="cold(fresh-USERPROFILE)"),
-                worker_run(run=2, cache_expectation="cold", home_dir="C:/h/same",
-                           cache_class="cold(fresh-USERPROFILE)")]
+    def test_duplicate_run_identity_rejected(self):
+        runs = full_matrix_runs()
+        runs[5] = dict(runs[4], log_sha256=runs[3]["log_sha256"])  # dup log
         r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
-        assert r["verdict"] == "NO_GO" and "FRESH isolated" in r["reason"]
+        assert r["verdict"] == "NO_GO" and "duplicate" in r["reason"]
+        runs2 = full_matrix_runs()
+        runs2[5] = dict(runs2[4], run=runs2[3]["run"], matrix=runs2[3]["matrix"],
+                        log_sha256="x-unique")
+        r2 = self.rs.evaluate_workers_matrix(worker_matrix(runs2))
+        assert r2["verdict"] == "NO_GO" and "duplicate run identities" in r2["reason"]
+
+    def test_cold_runs_sharing_home_rejected(self):
+        runs = full_matrix_runs()
+        runs[1] = worker_run(run=2, matrix="cold", cache_expectation="cold",
+                             home_dir="C:/h/cold1",
+                             cache_class="cold(fresh-USERPROFILE)")
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "NO_GO" and "DISTINCT fresh cache home" in r["reason"]
 
     def test_warm_runs_with_different_homes_rejected(self):
-        runs = [worker_run(run=1, cache_expectation="warm", home_dir="C:/h/a"),
-                worker_run(run=2, cache_expectation="warm", home_dir="C:/h/b")]
+        runs = full_matrix_runs()
+        # a 3rd qualifying warm run that drifted onto ANOTHER home (explicit
+        # pre-existed flag keeps counts valid so the SHARED-home rule fires)
+        runs[5] = worker_run(run=4, matrix="warm", cache_expectation="warm",
+                             home_dir="C:/h/other", home_pre_existed=True)
         r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
-        assert r["verdict"] == "NO_GO" and "SHARE" in r["reason"]
+        assert r["verdict"] == "NO_GO" and "SHARE one retained cache home" in r["reason"]
+
+    def test_two_priming_runs_rejected(self):
+        runs = full_matrix_runs()
+        # a second run CLAIMING first use of the already-primed shared home
+        runs.append(worker_run(run=5, matrix="warm", cache_expectation="warm",
+                               home_dir="C:/h/warm", home_pre_existed=False))
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "NO_GO" and "primed exactly once" in r["reason"]
 
     def test_synthetic_matrix_rejected(self):
-        r = self.rs.evaluate_workers_matrix(worker_matrix([worker_run()],
+        r = self.rs.evaluate_workers_matrix(worker_matrix(full_matrix_runs(),
                                                           harness_fixture=True))
         assert r["verdict"] == "NO_GO" and "synthetic" in r["reason"]
+
+    # --- cache role derivation (P0-D) ---------------------------------------
+    def test_assign_cache_roles_order_based(self):
+        roled = self.rs.assign_cache_roles([
+            worker_run(run=1, matrix="cold", cache_expectation="cold", home_dir="C:/c1"),
+            worker_run(run=1, matrix="warm", cache_expectation="warm", home_dir="C:/w"),
+            worker_run(run=2, matrix="warm", cache_expectation="warm", home_dir="C:/w"),
+        ])
+        assert [r["cache_role"] for r in roled] == ["cold", "cache_priming", "warm"]
+
+    def test_assign_cache_roles_home_pre_existed_wins(self):
+        roled = self.rs.assign_cache_roles([
+            worker_run(run=1, cache_expectation="warm", home_dir="C:/w",
+                       home_pre_existed=True),
+        ])
+        assert roled[0]["cache_role"] == "warm"
+
+    # --- P0-C: anomaly gate on exit-0 paths ----------------------------------
+    def test_exit0_fatal_kernel_error_is_no_go(self):
+        r = self.rs.evaluate_single_run(worker_run(
+            exit_code=0, log_text="train ok\nhipErrorInvalidKernelFile while loading\n"
+                                  "STABILITY_CHILD_DONE 10.0s"))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "HIP_KERNEL_IMAGE_FAILURE"
+        assert any(not c["ok"] for c in r["checks"]
+                   if c["check"] == "no_fatal_anomaly_signatures")
+
+    def test_exit0_worker_crash_evidence_is_no_go(self):
+        r = self.rs.evaluate_single_run(worker_run(
+            exit_code=0,
+            log_text="RuntimeError: DataLoader worker (pid 1234) exited unexpectedly\n"
+                     "STABILITY_CHILD_DONE 10.0s"))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "WORKER_CRASH"
+        assert "DataLoader worker (pid 1234)" in r["anomaly_evidence"]["fatal"][0]["raw_line"]
+
+    def test_exit0_benign_documented_warning_classified_not_discarded(self):
+        benign_line = ("MIOpen: Error [EvaluateInvokers] DESKTOP:.../solver_finders.cpp:545: "
+                       "Invalid elapsed time detected in EvaluateInvokers, "
+                       "failed condition: elapsed <= 0")
+        r = self.rs.evaluate_single_run(worker_run(
+            exit_code=0, log_text=f"training\n{benign_line}\nSTABILITY_CHILD_DONE 119.1s"))
+        assert r["verdict"] == "PASS"
+        assert r["anomaly_evidence"]["fatal"] == []
+        b = r["anomaly_evidence"]["benign"][0]
+        assert b["classification"] == "MIOPEN_FIND_TIMING_DIAGNOSTIC"
+        assert "cache-priming" in b["rationale"]
+        assert "EvaluateInvokers" in b["raw_line"]  # raw preserved verbatim
+
+    def test_benign_plus_fatal_fatal_wins(self):
+        r = self.rs.evaluate_single_run(worker_run(
+            exit_code=0,
+            log_text="MIOpen: Error [EvaluateInvokers] ... Invalid elapsed time\n"
+                     "miopenStatusUnknownError\nSTABILITY_CHILD_DONE 5.0s"))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "MIOPEN_RUNTIME_KERNEL"
+        assert len(r["anomaly_evidence"]["benign"]) == 1  # benign still preserved
+
+    def test_clean_exit0_log_has_no_anomaly_evidence_fatals(self):
+        r = self.rs.evaluate_single_run(worker_run())
+        assert r["verdict"] == "PASS"
+        assert r["anomaly_evidence"]["fatal"] == []
 
     # --- Windows spawn safety of the GENERATED child script -------------------
     def test_generated_child_has_main_guard_and_freeze_support(self):
