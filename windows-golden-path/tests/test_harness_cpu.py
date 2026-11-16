@@ -695,3 +695,319 @@ class TestPackageOriginPolicy:
             assert res["ok"] is True, (rel, res["failures"])
             assert res["package_origin_audit"]["classes"] == n_expected, rel
             assert res["rocm_family_mix_audit"]["families"] == ["10"], rel
+
+
+# =============================================================================
+# R22A.2 Part A — DEFAULT optimizer=auto → AdamW + AMP acceptance contract
+# (CPU-only; synthetic fixtures exercise evaluate_adamw_contract and can
+#  NEVER earn a physical PASS)
+# =============================================================================
+def adamw_facts(**over):
+    # base fixture mirrors the REAL observed gfx1100 Part A shape: 11 python
+    # level step calls, 5 GradScaler backoffs, 6 CONFIRMED checksum updates —
+    # fused AdamW semantics where the inf skip happens inside the kernel
+    f = {
+        "gpu_name": "AMD Radeon RX 7900 XTX", "gfx_target": "gfx1100",
+        "harness_fixture": False,
+        "optimizer_requested": "auto", "optimizer_class": "AdamW",
+        "optimizer_resolution_note": "optimizer=auto resolved to AdamW",
+        "amp_resolved": True,
+        "autocast_forward_on": 48, "autocast_forward_samples": 48,
+        "low_precision_op_samples": 48, "low_precision_dtype": "torch.float16",
+        "optimizer_steps_underlying": 11, "confirmed_update_events": 6,
+        "scaler_step_attempts": 11,
+        "gradscaler_present": True,
+        "grads_finite_all_steps": False,  # skipped steps carry nonfinite grads
+        "grads_finite_at_confirmed_updates": True,
+        "raw_trainer_model_delta": {"tensors_changed_beyond_1e-9": 350,
+                                    "all_finite": True},
+        "buffer_delta": {"tensors_changed_beyond_1e-9": 40},
+        "training_completed": True,
+    }
+    f.update(over)
+    return f
+
+
+class TestAdamwAmpContract:
+    ev = staticmethod(load_module("audit_adamw_amp").evaluate_adamw_contract)
+
+    def test_auto_resolving_adamw_accepted(self):
+        r = self.ev(adamw_facts())
+        assert r["verdict"] == "ADAMW_AMP_MULTISTEP_PASS", r
+
+    def test_auto_resolving_sgd_rejected(self):
+        r = self.ev(adamw_facts(optimizer_class="SGD"))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "not AdamW" in r["reason"]
+
+    def test_auto_resolving_musgd_rejected(self):
+        # 8.4.214 heuristic: iterations > 10000 selects MuSGD
+        r = self.ev(adamw_facts(optimizer_class="MuSGD"))
+        assert r["verdict"] == "ADAMW_AMP_FAIL" and "MuSGD" in r["reason"]
+
+    def test_forced_adamw_request_rejected(self):
+        # the harness must request the DEFAULT, never force AdamW
+        r = self.ev(adamw_facts(optimizer_requested="AdamW"))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "force" in r["reason"]
+
+    def test_amp_false_rejected(self):
+        r = self.ev(adamw_facts(amp_resolved=False))
+        assert r["verdict"] == "ADAMW_AMP_FAIL" and "AMP" in r["reason"]
+
+    def test_amp_pass_but_autocast_never_active_rejected(self):
+        r = self.ev(adamw_facts(autocast_forward_on=0))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "autocast never active" in r["reason"]
+
+    def test_autocast_active_no_low_precision_evidence_inconclusive(self):
+        r = self.ev(adamw_facts(low_precision_op_samples=0))
+        assert r["verdict"] == "ADAMW_AMP_INCONCLUSIVE"
+        assert "lower-precision" in r["reason"]
+
+    def test_scaler_active_no_real_updates_rejected(self):
+        # every step skipped by the fused inf-guard: python-level calls exist
+        # but zero confirmed parameter updates
+        r = self.ev(adamw_facts(optimizer_steps_underlying=11,
+                                confirmed_update_events=0,
+                                scaler_step_attempts=11))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "every step skipped" in r["reason"]
+
+    def test_missing_step_evidence_rejected(self):
+        r = self.ev(adamw_facts(optimizer_steps_underlying=0,
+                                confirmed_update_events=0,
+                                scaler_step_attempts=0,
+                                gradscaler_present=False))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "missing optimizer step evidence" in r["reason"]
+
+    def test_missing_confirmed_update_evidence_rejected(self):
+        # wrapper-call counts alone prove nothing (mission A12)
+        r = self.ev(adamw_facts(confirmed_update_events=None))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "confirmed-update evidence" in r["reason"]
+
+    def test_fewer_than_three_updates_rejected(self):
+        r = self.ev(adamw_facts(confirmed_update_events=2))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "insufficient optimizer updates" in r["reason"]
+
+    def test_nonfinite_grads_at_confirmed_update_rejected(self):
+        r = self.ev(adamw_facts(grads_finite_at_confirmed_updates=False))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "nonfinite" in r["reason"]
+
+    def test_no_parameter_changes_rejected(self):
+        r = self.ev(adamw_facts(
+            raw_trainer_model_delta={"tensors_changed_beyond_1e-9": 0,
+                                     "all_finite": True}))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+
+    def test_only_batchnorm_buffer_changes_rejected(self):
+        r = self.ev(adamw_facts(
+            raw_trainer_model_delta={"tensors_changed_beyond_1e-9": 0,
+                                     "all_finite": True},
+            buffer_delta={"tensors_changed_beyond_1e-9": 40}))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "buffer changes" in r["reason"]
+
+    def test_nonfinite_gradients_in_one_group_rejected(self):
+        # the FAIL key is finite-at-CONFIRMED-updates; skipped-step nonfinite
+        # grads (grads_finite_all_steps=False) are GradScaler working correctly
+        r = self.ev(adamw_facts(grads_finite_all_steps=False,
+                                grads_finite_at_confirmed_updates=False))
+        assert r["verdict"] == "ADAMW_AMP_FAIL"
+        assert "nonfinite" in r["reason"]
+
+    def test_nonfinite_parameter_deltas_rejected(self):
+        r = self.ev(adamw_facts(
+            raw_trainer_model_delta={"tensors_changed_beyond_1e-9": 350,
+                                     "all_finite": False}))
+        assert r["verdict"] == "ADAMW_AMP_FAIL" and "nonfinite parameter" in r["reason"]
+
+    def test_synthetic_gpu_evidence_rejected(self):
+        r = self.ev(adamw_facts(harness_fixture=True))
+        assert r["verdict"] == "ADAMW_AMP_FAIL" and "synthetic" in r["reason"]
+        r2 = self.ev(adamw_facts(gpu_name=None))
+        assert r2["verdict"] == "ADAMW_AMP_FAIL" and "synthetic" in r2["reason"]
+
+    def test_training_not_completed_rejected(self):
+        r = self.ev(adamw_facts(training_completed=False))
+        assert r["verdict"] == "ADAMW_AMP_FAIL" and "complete" in r["reason"]
+
+    def test_harness_does_not_force_optimizer_or_nbs(self):
+        src = (SCRIPTS / "audit_adamw_amp.py").read_text(encoding="utf-8")
+        assert 'optimizer="auto"' in src
+        train_kwargs_block = src.split("train_kwargs = dict(")[1].split(")")[0]
+        assert "AdamW" not in train_kwargs_block  # never force the optimizer
+        assert "nbs" not in train_kwargs_block  # normal nbs behaviour retained
+
+    def test_step_wrappers_save_and_call_same_bound_name(self):
+        # attempt-1 regression: the scaler wrapper saved `orig_scaler` but
+        # called `orig_scaler_step` — NameError at the first scaler.step.
+        # The wrappers must call the exact name they saved.
+        src = (SCRIPTS / "audit_adamw_amp.py").read_text(encoding="utf-8")
+        assert "orig_scaler = scaler.step" in src
+        assert "return orig_scaler(*a, **kw)" in src
+        assert "orig_scaler_step" not in src
+        assert "orig = opt.step" in src
+        assert "r = orig(*a, **kw)" in src
+
+
+# =============================================================================
+# R22A.2 Part B — Windows workers=8 acceptance contract (CPU-only)
+# =============================================================================
+def worker_run(**over):
+    r = {
+        "gpu_name": "AMD Radeon RX 7900 XTX", "harness_fixture": False,
+        "requested_workers": 8, "resolved_num_workers": 8,
+        "worker_activity_observed": True, "peak_concurrent_workers": 8,
+        "exit_code": 0, "log_text": "R22A2_WORKERS resolved=8 ... STABILITY_CHILD_DONE 42.1s",
+        "orphan_workers_alive": 0,
+        "checkpoint_exists": True, "checkpoint_path": "run/weights/last.pt",
+        "cache_class": "warm(shared-isolated-USERPROFILE)",
+        "cache_expectation": "warm", "home_dir": "C:/r22a2/cache/warm-home",
+        "run": 1, "child_has_main_guard": True,
+    }
+    r.update(over)
+    return r
+
+
+def worker_matrix(runs, **over):
+    m = {"runs": runs, "harness_fixture": False,
+         "child_has_main_guard": True,
+         "gpu_name": "AMD Radeon RX 7900 XTX"}
+    m.update(over)
+    return m
+
+
+class TestWorkersContract:
+    rs = load_module("run_stability")
+
+    def test_requested8_effective8_observed_accepted(self):
+        r = self.rs.evaluate_single_run(worker_run())
+        assert r["verdict"] == "PASS", r
+
+    def test_effective4_rejected(self):
+        r = self.rs.evaluate_single_run(worker_run(resolved_num_workers=4))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "WORKER_COUNT_NOT_MET"
+
+    def test_effective8_no_activity_inconclusive(self):
+        r = self.rs.evaluate_single_run(
+            worker_run(worker_activity_observed=False, peak_concurrent_workers=0))
+        assert r["verdict"] == "INCONCLUSIVE"
+        assert r["classification"] == "WORKER_ACTIVITY_UNPROVEN"
+
+    def test_peak4_of_8_is_worker_count_not_met(self):
+        r = self.rs.evaluate_single_run(worker_run(peak_concurrent_workers=4))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "WORKER_COUNT_NOT_MET"
+
+    def test_missing_resolved_workers_evidence_rejected(self):
+        r = self.rs.evaluate_single_run(worker_run(resolved_num_workers=None))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "MISSING_RESOLVED_WORKERS_EVIDENCE"
+
+    def test_orphaned_workers_fail(self):
+        r = self.rs.evaluate_single_run(worker_run(orphan_workers_alive=2))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "WORKER_SHUTDOWN_FAILURE"
+
+    def test_child_crash_after_complete_fails(self):
+        r = self.rs.evaluate_single_run(worker_run(exit_code=1))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "WORKER_CRASH_AFTER_COMPLETE"
+
+    def test_child_crash_without_complete_marker_fails(self):
+        r = self.rs.evaluate_single_run(
+            worker_run(exit_code=1, log_text="RuntimeError: boom"))
+        assert r["verdict"] == "FAIL"
+
+    def test_timeout_run_fails(self):
+        r = self.rs.evaluate_single_run(worker_run(exit_code=124))
+        assert r["verdict"] == "FAIL"
+        assert r["classification"] == "DATALOADER_TIMEOUT"
+
+    def test_synthetic_worker_evidence_rejected(self):
+        r = self.rs.evaluate_single_run(worker_run(harness_fixture=True))
+        assert r["verdict"] == "FAIL" and "SYNTHETIC" in r["classification"]
+        r2 = self.rs.evaluate_single_run(worker_run(gpu_name=None))
+        assert r2["verdict"] == "FAIL"
+
+    def test_five_pass_runs_pass_matrix(self):
+        runs = [worker_run(run=i, cache_expectation="cold" if i <= 2 else "warm",
+                           home_dir=f"C:/h/cold{i}" if i <= 2 else "C:/h/warm",
+                           cache_class="cold(fresh-USERPROFILE)" if i <= 2
+                           else "warm(shared-isolated-USERPROFILE)")
+                for i in range(1, 6)]
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "WORKERS8_SHORT_RELIABILITY_PASS", r
+
+    def test_one_timeout_is_no_go(self):
+        runs = [worker_run(run=i) for i in range(1, 6)]
+        runs[2] = worker_run(run=3, exit_code=124)
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "NO_GO" and "timed out" in r["reason"]
+
+    def test_four_of_five_pass_is_no_go(self):
+        runs = [worker_run(run=i) for i in range(1, 6)]
+        runs[4] = worker_run(run=5, exit_code=1)
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "NO_GO" and "4/5" in r["reason"]
+
+    def test_exit0_but_orphans_is_no_go(self):
+        runs = [worker_run(run=i) for i in range(1, 6)]
+        runs[0] = worker_run(run=1, orphan_workers_alive=3)
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "NO_GO"
+
+    def test_missing_child_main_guard_is_no_go(self):
+        runs = [worker_run(run=i) for i in range(1, 6)]
+        r = self.rs.evaluate_workers_matrix(
+            worker_matrix(runs, child_has_main_guard=False))
+        assert r["verdict"] == "NO_GO" and "__main__ guard" in r["reason"]
+
+    def test_cold_runs_sharing_home_rejected(self):
+        runs = [worker_run(run=1, cache_expectation="cold", home_dir="C:/h/same",
+                           cache_class="cold(fresh-USERPROFILE)"),
+                worker_run(run=2, cache_expectation="cold", home_dir="C:/h/same",
+                           cache_class="cold(fresh-USERPROFILE)")]
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "NO_GO" and "FRESH isolated" in r["reason"]
+
+    def test_warm_runs_with_different_homes_rejected(self):
+        runs = [worker_run(run=1, cache_expectation="warm", home_dir="C:/h/a"),
+                worker_run(run=2, cache_expectation="warm", home_dir="C:/h/b")]
+        r = self.rs.evaluate_workers_matrix(worker_matrix(runs))
+        assert r["verdict"] == "NO_GO" and "SHARE" in r["reason"]
+
+    def test_synthetic_matrix_rejected(self):
+        r = self.rs.evaluate_workers_matrix(worker_matrix([worker_run()],
+                                                          harness_fixture=True))
+        assert r["verdict"] == "NO_GO" and "synthetic" in r["reason"]
+
+    # --- Windows spawn safety of the GENERATED child script -------------------
+    def test_generated_child_has_main_guard_and_freeze_support(self):
+        src = self.rs.CHILD.format(device=-1, project="p", name="n", seed=1,
+                                   workers=8, data="coco128.yaml", batch=16,
+                                   imgsz=256)
+        assert self.rs.child_has_main_guard(src)
+        compile(src, "child.py", "exec")
+
+    def test_default_workers0_child_matches_historical_shape(self):
+        src = self.rs.CHILD.format(device=-1, project="p", name="n", seed=1,
+                                   workers=0, data="coco8.yaml", batch=None,
+                                   imgsz=None)
+        compile(src, "child0.py", "exec")
+        assert self.rs.child_has_main_guard(src)
+        assert "workers=0" in src
+
+    def test_worker_failure_families_present(self):
+        src = (SCRIPTS / "run_stability.py").read_text(encoding="utf-8")
+        for fam in ("WORKER_SPAWN_FAILURE", "WORKER_INIT_FAILURE", "WORKER_CRASH",
+                    "WORKER_SHUTDOWN_FAILURE", "DATALOADER_DEADLOCK",
+                    "DATALOADER_TIMEOUT", "GPU_OOM"):
+            assert fam in src, fam
+
