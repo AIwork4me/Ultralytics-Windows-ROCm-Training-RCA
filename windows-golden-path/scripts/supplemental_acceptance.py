@@ -72,27 +72,41 @@ def _lf_sha(p: Path) -> str:
 
 def load_log_text(path: Path, expected_sha: str | None) -> tuple[str | None, dict]:
     """Load a committed raw log, verifying its authenticity against the frozen
-    receipt hash (committed-bytes OR LF-normalized form). Returns
-    (log_text, verification)."""
+    receipt hash. Three historical hash FORMS are accepted (each era's runner
+    hashed a different one — all three are recorded for audit):
+      bytes        — sha256 of the committed bytes (byte-exact raw evidence)
+      lf-normalized— sha256 after CRLF→LF (R22A.3 runner hashed the logical
+                     text before a CRLF-translating write)
+      decoded-text — sha256 of utf-8 decode(errors=replace) + re-encode
+                     (R22A.2 runner hashed read_text() of logs containing
+                     non-UTF-8 bytes, which errors=replace rewrites to U+FFFD)
+    """
     if not path or not path.is_file():
         return None, {"log": str(path), "exists": False, "sha_match": False}
     raw = path.read_bytes()
+    # universal-newline decoded text (what Path.read_text() yields and what
+    # the R22A.2 runner actually hashed: \r\n AND lone \r → \n, invalid bytes
+    # → U+FFFD — child logs contain progress-bar \r runs)
+    text = raw.decode("utf-8", errors="replace") \
+        .replace("\r\n", "\n").replace("\r", "\n")
     b_sha = hashlib.sha256(raw).hexdigest()
     l_sha = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
+    t_sha = hashlib.sha256(text.encode("utf-8")).hexdigest()
     if expected_sha:
-        match = expected_sha in (b_sha, l_sha)
-        form = "bytes" if expected_sha == b_sha else \
-            ("lf-normalized" if expected_sha == l_sha else None)
+        forms = {"bytes": b_sha, "lf-normalized": l_sha,
+                 "universal-newline-text": t_sha}
+        form = next((k for k, v in forms.items() if v == expected_sha), None)
+        match = form is not None
     else:
         match, form = None, None
-    return raw.decode("utf-8", errors="replace"), {
+    return text, {
         "log": str(path), "exists": True, "sha_match": match,
-        "bytes_sha256": b_sha, "lf_sha256": l_sha,
+        "bytes_sha256": b_sha, "lf_sha256": l_sha, "decoded_sha256": t_sha,
         "matched_form": form,
-        "note": "R22A.3 runner receipts hash LF-normalized text (CRLF-writing "
-                "defect); both forms recorded — authenticity holds iff either "
-                "matches the frozen receipt hash" if match else
-                "committed bytes do NOT match the frozen receipt hash",
+        "note": (f"authentic — frozen receipt hash matches the {form} form"
+                 if match else
+                 "committed bytes do NOT match the frozen receipt hash "
+                 "(no form: bytes / lf-normalized / decoded-text)"),
     }
 
 
@@ -336,6 +350,7 @@ def runs_from_r22a2_pack(repo_root: Path) -> list[dict]:
             out.append(_base_run_record(
                 r,
                 matrix=matrix,
+                run_id=f"R22A2-{matrix}-run{idx:02d}",
                 sample_class=("additional" if matrix == "additional" else "original"),
                 justification=(
                     "R22A.2.1 P0-D: strict contract requires exactly 3 qualifying "
