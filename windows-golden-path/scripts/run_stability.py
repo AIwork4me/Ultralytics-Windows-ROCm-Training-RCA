@@ -355,6 +355,7 @@ def main() -> None:
     head = source_head()
     lock_path = Path(__file__).resolve().parents[2] / "evidence/raw/r22a-gfx1151/R22A_GFX1151_PACKAGE_LOCK.json"
     lock_sha = gp_lib.sha256_file(lock_path) if lock_path.exists() else None
+    _miopen_rec = gp_lib.loaded_miopen_identity()
 
     t0 = time.time()
     runs = []
@@ -513,9 +514,10 @@ def main() -> None:
         "hip": torch.version.hip,
         "ultralytics": im.version("ultralytics"),
         "wheel_lock_sha256": lock_sha,
+        "loaded_miopen_dll_sha256": (_m2.get("sha256") if (_m2 := _miopen_rec).get("loaded") else None),
         "runtime_class": gp_lib.classify_runtime(
             gp_lib.detect_workarounds(), args.channel,
-            (_m if (_m := gp_lib.loaded_miopen_identity()).get("loaded") else None)),
+            (_m if (_m := _miopen_rec).get("loaded") else None)),
         "command": f"python run_stability.py --runs {args.runs} "
                    f"--cold-runs {cold_runs} --workers {args.workers} "
                    f"--data {args.data} --device {args.device}"

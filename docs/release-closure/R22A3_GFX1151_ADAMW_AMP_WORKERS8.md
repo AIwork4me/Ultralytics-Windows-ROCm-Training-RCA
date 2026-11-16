@@ -65,6 +65,7 @@ Workload: YOLO26n / COCO128 / epochs=1 / batch=16 / imgsz=256 / device=-1 / `wor
 - **Spawn safety**: the generated child is `__main__`-guarded with `freeze_support()`; no module-level training; the parent refuses to run a child that fails the structural spawn-safety check (`child_spawn_safe`). During a run, one monitor thread hit a psutil race (worker exiting between `children()` and `ppid()`) — post-run inspection confirmed all 5 runs retained complete 13-PID evidence; the sampler now tolerates mid-scan exits.
 - **Cold/warm integrity**: cold runs redirect USERPROFILE to per-run fresh homes (verified from inside the child: `userprofile_env` recorded); warm runs deliberately share one retained isolated home; the user's global MIOpen caches were never touched or deleted.
 - **No orphans**: all descendant PIDs gone after each parent exit (bounded 30 s wait); zero anomalies (`anomaly_tally: {}`).
+- **DLL-identity field note (final review finding)**: the Part B top-level receipt records `runtime_class: OFFICIAL_CANDIDATE`, which the classifier can only emit when the MIOpen.dll loaded in-process AND the PR #13437 fix marker tested positive — i.e. DLL identity was verified at record time — but the receipt predates the `loaded_miopen_dll_sha256` field now emitted by `run_stability.py`. The exact SHA for this mission's venv/session is recorded in `R22A3_ENVIRONMENT_BASELINE.json` (`47a2e32c…`, zero-drift vs frozen expectation). Raw evidence is append-only, so the receipt was not retro-edited; the field exists for all future runs.
 
 ## 4. Combined acceptance
 
