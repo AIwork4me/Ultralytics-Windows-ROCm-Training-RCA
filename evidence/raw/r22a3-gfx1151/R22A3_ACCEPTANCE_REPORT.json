@@ -1,0 +1,26 @@
+{
+  "run_id": "R22A3-ACCEPT",
+  "mission": "R22A.3",
+  "timestamp": "2026-11-16T10:06:59.269667+00:00",
+  "part_a_record": "C:/RadeonYOLO/R22A3/evidence/R22A3_ADAMW_AMP.json",
+  "part_b_record": "C:/RadeonYOLO/R22A3/evidence/R22A3_WORKERS8.json",
+  "combined": {
+    "verdict": "R22A3_GFX1151_SUPPLEMENTAL_PASS",
+    "reasons": [],
+    "part_a_recomputed": {
+      "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+      "failure_classification": null
+    },
+    "part_b_overall": {
+      "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+      "problems": [],
+      "cold_pass": "2/2",
+      "warm_pass": "3/3",
+      "n_planned": 5
+    },
+    "runtime_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)"
+  },
+  "pass_fail_skip": "R22A3_GFX1151_SUPPLEMENTAL_PASS",
+  "failure_classification": null,
+  "note": "combined verdict recomputed from embedded facts of both evidence records; claimed verdicts are inputs only, never authority"
+}

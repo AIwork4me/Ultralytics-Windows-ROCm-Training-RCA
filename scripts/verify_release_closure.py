@@ -114,9 +114,22 @@ def audit_git_tree_evidence(root: Path, audit) -> dict | None:
             entries = json.loads(manifest_path.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             audit.check("git-tree:manifest-readable", False, "manifest.json unreadable")
+        seen_hashes: dict[str, str] = {}
         for e in entries:
             p = str(e.get("path") or "")
             declared = str(e.get("sha256") or "")
+            # R22A.4 §8 hygiene: no path traversal, no absolute paths, no
+            # self-referential hash requirement, no duplicate conflicting hashes
+            audit.check(f"git-tree:manifest-hygiene:{p}",
+                        not (p.startswith(("/", "\\")) or ".." in p.split("/")
+                             or "\\" in p or p == "evidence/manifest.json"),
+                        "manifest path must be a repo-relative posix path outside "
+                        "the manifest itself with no traversal")
+            if p in seen_hashes and seen_hashes[p] != declared:
+                audit.check(f"git-tree:manifest-dup:{p}", False,
+                            f"duplicate manifest entry with conflicting hash "
+                            f"({seen_hashes[p][:12]}… vs {declared[:12]}…)")
+            seen_hashes[p] = declared
             actual = tree.get(p)
             if actual is None:
                 audit.check(f"git-tree:manifest:{p}", False,
@@ -127,18 +140,35 @@ def audit_git_tree_evidence(root: Path, audit) -> dict | None:
                             f"committed content hash {actual[:12]}… != manifest "
                             f"{declared[:12]}…")
 
-    # converse completeness for the CURRENT-era packs (r22a2*): every committed
-    # evidence file must carry a manifest entry. Historical phase packs are
-    # untouched by this rule (their manifests predate the contract).
+    # converse completeness for the CURRENT-era packs (r22a2*/r22a3*/r22a4*):
+    # every committed evidence file must carry a manifest entry. Historical
+    # phase packs are untouched by this rule (their manifests predate the
+    # contract).
     manifest_paths = {str(e.get("path") or "") for e in entries}
-    for pack in sorted((root / "evidence" / "raw").glob("r22a2*")):
-        if not pack.is_dir():
-            continue
-        for f in sorted(pack.rglob("*")):
-            if f.is_file():
-                rel = f.relative_to(root).as_posix()
-                audit.check(f"git-tree:pack-complete:{rel}", rel in manifest_paths,
-                            "committed r22a2* evidence file with no manifest entry")
+    n_raw = n_derived = 0
+    for pattern in ("r22a2*", "r22a3*", "r22a4*"):
+        for pack in sorted((root / "evidence" / "raw").glob(pattern)):
+            if not pack.is_dir():
+                continue
+            for f in sorted(pack.rglob("*")):
+                if f.is_file():
+                    rel = f.relative_to(root).as_posix()
+                    audit.check(f"git-tree:pack-complete:{rel}", rel in manifest_paths,
+                                f"committed {pattern} evidence file with no manifest entry")
+                    if rel.endswith("SHA256SUMS.txt"):
+                        n_derived += 1  # sums files are derived-from-bytes records
+                    else:
+                        n_raw += 1
+    # evidence category census (mission §8): raw bytes live ONLY under
+    # evidence/raw/**; derived reconciliation under reports/ or docs/
+    for f in sorted((root / "windows-golden-path" / "reports").rglob("*.json")):
+        rel = f.relative_to(root).as_posix()
+        if "/r22a" in rel:
+            n_derived += 1
+    audit.check("git-tree:evidence-categories", n_raw > 0,
+                f"IMMUTABLE_RAW_EVIDENCE files under current-era raw packs: {n_raw}; "
+                f"DERIVED_RECONCILIATION json files: {n_derived} (raw bytes are "
+                "never counted as derived)")
 
     sums_files = [root / "evidence" / "SHA256SUMS.txt"]
     sums_files += sorted((root / "evidence" / "raw").glob("*/SHA256SUMS.txt"))

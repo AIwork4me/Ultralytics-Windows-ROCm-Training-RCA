@@ -1,0 +1,639 @@
+{
+  "run_id": "R22A3-B",
+  "mission": "R22A.3",
+  "generated_utc": "2026-11-16T10:05:31.283514+00:00",
+  "source_sha": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "note": "per-run Windows process-tree observation (psutil, parent-side, bounded polling); workers legitimately exit between train/val phases",
+  "runs": {
+    "R22A3-B-R1": {
+      "child_pid": 24716,
+      "resolved_num_workers": 8,
+      "distinct_worker_pids": 13,
+      "worker_shutdown": "CLEAN",
+      "descendants": [
+        {
+          "pid": 24716,
+          "ppid": 6088,
+          "name": "python.exe",
+          "first_seen": 1794822794.743091,
+          "last_seen": 1794822992.9987638,
+          "sightings": 148,
+          "create_time": 1794822794.7196171
+        },
+        {
+          "pid": 46732,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822862.0448654,
+          "last_seen": 1794822990.2456496,
+          "sightings": 92,
+          "create_time": 1794822862.0209131
+        },
+        {
+          "pid": 43980,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822864.574075,
+          "last_seen": 1794822990.2456496,
+          "sightings": 90,
+          "create_time": 1794822863.9813986
+        },
+        {
+          "pid": 46168,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822867.1195703,
+          "last_seen": 1794822990.2456496,
+          "sightings": 88,
+          "create_time": 1794822865.9569516
+        },
+        {
+          "pid": 36860,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822868.4066048,
+          "last_seen": 1794822990.2456496,
+          "sightings": 87,
+          "create_time": 1794822867.9612503
+        },
+        {
+          "pid": 1304,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822871.0262046,
+          "last_seen": 1794822990.2456496,
+          "sightings": 85,
+          "create_time": 1794822869.8961244
+        },
+        {
+          "pid": 43272,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822872.3638115,
+          "last_seen": 1794822990.2456496,
+          "sightings": 84,
+          "create_time": 1794822871.8143935
+        },
+        {
+          "pid": 14216,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822875.056231,
+          "last_seen": 1794822990.2456496,
+          "sightings": 82,
+          "create_time": 1794822873.775505
+        },
+        {
+          "pid": 1748,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822876.4163241,
+          "last_seen": 1794822990.2456496,
+          "sightings": 81,
+          "create_time": 1794822875.7748759
+        },
+        {
+          "pid": 45620,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822936.2958913,
+          "last_seen": 1794822990.2456496,
+          "sightings": 38,
+          "create_time": 1794822936.1854427
+        },
+        {
+          "pid": 43788,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822939.1275673,
+          "last_seen": 1794822990.2456496,
+          "sightings": 36,
+          "create_time": 1794822938.285473
+        },
+        {
+          "pid": 37872,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822940.5472536,
+          "last_seen": 1794822990.2456496,
+          "sightings": 35,
+          "create_time": 1794822940.444354
+        },
+        {
+          "pid": 44680,
+          "ppid": 24716,
+          "name": "python.exe",
+          "first_seen": 1794822943.4248426,
+          "last_seen": 1794822990.2456496,
+          "sightings": 33,
+          "create_time": 1794822942.5033855
+        }
+      ],
+      "lingering_after_parent_exit": []
+    },
+    "R22A3-B-R2": {
+      "child_pid": 43964,
+      "resolved_num_workers": 8,
+      "distinct_worker_pids": 13,
+      "worker_shutdown": "CLEAN",
+      "descendants": [
+        {
+          "pid": 43964,
+          "ppid": 46236,
+          "name": "python.exe",
+          "first_seen": 1794822993.9450793,
+          "last_seen": 1794823186.1104875,
+          "sightings": 143,
+          "create_time": 1794822993.9329274
+        },
+        {
+          "pid": 45908,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823057.4694343,
+          "last_seen": 1794823186.1104875,
+          "sightings": 92,
+          "create_time": 1794823057.4237418
+        },
+        {
+          "pid": 46548,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823059.978984,
+          "last_seen": 1794823186.1104875,
+          "sightings": 90,
+          "create_time": 1794823059.4497335
+        },
+        {
+          "pid": 27252,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823062.529808,
+          "last_seen": 1794823184.6398084,
+          "sightings": 87,
+          "create_time": 1794823061.4867783
+        },
+        {
+          "pid": 42252,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823063.8405485,
+          "last_seen": 1794823184.6398084,
+          "sightings": 86,
+          "create_time": 1794823063.4447916
+        },
+        {
+          "pid": 31084,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823066.4460645,
+          "last_seen": 1794823184.6398084,
+          "sightings": 84,
+          "create_time": 1794823065.4672244
+        },
+        {
+          "pid": 46804,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823067.7791903,
+          "last_seen": 1794823184.6398084,
+          "sightings": 83,
+          "create_time": 1794823067.4744792
+        },
+        {
+          "pid": 45220,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823070.4477324,
+          "last_seen": 1794823184.6398084,
+          "sightings": 81,
+          "create_time": 1794823069.482004
+        },
+        {
+          "pid": 43400,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823071.8324745,
+          "last_seen": 1794823184.6398084,
+          "sightings": 80,
+          "create_time": 1794823071.4932368
+        },
+        {
+          "pid": 30052,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823133.138965,
+          "last_seen": 1794823184.6398084,
+          "sightings": 36,
+          "create_time": 1794823131.7478943
+        },
+        {
+          "pid": 29044,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823134.5450478,
+          "last_seen": 1794823184.6398084,
+          "sightings": 35,
+          "create_time": 1794823133.884408
+        },
+        {
+          "pid": 6776,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823137.416995,
+          "last_seen": 1794823184.6398084,
+          "sightings": 33,
+          "create_time": 1794823136.055212
+        },
+        {
+          "pid": 42244,
+          "ppid": 43964,
+          "name": "python.exe",
+          "first_seen": 1794823138.8850749,
+          "last_seen": 1794823184.6398084,
+          "sightings": 32,
+          "create_time": 1794823138.2335718
+        }
+      ],
+      "lingering_after_parent_exit": []
+    },
+    "R22A3-B-R3": {
+      "child_pid": 31288,
+      "resolved_num_workers": 8,
+      "distinct_worker_pids": 13,
+      "worker_shutdown": "CLEAN",
+      "descendants": [
+        {
+          "pid": 31288,
+          "ppid": 38340,
+          "name": "python.exe",
+          "first_seen": 1794823189.2431939,
+          "last_seen": 1794823386.5718687,
+          "sightings": 147,
+          "create_time": 1794823189.2283485
+        },
+        {
+          "pid": 36620,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823256.638055,
+          "last_seen": 1794823383.7392757,
+          "sightings": 91,
+          "create_time": 1794823255.7545824
+        },
+        {
+          "pid": 17072,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823257.906602,
+          "last_seen": 1794823383.7392757,
+          "sightings": 90,
+          "create_time": 1794823257.817254
+        },
+        {
+          "pid": 39696,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823260.4979594,
+          "last_seen": 1794823383.7392757,
+          "sightings": 88,
+          "create_time": 1794823259.8998928
+        },
+        {
+          "pid": 42960,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823263.0930753,
+          "last_seen": 1794823383.7392757,
+          "sightings": 86,
+          "create_time": 1794823261.9217813
+        },
+        {
+          "pid": 44868,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823264.399478,
+          "last_seen": 1794823383.7392757,
+          "sightings": 85,
+          "create_time": 1794823263.9487288
+        },
+        {
+          "pid": 44484,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823267.064696,
+          "last_seen": 1794823383.7392757,
+          "sightings": 83,
+          "create_time": 1794823265.998688
+        },
+        {
+          "pid": 47016,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823268.4175465,
+          "last_seen": 1794823383.7392757,
+          "sightings": 82,
+          "create_time": 1794823268.054123
+        },
+        {
+          "pid": 43712,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823271.1771338,
+          "last_seen": 1794823383.7392757,
+          "sightings": 80,
+          "create_time": 1794823270.2355332
+        },
+        {
+          "pid": 45208,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823331.113578,
+          "last_seen": 1794823385.2448215,
+          "sightings": 38,
+          "create_time": 1794823330.7807925
+        },
+        {
+          "pid": 44864,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823333.906011,
+          "last_seen": 1794823385.2448215,
+          "sightings": 36,
+          "create_time": 1794823332.8256865
+        },
+        {
+          "pid": 46260,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823335.3342605,
+          "last_seen": 1794823385.2448215,
+          "sightings": 35,
+          "create_time": 1794823334.8674605
+        },
+        {
+          "pid": 41132,
+          "ppid": 31288,
+          "name": "python.exe",
+          "first_seen": 1794823338.2686598,
+          "last_seen": 1794823385.2448215,
+          "sightings": 33,
+          "create_time": 1794823337.0969088
+        }
+      ],
+      "lingering_after_parent_exit": []
+    },
+    "R22A3-B-R4": {
+      "child_pid": 43184,
+      "resolved_num_workers": 8,
+      "distinct_worker_pids": 13,
+      "worker_shutdown": "CLEAN",
+      "descendants": [
+        {
+          "pid": 43184,
+          "ppid": 37292,
+          "name": "python.exe",
+          "first_seen": 1794823387.646979,
+          "last_seen": 1794823470.4064,
+          "sightings": 63,
+          "create_time": 1794823387.633743
+        },
+        {
+          "pid": 3632,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823417.5397666,
+          "last_seen": 1794823466.358829,
+          "sightings": 36,
+          "create_time": 1794823416.3909826
+        },
+        {
+          "pid": 28660,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823418.798729,
+          "last_seen": 1794823466.358829,
+          "sightings": 35,
+          "create_time": 1794823418.3906655
+        },
+        {
+          "pid": 41200,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823421.379544,
+          "last_seen": 1794823466.358829,
+          "sightings": 33,
+          "create_time": 1794823420.4608045
+        },
+        {
+          "pid": 46544,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823422.6644382,
+          "last_seen": 1794823466.358829,
+          "sightings": 32,
+          "create_time": 1794823422.4063692
+        },
+        {
+          "pid": 45128,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823425.3060617,
+          "last_seen": 1794823466.358829,
+          "sightings": 30,
+          "create_time": 1794823424.3570397
+        },
+        {
+          "pid": 45596,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823426.617741,
+          "last_seen": 1794823466.358829,
+          "sightings": 29,
+          "create_time": 1794823426.3031209
+        },
+        {
+          "pid": 16028,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823429.3339815,
+          "last_seen": 1794823466.358829,
+          "sightings": 27,
+          "create_time": 1794823428.2454362
+        },
+        {
+          "pid": 44372,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823430.702135,
+          "last_seen": 1794823466.358829,
+          "sightings": 26,
+          "create_time": 1794823430.2167215
+        },
+        {
+          "pid": 27984,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823447.399615,
+          "last_seen": 1794823467.8403473,
+          "sightings": 15,
+          "create_time": 1794823446.128712
+        },
+        {
+          "pid": 45996,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823448.790002,
+          "last_seen": 1794823467.8403473,
+          "sightings": 14,
+          "create_time": 1794823448.1228561
+        },
+        {
+          "pid": 42872,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823451.687447,
+          "last_seen": 1794823467.8403473,
+          "sightings": 12,
+          "create_time": 1794823450.2604768
+        },
+        {
+          "pid": 43836,
+          "ppid": 43184,
+          "name": "python.exe",
+          "first_seen": 1794823453.1085668,
+          "last_seen": 1794823467.8403473,
+          "sightings": 11,
+          "create_time": 1794823452.302436
+        }
+      ],
+      "lingering_after_parent_exit": []
+    },
+    "R22A3-B-R5": {
+      "child_pid": 27388,
+      "resolved_num_workers": 8,
+      "distinct_worker_pids": 13,
+      "worker_shutdown": "CLEAN",
+      "descendants": [
+        {
+          "pid": 27388,
+          "ppid": 11940,
+          "name": "python.exe",
+          "first_seen": 1794823470.5563142,
+          "last_seen": 1794823530.4220715,
+          "sightings": 46,
+          "create_time": 1794823470.5428405
+        },
+        {
+          "pid": 40948,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823491.720085,
+          "last_seen": 1794823527.6768985,
+          "sightings": 27,
+          "create_time": 1794823491.4473777
+        },
+        {
+          "pid": 40188,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823494.2447562,
+          "last_seen": 1794823527.6768985,
+          "sightings": 25,
+          "create_time": 1794823493.4587605
+        },
+        {
+          "pid": 41072,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823495.5077014,
+          "last_seen": 1794823527.6768985,
+          "sightings": 24,
+          "create_time": 1794823495.404148
+        },
+        {
+          "pid": 41888,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823498.0844777,
+          "last_seen": 1794823527.6768985,
+          "sightings": 22,
+          "create_time": 1794823497.3616602
+        },
+        {
+          "pid": 45252,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823499.3849876,
+          "last_seen": 1794823527.6768985,
+          "sightings": 21,
+          "create_time": 1794823499.3392072
+        },
+        {
+          "pid": 46720,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823502.0342243,
+          "last_seen": 1794823527.6768985,
+          "sightings": 19,
+          "create_time": 1794823501.2418792
+        },
+        {
+          "pid": 44328,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823503.3733673,
+          "last_seen": 1794823527.6768985,
+          "sightings": 18,
+          "create_time": 1794823503.2036345
+        },
+        {
+          "pid": 26032,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823506.0861347,
+          "last_seen": 1794823527.6768985,
+          "sightings": 16,
+          "create_time": 1794823505.2273407
+        },
+        {
+          "pid": 26332,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823511.6990128,
+          "last_seen": 1794823527.6768985,
+          "sightings": 12,
+          "create_time": 1794823510.9059052
+        },
+        {
+          "pid": 27252,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823513.1003828,
+          "last_seen": 1794823527.6768985,
+          "sightings": 11,
+          "create_time": 1794823512.8848493
+        },
+        {
+          "pid": 46324,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823515.930387,
+          "last_seen": 1794823527.6768985,
+          "sightings": 9,
+          "create_time": 1794823514.8774083
+        },
+        {
+          "pid": 18892,
+          "ppid": 27388,
+          "name": "python.exe",
+          "first_seen": 1794823517.3804588,
+          "last_seen": 1794823527.6768985,
+          "sightings": 8,
+          "create_time": 1794823516.9929776
+        }
+      ],
+      "lingering_after_parent_exit": []
+    }
+  }
+}

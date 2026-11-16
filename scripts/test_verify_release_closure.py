@@ -349,6 +349,53 @@ def main() -> None:
                 root_uncommitted,
                 f"git-tree:sums:{PACK}/runs/cold_run01_child.log"))
 
+    # --- R22A.4 §8: manifest hygiene + r22a3*/r22a4* pack completeness -------
+    def m_r22a3_unlisted(root: Path):
+        pack3 = root / "evidence" / "raw" / "r22a3-gfx1151-test"
+        (pack3 / "runs").mkdir(parents=True, exist_ok=True)
+        (pack3 / "runs" / "child.log").write_bytes(b"raw child log\n")
+        subprocess.run(["git", "add", "-f", str(pack3 / "runs" / "child.log")],
+                       cwd=root, check=True, capture_output=True)
+        commit_tree(root, "add r22a3 pack file without manifest entry")
+    p0b.append(("committed r22a3* evidence file with no manifest entry",
+                mk_p0b_root(m_r22a3_unlisted),
+                "git-tree:pack-complete:evidence/raw/r22a3-gfx1151-test/runs/child.log"))
+
+    def m_traversal(root: Path):
+        mp = root / "evidence" / "manifest.json"
+        entries = json.loads(mp.read_text(encoding="utf-8"))
+        entries.append({"path": "../outside-repo.json", "timestamp": "t",
+                        "command": "fixture", "sha256": "0" * 64, "size_bytes": 1})
+        mp.write_text(json.dumps(entries, indent=2), encoding="utf-8")
+        commit_tree(root, "manifest path traversal")
+    p0b.append(("manifest path traversal outside the repository",
+                mk_p0b_root(m_traversal), "git-tree:manifest-hygiene:../outside-repo.json"))
+
+    def m_dup_conflict(root: Path):
+        mp = root / "evidence" / "manifest.json"
+        entries = json.loads(mp.read_text(encoding="utf-8"))
+        dup = dict(next(e for e in entries if e["path"].endswith("R22A2_TEST.json")))
+        dup["sha256"] = "f" * 64
+        entries.append(dup)
+        mp.write_text(json.dumps(entries, indent=2), encoding="utf-8")
+        commit_tree(root, "duplicate conflicting manifest entry")
+    p0b.append(("duplicate manifest entry with conflicting hash",
+                mk_p0b_root(m_dup_conflict), "git-tree:manifest-dup:"))
+
+    def m_self_referential(root: Path):
+        import hashlib as _hl2
+        mp = root / "evidence" / "manifest.json"
+        entries = json.loads(mp.read_text(encoding="utf-8"))
+        entries.append({"path": "evidence/manifest.json", "timestamp": "t",
+                        "command": "fixture",
+                        "sha256": _hl2.sha256(mp.read_bytes()).hexdigest(),
+                        "size_bytes": len(mp.read_bytes())})
+        mp.write_text(json.dumps(entries, indent=2), encoding="utf-8")
+        commit_tree(root, "self-referential manifest entry")
+    p0b.append(("manifest lists ITSELF (self-referential hash requirement)",
+                mk_p0b_root(m_self_referential),
+                "git-tree:manifest-hygiene:evidence/manifest.json"))
+
     for name, root, needle in p0b:
         rc, res = run_verifier(root)
         rejected = rc != 0 and res.get("ok") is False
