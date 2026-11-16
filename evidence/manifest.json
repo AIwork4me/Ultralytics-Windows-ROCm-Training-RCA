@@ -1479,10 +1479,11 @@
  },
  {
   "path": "docs/release-closure/R22A3_GFX1151_ADAMW_AMP_WORKERS8.md",
-  "timestamp": "2026-11-16T10:10:09.375322+00:00",
+  "timestamp": "2026-11-16T15:13:02.258045+00:00",
   "command": "R22A.3 mission artifacts (Part A default AdamW+AMP audit, Part B workers=8 matrix, combined acceptance)",
-  "sha256": "2eb1c56cd2ea28529dd8b20a6d68d19ae6b9246d551b873f5734653181a26b38",
-  "size_bytes": 8975
+  "sha256": "d1ea2cc4c2f3b0e3b7dc2c95e9d3621a075a2f13f951257f82e5d8532816dae3",
+  "size_bytes": 9622,
+  "note": "R22A.4: latent stale hash repaired \u2014 678d3a8 edited this doc without refreshing the manifest entry (invisible before the R22A.4 git-tree audit)"
  },
  {
   "path": "evidence/raw/r22a3-gfx1151/runs/r22a3_child_run01.log",
