@@ -1,0 +1,33 @@
+[parent-scrub] HIPRTC_COMPILE_OPTIONS_APPEND=True
+[parent-scrub] MIOPEN_* remaining: 0
+[parent-scrub] miopen-on-PATH entries: 0
+
+======================================================================
+MODE: OfficialCandidate â€?candidate-channel gates; max verdict RC/NIGHTLY/DEV_CANDIDATE_PASS (never OFFICIAL_STABLE_PASS)
+======================================================================
+
+[G0_provenance] START ----------------------------------------
+[G0_provenance] PASS (exit=0)
+
+[G2_torch_torchvision_gpu] START ----------------------------------------
+[G2_torch_torchvision_gpu] PASS (exit=0)
+
+[G1_miopen_nostl] START ----------------------------------------
+[G1_miopen_nostl] PASS (exit=0)
+
+[G3_ultralytics_cli] START ----------------------------------------
+[G3_ultralytics_cli] PASS (exit=0)
+
+[G4_optimizer_update] START ----------------------------------------
+[G4_optimizer_update] PASS (exit=0)
+
+[G5_checkpoint_resume] START ----------------------------------------
+[G5_checkpoint_resume] PASS (exit=0)
+
+[G8_reliability] START ----------------------------------------
+[G8_reliability] PASS (exit=0)
+
+[REPORT_generate_report_full] START ----------------------------------------
+[REPORT_generate_report_full] PASS (exit=0)
+ORCHESTRATOR_EXIT=0
+ORCH_EXIT=0
