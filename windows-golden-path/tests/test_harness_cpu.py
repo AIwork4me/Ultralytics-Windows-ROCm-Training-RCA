@@ -630,6 +630,7 @@ class TestPackageOriginPolicy:
                                 sha=bad[1])
             res = self._audit(self._lock(pkgs))
             assert res["ok"] is False, bad
+            assert any("bootstrap rocm-bootstrap" in f for f in res["failures"]), bad
 
     # 5. forged rules_checked.ok=true FAILS (audit recomputes from URLs)
     def test_forged_rules_checked_ok_true_fails(self):

@@ -137,6 +137,10 @@ single ROCm family 10) — enforced by CPU regression test
 - No file under `evidence/raw/` was modified by R22A.1; the derived artifacts
   updated are `R22A_DUAL_ARCH_MATRIX.json`, `R22A_DUAL_ARCH_COMPARISON.md` and
   this note, all under `windows-golden-path/reports/r22a-gfx1151/`.
-- Manifest re-validation (repo root):
-  `sha256sum -c evidence/raw/r22a-gfx1151/SHA256SUMS.txt` and
-  `sha256sum -c evidence/raw/r22-dev-rerun/SHA256SUMS.txt` → all OK.
+- Manifest re-validation: `sha256sum -c evidence/raw/r22a-gfx1151/SHA256SUMS.txt`
+  from the repo root (its paths are posix repo-relative); the r22-dev-rerun
+  manifest lists names relative to its own directory — validate it as
+  `sha256sum -c SHA256SUMS.txt` from inside `evidence/raw/r22-dev-rerun/`
+  (a CRLF working tree needs the committed LF blobs via `git cat-file`, as
+  10c8234 documented). Both were verified against the committed bytes on
+  2026-11-16: 46/46 and 18/18 OK.
