@@ -533,91 +533,91 @@
  },
  {
   "path": "scripts/p18/archive_evidence.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "3e77c1ec475e1b973bf0428e80f1b9290f4aa2fa480c5a5e1381146792ca0cef",
+  "sha256": "eb18a8b1fdddd065b0b2f7970263a5f651e593665b151403dea741b87c4fc6ce",
   "size_bytes": 4128,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/build_results_json.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "a01bd72896a31d18b3adae0bbca8bae6d97725d835f1cae46f1882b775763ea4",
+  "sha256": "84e206c53f4a792330e067800087cda953aec828ffc2f7a068c6dc32092e0cbc",
   "size_bytes": 4662,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_a_gpu_basic.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "ee0141065ea8745c69eb29679ebbef8db6aca6f44ee03d107ed7c6a0a2250ffc",
+  "sha256": "22c1be7af0b3202b78c34ca1420eb24d239f2ac84f76783e5e863582993bf54c",
   "size_bytes": 6915,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_b1_check_amp.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "02352b4edcea2dd9c9181304e1ff76426b46054f2a118be577d10c3e26104fb5",
+  "sha256": "d13a846e1c057c832c12af66e6a89df954cc9f2bc7d23dafd4fee1121e888a43",
   "size_bytes": 1175,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_b2_exception_boundary.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "e08807399d54a2c277b8be98713ea036755477d19187c9b0512b9844b83872ad",
+  "sha256": "7c7e4e4c52d6a4d4185d499c2bab407ee2e8680bfa3d566f9316cd494fbbd010",
   "size_bytes": 6006,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_b34_train.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "c8523e03e0a9f74e0c30260c5d54d2077d041f0ac3e6e2eacf13dd9bbcc5cf39",
+  "sha256": "0aefc345e9c50406bbfbdcbad4b514c545318e26b9aee0b364a297b56c4e263e",
   "size_bytes": 3685,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_c7_cvd_probe.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "6c33d5a106b025b3f726d413ffb229dc80405ed08c1f227bbb40d9020d8c1881",
+  "sha256": "b13360bc14fb0ebd7c1383a9ab551a070f02fe29075fd2c255f8833c151ee6c3",
   "size_bytes": 2068,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_c_device_discovery.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "883623dce6d9eda761feb80aa7d048416dfbc44b2afb175a51ef70bfc44f8af4",
+  "sha256": "ab29bbdcd7f31988a25c75191d2949037dafe2acdfbc7e55ca7d15cb67bf73ea",
   "size_bytes": 7723,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_d9_resume.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "3c2ec40c3b0ca5184e33398510edbc28992ede786a1cbe32220de43c542b8854",
+  "sha256": "400aaac5020f532c8c6173f3668096572e01d36d0fdf98187d35a70eb43ccdf3",
   "size_bytes": 4628,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_d_combined.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "f04f6707a90a3fd607573c42b8b457eee3a20602f4f355f043fc83e7a24f391b",
+  "sha256": "278b6674b71141824db5b0e24d06a6a95ae025909988d28c95806a24244503fb",
   "size_bytes": 4447,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "scripts/p18/phase_f_stability.py",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "P18 reproducible validation script (see file header for usage)",
-  "sha256": "b10482948f392dc73d6b00d4e65281803c8d3317d6f12c1494652a2b8067cd1b",
+  "sha256": "2270eec08018690fdbd59328b4eb075dcb84a8a7b9b7a485d9298700401c8dd8",
   "size_bytes": 4228,
-  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "evidence/raw/p19/environment.json",
@@ -1378,11 +1378,11 @@
  },
  {
   "path": "windows-golden-path/reports/r22a-gfx1151/report.json",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "R22A mission report artifacts [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
-  "sha256": "95f669858580ab1b8e0f00827c29d09d808868a64c8cd6e5e2defee1552aa1d7",
+  "sha256": "b9cb572a041240281e21c3618b0ac55ab015416b449ee03b76c6afeac1e7abea",
   "size_bytes": 3136,
-  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit) | R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit) | R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "evidence/raw/r22a3-gfx1151/R22A3_ACCEPTANCE_REPORT.json",
@@ -1485,11 +1485,11 @@
  },
  {
   "path": "windows-golden-path/reports/r22a3-gfx1151/report.json",
-  "timestamp": "2026-11-16T15:22:43.329833+00:00",
+  "timestamp": "2026-11-16T15:23:15.552360+00:00",
   "command": "R22A.3 mission artifacts (Part A default AdamW+AMP audit, Part B workers=8 matrix, combined acceptance)",
-  "sha256": "6b6ec466ea5e54224c59d83c6a7c52916aedea9a92df78b550bed5dac4c66e13",
+  "sha256": "19adacf77d244658eb995bdac9f530ee483f8577f56cd9f1ddbbd1f670276a62",
   "size_bytes": 2410,
-  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit) | R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries)"
+  "note": "R22A.4: manifest hash repaired to committed-blob bytes \u2014 R22A.3 generator hashed CRLF working bytes while gitattributes stores LF for json text (invisible until the git-tree audit) | R22A.4 merge: hash recomputed against the merged tree (union of PR #17 + PR #18 entries) | R22A.4 merge: hash aligned to committed blob"
  },
  {
   "path": "docs/release-closure/R22A3_GFX1151_ADAMW_AMP_WORKERS8.md",
