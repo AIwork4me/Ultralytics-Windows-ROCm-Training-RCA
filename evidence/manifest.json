@@ -1359,17 +1359,19 @@
   },
   {
     "path": "windows-golden-path/reports/r22a-gfx1151/R22A_DUAL_ARCH_MATRIX.json",
-    "timestamp": "2026-11-16T02:21:57.904376+00:00",
+    "timestamp": "2026-11-16T11:51:34.229308+00:00",
     "command": "R22A mission report artifacts [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
-    "sha256": "93ab86babfaa4fa7160742a4fcf3386d28cacfebdd800e328d25797c9e82753b",
-    "size_bytes": 3221
+    "sha256": "6e4d7601edb7fde2883ebd0631c180eb4d0f070325d30d60ce01cd0abb5e1f76",
+    "size_bytes": 5302,
+    "note": "R22A.2.1: hash refreshed \u2014 dfc3863 modified this derived report after 10c8234 refreshed the manifest (stale-entry defect found by git-tree verifier check)"
   },
   {
     "path": "windows-golden-path/reports/r22a-gfx1151/report.json",
-    "timestamp": "2026-11-16T02:21:57.904376+00:00",
+    "timestamp": "2026-11-16T11:51:34.229308+00:00",
     "command": "R22A mission report artifacts [parser-fix regen: gpu-name regex truncated at '(TM)'; input log bytes unchanged]",
-    "sha256": "95f669858580ab1b8e0f00827c29d09d808868a64c8cd6e5e2defee1552aa1d7",
-    "size_bytes": 3136
+    "sha256": "b9cb572a041240281e21c3618b0ac55ab015416b449ee03b76c6afeac1e7abea",
+    "size_bytes": 3027,
+    "note": "R22A.2.1: hash refreshed \u2014 dfc3863 modified this derived report after 10c8234 refreshed the manifest (stale-entry defect found by git-tree verifier check)"
   },
   {
     "path": "evidence/raw/r22a2-gfx1100/R22A2_ACCEPTANCE_REPORT.json",
