@@ -1,0 +1,35 @@
+{
+  "run_id": "R22A-RELIABILITY",
+  "timestamp": "2026-11-16T02:05:26.948818+00:00",
+  "cold": {
+    "n_pass": 10,
+    "n_total": 10,
+    "cache_class": "cold(fresh-USERPROFILE per run)",
+    "anomaly_tally": {},
+    "durations_s": [
+      115.9,
+      117.7,
+      117.8,
+      116.7,
+      115.9,
+      117.7,
+      123.8,
+      134.9,
+      135.6,
+      133.5
+    ]
+  },
+  "warm_supplement": {
+    "n_pass": 3,
+    "n_total": 3,
+    "cache_class": "warm",
+    "anomaly_tally": {},
+    "durations_s": [
+      32.6,
+      30.4,
+      29.5
+    ],
+    "note": "reported separately; NOT counted as independent cold runs"
+  },
+  "known_non_fatal": "MIOpen EvaluateInvokers 'Invalid elapsed time' messages appear in child logs (documented P19B platform quirk); all runs completed with exit 0 and no anomaly-signature matches"
+}

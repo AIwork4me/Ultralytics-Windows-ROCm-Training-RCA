@@ -1,0 +1,21 @@
+{
+  "run_id": "R22A-SOURCE-ANCESTRY",
+  "timestamp": "2026-11-16T02:05:26.948818+00:00",
+  "gfx_target": "gfx1151",
+  "therock_snapshot": "ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "embedded_miopen_version": [
+    "3.6.3.4e7d93e3"
+  ],
+  "build_commit": "4e7d93e3",
+  "merged_fix_commit": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a",
+  "github_compare": {
+    "compare": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a...4e7d93e34d3572405ca93b93021439ea9716824a",
+    "status": "ahead",
+    "ahead_by": 604,
+    "behind_by": 0,
+    "fix_is_ancestor": true,
+    "therock_submodule_pointer": "4e7d93e34d3572405ca93b93021439ea9716824a"
+  },
+  "therock_submodule": "4e7d93e34d3572405ca93b93021439ea9716824a",
+  "method": "live GitHub compare API + TheRock git trees API at audit time; marker miopen_initializer_list=2 recorded as screening signal only"
+}

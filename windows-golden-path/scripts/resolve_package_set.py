@@ -202,15 +202,29 @@ def main() -> None:
     lock["rules_checked"]["torch_is_amd_hip"] = bool(
         torch_rec and gp_lib.torch_wheel_is_amd_hip(
             unquote(torch_rec["version"]), torch_rec.get("url")))
-    # every gpu-stack package must resolve from the EXACT official channel
-    # (channel host <channel>.repo.amd.com, /rocm/ path — covers the dev
-    # index's /rocm/pytorch/whl-next/ sub-index layout)
-    GPU_STACK_PREFIXES = ("torch", "rocm", "amd-torch")
-    off_channel = [p["name"] for p in lock["packages"]
-                   if p["name"].lower().startswith(GPU_STACK_PREFIXES)
-                   and gp_lib.url_channel(p.get("url", "")) != args.channel]
+    # source policy (R22A.1 P0), evaluated per artifact via gp_lib:
+    #   native AMD stack (torch/torchvision/rocm*/amd-torch*, incl. the ROCm
+    #   sdist) must resolve from the EXACT official channel — PyPI can never
+    #   supply torch, torchvision, rocm-sdk-libraries or an AMD device wheel;
+    #   approved pure-Python PyPI bootstrap components (rocm-bootstrap) pass
+    #   only as the exact pinned verified artifact; third-party deps are
+    #   unconstrained. The old prefix-only rule flagged rocm-bootstrap==0.3.0
+    #   (AMD-authored, pure-Python, PyPI-distributed) as a violation.
+    origin_rows = [gp_lib.classify_package_origin(
+        p["name"], unquote(p["version"]), p.get("url", ""), p.get("sha256"),
+        channel=args.channel) for p in lock["packages"]]
+    off_channel = [r["package"] for r in origin_rows if not r["ok"]]
     lock["rules_checked"]["gpu_stack_origin_official_channel"] = {
-        "channel_root": channel_root, "violations": off_channel,
+        "channel_root": channel_root,
+        "policy": "native AMD stack = exact official channel; approved "
+                  "pure-Python bootstrap = exact pinned PyPI artifact "
+                  "(gp_lib.APPROVED_PYPI_BOOTSTRAP); third-party unconstrained",
+        "approved_pypi_bootstrap": sorted(
+            r["package"] for r in origin_rows
+            if r["class"] == "approved_pypi_bootstrap" and r["ok"]),
+        "violations": off_channel,
+        "violations_detail": [v for r in origin_rows if not r["ok"]
+                              for v in r["violations"]],
         "ok": not off_channel}
 
     Path(args.out).write_text(json.dumps(lock, indent=2, ensure_ascii=False), encoding="utf-8")

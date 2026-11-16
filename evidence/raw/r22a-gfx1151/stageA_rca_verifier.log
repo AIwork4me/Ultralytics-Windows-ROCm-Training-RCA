@@ -1,0 +1,7 @@
+{
+  "ok": true,
+  "n_checks": 575,
+  "n_violations": 0,
+  "violations": [],
+  "note": "SKIP never counts as PASS; PASS claims require binary+GPU provenance; verdicts are recomputed from embedded assertion data"
+}

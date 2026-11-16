@@ -6,6 +6,11 @@ Collects A–J evidence and FAILS CLOSED:
   - official classification requires a resolved lock whose channel URL is the
     EXACT official channel (never a substring), a SHA256 for every gpu-stack
     wheel, and version consistency between lock and installed metadata;
+  - R22A.1 P0: per-artifact source policy is recomputed INDEPENDENTLY from
+    package URLs + metadata (native AMD stack = exact official channel;
+    approved pure-Python PyPI bootstrap = exact pinned verified artifact;
+    third-party unconstrained) and ROCm family mixing is recomputed likewise —
+    serialized rules_checked.ok values are never trusted;
   - a positive #13437 marker is a SCREENING signal only — official PASS
     additionally requires published source ancestry proving the loaded build
     descends from merged fix commit f0a5d266 (--ancestry-evidence);
@@ -134,6 +139,36 @@ def audit_lock(lock: dict | None, installed: dict, channel: str | None) -> dict:
     if not res["channel_exact_official"]:
         fails.append(f"channel {chan!r}/URL {lock.get('channel_url')!r} is not "
                      "the exact official channel")
+
+    # R22A.1 P0: recompute the per-artifact source policy INDEPENDENTLY from
+    # each package's URL + metadata. Serialized rules_checked values are never
+    # an input here — a forged rules_checked.ok=true cannot pass this audit.
+    origin_rows = [gp_lib.classify_package_origin(
+        p.get("name", ""), str(p.get("version") or ""), p.get("url", ""),
+        p.get("sha256"), channel=chan) for p in lock.get("packages", [])]
+    origin_fails = [f"{r['package']}: {v}" for r in origin_rows if not r["ok"]
+                    for v in r["violations"]]
+    res["package_origin_audit"] = {
+        "recomputed_from": "package url + metadata (rules_checked never read)",
+        "classes": {c: sum(1 for r in origin_rows if r["class"] == c)
+                    for c in ("native_amd_gpu_stack", "approved_pypi_bootstrap",
+                              "third_party")},
+        "violations": origin_fails,
+        "ok": not origin_fails,
+    }
+    fails.extend(origin_fails)
+
+    # ROCm family mixing, likewise recomputed from lock metadata directly
+    fam_members: dict[str, list[str]] = {}
+    for p in lock.get("packages", []):
+        fam = gp_lib.rocm_family_of(p.get("name", ""), str(p.get("version") or ""))
+        if fam:
+            fam_members.setdefault(fam, []).append(p.get("name"))
+    res["rocm_family_mix_audit"] = {"families": sorted(fam_members),
+                                    "members": fam_members,
+                                    "ok": len(fam_members) <= 1}
+    if len(fam_members) > 1:
+        fails.append(f"mixed ROCm families in lock: {sorted(fam_members)}")
 
     lock_by_name = {p["name"].lower().replace("-", "_"): p
                     for p in lock.get("packages", [])}

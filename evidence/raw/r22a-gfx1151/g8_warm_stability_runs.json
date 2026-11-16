@@ -1,0 +1,29 @@
+[
+  {
+    "run": 1,
+    "exit_code": 0,
+    "duration_s": 32.6,
+    "cache_class": "warm(process-level)",
+    "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-warm\\run01\\child.log",
+    "status": "PASS",
+    "anomalies": []
+  },
+  {
+    "run": 2,
+    "exit_code": 0,
+    "duration_s": 30.4,
+    "cache_class": "warm(process-level)",
+    "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-warm\\run02\\child.log",
+    "status": "PASS",
+    "anomalies": []
+  },
+  {
+    "run": 3,
+    "exit_code": 0,
+    "duration_s": 29.5,
+    "cache_class": "warm(process-level)",
+    "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-warm\\run03\\child.log",
+    "status": "PASS",
+    "anomalies": []
+  }
+]

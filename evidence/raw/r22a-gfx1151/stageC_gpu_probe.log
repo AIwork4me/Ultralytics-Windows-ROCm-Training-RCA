@@ -1,0 +1,18 @@
+{
+ "python": "3.12.16",
+ "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+ "hip": "7.18.26441",
+ "cuda_available": true,
+ "device_count": 1,
+ "device_name": "AMD Radeon(TM) 8060S Graphics",
+ "arch_gcnarch": [
+  11,
+  5
+ ],
+ "gcn_arch_name": "gfx1151",
+ "total_mem_gb": 98.9,
+ "fp32_gemm_finite": true,
+ "fp32_gemm_ok": true,
+ "fp16_gemm_finite": true,
+ "probe": "PASS"
+}

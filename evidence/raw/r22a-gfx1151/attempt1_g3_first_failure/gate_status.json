@@ -1,0 +1,37 @@
+{
+    "gates":  [
+                  {
+                      "status":  "PASS",
+                      "gate":  "G0_provenance",
+                      "ended_utc":  "2026-11-16T01:28:32.1805591Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "G2_torch_torchvision_gpu",
+                      "ended_utc":  "2026-11-16T01:29:06.4222252Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "PASS",
+                      "gate":  "G1_miopen_nostl",
+                      "ended_utc":  "2026-11-16T01:29:24.5923452Z",
+                      "accepted":  true,
+                      "exit_code":  0
+                  },
+                  {
+                      "status":  "FAIL",
+                      "gate":  "G3_ultralytics_cli",
+                      "ended_utc":  "2026-11-16T01:31:24.0082855Z",
+                      "accepted":  false,
+                      "exit_code":  1
+                  }
+              ],
+    "updated":  "2026-11-16T01:31:24.0113525Z",
+    "contract":  "gate exit code != 0 OR gate crash =\u003e NO-GO stop; report exit 0 alone never yields success",
+    "overall":  "NO_GO",
+    "mode":  "OfficialCandidate",
+    "run_id":  "GP-OfficialCandidate-20261116-092826"
+}

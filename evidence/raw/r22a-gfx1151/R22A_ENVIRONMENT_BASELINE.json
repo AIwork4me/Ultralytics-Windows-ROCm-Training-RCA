@@ -1,0 +1,85 @@
+{
+  "label": "R21_ENVIRONMENT_BASELINE",
+  "captured_utc": "2026-11-16T01:59:52.594415+00:00",
+  "python": "3.12.16",
+  "python_executable": "C:\\RadeonYOLO\\R22A\\venvs\\r22-candidate\\Scripts\\python.exe",
+  "os": "Windows-11-10.0.26200-SP0",
+  "windows_build": "10.0.26200.0",
+  "gpu_name_cim": "AMD Radeon(TM) 8060S Graphics",
+  "driver_version": "32.0.22032.6002",
+  "gfx_target": "gfx1151",
+  "workarounds": {
+    "hiprtc_compile_options_append": null,
+    "hiprtc_include_injection": false,
+    "miopen_env_overrides": {},
+    "miopen_path_redirection": [],
+    "any_workaround_present": false
+  },
+  "env": {
+    "PATH": "C:\\Users\\rocm\\bin;C:\\Program Files\\Git\\ucrt64\\bin;C:\\Program Files\\Git\\usr\\local\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\ucrt64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\rocm\\bin;C:\\Program Files\\Microsoft\\jdk-21.0.12.101-hotspot\\bin;C:\\Program Files\\ImageMagick-7.1.2-Q16-HDRI;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Windows\\System32\\OpenSSH;C:\\Windows\\System32\\WindowsPowerShell\\v1.0;C:\\Program Files\\nodejs;C:\\Program Files\\GitHub CLI;C:\\Users\\rocm\\miniconda3;C:\\Users\\rocm\\miniconda3\\Library\\mingw-w64\\bin;C:\\Users\\rocm\\miniconda3\\Library\\usr\\bin;C:\\Users\\rocm\\miniconda3\\Library\\bin;C:\\Users\\rocm\\miniconda3\\Scripts;C:\\Program Files\\Tailscale;C:\\Program Files\\Git\\cmd;C:\\Tools\\jdk-21.0.12.1+1\\bin;C:\\Users\\rocm\\.kimi-code\\bin;C:\\Users\\rocm\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\rocm\\AppData\\Roaming\\npm;C:\\Users\\rocm\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\rocm\\.local\\bin;C:\\texlive\\2026\\bin\\windows;C:\\Program Files\\Graphviz\\bin;C:\\Users\\rocm\\AppData\\Local\\Programs\\Ollama;C:\\Users\\rocm\\AppData\\Local\\Programs\\ZCode\\resources\\tools\\ripgrep;C:\\Users\\rocm\\AppData\\Local\\Programs\\ZCode\\resources\\tools\\ugrep;C:\\Program Files\\nodejs;C:\\Program Files\\Git\\usr\\bin\\vendor_perl;C:\\Program Files\\Git\\usr\\bin\\core_perl",
+    "INCLUDE": null,
+    "LIB": null,
+    "VCToolsInstallDir": null,
+    "HIP_PATH": null,
+    "ROCM_PATH": null,
+    "PYTHONPATH": null,
+    "HIPRTC_COMPILE_OPTIONS_APPEND": null
+  },
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "torch_cuda_available": true,
+  "device_count": 1,
+  "gpu_name_torch": "AMD Radeon(TM) 8060S Graphics",
+  "miopen": {
+    "loaded": true,
+    "path": "C:\\RadeonYOLO\\R22A\\venvs\\r22-candidate\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+    "bytes": 501333504,
+    "embedded_version_strings": [
+      "3.6.3.4e7d93e3"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  },
+  "packages": {
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "ultralytics": "8.4.214",
+    "rocm-sdk-libraries": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "rocm-sdk-core": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "amd-torch-device-gfx1100": null,
+    "amd-torch-device-gfx1151": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "amd-torchvision-device-gfx1100": null,
+    "amd-torchvision-device-gfx1151": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6"
+  },
+  "run_id": "R21-ENV-BASELINE",
+  "mission": "R21",
+  "os_edition": "Microsoft Windows 11 家庭版 中文版",
+  "free_disk_c_gb": "219.322021484375",
+  "running_gpu_processes": "[{\"Id\":12052,\"ProcessName\":\"python\"},{\"Id\":22548,\"ProcessName\":\"python\"},{\"Id\":25332,\"ProcessName\":\"python\"},{\"Id\":26420,\"ProcessName\":\"python\"},{\"Id\":37120,\"ProcessName\":\"python\"},{\"Id\":40840,\"ProcessName\":\"python\"},{\"Id\":43420,\"ProcessName\":\"python\"},{\"Id\":44592,\"ProcessName\":\"python\"}]",
+  "msvc": {
+    "vc_tools_install_paths": [
+      "C:\\BuildTools"
+    ],
+    "VCToolsInstallDir_env": null,
+    "INCLUDE_env_set": false,
+    "cl_on_path": false
+  },
+  "miopen_caches": {
+    "userprofile": {
+      "path": "C:\\Users\\rocm\\.cache\\miopen",
+      "exists": false,
+      "entries": 0
+    },
+    "appdata": {
+      "path": "C:\\Users\\rocm\\AppData\\Roaming\\miopen",
+      "exists": false,
+      "entries": 0
+    }
+  },
+  "python_interpreters": [
+    {
+      "path": "C:\\RadeonYOLO\\R22A\\venvs\\r22-candidate\\Scripts\\python.exe",
+      "version": "3.12.16"
+    }
+  ]
+}
