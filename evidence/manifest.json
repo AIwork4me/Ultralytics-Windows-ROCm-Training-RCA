@@ -1816,5 +1816,33 @@
   "command": "R22A.2.1 evidence (see reconciliation)",
   "sha256": "925dbe714e2f1c617ab3568f09670b3a7597ae1d65e27b6e8076dd2d27225293",
   "size_bytes": 15942
+ },
+ {
+  "path": "docs/release-closure/R22A4_INITIAL_GAP_MATRIX.md",
+  "timestamp": "2026-11-16T15:24:30.077246+00:00",
+  "command": "R22A.4 derived reconciliation artifacts (gap matrix, dual-arch acceptance, per-arch unified acceptance) \u2014 DERIVED_RECONCILIATION recomputed from IMMUTABLE_RAW_EVIDENCE via versioned adapters",
+  "sha256": "2fbf49b5514567b0f8f66fdd5cfeda17e32c825283a547c88524ffa4e1e8ee46",
+  "size_bytes": 14265
+ },
+ {
+  "path": "docs/release-closure/R22A4_DUAL_ARCH_SUPPLEMENTAL_RECONCILIATION.md",
+  "timestamp": "2026-11-16T15:24:30.077246+00:00",
+  "command": "R22A.4 derived reconciliation artifacts (gap matrix, dual-arch acceptance, per-arch unified acceptance) \u2014 DERIVED_RECONCILIATION recomputed from IMMUTABLE_RAW_EVIDENCE via versioned adapters",
+  "sha256": "45e05a496f6d902f9f154a17d39aac9f2ee4a0006ca16f4df31eed28bc657d93",
+  "size_bytes": 9440
+ },
+ {
+  "path": "windows-golden-path/reports/r22a4/gfx1151_supplemental_acceptance.json",
+  "timestamp": "2026-11-16T15:24:30.077246+00:00",
+  "command": "R22A.4 derived reconciliation artifacts (gap matrix, dual-arch acceptance, per-arch unified acceptance) \u2014 DERIVED_RECONCILIATION recomputed from IMMUTABLE_RAW_EVIDENCE via versioned adapters",
+  "sha256": "62c48f91d76398ef8bbda5a7e00b493f868deedc9907349bf2bb88cba727f16a",
+  "size_bytes": 3380
+ },
+ {
+  "path": "windows-golden-path/reports/r22a4/dual_arch_acceptance.json",
+  "timestamp": "2026-11-16T15:24:30.077246+00:00",
+  "command": "R22A.4 derived reconciliation artifacts (gap matrix, dual-arch acceptance, per-arch unified acceptance) \u2014 DERIVED_RECONCILIATION recomputed from IMMUTABLE_RAW_EVIDENCE via versioned adapters",
+  "sha256": "1ee1e93667f64dd4e5bd3f7717df6f1d1ada46d5ffb942ef2d4a2f5b26f1ff36",
+  "size_bytes": 9408
  }
 ]
