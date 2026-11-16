@@ -695,3 +695,343 @@ class TestPackageOriginPolicy:
             assert res["ok"] is True, (rel, res["failures"])
             assert res["package_origin_audit"]["classes"] == n_expected, rel
             assert res["rocm_family_mix_audit"]["families"] == ["10"], rel
+
+
+# --- R22A.3 Part A: default optimizer=auto→AdamW + AMP verdict (mission §10) --
+class TestAdamWAmpVerdict:
+    @staticmethod
+    def _good_a() -> dict:
+        return {
+            "optim": {"requested": "auto",
+                      "resolved_in_args_after_build": "AdamW",
+                      "actual_class": "AdamW"},
+            "amp": {"trainer_amp_resolved": True,
+                    "autocast_forward_samples": {"sampled": 50, "enabled": 50},
+                    "stem_conv_output_dtypes_observed": {"float16": 50}},
+            "optimizer_steps": {
+                "attempted_invocations": 12,
+                "effective_updates_sentinel_proven": 9,
+                "skipped_found_inf_flagged": 0,
+                "grads_finite_on_stepped_updates": True},
+            "gradscaler": {"present": True, "scale_history_len": 12},
+            "raw_trainer_model_delta": {"tensors_changed_beyond_1e_9": 210,
+                                        "all_finite": True},
+            "batches_completed": 48,
+        }
+
+    def _v(self, facts, min_updates=3):
+        aa = load_module("audit_adamw_amp")
+        return aa.compute_adamw_verdict(facts, min_updates)
+
+    def test_full_good_facts_pass(self):
+        r = self._v(self._good_a())
+        assert r["verdict"] == "ADAMW_AMP_MULTISTEP_PASS"
+        assert r["failure_classification"] is None
+
+    def test_auto_resolving_to_sgd_fails(self):
+        f = self._good_a()
+        f["optim"] = {"requested": "auto", "resolved_in_args_after_build": "SGD",
+                      "actual_class": "SGD"}
+        r = self._v(f)
+        assert (r["verdict"], r["failure_classification"]) == ("FAIL", "ADAMW_AUTO_NOT_SELECTED")
+
+    def test_manual_adamw_is_not_auto_selection(self):
+        f = self._good_a()
+        f["optim"]["requested"] = "AdamW"  # a forced AdamW must not count as auto
+        assert self._v(f)["verdict"] == "FAIL"
+
+    def test_amp_false_fails(self):
+        f = self._good_a()
+        f["amp"]["trainer_amp_resolved"] = False
+        assert self._v(f)["failure_classification"] == "AMP_NOT_ENABLED"
+
+    def test_amp_setup_without_forward_autocast_fails(self):
+        f = self._good_a()
+        f["amp"]["autocast_forward_samples"] = {"sampled": 50, "enabled": 0}
+        assert self._v(f)["failure_classification"] == "NO_FORWARD_AUTOCAST"
+
+    def test_autocast_without_observed_low_precision_is_inconclusive(self):
+        f = self._good_a()
+        f["amp"]["stem_conv_output_dtypes_observed"] = {"float32": 50}
+        r = self._v(f)
+        assert (r["verdict"], r["failure_classification"]) == \
+            ("INCONCLUSIVE", "NO_LOW_PRECISION_OP_OBSERVED")
+
+    def test_scaler_present_without_effective_updates_fails(self):
+        f = self._good_a()
+        f["optimizer_steps"]["effective_updates_sentinel_proven"] = 0
+        assert self._v(f)["failure_classification"] == "NO_EFFECTIVE_OPTIMIZER_UPDATES"
+
+    def test_missing_parameter_delta_fails(self):
+        f = self._good_a()
+        f["raw_trainer_model_delta"]["tensors_changed_beyond_1e_9"] = 0
+        assert self._v(f)["failure_classification"] == "PARAM_DELTA_MISSING"
+
+    def test_only_bn_buffers_changed_fails(self):
+        # named_parameters deltas all zero while a forged bn_buffers_changed
+        # flag claims otherwise — buffers are excluded BY DESIGN and can never
+        # substitute for parameter evidence
+        f = self._good_a()
+        f["raw_trainer_model_delta"]["tensors_changed_beyond_1e_9"] = 0
+        f["raw_trainer_model_delta"]["bn_buffers_changed"] = True
+        assert self._v(f)["failure_classification"] == "PARAM_DELTA_MISSING"
+
+    def test_nonfinite_gradients_in_any_group_fail(self):
+        f = self._good_a()
+        f["optimizer_steps"]["grads_finite_on_stepped_updates"] = False
+        assert self._v(f)["failure_classification"] == "NONFINITE_GRADIENTS"
+
+    def test_nonfinite_parameter_deltas_fail(self):
+        f = self._good_a()
+        f["raw_trainer_model_delta"]["all_finite"] = False
+        assert self._v(f)["failure_classification"] == "NONFINITE_PARAM_DELTAS"
+
+    def test_missing_step_evidence_fails(self):
+        f = self._good_a()
+        f["optimizer_steps"]["attempted_invocations"] = 0
+        f["optimizer_steps"]["effective_updates_sentinel_proven"] = 0
+        assert self._v(f)["failure_classification"] == "NO_EFFECTIVE_OPTIMIZER_UPDATES"
+
+    def test_min_updates_threshold_enforced(self):
+        f = self._good_a()
+        f["optimizer_steps"]["effective_updates_sentinel_proven"] = 2
+        assert self._v(f, 3)["verdict"] == "FAIL"
+        assert self._v(f, 2)["verdict"] == "ADAMW_AMP_MULTISTEP_PASS"
+
+    def test_empty_facts_fail_closed(self):
+        assert self._v({})["verdict"] in ("FAIL", "INCONCLUSIVE")
+
+
+# --- R22A.3 Part B: workers=8 verdicts (mission §10) --------------------------
+class TestWorkers8Verdict:
+    @staticmethod
+    def _good_run(i: int = 1, cold: bool = True) -> dict:
+        return {
+            "run": i, "run_id": f"B-R{i}", "status": "PASS", "exit_code": 0,
+            "resolved_num_workers": 8, "requested_workers": 8,
+            "distinct_worker_pids": 12, "worker_shutdown": "CLEAN",
+            "cache_class": ("cold(fresh-USERPROFILE, run-isolated)" if cold
+                            else "warm(retained isolated home)"),
+            "cold_identity_verified": True,
+        }
+
+    def _mod(self):
+        return load_module("run_stability")
+
+    def test_requested8_effective4_fails(self):
+        rs = self._mod()
+        base = self._good_run()
+        base["resolved_num_workers"] = 4
+        assert rs.finalize_worker_run(base) == ("FAIL", "WORKER_COUNT_NOT_MET")
+
+    def test_effective8_without_pid_evidence_is_inconclusive(self):
+        rs = self._mod()
+        base = self._good_run()
+        base["distinct_worker_pids"] = 0
+        assert rs.finalize_worker_run(base) == ("INCONCLUSIVE", "NO_WORKER_PID_EVIDENCE")
+
+    def test_partial_pid_evidence_is_inconclusive(self):
+        rs = self._mod()
+        base = self._good_run()
+        base["distinct_worker_pids"] = 5  # 0 < observed < resolved
+        assert rs.finalize_worker_run(base) == ("INCONCLUSIVE", "PARTIAL_WORKER_PID_EVIDENCE")
+
+    def test_worker_spawn_failure_fails(self):
+        rs = self._mod()
+        v = rs.classify_run(1, "DataLoader worker failed to start on Windows")
+        assert v["status"] == "FAIL" and "WORKER_SPAWN_FAILURE" in v["anomalies"]
+
+    def test_worker_crash_fails(self):
+        rs = self._mod()
+        v = rs.classify_run(1, "DataLoader worker (pid 1234) exited unexpectedly")
+        assert v["status"] == "FAIL" and "WORKER_CRASH" in v["anomalies"]
+
+    def test_worker_orphaned_after_parent_fails(self):
+        rs = self._mod()
+        base = self._good_run()
+        base["worker_shutdown"] = "ORPHANS(2): [111, 222]"
+        assert rs.finalize_worker_run(base) == ("FAIL", "WORKER_SHUTDOWN_FAILURE")
+
+    def test_timeout_fails(self):
+        rs = self._mod()
+        assert rs.classify_run(124, "")["failure_classification"] == "DATALOADER_TIMEOUT"
+
+    def test_missing_process_exit_code_fails(self):
+        rs = self._mod()
+        base = self._good_run()
+        del base["exit_code"]
+        assert rs.finalize_worker_run(base) == ("FAIL", "MISSING_PROCESS_EXIT_CODE")
+
+    def test_cold_cache_falsely_labeled_fails(self):
+        rs = self._mod()
+        base = self._good_run(cold=True)
+        base["cold_identity_verified"] = False  # no isolated-home evidence
+        assert rs.finalize_worker_run(base) == \
+            ("FAIL", "COLD_LABEL_WITHOUT_CACHE_IDENTITY_EVIDENCE")
+
+    def test_five_clean_runs_overall_pass(self):
+        rs = self._mod()
+        runs = [self._good_run(1, True), self._good_run(2, True)] + \
+               [self._good_run(i, False) for i in (3, 4, 5)]
+        ov = rs.overall_workers8_verdict(runs, 2, 3)
+        assert ov["verdict"] == "WORKERS8_SHORT_RELIABILITY_PASS"
+        assert ov["cold_pass"] == "2/2" and ov["warm_pass"] == "3/3"
+
+    def test_four_pass_one_fail_overall_no_go(self):
+        rs = self._mod()
+        runs = [self._good_run(1, True), self._good_run(2, True),
+                self._good_run(3, False), self._good_run(4, False)]
+        bad = self._good_run(5, False)
+        bad.update(status="FAIL", failure_classification="WORKER_CRASH")
+        runs.append(bad)
+        ov = rs.overall_workers8_verdict(runs, 2, 3)
+        assert ov["verdict"] == "NO-GO"
+        assert any("warm 2/3" in p for p in ov["problems"])
+
+    def test_sixth_substitution_run_cannot_repair_matrix(self):
+        rs = self._mod()
+        runs = [self._good_run(1, True), self._good_run(2, True),
+                self._good_run(3, False)]
+        bad = self._good_run(4, False)
+        bad.update(status="FAIL")
+        runs += [bad, self._good_run(5, False), self._good_run(6, False)]
+        assert rs.overall_workers8_verdict(runs, 2, 3)["verdict"] == "NO-GO"
+
+
+class TestChildSpawnSafety:
+    def _mod(self):
+        return load_module("run_stability")
+
+    def test_generated_child_is_spawn_safe(self):
+        rs = self._mod()
+        rendered = rs.CHILD.format(device=-1, project="C:/tmp/p", name="train",
+                                   seed=1, workers=8, data="coco128.yaml", extra="",
+                                   facts_path="C:/tmp/f.json", run_id="X",
+                                   batch_arg="16", imgsz_arg="256")
+        assert rs.child_spawn_safe(rendered) == (True, None)
+        compile(rendered, "child.py", "exec")  # must also be valid python
+
+    def test_child_without_main_guard_rejected(self):
+        rs = self._mod()
+        bad = "import sys\nfrom ultralytics import YOLO\nYOLO('yolo26n.pt').train()\n"
+        ok, why = rs.child_spawn_safe(bad)
+        assert ok is False and why
+
+    def test_guard_present_but_module_level_train_rejected(self):
+        rs = self._mod()
+        bad = ("import multiprocessing\nfrom ultralytics import YOLO\n"
+               "YOLO('yolo26n.pt').train()\n\n"
+               "if __name__ == '__main__':\n    multiprocessing.freeze_support()\n")
+        ok, why = rs.child_spawn_safe(bad)
+        assert ok is False and "module-level" in why
+
+
+# --- R22A.3 combined acceptance (mission §13) ---------------------------------
+class TestR22A3Acceptance:
+    @staticmethod
+    def _part_a_pass() -> dict:
+        return {
+            "optim": {"requested": "auto", "resolved_in_args_after_build": "AdamW",
+                      "actual_class": "AdamW"},
+            "amp": {"trainer_amp_resolved": True,
+                    "autocast_forward_samples": {"sampled": 50, "enabled": 50},
+                    "stem_conv_output_dtypes_observed": {"float16": 50}},
+            "optimizer_steps": {"attempted_invocations": 12,
+                                "effective_updates_sentinel_proven": 9,
+                                "grads_finite_on_stepped_updates": True},
+            "gradscaler": {"present": True, "scale_history_len": 12},
+            "raw_trainer_model_delta": {"tensors_changed_beyond_1e_9": 210,
+                                        "all_finite": True},
+            "batches_completed": 48,
+            "gpu_name": "AMD Radeon(TM) 8060S Graphics", "gfx_target": "gfx1151",
+            "runtime_class": "OFFICIAL_CANDIDATE",
+            "minimum_effective_updates_required": 3,
+        }
+
+    @staticmethod
+    def _part_b_pass() -> dict:
+        def run(i, cold):
+            return {"run_id": f"B-R{i}", "status": "PASS",
+                    "cache_class": ("cold(fresh-USERPROFILE, run-isolated)" if cold
+                                    else "warm(retained isolated home)")}
+        return {"runs": [run(1, True), run(2, True), run(3, False), run(4, False),
+                         run(5, False)],
+                "cold_runs": 2,
+                "gpu_name": "AMD Radeon(TM) 8060S Graphics", "gfx_target": "gfx1151",
+                "runtime_class": "OFFICIAL_CANDIDATE"}
+
+    def _mod(self):
+        return load_module("r22a3_acceptance")
+
+    def test_both_parts_pass_combined_pass(self):
+        c = self._mod().combined_verdict(self._part_a_pass(), self._part_b_pass())
+        assert c["verdict"] == "R22A3_GFX1151_SUPPLEMENTAL_PASS"
+
+    def test_part_a_fail_gives_partial_or_no_go_with_reason(self):
+        pa = self._part_a_pass()
+        pa["optimizer_steps"]["effective_updates_sentinel_proven"] = 0
+        c = self._mod().combined_verdict(pa, self._part_b_pass())
+        assert c["verdict"] in ("PARTIAL_PASS", "NO-GO")
+        assert any("PartA FAIL" in r for r in c["reasons"])
+
+    def test_part_b_fail_gives_no_go(self):
+        pb = self._part_b_pass()
+        pb["runs"][3]["status"] = "FAIL"
+        c = self._mod().combined_verdict(self._part_a_pass(), pb)
+        assert c["verdict"] in ("PARTIAL_PASS", "NO-GO")
+
+    def test_synthetic_receipt_claiming_physical_gpu_rejected(self):
+        pa = self._part_a_pass()
+        pa["gpu_name"] = None  # no physical GPU provenance
+        c = self._mod().combined_verdict(pa, self._part_b_pass())
+        assert c["verdict"] != "R22A3_GFX1151_SUPPLEMENTAL_PASS"
+        assert any("synthetic" in r for r in c["reasons"])
+
+    def test_wrong_architecture_cannot_earn_gfx1151_verdict(self):
+        pa = self._part_a_pass()
+        pa["gfx_target"] = "gfx1100"
+        c = self._mod().combined_verdict(pa, self._part_b_pass())
+        assert c["verdict"] != "R22A3_GFX1151_SUPPLEMENTAL_PASS"
+
+    def test_engineering_reference_runtime_cannot_pass(self):
+        pa = self._part_a_pass()
+        pa["runtime_class"] = "ENGINEERING_REFERENCE"
+        c = self._mod().combined_verdict(pa, self._part_b_pass())
+        assert c["verdict"] != "R22A3_GFX1151_SUPPLEMENTAL_PASS"
+
+    def test_claimed_verdict_is_never_authority(self):
+        pa = self._part_a_pass()
+        pa["pass_fail_skip"] = "ADAMW_AMP_MULTISTEP_PASS"  # forged claim
+        pa["optim"]["resolved_in_args_after_build"] = "SGD"
+        pa["optim"]["actual_class"] = "SGD"
+        c = self._mod().combined_verdict(pa, self._part_b_pass())
+        assert c["verdict"] != "R22A3_GFX1151_SUPPLEMENTAL_PASS"
+
+    def test_ceiling_is_dev_candidate(self):
+        c = self._mod().combined_verdict(self._part_a_pass(), self._part_b_pass())
+        assert "DEV_CANDIDATE" in c["runtime_ceiling"]
+        assert "OFFICIAL_STABLE" not in c["verdict"]
+
+
+# --- R22A.3 evidence receipts must always serialize (harness robustness) ------
+class TestEvidenceReceiptSerialization:
+    def test_sanitize_converts_non_json_native_values(self):
+        aa = load_module("audit_adamw_amp")
+
+        class FakeDtype:  # stands in for torch.dtype (CPU test, no torch)
+            def __repr__(self):
+                return "torch.float16"
+
+        rec = {"dtype": FakeDtype(), "nested": {"seq": [FakeDtype(), 1, None, True]},
+               "plain": "x", "ok": [1, 2.5, False]}
+        s = aa.sanitize(rec)
+        out = json.dumps(s)  # must not raise
+        assert s["dtype"] == "torch.float16"
+        assert json.loads(out)["nested"]["seq"][1] == 1
+
+    def test_spawn_safety_checker_accepts_single_quoted_guard(self):
+        rs = load_module("run_stability")
+        src = ("import multiprocessing\n\n\ndef main():\n    pass\n\n\n"
+               "if __name__ == '__main__':\n    multiprocessing.freeze_support()\n"
+               "    main()\n")
+        assert rs.child_spawn_safe(src) == (True, None)
