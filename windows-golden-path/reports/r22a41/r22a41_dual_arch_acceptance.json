@@ -359,10 +359,10 @@
     }
   ],
   "harness_code_sha256": {
-    "supplemental_acceptance.py": "0eee580dbd1f97e815f2cab01f289464c6ab75c5c942cab6f8e3238127aff97a",
-    "run_stability.py": "e384f24b842d9091aebb5e17658632ee9b03a665a3a80558b828520e44a2b130",
-    "audit_adamw_amp.py": "29de25aec292266c66a24eb16fcdd88abf9823b850864c47242fef68c7f5d58a",
-    "gp_lib.py": "1bee98ebfb08082142bfd17e2cf553f38582ca621b8a6110ff2c48d72025fcf5"
+    "supplemental_acceptance.py": "b4478e82821e3b0e6090888249810fc83a7d034fc15e6b394c97ce83795a185e",
+    "run_stability.py": "829cf253f09bea7505a26037598f2b9ebae1fc84b7cfe9425ba452b98f80a765",
+    "audit_adamw_amp.py": "3e8bc37470de11c067325f4c36c6e0757031d3de3c5f2b6c88548a605755825c",
+    "gp_lib.py": "36d5e791f2a0ae189fbfd7cc150376356b83817564ea6e449b942d1a4bbe1b4c"
   },
   "schema_adapters": {
     "gfx1100": "r22a2-flat-v1",

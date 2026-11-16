@@ -1883,8 +1883,8 @@
   "path": "windows-golden-path/reports/r22a41/r22a41_dual_arch_acceptance.json",
   "timestamp": "2026-11-16T23:52:01.156381+00:00",
   "command": "R22A.4.1 final integration freeze \u2014 DERIVED_RECONCILIATION artifacts (manifest/runtime-provenance audits, consistency matrix, freeze record, deterministic dual-arch acceptance recompute) from IMMUTABLE_RAW_EVIDENCE",
-  "sha256": "ea2d28603d5e5ef6362cf62552ada76bcb86dfa2afc78a9bb312fdb6eb7d3e5d",
-  "size_bytes": 15222,
+  "sha256": "18bef4b67c6cbdd3799e58ca16d0dc059b7c0ac8fc6d1ada0f8901af8bb7f475",
+  "size_bytes": 14852,
   "note": "R22A.4.1: derived audit artifact, hash aligned to committed blob (LF)"
  }
 ]
