@@ -1,0 +1,42 @@
+{
+  "run_id": "R22A5A-WHEEL-AUDIT-nightly-20261117",
+  "mission": "R22A.5A",
+  "timestamp": "2026-11-17T00:51:17.675165+00:00",
+  "method": "bounded official-channel download; ZIP-inspected without installation/extraction; SHA256 wheel+DLL; marker count; GitHub compare API ancestry vs merged fix (never date inference)",
+  "merged_fix_commit": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a",
+  "audits": [
+    {
+      "channel": "nightly",
+      "package": "rocm-sdk-libraries",
+      "wheel": "rocm-sdk-libraries",
+      "wheel_version": "10.3.0a20261116",
+      "wheel_filename": "rocm_sdk_libraries-10.3.0a20261116-py3-none-win_amd64.whl",
+      "wheel_url": "https://nightly.repo.amd.com/rocm/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.3.0a20261116-py3-none-win_amd64.whl",
+      "wheel_sha256": "b11baad94242690642f95687993f200fe9ef27fcdbe34e2bbf4605e0407599f0",
+      "wheel_bytes": 142069321,
+      "wheel_requires_python": null,
+      "wheel_requires_dist": [],
+      "download": "downloaded this run (bounded, single artifact)",
+      "miopen_dll": {
+        "member": "_rocm_sdk_libraries/bin/MIOpen.dll",
+        "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "bytes": 519806464,
+        "version_strings": [
+          "3.6.3.25f28906"
+        ],
+        "build_commit": "25f28906",
+        "marker_miopen_initializer_list": 2
+      },
+      "ancestry": {
+        "compare": "f0a5d2664...25f28906",
+        "status": "ahead",
+        "ahead_by": 1074,
+        "behind_by": 0,
+        "commit_date_gh": "2026-10-19T09:27:09Z"
+      },
+      "fix_present": true,
+      "verdict": "POST_FIX_LIBRARIES",
+      "caveat": "marker is a screening signal; the ancestry compare above is the source-lineage proof; a positive verdict still requires the R22A.5B no-STL runtime gate"
+    }
+  ]
+}
