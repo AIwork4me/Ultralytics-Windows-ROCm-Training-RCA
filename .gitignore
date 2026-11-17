@@ -57,3 +57,6 @@ credentials*
 *.bc
 # R22A.5N.1: pack-B lifecycle checkpoints are deliberate evidence (G5 anchor)
 !reports/r22a5n1/**/checkpoints/*.pt
+
+# R22A.5N evidence: audit-meaningful checkpoint bytes must be committable
+!reports/r22a5n/**/*.pt

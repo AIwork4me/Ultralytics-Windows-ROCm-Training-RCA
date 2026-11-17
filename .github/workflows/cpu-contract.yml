@@ -47,6 +47,9 @@ jobs:
       - name: R22A.5N.1 acceptance/evidence scripts compile
         run: python -m compileall -q scripts/r22a5n1
 
+      - name: R22A.5N gfx1100 profile engine compile
+        run: python -m compileall -q scripts/r22a5n1100
+
       - name: CPU contract tests (adversarial, fail-closed)
         run: python -m pytest windows-golden-path/tests -q
 
