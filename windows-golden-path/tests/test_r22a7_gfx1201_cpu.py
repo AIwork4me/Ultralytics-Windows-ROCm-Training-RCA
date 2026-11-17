@@ -102,3 +102,53 @@ def test_yaml_extension_never_claims_pretrained_weight():
     assert case["from_scratch"] is True
     assert case["weights_available"] is False
     assert case["model"].endswith(".yaml")
+
+
+def test_actual_failed_attempt_is_disclosed_not_forged_pass(tmp_path):
+    """A fully captured failed run is valuable history, not a fabricated PASS."""
+    case=runner.choose_case("yolo26n")
+    attempt=tmp_path/"yolo26n"/"attempt-failed"
+    attempt.mkdir(parents=True)
+    config={"case":case,"phase":"train","epochs":3,
+            "preflight_sha256":"pinned-test-preflight",
+            "wheel_lock_sha256":"pinned-test-lock"}
+    child={"case_id":case["id"],"status":"FAIL","error_type":"RuntimeError",
+           "error":"GPU training failed before runtime device initialization"}
+    (attempt/"config.json").write_text(json.dumps(config),encoding="utf-8")
+    (attempt/"child_result.json").write_text(json.dumps(child),encoding="utf-8")
+    (attempt/"stdout.raw").write_bytes(b"original failure run bytes")
+    (attempt/"stderr.raw").write_bytes(b"runtime exception")
+    env={"status":"CHILD_FAILED","exit_code":2,
+         "wheel_lock_sha256":"pinned-test-lock",
+         "preflight_sha256":"pinned-test-preflight",
+         "stdout_sha256":ev.hash_file(attempt/"stdout.raw"),
+         "stderr_sha256":ev.hash_file(attempt/"stderr.raw"),
+         "child_result_sha256":ev.hash_file(attempt/"child_result.json")}
+    (attempt/"envelope.json").write_text(json.dumps(env),encoding="utf-8")
+    facts=ev.verify_attempt(attempt,case)
+    assert facts["verdict"]=="FAILED_ATTEMPT_AUDITED"
+    assert not facts["issues"]
+    whole=ev.audit(tmp_path)
+    assert whole["verified_train"]==0
+    assert len(whole["failed_attempts"])==1
+    assert whole["verdict"]=="NOT_READY"
+
+
+def test_forged_pass_with_nonzero_exit_rejected(tmp_path):
+    case=runner.choose_case("yolo26n")
+    path=tmp_path/"malicious"
+    path.mkdir()
+    (path/"config.json").write_text(json.dumps({"case":case,"phase":"train","epochs":3,
+         "preflight_sha256":"sha-a","wheel_lock_sha256":"sha-b"}),encoding="utf-8")
+    (path/"child_result.json").write_text(json.dumps({"case_id":case["id"],"status":"PASS"}),encoding="utf-8")
+    for name in ("stdout.raw","stderr.raw"):
+        (path/name).write_bytes(b"")
+    env={"status":"CHILD_FAILED","exit_code":2,
+         "wheel_lock_sha256":"sha-b","preflight_sha256":"sha-a",
+         "stdout_sha256":ev.hash_file(path/"stdout.raw"),
+         "stderr_sha256":ev.hash_file(path/"stderr.raw"),
+         "child_result_sha256":ev.hash_file(path/"child_result.json")}
+    (path/"envelope.json").write_text(json.dumps(env),encoding="utf-8")
+    result=ev.verify_attempt(path,case)
+    assert result["verdict"]=="REJECTED"
+    assert "CONTRADICTORY_OR_INCOMPLETE_RESULT" in result["issues"]
