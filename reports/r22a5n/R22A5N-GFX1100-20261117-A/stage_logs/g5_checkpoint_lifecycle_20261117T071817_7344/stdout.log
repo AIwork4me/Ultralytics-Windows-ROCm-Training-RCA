@@ -1,0 +1,35 @@
+[lifecycle] stage1 train child pid=9756
+[lifecycle] interrupted child rc=1 rows_at_kill=2
+[lifecycle] checkpoint_at_kill sha=4e20658ad61048c5648aa4e6eeba0e496dc56bb9560c014539607f1ccc22bec5 state={'checked': True, 'has_optimizer_state': True, 'ckpt_epoch': 0}
+[lifecycle] resume rc=0 start_epoch=1 optimizer_state_entries=366 effective=8/8
+[lifecycle] stage4 infer rc=0
+{
+  "wait_for_checkpoint": {
+    "ok": true,
+    "epochs_done": 2,
+    "waited_s": 68.9
+  },
+  "child1_returncode": 1,
+  "total_epochs": 4,
+  "kill_after_epoch": 1,
+  "rows_at_kill": 2,
+  "checkpoint_resumability": {
+    "checked": true,
+    "has_optimizer_state": true,
+    "ckpt_epoch": 0
+  },
+  "checkpoint_sha256_at_kill": "4e20658ad61048c5648aa4e6eeba0e496dc56bb9560c014539607f1ccc22bec5",
+  "resume_exit": 0,
+  "resume_done_marker": true,
+  "resume_start_epoch": 1,
+  "optimizer_state_entries": 366,
+  "resume_effective_updates": 8,
+  "resume_step_attempts": 8,
+  "resume_state_evidence_logged": true,
+  "final_epoch_rows": 5,
+  "last_epoch_value": 4,
+  "epoch_continuity": true,
+  "infer_exit": 0,
+  "infer_ok": true
+}
+CHECKPOINT_RESUME_V2: PASS

@@ -1,0 +1,72 @@
+{
+  "run_id": "R22A5N-GFX1100-G1-CAND-T1",
+  "mission": "R22A.5N-gfx1100",
+  "timestamp": "2026-11-17T07:11:36.142799+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.16.0a0+rocm10.3.0a20261116",
+  "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+  "hip": "7.18.26455",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python verify_miopen_nostl.py --leg official --expect CANDIDATE",
+  "exit_code": 0,
+  "duration_s": 13.4,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\r22a5n1100\\scratch_g1_t1\\nostl_official_1794899483\\leg.log",
+  "classification": "OFFICIAL_CANDIDATE_PASS",
+  "leg_detail": {
+    "leg": "official",
+    "exit_code": 0,
+    "duration_s": 12.3,
+    "pid": 5424,
+    "child_miopen": {
+      "loaded": true,
+      "path": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+      "bytes": 519806464,
+      "pr13437_marker_miopen_initializer_list": 2
+    },
+    "child_miopen_pre_op": {
+      "loaded": true,
+      "path": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+      "bytes": 519806464,
+      "pr13437_marker_miopen_initializer_list": 2
+    },
+    "child_miopen_at_failure": null,
+    "child_miopen_post_op": {
+      "loaded": true,
+      "path": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+      "bytes": 519806464,
+      "pr13437_marker_miopen_initializer_list": 2
+    },
+    "stdout_tail": "BN_NOSTL_CHILD_MIOPEN_PRE {\"loaded\": true, \"path\": \"C:\\\\r22a5n1100\\\\venv\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"sha256\": \"f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6\", \"bytes\": 519806464, \"pr13437_marker_miopen_initializer_list\": 2}\nBN_NOSTL_REPRO out_finite=True grad_finite=True loss=0.999990\nBN_NOSTL_CHILD_MIOPEN {\"pre_op\": {\"loaded\": true, \"path\": \"C:\\\\r22a5n1100\\\\venv\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"sha256\": \"f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6\", \"bytes\": 519806464, \"pr13437_marker_miopen_initializer_list\": 2}, \"post_op\": {\"loaded\": true, \"path\": \"C:\\\\r22a5n1100\\\\venv\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"sha256\": \"f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6\", \"bytes\": 519806464, \"pr13437_marker_miopen_initializer_list\": 2}}\n",
+    "stderr_tail": "C:\\r22a5n1100\\scratch_g1_t1\\nostl_official_1794899483\\bn_repro.py:52: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at B:/src/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)\n  (out_finite, grad_finite, float(loss)))\n",
+    "log_path": "C:\\r22a5n1100\\scratch_g1_t1\\nostl_official_1794899483\\leg.log",
+    "scratch": "C:\\r22a5n1100\\scratch_g1_t1\\nostl_official_1794899483"
+  },
+  "ambient_hiprtc_shim": null,
+  "reproducer_shape": [
+    20,
+    100,
+    35,
+    45
+  ],
+  "reproducer_op": "nn.BatchNorm2d(100) forward+backward",
+  "expectation": "CANDIDATE",
+  "miopen_identity_in_parent": {
+    "loaded": true,
+    "path": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+    "bytes": 519806464,
+    "embedded_version_strings": [
+      "3.6.3.25f28906"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  }
+}

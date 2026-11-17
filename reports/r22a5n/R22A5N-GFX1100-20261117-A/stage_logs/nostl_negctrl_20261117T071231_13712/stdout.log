@@ -1,0 +1,2 @@
+CLASSIFICATION: OFFICIAL_PRE_FIX_EXPECTED_FAIL (exit=1, failure_class=MIOPEN_HIPRTC_COMPILATION)
+[OK] evidence: reports/r22a5n/R22A5N-GFX1100-20261117-A/04_nostl_negative_control/nostl_prefit_control.json

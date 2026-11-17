@@ -1,0 +1,551 @@
+{
+  "run_id": "R22A5N-GFX1100-G7-W8",
+  "mission": "R22A.5N-gfx1100",
+  "timestamp": "2026-11-17T07:22:30.128087+00:00",
+  "source_sha": "568981db3d1ed4f3ef3fd068623603aee0111fb4",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.16.0a0+rocm10.3.0a20261116",
+  "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+  "hip": "7.18.26455",
+  "ultralytics": "8.4.214",
+  "wheel_lock_sha256": "fd0e898fe88cd79fda81dfc1beea5cc59c1100f0be1486989fd4aa97fc7abe60",
+  "wheel_lock_path": "C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\reports\\r22a5n\\R22A5N-GFX1100-20261117-A\\01_package_provenance\\resolved_wheel_lock_nightly_gfx1100.json",
+  "wheel_lock_channel": "nightly",
+  "wheel_lock_gfx": "gfx1100",
+  "wheel_lock_package_count": 46,
+  "runtime_package_versions": {
+    "torch": "2.16.0a0+rocm10.3.0a20261116",
+    "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+    "ultralytics": "8.4.214"
+  },
+  "provenance_gate_version": "r22a5n1-wheel-lock-gate-v1",
+  "wheel_lock_binding": {
+    "ok": true,
+    "violations": [],
+    "facts": {
+      "channel": "nightly",
+      "gfx_target": "gfx1100",
+      "package_count": 46,
+      "sha256": "fd0e898fe88cd79fda81dfc1beea5cc59c1100f0be1486989fd4aa97fc7abe60",
+      "gate_version": "r22a5n1-wheel-lock-gate-v1",
+      "runtime_versions": {
+        "torch": "2.16.0a0+rocm10.3.0a20261116",
+        "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+        "ultralytics": "8.4.214"
+      },
+      "path": "C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\reports\\r22a5n\\R22A5N-GFX1100-20261117-A\\01_package_provenance\\resolved_wheel_lock_nightly_gfx1100.json"
+    }
+  },
+  "loaded_miopen_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python audit_adamw_amp.py --data coco128.yaml --epochs 3 --imgsz 256 --batch 8 --device -1 optimizer='auto' (framework default AMP+nbs)",
+  "exit_code": 0,
+  "duration_s": 45.1,
+  "pass_fail_skip": "ADAMW_AMP_MULTISTEP_PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\reports\\r22a5n\\R22A5N-GFX1100-20261117-A\\08_workers_reliability\\workers8_amp_v2.log",
+  "harness_train_args": "epochs=3, imgsz=256, batch=8, optimizer='auto', device=-1, workers=8, amp=default, nbs=default",
+  "harness_disclosure": "unified Part A supplemental harness: optimizer=auto (NOT forced), normal nbs retained, workers=0 to isolate AdamW+AMP from Windows worker behavior",
+  "ultralytics_install_path": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\ultralytics\\__init__.py",
+  "optimizer": {
+    "requested": "auto",
+    "resolved_class": "AdamW",
+    "trainer_args_optimizer_after_resolution": "AdamW",
+    "resolution_note": "optimizer=auto resolved to AdamW (8.4.x iterations heuristic: >10000 → MuSGD else AdamW)",
+    "fused": true,
+    "param_groups": [
+      {
+        "lr": 0.000119,
+        "weight_decay": 0.0005,
+        "n_params": 126,
+        "param_group": "weight"
+      },
+      {
+        "lr": 0.000119,
+        "weight_decay": 0.0,
+        "n_params": 114,
+        "param_group": "bn"
+      },
+      {
+        "lr": 0.000119,
+        "weight_decay": 0.0,
+        "n_params": 126,
+        "param_group": "bias"
+      }
+    ]
+  },
+  "gradient_accumulation": {
+    "nbs": 64,
+    "batch_size": 8,
+    "nb_batches_per_epoch": 16,
+    "accumulate_at_start": 8,
+    "note": "normal Ultralytics nbs default retained — NOT forced to step every batch"
+  },
+  "amp": {
+    "resolved": true,
+    "scaler_present": true,
+    "scaler_enabled": true,
+    "autocast_dtype_observed": "float16",
+    "stem_conv_output_dtypes_observed": {
+      "float16": 96
+    },
+    "autocast_forward_samples": {
+      "sampled": 48,
+      "enabled": 48
+    }
+  },
+  "low_precision_evidence": {
+    "conv_output_dtypes": {
+      "float16": 96
+    },
+    "samples_low_precision": 96,
+    "samples_total": 96,
+    "note": "observed dtype reported — no assumed FP16/BF16 label"
+  },
+  "training_counts": {
+    "forward_samples": 48,
+    "forward_autocast_on": 48,
+    "batches_completed": 48,
+    "scaler_step_attempts": 11,
+    "optimizer_steps_underlying": 11,
+    "confirmed_update_events": 6,
+    "skipped_found_inf_flagged": 5,
+    "grads_finite_on_stepped_updates": true,
+    "per_step_events": [
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 0.0,
+        "accumulate_now": 1,
+        "batch_index": 0
+      },
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 3.71875e-06,
+        "accumulate_now": 1,
+        "batch_index": 1
+      },
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 7.4375e-06,
+        "accumulate_now": 1,
+        "batch_index": 2
+      },
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 1.4875e-05,
+        "accumulate_now": 2,
+        "batch_index": 4
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 2.2411346435546875e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 2.23125e-05,
+        "accumulate_now": 2,
+        "batch_index": 6
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 3.361701965332031e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 3.3468750000000004e-05,
+        "accumulate_now": 3,
+        "batch_index": 9
+      },
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 4.834375e-05,
+        "accumulate_now": 4,
+        "batch_index": 13
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 4.506111145019531e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 4.4848125000000004e-05,
+        "accumulate_now": 5,
+        "batch_index": 18
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 6.0185790061950684e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 5.9797500000000005e-05,
+        "accumulate_now": 6,
+        "batch_index": 24
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 4.088506102561951e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 4.046e-05,
+        "accumulate_now": 8,
+        "batch_index": 32
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 3.9420207031071186e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 4.046e-05,
+        "accumulate_now": 8,
+        "batch_index": 40
+      }
+    ],
+    "step_event_semantics": "sentinel_max_abs_delta > 0 is the definitive update evidence; with fused AdamW under GradScaler the python-level step call runs on every scaler attempt and the inf skip happens inside the fused kernel"
+  },
+  "gradscaler": {
+    "present": true,
+    "scale_history": [
+      65536.0,
+      32768.0,
+      16384.0,
+      8192.0,
+      4096.0,
+      4096.0,
+      4096.0,
+      2048.0,
+      2048.0,
+      2048.0,
+      2048.0
+    ],
+    "scale_history_len": 11,
+    "scale_first": 65536.0,
+    "scale_final": 2048.0,
+    "backoff_events_observed": 5,
+    "note": "backoff counted from the per-step series, never inferred from endpoints"
+  },
+  "raw_trainer_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 366,
+    "tensors_changed_beyond_1e_9": 366,
+    "max_abs_delta": 0.00024269334971904755,
+    "mean_abs_delta": 0.00023319532172665346,
+    "all_finite": true
+  },
+  "loaded_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 287,
+    "tensors_changed_beyond_1e_9": 287,
+    "max_abs_delta": 0.000244140625,
+    "mean_abs_delta": 0.00018550887133905795,
+    "all_finite": true
+  },
+  "buffer_delta": {
+    "total_tensors": 342,
+    "tensors_changed_beyond_1e-9": 342,
+    "tensors_changed_beyond_1e_9": 342,
+    "max_abs_delta": 48.0,
+    "mean_abs_delta": 16.10519641491432,
+    "all_finite": true
+  },
+  "buffer_delta_note": "named_buffers (incl. BatchNorm running stats) tracked separately and NEVER counted as parameter updates",
+  "minimum_effective_updates_required": 3,
+  "model_identity": {
+    "init_weights": "yolo26n.pt",
+    "init_weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+    "task": "detect"
+  },
+  "dataset_identity": {
+    "data_arg": "coco128.yaml",
+    "resolved_yaml_path": "{'path': WindowsPath('C:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\datasets\\coco128'), 'train': 'C:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\datasets\\coco128\\images\\train2017', 'val': 'C:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\datasets\\coco128\\images\\train2017', 'test': None, 'names': {0: 'person', 1: 'bicycle', 2: 'car', 3: 'motorcycle', 4: 'airplane', 5: 'bus', 6: 'train', 7: 'truck', 8: 'boat', 9: 'traffic light', 10: 'fire hydrant', 11: 'stop sign', 12: 'parking meter', 13: 'bench', 14: 'bird', 15: 'cat', 16: 'dog', 17: 'horse', 18: 'sheep', 19: 'cow', 20: 'elephant', 21: 'bear', 22: 'zebra', 23: 'giraffe', 24: 'backpack', 25: 'umbrella', 26: 'handbag', 27: 'tie', 28: 'suitcase', 29: 'frisbee', 30: 'skis', 31: 'snowboard', 32: 'sports ball', 33: 'kite', 34: 'baseball bat', 35: 'baseball glove', 36: 'skateboard', 37: 'surfboard', 38: 'tennis racket', 39: 'bottle', 40: 'wine glass', 41: 'cup', 42: 'fork', 43: 'knife', 44: 'spoon', 45: 'bowl', 46: 'banana', 47: 'apple', 48: 'sandwich', 49: 'orange', 50: 'broccoli', 51: 'carrot', 52: 'hot dog', 53: 'pizza', 54: 'donut', 55: 'cake', 56: 'chair', 57: 'couch', 58: 'potted plant', 59: 'bed', 60: 'dining table', 61: 'toilet', 62: 'tv', 63: 'laptop', 64: 'mouse', 65: 'remote', 66: 'keyboard', 67: 'cell phone', 68: 'microwave', 69: 'oven', 70: 'toaster', 71: 'sink', 72: 'refrigerator', 73: 'book', 74: 'clock', 75: 'vase', 76: 'scissors', 77: 'teddy bear', 78: 'hair drier', 79: 'toothbrush'}, 'download': 'https:\\github.com\\ultralytics\\assets\\releases\\download\\v0.0.0\\coco128.zip', 'yaml_file': 'C:\\r22a5n1100\\venv\\Lib\\site-packages\\ultralytics\\cfg\\datasets\\coco128.yaml', 'nc': 80, 'channels': 3}",
+    "resolved_yaml_sha256": null
+  },
+  "resolved_train_args": {
+    "task": "detect",
+    "mode": "train",
+    "model": "yolo26n.pt",
+    "data": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\ultralytics\\cfg\\datasets\\coco128.yaml",
+    "epochs": 3,
+    "time": null,
+    "patience": 100,
+    "batch": 8,
+    "imgsz": 256,
+    "save": true,
+    "save_period": -1,
+    "cache": false,
+    "device": "0",
+    "workers": 8,
+    "project": "C:\\r22a5n1100\\g7run",
+    "name": "train",
+    "exist_ok": true,
+    "pretrained": true,
+    "cls_remap": true,
+    "optimizer": "AdamW",
+    "verbose": true,
+    "seed": 42,
+    "deterministic": true,
+    "single_cls": false,
+    "rect": false,
+    "cos_lr": false,
+    "close_mosaic": 10,
+    "resume": false,
+    "amp": true,
+    "fraction": 1.0,
+    "profile": false,
+    "freeze": null,
+    "multi_scale": 0.0,
+    "compile": false,
+    "channels_last": null,
+    "overlap_mask": true,
+    "mask_ratio": 4,
+    "dropout": 0.0,
+    "val": true,
+    "split": "val",
+    "save_json": false,
+    "conf": null,
+    "iou": null,
+    "max_det": 300,
+    "quantize": null,
+    "dnn": false,
+    "plots": true,
+    "nms": null,
+    "tile": false,
+    "source": null,
+    "vid_stride": 1,
+    "stream_buffer": false,
+    "visualize": false,
+    "augment": false,
+    "agnostic_nms": false,
+    "classes": null,
+    "retina_masks": false,
+    "embed": null,
+    "show": false,
+    "save_frames": false,
+    "save_txt": false,
+    "save_conf": false,
+    "save_crop": false,
+    "show_labels": true,
+    "show_conf": true,
+    "show_boxes": true,
+    "line_width": null,
+    "format": "torchscript",
+    "optimize": false,
+    "dynamic": false,
+    "simplify": true,
+    "opset": null,
+    "workspace": null,
+    "lr0": 0.000119,
+    "lrf": 0.01,
+    "momentum": 0.937,
+    "weight_decay": 0.0005,
+    "warmup_epochs": 3.0,
+    "warmup_momentum": 0.8,
+    "warmup_bias_lr": 0.0,
+    "distill_model": null,
+    "dis": 6.0,
+    "box": 7.5,
+    "cls": 0.5,
+    "cls_pw": 0.0,
+    "dfl": 1.5,
+    "pose": 12.0,
+    "kobj": 1.0,
+    "rle": 1.0,
+    "angle": 1.0,
+    "dlog": 1.0,
+    "dgrad": 0.5,
+    "dlam": 1.0,
+    "nbs": 64,
+    "hsv_h": 0.015,
+    "hsv_s": 0.7,
+    "hsv_v": 0.4,
+    "degrees": 0.0,
+    "translate": 0.1,
+    "scale": 0.5,
+    "shear": 0.0,
+    "perspective": 0.0,
+    "flipud": 0.0,
+    "fliplr": 0.5,
+    "bgr": 0.0,
+    "mosaic": 1.0,
+    "mixup": 0.0,
+    "cutmix": 0.0,
+    "copy_paste": 0.0,
+    "copy_paste_mode": "flip",
+    "auto_augment": "randaugment",
+    "erasing": 0.4,
+    "cfg": null,
+    "tracker": "tracktrack.yaml",
+    "save_dir": "C:\\r22a5n1100\\g7run\\train"
+  },
+  "epoch_observations": [
+    {
+      "epoch": 0,
+      "loss_items": {},
+      "metrics": {
+        "metrics/precision(B)": 0.63917,
+        "metrics/recall(B)": 0.44754,
+        "metrics/mAP50(B)": 0.48108,
+        "metrics/mAP50-95(B)": 0.33549,
+        "val/box_loss": 1.76907,
+        "val/cls_loss": 1.68196,
+        "val/l1_loss": 0.01489
+      },
+      "fitness": 0.33549
+    },
+    {
+      "epoch": 1,
+      "loss_items": {},
+      "metrics": {
+        "metrics/precision(B)": 0.61025,
+        "metrics/recall(B)": 0.43446,
+        "metrics/mAP50(B)": 0.47496,
+        "metrics/mAP50-95(B)": 0.33759,
+        "val/box_loss": 1.7682,
+        "val/cls_loss": 1.69727,
+        "val/l1_loss": 0.01498
+      },
+      "fitness": 0.33759
+    },
+    {
+      "epoch": 2,
+      "loss_items": {},
+      "metrics": {
+        "metrics/precision(B)": 0.60992,
+        "metrics/recall(B)": 0.44784,
+        "metrics/mAP50(B)": 0.46898,
+        "metrics/mAP50-95(B)": 0.32197,
+        "val/box_loss": 1.76769,
+        "val/cls_loss": 1.73232,
+        "val/l1_loss": 0.0151
+      },
+      "fitness": 0.32197
+    },
+    {
+      "epoch": 3,
+      "loss_items": {},
+      "metrics": {
+        "metrics/precision(B)": 0.6092209014630572,
+        "metrics/recall(B)": 0.43342460557502366,
+        "metrics/mAP50(B)": 0.47502864847546256,
+        "metrics/mAP50-95(B)": 0.33742522151595955
+      },
+      "fitness": 0.32197
+    }
+  ],
+  "checkpoint": {
+    "path": "C:\\r22a5n1100\\g7run\\train\\weights\\last.pt",
+    "exists": true,
+    "sha256": "47d27b239629b8cd469e1e03998aa8e69bcc910ae76200baceefc381c7881424",
+    "best_pt_sha256": "c9131e7ac5826f54d52d920de42211a7c3c9cfa1b665aaa01799639e5411db19",
+    "run_args_yaml_sha256": "f2890bcf3688a8601ecb357f464303aa0ac4d9d166bd780d30e1eea4027676b3"
+  },
+  "contract": {
+    "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+    "reason": "all Part A checks satisfied",
+    "checks": [
+      {
+        "check": "physical_gpu_identity",
+        "ok": true,
+        "detail": "AMD Radeon RX 7900 XTX / gfx1100"
+      },
+      {
+        "check": "optimizer_requested_auto",
+        "ok": true,
+        "detail": "requested='auto' (harness must not force an optimizer)"
+      },
+      {
+        "check": "optimizer_resolved_adamw",
+        "ok": true,
+        "detail": "optimizer=auto resolved to AdamW (8.4.x iterations heuristic: >10000 → MuSGD else AdamW)"
+      },
+      {
+        "check": "amp_resolved",
+        "ok": true,
+        "detail": "trainer amp=True"
+      },
+      {
+        "check": "forward_autocast_active",
+        "ok": true,
+        "detail": "48 forward samples with autocast enabled"
+      },
+      {
+        "check": "step_accounting_consistent",
+        "ok": true,
+        "detail": "6 effective of 11 step calls, 5 found_inf skips observed"
+      },
+      {
+        "check": "min_updates",
+        "ok": true,
+        "detail": "6 confirmed parameter-update events (sentinel/checksum deltas); 11 python-level step calls; 11 scaler attempts (minimum required: 3)"
+      },
+      {
+        "check": "grads_finite_all_groups",
+        "ok": true,
+        "detail": "finite grads at every CONFIRMED update across all groups (skipped nonfinite steps recorded separately — they are the GradScaler working as designed, not failures)"
+      },
+      {
+        "check": "nonzero_parameter_deltas",
+        "ok": true,
+        "detail": "366 parameter tensors changed beyond 1e-9"
+      },
+      {
+        "check": "parameter_deltas_finite",
+        "ok": true,
+        "detail": "max_abs_delta finite for every parameter tensor"
+      },
+      {
+        "check": "training_completed",
+        "ok": true,
+        "detail": "train() returned normally / process exit 0"
+      }
+    ]
+  }
+}
