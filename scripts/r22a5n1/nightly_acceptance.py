@@ -576,7 +576,12 @@ def evaluate_g34(amp) -> tuple[dict, dict]:
 
 
 # ================================================================ G5
-def evaluate_g5(ckpt, artifacts: list | None = None) -> dict:
+def evaluate_g5(ckpt, artifacts: list | None = None, *,
+                gfx_target: str | None = None) -> dict:
+    """Strict G5 gate shared across RDNA profiles. The default retains the
+    original frozen gfx1151 behavior; an explicitly supplied target must agree
+    with the physical receipt. Never rewrite the receipt's device identity."""
+    expected_gfx = FROZEN["gfx_target"] if gfx_target is None else gfx_target
     f = {"present": ckpt is not None}
     if not ckpt:
         return gate("G5", False, f, "missing checkpoint/resume evidence")
@@ -667,7 +672,7 @@ def evaluate_g5(ckpt, artifacts: list | None = None) -> dict:
         and last_epoch >= 3
         and bool(ckpt.get("checkpoint_sha256")) and sha_hex_ok
         and all(v is not False for v in anchored.values())
-        and ckpt.get("gfx_target") == FROZEN["gfx_target"]
+        and ckpt.get("gfx_target") == expected_gfx
         and resume_updates > 0
         and (st.get("optimizer_state_entries") or 0) > 0
     )
