@@ -55,3 +55,21 @@ jobs:
 
       - name: Release-closure evidence verifier + adversarial self-tests
         run: python scripts/verify_release_closure.py
+
+      # R22A.5N-GFX1100.1: audit the physical evidence bytes in the PR
+      # checkout; these steps never initialize or pretend to test a GPU.
+      - name: Verify committed gfx1100 raw evidence SHA256 manifest
+        run: python scripts/r22a5n1/evidence_pack.py verify --root reports/r22a5n/R22A5N-GFX1100-20261117-A --run-id R22A5N-GFX1100-20261117-A
+
+      - name: Recompute all nine gfx1100 gates (CPU replay of real GPU receipts)
+        shell: pwsh
+        run: |
+          python scripts/r22a5n1100/nightly_acceptance.py --evidence-root reports/r22a5n/R22A5N-GFX1100-20261117-A --repo-root . --run-id R22A5N-GFX1100-20261117-A --out "$env:RUNNER_TEMP\\gfx1100_nightly_acceptance.json"
+
+      - name: Upload independently recomputed gfx1100 acceptance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r22a5n-gfx1100-acceptance-recomputed
+          path: ${{ runner.temp }}\\gfx1100_nightly_acceptance.json
+          if-no-files-found: warn
