@@ -1,0 +1,7 @@
+# lifecycle summary 2026-11-17T05:09:59.363039+00:00
+# run_id=R22A5N1-G5
+2026-11-17T05:09:59.369387+00:00 stage1 train child pid=55324
+2026-11-17T05:10:31.092567+00:00 interrupted child rc=1 rows_at_kill=2
+2026-11-17T05:10:31.393157+00:00 checkpoint_at_kill sha=1fb0e51a8ac74078bd08ff92220047369911ea700a2862d031ef29a9dab13ff3 state={'checked': True, 'has_optimizer_state': True, 'ckpt_epoch': 0}
+2026-11-17T05:11:14.887746+00:00 resume rc=0 start_epoch=1 optimizer_state_entries=366 effective=8/8
+2026-11-17T05:11:31.185488+00:00 stage4 infer rc=0

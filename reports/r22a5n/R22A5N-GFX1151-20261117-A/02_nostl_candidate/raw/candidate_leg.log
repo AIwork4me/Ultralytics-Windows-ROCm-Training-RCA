@@ -1,0 +1,14 @@
+# leg=official
+# cmd=C:\r22a5n\venv\Scripts\python.exe -I C:\r22a5n\scratch\g1_candidate\nostl_official_1794886720\bn_repro.py
+# VCToolsInstallDir=C:\r22a5n\scratch\g1_candidate\nostl_official_1794886720\fakevc
+# INCLUDE=''
+# USERPROFILE=C:\r22a5n\scratch\g1_candidate\nostl_official_1794886720\home
+# HIPRTC_COMPILE_OPTIONS_APPEND=None
+
+--- stdout ---
+BN_NOSTL_REPRO out_finite=True grad_finite=True loss=0.999990
+
+--- stderr ---
+C:\r22a5n\scratch\g1_candidate\nostl_official_1794886720\bn_repro.py:17: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at B:/src/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  (out_finite, grad_finite, float(loss)))

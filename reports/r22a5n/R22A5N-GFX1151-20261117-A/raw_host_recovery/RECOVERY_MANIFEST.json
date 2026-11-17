@@ -1,0 +1,182 @@
+{
+  "run_id": "R22A5N-GFX1151-20261117-A-recovery",
+  "recovered_utc": "2026-11-17T04:51:39.644336+00:00",
+  "note": "append-only recovery of ORIGINAL host-side raw evidence for the R22A.5N pack; the original 29-entry SHA256MANIFEST.json is untouched and remains the authority for the originally committed set; nothing here is a rerun",
+  "entries": [
+    {
+      "path": "raw_host_recovery/g5_resume/stage1.log",
+      "source_host_path": "C:\\r22a5n\\runs\\g5_resume\\stage1.log",
+      "bytes": 18421,
+      "sha256": "34d9b5ff37f591668f909f8bad845ffeefc3bae422610d966cd72a30760518b0",
+      "source_mtime_utc": "2026-11-17T03:48:03.674015+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.536232+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g5_resume/stage3.log",
+      "source_host_path": "C:\\r22a5n\\runs\\g5_resume\\stage3.log",
+      "bytes": 22166,
+      "sha256": "b86368c2593e2edba440f6ce472366155943aa3c5d0f040d0c4eb2d379b6a572",
+      "source_mtime_utc": "2026-11-17T03:48:49.859408+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.536883+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g5_resume/stage4.log",
+      "source_host_path": "C:\\r22a5n\\runs\\g5_resume\\stage4.log",
+      "bytes": 277,
+      "sha256": "9a2d2e645f5caebb7d318dc37d8b6f1c9c8f030ecbf1703b70fc492eb91b2bd7",
+      "source_mtime_utc": "2026-11-17T03:49:08.650712+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.537623+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g5_resume/stage1_train.py",
+      "source_host_path": "C:\\r22a5n\\runs\\g5_resume\\stage1_train.py",
+      "bytes": 246,
+      "sha256": "8a7a75a6c09c18a6510451097ef796702095813172633784dd5314be85bbaff8",
+      "source_mtime_utc": "2026-11-17T03:46:32.277015+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.538270+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g5_resume/stage3_resume.py",
+      "source_host_path": "C:\\r22a5n\\runs\\g5_resume\\stage3_resume.py",
+      "bytes": 254,
+      "sha256": "27f2c012cf57eff65afcc30e71b647c1a4f61636e7f9c9603da2dc0d4f978b2b",
+      "source_mtime_utc": "2026-11-17T03:48:04.005956+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.539520+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g5_resume/stage4_infer.py",
+      "source_host_path": "C:\\r22a5n\\runs\\g5_resume\\stage4_infer.py",
+      "bytes": 285,
+      "sha256": "5f4874b4485c0dfc1bf9ab077b62ecdceb0c11037b759e8286cc6ad1b6b313e9",
+      "source_mtime_utc": "2026-11-17T03:48:49.860456+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.540035+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g5_resume/runs/lifecycle/args.yaml",
+      "source_host_path": "C:\\r22a5n\\runs\\g5_resume\\runs\\lifecycle\\args.yaml",
+      "bytes": 1957,
+      "sha256": "f67a595dc69e587b9cd9b0e66122de04abfc2a50f67c541982f03852b3bd73e4",
+      "source_mtime_utc": "2026-11-17T03:48:09.176195+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.540861+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g5_resume/runs/lifecycle/results.csv",
+      "source_host_path": "C:\\r22a5n\\runs\\g5_resume\\runs\\lifecycle\\results.csv",
+      "bytes": 690,
+      "sha256": "f42555c9bb694709e87f4e10f5b9f90c7d1401a1ea376a1e19f51e51a61fd5b1",
+      "source_mtime_utc": "2026-11-17T03:48:40.811004+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.541378+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g0/g0_child_1794886647/child.log",
+      "source_host_path": "C:\\r22a5n\\scratch\\g0\\g0_child_1794886647\\child.log",
+      "bytes": 713,
+      "sha256": "ef823a118cd90fdd47369c1889bb1593953044bce3b9a130bef1e3001980600c",
+      "source_mtime_utc": "2026-11-17T03:37:43.609788+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.542032+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g0/g0_child_1794886647/g0_child.py",
+      "source_host_path": "C:\\r22a5n\\scratch\\g0\\g0_child_1794886647\\g0_child.py",
+      "bytes": 1823,
+      "sha256": "deaf04182c51ec5f2ce8ae80e38c2096d8bfcbd3e6c430d2f89dc564b7af9a19",
+      "source_mtime_utc": "2026-11-17T03:37:27.082195+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.542509+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g0/g0_child_1794886681/child.log",
+      "source_host_path": "C:\\r22a5n\\scratch\\g0\\g0_child_1794886681\\child.log",
+      "bytes": 713,
+      "sha256": "307ea312e62fb92b22ff081bc3392f597da7fe4c98908a88aa92ae1925b76eab",
+      "source_mtime_utc": "2026-11-17T03:38:16.995838+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.543125+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g0/g0_child_1794886681/g0_child.py",
+      "source_host_path": "C:\\r22a5n\\scratch\\g0\\g0_child_1794886681\\g0_child.py",
+      "bytes": 1823,
+      "sha256": "deaf04182c51ec5f2ce8ae80e38c2096d8bfcbd3e6c430d2f89dc564b7af9a19",
+      "source_mtime_utc": "2026-11-17T03:38:01.187070+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.543706+00:00"
+    },
+    {
+      "path": "raw_host_recovery/g1_candidate/nostl_official_1794886720/leg.log",
+      "source_host_path": "C:\\r22a5n\\scratch\\g1_candidate\\nostl_official_1794886720\\leg.log",
+      "bytes": 804,
+      "sha256": "52736b1c068e1c5c138009923b346d0458a0274bfa2c1b2e19c148cac06acce5",
+      "source_mtime_utc": "2026-11-17T03:38:55.989621+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.544402+00:00",
+      "committed_copy": "02_nostl_candidate/raw/candidate_leg.log",
+      "identical_to_committed_blob": true
+    },
+    {
+      "path": "raw_host_recovery/g1_negctrl/nostl_official_1794886759/leg.log",
+      "source_host_path": "C:\\r22a5n\\scratch\\g1_negctrl\\nostl_official_1794886759\\leg.log",
+      "bytes": 1251,
+      "sha256": "92b9ade01588811eef0de640758cf1eea228052cb00c5703838257517047f680",
+      "source_mtime_utc": "2026-11-17T03:39:37.501316+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.569767+00:00",
+      "committed_copy": "03_nostl_negative_control/raw/negctrl_v1_leg.log",
+      "identical_to_committed_blob": true
+    },
+    {
+      "path": "raw_host_recovery/g1_negctrl_v2/nostl_official_1794886870/leg.log",
+      "source_host_path": "C:\\r22a5n\\scratch\\g1_negctrl_v2\\nostl_official_1794886870\\leg.log",
+      "bytes": 2828,
+      "sha256": "12d309d1f48efd08580587c6817cf36422b26d90b14342f0f305a345c9008c2a",
+      "source_mtime_utc": "2026-11-17T03:41:14.086723+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.587370+00:00",
+      "committed_copy": "03_nostl_negative_control/raw/negctrl_v2_leg.log",
+      "identical_to_committed_blob": true
+    },
+    {
+      "path": "raw_host_recovery/amp_coco128/args.yaml",
+      "source_host_path": "C:\\r22a5n\\runs\\amp_coco128\\args.yaml",
+      "bytes": 1774,
+      "sha256": "74196e74c75513d951871142463885bbc29b48e2dd7c10c8b6f408871df7dff6",
+      "source_mtime_utc": "2026-11-17T03:43:29.822418+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.605381+00:00"
+    },
+    {
+      "path": "raw_host_recovery/amp_coco128/results.csv",
+      "source_host_path": "C:\\r22a5n\\runs\\amp_coco128\\results.csv",
+      "bytes": 564,
+      "sha256": "01635d44398b823e312ac74de8a146b10ec12f44d4a4acc2db23dac122c45ec5",
+      "source_mtime_utc": "2026-11-17T03:45:10.548841+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.606132+00:00"
+    },
+    {
+      "path": "raw_host_recovery/workers8/args.yaml",
+      "source_host_path": "C:\\r22a5n\\runs\\workers8\\args.yaml",
+      "bytes": 1768,
+      "sha256": "9e32250787e17c0d2c587bc999980f513211cced1bfee627ebcd814c4966b6ac",
+      "source_mtime_utc": "2026-11-17T03:51:39.651503+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.606778+00:00"
+    },
+    {
+      "path": "raw_host_recovery/workers8/results.csv",
+      "source_host_path": "C:\\r22a5n\\runs\\workers8\\results.csv",
+      "bytes": 306,
+      "sha256": "edf5637bdd7cd76637e7a8e2cd129e031cced1ddcb3e5e9b0c104465edebca44",
+      "source_mtime_utc": "2026-11-17T03:52:28.409494+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.607292+00:00"
+    },
+    {
+      "path": "raw_host_recovery/workers8_v2/args.yaml",
+      "source_host_path": "C:\\r22a5n\\runs\\workers8_v2\\args.yaml",
+      "bytes": 1774,
+      "sha256": "49bed5c062d96fe0771cf976905009c5eaf08af476fdb1a42e8d6585e94c2036",
+      "source_mtime_utc": "2026-11-17T03:54:34.903477+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.607852+00:00"
+    },
+    {
+      "path": "raw_host_recovery/workers8_v2/results.csv",
+      "source_host_path": "C:\\r22a5n\\runs\\workers8_v2\\results.csv",
+      "bytes": 562,
+      "sha256": "a8474847896d443f49fa7e0682e8881929e14fd7ac1532d3e99791a7d870cacc",
+      "source_mtime_utc": "2026-11-17T03:55:26.590480+00:00",
+      "recovered_utc": "2026-11-17T04:51:39.608330+00:00"
+    }
+  ],
+  "host_files_missing": []
+}

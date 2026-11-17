@@ -1,0 +1,12 @@
+{
+ "stage": "post-run orphan check R22A5N-G7-W8-V2",
+ "captured_utc": "2026-11-17T03:56:20.227157+00:00",
+ "all_python_pids": [
+  37120,
+  12052,
+  48996
+ ],
+ "mission_tree_leftover": [],
+ "orphan_verdict": "CLEAN",
+ "note": "baseline P19B pair 37120/12052 excluded (predates mission)"
+}

@@ -1,0 +1,74 @@
+{
+  "run_id": "R22A5N1-G0",
+  "mission": "R22A.5N.1",
+  "timestamp": "2026-11-17T04:57:10.938786+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.13.13",
+  "torch": "2.16.0a0+rocm10.3.0a20261116",
+  "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+  "ultralytics": "8.4.214",
+  "hip": "7.18.26455",
+  "channel": "nightly",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "verdict": "G0_RUNTIME_IDENTITY_PASS",
+  "reason": "real GPU selected in child, GPU op finite, in-process loaded MIOpen.dll path+SHA256 equal the frozen candidate wheel identity",
+  "expect_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+  "child_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+  "child_dll_path": "C:\\r22a5n1\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+  "child_dll_sha256_matches_frozen": true,
+  "child_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "child_torch": "2.16.0a0+rocm10.3.0a20261116",
+  "child_hip": "7.18.26455",
+  "child_device_count": 1,
+  "child_op_finite": true,
+  "child_miopen_versions": [
+    "3.6.3.25f28906"
+  ],
+  "child_marker_count": 2,
+  "miopen_identity_in_parent": {
+    "loaded": true,
+    "path": "C:\\r22a5n1\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+    "bytes": 519806464,
+    "embedded_version_strings": [
+      "3.6.3.25f28906"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  },
+  "parent_and_child_dll_agree": true,
+  "exit_code": 0,
+  "duration_s": 20.0,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\r22a5n1\\scratch_g0\\g0_child_1794891411\\child.log",
+  "command": "python verify_gpu_child_identity.py --expect-dll-sha256 f9312c3e646f... --channel nightly",
+  "leg_detail": {
+    "exit_code": 0,
+    "duration_s": 18.8,
+    "child": {
+      "torch": "2.16.0a0+rocm10.3.0a20261116",
+      "hip": "7.18.26455",
+      "cuda_available": true,
+      "device_count": 1,
+      "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+      "op_finite": true,
+      "miopen": {
+        "loaded": true,
+        "path": "C:\\r22a5n1\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+        "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "bytes": 519806464,
+        "embedded_version_strings": [
+          "3.6.3.25f28906"
+        ],
+        "pr13437_marker_miopen_initializer_list": 2
+      }
+    },
+    "stdout_tail": "G0_CHILD_IDENTITY {\"torch\": \"2.16.0a0+rocm10.3.0a20261116\", \"hip\": \"7.18.26455\", \"cuda_available\": true, \"device_count\": 1, \"gpu_name\": \"AMD Radeon(TM) 8060S Graphics\", \"op_finite\": true, \"miopen\": {\"loaded\": true, \"path\": \"C:\\\\r22a5n1\\\\venv\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"sha256\": \"f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6\", \"bytes\": 519806464, \"embedded_version_strings\": [\"3.6.3.25f28906\"], \"pr13437_marker_miopen_initializer_list\": 2}}\n",
+    "stderr_tail": "",
+    "log_path": "C:\\r22a5n1\\scratch_g0\\g0_child_1794891411\\child.log",
+    "scratch": "C:\\r22a5n1\\scratch_g0\\g0_child_1794891411"
+  }
+}

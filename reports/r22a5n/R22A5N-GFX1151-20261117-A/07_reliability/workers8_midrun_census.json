@@ -1,0 +1,32 @@
+{
+ "stage": "mid-run census during R22A5N-G7-W8-V2 (workers=8)",
+ "captured_utc": "2026-11-17T03:56:08.314534+00:00",
+ "capture_method": "Win32_Process CIM snapshot executed live WHILE the workers=8 run was training; raw listing captured in the mission execution transcript at that instant (21 python.exe processes); a second snapshot taken ~40s later found the run already finished (0 children) \u2014 kept as g7_midrun_census.json",
+ "trainer_pid": 52356,
+ "trainer_parent_pid": 55960,
+ "spawn_children_of_trainer": [
+  42540,
+  48344,
+  48952,
+  50040,
+  51312,
+  53184,
+  54408,
+  54420,
+  54680,
+  54764,
+  54964,
+  55216,
+  55248,
+  55716,
+  56020,
+  56796
+ ],
+ "spawn_children_count": 16,
+ "interpretation": "16 multiprocessing spawn-method children alive simultaneously under the trainer: 8 train + 8 val DataLoader workers (Windows spawn contract); never inferred from PID count alone in isolation \u2014 parentage (ppid=trainer) and spawn_main command lines were verified per process",
+ "preexisting_zombies_disclosed": [
+  37120,
+  12052
+ ],
+ "note": "baseline pair 37120/12052 is the known P19B-era zombie pair predating R22A.5N; not created by this mission"
+}

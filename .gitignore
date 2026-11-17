@@ -55,3 +55,5 @@ desktop.ini
 credentials*
 # comgr device-libs bitcode captured incidentally with saved temps (not evidence)
 *.bc
+# R22A.5N.1: pack-B lifecycle checkpoints are deliberate evidence (G5 anchor)
+!reports/r22a5n1/**/checkpoints/*.pt

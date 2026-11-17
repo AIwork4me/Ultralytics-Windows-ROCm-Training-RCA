@@ -1,0 +1,196 @@
+{
+  "stage": "mid-run census",
+  "captured_utc": "2026-11-17T05:18:34.737321+00:00",
+  "trainer_pid": 39592,
+  "spawn_children_of_trainer": [
+    20660,
+    30512,
+    36664,
+    40360,
+    44440,
+    46388,
+    48436,
+    48720,
+    52876,
+    52992,
+    53072,
+    53516,
+    54332,
+    54936,
+    56100,
+    57236
+  ],
+  "checker_pid": 55012,
+  "rows_at_census": 1,
+  "orchestrator_pid": 6784,
+  "spawn_children_count": 16,
+  "spawn_main_children_count": 16,
+  "snapshot_count": 1,
+  "snapshots": [
+    {
+      "captured_utc": "2026-11-17T05:18:34.737321+00:00",
+      "python_tree": [
+        {
+          "pid": 37120,
+          "ppid": 3268,
+          "cmdline": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe C:/P19B/scratch/p1_amp_audit.py"
+        },
+        {
+          "pid": 12052,
+          "ppid": 37120,
+          "cmdline": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe C:/P19B/scratch/p1_amp_audit.py"
+        },
+        {
+          "pid": 53968,
+          "ppid": 54396,
+          "cmdline": "C:\\Users\\rocm\\miniconda3\\python.exe -X utf8 C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/scripts/r22a5n1/run_envelope.py --name stage_e_"
+        },
+        {
+          "pid": 52244,
+          "ppid": 53968,
+          "cmdline": "C:/r22a5n1/venv/Scripts/python.exe -X utf8 C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/scripts/r22a5n1/worker_stage.py --python C:/r22a"
+        },
+        {
+          "pid": 55012,
+          "ppid": 52244,
+          "cmdline": "C:/r22a5n1/venv/Scripts/python.exe -X utf8 C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/scripts/r22a5n1/worker_stage.py --python C:/r22a"
+        },
+        {
+          "pid": 6784,
+          "ppid": 55012,
+          "cmdline": "C:/r22a5n1/venv/Scripts/python.exe -X utf8 C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-golden-path\\scripts\\audit_adamw_amp.py -"
+        },
+        {
+          "pid": 39592,
+          "ppid": 6784,
+          "cmdline": "C:/r22a5n1/venv/Scripts/python.exe -X utf8 C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-golden-path\\scripts\\audit_adamw_amp.py -"
+        },
+        {
+          "pid": 46388,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2728)\" \"--multipr"
+        },
+        {
+          "pid": 54936,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2796)\" \"--multipr"
+        },
+        {
+          "pid": 48720,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2812)\" \"--multipr"
+        },
+        {
+          "pid": 30512,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2852)\" \"--multipr"
+        },
+        {
+          "pid": 48436,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2576)\" \"--multipr"
+        },
+        {
+          "pid": 52876,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2776)\" \"--multipr"
+        },
+        {
+          "pid": 57236,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2664)\" \"--multipr"
+        },
+        {
+          "pid": 53516,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2616)\" \"--multipr"
+        },
+        {
+          "pid": 44440,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2620)\" \"--multipr"
+        },
+        {
+          "pid": 40360,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=1588)\" \"--multipr"
+        },
+        {
+          "pid": 53072,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2196)\" \"--multipr"
+        },
+        {
+          "pid": 36664,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2876)\" \"--multipr"
+        },
+        {
+          "pid": 52992,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=3044)\" \"--multipr"
+        },
+        {
+          "pid": 20660,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=3008)\" \"--multipr"
+        },
+        {
+          "pid": 54332,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2536)\" \"--multipr"
+        },
+        {
+          "pid": 56100,
+          "ppid": 39592,
+          "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=3016)\" \"--multipr"
+        }
+      ],
+      "trainer_pid": 39592,
+      "children": [
+        20660,
+        30512,
+        36664,
+        40360,
+        44440,
+        46388,
+        48436,
+        48720,
+        52876,
+        52992,
+        53072,
+        53516,
+        54332,
+        54936,
+        56100,
+        57236
+      ],
+      "spawn_main": [
+        46388,
+        54936,
+        48720,
+        30512,
+        48436,
+        52876,
+        57236,
+        53516,
+        44440,
+        40360,
+        53072,
+        36664,
+        52992,
+        20660,
+        54332,
+        56100
+      ]
+    }
+  ],
+  "capture_method": "series of full Win32_Process CIM tree snapshots executed live while training; trainer identified as the deepest audit_adamw_amp process; every snapshot retained; peak snapshot cited",
+  "preexisting_zombies_disclosed": [
+    12052,
+    37120,
+    52244,
+    53968,
+    55012
+  ]
+}

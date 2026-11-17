@@ -1,0 +1,503 @@
+{
+  "run_id": "R22A5N-G0-PROV",
+  "mission": "R22A.5N",
+  "timestamp": "2026-11-17T03:37:14.645046+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.13.13",
+  "torch": "2.16.0a0+rocm10.3.0a20261116",
+  "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+  "hip": "7.18.26455",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python verify_provenance.py --lock reports/r22a5n/R22A5N-GFX1151-20261117-A/01_package_provenance/resolved_wheel_lock_nightly_gfx1151.json",
+  "exit_code": 0,
+  "duration_s": 3.65,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "reports\\r22a5n\\R22A5N-GFX1151-20261117-A\\02_runtime_identity\\provenance_g0.log",
+  "installed_versions": {
+    "amd-torchvision-device-gfx1151": "0.30.0a0+rocm10.3.0a20261116",
+    "amd-torch-device-gfx1151": "2.16.0a0+rocm10.3.0a20261116",
+    "anyio": "4.16.0",
+    "certifi": "2026.10.23",
+    "charset-normalizer": "3.5.2",
+    "contourpy": "1.4.0",
+    "cycler": "0.12.1",
+    "filelock": "4.2.10",
+    "fonttools": "4.68.0",
+    "fsspec": "2026.9.0",
+    "h11": "0.16.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "idna": "3.20",
+    "jinja2": "3.1.6",
+    "kiwisolver": "1.5.1",
+    "markupsafe": "3.0.4",
+    "matplotlib": "3.11.2",
+    "mpmath": "1.3.0",
+    "networkx": "3.7",
+    "numpy": "2.5.5",
+    "nvidia-ml-py": "13.615.71",
+    "opencv-python": "5.0.0.93",
+    "packaging": "26.3",
+    "pillow": "13.0.0",
+    "pip": "26.0.1",
+    "polars": "2.1.0",
+    "polars-runtime-32": "2.1.0",
+    "psutil": "7.2.2",
+    "pyparsing": "3.3.3",
+    "python-dateutil": "4.0.0",
+    "requests": "2.34.2",
+    "rocm": "10.3.0a20261116",
+    "rocm-bootstrap": "0.3.0",
+    "rocm-sdk-core": "10.3.0a20261116",
+    "rocm-sdk-device-gfx1151": "10.3.0a20261116",
+    "rocm-sdk-libraries": "10.3.0a20261116",
+    "setuptools": "84.2.1",
+    "sympy": "1.14.0",
+    "torch": "2.16.0a0+rocm10.3.0a20261116",
+    "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+    "typing_extensions": "4.16.0",
+    "tzdata": "2026.6",
+    "ultralytics": "8.4.214",
+    "ultralytics-platform": "0.1.111",
+    "ultralytics-thop": "2.2.5",
+    "urllib3": "2.8.0"
+  },
+  "wheel_lock": [
+    {
+      "name": "torch",
+      "version": "2.16.0a0+rocm10.3.0a20261116",
+      "sha256": "e1495611828bca9fd861c07fc15153a63ffbfdb3c1136856ab8b495f3b9a4fd8",
+      "url": "https://nightly.repo.amd.com/rocm/pytorch/whl-next/torch/torch-2.16.0a0%2Brocm10.3.0a20261116-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "amd-torch-device-gfx1151",
+      "version": "2.16.0a0+rocm10.3.0a20261116",
+      "sha256": "86b0715d6e5431a7d778f8f85da5fbce93ac1ab2efabe2513eb3ae279ea7fe61",
+      "url": "https://nightly.repo.amd.com/rocm/pytorch/whl-next/amd-torch-device-gfx1151/amd_torch_device_gfx1151-2.16.0a0%2Brocm10.3.0a20261116-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "amd-torchvision-device-gfx1151",
+      "version": "0.30.0a0+rocm10.3.0a20261116",
+      "sha256": "8985276be2227c05ffd4debd0dd178fae6a65d1e6c9de1c71a07fc8d7c74eef6",
+      "url": "https://nightly.repo.amd.com/rocm/pytorch/whl-next/amd-torchvision-device-gfx1151/amd_torchvision_device_gfx1151-0.30.0a0%2Brocm10.3.0a20261116-py3-none-win_amd64.whl"
+    },
+    {
+      "name": "ultralytics",
+      "version": "8.4.214",
+      "sha256": "d3288d08f903a3ad848f5a66142210b27bbfbfd1ab35eab45bebed0503815037",
+      "url": "https://files.pythonhosted.org/packages/8b/3e/98c04feb308871f84af81b77a82cc3e471d129f55e98396e92713a80e798/ultralytics-8.4.214-py3-none-any.whl"
+    },
+    {
+      "name": "rocm",
+      "version": "10.3.0a20261116",
+      "sha256": "342f3231edbdaa7fceac8f46d6f5ee538a6f17b67db72095950a5fa977ca4a01",
+      "url": "https://nightly.repo.amd.com/rocm/core/whl-next/rocm/rocm-10.3.0a20261116.tar.gz"
+    },
+    {
+      "name": "rocm-sdk-core",
+      "version": "10.3.0a20261116",
+      "sha256": "048b3ea57a39e68345ac1266699aa1eac577fb81feabe63386e5dcaefdf6689b",
+      "url": "https://nightly.repo.amd.com/rocm/core/whl-next/rocm-sdk-core/rocm_sdk_core-10.3.0a20261116-py3-none-win_amd64.whl"
+    },
+    {
+      "name": "rocm-sdk-device-gfx1151",
+      "version": "10.3.0a20261116",
+      "sha256": "6d6c798ddfd795bda31631746c0008ec8afd876d26de92a624ff4743eef1fb87",
+      "url": "https://nightly.repo.amd.com/rocm/core/whl-next/rocm-sdk-device-gfx1151/rocm_sdk_device_gfx1151-10.3.0a20261116-py3-none-win_amd64.whl"
+    },
+    {
+      "name": "rocm-sdk-libraries",
+      "version": "10.3.0a20261116",
+      "sha256": "b11baad94242690642f95687993f200fe9ef27fcdbe34e2bbf4605e0407599f0",
+      "url": "https://nightly.repo.amd.com/rocm/core/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.3.0a20261116-py3-none-win_amd64.whl"
+    },
+    {
+      "name": "torchvision",
+      "version": "0.30.0a0+rocm10.3.0a20261116",
+      "sha256": "a893631c3d9109250162a454aa3e03f776ae0ec0b2b697290867ba531cc4de21",
+      "url": "https://nightly.repo.amd.com/rocm/pytorch/whl-next/torchvision/torchvision-0.30.0a0%2Brocm10.3.0a20261116-py3-none-win_amd64.whl"
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.9.0",
+      "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f",
+      "url": "https://files.pythonhosted.org/packages/6c/c0/a98505f18594f1bce828bb159cec0fcf9860562f1a2c85913409fc8f3d9e/fsspec-2026.9.0-py3-none-any.whl"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.11.2",
+      "sha256": "bc067c462a86f0e57bf52fc6e058d90171a5420007dac00c46e90153050c69a7",
+      "url": "https://files.pythonhosted.org/packages/94/2e/6d1d33f242c705b5c6c6fb3f0fc141add51cb1abb62912e59de0835d28c4/matplotlib-3.11.2-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.4.0",
+      "sha256": "6507a016976a75a15aee47809a34605de6244ccc056e6164bf9fb14b27eecad4",
+      "url": "https://files.pythonhosted.org/packages/68/c1/a59df0754bf83a6f3e153cc19d550a5b01f607e389b1c4d57f436f9139e0/contourpy-1.4.0-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1",
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30",
+      "url": "https://files.pythonhosted.org/packages/e7/05/c19819d5e3d95294a6f5947fb9b9629efb316b96de511b418c53d245aae6/cycler-0.12.1-py3-none-any.whl"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.68.0",
+      "sha256": "6ed796b220654b4d37ad20af73419ec7969b669dd678cab88afb602c5683a331",
+      "url": "https://files.pythonhosted.org/packages/61/2b/6c6f578176edeec83c5e02b7e745c1c8029f8cec4e32b4898d2c573bb881/fonttools-4.68.0-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1",
+      "sha256": "dc23390afe9f4ef9ac3bcc72a03a56eebbde03f4c571a32cb38f859cff9a6524",
+      "url": "https://files.pythonhosted.org/packages/f5/22/deabbb3ad6d918d74b7831b2d8ae7151b09d21c87974e5ee8a456f58c94c/kiwisolver-1.5.1-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "networkx",
+      "version": "3.7",
+      "sha256": "e3fd2c13a7814cee3746340d8d7f8598a67f16a58bf47fb7f8793fab6efca1b0",
+      "url": "https://files.pythonhosted.org/packages/7e/cd/fe58041e9011f307c490e3e17dd48cc516448f7c698a3f2d9d9d65d7e6a8/networkx-3.7-py3-none-any.whl"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.5",
+      "sha256": "e0608d1585557b68dcb6a70a41654f7536567960afad79d91752d2863b242b68",
+      "url": "https://files.pythonhosted.org/packages/45/74/bb9161943fb65caf24e4bb04c788f5c7815e6cb78ac595e7f46781033c82/numpy-2.5.5-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "nvidia-ml-py",
+      "version": "13.615.71",
+      "sha256": "959bf4adf6fe1308e4bd739e722236b0d1ec8392e2cefad33ff70c311380b9b6",
+      "url": "https://files.pythonhosted.org/packages/53/a1/1681dfa1c904d4e3e72e51b55a0ff012d50b766843ef832d584abe2113c6/nvidia_ml_py-13.615.71-py3-none-any.whl"
+    },
+    {
+      "name": "opencv-python",
+      "version": "5.0.0.93",
+      "sha256": "f90ba04b8f73bc5c3814037699739f0156f597338a98f05956c684e7c3ca10d2",
+      "url": "https://files.pythonhosted.org/packages/21/f0/9fa6e85cb10c8eb36a0222d27e50fe381b86ce49a55446bf39f491727564/opencv_python-5.0.0.93-cp37-abi3-win_amd64.whl"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "url": "https://files.pythonhosted.org/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0",
+      "sha256": "9dda0788a9932776a75d8bcc020076edc308ce2508b51f6739a45e3158b3fc42",
+      "url": "https://files.pythonhosted.org/packages/d7/ed/1b16fb66a37e1b9e41370b93b2c614c7da761a5b2a41dc333f7af4639962/pillow-13.0.0-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "polars",
+      "version": "2.1.0",
+      "sha256": "63c50ce3533f5a03d17c3a2a24f1d0e0c7eda98fbde4268a3cba900d34060e67",
+      "url": "https://files.pythonhosted.org/packages/d5/d4/e696a46c74ec8cac6434764deaf72f7edcc2e91c2145a9b3f61900a7aa7a/polars-2.1.0-py3-none-any.whl"
+    },
+    {
+      "name": "polars-runtime-32",
+      "version": "2.1.0",
+      "sha256": "f2fe32f48af2395cd6ec52a433a03970a69aab1dbb66a613729fd549ce92c904",
+      "url": "https://files.pythonhosted.org/packages/4d/4e/2a419d0def2908255dd1b7318c48430319859dc92ca156e2f81ff7bcd78b/polars_runtime_32-2.1.0-cp311-abi3-win_amd64.whl"
+    },
+    {
+      "name": "psutil",
+      "version": "7.2.2",
+      "sha256": "eb7e81434c8d223ec4a219b5fc1c47d0417b12be7ea866e24fb5ad6e84b3d988",
+      "url": "https://files.pythonhosted.org/packages/b4/90/e2159492b5426be0c1fef7acba807a03511f97c5f86b3caeda6ad92351a7/psutil-7.2.2-cp37-abi3-win_amd64.whl"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3",
+      "sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4",
+      "url": "https://files.pythonhosted.org/packages/38/bb/d215ee7c73b61497b28a5503f9f53523f294fcc936762b7caf90e0c1c2b5/pyparsing-3.3.3-py3-none-any.whl"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "4.0.0",
+      "sha256": "a5e246f79eb80475e691bf93862cead98decd8a498cf53ba0516fcdc0f50dc1c",
+      "url": "https://files.pythonhosted.org/packages/2f/a9/52b89563d154433d79b51ed1eb4842bf7334cb2696891a7fe135618853d7/python_dateutil-4.0.0-py3-none-any.whl"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2",
+      "sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0",
+      "url": "https://files.pythonhosted.org/packages/a0/f4/c67b0b3f1b9245e8d266f0f112c500d50e5b4e83cb6f3b71b6528104182a/requests-2.34.2-py3-none-any.whl"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2",
+      "sha256": "78456a747de8dc58360ffa581f30a002baf5aa28cb262536545e91f113ed7639",
+      "url": "https://files.pythonhosted.org/packages/9c/76/b8ec57f4e9ee3253541abf95e4a462c0175fe8032dcd070f1f2421240942/charset_normalizer-3.5.2-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "url": "https://files.pythonhosted.org/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0",
+      "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3",
+      "url": "https://files.pythonhosted.org/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23",
+      "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1",
+      "url": "https://files.pythonhosted.org/packages/32/d1/a3652fe2c19134d0d15922177821d863cbd7e842d53a21bbe7e8e3a1b5ac/certifi-2026.10.23-py3-none-any.whl"
+    },
+    {
+      "name": "rocm-bootstrap",
+      "version": "0.3.0",
+      "sha256": "62d0160ecdd86f7132dbab9aec257cb2c96327df2592b0633aa6bb56399cc095",
+      "url": "https://files.pythonhosted.org/packages/0c/b6/30144880b8e2bad4e9991b08352c7cec17931b5d26b1f9108192f4f17d91/rocm_bootstrap-0.3.0-py3-none-any.whl"
+    },
+    {
+      "name": "setuptools",
+      "version": "84.2.1",
+      "sha256": "ca140b45d5325a9478f880e351484f62fef15f336462e449ca0c03c873d589c2",
+      "url": "https://files.pythonhosted.org/packages/ef/55/6dc6d6bb953bdfc52519a0059592c52b6e3b8ad51cf8256dffceb55b0610/setuptools-84.2.1-py3-none-any.whl"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0",
+      "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5",
+      "url": "https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0",
+      "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+      "url": "https://files.pythonhosted.org/packages/43/e3/7d92a15f894aa0c9c4b49b8ee9ac9850d6e63b03c9c32c0367a13ae62209/mpmath-1.3.0-py3-none-any.whl"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "url": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl"
+    },
+    {
+      "name": "ultralytics-platform",
+      "version": "0.1.111",
+      "sha256": "ea0910ccf00bab31898bd352fd459d47a2b14901614c8cefd05aa0b3fb2d63c7",
+      "url": "https://files.pythonhosted.org/packages/16/ba/18f6e500c0eb41f2e1a35e78c40bdffd0151f30df88b5a42a2426ba0ecc2/ultralytics_platform-0.1.111-py3-none-any.whl"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad",
+      "url": "https://files.pythonhosted.org/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl"
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55",
+      "url": "https://files.pythonhosted.org/packages/7e/f5/f66802a942d491edb555dd61e3a9961140fd64c90bce1eafd741609d334d/httpcore-1.0.9-py3-none-any.whl"
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86",
+      "url": "https://files.pythonhosted.org/packages/04/4b/29cac41a4d98d144bf5f6d33995617b185d14b22401f75ca86f384e87ff1/h11-0.16.0-py3-none-any.whl"
+    },
+    {
+      "name": "ultralytics-thop",
+      "version": "2.2.5",
+      "sha256": "a698003b42de578731ba51c747031914bba8775f47fe675dbbf28510f0c2654d",
+      "url": "https://files.pythonhosted.org/packages/c6/6b/4c47d97cc649ca0e04f2a30f099e9a7d28e9f2145c8e11dcac5e16f2cd46/ultralytics_thop-2.2.5-py3-none-any.whl"
+    },
+    {
+      "name": "anyio",
+      "version": "4.16.0",
+      "sha256": "c66ae634e0b8228396b801741beb3294326d4b6102f7bba4041c0dfb58c29026",
+      "url": "https://files.pythonhosted.org/packages/a9/16/7757fb84c819accc7d7e9af5291b261e4abb8627ee040f99e7d35ef2457a/anyio-4.16.0-py3-none-any.whl"
+    },
+    {
+      "name": "filelock",
+      "version": "4.2.10",
+      "sha256": "9479aaeb4db20b5a53e3da28493edd24720b66b8a0b84030aa56ccdf243d6857",
+      "url": "https://files.pythonhosted.org/packages/ef/90/5d0096a325aa0f83ba7a3968bfb485b67e32c947bdf9cd0fcb4b485be718/filelock-4.2.10-py3-none-any.whl"
+    },
+    {
+      "name": "Jinja2",
+      "version": "3.1.6",
+      "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+      "url": "https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl"
+    },
+    {
+      "name": "MarkupSafe",
+      "version": "3.0.4",
+      "sha256": "1f1f9477e174582b0a1b583d60b66e1f2cf5d3fe12cee985e4aedf44766600e5",
+      "url": "https://files.pythonhosted.org/packages/6f/36/163da64de88a13db79214ef75fa041be7fa13bdb42261cf5b7484de14bfb/markupsafe-3.0.4-cp313-cp313-win_amd64.whl"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6",
+      "sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+      "url": "https://files.pythonhosted.org/packages/0a/66/9a06c2227fedfd4919f0eaaa8b94377d9730882a7e4f95823c9a331ab5e1/tzdata-2026.6-py2.py3-none-any.whl"
+    }
+  ],
+  "lock_audit": {
+    "lock_present": true,
+    "channel": "nightly",
+    "channel_exact_official": true,
+    "package_origin_audit": {
+      "recomputed_from": "package url + metadata (rules_checked never read)",
+      "classes": {
+        "native_amd_gpu_stack": 8,
+        "approved_pypi_bootstrap": 1,
+        "third_party": 37
+      },
+      "violations": [],
+      "ok": true
+    },
+    "rocm_family_mix_audit": {
+      "families": [
+        "10"
+      ],
+      "members": {
+        "10": [
+          "torch",
+          "amd-torch-device-gfx1151",
+          "amd-torchvision-device-gfx1151",
+          "rocm",
+          "rocm-sdk-core",
+          "rocm-sdk-device-gfx1151",
+          "rocm-sdk-libraries",
+          "torchvision"
+        ]
+      },
+      "ok": true
+    },
+    "gpu_stack_coverage": [
+      {
+        "package": "amd-torch-device-gfx1151",
+        "in_lock": true
+      },
+      {
+        "package": "amd-torchvision-device-gfx1151",
+        "in_lock": true
+      },
+      {
+        "package": "rocm",
+        "in_lock": true
+      },
+      {
+        "package": "rocm-bootstrap",
+        "in_lock": true
+      },
+      {
+        "package": "rocm-sdk-core",
+        "in_lock": true
+      },
+      {
+        "package": "rocm-sdk-device-gfx1151",
+        "in_lock": true
+      },
+      {
+        "package": "rocm-sdk-libraries",
+        "in_lock": true
+      },
+      {
+        "package": "torch",
+        "in_lock": true
+      },
+      {
+        "package": "torchvision",
+        "in_lock": true
+      }
+    ],
+    "version_consistency": [],
+    "sha256_recorded": [],
+    "wheel_sha256_verification": [
+      {
+        "package": "amd-torch-device-gfx1151",
+        "wheel_sha256_matches_lock": true
+      },
+      {
+        "package": "amd-torchvision-device-gfx1151",
+        "wheel_sha256_matches_lock": true
+      },
+      {
+        "package": "rocm",
+        "wheel_sha256_matches_lock": true
+      },
+      {
+        "package": "rocm-bootstrap",
+        "wheel_sha256_matches_lock": true
+      },
+      {
+        "package": "rocm-sdk-core",
+        "wheel_sha256_matches_lock": true
+      },
+      {
+        "package": "rocm-sdk-device-gfx1151",
+        "wheel_sha256_matches_lock": true
+      },
+      {
+        "package": "rocm-sdk-libraries",
+        "wheel_sha256_matches_lock": true
+      },
+      {
+        "package": "torch",
+        "wheel_sha256_matches_lock": true
+      },
+      {
+        "package": "torchvision",
+        "wheel_sha256_matches_lock": true
+      }
+    ],
+    "ok": true,
+    "failures": []
+  },
+  "ancestry_evidence_file": "release-provenance/r22a5a/nightly_wheel_audit_20261117.json",
+  "embedded_miopen_dll": {
+    "path": "C:\\r22a5n\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+    "version_strings": [
+      "3.6.3.25f28906"
+    ],
+    "pr13437_marker": 2
+  },
+  "loaded_miopen_dll": {
+    "loaded": true,
+    "path": "C:\\r22a5n\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+    "bytes": 519806464,
+    "embedded_version_strings": [
+      "3.6.3.25f28906"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  },
+  "workarounds": {
+    "hiprtc_compile_options_append": null,
+    "hiprtc_include_injection": false,
+    "miopen_env_overrides": {},
+    "miopen_path_redirection": [],
+    "any_workaround_present": false
+  },
+  "source_lineage": {
+    "merged_fix_commit": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a",
+    "build_commit_string": "25f28906",
+    "marker_miopen_initializer_list": 2,
+    "provenance_complete": true,
+    "note": "marker is a screening signal only; official PASS additionally requires published ancestry (behind_by==0 vs merged fix) and the runtime no-STL behavioral gate (verify_miopen_nostl.py)",
+    "status": "ANCESTRY_VERIFIED",
+    "ancestry": {
+      "compare": "f0a5d2664...25f28906",
+      "status": "ahead",
+      "ahead_by": 1074,
+      "behind_by": 0,
+      "commit_date_gh": "2026-10-19T09:27:09Z"
+    }
+  },
+  "provenance_status": "PROVENANCE_COMPLETE",
+  "behavioral_evidence_required": "verify_miopen_nostl.py official leg OFFICIAL_*_PASS — G0 alone never proves the fix behaviorally"
+}

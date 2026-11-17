@@ -1,0 +1,16 @@
+# leg=official
+# cmd=C:\r22a5n1\venv\Scripts\python.exe -I C:\r22a5n1\scratch_g1_cand6\nostl_official_1794891704\bn_repro.py
+# VCToolsInstallDir=C:\r22a5n1\scratch_g1_cand6\nostl_official_1794891704\fakevc
+# INCLUDE=''
+# USERPROFILE=C:\r22a5n1\scratch_g1_cand6\nostl_official_1794891704\home
+# HIPRTC_COMPILE_OPTIONS_APPEND=None
+
+--- stdout ---
+BN_NOSTL_CHILD_MIOPEN_PRE {"loaded": true, "path": "C:\\r22a5n1\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6", "bytes": 519806464, "pr13437_marker_miopen_initializer_list": 2}
+BN_NOSTL_REPRO out_finite=True grad_finite=True loss=0.999990
+BN_NOSTL_CHILD_MIOPEN {"pre_op": {"loaded": true, "path": "C:\\r22a5n1\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6", "bytes": 519806464, "pr13437_marker_miopen_initializer_list": 2}, "post_op": {"loaded": true, "path": "C:\\r22a5n1\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6", "bytes": 519806464, "pr13437_marker_miopen_initializer_list": 2}}
+
+--- stderr ---
+C:\r22a5n1\scratch_g1_cand6\nostl_official_1794891704\bn_repro.py:52: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at B:/src/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:821.)
+  (out_finite, grad_finite, float(loss)))
