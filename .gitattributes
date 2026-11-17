@@ -22,3 +22,4 @@ evidence/phase2/** -text
 # R22A.5N evidence: byte-exact like evidence/raw (SHA256MANIFEST pins on-disk bytes).
 reports/r22a5n/** -text
 reports/r22a5n1/** -text
+reports/r22a5n2/** -text

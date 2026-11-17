@@ -1,11 +1,16 @@
 # Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
 """R22A.5N.1 CPU-only adversarial contract tests (mission PHASE 6 §9, all 25
-falsification classes) — no GPU, no network, no torch import.
+falsification classes) + R22A.5N.2 fail-closed G5/G7 classes — no GPU, no
+network, no torch import.
 
 Every fixture mirrors the pack-B receipt schema; every tampering below must be
 rejected (or classified INCONCLUSIVE) by the hardened acceptance engine, the
 lock gate or the evidence-pack verifier. The historical 11/7/4 AMP shape is
-used ONLY inside fixtures — the engine itself hardcodes no counts.
+used ONLY inside fixtures — the engine itself hardcodes no counts. The
+R22A.5N.2 fixtures mirror the real pack-B G7 process facts (trainer 39592,
+16 spawn_main workers, single live snapshot) and the G5 numeric schema; two
+tests additionally recompute directly from the committed pack-B bytes
+(read-only) so authentic physical evidence is regression-locked.
 
     python -m pytest windows-golden-path/tests/test_r22a5n1_cpu.py -q
 """
@@ -240,7 +245,9 @@ def good_ckpt(**over):
         "checkpoint_sha256": {"last.pt": "ab" + "0" * 62, "best.pt": "cd" + "0" * 62},
         "resume_semantics": "resume=True (training state), not weights-only load",
         "stages": {
-            "checkpoint_resumability": {"has_optimizer_state": True},
+            "checkpoint_resumability": {"checked": True,
+                                        "has_optimizer_state": True,
+                                        "ckpt_epoch": 1},
             "total_epochs": 4, "kill_after_epoch": 1, "rows_at_kill": 2,
             "checkpoint_sha256_at_kill": "ab" + "0" * 62,
             "resume_exit": 0, "resume_done_marker": True,
@@ -280,19 +287,88 @@ def good_rel(**over):
     return r
 
 
-def good_census():
-    return {"trainer_pid": 4242,
-            "captured_utc": "2026-11-17T20:01:00+00:00",
-            "spawn_children_of_trainer": list(range(50000, 50016)),
-            "spawn_children_count": 16,
-            "preexisting_zombies_disclosed": [37120, 12052]}
+# pack-B-mirroring G7 process facts (mission R22A.5N.2 §5.1: trainer 39592,
+# 16 spawn_main workers, direct children, single live snapshot)
+TRAINER_PID = 39592
+ENV_PID = 6784  # envelope child (venv launcher chain: 55012→52244→53968)
+BASELINE_PIDS = [12052, 37120, 52244, 53968, 55012]  # recorded pre-start
+WORKER_PIDS = [20660, 30512, 36664, 40360, 44440, 46388, 48436, 48720,
+               52876, 52992, 53072, 53516, 54332, 54936, 56100, 57236]
 
 
-def good_orphan():
-    return {"checker_pid": 999,
-            "all_python_pids": [37120, 12052, 999],
-            "mission_tree_leftover": [],
-            "orphan_verdict": "CLEAN"}
+def spawn_cmdline(parent: int, pipe: int) -> str:
+    return (f'"C:\\Users\\rocm\\miniconda3\\python.exe" "-X" "utf8" "-c" '
+            f'"from multiprocessing.spawn import spawn_main; '
+            f'spawn_main(parent_pid={parent}, pipe_handle={pipe})" '
+            f'"--multiprocessing-fork"')
+
+
+def census_tree() -> list[dict]:
+    return [
+        {"pid": 37120, "ppid": 3268,
+         "cmdline": "python.exe C:/P19B/scratch/p1_amp_audit.py (preexisting)"},
+        {"pid": 12052, "ppid": 37120,
+         "cmdline": "python.exe C:/P19B/scratch/p1_amp_audit.py (preexisting)"},
+        {"pid": 53968, "ppid": 54396,
+         "cmdline": "python.exe run_envelope.py --name stage_e_workers8"},
+        {"pid": 52244, "ppid": 53968,
+         "cmdline": "C:/r22a5n1/venv/Scripts/python.exe worker_stage.py"},
+        {"pid": 55012, "ppid": 52244,
+         "cmdline": "C:/r22a5n1/venv/Scripts/python.exe worker_stage.py (checker)"},
+        {"pid": ENV_PID, "ppid": 55012,
+         "cmdline": "C:/r22a5n1/venv/Scripts/python.exe audit_adamw_amp.py (envelope child)"},
+        {"pid": TRAINER_PID, "ppid": ENV_PID,
+         "cmdline": "C:/r22a5n1/venv/Scripts/python.exe audit_adamw_amp.py (trainer)"},
+        *[{"pid": w, "ppid": TRAINER_PID,
+           "cmdline": spawn_cmdline(TRAINER_PID, 2500 + i)}
+          for i, w in enumerate(WORKER_PIDS)],
+    ]
+
+
+def good_census(**over):
+    c = {"stage": "mid-run census",
+         "captured_utc": "2026-11-17T05:18:34.737321+00:00",
+         "trainer_pid": TRAINER_PID,
+         "spawn_children_of_trainer": sorted(WORKER_PIDS),
+         "checker_pid": 55012, "rows_at_census": 1,
+         "orchestrator_pid": ENV_PID,
+         "spawn_children_count": len(WORKER_PIDS),
+         "spawn_main_children_count": len(WORKER_PIDS),
+         "snapshot_count": 1,
+         "snapshots": [{"captured_utc": "2026-11-17T05:18:34.737321+00:00",
+                        "python_tree": census_tree(),
+                        "trainer_pid": TRAINER_PID,
+                        "children": sorted(WORKER_PIDS),
+                        "spawn_main": sorted(WORKER_PIDS)}],
+         "capture_method": "full Win32_Process CIM tree snapshots, every one retained",
+         "preexisting_zombies_disclosed": sorted(BASELINE_PIDS)}
+    c.update(over)
+    return c
+
+
+def good_envelope(**over):
+    e = {"stage": "workers=8 bounded exercise",
+         "command": ["python.exe", "-X", "utf8", "audit_adamw_amp.py"],
+         "checker_pid": None,
+         "baseline_python_pids": sorted(BASELINE_PIDS),
+         "started_utc": "2026-11-17T05:17:36.024534+00:00",
+         "trainer_pid": ENV_PID,
+         "finished_utc": "2026-11-17T05:18:47.106093+00:00",
+         "exit_code": 0}
+    e.update(over)
+    return e
+
+
+def good_orphan(**over):
+    o = {"stage": "post-run orphan check",
+         "captured_utc": "2026-11-17T05:18:47.718391+00:00",
+         "checker_pid": 55012,
+         "all_python_pids": sorted(BASELINE_PIDS),
+         "baseline_python_pids": sorted(BASELINE_PIDS),
+         "mission_tree_leftover": [],
+         "orphan_verdict": "CLEAN"}
+    o.update(over)
+    return o
 
 
 def all_gates(**mut):
@@ -310,7 +386,7 @@ def all_gates(**mut):
         na.evaluate_g2(args["ops"]),
         *na.evaluate_g34(args["amp"]),
         na.evaluate_g5(args["ckpt"]),
-        na.evaluate_g7(args["rel"], good_census(), good_orphan(), None),
+        na.evaluate_g7(args["rel"], good_census(), good_orphan(), good_envelope()),
     ]
 
 
@@ -529,18 +605,22 @@ def test_case19_resume_epoch_continuity_forged():
 
 
 def test_case20_workers8_claimed_without_live_evidence():
-    g = na.evaluate_g7(good_rel(), None, good_orphan(), None)
+    g = na.evaluate_g7(good_rel(), None, good_orphan(), good_envelope())
     assert g["verdict"] == "FAIL"
-    g = na.evaluate_g7(good_rel(), {"trainer_pid": 4242,
-                                    "spawn_children_of_trainer": [1, 2],
-                                    "spawn_children_count": 2}, good_orphan(), None)
+    # census without raw snapshots: 2 stored PIDs, nothing independently
+    # observable — the stored list can never substitute for the tree
+    g = na.evaluate_g7(good_rel(), good_census(
+        snapshots=None,
+        spawn_children_of_trainer=[50001, 50002],
+        spawn_children_count=2, spawn_main_children_count=2),
+        good_orphan(), good_envelope())
     assert g["verdict"] == "FAIL"
+    assert g["facts"]["snapshots_examined"] == 0
 
 
 def test_case21_orphan_clean_forged():
-    orphan = {"checker_pid": 999, "all_python_pids": [37120, 12052, 999, 556677],
-              "mission_tree_leftover": [], "orphan_verdict": "CLEAN"}
-    g = na.evaluate_g7(good_rel(), good_census(), orphan, None)
+    orphan = good_orphan(all_python_pids=sorted(BASELINE_PIDS) + [556677])
+    g = na.evaluate_g7(good_rel(), good_census(), orphan, good_envelope())
     assert g["verdict"] == "FAIL"
     assert g["facts"]["leftover_recomputed"] == [556677]
 
@@ -655,23 +735,20 @@ def test_lock_gate_dev_default_preserved():
 
 # ------------------------------------------- engine hardening specifics
 def test_g7_trainer_ties_via_venv_launcher_chain():
-    # census trainer is a CHILD of the envelope pid (venv launcher sits
+    # census trainer is a DESCENDANT of the envelope pid (venv launchers sit
     # between orchestrator and real interpreter) — the census tree snapshots
-    # prove the ancestry chain, tie accepted
+    # prove the full ancestry chain including the 16 worker nodes
     census = good_census()
-    census["trainer_pid"] = 39592
-    census["snapshots"] = [{"python_tree": [
-        {"pid": 6784, "ppid": 100, "cmdline": "venv python launcher"},
-        {"pid": 39592, "ppid": 6784, "cmdline": "real trainer"}]}]
-    g = na.evaluate_g7(good_rel(), census, good_orphan(),
-                       {"trainer_pid": 6784})
+    g = na.evaluate_g7(good_rel(), census, good_orphan(), good_envelope())
     assert g["verdict"] == "PASS"
     assert g["facts"]["trainer_pid_ties_to_envelope"] is True
-    assert 6784 in g["facts"]["trainer_ancestry_chain"]
-    # without the chain a mismatched pid must fail
-    g2 = na.evaluate_g7(good_rel(), good_census(), good_orphan(),
-                        {"trainer_pid": 999999})
+    assert g["facts"]["trainer_ancestry_chain"][:3] == [TRAINER_PID, ENV_PID, 55012]
+    assert g["facts"]["peak_snapshot"]["simultaneous_valid_workers"] == 16
+    # without a reachable chain a mismatched pid must fail
+    g2 = na.evaluate_g7(good_rel(), census, good_orphan(),
+                        good_envelope(trainer_pid=999999))
     assert g2["verdict"] == "FAIL"
+    assert g2["facts"]["trainer_pid_ties_to_envelope"] is False
 
 
 def test_g1_parent_only_dll_capture_rejected():
@@ -766,3 +843,346 @@ def test_pack_manifest_never_lists_itself():
         assert all(e["path"] != ep.MANIFEST_NAME for e in m["entries"])
         r = ep.verify(root, "RUN-B")
         assert r["ok"]
+
+
+# ============================== R22A.5N.2 — G5 fail-closed resume (mission §4.3)
+def _stages(**over):
+    st = dict(good_ckpt()["stages"])
+    st.update(over)
+    return st
+
+
+def _resumability(**over):
+    r = dict(good_ckpt()["stages"]["checkpoint_resumability"])
+    r.update(over)
+    return r
+
+
+def _g5(stages=None, **over):
+    kw = {"stages": stages if stages is not None else _stages()}
+    kw.update(over)
+    return na.evaluate_g5(good_ckpt(**kw))
+
+
+def test_r22a5n2_g5_missing_total_epochs_fails_closed():
+    st = _stages()
+    del st["total_epochs"]
+    g = _g5(stages=st)
+    assert g["verdict"] == "FAIL"
+    assert "total_epochs" in g["facts"]["epoch_evidence_missing"]
+    assert g["facts"]["epoch_continuity_recomputed"] is None
+
+
+def test_r22a5n2_g5_total_epochs_none_fails_closed():
+    g = _g5(stages=_stages(total_epochs=None))
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["epoch_evidence_missing"] == ["total_epochs"]
+
+
+def test_r22a5n2_g5_missing_rows_at_kill_fails_closed():
+    st = _stages()
+    del st["rows_at_kill"]
+    g = _g5(stages=st)
+    assert g["verdict"] == "FAIL"
+    assert "rows_at_kill" in g["facts"]["epoch_evidence_missing"]
+
+
+def test_r22a5n2_g5_missing_final_epoch_rows_fails_closed():
+    st = _stages()
+    del st["final_epoch_rows"]
+    g = _g5(stages=st)
+    assert g["verdict"] == "FAIL"
+    assert "final_epoch_rows" in g["facts"]["epoch_evidence_missing"]
+
+
+def test_r22a5n2_g5_missing_resume_start_epoch_fails_closed():
+    st = _stages()
+    del st["resume_start_epoch"]
+    g = _g5(stages=st)
+    assert g["verdict"] == "FAIL"
+    assert "resume_start_epoch" in g["facts"]["epoch_evidence_missing"]
+
+
+def test_r22a5n2_g5_bool_disguised_as_int_rejected():
+    # bool is an int subclass — True must not pass as total_epochs=1
+    g = _g5(stages=_stages(total_epochs=True))
+    assert g["verdict"] == "FAIL"
+    assert any("total_epochs" in p for p in g["facts"]["epoch_evidence_invalid"])
+
+
+def test_r22a5n2_g5_forged_epoch_continuity_bool_overruled_by_numbers():
+    # stored epoch_continuity=True kept, but resume start is discontinuous
+    g = _g5(stages=_stages(resume_start_epoch=3))  # != ckpt_epoch(1)+1
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["epoch_continuity_recomputed"] is False
+
+
+def test_r22a5n2_g5_wrong_checkpoint_epoch_rejected():
+    # checkpoint epoch inconsistent with the recorded resume start
+    g = _g5(stages={**_stages(),
+                   "checkpoint_resumability": _resumability(ckpt_epoch=0)})
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["epoch_continuity_recomputed"] is False
+
+
+def test_r22a5n2_g5_resume_reset_to_initial_state_rejected():
+    # resume_start_epoch=0 means training restarted from scratch
+    g = _g5(stages=_stages(resume_start_epoch=0))
+    assert g["verdict"] == "FAIL"
+    assert any("resume_start_epoch" in p
+               for p in g["facts"]["epoch_evidence_invalid"])
+
+
+def test_r22a5n2_g5_zero_effective_updates_after_resume_rejected():
+    g = _g5(stages=_stages(resume_effective_updates=0))
+    assert g["verdict"] == "FAIL"
+    assert any("resume_effective_updates" in p
+               for p in g["facts"]["epoch_evidence_invalid"])
+
+
+def test_r22a5n2_g5_wrong_final_epoch_rejected():
+    g = _g5(stages=_stages(last_epoch_value=3))  # != total_epochs
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["epoch_continuity_recomputed"] is False
+
+
+def test_r22a5n2_g5_scheduler_not_serialized_never_full():
+    # honest 8.4.214 shape: everything else serialized, scheduler rebuilt from
+    # train_args → FULL is unreachable, CORE is the honest classification
+    g = na.evaluate_g5(good_ckpt())
+    assert g["verdict"] == "PASS"
+    assert g["facts"]["state_verdict"] == "RESUME_PASS_CORE_STATE_VERIFIED"
+    assert g["facts"]["not_serialized_classes"] == \
+        {"scheduler": "NOT_SERIALIZED_BY_UPSTREAM"}
+
+
+def test_r22a5n2_g5_scaler_serialized_is_not_restore_verified():
+    # the GradScaler `scaler` key being SERIALIZED does not verify its
+    # post-resume state — the two maps must stay distinct claims
+    g = na.evaluate_g5(good_ckpt())
+    f = g["facts"]
+    assert f["state_serialized_map"]["gradscaler"] is True
+    assert f["state_restore_verified_map"]["gradscaler"] is not True
+    assert f["state_verdict"] != "FULL_TRAINING_STATE_RESTORE_PASS"
+
+
+def test_r22a5n2_g5_full_requires_per_class_restore_evidence():
+    # claiming restore_verified on top of NOT_SERIALIZED is a contradiction
+    sc = {k: {**v, "restore_verified": True}
+          for k, v in good_ckpt()["state_classes"].items()}
+    g1 = na.evaluate_g5(good_ckpt(state_classes=sc))
+    assert g1["facts"]["state_verdict"] == "RESUME_PASS_CORE_STATE_VERIFIED"
+    # genuinely serialized AND restore-verified everywhere → FULL is earned
+    sc["scheduler"] = {"serialized": True, "restore_verified": True}
+    g2 = na.evaluate_g5(good_ckpt(state_classes=sc))
+    assert g2["verdict"] == "PASS"
+    assert g2["facts"]["state_verdict"] == "FULL_TRAINING_STATE_RESTORE_PASS"
+
+
+def test_r22a5n2_g5_real_pack_b_passes_with_limited_classification():
+    # authentic committed pack-B bytes (read-only): strict engine still PASSes
+    d = REPO_ROOT / "reports/r22a5n1/R22A5N1-GFX1151-20261117-B/06_checkpoint_resume"
+    ckpt = json.loads((d / "checkpoint_resume.json").read_text(encoding="utf-8"))
+    env = json.loads((d / "lifecycle_envelope.json").read_text(encoding="utf-8"))
+    g = na.evaluate_g5(ckpt, (env or {}).get("artifact_hashes"))
+    assert g["verdict"] == "PASS"
+    f = g["facts"]
+    assert f["epoch_evidence_missing"] == [] and f["epoch_evidence_invalid"] == []
+    assert f["epoch_continuity_recomputed"] is True
+    assert f["state_verdict"] == "RESUME_PASS_CORE_STATE_VERIFIED"
+    assert f["not_serialized_classes"] == \
+        {"scheduler": "NOT_SERIALIZED_BY_UPSTREAM"}
+
+
+# ============================== R22A.5N.2 — G7 worker provenance (mission §5.4)
+def _census_tree_mut(fn):
+    """good_census with the peak snapshot's python_tree transformed."""
+    census = good_census()
+    census["snapshots"] = [dict(s, python_tree=fn([dict(p) for p in s["python_tree"]]))
+                           for s in census["snapshots"]]
+    return census
+
+
+def _g7(census=None, orphan=None, envelope=None, rel=None):
+    return na.evaluate_g7(rel or good_rel(), census or good_census(),
+                          orphan or good_orphan(),
+                          good_envelope() if envelope is None else envelope)
+
+
+def test_r22a5n2_g7_forged_pids_absent_from_snapshot_rejected():
+    # 16 stored PIDs, none observable in any raw snapshot tree
+    census = _census_tree_mut(
+        lambda tree: [p for p in tree if p["pid"] not in WORKER_PIDS])
+    g = _g7(census=census)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["peak_snapshot"]["simultaneous_valid_workers"] == 0
+    assert g["facts"]["worker_count_reconciles"] is False
+
+
+def test_r22a5n2_g7_worker_ppid_wrong_rejected():
+    census = _census_tree_mut(
+        lambda tree: [dict(p, ppid=9999) if p["pid"] in WORKER_PIDS else p
+                      for p in tree])
+    g = _g7(census=census)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["peak_snapshot"]["simultaneous_valid_workers"] == 0
+
+
+def test_r22a5n2_g7_cmdline_without_spawn_main_rejected():
+    census = _census_tree_mut(
+        lambda tree: [dict(p, cmdline="python.exe some_unrelated_worker.py")
+                      if p["pid"] in WORKER_PIDS else p for p in tree])
+    g = _g7(census=census)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["peak_snapshot"]["simultaneous_valid_workers"] == 0
+
+
+def test_r22a5n2_g7_cmdline_parent_pid_mismatch_rejected():
+    def mut(tree):
+        out = []
+        for p in tree:
+            if p["pid"] in WORKER_PIDS:
+                p = dict(p, cmdline=spawn_cmdline(48848, 2500))  # ≠ real PPID
+            out.append(p)
+        return out
+    g = _g7(census=_census_tree_mut(mut))
+    assert g["verdict"] == "FAIL"
+    rejected = g["facts"]["per_snapshot_workers"][0]["rejected_spawn_nodes"]
+    assert rejected and rejected[0]["cmdline_parent_pid"] == "48848"
+
+
+def test_r22a5n2_g7_worker_of_other_python_process_rejected():
+    # spawn-shaped workers parented by an unrelated python process (37120)
+    census = _census_tree_mut(
+        lambda tree: [dict(p, ppid=12052) if p["pid"] in WORKER_PIDS else p
+                      for p in tree])
+    g = _g7(census=census)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["peak_snapshot"]["simultaneous_valid_workers"] == 0
+
+
+def test_r22a5n2_g7_pids_scattered_across_snapshots_rejected():
+    # 8 stored PIDs split 4+4 over two different-time snapshots — no single
+    # snapshot proves 8 simultaneous workers
+    base = census_tree()
+    snap_a = [dict(p) for p in base if p["pid"] not in WORKER_PIDS[4:16]]
+    snap_b = [dict(p) for p in base if p["pid"] not in WORKER_PIDS[:4]
+              and p["pid"] not in WORKER_PIDS[8:16]]
+    census = good_census(
+        snapshots=[{"captured_utc": "2026-11-17T05:18:20+00:00",
+                    "python_tree": snap_a, "trainer_pid": TRAINER_PID},
+                   {"captured_utc": "2026-11-17T05:18:34+00:00",
+                    "python_tree": snap_b, "trainer_pid": TRAINER_PID}],
+        snapshot_count=2)
+    census["snapshots"][1]["python_tree"] = [
+        dict(p, pid=p["pid"] + 1, ppid=TRAINER_PID,
+             cmdline=spawn_cmdline(TRAINER_PID, 2600))
+        if p["pid"] in WORKER_PIDS[4:8] else p
+        for p in census["snapshots"][1]["python_tree"]]
+    g = _g7(census=census)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["peak_snapshot"]["simultaneous_valid_workers"] == 4
+
+
+def test_r22a5n2_g7_trainer_not_attributable_to_envelope_rejected():
+    g = _g7(envelope=good_envelope(trainer_pid=999999))
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["trainer_pid_ties_to_envelope"] is False
+
+
+def test_r22a5n2_g7_missing_envelope_pid_rejected():
+    g = _g7(envelope={})  # no child_pid / trainer_pid at all
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["trainer_pid_ties_to_envelope"] is False
+
+
+def test_r22a5n2_g7_ancestry_cycle_rejected():
+    # 6784's PPID points back at the trainer → cyclic ancestry
+    census = _census_tree_mut(
+        lambda tree: [dict(p, ppid=TRAINER_PID) if p["pid"] == ENV_PID else p
+                      for p in tree])
+    g = _g7(census=census)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["trainer_ancestry_cycle"] is True
+
+
+def test_r22a5n2_g7_duplicate_worker_pid_rejected():
+    kids = sorted(WORKER_PIDS)
+    kids[1] = kids[0]  # duplicate entry
+    g = _g7(census=good_census(spawn_children_of_trainer=kids))
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["worker_count_reconciles"] is False
+
+
+def test_r22a5n2_g7_stored_count_mismatch_rejected():
+    g = _g7(census=good_census(spawn_children_count=15))
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["worker_count_reconciles"] is False
+
+
+def test_r22a5n2_g7_forged_orphan_clean_with_live_worker_rejected():
+    # stored verdict CLEAN, but an attributed task worker is still alive
+    live = WORKER_PIDS[0]
+    g = _g7(orphan=good_orphan(
+        all_python_pids=sorted(BASELINE_PIDS) + [live],
+        mission_tree_leftover=[], orphan_verdict="CLEAN"))
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["attributed_workers_terminated"] is False
+    assert g["facts"]["leftover_recomputed"] == [live]
+
+
+def test_r22a5n2_g7_forged_preexisting_masking_alive_worker_rejected():
+    # baseline/disclosure/envelope consistently relabel a live task worker as
+    # preexisting — the census tree contradicts: it is the trainer's own child
+    live = WORKER_PIDS[0]
+    masked = sorted(BASELINE_PIDS + [live])
+    g = _g7(census=good_census(preexisting_zombies_disclosed=masked),
+            orphan=good_orphan(all_python_pids=masked,
+                               baseline_python_pids=masked),
+            envelope=good_envelope(baseline_python_pids=masked))
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["baseline_contradicts_census_tree"] == [live]
+    assert g["facts"]["attributed_workers_terminated"] is False
+
+
+def test_r22a5n2_g7_missing_recorded_baseline_rejected():
+    # orphan record without the recorded pre-start baseline: nothing may be
+    # excused, the surviving envelope-chain PIDs become recomputed leftovers
+    orphan = {"checker_pid": 55012,
+              "all_python_pids": sorted(BASELINE_PIDS),
+              "mission_tree_leftover": [], "orphan_verdict": "CLEAN"}
+    g = _g7(orphan=orphan)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["leftover_recomputed"] == sorted(
+        [p for p in BASELINE_PIDS if p != 55012])
+
+
+def test_r22a5n2_g7_census_disclosure_disagreeing_with_baseline_rejected():
+    g = _g7(census=good_census(preexisting_zombies_disclosed=[37120]))
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["baseline_reconciles_census_disclosure"] is False
+
+
+def test_r22a5n2_g7_real_pack_b_sixteen_workers_verified():
+    # authentic committed pack-B bytes (read-only): full strict G7 recompute
+    d = REPO_ROOT / "reports/r22a5n1/R22A5N1-GFX1151-20261117-B/07_reliability"
+    rel = json.loads((d / "workers8_amp_v2.json").read_text(encoding="utf-8"))
+    supp = json.loads((d / "workers8_midrun_census.json").read_text(encoding="utf-8"))
+    orphan = json.loads(
+        (d / "workers8_postrun_orphan_check.json").read_text(encoding="utf-8"))
+    env = json.loads((d / "workers8_envelope.json").read_text(encoding="utf-8"))
+    g = na.evaluate_g7(rel, supp, orphan, env)
+    assert g["verdict"] == "PASS"
+    f = g["facts"]
+    assert f["snapshots_examined"] == 1
+    assert f["peak_snapshot"]["simultaneous_valid_workers"] == 16
+    assert f["recomputed_worker_pids"] == sorted(
+        supp["spawn_children_of_trainer"])
+    assert f["trainer_pid"] == 39592 and f["trainer_in_peak_snapshot"] is True
+    assert f["trainer_ancestry_cycle"] is False
+    assert f["trainer_pid_ties_to_envelope"] is True  # env child 6784 in chain
+    assert f["worker_count_reconciles"] is True
+    assert f["trainer_terminated"] is True
+    assert f["attributed_workers_terminated"] is True
+    assert f["leftover_recomputed"] == []
+    assert f["baseline_contradicts_census_tree"] == []
