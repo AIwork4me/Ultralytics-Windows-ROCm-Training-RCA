@@ -1,41 +1,26 @@
 # Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
-"""R22A.5N gfx1100 hardened Nightly acceptance engine — mission PHASE B/J.
+"""R22A.5N gfx1100 versioned Official Nightly acceptance engine.
 
-Versioned mission-profile engine (default profile: gfx1100). Reuses the pure
-recomputation kernels of the R22A.5N.1 engine by import (mission §5 "reuse,
-do not duplicate"); every gate that binds physical identity is parameterized
-by the frozen profile instead of the historical module-global FROZEN. Two
-gates are hardened beyond R22A.5N.1 per mission §1.2 (the R22A.5N.2
-fail-closed closure, not present in PR #22 HEAD 568981d — dependency
-recorded):
+The profile binds the physical gfx1100 device, official wheel hashes, and
+source provenance. All nine gates operate on committed experiment observations
+and never assume that this machine re-ran GPU tests in CI.
 
-  G5 (hardened)  fail-closed when ANY key epoch fact is missing (total_epochs,
-                 rows_at_kill, final_epoch_rows, last_epoch_value, resume_exit,
-                 resume_done_marker, infer_exit, checkpoint SHA at kill);
-                 epoch continuity must recompute strictly True (a stored
-                 boolean is never sufficient); FULL_TRAINING_STATE_RESTORE_PASS
-                 is impossible unless the scheduler state is ACTUALLY
-                 serialized — with scheduler NOT_SERIALIZED_BY_UPSTREAM the
-                 verdict ceiling is RESUME_PASS_CORE_STATE_VERIFIED
-  G7 (hardened)  worker identity recomputed per raw python_tree snapshot:
-                 trainer = deepest audit_adamw_amp process; every counted
-                 worker must (a) be a child of that trainer PID (PPID
-                 re-derived), (b) carry multiprocessing.spawn_main in its
-                 command line, (c) coexist in ONE single snapshot (splicing
-                 PIDs observed at different times can never satisfy >=8);
-                 stored spawn_children list / orphan verdict strings are
-                 DIFFED, never authority; missing snapshots/baseline is
-                 fail-closed
+G5/G7 delegate to the FINAL, already-merged R22A.5N.2 strict gates in
+scripts/r22a5n1/nightly_acceptance.py:
+- G5 requires every numeric epoch-continuity fact and separates serialized
+  checkpoint keys from independently verified restored state.
+- G7 proves worker parentage from one live process snapshot and reconciles
+  orphan baselines across census, orphan record and execution envelope.
+- G1 additionally requires two independent cold candidate trials.
+The historical gfx1151 verifier retains its original frozen default; gfx1100
+passes an explicit architecture identity into the shared strict G5 function.
 
-  G1 (extended)  TWO independent cold candidate trials required (distinct
-                 child PIDs pairwise, distinct cold-cache scratch dirs
-                 pairwise, in-child DLL identity on every trial)
+Use:
+  python scripts/r22a5n1100/nightly_acceptance.py --evidence-root PACK
+      --repo-root REPO --run-id RUN --out OUTPUT.json
 
-All other gates re-derive from raw evidence with the gfx1100 frozen identity.
-Overall ceiling: R22A5N_GFX1100_NIGHTLY_EVIDENCE_AUDITED_PASS.
-
-    python scripts/r22a5n1100/nightly_acceptance.py --evidence-root DIR \
-        --repo-root REPO --run-id R22A5N-GFX1100-... --out report.json
+Verdict ceiling: R22A5N_GFX1100_NIGHTLY_EVIDENCE_AUDITED_PASS.
+No Stable or clean-install certification is implied.
 """
 from __future__ import annotations
 
@@ -578,9 +563,9 @@ def main() -> None:
         "evidence_root": str(root), "gates": gates,
         "reliability_census": supp, "reliability_orphan_check": orphan,
         "frozen_candidate": profile["frozen"],
-        "g5_g7_hardening": ("R22A.5N.2-style fail-closed closure applied in this "
-                            "engine (not present in PR #22 HEAD 568981d); "
-                            "dependency on PR #22 recorded in the mission report"),
+        "g5_g7_hardening": (
+            "Delegates to merged integration R22A.5N.2 strict G5/G7; "
+            "gfx1100 physical identity passed explicitly to shared G5"),
     })
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
