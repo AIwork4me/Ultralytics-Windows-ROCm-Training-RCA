@@ -247,7 +247,7 @@ def good_ckpt(**over):
         "checkpoint_sha256": {"last.pt": "ab" + "0" * 62, "best.pt": "cd" + "0" * 62},
         "resume_semantics": "resume=True (training state), not weights-only load",
         "stages": {
-            "checkpoint_resumability": {"has_optimizer_state": True},
+            "checkpoint_resumability": {"has_optimizer_state": True, "ckpt_epoch": 1},
             "total_epochs": 4, "kill_after_epoch": 1, "rows_at_kill": 2,
             "checkpoint_sha256_at_kill": "ab" + "0" * 62,
             "resume_exit": 0, "resume_done_marker": True,
@@ -301,8 +301,8 @@ def snapshot_tree(trainer_pid=4242, worker_pids=(50100, 50101, 50102, 50103,
     ]
     for wp in worker_pids:
         tree.append({"pid": wp, "ppid": trainer_pid,
-                     "cmdline": "python -c from multiprocessing.spawn import "
-                                "spawn_main; spawn_main(...)"})
+                     "cmdline": (f"python -c from multiprocessing.spawn import "
+                                f"spawn_main; spawn_main(parent_pid={trainer_pid}, pipe_handle=1234)")})
     for cp in extra_children:  # children WITHOUT spawn_main — not workers
         tree.append({"pid": cp, "ppid": trainer_pid,
                      "cmdline": "python helper.py"})
@@ -317,7 +317,7 @@ def good_census(**over):
         "captured_utc": snap["captured_utc"],
         "spawn_children_of_trainer": [50100, 50101, 50102, 50103,
                                       50104, 50105, 50106, 50107],
-        "spawn_children_count": 8,
+        "spawn_children_count": 8, "spawn_main_children_count": 8,
         "snapshots": [snap],
         "preexisting_zombies_disclosed": [37120, 12052],
     }
@@ -328,10 +328,17 @@ def good_census(**over):
 def good_orphan(**over):
     o = {"checker_pid": 999,
          "all_python_pids": [37120, 12052, 999],
+         "baseline_python_pids": [37120, 12052],
          "mission_tree_leftover": [],
          "orphan_verdict": "CLEAN"}
     o.update(over)
     return o
+
+
+def good_envelope(child_pid=4242, baseline_python_pids=None):
+    return {"envelope": {"child_pid": child_pid,
+                         "baseline_python_pids": [37120, 12052] if baseline_python_pids is None
+                         else baseline_python_pids}}
 
 
 def all_gates(**mut):
@@ -353,7 +360,7 @@ def all_gates(**mut):
         *na.evaluate_g34(P, args["amp"]),
         na.evaluate_g5_hardened(P, args["ckpt"]),
         na.evaluate_g7_hardened(P, args["rel"], good_census(), good_orphan(),
-                                {"envelope": {"child_pid": 4242}}),
+                                good_envelope()),
     ]
 
 
@@ -634,8 +641,7 @@ def test_g5_missing_epoch_fact_fails_closed():
     del c["stages"]["last_epoch_value"]
     g = na.evaluate_g5_hardened(P, c)
     assert g["verdict"] == "FAIL"
-    assert "EPOCH_FACTS_MISSING" in g["reason"]
-    assert "last_epoch_value" in g["facts"]["missing_epoch_facts"]
+    assert "last_epoch_value" in g["facts"]["epoch_evidence_missing"]
 
 
 def test_g5_stored_boolean_epoch_continuity_is_not_authority():
@@ -644,7 +650,7 @@ def test_g5_stored_boolean_epoch_continuity_is_not_authority():
     c["stages"]["final_epoch_rows"] = 2  # no rows after kill
     g = na.evaluate_g5_hardened(P, c)
     assert g["verdict"] == "FAIL"
-    assert "EPOCH_CONTINUITY_NOT_RECOMPUTABLE" in g["reason"]
+    assert g["facts"]["epoch_continuity_recomputed"] is False
 
 
 def test_g5_scheduler_not_serialized_never_claims_full_restore():
@@ -658,7 +664,15 @@ def test_g5_full_restore_only_with_actually_serialized_scheduler():
     c = good_ckpt()
     c["state_classes"]["scheduler"] = {"serialized": True}
     g = na.evaluate_g5_hardened(P, c)
-    assert g["facts"]["state_verdict"] == "FULL_TRAINING_STATE_RESTORE_PASS"
+    assert g["facts"]["state_verdict"] == "RESUME_PASS_CORE_STATE_VERIFIED"
+    # Serialized alone cannot prove restored state. Only per-class observed
+    # restoration may justify FULL, not a claimed scheduler key.
+    for k in ("model_weights", "optimizer", "scheduler", "epoch",
+              "best_fitness", "trainer_args", "gradscaler", "ema"):
+        c["state_classes"][k]["serialized"] = True
+        c["state_classes"][k]["restore_verified"] = True
+    g2 = na.evaluate_g5_hardened(P, c)
+    assert g2["facts"]["state_verdict"] == "FULL_TRAINING_STATE_RESTORE_PASS"
 
 
 def test_g5_bad_checkpoint_sha_rejected():
@@ -702,9 +716,9 @@ def test_g7_recomputed_from_raw_snapshots_passes():
                                 {"envelope": {"child_pid": 4242}})
     assert g["verdict"] == "PASS"
     f = g["facts"]
-    assert f["peak_trainer_pid_recomputed"] == 4242
-    assert len(f["peak_spawn_worker_pids"]) == 8
-    assert f["all_workers_ppid_ok"] and f["all_workers_spawn_main"]
+    assert f["trainer_pid"] == 4242
+    assert len(f["recomputed_worker_pids"]) == 8
+    assert f["peak_snapshot"]["simultaneous_valid_workers"] == 8
 
 
 def test_g7_missing_raw_snapshots_fails_closed():
@@ -723,10 +737,10 @@ def test_g7_fake_worker_pid_in_stored_list_not_counted():
                                            50104, 50105, 50106, 55555]
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(), None)
     f = g["facts"]
-    assert 55555 not in f["peak_spawn_worker_pids"]
-    assert f["stored_list_matches_peak_snapshot"] is False
-    assert len(f["peak_spawn_worker_pids"]) == 8  # the raw snapshot is authority
-    assert g["verdict"] == "PASS"
+    assert 55555 not in f["recomputed_worker_pids"]
+    assert f["worker_count_reconciles"] is False
+    assert len(f["recomputed_worker_pids"]) == 8
+    assert g["verdict"] == "FAIL"  # stored summary contradiction
 
 
 def test_g7_faked_raw_worker_short_of_eight_fails():
@@ -736,7 +750,7 @@ def test_g7_faked_raw_worker_short_of_eight_fails():
     census = good_census(snapshots=[snap])
     census["spawn_children_of_trainer"] = census["spawn_children_of_trainer"][:7]
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(), None)
-    assert len(g["facts"]["peak_spawn_worker_pids"]) == 7
+    assert len(g["facts"]["recomputed_worker_pids"]) == 7
     assert g["verdict"] == "FAIL"
 
 
@@ -750,10 +764,10 @@ def test_g7_wrong_ppid_worker_not_counted():
     census = good_census(snapshots=[snap])
     census["spawn_children_of_trainer"] = census["spawn_children_of_trainer"] + [50999]
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(), None)
-    assert 50999 not in g["facts"]["peak_spawn_worker_pids"]
-    assert len(g["facts"]["peak_spawn_worker_pids"]) == 8
-    assert g["facts"]["stored_list_matches_peak_snapshot"] is False
-    assert g["verdict"] == "PASS"  # 8 genuine workers in the raw snapshot
+    assert 50999 not in g["facts"]["recomputed_worker_pids"]
+    assert len(g["facts"]["recomputed_worker_pids"]) == 8
+    assert g["facts"]["worker_count_reconciles"] is False
+    assert g["verdict"] == "FAIL"  # forged stored summary
 
 
 def test_g7_trainer_without_eight_children_fails():
@@ -764,7 +778,7 @@ def test_g7_trainer_without_eight_children_fails():
                          spawn_children_of_trainer=[50100, 50101, 50102, 50103,
                                                     50104, 50105, 50106, 50998])
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(), None)
-    assert 50998 in g["facts"]["peak_non_spawn_children"]
+    assert 50998 not in g["facts"]["recomputed_worker_pids"]
     assert g["verdict"] == "FAIL"
 
 
@@ -777,7 +791,7 @@ def test_g7_fake_spawn_main_rejected():
             p["cmdline"] = "python impostor_helper.py"
     census = good_census(snapshots=[snap])
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(), None)
-    assert 50998 in g["facts"]["peak_non_spawn_children"]
+    assert 50998 not in g["facts"]["recomputed_worker_pids"]
     assert g["verdict"] == "FAIL"
 
 
@@ -789,7 +803,7 @@ def test_g7_time_spliced_pids_never_simultaneous():
                        utc="2026-11-17T20:02:00+00:00")
     census = good_census(snapshots=[s1, s2])
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(), None)
-    assert len(g["facts"]["peak_spawn_worker_pids"]) == 4
+    assert len(g["facts"]["recomputed_worker_pids"]) == 4
     assert g["verdict"] == "FAIL"
 
 
@@ -816,7 +830,7 @@ def test_g7_missing_baseline_disclosed_fails_closed():
 
 def test_g7_trainer_not_tied_to_envelope_rejected():
     g = na.evaluate_g7_hardened(P, good_rel(), good_census(), good_orphan(),
-                                {"envelope": {"child_pid": 12345}})
+                                good_envelope(child_pid=12345))
     assert g["facts"]["trainer_pid_ties_to_envelope"] is False
     assert g["verdict"] == "FAIL"
 
@@ -831,7 +845,7 @@ def test_g7_venv_redirector_ancestor_chain_accepted():
             p["ppid"] = 5555  # trainer's parent is the redirector
     census = good_census(snapshots=[snap])
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(),
-                                {"envelope": {"child_pid": 5555}})
+                                good_envelope(child_pid=5555))
     assert g["facts"]["trainer_pid_ties_to_envelope"] is True
 
 
@@ -845,7 +859,7 @@ def test_g7_cyclic_ppid_data_cannot_loop_the_engine():
             p["ppid"] = 4242
     census = good_census(snapshots=[snap])
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(), None)
-    assert g["facts"]["trainer_ancestry_cycle_detected"] is True
+    assert g["facts"]["trainer_ancestry_cycle"] is True
 
 
 def test_g7_workers0_receipt_not_accepted():
