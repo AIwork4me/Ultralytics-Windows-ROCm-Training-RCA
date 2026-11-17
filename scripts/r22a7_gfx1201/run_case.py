@@ -90,19 +90,37 @@ def capture_child(args: argparse.Namespace) -> int:
                 "start_utc": utc(), "command": cmd, "cwd": str(REPO), "parent_pid": os.getpid(),
                 "preflight_sha256": cfg["preflight_sha256"], "wheel_lock_sha256": cfg["wheel_lock_sha256"],
                 "git_source": subprocess.run(["git","rev-parse","HEAD"],cwd=REPO,capture_output=True,text=True).stdout.strip()}
+    proc = None
     try:
-        cp = subprocess.run(cmd, cwd=REPO, capture_output=True, timeout=args.timeout_seconds)
-        (run / "stdout.raw").write_bytes(cp.stdout)
-        (run / "stderr.raw").write_bytes(cp.stderr)
-        envelope["exit_code"] = cp.returncode
-        envelope["status"] = "CHILD_EXIT_0" if cp.returncode == 0 else "CHILD_FAILED"
-    except subprocess.TimeoutExpired as ex:
-        # This is a safety bound, not a pass. Children must be audited for orphans.
-        (run / "stdout.raw").write_bytes(ex.stdout or b"")
-        (run / "stderr.raw").write_bytes(ex.stderr or b"")
-        envelope["status"] = "TIMEOUT"
+        flags = subprocess.CREATE_NEW_PROCESS_GROUP if os.name == "nt" else 0
+        proc = subprocess.Popen(cmd, cwd=REPO, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                creationflags=flags)
+        envelope["child_pid"] = proc.pid
+        try:
+            stdout, stderr = proc.communicate(timeout=args.timeout_seconds)
+            envelope["exit_code"] = proc.returncode
+            envelope["status"] = "CHILD_EXIT_0" if proc.returncode == 0 else "CHILD_FAILED"
+        except subprocess.TimeoutExpired:
+            # Windows: terminate only our tracked child PID and descendants.
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/PID", str(proc.pid), "/T", "/F"],
+                               capture_output=True, timeout=30)
+            else:
+                proc.kill()
+            stdout, stderr = proc.communicate(timeout=45)
+            envelope["status"] = "TIMEOUT"
+            envelope["exit_code"] = None
+            envelope["orphan_check_required"] = True
+        (run / "stdout.raw").write_bytes(stdout)
+        (run / "stderr.raw").write_bytes(stderr)
+    except Exception as ex:
+        envelope["status"] = "ENVELOPE_ERROR"
+        envelope["error"] = f"{type(ex).__name__}: {ex}"
         envelope["exit_code"] = None
-        envelope["orphan_check_required"] = True
+        if proc is not None and proc.poll() is None:
+            proc.kill()
+        for name in ("stdout.raw", "stderr.raw"):
+            (run / name).touch(exist_ok=True)
     finally:
         envelope["finish_utc"] = utc()
         envelope["duration_seconds"] = round(time.monotonic()-started, 3)
