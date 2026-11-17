@@ -13,6 +13,7 @@ untouched (their own test files keep guarding that).
 from __future__ import annotations
 
 import importlib.util
+import json
 import sys
 from pathlib import Path
 
