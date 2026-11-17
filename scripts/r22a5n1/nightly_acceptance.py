@@ -22,10 +22,19 @@ This versioned engine eliminates every stored-summary trust boundary:
        sentinel deltas, scale transitions) and reconciled with stored counters
   G4   AMP dtype evidence recomputed from the dtype histogram; FP32 fallback
        can never be AMP_PASS; fake scalar summaries detected via series length
-  G5   resume core + state-class serialization depth (scheduler/scaler are
-       NOT_SERIALIZED_BY_UPSTREAM by design — never claimed as restored)
-  G7   worker parentage recomputed from census PID lists; orphan-cleanliness
-       recomputed, never read from a stored verdict string
+  G5   resume core re-derived from REQUIRED numeric epoch evidence (every
+       value must exist with a valid type/range — bool is never an int);
+       state classes distinguish SERIALIZED from RESTORE_VERIFIED, so
+       FULL_TRAINING_STATE_RESTORE_PASS needs per-class actual-restore
+       evidence — with scheduler NOT_SERIALIZED_BY_UPSTREAM the honest
+       ceiling is RESUME_PASS_CORE_STATE_VERIFIED
+  G7   worker identity recomputed per-worker from the raw snapshot
+       python_tree (PID validity, direct PPID==trainer, genuine
+       multiprocessing.spawn spawn_main semantics, parent_pid==PPID,
+       single-snapshot simultaneity, cycle-guarded trainer ancestry to the
+       execution envelope); stored PID lists/counts only DIFFED;
+       orphan-cleanliness recomputed against the RECORDED pre-start baseline,
+       never read from a stored verdict string
 
 Overall ceiling: R22A5N1_GFX1151_NIGHTLY_EVIDENCE_AUDITED_PASS.
 
@@ -90,6 +99,12 @@ def _finite(x) -> bool:
         return math.isfinite(float(x))
     except (TypeError, ValueError):
         return False
+
+
+def _strict_int(x) -> bool:
+    """True only for genuine ints — bool is an int subclass and is NEVER an
+    acceptable stand-in for a numeric evidence value."""
+    return isinstance(x, int) and not isinstance(x, bool)
 
 
 # ================================================================ PKG
@@ -598,48 +613,82 @@ def evaluate_g5(ckpt, artifacts: list | None = None) -> dict:
         "state_classes": sc,
     })
     resumable = st.get("checkpoint_resumability") or {}
-    # epoch continuity RECOMPUTED from numeric facts (stored boolean only diffed)
+    # epoch evidence RECOMPUTED from the numeric facts — every required value
+    # must EXIST with a valid type/range before any continuity conclusion is
+    # allowed; a missing or malformed value is fail-closed, never a PASS input
+    # (bool is explicitly NOT an acceptable integer here)
     total = st.get("total_epochs")
-    f["epoch_continuity_recomputed"] = (
-        (total is not None
-         and st.get("last_epoch_value") == total
-         and (st.get("final_epoch_rows") or 0) > (st.get("rows_at_kill") or 0)
-         and st.get("resume_exit") == 0) if total is not None else None)
+    rows_kill = st.get("rows_at_kill")
+    rows_final = st.get("final_epoch_rows")
+    resume_start = st.get("resume_start_epoch")
+    last_epoch = st.get("last_epoch_value")
+    ckpt_epoch = resumable.get("ckpt_epoch")
+    resume_exit = st.get("resume_exit")
+    resume_updates = st.get("resume_effective_updates")
+    required: list[tuple[str, object, int | None]] = [
+        ("total_epochs", total, 1), ("rows_at_kill", rows_kill, 0),
+        ("final_epoch_rows", rows_final, 0), ("resume_start_epoch", resume_start, 1),
+        ("last_epoch_value", last_epoch, 0),
+        ("checkpoint_resumability.ckpt_epoch", ckpt_epoch, 0),
+        ("resume_exit", resume_exit, None), ("resume_effective_updates", resume_updates, 1)]
+    f["epoch_evidence_required"] = [name for name, _, _ in required]
+    f["epoch_evidence_missing"] = []
+    f["epoch_evidence_invalid"] = []
+    for name, val, lo in required:
+        if val is None:
+            f["epoch_evidence_missing"].append(name)
+        elif not _strict_int(val):
+            f["epoch_evidence_invalid"].append(f"{name}: {val!r} is not an int")
+        elif lo is not None and val < lo:
+            f["epoch_evidence_invalid"].append(f"{name}: {val} < {lo}")
+        elif name == "resume_exit" and val != 0:
+            f["epoch_evidence_invalid"].append(f"resume_exit: {val} != 0")
+    epoch_ok = not f["epoch_evidence_missing"] and not f["epoch_evidence_invalid"]
+    # Observed Ultralytics semantics (kept as-is, no invented off-by-one):
+    # the results-CSV epoch column is 1-based display (1..total_epochs) while
+    # the checkpoint's `epoch` key is 0-based; resume restarts at ckpt+1.
+    if epoch_ok:
+        f["epoch_continuity_recomputed"] = (
+            last_epoch == total                    # final row shows the defined last epoch
+            and rows_final > rows_kill             # resume produced NEW epoch observations
+            and resume_start == ckpt_epoch + 1     # correct continuity with the checkpoint
+            and 1 <= resume_start < total          # not reset to initial state; work remained
+            and resume_exit == 0)
+    else:
+        f["epoch_continuity_recomputed"] = None
     core_ok = (
-        ckpt.get("pass_fail_skip") == "PASS"
+        epoch_ok
+        and f["epoch_continuity_recomputed"] is True
+        and ckpt.get("pass_fail_skip") == "PASS"
         and resumable.get("has_optimizer_state") is True
-        and st.get("resume_exit") == 0
         and st.get("resume_done_marker") is True
-        and st.get("epoch_continuity") is True
-        and (f["epoch_continuity_recomputed"] is not False)
-        and (st.get("resume_start_epoch") is None
-             or (total is None or st.get("resume_start_epoch") < total))
+        and st.get("epoch_continuity") is True     # stored boolean only diffed
         and st.get("infer_ok") is True and st.get("infer_exit") == 0
-        and (st.get("last_epoch_value") or 0) >= 3
+        and last_epoch >= 3
         and bool(ckpt.get("checkpoint_sha256")) and sha_hex_ok
         and all(v is not False for v in anchored.values())
         and ckpt.get("gfx_target") == FROZEN["gfx_target"]
-        and (st.get("resume_effective_updates") or 0) > 0
+        and resume_updates > 0
         and (st.get("optimizer_state_entries") or 0) > 0
     )
-    # serialization-depth classification — never invent upstream fields.
-    # Observed 8.4.214 reality: optimizer/epoch/best_fitness/train_args/EMA and
-    # the GradScaler ARE serialized; the LR scheduler is NOT (rebuilt from
-    # train_args on resume). Honest claims follow the observations.
+    # state-classification: SERIALIZED (a checkpoint key exists) is strictly
+    # weaker than RESTORE_VERIFIED (independent evidence the restored state was
+    # actually honored after resume). Observed 8.4.214 reality: optimizer,
+    # epoch, best_fitness, train_args, EMA and the GradScaler `scaler` key ARE
+    # serialized; the LR scheduler is NOT (rebuilt from train_args on resume)
+    # — so absence of scheduler state can never prove full-state restoration.
     serialized = {k: (v or {}).get("serialized") for k, v in sc.items()
                   if isinstance(v, dict)}
-    full_state = (
-        serialized.get("model_weights") is True
-        and serialized.get("optimizer") is True
-        and serialized.get("epoch") is True
-        and serialized.get("best_fitness") is True
-        and serialized.get("trainer_args") is True
-        and serialized.get("scheduler") == "NOT_SERIALIZED_BY_UPSTREAM"
-        and serialized.get("gradscaler") is True
-    )
+    restore_verified = {k: (v or {}).get("restore_verified") for k, v in sc.items()
+                        if isinstance(v, dict)}
+    mandatory = ("model_weights", "optimizer", "epoch", "best_fitness",
+                 "trainer_args", "ema", "gradscaler", "scheduler")
+    full_state = all(restore_verified.get(k) is True and serialized.get(k) is True
+                     for k in mandatory)
+    f["state_serialized_map"] = serialized
+    f["state_restore_verified_map"] = restore_verified
     f["state_verdict"] = (
-        "FULL_TRAINING_STATE_RESTORE_PASS" if (core_ok and full_state
-            and serialized.get("scheduler") is not None)
+        "FULL_TRAINING_STATE_RESTORE_PASS" if (core_ok and full_state)
         else "RESUME_PASS_CORE_STATE_VERIFIED"
         if core_ok else "RESUME_INCOMPLETE")
     f["not_serialized_classes"] = {k: v for k, v in serialized.items()
@@ -653,6 +702,10 @@ def evaluate_g5(ckpt, artifacts: list | None = None) -> dict:
 
 
 # ================================================================ G7
+SPAWN_IMPORT_RE = re.compile(r"from multiprocessing\.spawn import spawn_main")
+SPAWN_PARENT_PID_RE = re.compile(r"parent_pid\s*=\s*(\d+)")
+
+
 def evaluate_g7(rel, supp, orphan, trainer_receipt) -> dict:
     """trainer_receipt: either {"envelope": {...child_pid...}} or the workers
     envelope record itself (run_envelope child_pid / worker_stage trainer_pid —
@@ -661,9 +714,14 @@ def evaluate_g7(rel, supp, orphan, trainer_receipt) -> dict:
             and "envelope" not in trainer_receipt:
         trainer_receipt = {"envelope": {
             "child_pid": trainer_receipt.get("child_pid")
-            or trainer_receipt.get("trainer_pid")}}
-    """Recompute worker facts from the recorded process observations; the
-    census/orphan verdict strings are never authority."""
+            or trainer_receipt.get("trainer_pid"),
+            "baseline_python_pids": trainer_receipt.get("baseline_python_pids")}}
+    env = ((trainer_receipt or {}).get("envelope") or {})
+    env_pid = env.get("child_pid")
+    env_baseline = env.get("baseline_python_pids")
+    """Recompute worker facts per-worker from the raw census snapshots; the
+    stored PID lists/counts and the census/orphan verdict strings are never
+    authority (stored values are only DIFFED against the recomputation)."""
     f = {"present": rel is not None}
     if not rel:
         return gate("G7", False, f, "missing workers exercise evidence")
@@ -678,7 +736,9 @@ def evaluate_g7(rel, supp, orphan, trainer_receipt) -> dict:
         "census_present": supp is not None, "orphan_present": orphan is not None,
     })
     census_ok = False
-    leftover_recomputed: list = []
+    valid_workers: list = []
+    peak_ppid_of: dict = {}
+    trainer_pid = None
     if supp:
         kids = supp.get("spawn_children_of_trainer") or []
         trainer_pid = supp.get("trainer_pid")
@@ -686,43 +746,150 @@ def evaluate_g7(rel, supp, orphan, trainer_receipt) -> dict:
         f.update({"trainer_pid": trainer_pid,
                   "spawn_children": kids,
                   "spawn_children_count": len(kids),
+                  "stored_spawn_children_count": supp.get("spawn_children_count"),
+                  "stored_spawn_main_children_count": supp.get("spawn_main_children_count"),
                   "census_captured_utc": supp.get("captured_utc"),
                   "preexisting_disclosed": preexisting})
-        census_ok = (
-            isinstance(trainer_pid, int)
-            and len(kids) >= 8
-            and all(isinstance(k, int) for k in kids)
-            and len(set(kids)) == len(kids)
-        )
-        # trainer identity must tie to the training receipt's process envelope
-        # (directly, or through a venv-launcher ancestor chain recorded in the
-        # census tree snapshots — a venv redirector pid may sit between)
-        env_pid = ((trainer_receipt or {}).get("envelope") or {}).get("child_pid")
-        f["envelope_child_pid"] = env_pid
-        chain = [trainer_pid]
-        ppid_of = {}
-        for s in (supp.get("snapshots") or []):
+        # worker identity recomputed INSIDE each snapshot: a counted worker
+        # must appear in that snapshot's own python_tree, be a DIRECT child of
+        # the trainer, carry genuine multiprocessing spawn semantics, and its
+        # cmdline parent_pid (when present) must agree with the recorded PPID
+        ppid_of: dict = {}
+        per_snap: list[dict] = []
+        snap_ppids: list[dict] = []
+        for s in supp.get("snapshots") or []:
+            nodes: dict = {}
+            bad_nodes: list[str] = []
             for p in s.get("python_tree") or []:
-                ppid_of[p.get("pid")] = p.get("ppid")
-        cur = trainer_pid
-        while cur in ppid_of and ppid_of.get(cur) is not None:
-            cur = ppid_of[cur]
-            chain.append(cur)
+                pid, ppid, cmd = p.get("pid"), p.get("ppid"), p.get("cmdline")
+                if not _strict_int(pid) or pid <= 0 \
+                        or not _strict_int(ppid) or ppid <= 0:
+                    bad_nodes.append(f"pid={pid!r} ppid={ppid!r}")
+                    continue
+                nodes[pid] = (ppid, cmd)
+                ppid_of[pid] = ppid
+            valid, rejected = [], []
+            for pid, (ppid, cmd) in nodes.items():
+                if isinstance(cmd, str) and SPAWN_IMPORT_RE.search(cmd):
+                    m = SPAWN_PARENT_PID_RE.search(cmd)
+                    if ppid == trainer_pid \
+                            and (m is None or int(m.group(1)) == ppid):
+                        valid.append(pid)
+                    else:
+                        rejected.append({"pid": pid, "ppid": ppid,
+                                         "cmdline_parent_pid":
+                                             m.group(1) if m else None})
+            per_snap.append({"captured_utc": s.get("captured_utc"),
+                             "valid_workers": sorted(valid),
+                             "count": len(valid),
+                             "rejected_spawn_nodes": rejected[:4],
+                             "bad_nodes": bad_nodes[:4]})
+            snap_ppids.append({pid: ppid for pid, (ppid, _) in nodes.items()})
+        f["snapshots_examined"] = len(per_snap)
+        f["per_snapshot_workers"] = per_snap
+        # simultaneity: only the PEAK single snapshot's valid workers count —
+        # PIDs scattered across different-time snapshots never add up
+        peak = max(per_snap, key=lambda x: x["count"], default=None) or \
+            {"captured_utc": None, "valid_workers": [], "count": 0}
+        valid_workers = peak["valid_workers"]
+        f["peak_snapshot"] = {"captured_utc": peak["captured_utc"],
+                              "simultaneous_valid_workers": peak["count"]}
+        f["recomputed_worker_pids"] = valid_workers
+        peak_ppid_of = snap_ppids[per_snap.index(peak)] if per_snap else {}
+        # trainer must exist in the peak snapshot's own tree, not just be claimed
+        f["trainer_in_peak_snapshot"] = trainer_pid in peak_ppid_of
+        # stored lists/counts DIFFED against the recomputation (never authority)
+        f["worker_count_reconciles"] = (
+            len(kids) == len(set(kids)) == peak["count"]
+            and set(kids) == set(valid_workers)
+            and supp.get("spawn_children_count") == peak["count"]
+            and supp.get("spawn_main_children_count") == peak["count"])
+        # trainer ancestry to the execution envelope: cycle-guarded PPID walk
+        # through the recorded snapshots (a venv redirector may sit between)
+        chain = [trainer_pid]
+        cycle = False
+        if _strict_int(trainer_pid):
+            cur, seen = trainer_pid, {trainer_pid}
+            while True:
+                nxt = ppid_of.get(cur)
+                if not _strict_int(nxt):
+                    break
+                if nxt in seen:
+                    cycle = True
+                    break
+                seen.add(nxt)
+                chain.append(nxt)
+                cur = nxt
         f["trainer_ancestry_chain"] = chain
+        f["trainer_ancestry_cycle"] = cycle
+        f["envelope_child_pid"] = env_pid
+        # the execution-envelope PID is REQUIRED and must be reachable
         f["trainer_pid_ties_to_envelope"] = (
-            env_pid is None or env_pid == trainer_pid or env_pid in chain)
-        census_ok = census_ok and f["trainer_pid_ties_to_envelope"]
+            _strict_int(env_pid) and env_pid > 0
+            and (env_pid == trainer_pid or env_pid in chain))
+        census_ok = (
+            _strict_int(trainer_pid) and trainer_pid > 0
+            and f["trainer_in_peak_snapshot"]
+            and peak["count"] >= 8
+            and f["worker_count_reconciles"]
+            and not cycle
+            and f["trainer_pid_ties_to_envelope"]
+        )
+    clean = False
     if orphan:
         all_pids = orphan.get("all_python_pids") or []
         preexisting = (supp or {}).get("preexisting_zombies_disclosed") or []
         checker = orphan.get("checker_pid")
-        leftover_recomputed = [p for p in all_pids
-                               if p not in preexisting and p != checker]
-        f.update({"orphan_all_pids": all_pids,
-                  "orphan_checker_pid": checker,
-                  "leftover_recomputed": leftover_recomputed,
-                  "stored_mission_tree_leftover": orphan.get("mission_tree_leftover")})
-    clean = bool(orphan) and not leftover_recomputed
+        baseline = orphan.get("baseline_python_pids")
+        # ONLY the recorded pre-start baseline may excuse a surviving PID; the
+        # census disclosure and the envelope's own baseline record must agree
+        # with it, and a baseline PID the census tree shows as the trainer's
+        # OWN child contradicts "existed before the run" (forged baseline)
+        baseline_ok = (
+            isinstance(baseline, list) and bool(baseline)
+            and all(_strict_int(p) and p > 0 for p in baseline)
+            and len(set(baseline)) == len(baseline))
+        # The pre-run envelope baseline is mandatory, not an optional
+        # witness: missing/malformed/duplicate IDs must never grant a PASS.
+        env_baseline_ok = (
+            isinstance(env_baseline, list) and bool(env_baseline)
+            and all(_strict_int(p) and p > 0 for p in env_baseline)
+            and len(set(env_baseline)) == len(env_baseline))
+        f.update({
+            "orphan_all_pids": all_pids,
+            "orphan_checker_pid": checker,
+            "orphan_baseline_pids": baseline,
+            "baseline_reconciles_census_disclosure": (
+                baseline_ok and set(preexisting) == set(baseline)),
+            "envelope_baseline_valid": env_baseline_ok,
+            "baseline_reconciles_envelope": (
+                baseline_ok and env_baseline_ok
+                and set(env_baseline) == set(baseline)),
+            "baseline_contradicts_census_tree": [
+                p for p in (baseline or [])
+                if trainer_pid is not None
+                and peak_ppid_of.get(p) == trainer_pid],
+            "checker_pid_valid": _strict_int(checker),
+            "orphan_pids_valid": all(_strict_int(p) for p in all_pids),
+            # trainer and every attributed worker must be gone post-run — this
+            # holds REGARDLESS of any baseline/preexisting claim
+            "trainer_terminated": (
+                _strict_int(trainer_pid) and trainer_pid not in all_pids),
+            "attributed_workers_terminated": not (
+                set(valid_workers) & set(all_pids)),
+            "stored_mission_tree_leftover": orphan.get("mission_tree_leftover"),
+        })
+        f["leftover_recomputed"] = [p for p in all_pids
+                                    if p not in (baseline or [])
+                                    and p != checker]
+        clean = (
+            bool(supp) and baseline_ok
+            and f["baseline_reconciles_census_disclosure"]
+            and f["baseline_reconciles_envelope"]
+            and not f["baseline_contradicts_census_tree"]
+            and f["checker_pid_valid"] and f["orphan_pids_valid"]
+            and f["trainer_terminated"] and f["attributed_workers_terminated"]
+            and not f["leftover_recomputed"])
     workers8 = "workers=8" in str(rel.get("harness_train_args"))
     train_ok = (
         rel.get("exit_code") == 0
@@ -825,7 +992,7 @@ def main() -> None:
     result = derive(gates, forbidden)
     result.update({
         "run_id": args.run_id, "mission": "R22A.5N.1",
-        "engine_version": "r22a5n1-acceptance-v2",
+        "engine_version": "r22a5n2-fail-closed-acceptance-v3",
         "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "evidence_root": str(root), "gates": gates,
         "reliability_census": supp, "reliability_orphan_check": orphan,
