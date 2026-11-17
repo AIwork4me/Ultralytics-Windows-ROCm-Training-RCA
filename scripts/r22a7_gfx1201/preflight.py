@@ -7,6 +7,7 @@ import hashlib
 import importlib.metadata as metadata
 import json
 import platform
+import re
 import sys
 import traceback
 from pathlib import Path
@@ -38,7 +39,38 @@ def main() -> int:
         result["wheel_lock_sha256"] = sha(lock_path)
         if lock.get("gfx_target") != "gfx1201" or lock.get("channel") != "nightly":
             raise ValueError("LOCK_IDENTITY_MISMATCH: requires exact gfx1201/nightly package lock")
-        result["lock_package_count"] = len(lock.get("packages", []))
+        packages = lock.get("packages")
+        if not isinstance(packages, list) or not packages:
+            raise ValueError("EMPTY_WHEEL_LOCK")
+        if lock.get("python_tag") != f"cp{sys.version_info.major}{sys.version_info.minor}":
+            raise ValueError("PYTHON_ABI_MISMATCH")
+        required = ("torch", "torchvision", "rocm-sdk-core", "rocm-sdk-libraries",
+                    "rocm-sdk-device-gfx1201", "amd-torch-device-gfx1201",
+                    "amd-torchvision-device-gfx1201", "ultralytics")
+        by_name = {}
+        for pkg in packages:
+            if not isinstance(pkg, dict) or not pkg.get("name") or not pkg.get("version"):
+                raise ValueError("MALFORMED_LOCK_PACKAGE")
+            name = str(pkg["name"]).lower().replace("_", "-")
+            if name in by_name:
+                raise ValueError("DUPLICATE_LOCK_PACKAGE")
+            if not re.fullmatch(r"[0-9a-fA-F]{64}", str(pkg.get("sha256", ""))):
+                raise ValueError("MISSING_WHEEL_SHA256")
+            by_name[name] = pkg
+        if any(p not in by_name for p in required):
+            raise ValueError("INCOMPLETE_GFX1201_OFFICIAL_WHEEL_FAMILY")
+        result["lock_package_count"] = len(packages)
+        mismatches = []
+        for name, pkg in sorted(by_name.items()):
+            try:
+                installed = metadata.version(name)
+            except metadata.PackageNotFoundError:
+                installed = None
+            if installed != pkg["version"]:
+                mismatches.append({"name": name, "locked": pkg["version"], "installed": installed})
+        result["installed_vs_lock_mismatches"] = mismatches
+        if mismatches:
+            raise ValueError(f"INSTALLED_WHEEL_LOCK_MISMATCH: {len(mismatches)} packages")
         import torch
         import torchvision
         import ultralytics
