@@ -1,0 +1,20 @@
+{
+  "stage": "post-run orphan check",
+  "captured_utc": "2026-11-17T07:22:31.787613+00:00",
+  "checker_pid": 4428,
+  "all_python_pids": [
+    2492,
+    4428,
+    7788,
+    16324
+  ],
+  "baseline_python_pids": [
+    2492,
+    4428,
+    7788,
+    16324
+  ],
+  "mission_tree_leftover": [],
+  "orphan_verdict": "CLEAN",
+  "note": "leftover recomputed = all_python_pids − baseline − checker; stored verdict is derived, never authoritative"
+}

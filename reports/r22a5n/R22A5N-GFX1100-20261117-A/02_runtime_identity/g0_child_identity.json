@@ -1,0 +1,74 @@
+{
+  "run_id": "R22A5N-GFX1100-G0",
+  "mission": "R22A.5N-gfx1100",
+  "timestamp": "2026-11-17T07:10:49.743029+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.16.0a0+rocm10.3.0a20261116",
+  "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+  "ultralytics": "8.4.214",
+  "hip": "7.18.26455",
+  "channel": "nightly",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "verdict": "G0_RUNTIME_IDENTITY_PASS",
+  "reason": "real GPU selected in child, GPU op finite, in-process loaded MIOpen.dll path+SHA256 equal the frozen candidate wheel identity",
+  "expect_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+  "child_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+  "child_dll_path": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+  "child_dll_sha256_matches_frozen": true,
+  "child_gpu_name": "AMD Radeon RX 7900 XTX",
+  "child_torch": "2.16.0a0+rocm10.3.0a20261116",
+  "child_hip": "7.18.26455",
+  "child_device_count": 1,
+  "child_op_finite": true,
+  "child_miopen_versions": [
+    "3.6.3.25f28906"
+  ],
+  "child_marker_count": 2,
+  "miopen_identity_in_parent": {
+    "loaded": true,
+    "path": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+    "bytes": 519806464,
+    "embedded_version_strings": [
+      "3.6.3.25f28906"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  },
+  "parent_and_child_dll_agree": true,
+  "exit_code": 0,
+  "duration_s": 13.4,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\r22a5n1100\\scratch_g0\\g0_child_1794899436\\child.log",
+  "command": "python verify_gpu_child_identity.py --expect-dll-sha256 f9312c3e646f... --channel nightly",
+  "leg_detail": {
+    "exit_code": 0,
+    "duration_s": 12.3,
+    "child": {
+      "torch": "2.16.0a0+rocm10.3.0a20261116",
+      "hip": "7.18.26455",
+      "cuda_available": true,
+      "device_count": 1,
+      "gpu_name": "AMD Radeon RX 7900 XTX",
+      "op_finite": true,
+      "miopen": {
+        "loaded": true,
+        "path": "C:\\r22a5n1100\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+        "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "bytes": 519806464,
+        "embedded_version_strings": [
+          "3.6.3.25f28906"
+        ],
+        "pr13437_marker_miopen_initializer_list": 2
+      }
+    },
+    "stdout_tail": "G0_CHILD_IDENTITY {\"torch\": \"2.16.0a0+rocm10.3.0a20261116\", \"hip\": \"7.18.26455\", \"cuda_available\": true, \"device_count\": 1, \"gpu_name\": \"AMD Radeon RX 7900 XTX\", \"op_finite\": true, \"miopen\": {\"loaded\": true, \"path\": \"C:\\\\r22a5n1100\\\\venv\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"sha256\": \"f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6\", \"bytes\": 519806464, \"embedded_version_strings\": [\"3.6.3.25f28906\"], \"pr13437_marker_miopen_initializer_list\": 2}}\n",
+    "stderr_tail": "",
+    "log_path": "C:\\r22a5n1100\\scratch_g0\\g0_child_1794899436\\child.log",
+    "scratch": "C:\\r22a5n1100\\scratch_g0\\g0_child_1794899436"
+  }
+}

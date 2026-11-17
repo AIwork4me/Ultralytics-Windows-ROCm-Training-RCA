@@ -1,0 +1,190 @@
+{
+  "stage": "mid-run census",
+  "captured_utc": "2026-11-17T07:25:33.603700+00:00",
+  "trainer_pid": 19136,
+  "spawn_children_of_trainer": [
+    2412,
+    3596,
+    5960,
+    7084,
+    8420,
+    8992,
+    9440,
+    10372,
+    11360,
+    11488,
+    11772,
+    13268,
+    17364,
+    17900,
+    18740,
+    23128
+  ],
+  "checker_pid": 10588,
+  "rows_at_census": 1,
+  "orchestrator_pid": 15224,
+  "spawn_children_count": 16,
+  "spawn_main_children_count": 16,
+  "snapshot_count": 1,
+  "snapshots": [
+    {
+      "captured_utc": "2026-11-17T07:25:33.603700+00:00",
+      "python_tree": [
+        {
+          "pid": 1676,
+          "ppid": 17872,
+          "cmdline": "C:\\r22a5n1100\\venv-tools\\Scripts\\python.exe -I C:/Users/Rocm/Desktop/YOLO/rca-r21/scripts/r22a5n1/run_envelope.py --name g7_workers8_r2 --run-root C:/r22a5n1100/attempts --lock C:/Users/Rocm/Desktop/YOLO/rca-r21/reports/r22a5n/R22A5N-GFX1100-20261117-A/01_package_provenance/resolved_wheel_lock_nightly_gfx1100.json --cwd C:/r22a5n1100/g7run --timeout 5400 -- C:/r22a5n1100/venv/Scripts/python.exe -X"
+        },
+        {
+          "pid": 5128,
+          "ppid": 1676,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" -I C:/Users/Rocm/Desktop/YOLO/rca-r21/scripts/r22a5n1/run_envelope.py --name g7_workers8_r2 --run-root C:/r22a5n1100/attempts --lock C:/Users/Rocm/Desktop/YOLO/rca-r21/reports/r22a5n/R22A5N-GFX1100-20261117-A/01_package_provenance/resolved_wheel_lock_nightly_gfx1100.json --cwd C:/r22a5n1100/g7run --timeout 5400 -"
+        },
+        {
+          "pid": 14892,
+          "ppid": 5128,
+          "cmdline": "C:/r22a5n1100/venv/Scripts/python.exe -X utf8 C:/Users/Rocm/Desktop/YOLO/rca-r21/scripts/r22a5n1/worker_stage.py --python C:/r22a5n1100/venv/Scripts/python.exe --run-root C:/r22a5n1100/g7run --repo-root C:/Users/Rocm/Desktop/YOLO/rca-r21 --lock C:/Users/Rocm/Desktop/YOLO/rca-r21/reports/r22a5n/R22A5N-GFX1100-20261117-A/01_package_provenance/resolved_wheel_lock_nightly_gfx1100.json --receipt C:/Use"
+        },
+        {
+          "pid": 10588,
+          "ppid": 14892,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" -X utf8 C:/Users/Rocm/Desktop/YOLO/rca-r21/scripts/r22a5n1/worker_stage.py --python C:/r22a5n1100/venv/Scripts/python.exe --run-root C:/r22a5n1100/g7run --repo-root C:/Users/Rocm/Desktop/YOLO/rca-r21 --lock C:/Users/Rocm/Desktop/YOLO/rca-r21/reports/r22a5n/R22A5N-GFX1100-20261117-A/01_package_provenance/resolved_"
+        },
+        {
+          "pid": 15224,
+          "ppid": 10588,
+          "cmdline": "C:/r22a5n1100/venv/Scripts/python.exe -X utf8 C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\windows-golden-path\\scripts\\audit_adamw_amp.py --out C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\reports\\r22a5n\\R22A5N-GFX1100-20261117-A\\08_workers_reliability\\workers8_amp_v2.json --run-id R22A5N-GFX1100-G7-W8-R2 --mission R22A.5N-gfx1100 --channel nightly --wheel-lock C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\reports\\r22a5n\\R22A5N"
+        },
+        {
+          "pid": 19136,
+          "ppid": 15224,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" -X utf8 C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\windows-golden-path\\scripts\\audit_adamw_amp.py --out C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\reports\\r22a5n\\R22A5N-GFX1100-20261117-A\\08_workers_reliability\\workers8_amp_v2.json --run-id R22A5N-GFX1100-G7-W8-R2 --mission R22A.5N-gfx1100 --channel nightly --wheel-lock C:\\Users"
+        },
+        {
+          "pid": 3596,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3024)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 8420,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=2756)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 5960,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=2084)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 10372,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=2668)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 18740,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=2708)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 7084,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=2696)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 13268,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=2788)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 11488,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=1904)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 2412,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3336)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 23128,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3296)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 17900,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3396)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 17364,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3292)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 11360,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3380)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 9440,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3456)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 8992,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3308)\" \"--multiprocessing-fork\""
+        },
+        {
+          "pid": 11772,
+          "ppid": 19136,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=19136, pipe_handle=3540)\" \"--multiprocessing-fork\""
+        }
+      ],
+      "trainer_pid": 19136,
+      "children": [
+        2412,
+        3596,
+        5960,
+        7084,
+        8420,
+        8992,
+        9440,
+        10372,
+        11360,
+        11488,
+        11772,
+        13268,
+        17364,
+        17900,
+        18740,
+        23128
+      ],
+      "spawn_main": [
+        3596,
+        8420,
+        5960,
+        10372,
+        18740,
+        7084,
+        13268,
+        11488,
+        2412,
+        23128,
+        17900,
+        17364,
+        11360,
+        9440,
+        8992,
+        11772
+      ]
+    }
+  ],
+  "capture_method": "series of full Win32_Process CIM tree snapshots executed live while training; trainer identified as the deepest audit_adamw_amp process; every snapshot retained; peak snapshot cited",
+  "preexisting_zombies_disclosed": [
+    1676,
+    5128,
+    10588,
+    14892
+  ]
+}

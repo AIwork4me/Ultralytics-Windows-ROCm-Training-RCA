@@ -1,0 +1,40 @@
+# leg=official
+# cmd=C:\P18\venv\Scripts\python.exe -I C:\r22a5n1100\scratch_g1_negctrl\nostl_official_1794899552\bn_repro.py
+# VCToolsInstallDir=C:\r22a5n1100\scratch_g1_negctrl\nostl_official_1794899552\fakevc
+# INCLUDE=''
+# USERPROFILE=C:\r22a5n1100\scratch_g1_negctrl\nostl_official_1794899552\home
+# HIPRTC_COMPILE_OPTIONS_APPEND=None
+
+--- stdout ---
+BN_NOSTL_CHILD_MIOPEN_PRE {"loaded": true, "path": "C:\\P18\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc", "bytes": 492380672, "pr13437_marker_miopen_initializer_list": 0}
+BN_NOSTL_CHILD_MIOPEN_ATFAIL {"loaded": true, "path": "C:\\P18\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc", "bytes": 492380672, "pr13437_marker_miopen_initializer_list": 0}
+
+--- stderr ---
+MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
+MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp
+MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\Rocm\AppData\Local\Temp\comgr-22260-6-3f6a7c\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+In file included from C:\Users\Rocm\AppData\Local\Temp\comgr-22260-6-3f6a7c\include\batchnorm_functions.hpp:30:
+In file included from C:\Users\Rocm\AppData\Local\Temp\comgr-22260-6-3f6a7c\include\configuration.hpp:34:
+In file included from C:\Users\Rocm\AppData\Local\Temp\comgr-22260-6-3f6a7c\include\vector_types.hpp:8:
+C:\Users\Rocm\AppData\Local\Temp\comgr-22260-6-3f6a7c\include\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found
+  151 | #include <type_traits>
+      |          ^~~~~~~~~~~~~
+1 error generated when compiling for gfx1100.
+MIOpen Error: DESKTOP-S6VG7J7:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp
+Traceback (most recent call last):
+  File "C:\r22a5n1100\scratch_g1_negctrl\nostl_official_1794899552\bn_repro.py", line 35, in <module>
+    y = model(x)
+        ^^^^^^^^
+  File "C:\P18\venv\Lib\site-packages\torch\nn\modules\module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\P18\venv\Lib\site-packages\torch\nn\modules\module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\P18\venv\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+           ^^^^^^^^^^^^^
+  File "C:\P18\venv\Lib\site-packages\torch\nn\functional.py", line 2850, in batch_norm
+    return torch.batch_norm(
+           ^^^^^^^^^^^^^^^^^
+RuntimeError: miopenStatusUnknownError

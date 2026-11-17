@@ -61,6 +61,9 @@ def main() -> None:
     ap.add_argument("--census-out", required=True)
     ap.add_argument("--orphan-out", required=True)
     ap.add_argument("--run-id", default="R22A5N1-G7-W8")
+    ap.add_argument("--trainer-mission", default="R22A.5N.1",
+                    help="mission string recorded in the trainer receipt "
+                         "(stacked/derived missions label their own runs)")
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--timeout", type=int, default=5400)
     args = ap.parse_args()
@@ -83,7 +86,7 @@ def main() -> None:
     cmd = [args.python, "-X", "utf8",
            str(repo / "windows-golden-path" / "scripts" / "audit_adamw_amp.py"),
            "--out", str(Path(args.receipt).resolve()),
-           "--run-id", args.run_id, "--mission", "R22A.5N.1",
+           "--run-id", args.run_id, "--mission", args.trainer_mission,
            "--channel", "nightly", "--wheel-lock", str(lock),
            "--data", "coco128.yaml", "--epochs", str(args.epochs),
            "--imgsz", "256", "--batch", "8", "--device", "-1",
@@ -140,8 +143,11 @@ def main() -> None:
                           and "spawn_main" in p["cmdline"]]
             snapshots.append({
                 "captured_utc": utcnow(),
+                # 400 chars (full CIM capture): on redirector-venv topologies the
+                # deepest trainer's script name lives past 160 chars, and the
+                # acceptance engine's raw-snapshot recompute must still see it
                 "python_tree": [{"pid": p["pid"], "ppid": p["ppid"],
-                                 "cmdline": p["cmdline"][:160]} for p in tree],
+                                 "cmdline": p["cmdline"][:400]} for p in tree],
                 "trainer_pid": trainer["pid"],
                 "children": kids, "spawn_main": spawn_main})
             best = max(snapshots, key=lambda s: len(s["children"]))

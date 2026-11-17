@@ -1,0 +1,7 @@
+# lifecycle summary 2026-11-17T07:18:18.835938+00:00
+# run_id=R22A5N-GFX1100-G5
+2026-11-17T07:18:18.841843+00:00 stage1 train child pid=9756
+2026-11-17T07:19:27.784946+00:00 interrupted child rc=1 rows_at_kill=2
+2026-11-17T07:19:27.955621+00:00 checkpoint_at_kill sha=4e20658ad61048c5648aa4e6eeba0e496dc56bb9560c014539607f1ccc22bec5 state={'checked': True, 'has_optimizer_state': True, 'ckpt_epoch': 0}
+2026-11-17T07:20:09.153420+00:00 resume rc=0 start_epoch=1 optimizer_state_entries=366 effective=8/8
+2026-11-17T07:20:21.832678+00:00 stage4 infer rc=0

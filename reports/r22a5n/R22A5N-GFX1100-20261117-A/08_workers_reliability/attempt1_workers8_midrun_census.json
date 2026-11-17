@@ -1,0 +1,190 @@
+{
+  "stage": "mid-run census",
+  "captured_utc": "2026-11-17T07:22:23.374010+00:00",
+  "trainer_pid": 15968,
+  "spawn_children_of_trainer": [
+    5156,
+    6876,
+    7524,
+    8356,
+    8368,
+    10588,
+    12420,
+    13792,
+    14728,
+    14892,
+    17976,
+    18456,
+    19236,
+    20784,
+    21156,
+    23164
+  ],
+  "checker_pid": 4428,
+  "rows_at_census": 1,
+  "orchestrator_pid": 19432,
+  "spawn_children_count": 16,
+  "spawn_main_children_count": 16,
+  "snapshot_count": 1,
+  "snapshots": [
+    {
+      "captured_utc": "2026-11-17T07:22:23.374010+00:00",
+      "python_tree": [
+        {
+          "pid": 16324,
+          "ppid": 14660,
+          "cmdline": "C:\\r22a5n1100\\venv-tools\\Scripts\\python.exe -I C:/Users/Rocm/Desktop/YOLO/rca-r21/scripts/r22a5n1/run_envelope.py --name g7_workers8 --run-root C:/r22a5n1100/at"
+        },
+        {
+          "pid": 7788,
+          "ppid": 16324,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" -I C:/Users/Rocm/Desktop/YOLO/rca-r21/scripts/r22a5n1/run_envelope.py --na"
+        },
+        {
+          "pid": 2492,
+          "ppid": 7788,
+          "cmdline": "C:/r22a5n1100/venv/Scripts/python.exe -X utf8 C:/Users/Rocm/Desktop/YOLO/rca-r21/scripts/r22a5n1/worker_stage.py --python C:/r22a5n1100/venv/Scripts/python.exe "
+        },
+        {
+          "pid": 4428,
+          "ppid": 2492,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" -X utf8 C:/Users/Rocm/Desktop/YOLO/rca-r21/scripts/r22a5n1/worker_stage.py"
+        },
+        {
+          "pid": 19432,
+          "ppid": 4428,
+          "cmdline": "C:/r22a5n1100/venv/Scripts/python.exe -X utf8 C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\windows-golden-path\\scripts\\audit_adamw_amp.py --out C:\\Users\\Rocm\\Desktop\\YOLO"
+        },
+        {
+          "pid": 15968,
+          "ppid": 19432,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" -X utf8 C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\windows-golden-path\\scripts\\aud"
+        },
+        {
+          "pid": 12420,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 5156,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 8368,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 23164,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 10588,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 18456,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 14892,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 7524,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 17976,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 6876,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 21156,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 14728,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 19236,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 20784,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 13792,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        },
+        {
+          "pid": 8356,
+          "ppid": 15968,
+          "cmdline": "\"C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main"
+        }
+      ],
+      "trainer_pid": 15968,
+      "children": [
+        5156,
+        6876,
+        7524,
+        8356,
+        8368,
+        10588,
+        12420,
+        13792,
+        14728,
+        14892,
+        17976,
+        18456,
+        19236,
+        20784,
+        21156,
+        23164
+      ],
+      "spawn_main": [
+        12420,
+        5156,
+        8368,
+        23164,
+        10588,
+        18456,
+        14892,
+        7524,
+        17976,
+        6876,
+        21156,
+        14728,
+        19236,
+        20784,
+        13792,
+        8356
+      ]
+    }
+  ],
+  "capture_method": "series of full Win32_Process CIM tree snapshots executed live while training; trainer identified as the deepest audit_adamw_amp process; every snapshot retained; peak snapshot cited",
+  "preexisting_zombies_disclosed": [
+    2492,
+    4428,
+    7788,
+    16324
+  ]
+}

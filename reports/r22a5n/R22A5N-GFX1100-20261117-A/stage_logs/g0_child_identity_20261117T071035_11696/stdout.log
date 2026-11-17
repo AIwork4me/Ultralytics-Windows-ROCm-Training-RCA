@@ -1,0 +1,2 @@
+VERDICT: G0_RUNTIME_IDENTITY_PASS ¡ª real GPU selected in child, GPU op finite, in-process loaded MIOpen.dll path+SHA256 equal the frozen candidate wheel identity
+[OK] evidence: reports/r22a5n/R22A5N-GFX1100-20261117-A/02_runtime_identity/g0_child_identity.json
