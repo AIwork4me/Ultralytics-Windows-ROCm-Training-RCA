@@ -93,7 +93,7 @@ def capture_child(args: argparse.Namespace) -> int:
     proc = None
     try:
         flags = subprocess.CREATE_NEW_PROCESS_GROUP if os.name == "nt" else 0
-        proc = subprocess.Popen(cmd, cwd=REPO, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+        proc = subprocess.Popen(cmd, cwd=run, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                 creationflags=flags)
         envelope["child_pid"] = proc.pid
         try:
