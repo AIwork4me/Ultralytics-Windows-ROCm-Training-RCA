@@ -1,0 +1,133 @@
+{
+  "run_id": "R22A-DUAL-ARCH-MATRIX",
+  "timestamp": "2026-11-16T02:21:31.698235+00:00",
+  "therock_snapshot": "ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "snapshot_identical_both_arch": true,
+  "gfx1100": {
+    "source": "frozen evidence/raw/r22-dev-rerun + reports/r22-dev-rerun-orchestrated",
+    "gpu_class": "discrete dGPU (RX 7900 XTX class host)",
+    "python_tag": "cp312",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "ultralytics": "8.4.214",
+    "rocm_sdk_libraries_sha256": "dac27df54d5f659e50e8b098fd751386930b08c607f9272c5d25b3c27f0b7d56",
+    "verdict": "DEV_CANDIDATE_PASS",
+    "gates": {
+      "G0_provenance": "PASS",
+      "G1_miopen_nostl": "PASS",
+      "G2_torch_torchvision_gpu": "PASS",
+      "G3_ultralytics_cli": "PASS",
+      "G4_optimizer_update": "PASS",
+      "G5_checkpoint_resume": "PASS",
+      "G8_reliability": "PASS"
+    },
+    "g8_cold": {
+      "n_pass": 10,
+      "n_total": 10,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "source": "evidence/raw/r22-dev-rerun/gpH_stability.json (run_id GP-G-20261116-080547)",
+      "source_sha256": "d72b86fe5bd9950b0c1ec66134e428e703a0046707214616e227bb167897f0c3"
+    },
+    "device_minus_1_selects_gpu": true
+  },
+  "gfx1151": {
+    "source": "live run C:/RadeonYOLO/R22A/evidence/r22-candidate (this mission)",
+    "gpu_class": "APU (Radeon 8060S, Ryzen AI MAX+ 395)",
+    "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+    "python_tag": "cp312",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "ultralytics": "8.4.214",
+    "rocm_sdk_libraries_sha256": "dac27df54d5f659e50e8b098fd751386930b08c607f9272c5d25b3c27f0b7d56",
+    "verdict": "DEV_CANDIDATE_PASS (recomputed from gate evidence)",
+    "g3": {
+      "command": "yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1",
+      "exit": 0,
+      "amp_check": "PASSED",
+      "epoch_completed": true,
+      "gpu": "CUDA:0",
+      "n_checkpoints": 2
+    },
+    "g4": {
+      "amp_resolved": true,
+      "optimizer": "SGD",
+      "fused": false,
+      "steps": 184,
+      "tensors_changed": 359,
+      "tensors_total": 366,
+      "all_finite": true,
+      "scaler_backoffs": 3
+    },
+    "g5": {
+      "pass": "PASS",
+      "epochs_continuity": true,
+      "resume_process": {
+        "resume_exit": 0,
+        "resume_done_marker": true,
+        "resume_state_evidence_logged": true,
+        "rows_at_kill": 3,
+        "final_epoch_rows": 9,
+        "semantics": "resume=True (training state), not weights-only load"
+      },
+      "inference_third_process": {
+        "infer_exit": 0,
+        "infer_ok": true
+      },
+      "checkpoint_sha256_at_kill": {
+        "last.pt": "65e85d65cd3faeff530584e3058d442dcae969e7468395a7cc8c1c4c9d5ac5ad",
+        "best.pt": "d8a8ddfb15af38c56b20280f8d8164b977d66386a70066bb9611d3591b08cb87"
+      },
+      "source": "evidence/raw/r22a-gfx1151/gpF_resume.json (run_id GP-F-20261116-093332)",
+      "source_sha256": "3d059addda2d60cf696c69752c6507120af9b4b7193849094c76b02ef37e8975"
+    },
+    "g8": {
+      "pass": "PASS",
+      "n_pass": 10,
+      "n_total": 10,
+      "cache_class": "cold(fresh-USERPROFILE per run)",
+      "anomaly_tally": {}
+    },
+    "loaded_miopen_identity": {
+      "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+      "embedded_version_strings": [
+        "3.6.3.4e7d93e3"
+      ],
+      "pr13437_marker_miopen_initializer_list": 2,
+      "identical_to_wheel_embedded_dll": true,
+      "source": "evidence/raw/r22a-gfx1151/gpA_provenance.json (run_id GP-A-20261116-093332)",
+      "source_sha256": "dde5d258a37e9434e811ebe710f830c20a51f5203cd453fe468e707a6fed3da9"
+    }
+  },
+  "shared_provenance": {
+    "shared_packages_identical": true,
+    "n_shared": 43,
+    "arch_specific_gfx1151": [
+      "amd-torch-device-gfx1151",
+      "amd-torchvision-device-gfx1151",
+      "rocm-sdk-device-gfx1151"
+    ],
+    "arch_specific_gfx1100": [
+      "amd-torch-device-gfx1100",
+      "amd-torchvision-device-gfx1100",
+      "rocm-sdk-device-gfx1100"
+    ],
+    "dependency_differences": [],
+    "embedded_miopen_version": "3.6.3.4e7d93e3 (both arch; wheel byte-identical)",
+    "fix_ancestry": "f0a5d266 ancestor of 4e7d93e3, behind_by=0 (live GitHub compare)"
+  },
+  "notes": [
+    "raw wall-time NOT compared: APU vs dGPU differ in bandwidth/memory topology/TDP (mission section 14 forbids performance claims without controlled benchmark)",
+    "G9 classification both hosts: HOST_REUSE_FRESH_VENV"
+  ],
+  "R22_DEV_DUAL_ARCH_VALIDATED": true,
+  "evidence_reconciliation": {
+    "note": "windows-golden-path/reports/r22a-gfx1151/R22A_EVIDENCE_RECONCILIATION.md",
+    "updated_utc": "2026-11-16",
+    "items": [
+      "R1 gfx1100 G8 cold 10/10 <- evidence/raw/r22-dev-rerun/gpH_stability.json",
+      "R2 gfx1151 genuine resume-state evidence <- evidence/raw/r22a-gfx1151/gpF_resume.json",
+      "R3 gfx1151 loaded MIOpen identity <- evidence/raw/r22a-gfx1151/gpA_provenance.json",
+      "R4 original G3 output (attempt1 FAIL archive + attempt2 raw stdout) vs parser-derived gpD_train_cli.json",
+      "R5 frozen 46-artifact locks (45 wheels + 1 official ROCm sdist) vs corrected package-origin policy (R22A.1 P0)"
+    ],
+    "raw_logs_modified": false
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "phase": 0,
+  "created_utc": "2026-11-14",
+  "work_branch": "work/windows-rocm-training-release-closure",
+  "repo_head_at_audit": "f9f745e4089621505e174b54a3f86ceb5b2f9ef2",
+  "repo_state": {
+    "branch_tracking": "none (upstream tracking unset on work branch)",
+    "main": "f9f745e4089621505e174b54a3f86ceb5b2f9ef2",
+    "untracked_files": ["phase5_5/docs/GTEST_ARCHITECTURE_COMPARISON.md (pre-existing, left untouched)"],
+    "worktrees": [
+      "C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA (primary, this work)",
+      "C:/rca_r3 (round-3 evidence worktree, frozen)"
+    ],
+    "phase5_7_phase5_8_frozen": true,
+    "rewrites": "none"
+  },
+  "historical_evidence_verification": {
+    "phase5_8_manifest": {
+      "command": "python -I phase5_8/pr13437_round3/scripts/verify_manifest.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "files": 171,
+      "manifest_sha256": "2a3a23e8804a23ee5faf64b062414340df23716eb6456492fa13594e9f32bf8c"
+    },
+    "phase5_8_isa_pairs": {
+      "command": "python -I phase5_8/pr13437_round3/scripts/verify_isa_pairs.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "pairs": 10,
+      "scope": "ten retained paired ELF .text sections; kth cache-to-ELF link only"
+    },
+    "script_safety_audit": "verify_manifest.py (read-only hash compare; --write not used) and verify_isa_pairs.py (read-only ELF parse; SQLite opened via TemporaryDirectory copy + read-only URI) — no cache deletion, no DLL replacement, no destructive side effects."
+  },
+  "upstream_facts_rechecked_2026_11_14": {
+    "pr_13437": {"state": "MERGED", "mergedAt": "2026-10-19T09:27:09Z", "merge_commit": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a", "source": "gh api ROCm/rocm-libraries"},
+    "therock_9359": {"state": "MERGED", "mergedAt": "2026-10-20T23:15:52Z", "merge_commit": "b0958085a97cb03a2c38931b8e2ec86ac78d1563", "title": "Bump rocm-libraries from cb26189 to d875648", "source": "gh api ROCm/TheRock"},
+    "ancestor_checks": [
+      {"base": "f0a5d266", "head": "d8756483d66d58e7eac956decdc3abbfeb4b05fd", "status": "ahead", "ahead_by": 2, "behind_by": 0, "conclusion": "TheRock #9359 bump target contains PR #13437 fix"},
+      {"base": "f0a5d266", "head": "9ea8cfc5e4310730186f80b18226b792418b2bd8", "status": "ahead", "ahead_by": 1011, "behind_by": 0, "conclusion": "TheRock main rocm-libraries submodule pointer (2026-11-14) still contains fix"}
+    ],
+    "releases_after_merge": "NONE — latest TheRock release therock-10.1 (2026-10-05) predates 2026-10-19 merge"
+  },
+  "discrepancies_found_vs_mission_doc": [
+    "Mission doc lists 'TheRock integration SHA: b0958085a97cb03a2c38931b8e2ec86ac78d1563' — confirmed exactly (this is TheRock PR #9359 merge commit).",
+    "Mission doc references phase5_8 evidence directory — located at phase5_8/pr13437_round3/ (not top-level).",
+    "No other discrepancies: all documented SHAs and merge dates re-verified live."
+  ],
+  "environment_baseline": {
+    "os": "Windows 11 Home (build 26200, 10.0.26200) x64",
+    "cpu": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S",
+    "gpu": "AMD Radeon(TM) 8060S Graphics",
+    "gcn_arch": "gfx1151",
+    "gpu_driver": "32.0.22032.6002",
+    "gpu_total_mem_reported": "78.19 GB (unified)",
+    "disk_free_c": "255 GB",
+    "python_envs": {
+      "pm13437_official": {"torch": "2.12.0+rocm7.14.1", "torchvision": "0.27.0+rocm7.14.1", "ultralytics": "8.4.182", "python": "3.13.16", "miopen_dll_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc", "classification": "ENV_A_PRISTINE_OFFICIAL_WHEEL (no fix)"},
+      "pm13437_merged": {"torch": "2.12.0+rocm7.14.1", "torchvision": "0.27.0+rocm7.14.1", "ultralytics": "8.4.182", "python": "3.13.16", "miopen_dll_sha256_at_rest": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc", "classification": "ENV_B_DISPOSABLE (DLL swapped to source-built ed7c67a9 during patched legs, restored after each session)"},
+      "yolo_amd": {"torch": "2.12.0+rocm7.14.0", "torchvision": "0.27.0+rocm7.14.0", "ultralytics": "8.4.174", "python": "3.13.16", "miopen_dll_sha256": "74b4ee038803606e6ea4846362a8565fa9e286cb0df18cf80b9e5a7657b78f0a", "classification": "LEGACY_7.14.0_OFFICIAL_WHEEL (no fix)"}
+    },
+    "source_built_binaries": {
+      "C:/b58m/bin/MIOpen.dll": {"sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a", "source_commit": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a", "fix_marker_hits": 2, "status": "PRESENT 2026-11-14"},
+      "C:/b58/bin/MIOpen.dll": {"sha256": "42d261caec77bf3149b336d55b12dd388e988da97a84cf79688a6f4af19b23cc", "source_commit": "d4b574ac8a039f39976c5f9f4e18adcb074dc237", "fix_marker_hits": 2, "status": "PRESENT 2026-11-14"}
+    }
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "run_id": "R22A4-B-ADD1",
+  "mission": "R22A.4",
+  "timestamp": "2026-11-16T15:16:01.801915+00:00",
+  "source_sha": "ed9014173d08b5b6d0d673773ed351f473b10d63",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "ultralytics": "8.4.214",
+  "wheel_lock_sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+  "loaded_miopen_dll_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+  "runtime_class": "INCONCLUSIVE",
+  "command": "python run_stability.py --runs 1 --cold-runs 0 --workers 8 --data coco128.yaml --device -1 --warm-home C:\\RadeonYOLO\\R22A3\\scratch\\warm-home-b --sample-class additional",
+  "exit_code": 0,
+  "duration_s": 66.2,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\R22A3\\scratch\\workers8_additional\\stability_runs.json",
+  "runs": [
+    {
+      "run": 1,
+      "run_id": "R22A4-B-ADD1-R1",
+      "exit_code": 0,
+      "duration_s": 64.5,
+      "cache_class": "warm(retained isolated home shared by warm runs: C:\\RadeonYOLO\\R22A3\\scratch\\warm-home-b)",
+      "log": "C:\\RadeonYOLO\\R22A3\\scratch\\workers8_additional\\run01\\child.log",
+      "started_utc": "2026-11-16T15:14:57.300256+00:00",
+      "finished_utc": "2026-11-16T15:16:01.790921+00:00",
+      "parent_pid": 51064,
+      "child_pid": 19512,
+      "source_sha": "ed9014173d08b5b6d0d673773ed351f473b10d63",
+      "wheel_lock_sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+      "home_dir": "C:\\RadeonYOLO\\R22A3\\scratch\\warm-home-b",
+      "home_pre_existed": true,
+      "cache_expectation": "warm",
+      "sample_class": "additional",
+      "justification": "R22A.4 sec5: unified strict contract requires exactly 3 qualifying pre-warmed runs; frozen R22A.3 matrix supplies 2 (R3 derives CACHE_PRIMING on first use of warm-home-b) - ONE additional warm sample on the retained shared home completes coverage, same class as gfx1100 R22A2.1 P0-D additional sample",
+      "requested_workers": 8,
+      "resolved_num_workers": 8,
+      "val_num_workers": 4,
+      "distinct_worker_identities": 13,
+      "worker_identities": [
+        {
+          "identity": "19512@1794842097.3107512",
+          "pid": 19512,
+          "create_time": 1794842097.3107512,
+          "ppid": 51064,
+          "name": "python.exe",
+          "first_seen": 1794842097.3164032,
+          "last_seen": 1794842161.6365972,
+          "sightings": 59
+        },
+        {
+          "identity": "42564@1794842124.94736",
+          "pid": 42564,
+          "create_time": 1794842124.94736,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842125.49866,
+          "last_seen": 1794842158.211774,
+          "sightings": 29
+        },
+        {
+          "identity": "41036@1794842126.7910101",
+          "pid": 41036,
+          "create_time": 1794842126.7910101,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842127.6000516,
+          "last_seen": 1794842158.211774,
+          "sightings": 27
+        },
+        {
+          "identity": "26368@1794842128.6195729",
+          "pid": 26368,
+          "create_time": 1794842128.6195729,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842128.6774743,
+          "last_seen": 1794842158.211774,
+          "sightings": 26
+        },
+        {
+          "identity": "46768@1794842130.4837084",
+          "pid": 46768,
+          "create_time": 1794842130.4837084,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842130.8418748,
+          "last_seen": 1794842158.211774,
+          "sightings": 24
+        },
+        {
+          "identity": "36932@1794842132.3877907",
+          "pid": 36932,
+          "create_time": 1794842132.3877907,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842133.0498831,
+          "last_seen": 1794842158.211774,
+          "sightings": 22
+        },
+        {
+          "identity": "25596@1794842134.2497685",
+          "pid": 25596,
+          "create_time": 1794842134.2497685,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842135.2858737,
+          "last_seen": 1794842158.211774,
+          "sightings": 20
+        },
+        {
+          "identity": "13056@1794842136.1910107",
+          "pid": 13056,
+          "create_time": 1794842136.1910107,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842136.4301898,
+          "last_seen": 1794842158.211774,
+          "sightings": 19
+        },
+        {
+          "identity": "48760@1794842138.111701",
+          "pid": 48760,
+          "create_time": 1794842138.111701,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842138.746371,
+          "last_seen": 1794842158.211774,
+          "sightings": 17
+        },
+        {
+          "identity": "19228@1794842143.5119767",
+          "pid": 19228,
+          "create_time": 1794842143.5119767,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842144.6374545,
+          "last_seen": 1794842159.4683156,
+          "sightings": 13
+        },
+        {
+          "identity": "48360@1794842145.3643358",
+          "pid": 48360,
+          "create_time": 1794842145.3643358,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842145.8323007,
+          "last_seen": 1794842159.4683156,
+          "sightings": 12
+        },
+        {
+          "identity": "40240@1794842147.2171419",
+          "pid": 40240,
+          "create_time": 1794842147.2171419,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842148.249692,
+          "last_seen": 1794842159.4683156,
+          "sightings": 10
+        },
+        {
+          "identity": "43824@1794842149.0445116",
+          "pid": 43824,
+          "create_time": 1794842149.0445116,
+          "ppid": 19512,
+          "name": "python.exe",
+          "first_seen": 1794842149.4655254,
+          "last_seen": 1794842159.4683156,
+          "sightings": 9
+        }
+      ],
+      "peak_concurrent_workers": 13,
+      "monitor_health": {
+        "monitoring_started": true,
+        "monitoring_completed": true,
+        "thread_alive_at_shutdown": false,
+        "unexpected_exception_count": 0,
+        "observation_samples": 59,
+        "first_observation": "2026-11-16T15:14:57.348811+00:00",
+        "last_observation": "2026-11-16T15:16:01.668625+00:00"
+      },
+      "monitor_event_summary": {},
+      "monitor_events": [],
+      "lingering_after_parent_exit": [],
+      "orphan_workers_alive": 0,
+      "batches_completed": 8,
+      "training_completed": true,
+      "val_completed": true,
+      "checkpoint_path": "C:\\RadeonYOLO\\R22A3\\scratch\\workers8_additional\\run01\\train\\weights\\last.pt",
+      "checkpoint_exists": true,
+      "checkpoint_sha256": "b8b470d851743ae789593c80daaff740210e1ed95842df5f0b16e757fdaaa35d",
+      "amp_resolved": true,
+      "optimizer": "AdamW",
+      "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+      "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+      "hip": "7.18.26441",
+      "raw_log_sha256": "fde739a2461ba3b9c257030bb051764d5cc3cc2fff0cb5ed1abc1550c79788a2",
+      "log_sha256": "fde739a2461ba3b9c257030bb051764d5cc3cc2fff0cb5ed1abc1550c79788a2",
+      "spawned_by_parent": true,
+      "child_has_main_guard": true,
+      "userprofile_env": "C:\\RadeonYOLO\\R22A3\\scratch\\warm-home-b",
+      "cold_identity_verified": true,
+      "status": "PASS",
+      "failure_classification": null,
+      "worker_contract_checks": [
+        {
+          "check": "physical_gpu_identity",
+          "ok": true,
+          "detail": "AMD Radeon(TM) 8060S Graphics"
+        },
+        {
+          "check": "workers_requested_8",
+          "ok": true,
+          "detail": "requested_workers=8 (contract=8)"
+        },
+        {
+          "check": "workers_effective_8",
+          "ok": true,
+          "detail": "resolved_num_workers=8 (requested 8)"
+        },
+        {
+          "check": "worker_identity_evidence",
+          "ok": true,
+          "detail": "13 distinct worker identities observed OS-level (parent excluded by construction; identities ≠ simultaneity)"
+        },
+        {
+          "check": "worker_concurrency_evidence",
+          "ok": true,
+          "detail": "peak_concurrent_workers=13 — all 8 must actually run simultaneously"
+        },
+        {
+          "check": "no_fatal_anomaly_signatures",
+          "ok": true,
+          "detail": "no fatal HIP/MIOpen/worker signatures in raw log"
+        },
+        {
+          "check": "no_orphan_workers",
+          "ok": true,
+          "detail": "no known worker identities alive after parent exit"
+        },
+        {
+          "check": "monitor_lifecycle_healthy",
+          "ok": true,
+          "detail": "monitor healthy (59 samples, first=2026-11-16T15:14:57 last=2026-11-16T15:16:01)"
+        },
+        {
+          "check": "training_completed",
+          "ok": true,
+          "detail": "STABILITY_CHILD_DONE marker / training_completed fact"
+        },
+        {
+          "check": "checkpoint_present",
+          "ok": true,
+          "detail": "C:\\RadeonYOLO\\R22A3\\scratch\\workers8_additional\\run01\\train\\weights\\last.pt"
+        }
+      ],
+      "anomaly_evidence": {
+        "fatal": [],
+        "benign": []
+      }
+    }
+  ],
+  "n_pass": 1,
+  "n_total": 1,
+  "anomaly_tally": {},
+  "requested_workers": 8,
+  "workers8_overall": null,
+  "matrix_evaluation": null,
+  "cold_runs": 0,
+  "warm_runs": 1,
+  "sample_class": "additional",
+  "cache_class": "cold 0 (fresh-USERPROFILE per run) / warm 1 (retained shared home C:\\RadeonYOLO\\R22A3\\scratch\\warm-home-b)",
+  "child_spawn_safety": {
+    "main_guard_present": true,
+    "freeze_support": true,
+    "note": "Windows spawn re-imports child.py in every worker; the guard prevents recursive training processes; unsafe children are refused before execution"
+  },
+  "environment_disclosure": {
+    "hiprtc_compile_options_append_removed_from_child_env": null,
+    "note": "host-level shim var (if present) is stripped from child env so runs execute on the official stack unmodified; global env untouched"
+  },
+  "note": "independent training PROCESSES; cache classes tracked separately; unexplained kernel/runtime failures block stable readiness"
+}

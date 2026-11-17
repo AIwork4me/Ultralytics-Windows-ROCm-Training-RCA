@@ -1,0 +1,1833 @@
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.13.16, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\rocm\Desktop\YOLO_AMD\p17_env27203\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\P19B\pr27203
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+[1mcollecting ... [0mcollected 188 items
+
+tests/test_cuda.py::test_checks [32mPASSED[0m[32m                                   [ 10%][0m
+tests/test_cuda.py::test_amp [32mPASSED[0m[32m                                      [ 20%][0m
+tests/test_cuda.py::test_onnx_dynamic_spatial_outputs [31mFAILED[0m[31m             [ 30%][0m
+tests/test_cuda.py::test_semantic_loss_all_ignore_amp[1] [32mPASSED[0m[31m          [ 40%][0m
+tests/test_cuda.py::test_semantic_loss_all_ignore_amp[3] [32mPASSED[0m[31m          [ 50%][0m
+tests/test_cuda.py::test_train [32mPASSED[0m[31m                                    [ 60%][0m
+tests/test_cuda.py::test_train_cold_process_nonzero_device [33mSKIPPED[0m (...)[31m [ 70%][0m
+tests/test_cuda.py::test_track_exported_model[False] [32mPASSED[0m[31m              [ 80%][0m
+tests/test_cuda.py::test_track_exported_model[320] [32mPASSED[0m[31m                [ 90%][0m
+tests/test_cuda.py::test_autobatch [32mPASSED[0m[31m                                [100%][0m
+
+================================== FAILURES ===================================
+[31m[1m______________________ test_onnx_dynamic_spatial_outputs ______________________[0m
+
+model_bytes = b'\x08\x07\x12\x07pytorch\x1a\x062.12.0:\xd6\x85\xa7\x15\n6\n\x0eonnx::Conv_234\x12\x0eonnx::Conv_246\x1a\nIdentity_0"...08\x01\x123\n\x02\x08\x01\n\x03\x08\x80\x04\n\x13\x12\x11Reluoutput0_dim_2\n\x13\x12\x11Reluoutput0_dim_3B\x02\x10\x0e'
+custom_opsets = {}
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_add_onnxscript_fn[39;49;00m([90m[39;49;00m
+        model_bytes: [96mbytes[39;49;00m,[90m[39;49;00m
+        custom_opsets: Mapping[[96mstr[39;49;00m, [96mint[39;49;00m],[90m[39;49;00m
+    ) -> [96mbytes[39;49;00m:[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Insert model-included custom onnx-script function into ModelProto"""[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+>           [94mimport[39;49;00m[90m [39;49;00m[04m[96monnx[39;49;00m[90m[39;49;00m
+[1m[31mE           ModuleNotFoundError: No module named 'onnx'[0m
+
+[1m[31mC:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\onnx_proto_utils.py[0m:183: ModuleNotFoundError
+
+[33mThe above exception was the direct cause of the following exception:[0m
+
+tmp_path = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0')
+
+    [0m[37m@pytest[39;49;00m.mark.skipif([95mnot[39;49;00m DEVICES, reason=[33m"[39;49;00m[33mNo CUDA devices available[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mtest_onnx_dynamic_spatial_outputs[39;49;00m(tmp_path):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Run a real feature backbone with fixed batch and dynamic spatial outputs on CUDA."""[39;49;00m[90m[39;49;00m
+        [94mfrom[39;49;00m[90m [39;49;00m[04m[96mtorchvision[39;49;00m[04m[96m.[39;49;00m[04m[96mmodels[39;49;00m[90m [39;49;00m[94mimport[39;49;00m resnet18[90m[39;49;00m
+    [90m[39;49;00m
+        [94mfrom[39;49;00m[90m [39;49;00m[04m[96multralytics[39;49;00m[04m[96m.[39;49;00m[04m[96mnn[39;49;00m[04m[96m.[39;49;00m[04m[96mbackends[39;49;00m[04m[96m.[39;49;00m[04m[96monnx[39;49;00m[90m [39;49;00m[94mimport[39;49;00m ONNXBackend[90m[39;49;00m
+        [94mfrom[39;49;00m[90m [39;49;00m[04m[96multralytics[39;49;00m[04m[96m.[39;49;00m[04m[96mutils[39;49;00m[04m[96m.[39;49;00m[04m[96mexport[39;49;00m[90m [39;49;00m[94mimport[39;49;00m torch2onnx[90m[39;49;00m
+    [90m[39;49;00m
+        model = torch.nn.Sequential(*[96mlist[39;49;00m(resnet18(weights=[94mNone[39;49;00m).children())[:-[94m2[39;49;00m]).eval()[90m[39;49;00m
+        im = torch.randn([94m1[39;49;00m, [94m3[39;49;00m, [94m64[39;49;00m, [94m96[39;49;00m)[90m[39;49;00m
+>       file = torch2onnx(model, im, tmp_path / [33m"[39;49;00m[33mfeatures.onnx[39;49;00m[33m"[39;49;00m, dynamic={[33m"[39;49;00m[33mimages[39;49;00m[33m"[39;49;00m: {[94m2[39;49;00m: [33m"[39;49;00m[33mheight[39;49;00m[33m"[39;49;00m, [94m3[39;49;00m: [33m"[39;49;00m[33mwidth[39;49;00m[33m"[39;49;00m}})[90m[39;49;00m
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+
+[1m[31mtests\test_cuda.py[0m:58: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+args = (Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64...ndowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx'))
+kwargs = {'dynamic': {'images': {2: 'height', 3: 'width'}}}
+
+    [0m[37m@wraps[39;49;00m(f)[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mdecorated[39;49;00m(*args, **kwargs):[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Apply thread-safety to the decorated function or method."""[39;49;00m[90m[39;49;00m
+        [94mwith[39;49;00m [96mself[39;49;00m.lock:[90m[39;49;00m
+>           [94mreturn[39;49;00m f(*args, **kwargs)[90m[39;49;00m
+                   ^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+
+[1m[31multralytics\utils\__init__.py[0m:578: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model = Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64,...e)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    )
+  )
+)
+im = tensor([[[[-1.2635, -1.1039, -0.6904,  ...,  0.1010,  1.5701,  1.9356],
+          [ 0.1709,  0.3652, -0.6194,  ...,  0..., -1.3194,  ..., -0.3466, -0.3795, -1.1831],
+          [ 0.1014,  0.5889,  0.2538,  ...,  1.2735,  0.9323, -1.9301]]]])
+output_file = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx')
+opset = 14, input_names = ['images'], output_names = ['output0']
+dynamic = {'images': {2: 'height', 3: 'width'}}
+
+    [0m[37m@ThreadingLocked[39;49;00m()[90m[39;49;00m
+    [94mdef[39;49;00m[90m [39;49;00m[92mtorch2onnx[39;49;00m([90m[39;49;00m
+        model: torch.nn.Module,[90m[39;49;00m
+        im: torch.Tensor | [96mtuple[39;49;00m[torch.Tensor, ...],[90m[39;49;00m
+        output_file: Path | [96mstr[39;49;00m,[90m[39;49;00m
+        opset: [96mint[39;49;00m = [94m14[39;49;00m,[90m[39;49;00m
+        input_names: [96mlist[39;49;00m[[96mstr[39;49;00m] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        output_names: [96mlist[39;49;00m[[96mstr[39;49;00m] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        dynamic: [96mdict[39;49;00m | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+    ) -> [96mstr[39;49;00m:[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Export a PyTorch model to ONNX format.[39;49;00m
+    [33m[39;49;00m
+    [33m    Args:[39;49;00m
+    [33m        model (torch.nn.Module): The PyTorch model to export.[39;49;00m
+    [33m        im (torch.Tensor | tuple[torch.Tensor, ...]): Example input tensor(s) for tracing.[39;49;00m
+    [33m        output_file (Path | str): Path to save the exported ONNX file.[39;49;00m
+    [33m        opset (int): ONNX opset version to use for export.[39;49;00m
+    [33m        input_names (list[str] | None): List of input tensor names. Defaults to ``["images"]``.[39;49;00m
+    [33m        output_names (list[str] | None): List of output tensor names. Defaults to ``["output0"]``.[39;49;00m
+    [33m        dynamic (dict | None): Dictionary specifying dynamic axes for inputs and outputs.[39;49;00m
+    [33m[39;49;00m
+    [33m    Returns:[39;49;00m
+    [33m        (str): Path to the exported ONNX file.[39;49;00m
+    [33m    """[39;49;00m[90m[39;49;00m
+        [94mif[39;49;00m input_names [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            input_names = [[33m"[39;49;00m[33mimages[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        [94mif[39;49;00m output_names [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            output_names = [[33m"[39;49;00m[33moutput0[39;49;00m[33m"[39;49;00m][90m[39;49;00m
+        kwargs = {[33m"[39;49;00m[33mdynamo[39;49;00m[33m"[39;49;00m: [94mFalse[39;49;00m} [94mif[39;49;00m TORCH_2_4 [94melse[39;49;00m {}[90m[39;49;00m
+>       torch.onnx.export([90m[39;49;00m
+            model,[90m[39;49;00m
+            im,[90m[39;49;00m
+            output_file,[90m[39;49;00m
+            opset_version=opset,[90m[39;49;00m
+            input_names=input_names,[90m[39;49;00m
+            output_names=output_names,[90m[39;49;00m
+            dynamic_axes=dynamic,[90m[39;49;00m
+            **kwargs,[90m[39;49;00m
+        )[90m[39;49;00m
+
+[1m[31multralytics\utils\export\engine.py[0m:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model = Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64,...e)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    )
+  )
+)
+args = tensor([[[[-1.2635, -1.1039, -0.6904,  ...,  0.1010,  1.5701,  1.9356],
+          [ 0.1709,  0.3652, -0.6194,  ...,  0..., -1.3194,  ..., -0.3466, -0.3795, -1.1831],
+          [ 0.1014,  0.5889,  0.2538,  ...,  1.2735,  0.9323, -1.9301]]]])
+f = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx')
+kwargs = None, verbose = None, input_names = ['images']
+output_names = ['output0'], opset_version = 14, dynamo = False
+external_data = True, dynamic_shapes = None, custom_translation_table = None
+report = False, optimize = True, verify = False, profile = False
+dump_exported_program = False, artifacts_dir = '.', export_params = True
+keep_initializers_as_inputs = False
+dynamic_axes = {'images': {2: 'height', 3: 'width'}}
+training = <TrainingMode.EVAL: 0>
+operator_export_type = <OperatorExportTypes.ONNX: 0>, do_constant_folding = True
+custom_opsets = None, export_modules_as_functions = False
+autograd_inlining = True
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mexport[39;49;00m([90m[39;49;00m
+        model: torch.nn.Module[90m[39;49;00m
+        | torch.export.ExportedProgram[90m[39;49;00m
+        | torch.jit.ScriptModule[90m[39;49;00m
+        | torch.jit.ScriptFunction,[90m[39;49;00m
+        args: [96mtuple[39;49;00m[Any, ...] = (),[90m[39;49;00m
+        f: [96mstr[39;49;00m | os.PathLike | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        kwargs: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        verbose: [96mbool[39;49;00m | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        input_names: Sequence[[96mstr[39;49;00m] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        output_names: Sequence[[96mstr[39;49;00m] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        opset_version: [96mint[39;49;00m | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        dynamo: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+        [90m# Dynamo only options[39;49;00m[90m[39;49;00m
+        external_data: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+        dynamic_shapes: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] | [96mtuple[39;49;00m[Any, ...] | [96mlist[39;49;00m[Any] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        custom_translation_table: [96mdict[39;49;00m[Callable, Callable] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        report: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+        optimize: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+        verify: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+        profile: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+        dump_exported_program: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+        artifacts_dir: [96mstr[39;49;00m | os.PathLike = [33m"[39;49;00m[33m.[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+        [90m# BC options[39;49;00m[90m[39;49;00m
+        export_params: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+        keep_initializers_as_inputs: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+        dynamic_axes: Mapping[[96mstr[39;49;00m, Mapping[[96mint[39;49;00m, [96mstr[39;49;00m]][90m[39;49;00m
+        | Mapping[[96mstr[39;49;00m, Sequence[[96mint[39;49;00m]][90m[39;49;00m
+        | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        [90m# Deprecated options[39;49;00m[90m[39;49;00m
+        training: _C_onnx.TrainingMode = _C_onnx.TrainingMode.EVAL,[90m[39;49;00m
+        operator_export_type: _C_onnx.OperatorExportTypes = _C_onnx.OperatorExportTypes.ONNX,[90m[39;49;00m
+        do_constant_folding: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+        custom_opsets: Mapping[[96mstr[39;49;00m, [96mint[39;49;00m] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        export_modules_as_functions: [96mbool[39;49;00m | Collection[[96mtype[39;49;00m[torch.nn.Module]] = [94mFalse[39;49;00m,[90m[39;49;00m
+        autograd_inlining: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+    ) -> ONNXProgram | [94mNone[39;49;00m:[90m[39;49;00m
+    [90m    [39;49;00m[33mr[39;49;00m[33m"""Exports a model into ONNX format.[39;49;00m
+    [33m[39;49;00m
+    [33m    Setting ``dynamo=True`` enables the new ONNX export logic[39;49;00m
+    [33m    which is based on :class:`torch.export.ExportedProgram` and a more modern[39;49;00m
+    [33m    set of translation logic. This is the recommended and default way to export models[39;49;00m
+    [33m    to ONNX.[39;49;00m
+    [33m[39;49;00m
+    [33m    When ``dynamo=True``:[39;49;00m
+    [33m[39;49;00m
+    [33m    The exporter tries the following strategies to get an ExportedProgram for conversion to ONNX.[39;49;00m
+    [33m[39;49;00m
+    [33m    #. If the model is already an ExportedProgram, it will be used as-is.[39;49;00m
+    [33m    #. Use :func:`torch.export.export` and set ``strict=False``.[39;49;00m
+    [33m    #. Use :func:`torch.export.export` and set ``strict=True``.[39;49;00m
+    [33m[39;49;00m
+    [33m    Args:[39;49;00m
+    [33m        model: The model to be exported.[39;49;00m
+    [33m        args: Example positional inputs. Any non-Tensor arguments will be hard-coded into the[39;49;00m
+    [33m            exported model; any Tensor arguments will become inputs of the exported model,[39;49;00m
+    [33m            in the order they occur in the tuple.[39;49;00m
+    [33m        f: Path to the output ONNX model file. E.g. "model.onnx". This argument is kept for[39;49;00m
+    [33m            backward compatibility. It is recommended to leave unspecified (None)[39;49;00m
+    [33m            and use the returned :class:`torch.onnx.ONNXProgram` to serialize the model[39;49;00m
+    [33m            to a file instead.[39;49;00m
+    [33m        kwargs: Optional example keyword inputs.[39;49;00m
+    [33m        verbose: Whether to enable verbose logging.[39;49;00m
+    [33m        input_names: names to assign to the input nodes of the graph, in order.[39;49;00m
+    [33m        output_names: names to assign to the output nodes of the graph, in order.[39;49;00m
+    [33m        opset_version: The version of the[39;49;00m
+    [33m            `default (ai.onnx) opset <https://github.com/onnx/onnx/blob/master/docs/Operators.md>`_[39;49;00m
+    [33m            to target. You should set ``opset_version`` according to the supported opset versions[39;49;00m
+    [33m            of the runtime backend or compiler you want to run the exported model with.[39;49;00m
+    [33m            Leave as default (``None``) to use the recommended version, or refer to[39;49;00m
+    [33m            the ONNX operators documentation for more information.[39;49;00m
+    [33m        dynamo: Whether to export the model with ``torch.export`` ExportedProgram instead of TorchScript.[39;49;00m
+    [33m        external_data: Whether to save the model weights as an external data file.[39;49;00m
+    [33m            This is required for models with large weights that exceed the ONNX file size limit (2GB).[39;49;00m
+    [33m            When False, the weights are saved in the ONNX file with the model architecture.[39;49;00m
+    [33m        dynamic_shapes: A dictionary or a tuple of dynamic shapes for the model inputs. Refer to[39;49;00m
+    [33m            :func:`torch.export.export` for more details. This is only used (and preferred) when dynamo is True.[39;49;00m
+    [33m            Note that dynamic_shapes is designed to be used when the model is exported with dynamo=True, while[39;49;00m
+    [33m            dynamic_axes is used when dynamo=False.[39;49;00m
+    [33m        custom_translation_table: A dictionary of custom decompositions for operators in the model.[39;49;00m
+    [33m            The dictionary should have the callable target in the fx Node as the key (e.g. ``torch.ops.aten.stft.default``),[39;49;00m
+    [33m            and the value should be a function that builds that graph using ONNX Script. This option[39;49;00m
+    [33m            is only valid when dynamo is True.[39;49;00m
+    [33m        report: Whether to generate a markdown report for the export process. This option[39;49;00m
+    [33m            is only valid when dynamo is True.[39;49;00m
+    [33m        optimize: Whether to optimize the exported model. This option[39;49;00m
+    [33m            is only valid when dynamo is True. Default is True.[39;49;00m
+    [33m        verify: Whether to verify the exported model using ONNX Runtime. This option[39;49;00m
+    [33m            is only valid when dynamo is True.[39;49;00m
+    [33m        profile: Whether to profile the export process. This option[39;49;00m
+    [33m            is only valid when dynamo is True.[39;49;00m
+    [33m        dump_exported_program: Whether to dump the :class:`torch.export.ExportedProgram` to a file.[39;49;00m
+    [33m            This is useful for debugging the exporter. This option is only valid when dynamo is True.[39;49;00m
+    [33m        artifacts_dir: The directory to save the debugging artifacts like the report and the serialized[39;49;00m
+    [33m            exported program. This option is only valid when dynamo is True.[39;49;00m
+    [33m        export_params: **When ``f`` is specified**: If false, parameters (weights) will not be exported.[39;49;00m
+    [33m[39;49;00m
+    [33m            You can also leave it unspecified and use the returned :class:`torch.onnx.ONNXProgram`[39;49;00m
+    [33m            to control how initializers are treated when serializing the model.[39;49;00m
+    [33m        keep_initializers_as_inputs: **When ``f`` is specified**: If True, all the[39;49;00m
+    [33m            initializers (typically corresponding to model weights) in the[39;49;00m
+    [33m            exported graph will also be added as inputs to the graph. If False,[39;49;00m
+    [33m            then initializers are not added as inputs to the graph, and only[39;49;00m
+    [33m            the user inputs are added as inputs.[39;49;00m
+    [33m[39;49;00m
+    [33m            Set this to True if you intend to supply model weights at runtime.[39;49;00m
+    [33m            Set it to False if the weights are static to allow for better optimizations[39;49;00m
+    [33m            (e.g. constant folding) by backends/runtimes.[39;49;00m
+    [33m[39;49;00m
+    [33m            You can also leave it unspecified and use the returned :class:`torch.onnx.ONNXProgram`[39;49;00m
+    [33m            to control how initializers are treated when serializing the model.[39;49;00m
+    [33m        dynamic_axes:[39;49;00m
+    [33m            Deprecated: Prefer specifying ``dynamic_shapes`` when ``dynamo=True``.[39;49;00m
+    [33m[39;49;00m
+    [33m            By default the exported model will have the shapes of all input and output tensors[39;49;00m
+    [33m            set to exactly match those given in ``args``. To specify axes of tensors as[39;49;00m
+    [33m            dynamic (i.e. known only at run-time), set ``dynamic_axes`` to a dict with schema:[39;49;00m
+    [33m[39;49;00m
+    [33m            * KEY (str): an input or output name. Each name must also be provided in ``input_names`` or[39;49;00m
+    [33m                ``output_names``.[39;49;00m
+    [33m            * VALUE (dict or list): If a dict, keys are axis indices and values are axis names. If a[39;49;00m
+    [33m                list, each element is an axis index.[39;49;00m
+    [33m[39;49;00m
+    [33m            For example::[39;49;00m
+    [33m[39;49;00m
+    [33m                class SumModule(torch.nn.Module):[39;49;00m
+    [33m                    def forward(self, x):[39;49;00m
+    [33m                        return torch.sum(x, dim=1)[39;49;00m
+    [33m[39;49;00m
+    [33m[39;49;00m
+    [33m                torch.onnx.export([39;49;00m
+    [33m                    SumModule(),[39;49;00m
+    [33m                    (torch.ones(2, 2),),[39;49;00m
+    [33m                    "onnx.pb",[39;49;00m
+    [33m                    input_names=["x"],[39;49;00m
+    [33m                    output_names=["sum"],[39;49;00m
+    [33m                )[39;49;00m
+    [33m[39;49;00m
+    [33m            Produces::[39;49;00m
+    [33m[39;49;00m
+    [33m                input {[39;49;00m
+    [33m                  name: "x"[39;49;00m
+    [33m                  ...[39;49;00m
+    [33m                      shape {[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_value: 2  # axis 0[39;49;00m
+    [33m                        }[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_value: 2  # axis 1[39;49;00m
+    [33m                ...[39;49;00m
+    [33m                output {[39;49;00m
+    [33m                  name: "sum"[39;49;00m
+    [33m                  ...[39;49;00m
+    [33m                      shape {[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_value: 2  # axis 0[39;49;00m
+    [33m                ...[39;49;00m
+    [33m[39;49;00m
+    [33m            While::[39;49;00m
+    [33m[39;49;00m
+    [33m                torch.onnx.export([39;49;00m
+    [33m                    SumModule(),[39;49;00m
+    [33m                    (torch.ones(2, 2),),[39;49;00m
+    [33m                    "onnx.pb",[39;49;00m
+    [33m                    input_names=["x"],[39;49;00m
+    [33m                    output_names=["sum"],[39;49;00m
+    [33m                    dynamic_axes={[39;49;00m
+    [33m                        # dict value: manually named axes[39;49;00m
+    [33m                        "x": {0: "my_custom_axis_name"},[39;49;00m
+    [33m                        # list value: automatic names[39;49;00m
+    [33m                        "sum": [0],[39;49;00m
+    [33m                    },[39;49;00m
+    [33m                )[39;49;00m
+    [33m[39;49;00m
+    [33m            Produces::[39;49;00m
+    [33m[39;49;00m
+    [33m                input {[39;49;00m
+    [33m                  name: "x"[39;49;00m
+    [33m                  ...[39;49;00m
+    [33m                      shape {[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_param: "my_custom_axis_name"  # axis 0[39;49;00m
+    [33m                        }[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_value: 2  # axis 1[39;49;00m
+    [33m                ...[39;49;00m
+    [33m                output {[39;49;00m
+    [33m                  name: "sum"[39;49;00m
+    [33m                  ...[39;49;00m
+    [33m                      shape {[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_param: "sum_dynamic_axes_1"  # axis 0[39;49;00m
+    [33m                ...[39;49;00m
+    [33m[39;49;00m
+    [33m        training: Deprecated option. Instead, set the training mode of the model before exporting.[39;49;00m
+    [33m        operator_export_type: Deprecated option. Only ONNX is supported.[39;49;00m
+    [33m        do_constant_folding: Deprecated option.[39;49;00m
+    [33m        custom_opsets: Deprecated option.[39;49;00m
+    [33m        export_modules_as_functions: Deprecated option.[39;49;00m
+    [33m        autograd_inlining: Deprecated option.[39;49;00m
+    [33m[39;49;00m
+    [33m    Returns:[39;49;00m
+    [33m        :class:`torch.onnx.ONNXProgram` if dynamo is True, otherwise None.[39;49;00m
+    [33m[39;49;00m
+    [33m    .. versionchanged:: 2.6[39;49;00m
+    [33m        ``training`` is now deprecated. Instead, set the training mode of the model before exporting.[39;49;00m
+    [33m        ``operator_export_type`` is now deprecated. Only ONNX is supported.[39;49;00m
+    [33m        ``do_constant_folding`` is now deprecated. It is always enabled.[39;49;00m
+    [33m        ``export_modules_as_functions`` is now deprecated.[39;49;00m
+    [33m        ``autograd_inlining`` is now deprecated.[39;49;00m
+    [33m    .. versionchanged:: 2.7[39;49;00m
+    [33m        ``optimize`` is now True by default.[39;49;00m
+    [33m    .. versionchanged:: 2.9[39;49;00m
+    [33m        ``dynamo`` is now True by default.[39;49;00m
+    [33m    .. versionchanged:: 2.11[39;49;00m
+    [33m        ``fallback`` option has been removed.[39;49;00m
+    [33m    """[39;49;00m[90m[39;49;00m
+        [94mif[39;49;00m dynamo [95mis[39;49;00m [94mTrue[39;49;00m [95mor[39;49;00m [96misinstance[39;49;00m([90m[39;49;00m
+            model, (torch.export.ExportedProgram, ExportableModule)[90m[39;49;00m
+        ):[90m[39;49;00m
+            [94mfrom[39;49;00m[90m [39;49;00m[04m[96mtorch[39;49;00m[04m[96m.[39;49;00m[04m[96monnx[39;49;00m[04m[96m.[39;49;00m[04m[96m_internal[39;49;00m[04m[96m.[39;49;00m[04m[96mexporter[39;49;00m[90m [39;49;00m[94mimport[39;49;00m _compat[90m[39;49;00m
+    [90m[39;49;00m
+            [94mif[39;49;00m [96misinstance[39;49;00m(args, torch.Tensor):[90m[39;49;00m
+                args = (args,)[90m[39;49;00m
+    [90m[39;49;00m
+            [94mreturn[39;49;00m _compat.export_compat([90m[39;49;00m
+                model,[90m[39;49;00m
+                args,[90m[39;49;00m
+                f,[90m[39;49;00m
+                kwargs=kwargs,[90m[39;49;00m
+                export_params=export_params,[90m[39;49;00m
+                verbose=verbose,[90m[39;49;00m
+                input_names=input_names,[90m[39;49;00m
+                output_names=output_names,[90m[39;49;00m
+                opset_version=opset_version,[90m[39;49;00m
+                custom_translation_table=custom_translation_table,[90m[39;49;00m
+                dynamic_axes=dynamic_axes,[90m[39;49;00m
+                keep_initializers_as_inputs=keep_initializers_as_inputs,[90m[39;49;00m
+                external_data=external_data,[90m[39;49;00m
+                dynamic_shapes=dynamic_shapes,[90m[39;49;00m
+                report=report,[90m[39;49;00m
+                optimize=optimize,[90m[39;49;00m
+                verify=verify,[90m[39;49;00m
+                profile=profile,[90m[39;49;00m
+                dump_exported_program=dump_exported_program,[90m[39;49;00m
+                artifacts_dir=artifacts_dir,[90m[39;49;00m
+            )[90m[39;49;00m
+        [94melse[39;49;00m:[90m[39;49;00m
+            [94mimport[39;49;00m[90m [39;49;00m[04m[96mwarnings[39;49;00m[90m[39;49;00m
+    [90m[39;49;00m
+            [94mfrom[39;49;00m[90m [39;49;00m[04m[96m.[39;49;00m[04m[96m_internal[39;49;00m[04m[96m.[39;49;00m[04m[96mtorchscript_exporter[39;49;00m[04m[96m.[39;49;00m[04m[96mutils[39;49;00m[90m [39;49;00m[94mimport[39;49;00m export[90m[39;49;00m
+    [90m[39;49;00m
+            warnings.warn([90m[39;49;00m
+                [33m"[39;49;00m[33mYou are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mthe new torch.export-based ONNX exporter has become the default. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mLearn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mFor exporting control flow: [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mhttps://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+                category=[96mDeprecationWarning[39;49;00m,[90m[39;49;00m
+                stacklevel=[94m2[39;49;00m,[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+            [94mif[39;49;00m dynamic_shapes:[90m[39;49;00m
+                [94mraise[39;49;00m [96mValueError[39;49;00m([90m[39;49;00m
+                    [33m"[39;49;00m[33mThe exporter only supports dynamic shapes [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                    [33m"[39;49;00m[33mthrough parameter dynamic_axes when dynamo=False.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                )[90m[39;49;00m
+    [90m[39;49;00m
+>           export([90m[39;49;00m
+                model,[90m[39;49;00m
+                args,[90m[39;49;00m
+                f,  [90m# type: ignore[arg-type][39;49;00m[90m[39;49;00m
+                kwargs=kwargs,[90m[39;49;00m
+                export_params=export_params,[90m[39;49;00m
+                verbose=verbose [95mis[39;49;00m [94mTrue[39;49;00m,[90m[39;49;00m
+                input_names=input_names,[90m[39;49;00m
+                output_names=output_names,[90m[39;49;00m
+                opset_version=opset_version,[90m[39;49;00m
+                dynamic_axes=dynamic_axes,[90m[39;49;00m
+                keep_initializers_as_inputs=keep_initializers_as_inputs,[90m[39;49;00m
+                training=training,[90m[39;49;00m
+                operator_export_type=operator_export_type,[90m[39;49;00m
+                do_constant_folding=do_constant_folding,[90m[39;49;00m
+                custom_opsets=custom_opsets,[90m[39;49;00m
+                export_modules_as_functions=export_modules_as_functions,[90m[39;49;00m
+                autograd_inlining=autograd_inlining,[90m[39;49;00m
+            )[90m[39;49;00m
+
+[1m[31mC:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\__init__.py[0m:334: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model = Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64,...e)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    )
+  )
+)
+args = (tensor([[[[-1.2635, -1.1039, -0.6904,  ...,  0.1010,  1.5701,  1.9356],
+          [ 0.1709,  0.3652, -0.6194,  ...,  ...-1.3194,  ..., -0.3466, -0.3795, -1.1831],
+          [ 0.1014,  0.5889,  0.2538,  ...,  1.2735,  0.9323, -1.9301]]]]),)
+f = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx')
+kwargs = None, export_params = True, verbose = False
+training = <TrainingMode.EVAL: 0>, input_names = ['images']
+output_names = ['output0'], operator_export_type = <OperatorExportTypes.ONNX: 0>
+opset_version = 14, do_constant_folding = True
+dynamic_axes = {'images': {2: 'height', 3: 'width'}}
+keep_initializers_as_inputs = False, custom_opsets = None
+export_modules_as_functions = False, autograd_inlining = True
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mexport[39;49;00m([90m[39;49;00m
+        model: torch.nn.Module | torch.jit.ScriptModule | torch.jit.ScriptFunction,[90m[39;49;00m
+        args: [96mtuple[39;49;00m[Any, ...] | torch.Tensor,[90m[39;49;00m
+        f: [96mstr[39;49;00m,[90m[39;49;00m
+        *,[90m[39;49;00m
+        kwargs: [96mdict[39;49;00m[[96mstr[39;49;00m, Any] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        export_params: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+        verbose: [96mbool[39;49;00m = [94mFalse[39;49;00m,[90m[39;49;00m
+        training: _C_onnx.TrainingMode = _C_onnx.TrainingMode.EVAL,[90m[39;49;00m
+        input_names: Sequence[[96mstr[39;49;00m] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        output_names: Sequence[[96mstr[39;49;00m] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        operator_export_type: _C_onnx.OperatorExportTypes = _C_onnx.OperatorExportTypes.ONNX,[90m[39;49;00m
+        opset_version: [96mint[39;49;00m | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        do_constant_folding: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+        dynamic_axes: Mapping[[96mstr[39;49;00m, Mapping[[96mint[39;49;00m, [96mstr[39;49;00m]][90m[39;49;00m
+        | Mapping[[96mstr[39;49;00m, Sequence[[96mint[39;49;00m]][90m[39;49;00m
+        | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        keep_initializers_as_inputs: [96mbool[39;49;00m | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        custom_opsets: Mapping[[96mstr[39;49;00m, [96mint[39;49;00m] | [94mNone[39;49;00m = [94mNone[39;49;00m,[90m[39;49;00m
+        export_modules_as_functions: [96mbool[39;49;00m | Collection[[96mtype[39;49;00m[torch.nn.Module]] = [94mFalse[39;49;00m,[90m[39;49;00m
+        autograd_inlining: [96mbool[39;49;00m = [94mTrue[39;49;00m,[90m[39;49;00m
+    ) -> [94mNone[39;49;00m:[90m[39;49;00m
+    [90m    [39;49;00m[33mr[39;49;00m[33m"""Exports a model into ONNX format.[39;49;00m
+    [33m[39;49;00m
+    [33m    If ``model`` is not a :class:`torch.jit.ScriptModule` nor a[39;49;00m
+    [33m    :class:`torch.jit.ScriptFunction`, this runs[39;49;00m
+    [33m    ``model`` once in order to convert it to a TorchScript graph to be exported[39;49;00m
+    [33m    (the equivalent of :func:`torch.jit.trace`). Thus this has the same limited support[39;49;00m
+    [33m    for dynamic control flow as :func:`torch.jit.trace`.[39;49;00m
+    [33m[39;49;00m
+    [33m    Args:[39;49;00m
+    [33m        model: The model to be exported.[39;49;00m
+    [33m        args:[39;49;00m
+    [33m[39;49;00m
+    [33m            args can be structured either as:[39;49;00m
+    [33m[39;49;00m
+    [33m            1. ONLY A TUPLE OF ARGUMENTS::[39;49;00m
+    [33m[39;49;00m
+    [33m                args = (x, y, z)[39;49;00m
+    [33m[39;49;00m
+    [33m            The tuple should contain model inputs such that ``model(*args)`` is a valid[39;49;00m
+    [33m            invocation of the model. Any non-Tensor arguments will be hard-coded into the[39;49;00m
+    [33m            exported model; any Tensor arguments will become inputs of the exported model,[39;49;00m
+    [33m            in the order they occur in the tuple.[39;49;00m
+    [33m[39;49;00m
+    [33m            2. A TENSOR::[39;49;00m
+    [33m[39;49;00m
+    [33m                args = torch.Tensor([1])[39;49;00m
+    [33m[39;49;00m
+    [33m            This is equivalent to a 1-ary tuple of that Tensor.[39;49;00m
+    [33m[39;49;00m
+    [33m            3. A TUPLE OF ARGUMENTS ENDING WITH A DICTIONARY OF NAMED ARGUMENTS::[39;49;00m
+    [33m[39;49;00m
+    [33m                args = (x, {"y": input_y, "z": input_z})[39;49;00m
+    [33m[39;49;00m
+    [33m            All but the last element of the tuple will be passed as non-keyword arguments,[39;49;00m
+    [33m            and named arguments will be set from the last element. If a named argument is[39;49;00m
+    [33m            not present in the dictionary, it is assigned the default value, or None if a[39;49;00m
+    [33m            default value is not provided.[39;49;00m
+    [33m[39;49;00m
+    [33m            .. warning::[39;49;00m
+    [33m                This behavior will be deprecated in a future release. Please use the[39;49;00m
+    [33m                kwargs argument instead.[39;49;00m
+    [33m[39;49;00m
+    [33m            .. note::[39;49;00m
+    [33m                If a dictionary is the last element of the args tuple, it will be[39;49;00m
+    [33m                interpreted as containing named arguments. In order to pass a dict as the[39;49;00m
+    [33m                last non-keyword arg, provide an empty dict as the last element of the args[39;49;00m
+    [33m                tuple. For example, instead of::[39;49;00m
+    [33m[39;49;00m
+    [33m                    torch.onnx.export([39;49;00m
+    [33m                        model,[39;49;00m
+    [33m                        ([39;49;00m
+    [33m                            x,[39;49;00m
+    [33m                            # WRONG: will be interpreted as named arguments[39;49;00m
+    [33m                            {y: z},[39;49;00m
+    [33m                        ),[39;49;00m
+    [33m                        "test.onnx.pb",[39;49;00m
+    [33m                    )[39;49;00m
+    [33m[39;49;00m
+    [33m                Write::[39;49;00m
+    [33m[39;49;00m
+    [33m                    torch.onnx.export(model, (x, {y: z}, {}), "test.onnx.pb")[39;49;00m
+    [33m[39;49;00m
+    [33m        f: Path to the output ONNX model file. E.g. "model.onnx".[39;49;00m
+    [33m        kwargs: Named arguments to the model.[39;49;00m
+    [33m        export_params: If True, all parameters will[39;49;00m
+    [33m            be exported. Set this to False if you want to export an untrained model.[39;49;00m
+    [33m            In this case, the exported model will first take all of its parameters[39;49;00m
+    [33m            as arguments, with the ordering as specified by ``model.state_dict().values()``[39;49;00m
+    [33m        verbose: if True, prints a description of the[39;49;00m
+    [33m            model being exported to stdout. In addition, the final ONNX graph will include the[39;49;00m
+    [33m            field ``doc_string``` from the exported model which mentions the source code locations[39;49;00m
+    [33m            for ``model``. If True, ONNX exporter logging will be turned on.[39;49;00m
+    [33m        training:[39;49;00m
+    [33m            * ``TrainingMode.EVAL``: export the model in inference mode.[39;49;00m
+    [33m            * ``TrainingMode.PRESERVE``: export the model in inference mode if model.training is[39;49;00m
+    [33m                False and in training mode if model.training is True.[39;49;00m
+    [33m            * ``TrainingMode.TRAINING``: export the model in training mode. Disables optimizations[39;49;00m
+    [33m                which might interfere with training.[39;49;00m
+    [33m        input_names (list of str, default empty list): names to assign to the[39;49;00m
+    [33m            input nodes of the graph, in order.[39;49;00m
+    [33m        output_names (list of str, default empty list): names to assign to the[39;49;00m
+    [33m            output nodes of the graph, in order.[39;49;00m
+    [33m        operator_export_type (enum, default OperatorExportTypes.ONNX):[39;49;00m
+    [33m[39;49;00m
+    [33m            .. warning::[39;49;00m
+    [33m                This option will be deprecated in a future release. Future exported[39;49;00m
+    [33m                graphs will always use the default opset domain.[39;49;00m
+    [33m[39;49;00m
+    [33m            * ``OperatorExportTypes.ONNX``: Export all ops as regular ONNX ops[39;49;00m
+    [33m                (in the default opset domain).[39;49;00m
+    [33m            * ``OperatorExportTypes.ONNX_FALLTHROUGH``: Try to convert all ops[39;49;00m
+    [33m                to standard ONNX ops in the default opset domain. If unable to do so[39;49;00m
+    [33m                (e.g. because support has not been added to convert a particular torch op to ONNX),[39;49;00m
+    [33m                fall back to exporting the op into a custom opset domain without conversion. Applies[39;49;00m
+    [33m                to `custom ops <https://pytorch.org/tutorials/advanced/torch_script_custom_ops.html>`_[39;49;00m
+    [33m                as well as ATen ops. For the exported model to be usable, the runtime must support[39;49;00m
+    [33m                these non-standard ops.[39;49;00m
+    [33m            * ``OperatorExportTypes.ONNX_ATEN``: All ATen ops (in the TorchScript namespace "aten")[39;49;00m
+    [33m                are exported as ATen ops (in opset domain "org.pytorch.aten").[39;49;00m
+    [33m                `ATen <https://pytorch.org/cppdocs/#aten>`_ is PyTorch's built-in tensor library, so[39;49;00m
+    [33m                this instructs the runtime to use PyTorch's implementation of these ops.[39;49;00m
+    [33m[39;49;00m
+    [33m                .. warning::[39;49;00m
+    [33m[39;49;00m
+    [33m                    Models exported this way are probably runnable only by Caffe2.[39;49;00m
+    [33m[39;49;00m
+    [33m                    This may be useful if the numeric differences in implementations of operators are[39;49;00m
+    [33m                    causing large differences in behavior between PyTorch and Caffe2 (which is more[39;49;00m
+    [33m                    common on untrained models).[39;49;00m
+    [33m[39;49;00m
+    [33m            * ``OperatorExportTypes.ONNX_ATEN_FALLBACK``: Try to export each ATen op[39;49;00m
+    [33m                (in the TorchScript namespace "aten") as a regular ONNX op. If we are unable to do so[39;49;00m
+    [33m                (e.g. because support has not been added to convert a particular torch op to ONNX),[39;49;00m
+    [33m                fall back to exporting an ATen op. See documentation on OperatorExportTypes.ONNX_ATEN for[39;49;00m
+    [33m                context.[39;49;00m
+    [33m                For example::[39;49;00m
+    [33m[39;49;00m
+    [33m                    graph(%0 : Float):[39;49;00m
+    [33m                    %3 : int = prim::Constant[value=0]()[39;49;00m
+    [33m                    # conversion unsupported[39;49;00m
+    [33m                    %4 : Float = aten::triu(%0, %3)[39;49;00m
+    [33m                    # conversion supported[39;49;00m
+    [33m                    %5 : Float = aten::mul(%4, %0)[39;49;00m
+    [33m                    return (%5)[39;49;00m
+    [33m[39;49;00m
+    [33m                Assuming ``aten::triu`` is not supported in ONNX, this will be exported as::[39;49;00m
+    [33m[39;49;00m
+    [33m                    graph(%0 : Float):[39;49;00m
+    [33m                    %1 : Long() = onnx::Constant[value={0}]()[39;49;00m
+    [33m                    # not converted[39;49;00m
+    [33m                    %2 : Float = aten::ATen[operator="triu"](%0, %1)[39;49;00m
+    [33m                    # converted[39;49;00m
+    [33m                    %3 : Float = onnx::Mul(%2, %0)[39;49;00m
+    [33m                    return (%3)[39;49;00m
+    [33m[39;49;00m
+    [33m                .. warning::[39;49;00m
+    [33m[39;49;00m
+    [33m                    Models exported this way are probably runnable only by Caffe2.[39;49;00m
+    [33m[39;49;00m
+    [33m        opset_version (int, default 18): The version of the[39;49;00m
+    [33m            `default (ai.onnx) opset <https://github.com/onnx/onnx/blob/master/docs/Operators.md>`_[39;49;00m
+    [33m            to target. Must be >= 7.[39;49;00m
+    [33m        do_constant_folding: Apply the constant-folding optimization.[39;49;00m
+    [33m            Constant-folding will replace some of the ops that have all constant inputs[39;49;00m
+    [33m            with pre-computed constant nodes.[39;49;00m
+    [33m        dynamic_axes:[39;49;00m
+    [33m[39;49;00m
+    [33m            By default the exported model will have the shapes of all input and output tensors[39;49;00m
+    [33m            set to exactly match those given in ``args``. To specify axes of tensors as[39;49;00m
+    [33m            dynamic (i.e. known only at run-time), set ``dynamic_axes`` to a dict with schema:[39;49;00m
+    [33m[39;49;00m
+    [33m            * KEY (str): an input or output name. Each name must also be provided in ``input_names`` or[39;49;00m
+    [33m                ``output_names``.[39;49;00m
+    [33m            * VALUE (dict or list): If a dict, keys are axis indices and values are axis names. If a[39;49;00m
+    [33m                list, each element is an axis index.[39;49;00m
+    [33m[39;49;00m
+    [33m            For example::[39;49;00m
+    [33m[39;49;00m
+    [33m                class SumModule(torch.nn.Module):[39;49;00m
+    [33m                    def forward(self, x):[39;49;00m
+    [33m                        return torch.sum(x, dim=1)[39;49;00m
+    [33m[39;49;00m
+    [33m[39;49;00m
+    [33m                torch.onnx.export([39;49;00m
+    [33m                    SumModule(),[39;49;00m
+    [33m                    (torch.ones(2, 2),),[39;49;00m
+    [33m                    "onnx.pb",[39;49;00m
+    [33m                    input_names=["x"],[39;49;00m
+    [33m                    output_names=["sum"],[39;49;00m
+    [33m                )[39;49;00m
+    [33m[39;49;00m
+    [33m            Produces::[39;49;00m
+    [33m[39;49;00m
+    [33m                input {[39;49;00m
+    [33m                  name: "x"[39;49;00m
+    [33m                  ...[39;49;00m
+    [33m                      shape {[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_value: 2  # axis 0[39;49;00m
+    [33m                        }[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_value: 2  # axis 1[39;49;00m
+    [33m                ...[39;49;00m
+    [33m                output {[39;49;00m
+    [33m                  name: "sum"[39;49;00m
+    [33m                  ...[39;49;00m
+    [33m                      shape {[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_value: 2  # axis 0[39;49;00m
+    [33m                ...[39;49;00m
+    [33m[39;49;00m
+    [33m            While::[39;49;00m
+    [33m[39;49;00m
+    [33m                torch.onnx.export([39;49;00m
+    [33m                    SumModule(),[39;49;00m
+    [33m                    (torch.ones(2, 2),),[39;49;00m
+    [33m                    "onnx.pb",[39;49;00m
+    [33m                    input_names=["x"],[39;49;00m
+    [33m                    output_names=["sum"],[39;49;00m
+    [33m                    dynamic_axes={[39;49;00m
+    [33m                        # dict value: manually named axes[39;49;00m
+    [33m                        "x": {0: "my_custom_axis_name"},[39;49;00m
+    [33m                        # list value: automatic names[39;49;00m
+    [33m                        "sum": [0],[39;49;00m
+    [33m                    },[39;49;00m
+    [33m                )[39;49;00m
+    [33m[39;49;00m
+    [33m            Produces::[39;49;00m
+    [33m[39;49;00m
+    [33m                input {[39;49;00m
+    [33m                  name: "x"[39;49;00m
+    [33m                  ...[39;49;00m
+    [33m                      shape {[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_param: "my_custom_axis_name"  # axis 0[39;49;00m
+    [33m                        }[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_value: 2  # axis 1[39;49;00m
+    [33m                ...[39;49;00m
+    [33m                output {[39;49;00m
+    [33m                  name: "sum"[39;49;00m
+    [33m                  ...[39;49;00m
+    [33m                      shape {[39;49;00m
+    [33m                        dim {[39;49;00m
+    [33m                          dim_param: "sum_dynamic_axes_1"  # axis 0[39;49;00m
+    [33m                ...[39;49;00m
+    [33m[39;49;00m
+    [33m        keep_initializers_as_inputs: If True, all the[39;49;00m
+    [33m            initializers (typically corresponding to parameters) in the[39;49;00m
+    [33m            exported graph will also be added as inputs to the graph. If False,[39;49;00m
+    [33m            then initializers are not added as inputs to the graph, and only[39;49;00m
+    [33m            the non-parameter inputs are added as inputs.[39;49;00m
+    [33m            This may allow for better optimizations (e.g. constant folding) by[39;49;00m
+    [33m            backends/runtimes.[39;49;00m
+    [33m[39;49;00m
+    [33m            If True, `deduplicate_initializers` pass will not be executed. This means[39;49;00m
+    [33m            initializers with duplicated values will not be deduplicated and[39;49;00m
+    [33m            will be treated as distinct inputs to the graph. This allows different[39;49;00m
+    [33m            input initializers to be supplied at the runtime following export.[39;49;00m
+    [33m[39;49;00m
+    [33m            If ``opset_version < 9``, initializers MUST be part of graph[39;49;00m
+    [33m            inputs and this argument will be ignored and the behavior will be[39;49;00m
+    [33m            equivalent to setting this argument to True.[39;49;00m
+    [33m[39;49;00m
+    [33m        custom_opsets (dict[str, int], default empty dict): A dict with schema:[39;49;00m
+    [33m[39;49;00m
+    [33m            * KEY (str): opset domain name[39;49;00m
+    [33m            * VALUE (int): opset version[39;49;00m
+    [33m[39;49;00m
+    [33m            If a custom opset is referenced by ``model`` but not mentioned in this dictionary,[39;49;00m
+    [33m            the opset version is set to 1. Only custom opset domain name and version should be[39;49;00m
+    [33m            indicated through this argument.[39;49;00m
+    [33m[39;49;00m
+    [33m        export_modules_as_functions: Flag to enable[39;49;00m
+    [33m            exporting all ``nn.Module`` forward calls as local functions in ONNX. Or a set to indicate the[39;49;00m
+    [33m            particular types of modules to export as local functions in ONNX.[39;49;00m
+    [33m            This feature requires ``opset_version`` >= 15, otherwise the export will fail. This is because[39;49;00m
+    [33m            ``opset_version`` < 15 implies IR version < 8, which means no local function support.[39;49;00m
+    [33m            Module variables will be exported as function attributes. There are two categories of function[39;49;00m
+    [33m            attributes.[39;49;00m
+    [33m[39;49;00m
+    [33m            1. Annotated attributes: class variables that have type annotations via[39;49;00m
+    [33m            `PEP 526-style <https://www.python.org/dev/peps/pep-0526/#class-and-instance-variable-annotations>`_[39;49;00m
+    [33m            will be exported as attributes.[39;49;00m
+    [33m            Annotated attributes are not used inside the subgraph of ONNX local function because[39;49;00m
+    [33m            they are not created by PyTorch JIT tracing, but they may be used by consumers[39;49;00m
+    [33m            to determine whether or not to replace the function with a particular fused kernel.[39;49;00m
+    [33m[39;49;00m
+    [33m            2. Inferred attributes: variables that are used by operators inside the module. Attribute names[39;49;00m
+    [33m            will have prefix "inferred::". This is to differentiate from predefined attributes retrieved from[39;49;00m
+    [33m            python module annotations. Inferred attributes are used inside the subgraph of ONNX local function.[39;49;00m
+    [33m[39;49;00m
+    [33m            * ``False`` (default): export ``nn.Module`` forward calls as fine grained nodes.[39;49;00m
+    [33m            * ``True``: export all ``nn.Module`` forward calls as local function nodes.[39;49;00m
+    [33m            * Set of type of nn.Module: export ``nn.Module`` forward calls as local function nodes,[39;49;00m
+    [33m                only if the type of the ``nn.Module`` is found in the set.[39;49;00m
+    [33m[39;49;00m
+    [33m        autograd_inlining: Flag used to control whether to inline autograd functions.[39;49;00m
+    [33m            Refer to https://github.com/pytorch/pytorch/pull/74765 for more details.[39;49;00m
+    [33m[39;49;00m
+    [33m    Raises:[39;49;00m
+    [33m        :class:`torch.onnx.errors.CheckerError`: If the ONNX checker detects an invalid ONNX graph.[39;49;00m
+    [33m        :class:`torch.onnx.errors.UnsupportedOperatorError`: If the ONNX graph cannot be exported because it[39;49;00m
+    [33m            uses an operator that is not supported by the exporter.[39;49;00m
+    [33m        :class:`torch.onnx.errors.OnnxExporterError`: Other errors that can occur during export.[39;49;00m
+    [33m            All errors are subclasses of :class:`errors.OnnxExporterError`.[39;49;00m
+    [33m    """[39;49;00m[90m[39;49;00m
+        [94mif[39;49;00m operator_export_type != _C_onnx.OperatorExportTypes.ONNX:[90m[39;49;00m
+            warnings.warn([90m[39;49;00m
+                [33m"[39;49;00m[33mSetting `operator_export_type` to something other than default is deprecated. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mThe option will be removed in a future release.[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+                stacklevel=[94m2[39;49;00m,[90m[39;49;00m
+                category=[96mDeprecationWarning[39;49;00m,[90m[39;49;00m
+            )[90m[39;49;00m
+        [94mif[39;49;00m training == _C_onnx.TrainingMode.TRAINING:[90m[39;49;00m
+            warnings.warn([90m[39;49;00m
+                [33m"[39;49;00m[33mSetting `training` to something other than default is deprecated. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mThe option will be removed in a future release. Please set the training mode [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mbefore exporting the model.[39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+                stacklevel=[94m2[39;49;00m,[90m[39;49;00m
+                category=[96mDeprecationWarning[39;49;00m,[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        args = (args,) [94mif[39;49;00m [96misinstance[39;49;00m(args, torch.Tensor) [94melse[39;49;00m args[90m[39;49;00m
+        [94mif[39;49;00m kwargs [95mis[39;49;00m [95mnot[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            args = args + (kwargs,)[90m[39;49;00m
+    [90m[39;49;00m
+>       _export([90m[39;49;00m
+            model,[90m[39;49;00m
+            args,[90m[39;49;00m
+            f,[90m[39;49;00m
+            export_params,[90m[39;49;00m
+            verbose,[90m[39;49;00m
+            training,[90m[39;49;00m
+            input_names,[90m[39;49;00m
+            output_names,[90m[39;49;00m
+            operator_export_type=operator_export_type,[90m[39;49;00m
+            opset_version=opset_version,[90m[39;49;00m
+            do_constant_folding=do_constant_folding,[90m[39;49;00m
+            dynamic_axes=dynamic_axes,[90m[39;49;00m
+            keep_initializers_as_inputs=keep_initializers_as_inputs,[90m[39;49;00m
+            custom_opsets=custom_opsets,[90m[39;49;00m
+            export_modules_as_functions=export_modules_as_functions,[90m[39;49;00m
+            autograd_inlining=autograd_inlining,[90m[39;49;00m
+        )[90m[39;49;00m
+
+[1m[31mC:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\utils.py[0m:552: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model = Sequential(
+  (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+  (1): BatchNorm2d(64,...e)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    )
+  )
+)
+args = (tensor([[[[-1.2635, -1.1039, -0.6904,  ...,  0.1010,  1.5701,  1.9356],
+          [ 0.1709,  0.3652, -0.6194,  ...,  ...-1.3194,  ..., -0.3466, -0.3795, -1.1831],
+          [ 0.1014,  0.5889,  0.2538,  ...,  1.2735,  0.9323, -1.9301]]]]),)
+f = WindowsPath('C:/Users/rocm/AppData/Local/Temp/pytest-of-rocm/pytest-2061/test_onnx_dynamic_spatial_outp0/features.onnx')
+export_params = True, verbose = False, training = <TrainingMode.EVAL: 0>
+input_names = ['images'], output_names = ['output0']
+operator_export_type = <OperatorExportTypes.ONNX: 0>, export_type = None
+opset_version = 14, do_constant_folding = True
+dynamic_axes = {'images': {2: 'height', 3: 'width'}}
+keep_initializers_as_inputs = False, fixed_batch_size = False
+custom_opsets = {}, add_node_names = True, onnx_shape_inference = True
+export_modules_as_functions = False, autograd_inlining = True
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_export[39;49;00m([90m[39;49;00m
+        model,[90m[39;49;00m
+        args,[90m[39;49;00m
+        f,[90m[39;49;00m
+        export_params=[94mTrue[39;49;00m,[90m[39;49;00m
+        verbose=[94mFalse[39;49;00m,[90m[39;49;00m
+        training=_C_onnx.TrainingMode.EVAL,[90m[39;49;00m
+        input_names=[94mNone[39;49;00m,[90m[39;49;00m
+        output_names=[94mNone[39;49;00m,[90m[39;49;00m
+        operator_export_type=_C_onnx.OperatorExportTypes.ONNX,[90m[39;49;00m
+        export_type=[94mNone[39;49;00m,[90m[39;49;00m
+        opset_version=[94mNone[39;49;00m,[90m[39;49;00m
+        do_constant_folding=[94mTrue[39;49;00m,[90m[39;49;00m
+        dynamic_axes=[94mNone[39;49;00m,[90m[39;49;00m
+        keep_initializers_as_inputs=[94mNone[39;49;00m,[90m[39;49;00m
+        fixed_batch_size=[94mFalse[39;49;00m,[90m[39;49;00m
+        custom_opsets=[94mNone[39;49;00m,[90m[39;49;00m
+        add_node_names=[94mTrue[39;49;00m,[90m[39;49;00m
+        onnx_shape_inference=[94mTrue[39;49;00m,[90m[39;49;00m
+        export_modules_as_functions: Any = [94mFalse[39;49;00m,[90m[39;49;00m
+        autograd_inlining=[94mTrue[39;49;00m,[90m[39;49;00m
+    ):[90m[39;49;00m
+        [94mif[39;49;00m GLOBALS.in_onnx_export [95mis[39;49;00m [95mnot[39;49;00m [94mFalse[39;49;00m:[90m[39;49;00m
+            [94mraise[39;49;00m [96mAssertionError[39;49;00m([33m"[39;49;00m[33mGLOBALS.in_onnx_export must be False[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+    [90m[39;49;00m
+        _trigger_symbolic_function_registration()[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m [96misinstance[39;49;00m(model, torch.nn.DataParallel):[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([90m[39;49;00m
+                [33m"[39;49;00m[33mtorch.nn.DataParallel is not supported by ONNX [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mexporter, please use [39;49;00m[33m'[39;49;00m[33mattribute[39;49;00m[33m'[39;49;00m[33m module to [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33munwrap model from torch.nn.DataParallel. Try [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mtorch.onnx.export(model.module, ...)[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        GLOBALS.onnx_shape_inference = onnx_shape_inference[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m opset_version [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+            opset_version = _constants.ONNX_DEFAULT_OPSET[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m opset_version > _constants.ONNX_TORCHSCRIPT_EXPORTER_MAX_OPSET:[90m[39;49;00m
+            warnings.warn([90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33mExporting to ONNX opset version [39;49;00m[33m{[39;49;00mopset_version[33m}[39;49;00m[33m is not supported. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33mby [39;49;00m[33m'[39;49;00m[33mtorch.onnx.export()[39;49;00m[33m'[39;49;00m[33m. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33mThe highest opset version supported is [39;49;00m[33m{[39;49;00m_constants.ONNX_TORCHSCRIPT_EXPORTER_MAX_OPSET[33m}[39;49;00m[33m. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33mf[39;49;00m[33m"[39;49;00m[33mTo use a newer opset version, consider [39;49;00m[33m'[39;49;00m[33mtorch.onnx.export(..., dynamo=True)[39;49;00m[33m'[39;49;00m[33m. [39;49;00m[33m"[39;49;00m,[90m[39;49;00m
+                stacklevel=[94m2[39;49;00m,[90m[39;49;00m
+                category=errors.OnnxExporterWarning,[90m[39;49;00m
+            )[90m[39;49;00m
+    [90m[39;49;00m
+        [94mif[39;49;00m export_modules_as_functions [95mand[39;49;00m opset_version < [94m15[39;49;00m:[90m[39;49;00m
+            [94mraise[39;49;00m [96mValueError[39;49;00m([90m[39;49;00m
+                [33m"[39;49;00m[33m`export_modules_as_functions` is not supported for `opset_version` < 15.[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mThis is because `opset_version` < 15 implies IR version < 8, which means [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                [33m"[39;49;00m[33mno local function support. [39;49;00m[33m"[39;49;00m[90m[39;49;00m
+            )[90m[39;49;00m
+        [94mif[39;49;00m [95mnot[39;49;00m operator_export_type:[90m[39;49;00m
+            operator_export_type = _C_onnx.OperatorExportTypes.ONNX[90m[39;49;00m
+    [90m[39;49;00m
+        [90m# By default, training=TrainingMode.EVAL,[39;49;00m[90m[39;49;00m
+        [90m# which is good because running a model in training mode could result in[39;49;00m[90m[39;49;00m
+        [90m# internal buffers getting updated, dropout getting applied, etc.[39;49;00m[90m[39;49;00m
+        [90m# If you really know what you're doing, you can turn[39;49;00m[90m[39;49;00m
+        [90m# training=TrainingMode.TRAINING or training=TrainingMode.PRESERVE,[39;49;00m[90m[39;49;00m
+        [90m# (to preserve whatever the original training mode was.)[39;49;00m[90m[39;49;00m
+        GLOBALS.export_onnx_opset_version = opset_version[90m[39;49;00m
+        GLOBALS.operator_export_type = operator_export_type[90m[39;49;00m
+    [90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            GLOBALS.in_onnx_export = [94mTrue[39;49;00m[90m[39;49;00m
+            _autograd_inlining_previous = GLOBALS.autograd_inlining[90m[39;49;00m
+            GLOBALS.autograd_inlining = autograd_inlining[90m[39;49;00m
+    [90m[39;49;00m
+            module_typenames_to_export_as_functions: [96mset[39;49;00m[[96mstr[39;49;00m] = [96mset[39;49;00m()[90m[39;49;00m
+            [94mif[39;49;00m [96misinstance[39;49;00m(model, (torch.nn.Module, torch.jit.ScriptModule)):[90m[39;49;00m
+                module_typenames_to_export_as_functions = _setup_trace_module_map([90m[39;49;00m
+                    model, export_modules_as_functions[90m[39;49;00m
+                )[90m[39;49;00m
+    [90m[39;49;00m
+            [94mwith[39;49;00m exporter_context(model, training, verbose):[90m[39;49;00m
+                val_keep_init_as_ip = _decide_keep_init_as_input([90m[39;49;00m
+                    keep_initializers_as_inputs,[90m[39;49;00m
+                    operator_export_type,[90m[39;49;00m
+                    opset_version,[90m[39;49;00m
+                )[90m[39;49;00m
+                val_add_node_names = _decide_add_node_names([90m[39;49;00m
+                    add_node_names, operator_export_type[90m[39;49;00m
+                )[90m[39;49;00m
+                val_do_constant_folding = _decide_constant_folding([90m[39;49;00m
+                    do_constant_folding, operator_export_type, training[90m[39;49;00m
+                )[90m[39;49;00m
+                [90m# Normally f can be a file-like object, but for large models, the external data format requires a[39;49;00m[90m[39;49;00m
+                [90m# valid `model_file_location`. Code in export.cpp will enforce this.[39;49;00m[90m[39;49;00m
+                [94mif[39;49;00m [96misinstance[39;49;00m(f, [96mstr[39;49;00m):[90m[39;49;00m
+                    model_file_location = f[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    model_file_location = [33m"[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+                args = _decide_input_format(model, args)[90m[39;49;00m
+                [94mif[39;49;00m dynamic_axes [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    dynamic_axes = {}[90m[39;49;00m
+                _validate_dynamic_axes(dynamic_axes, model, input_names, output_names)[90m[39;49;00m
+    [90m[39;49;00m
+                graph, params_dict, torch_out = _model_to_graph([90m[39;49;00m
+                    model,[90m[39;49;00m
+                    args,[90m[39;49;00m
+                    verbose,[90m[39;49;00m
+                    input_names,[90m[39;49;00m
+                    output_names,[90m[39;49;00m
+                    operator_export_type,[90m[39;49;00m
+                    val_do_constant_folding,[90m[39;49;00m
+                    fixed_batch_size=fixed_batch_size,[90m[39;49;00m
+                    training=training,[90m[39;49;00m
+                    dynamic_axes=dynamic_axes,[90m[39;49;00m
+                )[90m[39;49;00m
+    [90m[39;49;00m
+                [94mif[39;49;00m custom_opsets [95mis[39;49;00m [94mNone[39;49;00m:[90m[39;49;00m
+                    custom_opsets = {}[90m[39;49;00m
+    [90m[39;49;00m
+                _C._jit_pass_dce_allow_deleting_nodes_with_side_effects(graph)[90m[39;49;00m
+                node_attr_to_name = {}  [90m# type: ignore[var-annotated][39;49;00m[90m[39;49;00m
+                [94mif[39;49;00m module_typenames_to_export_as_functions:[90m[39;49;00m
+                    [90m# NOTE: cannot call DCE after this pass. DCE will remove function definition nodes.[39;49;00m[90m[39;49;00m
+                    node_attr_to_name = _C._jit_pass_onnx_function_extraction([90m[39;49;00m
+                        graph,[90m[39;49;00m
+                        module_typenames_to_export_as_functions,[90m[39;49;00m
+                        [96mlist[39;49;00m(params_dict.keys()),[90m[39;49;00m
+                    )[90m[39;49;00m
+    [90m[39;49;00m
+                [94mif[39;49;00m keep_initializers_as_inputs [95mis[39;49;00m [95mnot[39;49;00m [94mTrue[39;49;00m:[90m[39;49;00m
+                    params_dict = _C._jit_pass_onnx_deduplicate_initializers(  [90m# type: ignore[assignment][39;49;00m[90m[39;49;00m
+                        graph,[90m[39;49;00m
+                        params_dict,  [90m# type: ignore[arg-type][39;49;00m[90m[39;49;00m
+                        [96mgetattr[39;49;00m(model, [33m"[39;49;00m[33mtraining[39;49;00m[33m"[39;49;00m, [94mFalse[39;49;00m),  [90m# type: ignore[arg-type][39;49;00m[90m[39;49;00m
+                    )[90m[39;49;00m
+                _C._jit_pass_onnx_assign_scoped_names_for_node_and_value(graph)[90m[39;49;00m
+                defer_weight_export = [94mFalse[39;49;00m[90m[39;49;00m
+                [94mif[39;49;00m export_params:[90m[39;49;00m
+                    ([90m[39;49;00m
+                        proto,[90m[39;49;00m
+                        export_map,[90m[39;49;00m
+                        _val_use_external_data_format,[90m[39;49;00m
+                        _node_names,[90m[39;49;00m
+                    ) = graph._export_onnx(  [90m# type: ignore[attr-defined][39;49;00m[90m[39;49;00m
+                        params_dict,[90m[39;49;00m
+                        opset_version,[90m[39;49;00m
+                        dynamic_axes,[90m[39;49;00m
+                        defer_weight_export,[90m[39;49;00m
+                        operator_export_type,[90m[39;49;00m
+                        [95mnot[39;49;00m verbose,[90m[39;49;00m
+                        val_keep_init_as_ip,[90m[39;49;00m
+                        custom_opsets,[90m[39;49;00m
+                        val_add_node_names,[90m[39;49;00m
+                        model_file_location,[90m[39;49;00m
+                        node_attr_to_name,[90m[39;49;00m
+                    )[90m[39;49;00m
+                [94melse[39;49;00m:[90m[39;49;00m
+                    ([90m[39;49;00m
+                        proto,[90m[39;49;00m
+                        export_map,[90m[39;49;00m
+                        _,[90m[39;49;00m
+                        _,[90m[39;49;00m
+                    ) = graph._export_onnx(  [90m# type: ignore[attr-defined][39;49;00m[90m[39;49;00m
+                        {},[90m[39;49;00m
+                        opset_version,[90m[39;49;00m
+                        dynamic_axes,[90m[39;49;00m
+                        defer_weight_export,[90m[39;49;00m
+                        operator_export_type,[90m[39;49;00m
+                        [95mnot[39;49;00m verbose,[90m[39;49;00m
+                        val_keep_init_as_ip,[90m[39;49;00m
+                        custom_opsets,[90m[39;49;00m
+                        val_add_node_names,[90m[39;49;00m
+                        model_file_location,[90m[39;49;00m
+                        node_attr_to_name,[90m[39;49;00m
+                    )[90m[39;49;00m
+                [90m# insert function_proto into model_proto.[39;49;00m[90m[39;49;00m
+>               proto = onnx_proto_utils._add_onnxscript_fn([90m[39;49;00m
+                    proto,[90m[39;49;00m
+                    custom_opsets,[90m[39;49;00m
+                )[90m[39;49;00m
+
+[1m[31mC:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\utils.py[0m:1588: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+model_bytes = b'\x08\x07\x12\x07pytorch\x1a\x062.12.0:\xd6\x85\xa7\x15\n6\n\x0eonnx::Conv_234\x12\x0eonnx::Conv_246\x1a\nIdentity_0"...08\x01\x123\n\x02\x08\x01\n\x03\x08\x80\x04\n\x13\x12\x11Reluoutput0_dim_2\n\x13\x12\x11Reluoutput0_dim_3B\x02\x10\x0e'
+custom_opsets = {}
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92m_add_onnxscript_fn[39;49;00m([90m[39;49;00m
+        model_bytes: [96mbytes[39;49;00m,[90m[39;49;00m
+        custom_opsets: Mapping[[96mstr[39;49;00m, [96mint[39;49;00m],[90m[39;49;00m
+    ) -> [96mbytes[39;49;00m:[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Insert model-included custom onnx-script function into ModelProto"""[39;49;00m[90m[39;49;00m
+        [94mtry[39;49;00m:[90m[39;49;00m
+            [94mimport[39;49;00m[90m [39;49;00m[04m[96monnx[39;49;00m[90m[39;49;00m
+        [94mexcept[39;49;00m [96mImportError[39;49;00m [94mas[39;49;00m e:[90m[39;49;00m
+>           [94mraise[39;49;00m errors.OnnxExporterError([33m"[39;49;00m[33mModule onnx is not installed![39;49;00m[33m"[39;49;00m) [94mfrom[39;49;00m[90m [39;49;00m[04m[96me[39;49;00m[90m[39;49;00m
+[1m[31mE           torch.onnx.OnnxExporterError: Module onnx is not installed![0m
+
+[1m[31mC:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\onnx_proto_utils.py[0m:185: OnnxExporterError
+[33m============================== warnings summary ===============================[0m
+tests/test_cuda.py::test_onnx_dynamic_spatial_outputs
+  C:\P19B\pr27203\ultralytics\utils\export\engine.py:118: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+    torch.onnx.export(
+
+tests/test_cuda.py::test_onnx_dynamic_spatial_outputs
+  C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\utils.py:218: DeprecationWarning: The feature will be removed. Please remove usage of this function
+    setup_onnx_logging(verbose) as log_ctx,
+
+tests/test_cuda.py::test_track_exported_model[False]
+tests/test_cuda.py::test_track_exported_model[320]
+  C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\jit\_trace.py:1006: DeprecationWarning: `torch.jit.trace` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+tests/test_cuda.py::test_track_exported_model[False]
+tests/test_cuda.py::test_track_exported_model[320]
+  C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\jit\_trace.py:1145: DeprecationWarning: `torch.jit.trace_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+tests/test_cuda.py::test_track_exported_model[False]
+tests/test_cuda.py::test_track_exported_model[320]
+  C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\torch\jit\_serialization.py:176: DeprecationWarning: `torch.jit.load` is deprecated. Please switch to `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=================================== PASSES ====================================
+[32m[1m__________________________________ test_amp ___________________________________[0m
+---------------------------- Captured stdout call -----------------------------
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+---------------------------- Captured stderr call -----------------------------
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx115128.HIP.fdb.txt"
+------------------------------ Captured log call ------------------------------
+[32mINFO    [0m ultralytics:checks.py:1072 [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[32mINFO    [0m ultralytics:checks.py:1081 [34m[1mAMP: [0mchecks passed ✅
+[32m[1m____________________ test_semantic_loss_all_ignore_amp[1] _____________________[0m
+---------------------------- Captured stdout call -----------------------------
+Overriding model.yaml nc=19 with nc=1
+WARNING no model scale passed. Assuming scale='n'.
+------------------------------ Captured log call ------------------------------
+[32mINFO    [0m ultralytics:tasks.py:488 Overriding model.yaml nc=19 with nc=1
+[33mWARNING [0m ultralytics:tasks.py:2073 WARNING no model scale passed. Assuming scale='n'.
+[32m[1m____________________ test_semantic_loss_all_ignore_amp[3] _____________________[0m
+---------------------------- Captured stdout call -----------------------------
+Overriding model.yaml nc=19 with nc=3
+WARNING no model scale passed. Assuming scale='n'.
+------------------------------ Captured log call ------------------------------
+[32mINFO    [0m ultralytics:tasks.py:488 Overriding model.yaml nc=19 with nc=3
+[33mWARNING [0m ultralytics:tasks.py:2073 WARNING no model scale passed. Assuming scale='n'.
+[32m[1m_________________________________ test_train __________________________________[0m
+---------------------------- Captured stdout call -----------------------------
+[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 0% ──────────── 8.0KB/5.3MB 17.1KB/s 0.1s<5:17[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 1% ──────────── 56.0KB/5.3MB 132.6KB/s 0.3s<40.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 2% ──────────── 120.0KB/5.3MB 251.1KB/s 0.4s<21.1s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 4% ╸─────────── 248.0KB/5.3MB 1.1MB/s 0.5s<4.5s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 7% ╸─────────── 408.0KB/5.3MB 1.6MB/s 0.6s<3.1s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 12% ━─────────── 664.0KB/5.3MB 2.5MB/s 0.7s<1.9s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 21% ━━╸───────── 1.1/5.3MB 5.0MB/s 0.8s<0.8s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 38% ━━━━╸─────── 2.0/5.3MB 8.7MB/s 0.9s<0.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 44% ━━━━━─────── 2.4/5.3MB 3.1MB/s 1.0s<1.0s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 53% ━━━━━━────── 2.8/5.3MB 4.7MB/s 1.1s<0.5s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 63% ━━━━━━━╸──── 3.3/5.3MB 5.2MB/s 1.2s<0.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 74% ━━━━━━━━╸─── 3.9/5.3MB 5.9MB/s 1.3s<0.2s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 82% ━━━━━━━━━╸── 4.4/5.3MB 2.2MB/s 1.5s<0.4s[KDownloading https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt to 'weights\path with spaces\yolo26n.pt': 100% ━━━━━━━━━━━━ 5.3MB 3.5MB/s 1.5s
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=-1, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8-grayscale.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=weights\path with spaces\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P19B\pr27203\tests\tmp\runs\detect\train, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None
+
+WARNING Dataset 'coco8-grayscale.yaml' images not found, missing path 'C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\images\val'
+[KDownloading https://ultralytics.com/assets/coco8-grayscale.zip to 'C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale.zip': 2% ──────────── 24.0/879.0KB 61.2KB/s 0.1s<14.0s[KDownloading https://ultralytics.com/assets/coco8-grayscale.zip to 'C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale.zip': 7% ╸─────────── 64.0/879.0KB 132.6KB/s 0.3s<6.1s[KDownloading https://ultralytics.com/assets/coco8-grayscale.zip to 'C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale.zip': 14% ━╸────────── 128.0/879.0KB 282.7KB/s 0.4s<2.7s[KDownloading https://ultralytics.com/assets/coco8-grayscale.zip to 'C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale.zip': 29% ━━━───────── 256.0/879.0KB 1.1MB/s 0.5s<0.5s[KDownloading https://ultralytics.com/assets/coco8-grayscale.zip to 'C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale.zip': 56% ━━━━━━╸───── 496.0/879.0KB 2.2MB/s 0.6s<0.2s[KDownloading https://ultralytics.com/assets/coco8-grayscale.zip to 'C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale.zip': 100% ━━━━━━━━━━━━ 879.0KB 1.3MB/s 0.7s
+[KUnzipping C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale.zip to C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale...: 100% ━━━━━━━━━━━━ 24/24 1.6Kfiles/s 0.0s
+Dataset download success  (3.6s), saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\datasets[0m
+
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       176  ultralytics.nn.modules.conv.Conv             [1, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,571,992 parameters, 2,571,992 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+WARNING [34m[1mtrain: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 14.7±7.0 MB/s, size: 112.9 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\labels\train... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 384.0it/s 0.0s
+[34m[1mtrain: [0mNew cache created: C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\labels\train.cache
+[34m[1mAutoBatch: [0mComputing optimal batch size for imgsz=64 at 60.0% GPU memory utilization.
+[34m[1mAutoBatch: [0mCUDA:0 (AMD Radeon(TM) 8060S Graphics) 78.19G total, 0.14G reserved, 77.70G available
+      Params      GFLOPs GPU_mem (GiB)  forward (ms) backward (ms)                   input                  output
+CUDA error: invalid kernel file
+Search for `hipErrorInvalidKernelFile' in https://rocm.docs.amd.com/projects/HIP/en/latest/index.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Device-side assertion tracking was not enabled by user.
+     2571992      0.1212         0.202     1.151e+04     1.368e+04          (2, 1, 64, 64)                    list
+     2571992      0.2424         0.208          6704          8818          (4, 1, 64, 64)                    list
+[34m[1mAutoBatch: [0mUsing batch-size 4 for CUDA:0 0.21G/77.70G (0%) 
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 1162.3±340.0 MB/s, size: 112.9 KB)
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 1.0Mit/s 0.0s
+WARNING [34m[1mval: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 26.0±10.9 MB/s, size: 124.9 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\labels\val... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 608.8it/s 0.0s
+[34m[1mval: [0mNew cache created: C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\labels\val.cache
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+Plotting labels to C:\P19B\pr27203\tests\tmp\runs\detect\train\labels.jpg... 
+Using 4 train, 4 val images for fraction=1.0 at imgsz=64
+Using 0 dataloader workers
+Logging results to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train[0m
+Starting training for 1 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        1/1      0.23G      3.639      7.183     0.1705         13         64: 0% ──────────── 0/1  1.1s[K        1/1      0.23G      3.639      7.183     0.1705         13         64: 100% ━━━━━━━━━━━━ 1/1 1.1s/it 1.1s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 2.4s/it 2.4s
+                   all          4         17      0.021     0.0167    0.00792    0.00528
+
+1 epochs completed in 0.001 hours.
+Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train\weights\last.pt, 5.5MB
+Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train\weights\best.pt, 5.5MB
+
+Validating C:\P19B\pr27203\tests\tmp\runs\detect\train\weights\best.pt...
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,644 parameters, 0 gradients, 5.4 GFLOPs
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 47.6it/s 0.0s
+                   all          4         17     0.0115     0.0167    0.00792    0.00528
+                person          3         10      0.069        0.1     0.0475     0.0317
+                   dog          1          1          0          0          0          0
+                 horse          1          2          0          0          0          0
+              elephant          1          2          0          0          0          0
+              umbrella          1          1          0          0          0          0
+          potted plant          1          1          0          0          0          0
+Speed: 0.2ms preprocess, 1.7ms inference, 0.0ms loss, 0.4ms postprocess per image
+Results saved to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train[0m
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=15, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=True, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=weights\path with spaces\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-2, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P19B\pr27203\tests\tmp\runs\detect\train-2, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=320, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+WARNING [34m[1mcompile:[0m inductor backend unavailable, continuing uncompiled: no working Triton found
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 685.0±295.0 MB/s, size: 50.0 KB)
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 1.5Mit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 784.3±200.7 MB/s, size: 54.0 KB)
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 4.2Mit/s 0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.00046875), 126 bias(decay=0.0)
+Plotting labels to C:\P19B\pr27203\tests\tmp\runs\detect\train-2\labels.jpg... 
+Using 24 train, 22 val images for fraction=1.0 at imgsz=64
+Using 0 dataloader workers
+Logging results to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train-2[0m
+Starting training for 1 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        1/1     0.266G      3.077      7.131     0.1405         34         64: 0% ──────────── 0/1  26.9s[K        1/1     0.266G      3.077      7.131     0.1405         34         64: 100% ━━━━━━━━━━━━ 1/1 26.9s/it 26.9s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 3.1s/it 3.1s
+                   all          4         17     0.0328      0.183     0.0779     0.0171
+
+1 epochs completed in 0.009 hours.
+Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train-2\weights\last.pt, 5.5MB
+Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train-2\weights\best.pt, 5.5MB
+
+Validating C:\P19B\pr27203\tests\tmp\runs\detect\train-2\weights\best.pt...
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 16.9it/s 0.1s
+                   all          4         17     0.0328      0.183      0.154     0.0247
+                person          3         10     0.0152        0.1      0.095     0.0285
+                   dog          1          1          0          0          0          0
+                 horse          1          2      0.182          1      0.828       0.12
+              elephant          1          2          0          0          0          0
+              umbrella          1          1          0          0          0          0
+          potted plant          1          1          0          0          0          0
+Speed: 0.2ms preprocess, 1.7ms inference, 0.0ms loss, 6.5ms postprocess per image
+Results saved to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train-2[0m
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=15, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco128.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=weights\path with spaces\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-3, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P19B\pr27203\tests\tmp\runs\detect\train-3, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=False, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.1±0.1 ms, read: 121.5±55.4 MB/s, size: 50.9 KB)
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco128\labels\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 44.7Mit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 120.2±74.7 MB/s, size: 52.5 KB)
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco128\labels\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 44.7Mit/s 0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.00046875), 126 bias(decay=0.0)
+Plotting labels to C:\P19B\pr27203\tests\tmp\runs\detect\train-3\labels.jpg... 
+Using 128 train, 128 val images for fraction=1.0 at imgsz=64
+Using 8 dataloader workers
+Logging results to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train-3[0m
+Starting training for 1 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        1/1     0.359G      3.268      6.705     0.1154         71         64: 0% ──────────── 0/9  13.4s[K        1/1     0.369G      3.503      7.123     0.1363         40         64: 22% ━━╸───────── 2/9 5.4it/s 13.5s<1.3s[K        1/1     0.377G      3.581      7.051     0.1385         72         64: 44% ━━━━━─────── 4/9 9.2it/s 13.6s<0.5s[K        1/1     0.387G      3.714      6.938     0.1409         85         64: 77% ━━━━━━━━━─── 7/9 13.0it/s 13.7s<0.2s[K        1/1     0.309G       3.81       6.92     0.1462         57         64: 88% ━━━━━━━━━━╸─ 8/9 9.1it/s 39.3s<0.1s[K        1/1     0.309G       3.81       6.92     0.1462         57         64: 100% ━━━━━━━━━━━━ 9/9 4.4s/it 39.3s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 20% ━━────────── 1/5 41.7s/it 12.5s<2:47[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 60% ━━━━━━━───── 3/5 5.4s/it 16.1s<10.9s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 5/5 3.8s/it 18.9s
+                   all        128        929      0.614     0.0356     0.0437     0.0263
+
+1 epochs completed in 0.017 hours.
+Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train-3\weights\last.pt, 5.5MB
+Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train-3\weights\best.pt, 5.5MB
+
+Validating C:\P19B\pr27203\tests\tmp\runs\detect\train-3\weights\best.pt...
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 40% ━━━━╸─────── 2/5 3.8it/s 0.2s<0.8s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 80% ━━━━━━━━━╸── 4/5 6.3it/s 0.3s<0.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 5/5 14.4it/s 0.3s
+                   all        128        929      0.615     0.0356     0.0432      0.026
+                person         61        254      0.543     0.0748      0.113     0.0517
+               bicycle          3          6          1          0          0          0
+                   car         12         46          0          0   0.000658   0.000132
+            motorcycle          4          5          0          0     0.0115    0.00688
+              airplane          5          6          1          0      0.168      0.105
+                   bus          5          7          0          0      0.057     0.0371
+                 train          3          3          0          0          0          0
+                 truck          5         12          0          0          0          0
+                  boat          2          6      0.513      0.167      0.165     0.0825
+         traffic light          4         14          1          0          0          0
+             stop sign          2          2          1          0          0          0
+                 bench          5          9          1          0          0          0
+                  bird          2         16          1          0          0          0
+                   cat          4          4          1          0          0          0
+                   dog          9          9          1          0    0.00821    0.00438
+                 horse          1          2          0          0          0          0
+              elephant          4         17      0.662      0.118      0.095     0.0665
+                  bear          1          1       0.54          1      0.995      0.697
+                 zebra          2          4          1      0.479      0.495      0.359
+               giraffe          4          9      0.247      0.111      0.113     0.0251
+              backpack          4          6          1          0          0          0
+              umbrella          4         18          1          0      0.095     0.0095
+               handbag          9         19          1          0          0          0
+                   tie          6          7          1          0          0          0
+              suitcase          2          4          0          0          0          0
+               frisbee          5          5          1          0          0          0
+                  skis          1          1          1          0          0          0
+             snowboard          2          7          1          0          0          0
+           sports ball          6          6          1          0          0          0
+                  kite          2         10          0          0          0          0
+          baseball bat          4          4          1          0          0          0
+        baseball glove          4          7          1          0      0.145     0.0725
+            skateboard          3          5          1          0          0          0
+         tennis racket          5          7          1          0          0          0
+                bottle          6         18          0          0     0.0204    0.00892
+            wine glass          5         16          1          0          0          0
+                   cup         10         36          1          0          0          0
+                  fork          6          6          0          0          0          0
+                 knife          7         16          1          0          0          0
+                 spoon          5         22          0          0          0          0
+                  bowl          9         28          0          0      0.025      0.015
+                banana          1          1          1          0          0          0
+              sandwich          2          2          0          0     0.0707      0.018
+                orange          1          4          1          0          0          0
+              broccoli          4         11          1          0          0          0
+                carrot          3         24          1          0          0          0
+               hot dog          1          2          0          0          0          0
+                 pizza          5          5        0.4        0.2      0.245      0.149
+                 donut          2         14          0          0          0          0
+                  cake          4          4     0.0969       0.25     0.0272     0.0163
+                 chair          9         35          1          0   0.000417   0.000125
+                 couch          5          6          1          0          0          0
+          potted plant          9         14          1          0          0          0
+                   bed          3          3          1          0          0          0
+          dining table         10         13      0.434     0.0769      0.134     0.0712
+                toilet          2          2          1          0          0          0
+                    tv          2          2          0          0          0          0
+                laptop          2          3          1          0          0          0
+                 mouse          2          2          0          0          0          0
+                remote          5          8          0          0          0          0
+            cell phone          5          8          1          0          0          0
+             microwave          3          3          1          0          0          0
+                  oven          5          5          1          0          0          0
+                  sink          4          6          1          0          0          0
+          refrigerator          5          5          1          0          0          0
+                  book          6         29          0          0          0          0
+                 clock          8          9          0          0     0.0409     0.0199
+                  vase          2          2          0          0          0          0
+              scissors          1          1          1          0          0          0
+            teddy bear          6         21      0.225     0.0476      0.045     0.0315
+            toothbrush          2          5          0          0          0          0
+Speed: 0.0ms preprocess, 0.7ms inference, 0.0ms loss, 0.5ms postprocess per image
+Results saved to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train-3[0m
+---------------------------- Captured stderr call -----------------------------
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+------------------------------ Captured log call ------------------------------
+[32mINFO    [0m ultralytics:torch_utils.py:368 Ultralytics 8.4.213 🚀 Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[32mINFO    [0m ultralytics:checks.py:1141 [34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=-1, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8-grayscale.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=weights\path with spaces\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P19B\pr27203\tests\tmp\runs\detect\train, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None
+[32mINFO    [0m ultralytics:utils.py:819 
+[33mWARNING [0m ultralytics:utils.py:822 WARNING Dataset 'coco8-grayscale.yaml' images not found, missing path 'C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\images\val'
+[32mINFO    [0m ultralytics:utils.py:836 Dataset download success ✅ (3.6s), saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\datasets[0m
+
+[32mINFO    [0m ultralytics:tasks.py:2083 
+                   from  n    params  module                                       arguments                     
+[32mINFO    [0m ultralytics:tasks.py:2251   0                  -1  1       176  ultralytics.nn.modules.conv.Conv             [1, 16, 3, 2]                 
+[32mINFO    [0m ultralytics:tasks.py:2251   1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251   2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+[32mINFO    [0m ultralytics:tasks.py:2251   3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251   4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+[32mINFO    [0m ultralytics:tasks.py:2251   5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251   6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251   7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251   8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251   9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+[32mINFO    [0m ultralytics:tasks.py:2251  10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+[32mINFO    [0m ultralytics:tasks.py:2251  11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+[32mINFO    [0m ultralytics:tasks.py:2251  12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251  14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+[32mINFO    [0m ultralytics:tasks.py:2251  15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+[32mINFO    [0m ultralytics:tasks.py:2251  17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251  18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251  20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251  21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+[32mINFO    [0m ultralytics:tasks.py:2251  23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+[32mINFO    [0m ultralytics:torch_utils.py:585 YOLO26n summary: 260 layers, 2,571,992 parameters, 2,571,992 gradients, 6.2 GFLOPs
+[32mINFO    [0m ultralytics:tasks.py:561 
+[32mINFO    [0m ultralytics:tasks.py:379 Transferred 708/708 items from pretrained weights
+[32mINFO    [0m ultralytics:checks.py:1072 [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[32mINFO    [0m ultralytics:checks.py:1081 [34m[1mAMP: [0mchecks passed ✅
+[33mWARNING [0m ultralytics:utils.py:231 WARNING [34m[1mtrain: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 14.7±7.0 MB/s, size: 112.9 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+[32mINFO    [0m ultralytics:utils.py:1040 [34m[1mtrain: [0mNew cache created: C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\labels\train.cache
+[32mINFO    [0m ultralytics:autobatch.py:80 [34m[1mAutoBatch: [0mComputing optimal batch size for imgsz=64 at 60.0% GPU memory utilization.
+[32mINFO    [0m ultralytics:autobatch.py:98 [34m[1mAutoBatch: [0mCUDA:0 (AMD Radeon(TM) 8060S Graphics) 78.19G total, 0.14G reserved, 77.70G available
+[32mINFO    [0m ultralytics:torch_utils.py:1068       Params      GFLOPs GPU_mem (GiB)  forward (ms) backward (ms)                   input                  output
+[32mINFO    [0m ultralytics:torch_utils.py:1111 CUDA error: invalid kernel file
+Search for `hipErrorInvalidKernelFile' in https://rocm.docs.amd.com/projects/HIP/en/latest/index.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing AMD_SERIALIZE_KERNEL=3
+Device-side assertion tracking was not enabled by user.
+[32mINFO    [0m ultralytics:torch_utils.py:1108      2571992      0.1212         0.202     1.151e+04     1.368e+04          (2, 1, 64, 64)                    list
+[32mINFO    [0m ultralytics:torch_utils.py:1108      2571992      0.2424         0.208          6704          8818          (4, 1, 64, 64)                    list
+[32mINFO    [0m ultralytics:autobatch.py:140 [34m[1mAutoBatch: [0mUsing batch-size 4 for CUDA:0 0.21G/77.70G (0%) ✅
+[32mINFO    [0m ultralytics:utils.py:229 [34m[1mtrain: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 1162.3±340.0 MB/s, size: 112.9 KB)
+[33mWARNING [0m ultralytics:utils.py:231 WARNING [34m[1mval: [0mSlow image access detected (ping: 0.0±0.0 ms, read: 26.0±10.9 MB/s, size: 124.9 KB). Use local storage instead of remote/mounted storage for better performance. See https://docs.ultralytics.com/guides/model-training-tips
+[32mINFO    [0m ultralytics:utils.py:1040 [34m[1mval: [0mNew cache created: C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-grayscale\labels\val.cache
+[32mINFO    [0m ultralytics:trainer.py:1226 [34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[32mINFO    [0m ultralytics:trainer.py:1290 [34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+[32mINFO    [0m ultralytics:plotting.py:774 Plotting labels to C:\P19B\pr27203\tests\tmp\runs\detect\train\labels.jpg... 
+[32mINFO    [0m ultralytics:trainer.py:486 Using 4 train, 4 val images for fraction=1.0 at imgsz=64
+Using 0 dataloader workers
+Logging results to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train[0m
+Starting training for 1 epochs...
+[32mINFO    [0m ultralytics:trainer.py:1200 Closing dataloader mosaic
+[32mINFO    [0m ultralytics:trainer.py:564 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[32mINFO    [0m ultralytics:val.py:367                    all          4         17      0.021     0.0167    0.00792    0.00528
+[32mINFO    [0m ultralytics:trainer.py:711 
+1 epochs completed in 0.001 hours.
+[32mINFO    [0m ultralytics:torch_utils.py:982 Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train\weights\last.pt, 5.5MB
+[32mINFO    [0m ultralytics:torch_utils.py:982 Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train\weights\best.pt, 5.5MB
+[32mINFO    [0m ultralytics:trainer.py:1063 
+Validating C:\P19B\pr27203\tests\tmp\runs\detect\train\weights\best.pt...
+[32mINFO    [0m ultralytics:torch_utils.py:368 Ultralytics 8.4.213 🚀 Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[32mINFO    [0m ultralytics:torch_utils.py:585 YOLO26n summary (fused): 120 layers, 2,408,644 parameters, 0 gradients, 5.4 GFLOPs
+[32mINFO    [0m ultralytics:val.py:367                    all          4         17     0.0115     0.0167    0.00792    0.00528
+[32mINFO    [0m ultralytics:val.py:374                 person          3         10      0.069        0.1     0.0475     0.0317
+[32mINFO    [0m ultralytics:val.py:374                    dog          1          1          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  horse          1          2          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               elephant          1          2          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               umbrella          1          1          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374           potted plant          1          1          0          0          0          0
+[32mINFO    [0m ultralytics:validator.py:377 Speed: 0.2ms preprocess, 1.7ms inference, 0.0ms loss, 0.4ms postprocess per image
+[32mINFO    [0m ultralytics:validator.py:388 Results saved to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train[0m
+[32mINFO    [0m ultralytics:torch_utils.py:368 Ultralytics 8.4.213 🚀 Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[32mINFO    [0m ultralytics:checks.py:1141 [34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=15, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=True, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=weights\path with spaces\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-2, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P19B\pr27203\tests\tmp\runs\detect\train-2, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=320, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None
+[32mINFO    [0m ultralytics:tasks.py:2083 
+                   from  n    params  module                                       arguments                     
+[32mINFO    [0m ultralytics:tasks.py:2251   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+[32mINFO    [0m ultralytics:tasks.py:2251   1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251   2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+[32mINFO    [0m ultralytics:tasks.py:2251   3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251   4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+[32mINFO    [0m ultralytics:tasks.py:2251   5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251   6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251   7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251   8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251   9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+[32mINFO    [0m ultralytics:tasks.py:2251  10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+[32mINFO    [0m ultralytics:tasks.py:2251  11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+[32mINFO    [0m ultralytics:tasks.py:2251  12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251  14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+[32mINFO    [0m ultralytics:tasks.py:2251  15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+[32mINFO    [0m ultralytics:tasks.py:2251  17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251  18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251  20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251  21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+[32mINFO    [0m ultralytics:tasks.py:2251  23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+[32mINFO    [0m ultralytics:torch_utils.py:585 YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+[32mINFO    [0m ultralytics:tasks.py:561 
+[32mINFO    [0m ultralytics:tasks.py:379 Transferred 708/708 items from pretrained weights
+[33mWARNING [0m ultralytics:torch_utils.py:1238 WARNING [34m[1mcompile:[0m inductor backend unavailable, continuing uncompiled: no working Triton found
+[32mINFO    [0m ultralytics:checks.py:1072 [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[32mINFO    [0m ultralytics:checks.py:1081 [34m[1mAMP: [0mchecks passed ✅
+[32mINFO    [0m ultralytics:utils.py:229 [34m[1mtrain: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 685.0±295.0 MB/s, size: 50.0 KB)
+[32mINFO    [0m ultralytics:utils.py:229 [34m[1mval: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 784.3±200.7 MB/s, size: 54.0 KB)
+[32mINFO    [0m ultralytics:trainer.py:1226 [34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[32mINFO    [0m ultralytics:trainer.py:1290 [34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.00046875), 126 bias(decay=0.0)
+[32mINFO    [0m ultralytics:plotting.py:774 Plotting labels to C:\P19B\pr27203\tests\tmp\runs\detect\train-2\labels.jpg... 
+[32mINFO    [0m ultralytics:trainer.py:486 Using 24 train, 22 val images for fraction=1.0 at imgsz=64
+Using 0 dataloader workers
+Logging results to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train-2[0m
+Starting training for 1 epochs...
+[32mINFO    [0m ultralytics:trainer.py:1200 Closing dataloader mosaic
+[32mINFO    [0m ultralytics:trainer.py:564 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[32mINFO    [0m ultralytics:val.py:367                    all          4         17     0.0328      0.183     0.0779     0.0171
+[32mINFO    [0m ultralytics:trainer.py:711 
+1 epochs completed in 0.009 hours.
+[32mINFO    [0m ultralytics:torch_utils.py:982 Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train-2\weights\last.pt, 5.5MB
+[32mINFO    [0m ultralytics:torch_utils.py:982 Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train-2\weights\best.pt, 5.5MB
+[32mINFO    [0m ultralytics:trainer.py:1063 
+Validating C:\P19B\pr27203\tests\tmp\runs\detect\train-2\weights\best.pt...
+[32mINFO    [0m ultralytics:torch_utils.py:368 Ultralytics 8.4.213 🚀 Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[32mINFO    [0m ultralytics:torch_utils.py:585 YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+[32mINFO    [0m ultralytics:val.py:367                    all          4         17     0.0328      0.183      0.154     0.0247
+[32mINFO    [0m ultralytics:val.py:374                 person          3         10     0.0152        0.1      0.095     0.0285
+[32mINFO    [0m ultralytics:val.py:374                    dog          1          1          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  horse          1          2      0.182          1      0.828       0.12
+[32mINFO    [0m ultralytics:val.py:374               elephant          1          2          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               umbrella          1          1          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374           potted plant          1          1          0          0          0          0
+[32mINFO    [0m ultralytics:validator.py:377 Speed: 0.2ms preprocess, 1.7ms inference, 0.0ms loss, 6.5ms postprocess per image
+[32mINFO    [0m ultralytics:validator.py:388 Results saved to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train-2[0m
+[32mINFO    [0m ultralytics:torch_utils.py:368 Ultralytics 8.4.213 🚀 Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[32mINFO    [0m ultralytics:checks.py:1141 [34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=15, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco128.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=weights\path with spaces\yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-3, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P19B\pr27203\tests\tmp\runs\detect\train-3, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=False, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=8, workspace=None
+[32mINFO    [0m ultralytics:tasks.py:2083 
+                   from  n    params  module                                       arguments                     
+[32mINFO    [0m ultralytics:tasks.py:2251   0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+[32mINFO    [0m ultralytics:tasks.py:2251   1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251   2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+[32mINFO    [0m ultralytics:tasks.py:2251   3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251   4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+[32mINFO    [0m ultralytics:tasks.py:2251   5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251   6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251   7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251   8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251   9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+[32mINFO    [0m ultralytics:tasks.py:2251  10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+[32mINFO    [0m ultralytics:tasks.py:2251  11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+[32mINFO    [0m ultralytics:tasks.py:2251  12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251  14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+[32mINFO    [0m ultralytics:tasks.py:2251  15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+[32mINFO    [0m ultralytics:tasks.py:2251  17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+[32mINFO    [0m ultralytics:tasks.py:2251  18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+[32mINFO    [0m ultralytics:tasks.py:2251  20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+[32mINFO    [0m ultralytics:tasks.py:2251  21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+[32mINFO    [0m ultralytics:tasks.py:2251  22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+[32mINFO    [0m ultralytics:tasks.py:2251  23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+[32mINFO    [0m ultralytics:torch_utils.py:585 YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+[32mINFO    [0m ultralytics:tasks.py:561 
+[32mINFO    [0m ultralytics:tasks.py:379 Transferred 708/708 items from pretrained weights
+[32mINFO    [0m ultralytics:checks.py:1072 [34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[32mINFO    [0m ultralytics:checks.py:1081 [34m[1mAMP: [0mchecks passed ✅
+[32mINFO    [0m ultralytics:utils.py:229 [34m[1mtrain: [0mFast image access ✅ (ping: 0.1±0.1 ms, read: 121.5±55.4 MB/s, size: 50.9 KB)
+[32mINFO    [0m ultralytics:utils.py:229 [34m[1mval: [0mFast image access ✅ (ping: 0.0±0.0 ms, read: 120.2±74.7 MB/s, size: 52.5 KB)
+[32mINFO    [0m ultralytics:trainer.py:1226 [34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[32mINFO    [0m ultralytics:trainer.py:1290 [34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.00046875), 126 bias(decay=0.0)
+[32mINFO    [0m ultralytics:plotting.py:774 Plotting labels to C:\P19B\pr27203\tests\tmp\runs\detect\train-3\labels.jpg... 
+[32mINFO    [0m ultralytics:trainer.py:486 Using 128 train, 128 val images for fraction=1.0 at imgsz=64
+Using 8 dataloader workers
+Logging results to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train-3[0m
+Starting training for 1 epochs...
+[32mINFO    [0m ultralytics:trainer.py:1200 Closing dataloader mosaic
+[32mINFO    [0m ultralytics:trainer.py:564 
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[32mINFO    [0m ultralytics:val.py:367                    all        128        929      0.614     0.0356     0.0437     0.0263
+[32mINFO    [0m ultralytics:trainer.py:711 
+1 epochs completed in 0.017 hours.
+[32mINFO    [0m ultralytics:torch_utils.py:982 Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train-3\weights\last.pt, 5.5MB
+[32mINFO    [0m ultralytics:torch_utils.py:982 Optimizer stripped from C:\P19B\pr27203\tests\tmp\runs\detect\train-3\weights\best.pt, 5.5MB
+[32mINFO    [0m ultralytics:trainer.py:1063 
+Validating C:\P19B\pr27203\tests\tmp\runs\detect\train-3\weights\best.pt...
+[32mINFO    [0m ultralytics:torch_utils.py:368 Ultralytics 8.4.213 🚀 Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[32mINFO    [0m ultralytics:torch_utils.py:585 YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+[32mINFO    [0m ultralytics:val.py:367                    all        128        929      0.615     0.0356     0.0432      0.026
+[32mINFO    [0m ultralytics:val.py:374                 person         61        254      0.543     0.0748      0.113     0.0517
+[32mINFO    [0m ultralytics:val.py:374                bicycle          3          6          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                    car         12         46          0          0   0.000658   0.000132
+[32mINFO    [0m ultralytics:val.py:374             motorcycle          4          5          0          0     0.0115    0.00688
+[32mINFO    [0m ultralytics:val.py:374               airplane          5          6          1          0      0.168      0.105
+[32mINFO    [0m ultralytics:val.py:374                    bus          5          7          0          0      0.057     0.0371
+[32mINFO    [0m ultralytics:val.py:374                  train          3          3          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  truck          5         12          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   boat          2          6      0.513      0.167      0.165     0.0825
+[32mINFO    [0m ultralytics:val.py:374          traffic light          4         14          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374              stop sign          2          2          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  bench          5          9          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   bird          2         16          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                    cat          4          4          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                    dog          9          9          1          0    0.00821    0.00438
+[32mINFO    [0m ultralytics:val.py:374                  horse          1          2          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               elephant          4         17      0.662      0.118      0.095     0.0665
+[32mINFO    [0m ultralytics:val.py:374                   bear          1          1       0.54          1      0.995      0.697
+[32mINFO    [0m ultralytics:val.py:374                  zebra          2          4          1      0.479      0.495      0.359
+[32mINFO    [0m ultralytics:val.py:374                giraffe          4          9      0.247      0.111      0.113     0.0251
+[32mINFO    [0m ultralytics:val.py:374               backpack          4          6          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               umbrella          4         18          1          0      0.095     0.0095
+[32mINFO    [0m ultralytics:val.py:374                handbag          9         19          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                    tie          6          7          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               suitcase          2          4          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                frisbee          5          5          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   skis          1          1          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374              snowboard          2          7          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374            sports ball          6          6          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   kite          2         10          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374           baseball bat          4          4          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374         baseball glove          4          7          1          0      0.145     0.0725
+[32mINFO    [0m ultralytics:val.py:374             skateboard          3          5          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374          tennis racket          5          7          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                 bottle          6         18          0          0     0.0204    0.00892
+[32mINFO    [0m ultralytics:val.py:374             wine glass          5         16          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                    cup         10         36          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   fork          6          6          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  knife          7         16          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  spoon          5         22          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   bowl          9         28          0          0      0.025      0.015
+[32mINFO    [0m ultralytics:val.py:374                 banana          1          1          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               sandwich          2          2          0          0     0.0707      0.018
+[32mINFO    [0m ultralytics:val.py:374                 orange          1          4          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               broccoli          4         11          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                 carrot          3         24          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                hot dog          1          2          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  pizza          5          5        0.4        0.2      0.245      0.149
+[32mINFO    [0m ultralytics:val.py:374                  donut          2         14          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   cake          4          4     0.0969       0.25     0.0272     0.0163
+[32mINFO    [0m ultralytics:val.py:374                  chair          9         35          1          0   0.000417   0.000125
+[32mINFO    [0m ultralytics:val.py:374                  couch          5          6          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374           potted plant          9         14          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                    bed          3          3          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374           dining table         10         13      0.434     0.0769      0.134     0.0712
+[32mINFO    [0m ultralytics:val.py:374                 toilet          2          2          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                     tv          2          2          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                 laptop          2          3          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  mouse          2          2          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                 remote          5          8          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374             cell phone          5          8          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374              microwave          3          3          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   oven          5          5          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   sink          4          6          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374           refrigerator          5          5          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                   book          6         29          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374                  clock          8          9          0          0     0.0409     0.0199
+[32mINFO    [0m ultralytics:val.py:374                   vase          2          2          0          0          0          0
+[32mINFO    [0m ultralytics:val.py:374               scissors          1          1          1          0          0          0
+[32mINFO    [0m ultralytics:val.py:374             teddy bear          6         21      0.225     0.0476      0.045     0.0315
+[32mINFO    [0m ultralytics:val.py:374             toothbrush          2          5          0          0          0          0
+[32mINFO    [0m ultralytics:validator.py:377 Speed: 0.0ms preprocess, 0.7ms inference, 0.0ms loss, 0.5ms postprocess per image
+[32mINFO    [0m ultralytics:validator.py:388 Results saved to [1mC:\P19B\pr27203\tests\tmp\runs\detect\train-3[0m
+[32m[1m______________________ test_track_exported_model[False] _______________________[0m
+---------------------------- Captured stdout call -----------------------------
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 0.3 GFLOPs
+
+[34m[1mPyTorch:[0m starting from 'weights\path with spaces\yolo26n.pt' with input shape (1, 3, 160, 160) BCHW and output shape(s) (1, 84, 525) (5.3 MB)
+
+[34m[1mTorchScript:[0m starting export with torch 2.12.0+rocm7.14.1...
+[34m[1mTorchScript:[0m export success  0.5s, saved as 'weights\path with spaces\yolo26n.torchscript' (9.7 MB)
+
+Export complete (2.7s)
+Results saved to [1mC:\P19B\pr27203\weights\path with spaces\yolo26n.torchscript[0m
+Predict:         yolo predict task=detect model=weights\path with spaces\yolo26n.torchscript imgsz=160 
+Validate:        yolo val task=detect model=weights\path with spaces\yolo26n.torchscript imgsz=160  
+Visualize:       https://netron.app
+[31m[1mrequirements:[0m Ultralytics requirement ['lap>=0.5.12'] not found, attempting AutoUpdate...
+Using Python 3.13.16 environment at: C:\Users\rocm\Desktop\YOLO_AMD\p17_env27203
+Resolved 2 packages in 1.28s
+Downloading numpy (12.0MiB)
+Downloading lap (1.4MiB)
+ Downloaded lap
+ Downloaded numpy
+Prepared 2 packages in 878ms
+Installed 2 packages in 222ms
+ + lap==0.5.14
+ + numpy==2.5.4
+
+[31m[1mrequirements:[0m AutoUpdate success  2.9s
+WARNING [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
+
+Loading weights\path with spaces\yolo26n.torchscript for TorchScript inference...
+
+image 1/1 C:\P19B\pr27203\ultralytics\assets\bus.jpg: 160x160 4 persons, 1 bus, 3.9ms
+Speed: 1.0ms preprocess, 3.9ms inference, 2.6ms postprocess per image at shape (1, 3, 160, 160)
+------------------------------ Captured log call ------------------------------
+[32mINFO    [0m ultralytics:torch_utils.py:368 Ultralytics 8.4.213 🚀 Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[32mINFO    [0m ultralytics:torch_utils.py:585 YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 0.3 GFLOPs
+[32mINFO    [0m ultralytics:exporter.py:1071 
+[34m[1mPyTorch:[0m starting from 'weights\path with spaces\yolo26n.pt' with input shape (1, 3, 160, 160) BCHW and output shape(s) (1, 84, 525) (5.3 MB)
+[32mINFO    [0m ultralytics:torchscript.py:32 
+[34m[1mTorchScript:[0m starting export with torch 2.12.0+rocm7.14.1...
+[32mINFO    [0m ultralytics:exporter.py:566 [34m[1mTorchScript:[0m export success ✅ 0.5s, saved as 'weights\path with spaces\yolo26n.torchscript' (9.7 MB)
+[32mINFO    [0m ultralytics:exporter.py:1100 
+Export complete (2.7s)
+Results saved to [1mC:\P19B\pr27203\weights\path with spaces\yolo26n.torchscript[0m
+Predict:         yolo predict task=detect model=weights\path with spaces\yolo26n.torchscript imgsz=160 
+Validate:        yolo val task=detect model=weights\path with spaces\yolo26n.torchscript imgsz=160  
+Visualize:       https://netron.app
+[32mINFO    [0m ultralytics:checks.py:641 [31m[1mrequirements:[0m Ultralytics requirement ['lap>=0.5.12'] not found, attempting AutoUpdate...
+[32mINFO    [0m ultralytics:checks.py:646 Using Python 3.13.16 environment at: C:\Users\rocm\Desktop\YOLO_AMD\p17_env27203
+Resolved 2 packages in 1.28s
+Downloading numpy (12.0MiB)
+Downloading lap (1.4MiB)
+ Downloaded lap
+ Downloaded numpy
+Prepared 2 packages in 878ms
+Installed 2 packages in 222ms
+ + lap==0.5.14
+ + numpy==2.5.4
+
+[32mINFO    [0m ultralytics:checks.py:648 [31m[1mrequirements:[0m AutoUpdate success ✅ 2.9s
+[33mWARNING [0m ultralytics:checks.py:649 WARNING [31m[1mrequirements:[0m [1mRestart runtime or rerun command for updates to take effect[0m
+
+[32mINFO    [0m ultralytics:pytorch.py:115 Loading weights\path with spaces\yolo26n.torchscript for TorchScript inference...
+[32mINFO    [0m ultralytics:predictor.py:373 
+[32mINFO    [0m ultralytics:predictor.py:490 image 1/1 C:\P19B\pr27203\ultralytics\assets\bus.jpg: 160x160 4 persons, 1 bus, 3.9ms
+[32mINFO    [0m ultralytics:predictor.py:509 Speed: 1.0ms preprocess, 3.9ms inference, 2.6ms postprocess per image at shape (1, 3, 160, 160)
+[32m[1m_______________________ test_track_exported_model[320] ________________________[0m
+---------------------------- Captured stdout call -----------------------------
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 0.3 GFLOPs
+
+[34m[1mPyTorch:[0m starting from 'weights\path with spaces\yolo26n.pt' with input shape (1, 3, 160, 160) BCHW and output shape(s) (1, 84, 525) (5.3 MB)
+
+[34m[1mTorchScript:[0m starting export with torch 2.12.0+rocm7.14.1...
+[34m[1mTorchScript:[0m export success  0.5s, saved as 'weights\path with spaces\yolo26n.torchscript' (9.8 MB)
+
+Export complete (0.6s)
+Results saved to [1mC:\P19B\pr27203\weights\path with spaces\yolo26n.torchscript[0m
+Predict:         yolo predict task=detect model=weights\path with spaces\yolo26n.torchscript imgsz=160 
+Validate:        yolo val task=detect model=weights\path with spaces\yolo26n.torchscript imgsz=160  
+Visualize:       https://netron.app
+Loading weights\path with spaces\yolo26n.torchscript for TorchScript inference...
+
+image 1/1 C:\P19B\pr27203\ultralytics\assets\bus.jpg: 160x160 6 persons, 4 buss, 17.9ms
+Speed: 2.9ms preprocess, 17.9ms inference, 18.2ms postprocess per image at shape (1, 3, 160, 160)
+------------------------------ Captured log call ------------------------------
+[32mINFO    [0m ultralytics:torch_utils.py:368 Ultralytics 8.4.213 🚀 Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[32mINFO    [0m ultralytics:torch_utils.py:585 YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 0.3 GFLOPs
+[32mINFO    [0m ultralytics:exporter.py:1071 
+[34m[1mPyTorch:[0m starting from 'weights\path with spaces\yolo26n.pt' with input shape (1, 3, 160, 160) BCHW and output shape(s) (1, 84, 525) (5.3 MB)
+[32mINFO    [0m ultralytics:torchscript.py:32 
+[34m[1mTorchScript:[0m starting export with torch 2.12.0+rocm7.14.1...
+[32mINFO    [0m ultralytics:exporter.py:566 [34m[1mTorchScript:[0m export success ✅ 0.5s, saved as 'weights\path with spaces\yolo26n.torchscript' (9.8 MB)
+[32mINFO    [0m ultralytics:exporter.py:1100 
+Export complete (0.6s)
+Results saved to [1mC:\P19B\pr27203\weights\path with spaces\yolo26n.torchscript[0m
+Predict:         yolo predict task=detect model=weights\path with spaces\yolo26n.torchscript imgsz=160 
+Validate:        yolo val task=detect model=weights\path with spaces\yolo26n.torchscript imgsz=160  
+Visualize:       https://netron.app
+[32mINFO    [0m ultralytics:pytorch.py:115 Loading weights\path with spaces\yolo26n.torchscript for TorchScript inference...
+[32mINFO    [0m ultralytics:predictor.py:373 
+[32mINFO    [0m ultralytics:predictor.py:490 image 1/1 C:\P19B\pr27203\ultralytics\assets\bus.jpg: 160x160 6 persons, 4 buss, 17.9ms
+[32mINFO    [0m ultralytics:predictor.py:509 Speed: 2.9ms preprocess, 17.9ms inference, 18.2ms postprocess per image at shape (1, 3, 160, 160)
+[32m[1m_______________________________ test_autobatch ________________________________[0m
+---------------------------- Captured stdout call -----------------------------
+[34m[1mAutoBatch: [0mComputing optimal batch size for imgsz=32 at 60.0% GPU memory utilization.
+[34m[1mAutoBatch: [0mCUDA:0 (AMD Radeon(TM) 8060S Graphics) 78.19G total, 0.31G reserved, 77.40G available
+      Params      GFLOPs GPU_mem (GiB)  forward (ms) backward (ms)                   input                  output
+Expected more than 1 value per channel when training, got input size torch.Size([1, 256, 1, 1])
+     2572280     0.03059         0.240          5227          4942          (2, 3, 32, 32)                    list
+     2572280     0.06117         0.241          5146          5118          (4, 3, 32, 32)                    list
+     2572280      0.1223         0.241          5510          5425          (8, 3, 32, 32)                    list
+     2572280      0.2447         0.241          5631     1.198e+04         (16, 3, 32, 32)                    list
+     2572280      0.4894         0.243     1.348e+04     1.594e+04         (32, 3, 32, 32)                    list
+     2572280      0.9787         0.245     1.874e+04     1.674e+04         (64, 3, 32, 32)                    list
+[34m[1mAutoBatch: [0mUsing batch-size 1024 for CUDA:0 0.32G/77.40G (0%) 
+---------------------------- Captured stderr call -----------------------------
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/w58m/projects/miopen/src/conv/solver_finders.cpp:535: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+------------------------------ Captured log call ------------------------------
+[32mINFO    [0m ultralytics:autobatch.py:80 [34m[1mAutoBatch: [0mComputing optimal batch size for imgsz=32 at 60.0% GPU memory utilization.
+[32mINFO    [0m ultralytics:autobatch.py:98 [34m[1mAutoBatch: [0mCUDA:0 (AMD Radeon(TM) 8060S Graphics) 78.19G total, 0.31G reserved, 77.40G available
+[32mINFO    [0m ultralytics:torch_utils.py:1068       Params      GFLOPs GPU_mem (GiB)  forward (ms) backward (ms)                   input                  output
+[32mINFO    [0m ultralytics:torch_utils.py:1111 Expected more than 1 value per channel when training, got input size torch.Size([1, 256, 1, 1])
+[32mINFO    [0m ultralytics:torch_utils.py:1108      2572280     0.03059         0.240          5227          4942          (2, 3, 32, 32)                    list
+[32mINFO    [0m ultralytics:torch_utils.py:1108      2572280     0.06117         0.241          5146          5118          (4, 3, 32, 32)                    list
+[32mINFO    [0m ultralytics:torch_utils.py:1108      2572280      0.1223         0.241          5510          5425          (8, 3, 32, 32)                    list
+[32mINFO    [0m ultralytics:torch_utils.py:1108      2572280      0.2447         0.241          5631     1.198e+04         (16, 3, 32, 32)                    list
+[32mINFO    [0m ultralytics:torch_utils.py:1108      2572280      0.4894         0.243     1.348e+04     1.594e+04         (32, 3, 32, 32)                    list
+[32mINFO    [0m ultralytics:torch_utils.py:1108      2572280      0.9787         0.245     1.874e+04     1.674e+04         (64, 3, 32, 32)                    list
+[32mINFO    [0m ultralytics:autobatch.py:140 [34m[1mAutoBatch: [0mUsing batch-size 1024 for CUDA:0 0.32G/77.40G (0%) ✅
+------ generated xml file: C:\P19B\evidence\raw\p19b\junit_test_cuda.xml ------
+============================ slowest 30 durations =============================
+170.00s call     tests/test_cuda.py::test_train
+122.30s call     tests/test_cuda.py::test_autobatch
+10.74s call     tests/test_cuda.py::test_amp
+9.26s call     tests/test_cuda.py::test_track_exported_model[False]
+6.70s call     tests/test_cuda.py::test_track_exported_model[320]
+0.63s call     tests/test_cuda.py::test_onnx_dynamic_spatial_outputs
+0.45s call     tests/test_cuda.py::test_semantic_loss_all_ignore_amp[1]
+0.30s call     tests/test_cuda.py::test_semantic_loss_all_ignore_amp[3]
+0.01s teardown tests/test_cuda.py::test_train
+0.01s teardown tests/test_cuda.py::test_autobatch
+
+(19 durations < 0.005s hidden.  Use -vv to show these durations.)
+[36m[1m=========================== short test summary info ===========================[0m
+[32mPASSED[0m tests/test_cuda.py::[1mtest_checks[0m
+[32mPASSED[0m tests/test_cuda.py::[1mtest_amp[0m
+[32mPASSED[0m tests/test_cuda.py::[1mtest_semantic_loss_all_ignore_amp[1][0m
+[32mPASSED[0m tests/test_cuda.py::[1mtest_semantic_loss_all_ignore_amp[3][0m
+[32mPASSED[0m tests/test_cuda.py::[1mtest_train[0m
+[32mPASSED[0m tests/test_cuda.py::[1mtest_track_exported_model[False][0m
+[32mPASSED[0m tests/test_cuda.py::[1mtest_track_exported_model[320][0m
+[32mPASSED[0m tests/test_cuda.py::[1mtest_autobatch[0m
+[33mSKIPPED[0m [1] tests\test_cuda.py:173: requires an idle CUDA device with nonzero index
+[31mFAILED[0m tests/test_cuda.py::[1mtest_onnx_dynamic_spatial_outputs[0m - torch.onnx.OnnxExporterError: Module onnx is not installed!
+[31m======= [31m[1m1 failed[0m, [32m8 passed[0m, [33m1 skipped[0m, [33m8 warnings[0m[31m in 321.31s (0:05:21)[0m[31m ========[0m
+--- exit code: 1 ---
+END=2026-11-15T21:27:31+08:00 RC=1

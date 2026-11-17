@@ -1,0 +1,26 @@
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.13.13, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\rocm\miniconda3\python.exe
+rootdir: C:\Users\rocm\Desktop\YOLO_AMD\upstream_ultralytics
+configfile: pyproject.toml
+plugins: anyio-4.12.1
+[1mcollecting ... [0mcollected 8 items
+
+tests/test_check_amp_probe_exception.py::test_check_amp_construction_failure_returns_false [32mPASSED[0m[32m [ 12%][0m
+tests/test_check_amp_probe_exception.py::test_check_amp_transfer_failure_returns_false[RuntimeError] [32mPASSED[0m[32m [ 25%][0m
+tests/test_check_amp_probe_exception.py::test_check_amp_transfer_failure_returns_false[OutOfMemoryError] [32mPASSED[0m[32m [ 37%][0m
+tests/test_check_amp_probe_exception.py::test_check_amp_forward_failure_returns_false [32mPASSED[0m[32m [ 50%][0m
+tests/test_check_amp_probe_exception.py::test_check_amp_repeated_invocation_after_failure [32mPASSED[0m[32m [ 62%][0m
+tests/test_check_amp_probe_exception.py::test_check_amp_user_interruption_propagates [32mPASSED[0m[32m [ 75%][0m
+tests/test_check_amp_probe_exception.py::test_check_amp_passes_on_healthy_accelerator [32mPASSED[0m[32m [ 87%][0m
+tests/test_cuda.py::test_amp [33mSKIPPED[0m (No CUDA devices available)[32m         [100%][0m
+
+============================ slowest 30 durations =============================
+2.36s call     tests/test_check_amp_probe_exception.py::test_check_amp_passes_on_healthy_accelerator
+0.67s call     tests/test_check_amp_probe_exception.py::test_check_amp_repeated_invocation_after_failure
+0.28s call     tests/test_check_amp_probe_exception.py::test_check_amp_transfer_failure_returns_false[RuntimeError]
+0.27s call     tests/test_check_amp_probe_exception.py::test_check_amp_forward_failure_returns_false
+0.19s call     tests/test_check_amp_probe_exception.py::test_check_amp_transfer_failure_returns_false[OutOfMemoryError]
+
+(18 durations < 0.005s hidden.  Use -vv to show these durations.)
+[32m======================== [32m[1m7 passed[0m, [33m1 skipped[0m[32m in 4.10s[0m[32m =========================[0m
+EXIT=0

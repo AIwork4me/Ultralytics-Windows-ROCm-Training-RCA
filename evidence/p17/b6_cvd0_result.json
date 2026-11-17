@@ -1,0 +1,23 @@
+{
+  "cwd_env_CVD": "0",
+  "visible_device_count": 1,
+  "cuda_device_count": 1,
+  "cuda_is_available": true,
+  "parse_device_-1": "0",
+  "select_idle_gpu": [
+    0
+  ],
+  "mem_get_info_0": [
+    83786756096,
+    83954728960
+  ],
+  "gpu_alloc_device": 0,
+  "gpu_alloc_ok": true,
+  "alloc_device_name": "AMD Radeon(TM) 8060S Graphics",
+  "consistency": {
+    "counts_agree": true,
+    "parse_matches_physical": true,
+    "selected_in_range": true
+  },
+  "timestamp": "2026-11-15T15:58:40.801642+08:00"
+}

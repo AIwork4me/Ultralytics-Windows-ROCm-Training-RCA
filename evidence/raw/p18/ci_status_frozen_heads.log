@@ -1,0 +1,47 @@
+# PR #27198 @ e5ac8593
+state=OPEN head=e5ac8593db60880b92b3e3cbd2e11ee3a7344034 mergeable=MERGEABLE
+codecov/patch: success
+GPU: skipped
+SlowTests: skipped
+RaspberryPi: skipped
+Tests (ubuntu-26.04-arm, 3.13, latest): success
+Tests (ubuntu-latest, 3.13, latest): success
+Tests (ubuntu-latest, 3.8, 1.8.0, 0.9.0): success
+Tests (macos-latest, 3.13, latest): success
+Tests (ubuntu-latest, 3.15, latest, solutions): success
+Tests (windows-latest, 3.13, latest): success
+Benchmarks (ubuntu-26.04-arm, 3.13, yolo26n): success
+IsolatedExports: success
+Benchmarks (macos-latest, 3.13, yolo26n): success
+Benchmarks (ubuntu-latest, 3.13, yolo26n): success
+Conda: skipped
+NVIDIA_Jetson: skipped
+AMD_GPU: skipped
+Assets: success
+actions: success
+Docs: success
+CLA: success
+
+# PR #27203 @ 563ff46e
+state=OPEN head=563ff46e0c3347cc68db420e1b268a22a456e317 mergeable=MERGEABLE
+codecov/patch: success
+SlowTests: skipped
+RaspberryPi: skipped
+GPU: skipped
+Tests (macos-latest, 3.13, latest): success
+Tests (ubuntu-26.04-arm, 3.13, latest): success
+Tests (windows-latest, 3.13, latest): success
+Tests (ubuntu-latest, 3.15, latest, solutions): success
+Tests (ubuntu-latest, 3.8, 1.8.0, 0.9.0): success
+Tests (ubuntu-latest, 3.13, latest): success
+Benchmarks (macos-latest, 3.13, yolo26n): success
+Benchmarks (ubuntu-latest, 3.13, yolo26n): success
+Benchmarks (ubuntu-26.04-arm, 3.13, yolo26n): success
+IsolatedExports: success
+AMD_GPU: skipped
+Conda: skipped
+NVIDIA_Jetson: skipped
+CLA: success
+Assets: success
+actions: success
+Docs: success

@@ -1,0 +1,12 @@
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx115128.HIP.fdb.txt"
+[34m[1mAMP: [0mchecks passed 
+
+=== A1 RESULT ===
+device = cuda:0
+check_amp result = True (type bool)
+elapsed = 12.37s
+hip runtime = torch.version.hip=7.14.60850, torch=2.12.0+rocm7.14.1
+A1 PASS

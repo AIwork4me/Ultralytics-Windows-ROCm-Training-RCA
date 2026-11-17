@@ -1,0 +1,233 @@
+{
+  "environment": {
+    "captured_utc": "2026-11-14T13:23:33.959347+00:00",
+    "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\python.exe",
+    "python_version": "3.13.16",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "cuda_available": true,
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "device_count": 1,
+    "total_mem_gb": 78.2,
+    "ultralytics": "8.4.182",
+    "cache_home_env": {
+      "TORCH_CPP_LOG_LEVEL": "ERROR",
+      "USERPROFILE": "C:\\Users\\rocm",
+      "ZHIPU_API_KEY": "[REDACTED]"
+    }
+  },
+  "repeats": [
+    {
+      "repeat": 0,
+      "imgsz": 256,
+      "fp32_shape": [
+        5,
+        6
+      ],
+      "amp_shape": [
+        5,
+        6
+      ],
+      "old_allclose": {
+        "shape_equal": true,
+        "max_abs_diff": 0.4233818054199219,
+        "allclose_atol_0.5": true
+      },
+      "new_matcher": {
+        "verdict": true,
+        "reasons": [
+          "detection_equivalent"
+        ],
+        "max_iou": 0.9993868470191956,
+        "max_abs_coord_drift_px": 0.4233818054199219,
+        "max_conf_drift": 0.005446434020996094,
+        "floor_px": 0.4,
+        "iou_threshold": 0.95,
+        "conf_tolerance": 0.05
+      }
+    },
+    {
+      "repeat": 1,
+      "imgsz": 256,
+      "fp32_shape": [
+        5,
+        6
+      ],
+      "amp_shape": [
+        5,
+        6
+      ],
+      "old_allclose": {
+        "shape_equal": true,
+        "max_abs_diff": 0.4233818054199219,
+        "allclose_atol_0.5": true
+      },
+      "new_matcher": {
+        "verdict": true,
+        "reasons": [
+          "detection_equivalent"
+        ],
+        "max_iou": 0.9993868470191956,
+        "max_abs_coord_drift_px": 0.4233818054199219,
+        "max_conf_drift": 0.005446434020996094,
+        "floor_px": 0.4,
+        "iou_threshold": 0.95,
+        "conf_tolerance": 0.05
+      }
+    },
+    {
+      "repeat": 2,
+      "imgsz": 256,
+      "fp32_shape": [
+        5,
+        6
+      ],
+      "amp_shape": [
+        5,
+        6
+      ],
+      "old_allclose": {
+        "shape_equal": true,
+        "max_abs_diff": 0.4233818054199219,
+        "allclose_atol_0.5": true
+      },
+      "new_matcher": {
+        "verdict": true,
+        "reasons": [
+          "detection_equivalent"
+        ],
+        "max_iou": 0.9993868470191956,
+        "max_abs_coord_drift_px": 0.4233818054199219,
+        "max_conf_drift": 0.005446434020996094,
+        "floor_px": 0.4,
+        "iou_threshold": 0.95,
+        "conf_tolerance": 0.05
+      }
+    },
+    {
+      "repeat": 3,
+      "imgsz": 256,
+      "fp32_shape": [
+        5,
+        6
+      ],
+      "amp_shape": [
+        5,
+        6
+      ],
+      "old_allclose": {
+        "shape_equal": true,
+        "max_abs_diff": 0.4233818054199219,
+        "allclose_atol_0.5": true
+      },
+      "new_matcher": {
+        "verdict": true,
+        "reasons": [
+          "detection_equivalent"
+        ],
+        "max_iou": 0.9993868470191956,
+        "max_abs_coord_drift_px": 0.4233818054199219,
+        "max_conf_drift": 0.005446434020996094,
+        "floor_px": 0.4,
+        "iou_threshold": 0.95,
+        "conf_tolerance": 0.05
+      }
+    },
+    {
+      "repeat": 4,
+      "imgsz": 256,
+      "fp32_shape": [
+        5,
+        6
+      ],
+      "amp_shape": [
+        5,
+        6
+      ],
+      "old_allclose": {
+        "shape_equal": true,
+        "max_abs_diff": 0.4233818054199219,
+        "allclose_atol_0.5": true
+      },
+      "new_matcher": {
+        "verdict": true,
+        "reasons": [
+          "detection_equivalent"
+        ],
+        "max_iou": 0.9993868470191956,
+        "max_abs_coord_drift_px": 0.4233818054199219,
+        "max_conf_drift": 0.005446434020996094,
+        "floor_px": 0.4,
+        "iou_threshold": 0.95,
+        "conf_tolerance": 0.05
+      }
+    }
+  ],
+  "negative_controls": [
+    {
+      "corruption": "shift_30px",
+      "caught": true,
+      "matcher_passed": false
+    },
+    {
+      "corruption": "class_flip",
+      "caught": true,
+      "matcher_passed": false
+    },
+    {
+      "corruption": "nan_inject",
+      "caught": true,
+      "matcher_passed": false
+    },
+    {
+      "corruption": "conf_collapse_10pct",
+      "caught": true,
+      "matcher_passed": false
+    },
+    {
+      "corruption": "drop_detection",
+      "caught": true,
+      "matcher_passed": false
+    }
+  ],
+  "summary": {
+    "negative_controls_all_caught": true,
+    "repeats": 5,
+    "old_allclose_pass": "5/5",
+    "new_matcher_pass": "5/5",
+    "completed_utc": "2026-11-14T13:23:38.525872+00:00"
+  },
+  "run_id": "g3p_envA_20261114T132332Z",
+  "environment_id": "ENV_A_official",
+  "cache_label": "default",
+  "started_utc": "2026-11-14T13:23:33.987190+00:00",
+  "weights_sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+  "dll_provenance": {
+    "probe": "Toolhelp32Snapshot in-process",
+    "modules": {
+      "amdhip64_7.dll": {
+        "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll",
+        "sha256": "1c7bad4e8ddefc456e5c073d89b59ee0bcfbcda461a5ada145370fe9941df033",
+        "size_bytes": 22097408
+      },
+      "miopen.dll": {
+        "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+        "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+        "size_bytes": 492380672
+      },
+      "hipdnn_backend.dll": {
+        "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_backend.dll",
+        "sha256": "d115a4355b2c601be236025c3cbd530540c689e27d0742b34ddb62fc7063835f",
+        "size_bytes": 2172928
+      }
+    },
+    "miopen_loaded": {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "size_bytes": 492380672
+    },
+    "probe_error": null,
+    "loaded_module_count_total": 151
+  }
+}

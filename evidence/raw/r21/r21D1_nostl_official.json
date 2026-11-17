@@ -1,0 +1,49 @@
+{
+  "run_id": "R21-D1-20261115",
+  "mission": "R21",
+  "timestamp": "2026-11-15T15:11:41.754686+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.12.0+rocm7.14.1",
+  "torchvision": "0.27.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "runtime_class": "ENGINEERING_REFERENCE",
+  "command": "python verify_miopen_nostl.py --leg official --expect FAIL",
+  "exit_code": 1,
+  "duration_s": 2.7,
+  "pass_fail_skip": "EXPECTED_FAIL",
+  "failure_classification": "MIOPEN_HIPRTC_COMPILATION",
+  "raw_log_path": "C:\\Users\\Rocm\\AppData\\Local\\Temp\\r21_nostl_285_qsiv\\nostl_official_1794755499\\leg.log",
+  "classification": "OFFICIAL_PRE_FIX_EXPECTED_FAIL",
+  "leg_detail": {
+    "leg": "official",
+    "exit_code": 1,
+    "duration_s": 2.1,
+    "stdout_tail": "",
+    "stderr_tail": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)\nMIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp\nMIOpen(HIP): Warning [BuildHip] In file included from C:\\Users\\Rocm\\AppData\\Local\\Temp\\comgr-14176-6-8a04b5\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nIn file included from C:\\Users\\Rocm\\AppData\\Local\\Temp\\comgr-14176-6-8a04b5\\include\\batchnorm_functions.hpp:30:\nIn file included from C:\\Users\\Rocm\\AppData\\Local\\Temp\\comgr-14176-6-8a04b5\\include\\configuration.hpp:34:\nIn file included from C:\\Users\\Rocm\\AppData\\Local\\Temp\\comgr-14176-6-8a04b5\\include\\vector_types.hpp:8:\nC:\\Users\\Rocm\\AppData\\Local\\Temp\\comgr-14176-6-8a04b5\\include\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found\n  151 | #include <type_traits>\n      |          ^~~~~~~~~~~~~\n1 error generated when compiling for gfx1100.\nMIOpen Error: DESKTOP-S6VG7J7:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp\nTraceback (most recent call last):\n  File \"C:\\Users\\Rocm\\AppData\\Local\\Temp\\r21_nostl_285_qsiv\\nostl_official_1794755499\\bn_repro.py\", line 9, in <module>\n    y = model(x)\n        ^^^^^^^^\n  File \"C:\\RadeonYOLO\\venvs\\r21-engref\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1778, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\RadeonYOLO\\venvs\\r21-engref\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1789, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\RadeonYOLO\\venvs\\r21-engref\\Lib\\site-packages\\torch\\nn\\modules\\batchnorm.py\", line 210, in forward\n    return F.batch_norm(\n           ^^^^^^^^^^^^^\n  File \"C:\\RadeonYOLO\\venvs\\r21-engref\\Lib\\site-packages\\torch\\nn\\functional.py\", line 2850, in batch_norm\n    return torch.batch_norm(\n           ^^^^^^^^^^^^^^^^^\nRuntimeError: miopenStatusUnknownError\n",
+    "log_path": "C:\\Users\\Rocm\\AppData\\Local\\Temp\\r21_nostl_285_qsiv\\nostl_official_1794755499\\leg.log",
+    "scratch": "C:\\Users\\Rocm\\AppData\\Local\\Temp\\r21_nostl_285_qsiv\\nostl_official_1794755499"
+  },
+  "ambient_hiprtc_shim": "-IC:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\scripts\\miopen_shims",
+  "reproducer_shape": [
+    20,
+    100,
+    35,
+    45
+  ],
+  "reproducer_op": "nn.BatchNorm2d(100) forward+backward",
+  "expectation": "FAIL",
+  "miopen_identity_in_parent": {
+    "loaded": true,
+    "path": "C:\\RadeonYOLO\\venvs\\r21-engref\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+    "bytes": 492380672,
+    "embedded_version_strings": [
+      "3.5.2.cd957402"
+    ],
+    "pr13437_marker_miopen_initializer_list": 0
+  }
+}

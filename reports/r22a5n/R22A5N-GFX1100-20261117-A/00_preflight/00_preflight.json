@@ -1,0 +1,91 @@
+{
+  "run_id": "R22A5N-GFX1100-20261117-A",
+  "mission": "R22A.5N gfx1100 Official Nightly Physical Prequalification",
+  "generated_utc": "2026-11-17T06:44:52.330590+00:00",
+  "repository": {
+    "url": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA",
+    "branch": "validation/r22a5n-gfx1100-official-nightly",
+    "local_head": "568981db3d1ed4f3ef3fd068623603aee0111fb4",
+    "pr22_head_expected": "568981db3d1ed4f3ef3fd068623603aee0111fb4",
+    "pr22_head_origin": "568981db3d1ed4f3ef3fd068623603aee0111fb4",
+    "integration_branch_expected_head": "ff52f87393d66f5773e95b70c1721550d8065b0b",
+    "integration_origin_head": "ff52f87393d66f5773e95b70c1721550d8065b0b",
+    "based_on": "PR #22 head (OPEN, unmerged) — stacked Draft PR per mission §1.1 case 2",
+    "working_tree": "?? reports/r22a5n/R22A5N-GFX1100-20261117-A/"
+  },
+  "windows": {
+    "build_ver": "Microsoft Windows [�汾 10.0.26300.9974]",
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "hardware": {
+    "computer_system": {
+      "Manufacturer": "Gigabyte Technology Co., Ltd.",
+      "Model": "B760M AORUS ELITE"
+    },
+    "video_controllers": [
+      {
+        "Name": "GameViewer Virtual Display Adapter",
+        "DriverVersion": "15.6.5.199",
+        "PNPDeviceID": "ROOT\\DISPLAY\\0000"
+      },
+      {
+        "Name": "AMD Radeon RX 7900 XTX",
+        "DriverVersion": "32.0.21030.2001",
+        "PNPDeviceID": "PCI\\VEN_1002&DEV_744C&SUBSYS_0E3B1002&REV_C8\\6&13FD3BF3&0&00000008"
+      },
+      {
+        "Name": "Intel(R) UHD Graphics 770",
+        "DriverVersion": "32.0.101.6129",
+        "PNPDeviceID": "PCI\\VEN_8086&DEV_A780&SUBSYS_D0001458&REV_04\\3&11583659&0&10"
+      },
+      {
+        "Name": "Microsoft Remote Display Adapter",
+        "DriverVersion": "10.0.26100.9818",
+        "PNPDeviceID": "SWD\\REMOTEDISPLAYENUM\\RDPIDD_INDIRECTDISPLAY&SESSIONID_0002"
+      }
+    ],
+    "expected_gpu": "AMD Radeon RX 7900 XTX 24GB",
+    "expected_gfx_target": "gfx1100",
+    "device_identity_ambiguity": "MULTI-GPU host: Intel UHD 770 iGPU + GameViewer virtual display adapter present alongside RX 7900 XTX — torch device selection must be cross-checked against physical adapter identity (G0)"
+  },
+  "smart_app_control": {
+    "verified_and_reputable_policy_state": "0",
+    "note": "0 = SAC off (user disabled 2026-11-13 per R21 memory); non-zero would block unsigned AMD wheel DLLs (WinError 4551)"
+  },
+  "python": {
+    "uv_base_cpython": "C:\\Users\\Rocm\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\python.exe",
+    "version": "3.12.16 (cp312 — matches gfx1100 install plan ABI)",
+    "mission_venv": "C:\\r22a5n1100\\venv (--copies, isolated)",
+    "note": "no system Python on host (WindowsApps stub only)"
+  },
+  "disk": {
+    "c_free_bytes": 607410118656,
+    "c_free_gb": 607.4
+  },
+  "environment": {
+    "amd_miopen_hiprtc_env_vars_in_process": {
+      "HIPRTC_COMPILE_OPTIONS_APPEND": "-IC:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\scripts\\miopen_shims"
+    },
+    "hiprtc_shim_present": true
+  },
+  "prerequisites_read": [
+    "AGENTS.md — none at repo root (only frozen copies under evidence/raw/p18)",
+    "R22A.5N gfx1151 final report + R22A.5N.1 audit (PR #22)",
+    "R22A.5A release-provenance contracts + install_plan_gfx1100.json",
+    "r22a5n1 toolchain --help (run_envelope, nightly_acceptance, evidence_pack, verify_checkpoint_resume_v2, worker_stage, verify_miopen_nostl, verify_gpu_child_identity, audit_adamw_amp, verify_torchvision_ops, resolve_package_set, discover_official_wheels, verify_provenance)",
+    ".github/workflows/cpu-contract.yml",
+    "G5/G7 hardening status: NOT present in PR #22 HEAD 568981d (engine can claim FULL_TRAINING_STATE_RESTORE_PASS with scheduler NOT_SERIALIZED; G7 trusts stored spawn_children list) — gfx1100 branch carries the hardened fail-closed engine (recorded dependency per mission §1.2)"
+  ],
+  "isolation": {
+    "untouched": [
+      "system GPU driver 32.0.21030.2001",
+      "system ROCm (none)",
+      "global Python (none)",
+      "gfx1151 environments (other host)",
+      "historical DEV envs",
+      "MSVC config",
+      "historical git evidence"
+    ],
+    "mission_scratch": "C:\\r22a5n1100"
+  }
+}

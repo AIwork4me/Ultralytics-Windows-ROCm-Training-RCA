@@ -1,0 +1,17 @@
+{
+  "generated_utc": "2026-11-14",
+  "tool": "release-provenance/scripts/probe_loaded_miopen.py",
+  "method": "In-process Windows Toolhelp32Snapshot(TH32CS_SNAPMODULE) module enumeration AFTER a real MIOpen workload (Conv2d fwd + BatchNorm2d train fwd/bwd + SGD step on cuda:0). Captures lazily-loaded runtime DLLs; not inferred from torch.__version__.",
+  "workload_assertions_all_pass": true,
+  "runs": [
+    {"env": "pm13437_official (ENV_A_PRISTINE_OFFICIAL_WHEEL)", "raw": "raw/LOADED_DLL_OFFICIAL_A.json", "python": "3.13.16", "torch": "2.12.0+rocm7.14.1", "hip": "7.14.60850", "device": "AMD Radeon(TM) 8060S Graphics", "miopen_loaded_path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "miopen_loaded_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc", "matches_official_wheel_payload": true, "rocm_modules_loaded": ["hipdnn_backend.dll (d115a4355b2c…)", "miopen.dll (e97891df…)"], "workload_loss": 0.5002452731132507},
+    {"env": "pm13437_merged with source-built patched DLL (ENV_B_SOURCE_BUILT_PATCHED)", "raw": "raw/LOADED_DLL_PATCHED_B.json", "python": "3.13.16", "torch": "2.12.0+rocm7.14.1", "hip": "7.14.60850", "device": "AMD Radeon(TM) 8060S Graphics", "miopen_loaded_path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "miopen_loaded_sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a", "matches_source_built_f0a5d266": true, "rocm_modules_loaded": ["hipdnn_backend.dll (d115a4355b2c…)", "miopen.dll (ed7c67a9…)", "miopenckgroupedconv_gfx1151.dll (7c1fcc25…)" ], "workload_loss": 0.5002452731132507},
+    {"env": "pm13437_merged at rest (post-restore check)", "miopen_dll_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc", "matches_official": true, "note": "env B restored to official DLL after patched-leg probe; hash-verified in-place"}
+  ],
+  "cross_run_consistency": "Both runs used seed 0 and identical shapes; FP32 loss identical to 1e-15 (0.5002452731132507) — patched vs pre-fix DLL numerically consistent for this tiny workload (single-sample observation, NOT a general numerical-equivalence claim; the full matrix lives in G1).",
+  "limitations": [
+    "Source-built DLL in env B logs CK grouped-conv symbol-resolution warnings and one fdb.txt unreadable warning in wheel context; documented as env-B known condition (does not occur with official DLL).",
+    "hipdnn plugin path: hipdnn_backend.dll loads with MIOpen as engine backend; conv/BN routed through MIOpen engine on this wheel stack.",
+    "Gfx1200/gfx1100/Linux loaded-DLL reports: BLOCKED_HARDWARE (machines not connected)."
+  ]
+}

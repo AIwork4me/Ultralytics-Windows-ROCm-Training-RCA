@@ -1,0 +1,71 @@
+{
+  "run_id": "R22A5N-GFX1151-20261117-A-reconciliation",
+  "generated_utc": "2026-11-17T05:22:14.378081+00:00",
+  "note": "historical pack A facts independently recomputed by the R22A.5N.1 hardened engine; original bytes untouched",
+  "pack_a_amp_recompute": {
+    "attempts": 11,
+    "effective_updates": 7,
+    "inf_skips": 4,
+    "unexplained_no_update_steps": 0,
+    "unexplained_indices": [],
+    "moved_on_inf_skip": [],
+    "nonfinite_grads_on_effective": [],
+    "batch_index_monotonic": true,
+    "all_invoked": true,
+    "lr_recorded": true,
+    "accumulate_recorded": true,
+    "scale_history_len": 11,
+    "scale_history_matches_attempts": true,
+    "backoffs_recomputed": 4,
+    "inf_skips_without_scale_backoff": [],
+    "stored": {
+      "attempts": 11,
+      "effective": 7,
+      "inf_skips": 4
+    },
+    "reconciles": true
+  },
+  "pack_a_workers8_recompute": {
+    "attempts": 11,
+    "effective_updates": 7,
+    "inf_skips": 4,
+    "unexplained_no_update_steps": 0,
+    "unexplained_indices": [],
+    "moved_on_inf_skip": [],
+    "nonfinite_grads_on_effective": [],
+    "batch_index_monotonic": true,
+    "all_invoked": true,
+    "lr_recorded": true,
+    "accumulate_recorded": true,
+    "scale_history_len": 11,
+    "scale_history_matches_attempts": true,
+    "backoffs_recomputed": 4,
+    "inf_skips_without_scale_backoff": [],
+    "reconciles_with_stored": true
+  },
+  "pack_a_lk_demo": {
+    "gate": "FAIL",
+    "reason": "wheel-lock binding failed (wrong/dev/mutated lock recorded)",
+    "receipts": [
+      {
+        "receipt": "05_yolo_training_amp/adamw_amp.json",
+        "recorded_sha": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+        "has_binding": true,
+        "status": "SHA_MISMATCH"
+      },
+      {
+        "receipt": "07_reliability/workers8_amp.json",
+        "recorded_sha": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+        "has_binding": true,
+        "status": "SHA_MISMATCH"
+      },
+      {
+        "receipt": "07_reliability/workers8_amp_v2.json",
+        "recorded_sha": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+        "has_binding": true,
+        "status": "SHA_MISMATCH"
+      }
+    ],
+    "note": "the P0-A defect as caught by the hardened engine: original receipts carry the DEV lock SHA; runtime identity itself was nightly (torch/DLL fields in the same receipts)"
+  }
+}

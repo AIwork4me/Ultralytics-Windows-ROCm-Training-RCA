@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-11-15T15:58:22.552133+08:00",
+  "head": "563ff46e0c3347cc68db420e1b268a22a456e317",
+  "B1": {
+    "torch_cuda_is_available": true,
+    "torch_cuda_device_count": 1,
+    "cuda_is_available": true,
+    "cuda_device_count": 1,
+    "consistent": true
+  },
+  "B2": {
+    "nvml_available": false,
+    "gpu_stats_empty_without_nvml": true,
+    "no_fake_utilization": true
+  },
+  "B3": {
+    "parse_device_-1": "0",
+    "idempotent": true,
+    "gpu_alloc_ok": true
+  },
+  "B4": {
+    "selected": [
+      0
+    ],
+    "mem_get_info_device0": {
+      "free_bytes": 83614412800,
+      "total_bytes": 83954728960,
+      "free_fraction": 0.9959
+    },
+    "threshold_0_2": 0.2,
+    "meets_threshold": true,
+    "expected": [
+      0
+    ],
+    "matches_expected": true
+  },
+  "B5": {
+    "selected": [],
+    "expected": [],
+    "matches_expected": true
+  },
+  "B7": {
+    "empty_indices": [],
+    "nonexistent_99999": [],
+    "duplicate_0_0": [
+      0
+    ]
+  }
+}

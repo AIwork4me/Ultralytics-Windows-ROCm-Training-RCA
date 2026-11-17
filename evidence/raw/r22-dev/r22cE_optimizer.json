@@ -1,0 +1,67 @@
+{
+  "run_id": "R22C-E-20261115",
+  "mission": "R21",
+  "timestamp": "2026-11-15T15:42:14.934502+00:00",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "ENGINEERING_REFERENCE",
+  "command": "python audit_optimizer.py --data coco128.yaml --epochs 3 (SUPPLEMENTARY harness: SGD nbs=2 — not the standard CLI)",
+  "exit_code": 0,
+  "duration_s": 69.6,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\evidence\\r22-dev\\r22cE_optimizer.log",
+  "harness_disclosure": "supplementary harness; optimizer/nbs differ from the standard CLI test",
+  "harness_train_args": "epochs=3, imgsz=64, batch=2, nbs=2, optimizer=SGD, lr0=0.01, device=0",
+  "ultralytics_version": "8.4.214",
+  "ultralytics_file": "C:\\RadeonYOLO\\venvs\\r22-dev\\Lib\\site-packages\\ultralytics\\__init__.py",
+  "optimizer_step_count": 184,
+  "optimizer_class": "SGD",
+  "optimizer_fused": false,
+  "amp_resolved": true,
+  "autocast_participation": {
+    "steps_sampled": 184,
+    "steps_autocast_on": 0,
+    "note": "step-time samples sit outside the autocast region; see forward samples for true participation"
+  },
+  "autocast_forward_samples": {
+    "forwards_sampled": 192,
+    "forwards_autocast_on": 192
+  },
+  "grad_finite_at_step": {
+    "steps": 184,
+    "all_finite": true
+  },
+  "gradscaler": {
+    "present": true,
+    "scale_history_len": 184,
+    "scale_first": 8192.0,
+    "scale_end": 256.0,
+    "scale_backoff_events_observed": 4,
+    "note": "backoff events counted from per-step history, not inferred from endpoints"
+  },
+  "raw_trainer_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 361,
+    "max_abs_delta": 0.31172025203704834,
+    "mean_abs_delta": 0.039238242111676924,
+    "all_finite": true
+  },
+  "loaded_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 349,
+    "max_abs_delta": 0.3115234375,
+    "mean_abs_delta": 0.039220540901350846,
+    "all_finite": true
+  },
+  "checkpoint": {
+    "path": "C:\\RadeonYOLO\\scratch\\r22c-optaudit\\weights\\last.pt",
+    "exists": true
+  }
+}

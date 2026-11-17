@@ -1,0 +1,146 @@
+{
+  "source_head": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "integration_base": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "ultralytics": "8.4.214",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "wheel_lock": "evidence/raw/r22-dev-rerun/resolved_wheel_lock.json (46 artifacts, audit ok, families [10])",
+  "miopen_dll_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+  "mission": "R22A2.1",
+  "run_id": "R22A2-ACCEPT",
+  "timestamp": "2026-11-16T11:55:14.026328+00:00",
+  "part_a": {
+    "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+    "checks": [
+      {
+        "check": "physical_gpu_identity",
+        "ok": true,
+        "detail": "AMD Radeon RX 7900 XTX / gfx1100"
+      },
+      {
+        "check": "optimizer_requested_auto",
+        "ok": true,
+        "detail": "requested='auto' (harness must not force an optimizer)"
+      },
+      {
+        "check": "optimizer_resolved_adamw",
+        "ok": true,
+        "detail": "optimizer=auto resolved to AdamW (8.4.x iterations heuristic: >10000 \u2192 MuSGD else AdamW)"
+      },
+      {
+        "check": "amp_resolved",
+        "ok": true,
+        "detail": "trainer amp=True"
+      },
+      {
+        "check": "forward_autocast_active",
+        "ok": true,
+        "detail": "48 forward samples with autocast enabled"
+      },
+      {
+        "check": "min_updates",
+        "ok": true,
+        "detail": "6 confirmed parameter-update events (checksum deltas); 11 python-level step calls; 11 scaler attempts"
+      },
+      {
+        "check": "grads_finite_all_groups",
+        "ok": true,
+        "detail": "finite grads at every CONFIRMED update across all groups (skipped nonfinite steps recorded separately \u2014 they are the GradScaler working as designed, not failures)"
+      },
+      {
+        "check": "nonzero_parameter_deltas",
+        "ok": true,
+        "detail": "366 parameter tensors changed beyond 1e-9"
+      },
+      {
+        "check": "parameter_deltas_finite",
+        "ok": true,
+        "detail": "max_abs_delta finite for every parameter tensor"
+      },
+      {
+        "check": "training_completed",
+        "ok": true,
+        "detail": "train() returned normally"
+      }
+    ],
+    "summary": {
+      "optimizer_requested": "auto",
+      "optimizer_resolved": "AdamW",
+      "optimizer_fused": true,
+      "amp_resolved": true,
+      "autocast_dtype_observed": "torch.float16",
+      "effective_accumulate": 8,
+      "nbs_requested": 64,
+      "forward_autocast_on": 48,
+      "forward_samples": 48,
+      "backward_iterations": 48,
+      "scaler_attempts": 11,
+      "optimizer_steps_python_level": 11,
+      "confirmed_update_events": 6,
+      "scaler_backoffs": 5,
+      "scale_first": 65536.0,
+      "scale_history": [
+        65536.0,
+        32768.0,
+        16384.0,
+        8192.0,
+        4096.0,
+        4096.0,
+        4096.0,
+        4096.0,
+        4096.0,
+        4096.0,
+        2048.0
+      ],
+      "grads_finite_at_confirmed_updates": true,
+      "params_changed": 366,
+      "params_total": 366,
+      "max_abs_delta": 0.00025073811411857605,
+      "all_finite": true,
+      "buffer_tensors_changed_excluded_from_param_evidence": 342,
+      "checkpoint_exists": true,
+      "exit_code": 0
+    }
+  },
+  "part_b": {
+    "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+    "reason": "exact matrix satisfied: 2 COLD (distinct homes) + 1 CACHE_PRIMING + 3 WARM (shared home), all 6 PASS with workers=8 verified OS-level and clean shutdown",
+    "classification": "2 COLD + 1 CACHE_PRIMING + 2 WARM + 1 ADDITIONAL WARM",
+    "cold": "2/2 PASS (distinct fresh homes)",
+    "warm_family": "priming 1/1 PASS; qualifying pre-warmed 3/3 PASS (2 original + 1 ADDITIONAL)",
+    "resolved_num_workers": [
+      8
+    ],
+    "peak_concurrent": {
+      "cold-run1": 13,
+      "cold-run2": 13,
+      "warm-run1": 13,
+      "warm-run2": 13,
+      "warm-run3": 13,
+      "additional-run1": 13
+    },
+    "orphan_workers_total": 0,
+    "child_main_guard_all_runs": true,
+    "hardened_gate_rescan": "all 6 runs PASS under the P0-C exit-0 anomaly scan; 2 priming-run logs carry the documented benign MIOPEN_FIND_TIMING_DIAGNOSTIC (classified, preserved)"
+  },
+  "combined_verdict": "R22A2_GFX1100_SUPPLEMENTAL_PASS",
+  "combined_requires_both": true,
+  "maximum_classification": "DEV_SUPPLEMENTAL_VALIDATED",
+  "prior_result_unchanged": "R22_DEV_DUAL_ARCH_VALIDATED (accepted) is not modified by this supplemental evidence",
+  "execution_attempts_disclosure": {
+    "part_a": [
+      "attempt 1: harness NameError (scaler wrapper closure bug) \u2014 log preserved as R22A2_ADAMW_AMP_attempt1_harness_bug.log; stack itself trained",
+      "attempt 2: contract misclassified fused-skip semantics as grad failure \u2014 log preserved as R22A2_ADAMW_AMP_attempt2_contract_semantics.log; root-caused via bounded 1-epoch diagnostic",
+      "attempt 3: PASS (measurement corrected; system under test unchanged)"
+    ],
+    "part_b": "single execution per matrix (cold 2 + warm 3), no reruns"
+  },
+  "r22a21_reconciliation": "evidence/raw/r22a2-gfx1100/R22A2_WORKERS8_RECONCILIATION.json"
+}

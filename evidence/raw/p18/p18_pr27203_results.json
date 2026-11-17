@@ -1,0 +1,155 @@
+{
+  "pr": 27203,
+  "head_sha": "563ff46e0c3347cc68db420e1b268a22a456e317",
+  "verdict": "GFX1100_PHYSICAL_SOURCE_VALIDATED",
+  "gpu": "AMD Radeon RX 7900 XTX (gfx1100)",
+  "stack": "torch 2.12.0+rocm7.14.1 / hip 7.14.60850 / Windows 11 26300 / ENGINEERING_REFERENCE (MIOpen shim)",
+  "C1_C6_C9": {
+    "cases": {
+      "C1_availability": {
+        "pass": true,
+        "detail": {
+          "torch_cuda_is_available": true,
+          "ultralytics_cuda_is_available": true,
+          "ultralytics_cuda_device_count": 1,
+          "torch_device_count": 1
+        }
+      },
+      "C2_nvml": {
+        "pass": true,
+        "detail": {
+          "nvml_available": false,
+          "expect": false
+        }
+      },
+      "C3_parse_device_-1": {
+        "pass": true,
+        "detail": {
+          "parse_-1": "0",
+          "parse_-1_again": "0",
+          "idempotent": true,
+          "tensor_alloc_cuda": true,
+          "cvd_unchanged": null
+        }
+      },
+      "C4_memory_gate": {
+        "pass": true,
+        "detail": {
+          "selected": 0,
+          "mem_free_frac": 0.9932,
+          "total_bytes": 25753026560,
+          "stable_total": true,
+          "logs": [
+            "WARNING Failed to initialize pynvml, GPU stats disabled: No module named 'pynvml'",
+            "WARNING NVML stats unavailable; GPU utilization cannot be measured."
+          ]
+        }
+      },
+      "C5_unmeasurable_util": {
+        "pass": true,
+        "detail": {
+          "selected": [],
+          "warnings": [
+            "WARNING NVML stats unavailable; GPU utilization cannot be measured.",
+            "WARNING Cannot verify 30.0% free GPU utilization without NVML."
+          ]
+        }
+      },
+      "C6_indices": {
+        "pass": true,
+        "detail": {
+          "indices=[]": [],
+          "indices=[0]": [
+            0
+          ],
+          "indices=[0,0] count=2": [
+            0
+          ],
+          "indices=[99999]": [],
+          "indices=None": [
+            0
+          ],
+          "none_vs_empty_differ": true
+        }
+      },
+      "C9_nvidia_smi_contract": {
+        "pass": true,
+        "detail": {
+          "patched_smi_success_branch_returns_2": 2,
+          "real_no_smi_fallback_returns_torch_count": 1,
+          "torch_count": 1,
+          "note": "success branch via subprocess.check_output patch in child (contract injection); failure branch is REAL on this AMD host; NOT an NVIDIA hardware PASS"
+        }
+      }
+    },
+    "provenance": {
+      "ultralytics_file": "C:\\P18\\pr27203\\ultralytics\\__init__.py",
+      "torch": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850",
+      "device": "AMD Radeon RX 7900 XTX"
+    },
+    "all_pass": true
+  },
+  "C7_cvd_matrix": {
+    "0": {
+      "cvd_env": "0",
+      "torch_version": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850",
+      "torch_device_count": 1,
+      "torch_available": true,
+      "device_name_0": "AMD Radeon RX 7900 XTX",
+      "mem_get_info": {
+        "free": 25597083648,
+        "total": 25753026560,
+        "free_frac": 0.9939
+      },
+      "tensor_alloc": true,
+      "checks_cuda_device_count": 1,
+      "checks_cuda_is_available": true,
+      "parse_device_-1": "0",
+      "select_idle_gpu": [
+        0
+      ]
+    },
+    "": {
+      "cvd_env": "",
+      "torch_version": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850",
+      "torch_device_count": 0,
+      "torch_available": false,
+      "checks_cuda_device_count": 0,
+      "checks_cuda_is_available": false,
+      "parse_device_-1": "",
+      "select_idle_gpu": []
+    },
+    "1": {
+      "cvd_env": "1",
+      "torch_version": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850",
+      "torch_device_count": 0,
+      "torch_available": false,
+      "checks_cuda_device_count": 0,
+      "checks_cuda_is_available": false,
+      "parse_device_-1": "",
+      "select_idle_gpu": []
+    },
+    "abc": {
+      "cvd_env": "abc",
+      "torch_version": "2.12.0+rocm7.14.1",
+      "hip": "7.14.60850",
+      "torch_device_count": 0,
+      "torch_available": false,
+      "checks_cuda_device_count": 0,
+      "checks_cuda_is_available": false,
+      "parse_device_-1": "",
+      "select_idle_gpu": []
+    }
+  },
+  "C7_verdict": "SINGLE_GPU_VISIBILITY_PASS; MULTI_GPU_PHYSICAL_MAPPING_NOT_RUN (single RX 7900 XTX)",
+  "C8_upstream_tests": "3/3 PASSED: test_cuda.py::test_amp (ran on real GPU, not skipped), test_python.py::test_select_idle_gpu_fallback, test_select_device",
+  "phase_g": {
+    "ruff_ci_exact": "All checks passed",
+    "ci_head": "all green incl. Tests (windows-latest, 3.13, latest): success",
+    "findings": "none blocking; one except Exception (mem_get_info tolerance) matches repo style and CI ignores BLE001; nvidia-smi success path byte-identical to upstream main"
+  }
+}

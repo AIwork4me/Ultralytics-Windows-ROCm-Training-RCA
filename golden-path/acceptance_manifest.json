@@ -1,0 +1,81 @@
+{
+  "run_id": "P14-GOLDEN-MODEB-gfx1151-20261115",
+  "generated_utc": "2026-11-15T02:35:00Z",
+  "mode": "MODE_B_first_time_end_user",
+  "environment": {
+    "hardware": "AMD Radeon 8060S (gfx1151, iGPU)",
+    "os": "Windows 11 26200",
+    "python": "3.13.16",
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "ultralytics": "8.4.182",
+    "miopen_dll_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+    "miopen_version_strings": [
+      "3.5.2.cd957402"
+    ],
+    "msvc_build_tools_present": true,
+    "identity_json": "environment_identity.json"
+  },
+  "install": {
+    "channel": "official",
+    "torch_index": "https://repo.amd.com/rocm/whl-multi-arch/",
+    "ultralytics_source": "PyPI wheel 8.4.182 (released, non-editable)",
+    "manual_dll_substitution": false,
+    "editable_fork": false
+  },
+  "checks": {
+    "verify_environment": {
+      "status": "PASS",
+      "evidence": "release-provenance/raw/p14_golden_path/environment_identity.json (cpu-only rejection leg: err_t1.log, exit=2)"
+    },
+    "smoke_coco8": {
+      "status": "PASS",
+      "epochs": 2,
+      "run_dir": "runs/golden/smoke",
+      "amp_verdict": "AMP_PASS (console: AMP: checks passed; enabled, not fallback)"
+    },
+    "representative_coco128": {
+      "status": "PASS",
+      "epochs": 20,
+      "run_dir": "runs/golden/representative",
+      "seed": 0,
+      "map50_95_first": 0.4919,
+      "map50_95_best": 0.56025,
+      "weight_delta_vs_pretrained": -0.001226,
+      "amp_verdict": "AMP_PASS",
+      "evidence": "results.csv (curve) + golden_checkpoint_verification.json; SHA256 cd0ca530\u2026"
+    },
+    "validate_best": {
+      "status": "PASS",
+      "map50_95": 0.5591430979100962,
+      "evidence": "golden_val_metrics.json (map50=0.7393)"
+    },
+    "checkpoint_verification": {
+      "status": "PASS",
+      "best_sha256": "029f8b04a8bea1b4\u2026",
+      "evidence": "golden_checkpoint_verification.json (reload OK, delta != 0, curve improves)"
+    },
+    "interrupt_resume": {
+      "status": "PASS",
+      "interrupt_mechanism": "Stop-Process -Force on python.exe PID 44076 ( CommandLine-verified train.py --representative --run-id resumetest ) after epoch 14 completed and last.pt saved",
+      "resumed_in_new_process": true,
+      "epoch_continuity_verified": true,
+      "evidence": "resume_stage2.log: \"Resuming training runs\\golden\resumetest\\weights\\last.pt from epoch 15 to 20 total epochs\"; lr0=0.000119 restored from scheduler state; results.csv 20 rows total (SHA256 e44a5d7d\u2026)"
+    },
+    "error_experience": {
+      "cpu_only_rejection": "PASS (CUDA_VISIBLE_DEVICES=\"\" -> [FAIL] + fix hint, exit=2, no CPU fallback)",
+      "missing_dataset": "PASS (RuntimeError: Dataset \u2026 does not exist \u2014 actionable)",
+      "bad_checkpoint": "PASS (FileNotFoundError with path \u2014 clear, raw but actionable)",
+      "wrong_pytorch_wheel": "NOT_RUN (would require breaking a working install; mitigated by verify_environment +rocm check)",
+      "missing_rocm_runtime_component": "NOT_RUN (same reason)",
+      "unsupported_gpu": "BLOCKED_HARDWARE (no second GPU available)",
+      "insufficient_gpu_memory": "NOT_RUN (78GB shared iGPU memory makes OOM impractical to force safely)",
+      "invalid_kernel_file": "NOT_RUN (historical crash not reproducible since P13.2; see P13_INVALID_KERNEL_FILE_RCA.md)",
+      "amp_incompatibility": "COVERED upstream (PR #27198 fault-injection suite + real-GPU fault injection, P14.2)"
+    }
+  },
+  "known_blockers": [
+    "BLOCKED_RELEASE: no official Windows wheel (whl-multi-arch or whl-next) contains the #13437 MIOpen fix (rocm-libraries#15862); machines without MSVC Build Tools hit HIPRTC 'type_traits' file not found at first training step",
+    "GATE_4 independent-developer test: BLOCKED_INDEPENDENT_USER_TEST (issue #14, no tester response)"
+  ]
+}

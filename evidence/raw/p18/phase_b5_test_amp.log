@@ -1,0 +1,13 @@
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- C:\P18\venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\P18\pr27198
+configfile: pyproject.toml
+[1mcollecting ... [0mcollected 1 item
+
+tests/test_cuda.py::test_amp [33mSKIPPED[0m (No CUDA devices available)
+
+============================ slowest 30 durations =============================
+
+(2 durations < 0.005s hidden.  Use -vv to show these durations.)
+[33m============================= [33m[1m1 skipped[0m[33m in 0.20s[0m[33m ==============================[0m

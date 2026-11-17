@@ -1,0 +1,437 @@
+{
+  "set_name": "r21-engref",
+  "channel": "multi-arch",
+  "channel_url": "https://repo.amd.com/rocm/whl-multi-arch/",
+  "gfx_target": "gfx1100",
+  "python_tag": "cp312",
+  "resolved_utc": "2026-11-15T23:20:00+00:00",
+  "resolution_tool": "pip download (exact pins) from allowlisted index + pip http cache; bytes archived and hashed",
+  "packages": [
+    {
+      "name": "amd-torch-device-gfx1100",
+      "version": "2.12.0+rocm7.14.1",
+      "wheel_filename": "amd_torch_device_gfx1100-2.12.0+rocm7.14.1-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/amd-torch-device-gfx1100/",
+      "sha256": "89a9da4a6ed3d024ba97803985bc358fe9709c2e0625f80f6f4db03579650d68",
+      "size_bytes": 50546493,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\amd_torch_device_gfx1100-2.12.0+rocm7.14.1-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "amd-torch-device-gfx110x",
+      "version": "2.12.0+rocm7.14.1",
+      "wheel_filename": "amd_torch_device_gfx110x-2.12.0+rocm7.14.1-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/amd-torch-device-gfx110x/",
+      "sha256": "b7fc250d2e070246dad2d6e7f2e5c5f63be1effe2145d7859712a93266bf2b29",
+      "size_bytes": 243089282,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\amd_torch_device_gfx110x-2.12.0+rocm7.14.1-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "amd-torchvision-device-gfx1100",
+      "version": "0.27.0+rocm7.14.1",
+      "wheel_filename": "amd_torchvision_device_gfx1100-0.27.0+rocm7.14.1-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/amd-torchvision-device-gfx1100/",
+      "sha256": "b19a5776cf35069df110b514097244a098d2374720d2e5487746459e362e33b3",
+      "size_bytes": 140724,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\amd_torchvision_device_gfx1100-0.27.0+rocm7.14.1-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "anyio",
+      "version": "4.16.0",
+      "wheel_filename": "anyio-4.16.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/anyio/",
+      "sha256": "c66ae634e0b8228396b801741beb3294326d4b6102f7bba4041c0dfb58c29026",
+      "size_bytes": 134521,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\anyio-4.16.0-py3-none-any.whl"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.10.23",
+      "wheel_filename": "certifi-2026.10.23-py3-none-any.whl",
+      "url": "https://pypi.org/simple/certifi/",
+      "sha256": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1",
+      "size_bytes": 135082,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\certifi-2026.10.23-py3-none-any.whl"
+    },
+    {
+      "name": "charset-normalizer",
+      "version": "3.5.2",
+      "wheel_filename": "charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/charset-normalizer/",
+      "sha256": "780fbe7cab297b81dad9fb8dc5eb003c0468ffb0d9e5f65068c53a34661a96bc",
+      "size_bytes": 207486,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\charset_normalizer-3.5.2-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "contourpy",
+      "version": "1.4.0",
+      "wheel_filename": "contourpy-1.4.0-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/contourpy/",
+      "sha256": "6e697d94e69f499ff6bebb899cae97a58d5d14f0e1fe9568b43a0248d2f9af8c",
+      "size_bytes": 234083,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\contourpy-1.4.0-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "cycler",
+      "version": "0.12.1",
+      "wheel_filename": "cycler-0.12.1-py3-none-any.whl",
+      "url": "https://pypi.org/simple/cycler/",
+      "sha256": "85cef7cff222d8644161529808465972e51340599459b8ac3ccbac5a854e0d30",
+      "size_bytes": 8321,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\cycler-0.12.1-py3-none-any.whl"
+    },
+    {
+      "name": "filelock",
+      "version": "4.2.10",
+      "wheel_filename": "filelock-4.2.10-py3-none-any.whl",
+      "url": "https://pypi.org/simple/filelock/",
+      "sha256": "9479aaeb4db20b5a53e3da28493edd24720b66b8a0b84030aa56ccdf243d6857",
+      "size_bytes": 218040,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\filelock-4.2.10-py3-none-any.whl"
+    },
+    {
+      "name": "fonttools",
+      "version": "4.68.0",
+      "wheel_filename": "fonttools-4.68.0-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/fonttools/",
+      "sha256": "fedc183bdbc3fdbfbdca26e0e04566d089cbb404712509a4e824608e9304cc77",
+      "size_bytes": 2533508,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\fonttools-4.68.0-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.9.0",
+      "wheel_filename": "fsspec-2026.9.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/fsspec/",
+      "sha256": "8dd6e646e99ea382bd85f97a45e6b526a442d79423a7dc673f1e2756d05fcb5f",
+      "size_bytes": 221738,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\fsspec-2026.9.0-py3-none-any.whl"
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "wheel_filename": "h11-0.16.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/h11/",
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86",
+      "size_bytes": 37515,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\h11-0.16.0-py3-none-any.whl"
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "wheel_filename": "httpcore-1.0.9-py3-none-any.whl",
+      "url": "https://pypi.org/simple/httpcore/",
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55",
+      "size_bytes": 78784,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\httpcore-1.0.9-py3-none-any.whl"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "wheel_filename": "httpx-0.28.1-py3-none-any.whl",
+      "url": "https://pypi.org/simple/httpx/",
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad",
+      "size_bytes": 73517,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\httpx-0.28.1-py3-none-any.whl"
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "wheel_filename": "idna-3.20-py3-none-any.whl",
+      "url": "https://pypi.org/simple/idna/",
+      "sha256": "ab7ae7122974553370f0bdb919e1a960b2cd1bc1ef0276416d896db81c14582c",
+      "size_bytes": 69583,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\idna-3.20-py3-none-any.whl"
+    },
+    {
+      "name": "jinja2",
+      "version": "3.1.6",
+      "wheel_filename": "jinja2-3.1.6-py3-none-any.whl",
+      "url": "https://pypi.org/simple/jinja2/",
+      "sha256": "85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67",
+      "size_bytes": 134899,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\jinja2-3.1.6-py3-none-any.whl"
+    },
+    {
+      "name": "kiwisolver",
+      "version": "1.5.1",
+      "wheel_filename": "kiwisolver-1.5.1-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/kiwisolver/",
+      "sha256": "06a6917674de9e0fe3f66f5430787f59a9f2ddb64af9b714eaec547e29ef5c19",
+      "size_bytes": 70748,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\kiwisolver-1.5.1-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "markupsafe",
+      "version": "3.0.4",
+      "wheel_filename": "markupsafe-3.0.4-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/markupsafe/",
+      "sha256": "11935df9bf455ed0c04eb87bcd720f02b1fe5e02128a9430f23aed6f93336fc7",
+      "size_bytes": 14303,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\markupsafe-3.0.4-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.11.2",
+      "wheel_filename": "matplotlib-3.11.2-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/matplotlib/",
+      "sha256": "c5c1c68ee401fc98271263410f0e5ce88285abacf7627132914e8adf3d70ff43",
+      "size_bytes": 9349409,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\matplotlib-3.11.2-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0",
+      "wheel_filename": "mpmath-1.3.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/mpmath/",
+      "sha256": "a0b2b9fe80bbcd81a6647ff13108738cfb482d481d826cc0e02f5b35e5c88d2c",
+      "size_bytes": 536198,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\mpmath-1.3.0-py3-none-any.whl"
+    },
+    {
+      "name": "networkx",
+      "version": "3.7",
+      "wheel_filename": "networkx-3.7-py3-none-any.whl",
+      "url": "https://pypi.org/simple/networkx/",
+      "sha256": "e3fd2c13a7814cee3746340d8d7f8598a67f16a58bf47fb7f8793fab6efca1b0",
+      "size_bytes": 2142205,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\networkx-3.7-py3-none-any.whl"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4",
+      "wheel_filename": "numpy-2.5.4-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/numpy/",
+      "sha256": "a7b1b6353e36a7e50de2973a38d705c88ee93adcf120673cee7f45a4a3fa223a",
+      "size_bytes": 12573091,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\numpy-2.5.4-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "nvidia-ml-py",
+      "version": "13.615.71",
+      "wheel_filename": "nvidia_ml_py-13.615.71-py3-none-any.whl",
+      "url": "https://pypi.org/simple/nvidia-ml-py/",
+      "sha256": "959bf4adf6fe1308e4bd739e722236b0d1ec8392e2cefad33ff70c311380b9b6",
+      "size_bytes": 58132,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\nvidia_ml_py-13.615.71-py3-none-any.whl"
+    },
+    {
+      "name": "opencv-python",
+      "version": "5.0.0.93",
+      "wheel_filename": "opencv_python-5.0.0.93-cp37-abi3-win_amd64.whl",
+      "url": "https://pypi.org/simple/opencv-python/",
+      "sha256": "f90ba04b8f73bc5c3814037699739f0156f597338a98f05956c684e7c3ca10d2",
+      "size_bytes": 44000345,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\opencv_python-5.0.0.93-cp37-abi3-win_amd64.whl"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "wheel_filename": "packaging-26.3-py3-none-any.whl",
+      "url": "https://pypi.org/simple/packaging/",
+      "sha256": "d7193f7c8e4e93f444fde0262bf90af30e16fa0ad0ad44cb553c87339b23cd1c",
+      "size_bytes": 129956,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\packaging-26.3-py3-none-any.whl"
+    },
+    {
+      "name": "pillow",
+      "version": "13.0.0",
+      "wheel_filename": "pillow-13.0.0-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/pillow/",
+      "sha256": "ff3fe9eb621fbb9db4c4be33ab946f6bac5f98ab50ca8d3260503653656c961b",
+      "size_bytes": 7272166,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\pillow-13.0.0-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "polars",
+      "version": "2.1.0",
+      "wheel_filename": "polars-2.1.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/polars/",
+      "sha256": "63c50ce3533f5a03d17c3a2a24f1d0e0c7eda98fbde4268a3cba900d34060e67",
+      "size_bytes": 911474,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\polars-2.1.0-py3-none-any.whl"
+    },
+    {
+      "name": "polars-runtime-32",
+      "version": "2.1.0",
+      "wheel_filename": "polars_runtime_32-2.1.0-cp311-abi3-win_amd64.whl",
+      "url": "https://pypi.org/simple/polars-runtime-32/",
+      "sha256": "f2fe32f48af2395cd6ec52a433a03970a69aab1dbb66a613729fd549ce92c904",
+      "size_bytes": 53926265,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\polars_runtime_32-2.1.0-cp311-abi3-win_amd64.whl"
+    },
+    {
+      "name": "psutil",
+      "version": "7.2.2",
+      "wheel_filename": "psutil-7.2.2-cp37-abi3-win_amd64.whl",
+      "url": "https://pypi.org/simple/psutil/",
+      "sha256": "eb7e81434c8d223ec4a219b5fc1c47d0417b12be7ea866e24fb5ad6e84b3d988",
+      "size_bytes": 137737,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\psutil-7.2.2-cp37-abi3-win_amd64.whl"
+    },
+    {
+      "name": "pyparsing",
+      "version": "3.3.3",
+      "wheel_filename": "pyparsing-3.3.3-py3-none-any.whl",
+      "url": "https://pypi.org/simple/pyparsing/",
+      "sha256": "ece8c00a69cf01b45d0b1dedabb469c90d8caf996d4fda40f147627a122849a4",
+      "size_bytes": 126420,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\pyparsing-3.3.3-py3-none-any.whl"
+    },
+    {
+      "name": "python-dateutil",
+      "version": "4.0.0",
+      "wheel_filename": "python_dateutil-4.0.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/python-dateutil/",
+      "sha256": "a5e246f79eb80475e691bf93862cead98decd8a498cf53ba0516fcdc0f50dc1c",
+      "size_bytes": 92853,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\python_dateutil-4.0.0-py3-none-any.whl"
+    },
+    {
+      "name": "requests",
+      "version": "2.34.2",
+      "wheel_filename": "requests-2.34.2-py3-none-any.whl",
+      "url": "https://pypi.org/simple/requests/",
+      "sha256": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0",
+      "size_bytes": 73075,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\requests-2.34.2-py3-none-any.whl"
+    },
+    {
+      "name": "rocm-bootstrap",
+      "version": "0.3.0",
+      "wheel_filename": "rocm_bootstrap-0.3.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/rocm-bootstrap/",
+      "sha256": "62d0160ecdd86f7132dbab9aec257cb2c96327df2592b0633aa6bb56399cc095",
+      "size_bytes": 30532,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\rocm_bootstrap-0.3.0-py3-none-any.whl"
+    },
+    {
+      "name": "rocm-sdk-core",
+      "version": "7.14.1",
+      "wheel_filename": "rocm_sdk_core-7.14.1-py3-none-win_amd64.whl",
+      "url": "https://repo.amd.com/rocm/whl-multi-arch/rocm-sdk-core/rocm_sdk_core-7.14.1-py3-none-win_amd64.whl",
+      "sha256": "49eb83cb89d50562944a1f0eaf65f4e21f4557813de53e78d022fee81bbfb6e7",
+      "size_bytes": 758745858,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\rocm_sdk_core-7.14.1-py3-none-win_amd64.whl"
+    },
+    {
+      "name": "rocm-sdk-device-gfx1100",
+      "version": "7.14.1",
+      "wheel_filename": "rocm_sdk_device_gfx1100-7.14.1-py3-none-win_amd64.whl",
+      "url": "https://repo.amd.com/rocm/whl-multi-arch/rocm-sdk-device-gfx1100/rocm_sdk_device_gfx1100-7.14.1-py3-none-win_amd64.whl",
+      "sha256": "64eeb74d6ad30816e356f46c9d784204f1ca78eb728dc4299507d8a94ee50bcf",
+      "size_bytes": 179338768,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\rocm_sdk_device_gfx1100-7.14.1-py3-none-win_amd64.whl"
+    },
+    {
+      "name": "rocm-sdk-libraries",
+      "version": "7.14.1",
+      "wheel_filename": "rocm_sdk_libraries-7.14.1-py3-none-win_amd64.whl",
+      "url": "https://repo.amd.com/rocm/whl-multi-arch/rocm-sdk-libraries/rocm_sdk_libraries-7.14.1-py3-none-win_amd64.whl",
+      "sha256": "f5f639b488e3e78a44bebba786e917a98c4386001a3fa2a27393a9ce97e2a32d",
+      "size_bytes": 115912267,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\rocm_sdk_libraries-7.14.1-py3-none-win_amd64.whl"
+    },
+    {
+      "name": "setuptools",
+      "version": "81.0.0",
+      "wheel_filename": "setuptools-81.0.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/setuptools/",
+      "sha256": "fdd925d5c5d9f62e4b74b30d6dd7828ce236fd6ed998a08d81de62ce5a6310d6",
+      "size_bytes": 1062021,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\setuptools-81.0.0-py3-none-any.whl"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0",
+      "wheel_filename": "sympy-1.14.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/sympy/",
+      "sha256": "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5",
+      "size_bytes": 6299353,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\sympy-1.14.0-py3-none-any.whl"
+    },
+    {
+      "name": "torch",
+      "version": "2.12.0+rocm7.14.1",
+      "wheel_filename": "torch-2.12.0+rocm7.14.1-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/torch/",
+      "sha256": "ec99473c1fac37fbea7e14bd06772cd92c2dcb4aca1483c64ce97518095fe1d9",
+      "size_bytes": 114509443,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\torch-2.12.0+rocm7.14.1-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "torchvision",
+      "version": "0.27.0+rocm7.14.1",
+      "wheel_filename": "torchvision-0.27.0+rocm7.14.1-cp312-cp312-win_amd64.whl",
+      "url": "https://pypi.org/simple/torchvision/",
+      "sha256": "0ecf4837027494d96d39173120de20206d10d56205bafe316807d35a9e4d529a",
+      "size_bytes": 900772,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\torchvision-0.27.0+rocm7.14.1-cp312-cp312-win_amd64.whl"
+    },
+    {
+      "name": "typing-extensions",
+      "version": "4.16.0",
+      "wheel_filename": "typing_extensions-4.16.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/typing-extensions/",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8",
+      "size_bytes": 45571,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\typing_extensions-4.16.0-py3-none-any.whl"
+    },
+    {
+      "name": "tzdata",
+      "version": "2026.6",
+      "wheel_filename": "tzdata-2026.6-py2.py3-none-any.whl",
+      "url": "https://pypi.org/simple/tzdata/",
+      "sha256": "0a10eec6e13ef16b627fabed9a5f2ba61a62b1c67f327305f4e7e412a70b4aec",
+      "size_bytes": 348210,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\tzdata-2026.6-py2.py3-none-any.whl"
+    },
+    {
+      "name": "ultralytics",
+      "version": "8.4.214",
+      "wheel_filename": "ultralytics-8.4.214-py3-none-any.whl",
+      "url": "https://pypi.org/simple/ultralytics/",
+      "sha256": "d3288d08f903a3ad848f5a66142210b27bbfbfd1ab35eab45bebed0503815037",
+      "size_bytes": 1467030,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\ultralytics-8.4.214-py3-none-any.whl"
+    },
+    {
+      "name": "ultralytics-platform",
+      "version": "0.1.111",
+      "wheel_filename": "ultralytics_platform-0.1.111-py3-none-any.whl",
+      "url": "https://pypi.org/simple/ultralytics-platform/",
+      "sha256": "ea0910ccf00bab31898bd352fd459d47a2b14901614c8cefd05aa0b3fb2d63c7",
+      "size_bytes": 103831,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\ultralytics_platform-0.1.111-py3-none-any.whl"
+    },
+    {
+      "name": "ultralytics-thop",
+      "version": "2.2.5",
+      "wheel_filename": "ultralytics_thop-2.2.5-py3-none-any.whl",
+      "url": "https://pypi.org/simple/ultralytics-thop/",
+      "sha256": "a698003b42de578731ba51c747031914bba8775f47fe675dbbf28510f0c2654d",
+      "size_bytes": 32859,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\ultralytics_thop-2.2.5-py3-none-any.whl"
+    },
+    {
+      "name": "urllib3",
+      "version": "2.8.0",
+      "wheel_filename": "urllib3-2.8.0-py3-none-any.whl",
+      "url": "https://pypi.org/simple/urllib3/",
+      "sha256": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3",
+      "size_bytes": 135717,
+      "local_path": "C:\\RadeonYOLO\\wheels\\engref\\urllib3-2.8.0-py3-none-any.whl"
+    }
+  ],
+  "rules_checked": {
+    "rocm_family_mix": {
+      "families": [
+        "7"
+      ],
+      "ok": true
+    },
+    "device_wheel_present": true,
+    "torchvision_device_wheel_present": true,
+    "torch_is_amd_hip": true
+  },
+  "note": "AMD wheels carry exact channel URLs from discovery; PyPI pure-python deps reference their simple-index page (resolved at install time; not synthesized direct URLs)"
+}

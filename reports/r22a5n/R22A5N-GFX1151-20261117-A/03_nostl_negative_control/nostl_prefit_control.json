@@ -1,0 +1,49 @@
+{
+  "run_id": "R22A5N-G1-NEGCTRL",
+  "mission": "R22A.5N",
+  "timestamp": "2026-11-17T03:39:38.180465+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.13.16",
+  "torch": "2.12.0+rocm7.14.1",
+  "torchvision": "0.27.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "runtime_class": "OFFICIAL_STABLE",
+  "command": "python verify_miopen_nostl.py --leg official --expect FAIL",
+  "exit_code": 0,
+  "duration_s": 19.2,
+  "pass_fail_skip": "FAIL",
+  "failure_classification": null,
+  "raw_log_path": "C:\\r22a5n\\scratch\\g1_negctrl\\nostl_official_1794886759\\leg.log",
+  "classification": "INCONCLUSIVE",
+  "leg_detail": {
+    "leg": "official",
+    "exit_code": 0,
+    "duration_s": 17.8,
+    "stdout_tail": "BN_NOSTL_REPRO out_finite=True grad_finite=True loss=0.999990\n",
+    "stderr_tail": "MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution\nMIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151\nC:\\r22a5n\\scratch\\g1_negctrl\\nostl_official_1794886759\\bn_repro.py:17: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.\nConsider using tensor.detach() first. (Triggered internally at B:\\src\\pytorch\\torch\\csrc\\autograd\\generated\\python_variable_methods.cpp:839.)\n  (out_finite, grad_finite, float(loss)))\n",
+    "log_path": "C:\\r22a5n\\scratch\\g1_negctrl\\nostl_official_1794886759\\leg.log",
+    "scratch": "C:\\r22a5n\\scratch\\g1_negctrl\\nostl_official_1794886759"
+  },
+  "ambient_hiprtc_shim": null,
+  "reproducer_shape": [
+    20,
+    100,
+    35,
+    45
+  ],
+  "reproducer_op": "nn.BatchNorm2d(100) forward+backward",
+  "expectation": "FAIL",
+  "miopen_identity_in_parent": {
+    "loaded": true,
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+    "bytes": 520364032,
+    "embedded_version_strings": [
+      "3.6.2.f0a5d266"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  }
+}

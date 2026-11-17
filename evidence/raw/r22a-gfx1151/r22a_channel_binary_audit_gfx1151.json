@@ -1,0 +1,55 @@
+{
+  "run_id": "R22A-CHANNEL-BINARY-AUDIT-GFX1151",
+  "mission": "R22A",
+  "timestamp": "2026-11-16T01:24:24.420735+00:00",
+  "method": "wheel re-downloaded from dev channel index (observed href) for the gfx1151 acceptance; SHA256 recorded; embedded MIOpen.dll extracted and hashed; version string parsed to build commit; LIVE GitHub compare API f0a5d266...4e7d93e3 re-run at audit time; TheRock submodule pointer verified via git trees API (never date inference)",
+  "merged_fix_commit": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a",
+  "gfx_target": "gfx1151",
+  "audits": [
+    {
+      "channel": "dev",
+      "package": "rocm-sdk-libraries",
+      "wheel_version": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+      "wheel_url": "https://dev.repo.amd.com/rocm/core/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.3.0.dev0%2Bff5769655eeb1b91a46bce9edc16d87ca0efe7b6-py3-none-win_amd64.whl",
+      "wheel_sha256": "dac27df54d5f659e50e8b098fd751386930b08c607f9272c5d25b3c27f0b7d56",
+      "embedded_miopen_dll": {
+        "member": "_rocm_sdk_libraries/bin/MIOpen.dll",
+        "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+        "version_strings": [
+          "3.6.3.4e7d93e3"
+        ],
+        "build_commit": "4e7d93e3",
+        "marker_miopen_initializer_list": 2
+      },
+      "miopen_dll": {
+        "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+        "build_commit": "4e7d93e3"
+      },
+      "miopen_dll_loaded_in_venv": {
+        "version_strings": [
+          "3.6.3.4e7d93e3"
+        ],
+        "build_commit": "4e7d93e3",
+        "marker_miopen_initializer_list": 2
+      },
+      "therock_chain": {
+        "therock_commit": "ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+        "therock_commit_message": "amd-compiler-2026-11-5-COT (2026-11-05T05:36:53Z)",
+        "submodule_path": "rocm-libraries",
+        "submodule_pointer": "4e7d93e34d3572405ca93b93021439ea9716824a",
+        "submodule_verified_via": "GET /repos/ROCm/therock/git/trees/ff576965 (live)"
+      },
+      "ancestry": {
+        "chain": "TheRock ff576965 -> rocm-libraries submodule 4e7d93e34d3572405ca93b93021439ea9716824a",
+        "compare": "f0a5d266...4e7d93e3",
+        "status": "ahead",
+        "ahead_by": 604,
+        "behind_by": 0,
+        "merge_base": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a",
+        "verdict": "FIX PRESENT"
+      },
+      "verdict": "POST_FIX_DEV_CANDIDATE_GFX1151"
+    }
+  ],
+  "conclusion": "DEV gfx1151 wheel set shares the exact post-fix MIOpen build (4e7d93e3, descendant of f0a5d266, behind_by=0) with the validated gfx1100 snapshot ff576965"
+}

@@ -1,0 +1,15 @@
+{
+  "purpose": "in-repo record of the upstream check_amp redesign commit (PR-C obsoletion evidence)",
+  "recorded_utc": "2026-11-14T14:28:28.913375+00:00",
+  "commit": "1e4d3d22982f77e2fe5d50bb2001587d5dd44096",
+  "author": "Glenn Jocher",
+  "date": "2026-11-01T03:29:09+01:00",
+  "subject": "`ultralytics 8.4.197` Check AMP on an untrained YOLO26n without downloading weights (#26967)",
+  "upstream_repo": "ultralytics/ultralytics",
+  "shipped_version": "8.4.197",
+  "pr": "https://github.com/ultralytics/ultralytics/pull/26967",
+  "verified_in_clone": "C:/Users/rocm/Desktop/YOLO_AMD/upstream_ultralytics (fork AIwork4me/ultralytics, depth-300 fetch of upstream/main @ 242e2b3)",
+  "old_code_removed": "amp_allclose(m, im) post-NMS boxes + torch.allclose(atol=0.5)",
+  "new_design": "untrained DetectionModel('yolo26n.yaml') train-mode, per-Conv2d/Attention forward-hook recomputation under autocast from the layer's own FP32 input, relative norm tolerance <= 5% (NaN/inf fail by comparison semantics)",
+  "consequence": "PR-C (IoU matcher replacing amp_allclose) targets removed code \u2014 no duplicate patch will be submitted; new check validated on gfx1151 instead (g3_checkamp84212_*.json)"
+}

@@ -1,0 +1,410 @@
+{
+  "run_id": "R22A5A-INSTALL-PLAN-2026-11-17",
+  "mission": "R22A.5A",
+  "generated_utc": "2026-11-17T01:08:47.915401+00:00",
+  "gfx_target": "gfx1100",
+  "python_tag": "cp312",
+  "candidates_source": "latest_official_windows_candidates.json",
+  "channels": {
+    "dev": {
+      "channel": "dev",
+      "channel_index": "https://dev.repo.amd.com/rocm/whl-next/",
+      "required_packages": [
+        "torch",
+        "torchvision",
+        "rocm-sdk-core",
+        "rocm-sdk-libraries",
+        "rocm-sdk-device-gfx1100"
+      ],
+      "missing_packages": [],
+      "unreachable_packages": [],
+      "abi_blocked": [],
+      "set_complete": true,
+      "rocm_families": [
+        "10"
+      ],
+      "family_coherent": true,
+      "torch_is_amd_hip": true,
+      "dep_coherent": false,
+      "sdk_libraries_classification": "NEW_ARTIFACT_PROVENANCE_PENDING",
+      "fix_confirmed": false,
+      "plan": {
+        "tier": "UNQUALIFIED",
+        "ceiling": "OFFICIAL_DEV",
+        "emit_commands": false,
+        "blockers": [
+          "dependency set incoherent (family mix / ABI / vendor origin rules failed)",
+          "conflicting versions for torchvision: ['0.29.0a0+gitb7d540b2.rocm10.3.0a20261103', '0.30.0a0+gitfd6b54d0.devrocm10.3.0.dev0.226d0d08487cb9945f88f2cb6c14444bc2e20008']"
+        ],
+        "reason": "artifact classification 'NEW_ARTIFACT_PROVENANCE_PENDING' is not fix-confirmed",
+        "note": "an emitted plan is an INSTALLATION candidate only; it is never a training PASS (R22A.5B physical gates decide)"
+      },
+      "selected_rows": [
+        {
+          "package": "torch",
+          "version": "2.16.0a0+gitf0bf9ece.rocm10.3.0a20261111",
+          "python_tag": "cp312",
+          "wheel_filename": "torch-2.16.0a0%2Bgitf0bf9ece.rocm10.3.0a20261111-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://dev.repo.amd.com/rocm/whl-next/torch/torch-2.16.0a0%2Bgitf0bf9ece.rocm10.3.0a20261111-cp312-cp312-win_amd64.whl",
+          "classification": "NO_NEW_ARTIFACT"
+        },
+        {
+          "package": "torchvision",
+          "version": "0.30.0a0+gitfd6b54d0.devrocm10.3.0.dev0.226d0d08487cb9945f88f2cb6c14444bc2e20008",
+          "python_tag": "py3",
+          "wheel_filename": "torchvision-0.30.0a0%2Bgitfd6b54d0.devrocm10.3.0.dev0.226d0d08487cb9945f88f2cb6c14444bc2e20008-py3-none-win_amd64.whl",
+          "wheel_url": "https://dev.repo.amd.com/rocm/whl-next/torchvision/torchvision-0.30.0a0%2Bgitfd6b54d0.devrocm10.3.0.dev0.226d0d08487cb9945f88f2cb6c14444bc2e20008-py3-none-win_amd64.whl",
+          "classification": "NO_NEW_ARTIFACT"
+        },
+        {
+          "package": "rocm-sdk-core",
+          "version": "10.3.0a20261027",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_core-10.3.0a20261027-py3-none-win_amd64.whl",
+          "wheel_url": "https://dev.repo.amd.com/rocm/whl-next/rocm-sdk-core/rocm_sdk_core-10.3.0a20261027-py3-none-win_amd64.whl",
+          "classification": "NEW_ARTIFACT_PROVENANCE_PENDING"
+        },
+        {
+          "package": "rocm-sdk-libraries",
+          "version": "10.3.0a20261027",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_libraries-10.3.0a20261027-py3-none-win_amd64.whl",
+          "wheel_url": "https://dev.repo.amd.com/rocm/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.3.0a20261027-py3-none-win_amd64.whl",
+          "classification": "NEW_ARTIFACT_PROVENANCE_PENDING"
+        },
+        {
+          "package": "rocm-sdk-device-gfx1100",
+          "version": "10.3.0a20261027",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_device_gfx1100-10.3.0a20261027-py3-none-win_amd64.whl",
+          "wheel_url": "https://dev.repo.amd.com/rocm/whl-next/rocm-sdk-device-gfx1100/rocm_sdk_device_gfx1100-10.3.0a20261027-py3-none-win_amd64.whl",
+          "classification": "NEW_ARTIFACT_PROVENANCE_PENDING"
+        }
+      ],
+      "commands": []
+    },
+    "multi-arch": {
+      "channel": "multi-arch",
+      "channel_index": "https://repo.amd.com/rocm/whl-multi-arch/",
+      "required_packages": [
+        "torch",
+        "torchvision",
+        "rocm-sdk-core",
+        "rocm-sdk-libraries",
+        "amd-torch-device-gfx1100",
+        "amd-torchvision-device-gfx1100",
+        "amd-torch-device-gfx110x"
+      ],
+      "missing_packages": [
+        "amd-torch-device-gfx110x"
+      ],
+      "unreachable_packages": [],
+      "abi_blocked": [],
+      "set_complete": false,
+      "rocm_families": [
+        "7"
+      ],
+      "family_coherent": true,
+      "torch_is_amd_hip": true,
+      "dep_coherent": true,
+      "sdk_libraries_classification": "OFFICIAL_PRE_FIX",
+      "fix_confirmed": false,
+      "plan": {
+        "tier": "UNQUALIFIED",
+        "ceiling": "OFFICIAL_STABLE",
+        "emit_commands": false,
+        "blockers": [
+          "candidate set incomplete (missing device wheels for target gfx / torchvision / core set)"
+        ],
+        "reason": "artifact classification 'OFFICIAL_PRE_FIX' is not fix-confirmed",
+        "note": "an emitted plan is an INSTALLATION candidate only; it is never a training PASS (R22A.5B physical gates decide)"
+      },
+      "selected_rows": [
+        {
+          "package": "torch",
+          "version": "2.12.0+rocm7.14.1",
+          "python_tag": "cp312",
+          "wheel_filename": "torch-2.12.0%2Brocm7.14.1-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://repo.amd.com/rocm/whl-multi-arch/torch/torch-2.12.0%2Brocm7.14.1-cp312-cp312-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "torchvision",
+          "version": "0.27.0+rocm7.14.1",
+          "python_tag": "cp312",
+          "wheel_filename": "torchvision-0.27.0%2Brocm7.14.1-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://repo.amd.com/rocm/whl-multi-arch/torchvision/torchvision-0.27.0%2Brocm7.14.1-cp312-cp312-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "rocm-sdk-core",
+          "version": "7.14.1",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_core-7.14.1-py3-none-win_amd64.whl",
+          "wheel_url": "https://repo.amd.com/rocm/whl-multi-arch/rocm-sdk-core/rocm_sdk_core-7.14.1-py3-none-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "rocm-sdk-libraries",
+          "version": "7.14.1",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_libraries-7.14.1-py3-none-win_amd64.whl",
+          "wheel_url": "https://repo.amd.com/rocm/whl-multi-arch/rocm-sdk-libraries/rocm_sdk_libraries-7.14.1-py3-none-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "amd-torch-device-gfx1100",
+          "version": "2.12.0+rocm7.14.1",
+          "python_tag": "cp312",
+          "wheel_filename": "amd_torch_device_gfx1100-2.12.0%2Brocm7.14.1-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://repo.amd.com/rocm/whl-multi-arch/amd-torch-device-gfx1100/amd_torch_device_gfx1100-2.12.0%2Brocm7.14.1-cp312-cp312-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "amd-torchvision-device-gfx1100",
+          "version": "0.27.0+rocm7.14.1",
+          "python_tag": "cp312",
+          "wheel_filename": "amd_torchvision_device_gfx1100-0.27.0%2Brocm7.14.1-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://repo.amd.com/rocm/whl-multi-arch/amd-torchvision-device-gfx1100/amd_torchvision_device_gfx1100-0.27.0%2Brocm7.14.1-cp312-cp312-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        }
+      ],
+      "commands": []
+    },
+    "nightly": {
+      "channel": "nightly",
+      "channel_index": "https://nightly.repo.amd.com/rocm/whl-next/",
+      "required_packages": [
+        "torch",
+        "torchvision",
+        "rocm-sdk-core",
+        "rocm-sdk-libraries",
+        "rocm-sdk-device-gfx1100"
+      ],
+      "missing_packages": [],
+      "unreachable_packages": [],
+      "abi_blocked": [],
+      "set_complete": true,
+      "rocm_families": [
+        "10"
+      ],
+      "family_coherent": true,
+      "torch_is_amd_hip": true,
+      "dep_coherent": true,
+      "sdk_libraries_classification": "PRE_RELEASE_CANDIDATE",
+      "fix_confirmed": true,
+      "plan": {
+        "tier": "OFFICIAL_DEV",
+        "ceiling": "OFFICIAL_DEV",
+        "emit_commands": true,
+        "blockers": [],
+        "reason": "development/nightly channel artifact with confirmed lineage",
+        "note": "an emitted plan is an INSTALLATION candidate only; it is never a training PASS (R22A.5B physical gates decide)"
+      },
+      "selected_rows": [
+        {
+          "package": "torch",
+          "version": "2.16.0a0+rocm10.3.0a20261116",
+          "python_tag": "cp312",
+          "wheel_filename": "torch-2.16.0a0%2Brocm10.3.0a20261116-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://nightly.repo.amd.com/rocm/whl-next/torch/torch-2.16.0a0%2Brocm10.3.0a20261116-cp312-cp312-win_amd64.whl",
+          "classification": "NO_NEW_ARTIFACT"
+        },
+        {
+          "package": "torchvision",
+          "version": "0.30.0a0+rocm10.3.0a20261116",
+          "python_tag": "py3",
+          "wheel_filename": "torchvision-0.30.0a0%2Brocm10.3.0a20261116-py3-none-win_amd64.whl",
+          "wheel_url": "https://nightly.repo.amd.com/rocm/whl-next/torchvision/torchvision-0.30.0a0%2Brocm10.3.0a20261116-py3-none-win_amd64.whl",
+          "classification": "NO_NEW_ARTIFACT"
+        },
+        {
+          "package": "rocm-sdk-core",
+          "version": "10.3.0a20261116",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_core-10.3.0a20261116-py3-none-win_amd64.whl",
+          "wheel_url": "https://nightly.repo.amd.com/rocm/whl-next/rocm-sdk-core/rocm_sdk_core-10.3.0a20261116-py3-none-win_amd64.whl",
+          "classification": "NEW_ARTIFACT_PROVENANCE_PENDING"
+        },
+        {
+          "package": "rocm-sdk-libraries",
+          "version": "10.3.0a20261116",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_libraries-10.3.0a20261116-py3-none-win_amd64.whl",
+          "wheel_url": "https://nightly.repo.amd.com/rocm/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.3.0a20261116-py3-none-win_amd64.whl",
+          "classification": "PRE_RELEASE_CANDIDATE"
+        },
+        {
+          "package": "rocm-sdk-device-gfx1100",
+          "version": "10.3.0a20261116",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_device_gfx1100-10.3.0a20261116-py3-none-win_amd64.whl",
+          "wheel_url": "https://nightly.repo.amd.com/rocm/whl-next/rocm-sdk-device-gfx1100/rocm_sdk_device_gfx1100-10.3.0a20261116-py3-none-win_amd64.whl",
+          "classification": "NEW_ARTIFACT_PROVENANCE_PENDING"
+        }
+      ],
+      "commands": [
+        "python -m pip install --index-url https://nightly.repo.amd.com/rocm/whl-next/ \"torch==2.16.0a0+rocm10.3.0a20261116\" \"torchvision==0.30.0a0+rocm10.3.0a20261116\" \"rocm-sdk-core==10.3.0a20261116\" \"rocm-sdk-libraries==10.3.0a20261116\" \"rocm-sdk-device-gfx1100==10.3.0a20261116\"",
+        "python -m pip install ultralytics  # released PyPI package",
+        "# then: python scripts/r22a5a/g9_preflight.py --channel nightly  (provenance + G9 preflight before ANY training)"
+      ]
+    },
+    "rc": {
+      "channel": "rc",
+      "channel_index": "https://rc.repo.amd.com/rocm/whl-next/",
+      "required_packages": [
+        "torch",
+        "torchvision",
+        "rocm-sdk-core",
+        "rocm-sdk-libraries",
+        "rocm-sdk-device-gfx1100"
+      ],
+      "missing_packages": [],
+      "unreachable_packages": [],
+      "abi_blocked": [],
+      "set_complete": true,
+      "rocm_families": [
+        "10"
+      ],
+      "family_coherent": true,
+      "torch_is_amd_hip": true,
+      "dep_coherent": true,
+      "sdk_libraries_classification": "OFFICIAL_PRE_FIX",
+      "fix_confirmed": false,
+      "plan": {
+        "tier": "UNQUALIFIED",
+        "ceiling": "OFFICIAL_RC",
+        "emit_commands": false,
+        "blockers": [],
+        "reason": "artifact classification 'OFFICIAL_PRE_FIX' is not fix-confirmed",
+        "note": "an emitted plan is an INSTALLATION candidate only; it is never a training PASS (R22A.5B physical gates decide)"
+      },
+      "selected_rows": [
+        {
+          "package": "torch",
+          "version": "2.15.0+rocm10.2.0rc2",
+          "python_tag": "cp312",
+          "wheel_filename": "torch-2.15.0%2Brocm10.2.0rc2-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://rc.repo.amd.com/rocm/whl-next/torch/torch-2.15.0%2Brocm10.2.0rc2-cp312-cp312-win_amd64.whl",
+          "classification": "NO_NEW_ARTIFACT"
+        },
+        {
+          "package": "torchvision",
+          "version": "0.29.2+rocm10.2.0rc2",
+          "python_tag": "py3",
+          "wheel_filename": "torchvision-0.29.2%2Brocm10.2.0rc2-py3-none-win_amd64.whl",
+          "wheel_url": "https://rc.repo.amd.com/rocm/whl-next/torchvision/torchvision-0.29.2%2Brocm10.2.0rc2-py3-none-win_amd64.whl",
+          "classification": "NO_NEW_ARTIFACT"
+        },
+        {
+          "package": "rocm-sdk-core",
+          "version": "10.2.0rc2",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_core-10.2.0rc2-py3-none-win_amd64.whl",
+          "wheel_url": "https://rc.repo.amd.com/rocm/whl-next/rocm-sdk-core/rocm_sdk_core-10.2.0rc2-py3-none-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "rocm-sdk-libraries",
+          "version": "10.2.0rc2",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_libraries-10.2.0rc2-py3-none-win_amd64.whl",
+          "wheel_url": "https://rc.repo.amd.com/rocm/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.2.0rc2-py3-none-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "rocm-sdk-device-gfx1100",
+          "version": "10.2.0rc2",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_device_gfx1100-10.2.0rc2-py3-none-win_amd64.whl",
+          "wheel_url": "https://rc.repo.amd.com/rocm/whl-next/rocm-sdk-device-gfx1100/rocm_sdk_device_gfx1100-10.2.0rc2-py3-none-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        }
+      ],
+      "commands": []
+    },
+    "stable": {
+      "channel": "stable",
+      "channel_index": "https://stable.repo.amd.com/rocm/whl-next/",
+      "required_packages": [
+        "torch",
+        "torchvision",
+        "rocm-sdk-core",
+        "rocm-sdk-libraries",
+        "rocm-sdk-device-gfx1100"
+      ],
+      "missing_packages": [],
+      "unreachable_packages": [],
+      "abi_blocked": [],
+      "set_complete": true,
+      "rocm_families": [
+        "10"
+      ],
+      "family_coherent": true,
+      "torch_is_amd_hip": true,
+      "dep_coherent": true,
+      "sdk_libraries_classification": "OFFICIAL_PRE_FIX",
+      "fix_confirmed": false,
+      "plan": {
+        "tier": "UNQUALIFIED",
+        "ceiling": "OFFICIAL_STABLE",
+        "emit_commands": false,
+        "blockers": [],
+        "reason": "artifact classification 'OFFICIAL_PRE_FIX' is not fix-confirmed",
+        "note": "an emitted plan is an INSTALLATION candidate only; it is never a training PASS (R22A.5B physical gates decide)"
+      },
+      "selected_rows": [
+        {
+          "package": "torch",
+          "version": "2.14.0+rocm10.1.0",
+          "python_tag": "cp312",
+          "wheel_filename": "torch-2.14.0%2Brocm10.1.0-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://stable.repo.amd.com/rocm/whl-next/torch/torch-2.14.0%2Brocm10.1.0-cp312-cp312-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "torchvision",
+          "version": "0.29.0a0+rocm10.1.0",
+          "python_tag": "cp312",
+          "wheel_filename": "torchvision-0.29.0a0%2Brocm10.1.0-cp312-cp312-win_amd64.whl",
+          "wheel_url": "https://stable.repo.amd.com/rocm/whl-next/torchvision/torchvision-0.29.0a0%2Brocm10.1.0-cp312-cp312-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "rocm-sdk-core",
+          "version": "10.1.0",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_core-10.1.0-py3-none-win_amd64.whl",
+          "wheel_url": "https://stable.repo.amd.com/rocm/whl-next/rocm-sdk-core/rocm_sdk_core-10.1.0-py3-none-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "rocm-sdk-libraries",
+          "version": "10.1.0",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_libraries-10.1.0-py3-none-win_amd64.whl",
+          "wheel_url": "https://stable.repo.amd.com/rocm/whl-next/rocm-sdk-libraries/rocm_sdk_libraries-10.1.0-py3-none-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        },
+        {
+          "package": "rocm-sdk-device-gfx1100",
+          "version": "10.1.0",
+          "python_tag": "py3",
+          "wheel_filename": "rocm_sdk_device_gfx1100-10.1.0-py3-none-win_amd64.whl",
+          "wheel_url": "https://stable.repo.amd.com/rocm/whl-next/rocm-sdk-device-gfx1100/rocm_sdk_device_gfx1100-10.1.0-py3-none-win_amd64.whl",
+          "classification": "OFFICIAL_PRE_FIX"
+        }
+      ],
+      "commands": []
+    }
+  },
+  "overall": "PRE_RELEASE_ONLY_CANDIDATES_OFFICIAL_STABLE_BLOCKED_RELEASE",
+  "semantics": {
+    "OFFICIAL_STABLE": "stable/GA channel, fix-confirmed coherent set — install candidate ONLY; training PASS requires R22A.5B physical gates",
+    "OFFICIAL_RC": "RC channel candidate — pre-release, never labeled Stable",
+    "OFFICIAL_DEV": "dev/nightly candidate — development channel",
+    "UNQUALIFIED": "no installation commands may be emitted",
+    "BLOCKED_RELEASE": "no qualified official Windows artifact (rocm-libraries#15862)"
+  },
+  "note": "golden-path/requirements-lock.txt is historical (MODE B, 2026-11-15) and is intentionally NOT modified by this tool"
+}

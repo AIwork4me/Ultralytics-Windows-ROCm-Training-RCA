@@ -1,0 +1,73 @@
+{
+  "leg": "amp_probe",
+  "env": {
+    "utc": "2026-11-15T03:20:04.622454+00:00",
+    "python": "3.13.16",
+    "torch": "2.12.0+rocm7.14.1",
+    "torch_hip": "7.14.60850",
+    "ultralytics": "8.4.182",
+    "device_name": "AMD Radeon(TM) 8060S Graphics",
+    "device_count_torch": 1,
+    "device_count_checks_fn": 0,
+    "miopen_python_module": false
+  },
+  "utc": "2026-11-15T03:20:04.624800+00:00",
+  "check_amp_verdict": true,
+  "conv_fp32_dtype": "torch.float32",
+  "conv_autocast_dtype": "torch.float16",
+  "autocast_engaged": true,
+  "gradscaler_steps": [
+    {
+      "step": 0,
+      "scale_before": 65536.0,
+      "scale_after": 65536.0,
+      "params_changed": true
+    },
+    {
+      "step": 1,
+      "scale_before": 65536.0,
+      "scale_after": 65536.0,
+      "params_changed": true
+    },
+    {
+      "step": 2,
+      "scale_before": 65536.0,
+      "scale_after": 65536.0,
+      "params_changed": true
+    },
+    {
+      "step": 3,
+      "scale_before": 65536.0,
+      "scale_after": 65536.0,
+      "params_changed": true
+    },
+    {
+      "step": 4,
+      "scale_before": 65536.0,
+      "scale_after": 65536.0,
+      "params_changed": true
+    },
+    {
+      "step": 5,
+      "scale_before": 65536.0,
+      "scale_after": 65536.0,
+      "params_changed": true
+    },
+    {
+      "step": 6,
+      "scale_before": 65536.0,
+      "scale_after": 65536.0,
+      "params_changed": true
+    },
+    {
+      "step": 7,
+      "scale_before": 65536.0,
+      "scale_after": 65536.0,
+      "params_changed": true
+    }
+  ],
+  "gradscaler_updates_applied": 8,
+  "gradscaler_scale_annealed": false,
+  "yolo_param_abs_sum_before": 93011.77755093575,
+  "yolo_params_count": 366
+}

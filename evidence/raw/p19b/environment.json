@@ -1,0 +1,64 @@
+{
+  "captured_at": "2026-11-15T13:16:15.436222+00:00",
+  "os_platform": "Windows-11-10.0.26200-SP0",
+  "os_version": "10.0.26200",
+  "os_build_full": "26200.9974",
+  "os_display_version": "25H2",
+  "python_exe": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe",
+  "python_version": "3.13.16 | packaged by Anaconda, Inc. | (main, Oct  1 2026, 20:20:25) [MSC v.1942 64 bit (AMD64)]",
+  "torch_version": "2.12.0+rocm7.14.1",
+  "torch_hip": "7.14.60850",
+  "torch_cuda": null,
+  "torch_git_version": "098172edc887399a593f0c74ae5c40b1fe043801",
+  "cuda_available": true,
+  "cuda_device_count_raw": 1,
+  "device0_name": "AMD Radeon(TM) 8060S Graphics",
+  "device0_gcnArchName": "gfx1151",
+  "device0_total_mem_gb": 78.19,
+  "device0_uuid": "30303030-3031-3936-3030-303030303030",
+  "cuda_alloc_probe": {
+    "ok": true,
+    "sum_is_finite": true
+  },
+  "torch_bundled_gpu_dlls": {
+    "aotriton.images": {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\torch\\lib\\aotriton.images",
+      "error": "[Errno 13] Permission denied: 'C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\pm13437_merged\\\\Lib\\\\site-packages\\\\torch\\\\lib\\\\aotriton.images'"
+    },
+    "aotriton_v2.dll": {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\torch\\lib\\aotriton_v2.dll",
+      "sha256": "f093102dd7ddd71dfcb510eee03631a8ff10f55576062d6b1abd5064f372a3ba",
+      "size": 15560192
+    },
+    "aotriton_v2.lib": {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\torch\\lib\\aotriton_v2.lib",
+      "sha256": "12abfef70976a9f5395d1f30f1d1b19e8f60181349dad79a5b3099f7c8cfb3b3",
+      "size": 62180
+    }
+  },
+  "system_miopen_driverstore": [],
+  "miopen_env": {},
+  "miopen_cache_dirs": {
+    "C:\\Users\\rocm\\.miopen": {
+      "n_entries": 2,
+      "sample": [
+        "cache",
+        "db"
+      ]
+    }
+  },
+  "ultralytics_probe": {
+    "stdout": "C:\\P19B\\pr27203\\ultralytics\\__init__.py\n8.4.213\ncuda_device_count: 1\ncuda_is_available: True",
+    "stderr_tail": "",
+    "rc": 0
+  },
+  "path_head": [
+    "C:\\Users\\rocm\\bin",
+    "C:\\Program Files\\Git\\ucrt64\\bin",
+    "C:\\Program Files\\Git\\usr\\local\\bin",
+    "C:\\Program Files\\Git\\usr\\bin",
+    "C:\\Program Files\\Git\\usr\\bin",
+    "C:\\Program Files\\Git\\ucrt64\\bin"
+  ],
+  "hostname": "DESKTOP-IF0424E"
+}

@@ -1,0 +1,4 @@
+INFER_OK boxes_batches=1
+
+--- stderr ---
+MIOpen: Error [EvaluateInvokers] DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:545: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0

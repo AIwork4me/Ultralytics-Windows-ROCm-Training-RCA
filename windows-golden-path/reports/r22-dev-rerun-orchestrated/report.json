@@ -1,0 +1,110 @@
+{
+  "run_id": "GP-FULL-20261116-080547",
+  "generated_utc": "2026-11-16T00:25:47.045719+00:00",
+  "sequence": "candidate",
+  "channel": "dev",
+  "contract": "C:\\Users\\Rocm\\Desktop\\YOLO\\rca-r21\\windows-golden-path\\acceptance-contract.json",
+  "gates": {
+    "gpA_provenance.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "failure_classification": null,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "gpB_torch_gates.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "failure_classification": null,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "gpC_nostl.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "failure_classification": null,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "gpD_train_cli.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "failure_classification": null,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "gpE_optimizer.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "failure_classification": null,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "gpF_resume.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "failure_classification": null,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "gpH_stability.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "failure_classification": null,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    }
+  },
+  "violations": [],
+  "gate_results": {
+    "G0_provenance": {
+      "status": "PASS",
+      "satisfied_by": [
+        "gpA_provenance.json"
+      ]
+    },
+    "G1_miopen_nostl": {
+      "status": "PASS",
+      "satisfied_by": [
+        "gpC_nostl.json"
+      ]
+    },
+    "G2_torch_torchvision_gpu": {
+      "status": "PASS",
+      "satisfied_by": [
+        "gpB_torch_gates.json"
+      ]
+    },
+    "G3_ultralytics_cli": {
+      "status": "PASS",
+      "satisfied_by": [
+        "gpD_train_cli.json"
+      ]
+    },
+    "G4_optimizer_update": {
+      "status": "PASS",
+      "satisfied_by": [
+        "gpE_optimizer.json"
+      ]
+    },
+    "G5_checkpoint_resume": {
+      "status": "PASS",
+      "satisfied_by": [
+        "gpF_resume.json"
+      ]
+    },
+    "G8_reliability": {
+      "status": "PASS",
+      "satisfied_by": [
+        "gpH_stability.json"
+      ]
+    }
+  },
+  "blockers": [],
+  "verdict": "DEV_CANDIDATE_PASS",
+  "full_cross_arch_release_pass": false,
+  "final_golden_path_pass": false,
+  "any_physical_gpu_pass": true,
+  "summary_class": "PHYSICAL_GPU_PASS_EVIDENCED",
+  "note": "synthetic fixtures can never produce PHYSICAL_GPU_PASS; physical execution is proven by machine identity + subprocess result + artifact linkage, never inferred from absent markers"
+}

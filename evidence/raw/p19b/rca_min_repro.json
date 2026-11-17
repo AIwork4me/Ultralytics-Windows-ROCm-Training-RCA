@@ -1,0 +1,39 @@
+{
+  "steps": [
+    {
+      "name": "a_int64_add",
+      "result": "int64 add ok, x=[1, 1, 1, 1]",
+      "status": "OK"
+    },
+    {
+      "name": "a_int64_add_repeat",
+      "result": "int64 add x20 ok, x=[20, 20, 20, 20]",
+      "status": "OK"
+    },
+    {
+      "name": "b_bn_train_forward",
+      "result": "BN train fwd batch=16 ok, out=(16, 8, 62, 62), nbt=1",
+      "status": "OK"
+    },
+    {
+      "name": "b_bn_train_backward",
+      "result": "BN train fwd+bwd batch=16 ok",
+      "status": "OK"
+    },
+    {
+      "name": "c_bn_autocast",
+      "result": "BN train fwd+bwd under autocast ok",
+      "status": "OK"
+    },
+    {
+      "name": "e_gemm_sanity",
+      "result": "gemm ok sum=-5884.70",
+      "status": "OK"
+    },
+    {
+      "name": "d_yolo26n_train_mode_fwd",
+      "result": "yolo26n train-mode fwd batch=16 imgsz=640 under autocast ok",
+      "status": "OK"
+    }
+  ]
+}

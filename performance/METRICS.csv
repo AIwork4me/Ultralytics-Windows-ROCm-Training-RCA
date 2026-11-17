@@ -1,0 +1,15 @@
+gate,metric,mode,value,unit,notes
+G4.1,epochs_completed,FP32,31,count,coco128 30 planned 0-indexed
+G4.1,wall_hours,FP32,0.094,h,third environment (audit-corrected 2026-11-14: miniconda base env pre-fix official 7.14.0 wheel 74b4ee03 - NOT ENV B as previously labeled)
+G4.1,mean_epoch_time,FP32,10.74,s,cold epoch0=122.8s; steady 6.55-7.09s (mean 7.00; 12.3s spike at epoch 20)
+G4.1,peak_gpu_mem,FP32,4.69,GB,flat across run
+G4.1,fitness_first,FP32,0.50501,,epoch 0
+G4.1,fitness_last,FP32,0.60235,,epoch 30; all finite
+G4.1,exceptions,FP32,0,count,
+G4.4,mean_epoch_time,FP32,1.69,s,third environment (audit-corrected: miniconda base env torch 7.14.0 pre-fix wheel - NOT ENV A as previously labeled) coco8 10ep
+G4.4,mean_epoch_time,AMP,2.71,s,AMP effective (precheck passed)
+G4.4,amp_vs_fp32_epoch_ratio,,1.604,ratio,AMP slower on this tiny workload
+G4.4,peak_vram,FP32,1.28,GB,
+G4.4,peak_vram,AMP,0.86,GB,-33% vs FP32
+G4.4,final_fitness,FP32,0.67251,,trajectory nondeterminism not a quality ranking
+G4.4,final_fitness,AMP,0.68886,,same caveat

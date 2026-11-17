@@ -1,0 +1,72 @@
+{
+  "run_id": "R22A5N1-G1-CTRL-V2",
+  "mission": "R22A.5N.1",
+  "timestamp": "2026-11-17T05:02:11.519867+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.13.16",
+  "torch": "2.12.0+rocm7.14.1",
+  "torchvision": "0.27.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "runtime_class": "OFFICIAL_PRE_FIX",
+  "command": "python verify_miopen_nostl.py --leg official --expect FAIL",
+  "exit_code": 1,
+  "duration_s": 4.9,
+  "pass_fail_skip": "EXPECTED_FAIL",
+  "failure_classification": "MIOPEN_HIPRTC_COMPILATION",
+  "raw_log_path": "C:\\r22a5n1\\scratch_g1_ctrl3\\nostl_official_1794891727\\leg.log",
+  "classification": "OFFICIAL_PRE_FIX_EXPECTED_FAIL",
+  "leg_detail": {
+    "leg": "official",
+    "exit_code": 1,
+    "duration_s": 3.7,
+    "pid": 21840,
+    "child_miopen": {
+      "loaded": true,
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "bytes": 492380672,
+      "pr13437_marker_miopen_initializer_list": 0
+    },
+    "child_miopen_pre_op": {
+      "loaded": true,
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "bytes": 492380672,
+      "pr13437_marker_miopen_initializer_list": 0
+    },
+    "child_miopen_at_failure": {
+      "loaded": true,
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "bytes": 492380672,
+      "pr13437_marker_miopen_initializer_list": 0
+    },
+    "child_miopen_post_op": null,
+    "stdout_tail": "BN_NOSTL_CHILD_MIOPEN_PRE {\"loaded\": true, \"path\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\pm13437_official\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"sha256\": \"e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc\", \"bytes\": 492380672, \"pr13437_marker_miopen_initializer_list\": 0}\nBN_NOSTL_CHILD_MIOPEN_ATFAIL {\"loaded\": true, \"path\": \"C:\\\\Users\\\\rocm\\\\miniconda3\\\\envs\\\\pm13437_official\\\\Lib\\\\site-packages\\\\_rocm_sdk_libraries\\\\bin\\\\MIOpen.dll\", \"sha256\": \"e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc\", \"bytes\": 492380672, \"pr13437_marker_miopen_initializer_list\": 0}\n",
+    "stderr_tail": "MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)\nMIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp\nMIOpen(HIP): Warning [BuildHip] In file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-21840-6-448c7c\\input\\MIOpenBatchNormFwdTrainSpatial.cpp:8:\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-21840-6-448c7c\\include\\batchnorm_functions.hpp:30:\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-21840-6-448c7c\\include\\configuration.hpp:34:\nIn file included from C:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-21840-6-448c7c\\include\\vector_types.hpp:8:\nC:\\Users\\rocm\\AppData\\Local\\Temp\\comgr-21840-6-448c7c\\include\\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found\n  151 | #include <type_traits>\n      |          ^~~~~~~~~~~~~\n1 error generated when compiling for gfx1151.\nMIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp\nTraceback (most recent call last):\n  File \"C:\\r22a5n1\\scratch_g1_ctrl3\\nostl_official_1794891727\\bn_repro.py\", line 35, in <module>\n    y = model(x)\n  File \"C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1778, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\torch\\nn\\modules\\module.py\", line 1789, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\torch\\nn\\modules\\batchnorm.py\", line 210, in forward\n    return F.batch_norm(\n           ~~~~~~~~~~~~^\n        input,\n        ^^^^^^\n    ...<11 lines>...\n        self.eps,\n        ^^^^^^^^^\n    )\n    ^\n  File \"C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\torch\\nn\\functional.py\", line 2850, in batch_norm\n    return torch.batch_norm(\n           ~~~~~~~~~~~~~~~~^\n        input,\n        ^^^^^^\n    ...<7 lines>...\n        torch.backends.cudnn.enabled,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\nRuntimeError: miopenStatusUnknownError\n",
+    "log_path": "C:\\r22a5n1\\scratch_g1_ctrl3\\nostl_official_1794891727\\leg.log",
+    "scratch": "C:\\r22a5n1\\scratch_g1_ctrl3\\nostl_official_1794891727"
+  },
+  "ambient_hiprtc_shim": null,
+  "reproducer_shape": [
+    20,
+    100,
+    35,
+    45
+  ],
+  "reproducer_op": "nn.BatchNorm2d(100) forward+backward",
+  "expectation": "FAIL",
+  "miopen_identity_in_parent": {
+    "loaded": true,
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+    "bytes": 492380672,
+    "embedded_version_strings": [
+      "3.5.2.cd957402"
+    ],
+    "pr13437_marker_miopen_initializer_list": 0
+  }
+}

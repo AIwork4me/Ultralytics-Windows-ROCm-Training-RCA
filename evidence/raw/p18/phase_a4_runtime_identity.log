@@ -1,0 +1,12 @@
+{
+ "loaded_dlls": [
+  "c:\\p18\\venv\\lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll",
+  "c:\\p18\\venv\\lib\\site-packages\\_rocm_sdk_core\\bin\\hiprtc0714.dll",
+  "c:\\p18\\venv\\lib\\site-packages\\_rocm_sdk_libraries\\bin\\miopen.dll",
+  "c:\\p18\\venv\\lib\\site-packages\\_rocm_sdk_libraries\\bin\\rocblas.dll",
+  "c:\\p18\\venv\\lib\\site-packages\\torch\\lib\\c10_hip.dll",
+  "c:\\p18\\venv\\lib\\site-packages\\torch\\lib\\torch_hip.dll"
+ ],
+ "miopen_dll": "c:\\p18\\venv\\lib\\site-packages\\_rocm_sdk_libraries\\bin\\miopen.dll",
+ "miopen_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc"
+}

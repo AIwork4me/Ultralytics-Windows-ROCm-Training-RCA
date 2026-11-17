@@ -1,0 +1,38 @@
+{
+  "mission": "P19",
+  "phase": "D",
+  "same_host_stack": "identical Windows/driver/torch/HIP/model/dataset/commands; only the ultralytics checkout differs",
+  "leg_main": {
+    "leg": "main",
+    "ultralytics_file": "C:\\P19\\baseline-main\\ultralytics\\__init__.py",
+    "git_head": "3e59149d4e047019e759dc8feec09208fa09163d",
+    "torch_device_count": 1,
+    "torch_is_available": true,
+    "cuda_device_count()": 0,
+    "cuda_is_available()": false,
+    "nvml_available": false,
+    "select_idle_gpu(count=1)": [],
+    "parse_device('-1')": "",
+    "test_cuda_DEVICES": [],
+    "test_checks_would_pass": false
+  },
+  "leg_pr": {
+    "leg": "pr",
+    "ultralytics_file": "C:\\P19\\pr27203\\ultralytics\\__init__.py",
+    "git_head": "d8fe65c8c1052cb4305f3cec1be9cb909538dcf1",
+    "torch_device_count": 1,
+    "torch_is_available": true,
+    "cuda_device_count()": 1,
+    "cuda_is_available()": true,
+    "nvml_available": false,
+    "select_idle_gpu(count=1)": [
+      0
+    ],
+    "parse_device('-1')": "0",
+    "test_cuda_DEVICES": [
+      0
+    ],
+    "test_checks_would_pass": true
+  },
+  "conclusion": "main cannot see the AMD GPU through nvidia-smi-only counting (cuda_device_count=0, select_idle_gpu=[], parse_device('-1')='' -> CPU); PR d8fe65c8 detects and selects the real gfx1100 (count=1, [0], '0'), un-skipping the CUDA test suite"
+}

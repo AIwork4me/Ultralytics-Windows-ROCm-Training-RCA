@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Golden Path acceptance report",
+  "type": "object",
+  "required": ["run_id", "mode", "environment", "checks"],
+  "properties": {
+    "run_id": {"type": "string", "description": "unique id for one acceptance campaign"},
+    "generated_utc": {"type": ["string", "null"], "format": "date-time"},
+    "mode": {"enum": ["MODE_B_first_time_end_user", "MODE_A_upstream_development"], "description": "MODE A must never be passed off as MODE B acceptance"},
+    "environment": {
+      "type": "object",
+      "required": ["hardware", "os"],
+      "properties": {
+        "hardware": {"type": "string"},
+        "os": {"type": "string"},
+        "python": {"type": ["string", "null"]},
+        "torch": {"type": ["string", "null"], "description": "must be a +rocm wheel for MODE B"},
+        "hip": {"type": ["string", "null"]},
+        "ultralytics": {"type": ["string", "null"]},
+        "miopen_dll_sha256": {"type": ["string", "null"], "description": "SHA256 of the MIOpen.dll actually loaded in-process"},
+        "miopen_version_strings": {"type": ["array", "null"], "items": {"type": "string"}},
+        "msvc_build_tools_present": {"type": ["boolean", "null"], "description": "relevant while BLOCKED_RELEASE stands"},
+        "identity_json": {"type": ["string", "null"]}
+      }
+    },
+    "install": {
+      "type": "object",
+      "required": ["channel", "manual_dll_substitution", "editable_fork"],
+      "properties": {
+        "channel": {"enum": ["official", "other"]},
+        "torch_index": {"type": ["string", "null"]},
+        "ultralytics_source": {"type": ["string", "null"]},
+        "manual_dll_substitution": {"type": "boolean", "description": "must be false for MODE B"},
+        "editable_fork": {"type": "boolean", "description": "must be false for MODE B"}
+      }
+    },
+    "checks": {
+      "type": "object",
+      "properties": {
+        "verify_environment": {"$ref": "#/definitions/check"},
+        "smoke_coco8": {"$ref": "#/definitions/check"},
+        "representative_coco128": {"$ref": "#/definitions/check"},
+        "validate_best": {"$ref": "#/definitions/check"},
+        "checkpoint_verification": {"$ref": "#/definitions/check"},
+        "interrupt_resume": {
+          "type": "object",
+          "properties": {
+            "status": {"$ref": "#/definitions/status"},
+            "interrupt_mechanism": {"type": ["string", "null"], "description": "exact kill method used"},
+            "resumed_in_new_process": {"type": ["boolean", "null"]},
+            "epoch_continuity_verified": {"type": ["boolean", "null"]},
+            "evidence": {"type": ["string", "null"]}
+          }
+        },
+        "error_experience": {
+          "type": "object",
+          "description": "each entry: PASS (actionable error, no false PASS) | NOT_RUN | BLOCKED_*, plus evidence pointer",
+          "additionalProperties": true
+        }
+      }
+    },
+    "known_blockers": {"type": "array", "items": {"type": "string"}}
+  },
+  "definitions": {
+    "status": {"enum": ["PASS", "FAIL", "BLOCKED_RELEASE", "BLOCKED_HARDWARE", "BLOCKED_RUNNER", "BLOCKED_INDEPENDENT_USER_TEST", "INCONCLUSIVE", "NOT_RUN"]},
+    "check": {
+      "type": "object",
+      "properties": {
+        "status": {"$ref": "#/definitions/status"},
+        "evidence": {"type": ["string", "null"], "description": "exact log/JSON path or SHA256"},
+        "run_dir": {"type": ["string", "null"]},
+        "amp_verdict": {"type": ["string", "null"], "description": "AMP_PASS or AMP_DISABLED — never report AMP_DISABLED as AMP_PASS"},
+        "epochs": {"type": ["integer", "null"]},
+        "seed": {"type": ["integer", "null"]},
+        "map50_95_first": {"type": ["number", "null"]},
+        "map50_95_best": {"type": ["number", "null"]},
+        "weight_delta_vs_pretrained": {"type": ["number", "null"]},
+        "best_sha256": {"type": ["string", "null"]},
+        "map50_95": {"type": ["number", "null"]}
+      }
+    }
+  }
+}

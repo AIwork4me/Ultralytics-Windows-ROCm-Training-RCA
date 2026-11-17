@@ -1,0 +1,30 @@
+WARNING Failed to initialize pynvml, GPU stats disabled: No module named 'pynvml'
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable; GPU utilization cannot be measured.
+Selected CUDA devices [0] (utilization not measured)
+WARNING Failed to initialize pynvml, GPU stats disabled: No module named 'pynvml'
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable; GPU utilization cannot be measured.
+Selected CUDA devices [0] (utilization not measured)
+C7_JSON_BEGIN
+{
+  "cvd_env": "0",
+  "torch_version": "2.12.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "torch_device_count": 1,
+  "torch_available": true,
+  "device_name_0": "AMD Radeon RX 7900 XTX",
+  "mem_get_info": {
+    "free": 25597083648,
+    "total": 25753026560,
+    "free_frac": 0.9939
+  },
+  "tensor_alloc": true,
+  "checks_cuda_device_count": 1,
+  "checks_cuda_is_available": true,
+  "parse_device_-1": "0",
+  "select_idle_gpu": [
+    0
+  ]
+}
+C7_JSON_END

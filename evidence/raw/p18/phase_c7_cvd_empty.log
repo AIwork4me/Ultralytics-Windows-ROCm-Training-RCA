@@ -1,0 +1,21 @@
+WARNING Failed to initialize pynvml, GPU stats disabled: No module named 'pynvml'
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable; GPU utilization cannot be measured.
+WARNING No visible CUDA devices meet the verifiable free-memory requirements.
+WARNING Failed to initialize pynvml, GPU stats disabled: No module named 'pynvml'
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable; GPU utilization cannot be measured.
+WARNING No visible CUDA devices meet the verifiable free-memory requirements.
+C7_JSON_BEGIN
+{
+  "cvd_env": "",
+  "torch_version": "2.12.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "torch_device_count": 0,
+  "torch_available": false,
+  "checks_cuda_device_count": 0,
+  "checks_cuda_is_available": false,
+  "parse_device_-1": "",
+  "select_idle_gpu": []
+}
+C7_JSON_END

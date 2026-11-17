@@ -1,0 +1,447 @@
+{
+  "environment": {
+    "captured_utc": "2026-11-14T13:23:41.772098+00:00",
+    "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\python.exe",
+    "python_version": "3.13.16",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "cuda_available": true,
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "device_count": 1,
+    "total_mem_gb": 78.2,
+    "ultralytics": "8.4.182",
+    "cache_home_env": {
+      "TORCH_CPP_LOG_LEVEL": "ERROR",
+      "USERPROFILE": "C:\\Users\\rocm",
+      "ZHIPU_API_KEY": "[REDACTED]"
+    }
+  },
+  "epochs_training": {
+    "0": {
+      "fitness": 0.50531,
+      "lr_pg0": 3.4708333333333334e-05,
+      "epoch_time_s": 21.35,
+      "gpu_mem_gb": 4.6,
+      "wall_s": 25.7
+    },
+    "1": {
+      "fitness": 0.50903,
+      "lr_pg0": 7.1920625e-05,
+      "epoch_time_s": 7.02,
+      "gpu_mem_gb": 4.61,
+      "wall_s": 32.7
+    },
+    "2": {
+      "fitness": 0.51194,
+      "lr_pg0": 0.00010651491666666668,
+      "epoch_time_s": 6.44,
+      "gpu_mem_gb": 4.61,
+      "wall_s": 39.1
+    },
+    "3": {
+      "fitness": 0.52258,
+      "lr_pg0": 0.000107219,
+      "epoch_time_s": 6.41,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 45.5
+    },
+    "4": {
+      "fitness": 0.53054,
+      "lr_pg0": 0.000103292,
+      "epoch_time_s": 6.54,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 52.1
+    },
+    "5": {
+      "fitness": 0.53665,
+      "lr_pg0": 9.936500000000001e-05,
+      "epoch_time_s": 6.31,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 58.4
+    },
+    "6": {
+      "fitness": 0.54207,
+      "lr_pg0": 9.5438e-05,
+      "epoch_time_s": 6.38,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 64.8
+    },
+    "7": {
+      "fitness": 0.55211,
+      "lr_pg0": 9.1511e-05,
+      "epoch_time_s": 6.4,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 71.2
+    },
+    "8": {
+      "fitness": 0.55734,
+      "lr_pg0": 8.758400000000002e-05,
+      "epoch_time_s": 6.58,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 77.7
+    },
+    "9": {
+      "fitness": 0.56519,
+      "lr_pg0": 8.3657e-05,
+      "epoch_time_s": 6.74,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 84.5
+    },
+    "10": {
+      "fitness": 0.5698,
+      "lr_pg0": 7.973000000000001e-05,
+      "epoch_time_s": 6.35,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 90.8
+    },
+    "11": {
+      "fitness": 0.57831,
+      "lr_pg0": 7.5803e-05,
+      "epoch_time_s": 6.37,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 97.2
+    },
+    "12": {
+      "fitness": 0.58149,
+      "lr_pg0": 7.1876e-05,
+      "epoch_time_s": 6.49,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 103.7
+    },
+    "13": {
+      "fitness": 0.5849,
+      "lr_pg0": 6.7949e-05,
+      "epoch_time_s": 6.41,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 110.1
+    },
+    "14": {
+      "fitness": 0.58582,
+      "lr_pg0": 6.4022e-05,
+      "epoch_time_s": 6.39,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 116.5
+    },
+    "15": {
+      "fitness": 0.58947,
+      "lr_pg0": 6.0095000000000007e-05,
+      "epoch_time_s": 6.58,
+      "gpu_mem_gb": 4.65,
+      "wall_s": 123.1
+    },
+    "16": {
+      "fitness": 0.5948,
+      "lr_pg0": 5.616800000000001e-05,
+      "epoch_time_s": 6.53,
+      "gpu_mem_gb": 4.66,
+      "wall_s": 129.6
+    },
+    "17": {
+      "fitness": 0.59925,
+      "lr_pg0": 5.2241000000000003e-05,
+      "epoch_time_s": 6.39,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 136.0
+    },
+    "18": {
+      "fitness": 0.60264,
+      "lr_pg0": 4.8314000000000005e-05,
+      "epoch_time_s": 6.26,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 142.3
+    },
+    "19": {
+      "fitness": 0.6031,
+      "lr_pg0": 4.438700000000001e-05,
+      "epoch_time_s": 6.31,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 148.6
+    },
+    "20": {
+      "fitness": 0.60427,
+      "lr_pg0": 4.046e-05,
+      "epoch_time_s": 10.43,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 159.0
+    },
+    "21": {
+      "fitness": 0.60434,
+      "lr_pg0": 3.653300000000001e-05,
+      "epoch_time_s": 6.37,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 165.4
+    },
+    "22": {
+      "fitness": 0.60081,
+      "lr_pg0": 3.260600000000001e-05,
+      "epoch_time_s": 6.73,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 172.1
+    },
+    "23": {
+      "fitness": 0.5997,
+      "lr_pg0": 2.8678999999999998e-05,
+      "epoch_time_s": 6.44,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 178.5
+    },
+    "24": {
+      "fitness": 0.59967,
+      "lr_pg0": 2.4751999999999996e-05,
+      "epoch_time_s": 6.31,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 184.9
+    },
+    "25": {
+      "fitness": 0.60249,
+      "lr_pg0": 2.0824999999999998e-05,
+      "epoch_time_s": 6.23,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 191.1
+    },
+    "26": {
+      "fitness": 0.60339,
+      "lr_pg0": 1.6898e-05,
+      "epoch_time_s": 6.32,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 197.4
+    },
+    "27": {
+      "fitness": 0.60287,
+      "lr_pg0": 1.2970999999999997e-05,
+      "epoch_time_s": 6.39,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 203.8
+    },
+    "28": {
+      "fitness": 0.60192,
+      "lr_pg0": 9.043999999999998e-06,
+      "epoch_time_s": 6.36,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 210.2
+    },
+    "29": {
+      "fitness": 0.60243,
+      "lr_pg0": 5.1169999999999995e-06,
+      "epoch_time_s": 6.56,
+      "gpu_mem_gb": 4.68,
+      "wall_s": 216.7
+    }
+  },
+  "final_eval": {
+    "epoch_index": 30,
+    "fitness": 0.60243,
+    "lr_pg0": 5.1169999999999995e-06,
+    "epoch_time_s": 6.56,
+    "gpu_mem_gb": 4.68,
+    "wall_s": 218.4,
+    "source": "final_eval() callback (upstream-intentional, trainer.py: log best metrics at step epochs+1)"
+  },
+  "wall_samples": [
+    {
+      "epoch": 0,
+      "epoch_time_s": 21.35
+    },
+    {
+      "epoch": 1,
+      "epoch_time_s": 7.02
+    },
+    {
+      "epoch": 2,
+      "epoch_time_s": 6.44
+    },
+    {
+      "epoch": 3,
+      "epoch_time_s": 6.41
+    },
+    {
+      "epoch": 4,
+      "epoch_time_s": 6.54
+    },
+    {
+      "epoch": 5,
+      "epoch_time_s": 6.31
+    },
+    {
+      "epoch": 6,
+      "epoch_time_s": 6.38
+    },
+    {
+      "epoch": 7,
+      "epoch_time_s": 6.4
+    },
+    {
+      "epoch": 8,
+      "epoch_time_s": 6.58
+    },
+    {
+      "epoch": 9,
+      "epoch_time_s": 6.74
+    },
+    {
+      "epoch": 10,
+      "epoch_time_s": 6.35
+    },
+    {
+      "epoch": 11,
+      "epoch_time_s": 6.37
+    },
+    {
+      "epoch": 12,
+      "epoch_time_s": 6.49
+    },
+    {
+      "epoch": 13,
+      "epoch_time_s": 6.41
+    },
+    {
+      "epoch": 14,
+      "epoch_time_s": 6.39
+    },
+    {
+      "epoch": 15,
+      "epoch_time_s": 6.58
+    },
+    {
+      "epoch": 16,
+      "epoch_time_s": 6.53
+    },
+    {
+      "epoch": 17,
+      "epoch_time_s": 6.39
+    },
+    {
+      "epoch": 18,
+      "epoch_time_s": 6.26
+    },
+    {
+      "epoch": 19,
+      "epoch_time_s": 6.31
+    },
+    {
+      "epoch": 20,
+      "epoch_time_s": 10.43
+    },
+    {
+      "epoch": 21,
+      "epoch_time_s": 6.37
+    },
+    {
+      "epoch": 22,
+      "epoch_time_s": 6.73
+    },
+    {
+      "epoch": 23,
+      "epoch_time_s": 6.44
+    },
+    {
+      "epoch": 24,
+      "epoch_time_s": 6.31
+    },
+    {
+      "epoch": 25,
+      "epoch_time_s": 6.23
+    },
+    {
+      "epoch": 26,
+      "epoch_time_s": 6.32
+    },
+    {
+      "epoch": 27,
+      "epoch_time_s": 6.39
+    },
+    {
+      "epoch": 28,
+      "epoch_time_s": 6.36
+    },
+    {
+      "epoch": 29,
+      "epoch_time_s": 6.56
+    }
+  ],
+  "summary": {
+    "status": "COMPLETED",
+    "epochs_completed": 30,
+    "epochs_configured": 30,
+    "epochs_reconciled": true,
+    "final_eval_callback_present": true,
+    "wall_hours": 0.061,
+    "fitness_first": 0.50531,
+    "fitness_last": 0.60243,
+    "fitness_finite_all": true,
+    "peak_gpu_mem_gb": 4.68,
+    "mean_epoch_time_s": 7.08,
+    "epoch_time_spread_s": [
+      6.23,
+      21.35
+    ],
+    "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\detect\\g4long_g4long_envA_20261114T132332Z"
+  },
+  "limitations": [],
+  "run_id": "g4long_envA_20261114T132332Z",
+  "environment_id": "ENV_A_official",
+  "args": {
+    "out": "C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/windows-training-validation/raw\\g4_long_run_ENV_A_p9.json",
+    "epochs": "30",
+    "data": "coco128.yaml",
+    "weights": "yolo26n.pt",
+    "batch": "16",
+    "workers": "2",
+    "imgsz": "640",
+    "run_id": "g4long_envA_20261114T132332Z",
+    "environment_id": "ENV_A_official"
+  },
+  "started_utc": "2026-11-14T13:23:42.014206+00:00",
+  "results_csv_text": "epoch,time,train/box_loss,train/cls_loss,train/l1_loss,metrics/precision(B),metrics/recall(B),metrics/mAP50(B),metrics/mAP50-95(B),val/box_loss,val/cls_loss,val/l1_loss,lr/pg0,lr/pg1,lr/pg2\n1,20.5766,1.49247,1.77221,0.01085,0.72649,0.55782,0.66951,0.50531,1.33132,1.35917,0.00949,3.47083e-05,3.47083e-05,3.47083e-05\n2,27.8274,1.49763,1.66502,0.00934,0.65611,0.6084,0.67693,0.50903,1.33448,1.32633,0.00955,7.19206e-05,7.19206e-05,7.19206e-05\n3,34.2676,1.4151,1.59098,0.00986,0.73143,0.59109,0.68575,0.51194,1.3344,1.29674,0.0096,0.000106515,0.000106515,0.000106515\n4,40.669,1.48063,1.57958,0.00899,0.73672,0.60453,0.69552,0.52258,1.32176,1.27576,0.00936,0.000107219,0.000107219,0.000107219\n5,47.2149,1.51231,1.65663,0.00927,0.73406,0.61533,0.70379,0.53054,1.3153,1.26326,0.00921,0.000103292,0.000103292,0.000103292\n6,53.527,1.49838,1.6301,0.00974,0.7623,0.61506,0.71207,0.53665,1.30867,1.24567,0.00911,9.9365e-05,9.9365e-05,9.9365e-05\n7,59.9016,1.40415,1.48919,0.00896,0.76601,0.63021,0.71933,0.54207,1.30823,1.21697,0.00902,9.5438e-05,9.5438e-05,9.5438e-05\n8,66.2963,1.44593,1.61778,0.00875,0.72169,0.67961,0.72766,0.55211,1.29717,1.1952,0.00888,9.1511e-05,9.1511e-05,9.1511e-05\n9,72.8972,1.43766,1.58599,0.00854,0.72786,0.68917,0.73666,0.55734,1.29197,1.17546,0.0088,8.7584e-05,8.7584e-05,8.7584e-05\n10,79.3677,1.45366,1.51472,0.0087,0.74743,0.68806,0.75595,0.56519,1.28456,1.16204,0.00872,8.3657e-05,8.3657e-05,8.3657e-05\n11,85.9878,1.40233,1.46002,0.00897,0.76314,0.66944,0.75897,0.5698,1.28007,1.13952,0.00868,7.973e-05,7.973e-05,7.973e-05\n12,92.2932,1.43411,1.46194,0.00885,0.75135,0.69308,0.75694,0.57831,1.2772,1.11521,0.00872,7.5803e-05,7.5803e-05,7.5803e-05\n13,98.7955,1.43571,1.44074,0.00941,0.74658,0.71251,0.75987,0.58149,1.27118,1.1039,0.00868,7.1876e-05,7.1876e-05,7.1876e-05\n14,105.221,1.38072,1.41827,0.00974,0.73243,0.71734,0.76126,0.5849,1.26707,1.09301,0.00869,6.7949e-05,6.7949e-05,6.7949e-05\n15,111.623,1.37817,1.42678,0.0089,0.75231,0.71377,0.77513,0.58582,1.26206,1.08562,0.00858,6.4022e-05,6.4022e-05,6.4022e-05\n16,118.197,1.31493,1.35298,0.00903,0.75967,0.71797,0.77848,0.58947,1.25982,1.07775,0.00853,6.0095e-05,6.0095e-05,6.0095e-05\n17,124.771,1.41358,1.44545,0.00969,0.77275,0.70289,0.78014,0.5948,1.25638,1.06911,0.00853,5.6168e-05,5.6168e-05,5.6168e-05\n18,131.141,1.45583,1.40346,0.00825,0.7738,0.70398,0.78124,0.59925,1.24719,1.05745,0.00838,5.2241e-05,5.2241e-05,5.2241e-05\n19,137.382,1.33667,1.27727,0.00805,0.7725,0.72442,0.78535,0.60264,1.24214,1.05067,0.00831,4.8314e-05,4.8314e-05,4.8314e-05\n20,143.701,1.37737,1.32815,0.00864,0.77119,0.72778,0.78781,0.6031,1.24065,1.05033,0.00829,4.4387e-05,4.4387e-05,4.4387e-05\n21,154.129,1.41914,1.30258,0.00935,0.7757,0.71739,0.78921,0.60427,1.24057,1.05303,0.00829,4.046e-05,4.046e-05,4.046e-05\n22,160.513,1.3964,1.35845,0.00945,0.82507,0.683,0.7915,0.60434,1.24472,1.05087,0.00835,3.6533e-05,3.6533e-05,3.6533e-05\n23,167.054,1.3264,1.20321,0.00933,0.79655,0.70548,0.77959,0.60081,1.24623,1.04796,0.00842,3.2606e-05,3.2606e-05,3.2606e-05\n24,173.688,1.4224,1.27505,0.00854,0.78191,0.70617,0.77853,0.5997,1.25197,1.04324,0.00848,2.8679e-05,2.8679e-05,2.8679e-05\n25,180.014,1.30418,1.21526,0.00875,0.78376,0.70766,0.78306,0.59967,1.25309,1.04596,0.00845,2.4752e-05,2.4752e-05,2.4752e-05\n26,186.272,1.33688,1.18888,0.00934,0.77556,0.70925,0.78201,0.60249,1.24975,1.04546,0.00842,2.0825e-05,2.0825e-05,2.0825e-05\n27,192.571,1.35239,1.25045,0.00861,0.78718,0.70859,0.78186,0.60339,1.24541,1.04578,0.00832,1.6898e-05,1.6898e-05,1.6898e-05\n28,198.963,1.33038,1.21579,0.00894,0.7865,0.70508,0.78002,0.60287,1.24087,1.0532,0.00826,1.2971e-05,1.2971e-05,1.2971e-05\n29,205.357,1.29795,1.18874,0.00832,0.78276,0.70644,0.78036,0.60192,1.23844,1.0531,0.00818,9.044e-06,9.044e-06,9.044e-06\n30,211.894,1.3439,1.25454,0.00881,0.79088,0.69948,0.77916,0.60243,1.24024,1.05461,0.00821,5.117e-06,5.117e-06,5.117e-06\n",
+  "epoch_reconciliation": {
+    "epochs_configured": 30,
+    "results_csv_rows": 30,
+    "training_epoch_callbacks": 30,
+    "final_eval_callbacks": 1,
+    "upstream_semantics": "final_eval() fires on_fit_epoch_end once at index==epochs to log best.pt metrics (trainer.py: 'log best metrics at step epochs+1') \u2014 1 extra callback is expected, 0 extra training epochs",
+    "csv_matches_configured": true,
+    "training_callbacks_match_csv": true,
+    "final_eval_callbacks_expected": true,
+    "reconciled": true
+  },
+  "checkpoint_metadata": {
+    "last_pt": {
+      "epoch_field": -1,
+      "has_optimizer": false,
+      "note": "final-strip semantics: epoch=-1/optimizer stripped after completion (documented 8.4.182 behavior)"
+    },
+    "best_pt": {
+      "fitness": null,
+      "epoch_field": -1
+    }
+  },
+  "dll_provenance": {
+    "probe": "Toolhelp32Snapshot in-process",
+    "modules": {
+      "amdhip64_7.dll": {
+        "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_core\\bin\\amdhip64_7.dll",
+        "sha256": "1c7bad4e8ddefc456e5c073d89b59ee0bcfbcda461a5ada145370fe9941df033",
+        "size_bytes": 22097408
+      },
+      "miopen.dll": {
+        "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+        "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+        "size_bytes": 492380672
+      },
+      "hipdnn_backend.dll": {
+        "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\hipdnn_backend.dll",
+        "sha256": "d115a4355b2c601be236025c3cbd530540c689e27d0742b34ddb62fc7063835f",
+        "size_bytes": 2172928
+      }
+    },
+    "miopen_loaded": {
+      "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+      "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "size_bytes": 492380672
+    },
+    "probe_error": null,
+    "loaded_module_count_total": 160
+  },
+  "completed_utc": "2026-11-14T13:27:22.605215+00:00"
+}

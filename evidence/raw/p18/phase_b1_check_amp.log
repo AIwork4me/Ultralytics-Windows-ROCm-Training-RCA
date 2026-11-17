@@ -1,0 +1,12 @@
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+RESULT_JSON_BEGIN
+{
+  "ultralytics_file": "C:\\P18\\pr27198\\ultralytics\\__init__.py",
+  "ultralytics_version": "8.4.213",
+  "torch": "2.12.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "device": "AMD Radeon RX 7900 XTX",
+  "check_amp_result": true
+}
+RESULT_JSON_END

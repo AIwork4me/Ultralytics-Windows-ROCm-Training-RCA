@@ -1,0 +1,140 @@
+{
+  "tests": {
+    "t01_gpu_pretrained_inference": {
+      "status": "PASS",
+      "n_results": 4
+    },
+    "t03_gpu_training_init": {
+      "status": "PASS",
+      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\detect\\smoke",
+      "trainer_amp_effective": true,
+      "note": "trainer_amp_effective=False with amp=True request means check_amp fell back to FP32"
+    },
+    "t04_one_epoch_smoke": {
+      "status": "PASS",
+      "epochs_in_csv": 1,
+      "losses": {
+        "epoch": "1",
+        "time": "13.4708",
+        "train/box_loss": "1.15173",
+        "train/cls_loss": "1.82378",
+        "train/l1_loss": "0.01264",
+        "metrics/precision(B)": "0.55338",
+        "metrics/recall(B)": "0.96114",
+        "metrics/mAP50(B)": "0.94139",
+        "metrics/mAP50-95(B)": "0.66202",
+        "val/box_loss": "1.57889",
+        "val/cls_loss": "0.97078",
+        "val/l1_loss": "0.01156",
+        "lr/pg0": "0.000119",
+        "lr/pg1": "0.000119",
+        "lr/pg2": "0.000119"
+      }
+    },
+    "t09_save_last_pt": {
+      "status": "PASS",
+      "epoch_field": -1,
+      "has_optimizer": false,
+      "note": "post-completion last.pt (final strip) on multi-epoch run"
+    },
+    "t10_save_best_pt": {
+      "status": "PASS",
+      "fitness": null,
+      "note": "multi-epoch run"
+    },
+    "t05_multi_epoch_interrupted": {
+      "status": "PASS",
+      "planned_epochs": 4,
+      "completed_before_interrupt": 2,
+      "last_pt_epoch": 1,
+      "last_pt_resumable": true,
+      "save_dir": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\g2_work\\runs\\detect\\multi"
+    },
+    "t06_loss_finite_throughout": {
+      "status": "PASS",
+      "epochs_checked": 2
+    },
+    "t07_backward_gradient_finite": {
+      "status": "PASS",
+      "params_with_grad": 366,
+      "all_grads_finite_scaled_domain": false,
+      "amp_active": true,
+      "hook": "trainer.optimizer_step wrapper (pre-step .grad inspection)",
+      "note": "scaled-domain grads (pre-unscale); inf is handled by GradScaler step-skipping; numerical health evidenced by finite losses (t06) and metrics (t13/t15)"
+    },
+    "t08_optimizer_step": {
+      "status": "FAIL",
+      "max_param_abs_sum_delta": 0.0,
+      "last_step_lr": 4.006333333333334e-05,
+      "note": "SKIP=only warmup lr~0 steps observed so far; authoritative on resume stage"
+    },
+    "t12_resume_interrupted": {
+      "status": "PASS",
+      "rows_after_resume": 4,
+      "expected": 4
+    },
+    "t11_reload_checkpoint": {
+      "status": "PASS"
+    },
+    "t13_gpu_val_saved_model": {
+      "status": "PASS",
+      "metrics": {
+        "metrics/precision(B)": 0.8557362638413064,
+        "metrics/recall(B)": 0.6568531769811408,
+        "metrics/mAP50(B)": 0.9417836257309942,
+        "metrics/mAP50-95(B)": 0.670381802590684,
+        "fitness": 0.670381802590684
+      }
+    },
+    "t14_gpu_predict_saved_model": {
+      "status": "PASS",
+      "detections": 2,
+      "task_result_attr": "boxes"
+    },
+    "t15_metrics_before_after_reload": {
+      "status": "PASS",
+      "max_diffs": {
+        "metrics/precision(B)": 0.0,
+        "metrics/recall(B)": 0.0,
+        "metrics/mAP50(B)": 0.0,
+        "metrics/mAP50-95(B)": 0.0,
+        "fitness": 0.0
+      }
+    }
+  },
+  "environment": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "gpu_authentic": true
+  },
+  "limitations": [],
+  "args": {
+    "task": "detect",
+    "data": "coco8.yaml",
+    "weights": "yolo26n.pt",
+    "model_yaml": "None",
+    "infer_source": "C:/Users/rocm/Desktop/YOLO_AMD/datasets/coco8/images/val",
+    "imgsz": "640",
+    "workers": "0",
+    "amp": "True",
+    "seed": "42",
+    "resume_epochs": "4",
+    "stop_after_epoch": "1",
+    "project": "runs",
+    "run_smoke": "smoke",
+    "run_multi": "multi",
+    "out": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-training-validation\\raw\\g2_detect_fp32.json",
+    "stage": "resume"
+  },
+  "_step_patched": true,
+  "_max_param_delta": 0.0,
+  "_param_sum_before_step": 93011.77772438526,
+  "wall_seconds": 28.5,
+  "loaded_dll": {
+    "path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+    "size_bytes": 492380672
+  },
+  "loaded_dll_note": "probe re-run post-hoc (runner aborted at t08 FAIL before probe stage); env DLL state unchanged (official e97891df, hash-verified)"
+}

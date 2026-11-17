@@ -1,0 +1,57 @@
+{
+  "steps": [
+    {
+      "lr": 0.0,
+      "scaled_grad_overflow": true,
+      "scale_before": 65536.0,
+      "scale_after": 32768.0,
+      "param_abs_sum_delta": 0.0,
+      "stepped": false
+    },
+    {
+      "lr": 8.3657e-05,
+      "scaled_grad_overflow": true,
+      "scale_before": 32768.0,
+      "scale_after": 16384.0,
+      "param_abs_sum_delta": 0.0,
+      "stepped": false
+    },
+    {
+      "lr": 4.8314000000000005e-05,
+      "scaled_grad_overflow": true,
+      "scale_before": 16384.0,
+      "scale_after": 8192.0,
+      "param_abs_sum_delta": 0.0,
+      "stepped": false
+    },
+    {
+      "lr": 1.2970999999999997e-05,
+      "scaled_grad_overflow": false,
+      "scale_before": 8192.0,
+      "scale_after": 8192.0,
+      "param_abs_sum_delta": -0.006332433738862164,
+      "stepped": true
+    }
+  ],
+  "note": "10-epoch AMP training on official wheel; steps with lr>0 and delta>0 prove real updates",
+  "environment": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "amp_effective": true,
+    "scaler_enabled": true
+  },
+  "fitness_by_epoch": {
+    "0": 0.66202,
+    "1": 0.65607,
+    "2": 0.65607,
+    "3": 0.68594,
+    "4": 0.68594,
+    "5": 0.68594,
+    "6": 0.69603,
+    "7": 0.69603,
+    "8": 0.69603,
+    "9": 0.68886,
+    "10": 0.68886
+  }
+}

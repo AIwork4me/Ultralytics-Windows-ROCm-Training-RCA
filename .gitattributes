@@ -18,3 +18,8 @@ evidence/raw/** -text
 # Phase-2 raw evidence: same byte-exact rule as Phase 1 (hashes recorded in
 # evidence/phase2/SHA256SUMS.txt by Gate 43).
 evidence/phase2/** -text
+
+# R22A.5N evidence: byte-exact like evidence/raw (SHA256MANIFEST pins on-disk bytes).
+reports/r22a5n/** -text
+reports/r22a5n1/** -text
+reports/r22a5n2/** -text

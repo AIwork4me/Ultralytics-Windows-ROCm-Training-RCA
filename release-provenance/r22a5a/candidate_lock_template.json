@@ -1,0 +1,19 @@
+{
+  "template_for": "future repaired official Stable build",
+  "generated_utc": "2026-11-17T01:08:47.915401+00:00",
+  "usage": "when a fix-confirmed stable candidate appears, run windows-golden-path/scripts/resolve_package_set.py with --channel stable to produce the REAL hash-pinned lock; this template only pre-shapes the fields",
+  "example_fields": {
+    "set_name": "stable-2.16.0a0+rocm10.3.0a20261116-cp312",
+    "channel": "nightly",
+    "gfx_target": "gfx1100",
+    "packages_hint": [
+      "torch",
+      "torchvision",
+      "rocm-sdk-core",
+      "rocm-sdk-libraries",
+      "rocm-sdk-device-gfx1100"
+    ],
+    "hash_policy": "every gpu-stack wheel SHA256-pinned (resolve_package_set) — never install unpinned"
+  },
+  "forbidden": "do NOT hand-edit golden-path/requirements-lock.txt to pretend a future build exists"
+}

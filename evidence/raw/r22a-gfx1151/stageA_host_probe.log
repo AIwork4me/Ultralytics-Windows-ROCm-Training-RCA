@@ -1,0 +1,66 @@
+=== WINDOWS BUILD ===
+Microsoft Windows NT 10.0.26200.0
+25H2 build 26200.9974
+=== GPU ===
+
+
+Name          : GameViewer Virtual Display Adapter
+DriverVersion : 15.6.5.199
+DriverDate    : 2026/2/28 8:00:00
+
+Name          : AMD Radeon(TM) 8060S Graphics
+DriverVersion : 32.0.22032.6002
+DriverDate    : 2025/12/15 8:00:00
+
+
+
+
+=== RAM free/total GB ===
+91.9 / 123.6
+=== DISK free GB (C:, D: if present) ===
+C: 236.1 GB free
+=== PYTHON LAUNCHER ===
+py launcher unavailable
+=== PYTHON CANDIDATE DIRS ===
+=== CONDA ENVS ===
+p14_mode_a_dev
+p14_whlnext
+pm13437_merged
+pm13437_official
+yolo_amd
+.conda_envs_dir_test
+=== GPU/PYTHON PROCESSES ===
+
+   Id ProcessName StartTime          
+   -- ----------- ---------          
+12052 python      2026/11/15 21:40:43
+37120 python      2026/11/15 21:40:43
+
+
+
+=== HIP/MIOPEN/ROCM/VCTOOLS/INCLUDE ENV OVERRIDES ===
+
+Name             Value
+----             -----
+PYTHONIOENCODING utf-8
+PYTHONUTF8       1    
+
+
+
+=== UPTIME ===
+
+
+Days              : 0
+Hours             : 12
+Minutes           : 21
+Seconds           : 27
+Milliseconds      : 658
+Ticks             : 444876589715
+TotalDays         : 0.514903460318287
+TotalHours        : 12.3576830476389
+TotalMinutes      : 741.460982858333
+TotalSeconds      : 44487.6589715
+TotalMilliseconds : 44487658.9715
+
+
+

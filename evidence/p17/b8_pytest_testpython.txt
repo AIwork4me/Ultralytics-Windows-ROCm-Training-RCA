@@ -1,0 +1,29 @@
+[1m============================= test session starts =============================[0m
+platform win32 -- Python 3.13.16, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\rocm\Desktop\YOLO_AMD\p17_env27203\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\rocm\Desktop\YOLO_AMD\p17_pr27203
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+[1mcollecting ... [0mcollected 2 items
+
+tests/test_python.py::test_select_idle_gpu_fallback WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable; GPU utilization cannot be measured.
+WARNING No visible CUDA devices meet the verifiable free-memory requirements.
+Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable; GPU utilization cannot be measured.
+WARNING No visible CUDA devices meet the verifiable free-memory requirements.
+Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 20.0%...
+WARNING NVML stats unavailable; GPU utilization cannot be measured.
+WARNING Cannot verify 20.0% free GPU utilization without NVML.
+[32mPASSED[0m
+tests/test_python.py::test_select_device Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 
+[32mPASSED[0m
+
+============================ slowest 30 durations =============================
+0.01s call     tests/test_python.py::test_select_idle_gpu_fallback
+
+(5 durations < 0.005s hidden.  Use -vv to show these durations.)
+[32m============================== [32m[1m2 passed[0m[32m in 0.17s[0m[32m ==============================[0m

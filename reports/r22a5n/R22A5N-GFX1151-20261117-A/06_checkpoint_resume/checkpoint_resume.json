@@ -1,0 +1,52 @@
+{
+  "run_id": "R22A5N-G5-RESUME",
+  "mission": "R22A.5N",
+  "timestamp": "2026-11-17T03:49:08.660730+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.13.13",
+  "torch": "2.16.0a0+rocm10.3.0a20261116",
+  "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+  "hip": "7.18.26455",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python verify_checkpoint_resume.py --epochs 3 --kill-after-epoch 1 --device -1",
+  "exit_code": 0,
+  "duration_s": 157.6,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\r22a5n\\runs\\g5_resume\\lifecycle_summary.log",
+  "stages": {
+    "wait_for_checkpoint": {
+      "ok": true,
+      "epochs_done": 2,
+      "waited_s": 91.5
+    },
+    "child1_returncode": 1,
+    "rows_at_kill": 2,
+    "checkpoint_resumability": {
+      "checked": true,
+      "has_optimizer_state": true,
+      "ckpt_epoch": 0
+    },
+    "resume_exit": 0,
+    "resume_done_marker": true,
+    "resume_state_evidence_logged": true,
+    "final_epoch_rows": 4,
+    "last_epoch_value": 3,
+    "epoch_continuity": true,
+    "infer_exit": 0,
+    "infer_ok": true
+  },
+  "resume_semantics": "resume=True (training state), not weights-only load",
+  "checkpoint_sha256": {
+    "last.pt": "c7b4e593a42b7c98f696d653453a47e3ad93345c206be2b0d2f28dcf97700f79",
+    "best.pt": "3bc57f7b7089447ab60f7b498fdbd01642c977358ce1ab19e429bebd4f17af77"
+  },
+  "logs": {
+    "stage1": "C:\\r22a5n\\runs\\g5_resume\\stage1.log",
+    "stage3_resume": "C:\\r22a5n\\runs\\g5_resume\\stage3.log",
+    "stage4_infer": "C:\\r22a5n\\runs\\g5_resume\\stage4.log"
+  }
+}

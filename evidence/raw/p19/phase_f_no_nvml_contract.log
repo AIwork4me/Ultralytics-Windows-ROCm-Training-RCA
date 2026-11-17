@@ -1,0 +1,188 @@
+--- cvd_unset (CVD=None) rc=0
+{
+  "warnings": [
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 0 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 2 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 2 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks."
+  ],
+  "cuda_device_count": 1,
+  "cuda_is_available": true,
+  "torch_count": 1,
+  "nvml_available": false,
+  "select_count0": [],
+  "select_count1": [
+    0
+  ],
+  "select_count2": [
+    0
+  ],
+  "select_indices_none": [
+    0
+  ],
+  "select_indices_empty": [],
+  "select_indices_0": [
+    0
+  ],
+  "parse_-1": "0",
+  "parse_-1,-1": "0",
+  "gpu_alloc_ok": true,
+  "idle_warning_emitted": true,
+  "no_idle_claim": true
+}
+--- cvd_0 (CVD='0') rc=0
+{
+  "warnings": [
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 0 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 2 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 2 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks."
+  ],
+  "cuda_device_count": 1,
+  "cuda_is_available": true,
+  "torch_count": 1,
+  "nvml_available": false,
+  "select_count0": [],
+  "select_count1": [
+    0
+  ],
+  "select_count2": [
+    0
+  ],
+  "select_indices_none": [
+    0
+  ],
+  "select_indices_empty": [],
+  "select_indices_0": [
+    0
+  ],
+  "parse_-1": "0",
+  "parse_-1,-1": "0",
+  "gpu_alloc_ok": true,
+  "idle_warning_emitted": true,
+  "no_idle_claim": true
+}
+--- cvd_empty (CVD='') rc=0
+{
+  "warnings": [
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 0 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 2 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 2 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks."
+  ],
+  "cuda_device_count": 0,
+  "cuda_is_available": false,
+  "torch_count": 0,
+  "nvml_available": false,
+  "select_count0": [],
+  "select_count1": [],
+  "select_count2": [],
+  "select_indices_none": [],
+  "select_indices_empty": [],
+  "select_indices_0": [
+    0
+  ],
+  "parse_-1": "",
+  "parse_-1,-1": "",
+  "gpu_alloc_ok": false,
+  "idle_warning_emitted": true,
+  "no_idle_claim": true
+}
+--- cvd_abc (CVD='abc') rc=0
+{
+  "warnings": [
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 0 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 2 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.",
+    "WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found",
+    "Searching for 2 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...",
+    "WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks."
+  ],
+  "cuda_device_count": 0,
+  "cuda_is_available": false,
+  "torch_count": 0,
+  "nvml_available": false,
+  "select_count0": [],
+  "select_count1": [],
+  "select_count2": [],
+  "select_indices_none": [],
+  "select_indices_empty": [],
+  "select_indices_0": [
+    0
+  ],
+  "parse_-1": "",
+  "parse_-1,-1": "",
+  "gpu_alloc_ok": false,
+  "idle_warning_emitted": true,
+  "no_idle_claim": true
+}
+CONTRACT: {
+  "count0_returns_empty": true,
+  "count1_returns_0": true,
+  "count2_returns_fewer": true,
+  "indices_none_returns_0": true,
+  "indices_empty_returns_empty": true,
+  "indices_0_returns_0": true,
+  "warning_emitted": true,
+  "gpu_alloc_ok": true,
+  "no_verified_idle_claim": true,
+  "parse_-1_\u2192_0": true,
+  "parse_-1,-1_\u2192_0": true,
+  "cvd_0_parse-1_\u2192_0": true,
+  "cvd_abc_select_returns_empty_or_none": true
+}
+PHASE F VERDICT: PASS

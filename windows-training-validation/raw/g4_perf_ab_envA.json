@@ -1,0 +1,43 @@
+{
+  "environment": {
+    "torch": "2.12.0+rocm7.14.0",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon(TM) 8060S Graphics"
+  },
+  "runs": {
+    "fp32": {
+      "amp_requested": false,
+      "amp_effective": false,
+      "wall_s": 16.9,
+      "epochs_completed": 10,
+      "mean_epoch_s": 1.69,
+      "train_imgs_per_s": 4.7,
+      "peak_vram_gb": 1.28,
+      "final_fitness": 0.67251
+    },
+    "amp": {
+      "amp_requested": true,
+      "amp_effective": true,
+      "wall_s": 27.1,
+      "epochs_completed": 10,
+      "mean_epoch_s": 2.71,
+      "train_imgs_per_s": 3.0,
+      "peak_vram_gb": 0.86,
+      "final_fitness": 0.68886
+    }
+  },
+  "interpretation": [
+    "matched A/B: same wheel, same machine, same seed/data/epochs; AMP on this wheel is effective (G3)",
+    "coco8 is tiny (8 images) \u2014 times are dominated by dataloader/compile overheads; treat as",
+    "relative FP32-vs-AMP behavior on identical work, not as throughput benchmarks; epoch-level",
+    "variance is disclosed in RAW_SAMPLES via per-epoch csv retained per run"
+  ],
+  "summary": {
+    "fp32_mean_epoch_s": 1.69,
+    "amp_mean_epoch_s": 2.71,
+    "amp_vs_fp32_epoch_ratio": 1.604,
+    "fp32_peak_vram_gb": 1.28,
+    "amp_peak_vram_gb": 0.86,
+    "both_epochs_completed": true
+  }
+}

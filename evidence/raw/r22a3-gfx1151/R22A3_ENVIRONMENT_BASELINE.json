@@ -1,0 +1,99 @@
+{
+  "label": "R22A3_ENVIRONMENT_BASELINE",
+  "mission": "R22A.3",
+  "captured_utc": "2026-11-16T09:13:35.455035+00:00",
+  "python": "3.12.16",
+  "python_executable": "C:\\RadeonYOLO\\R22A\\venvs\\r22-candidate\\Scripts\\python.exe",
+  "ultralytics_install_path": "C:\\RadeonYOLO\\R22A\\venvs\\r22-candidate\\Lib\\site-packages\\ultralytics\\__init__.py",
+  "windows_build_full": "10.0.26200.9974 25H2",
+  "gpu_name_cim": "AMD Radeon(TM) 8060S Graphics",
+  "driver_version": "32.0.22032.6002",
+  "gfx_target": "gfx1151",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "torch_cuda_available": true,
+  "device_count": 1,
+  "gpu_name_torch": "AMD Radeon(TM) 8060S Graphics",
+  "device_capability_gcnarch": [
+    11,
+    5
+  ],
+  "device_total_memory_gb": 98.9,
+  "miopen": {
+    "loaded": true,
+    "path": "C:\\RadeonYOLO\\R22A\\venvs\\r22-candidate\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+    "bytes": 501333504,
+    "embedded_version_strings": [
+      "3.6.3.4e7d93e3"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  },
+  "workarounds": {
+    "hiprtc_compile_options_append": null,
+    "hiprtc_include_injection": false,
+    "miopen_env_overrides": {},
+    "miopen_path_redirection": [],
+    "any_workaround_present": false
+  },
+  "env_selected": {
+    "HIPRTC_COMPILE_OPTIONS_APPEND": null,
+    "MIOPEN_USER_DB_PATH": null,
+    "MIOPEN_CUSTOM_CACHE_DIR": null,
+    "PYTHONPATH": null,
+    "VCToolsInstallDir": null,
+    "HIP_PATH": null,
+    "ROCM_PATH": null
+  },
+  "packages": {
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "ultralytics": "8.4.214",
+    "rocm-sdk-libraries": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "rocm-sdk-core": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "amd-torch-device-gfx1100": null,
+    "amd-torch-device-gfx1151": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "amd-torchvision-device-gfx1100": null,
+    "amd-torchvision-device-gfx1151": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6"
+  },
+  "wheel_lock_file": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\evidence\\raw\\r22a-gfx1151\\R22A_GFX1151_PACKAGE_LOCK.json",
+  "wheel_lock_sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+  "free_ram_gb": 89.54,
+  "free_disk_c_gb": 215.2,
+  "active_gpu_python_processes": [
+    {
+      "pid": 37120,
+      "name": "python.exe",
+      "cmd_head": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe C:/P19B/scratch/p1_amp_audit.py"
+    },
+    {
+      "pid": 12052,
+      "name": "python.exe",
+      "cmd_head": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe C:/P19B/scratch/p1_amp_audit.py"
+    },
+    {
+      "pid": 46168,
+      "name": "python.exe",
+      "cmd_head": "C:\\RadeonYOLO\\R22A\\venvs\\r22-candidate\\Scripts\\python.exe -I C:/RadeonYOLO/R22A3/scratch/preflight_r22a3.py"
+    },
+    {
+      "pid": 47008,
+      "name": "python.exe",
+      "cmd_head": "\"C:\\Users\\rocm\\miniconda3\\envs\\r22a_py312\\python.exe\" -I C:/RadeonYOLO/R22A3/scratch/preflight_r22a3.py"
+    }
+  ],
+  "expected_stack": {
+    "windows_build_ref": "26200.9974 (11 25H2)",
+    "driver_version": "32.0.22032.6002",
+    "gpu_gfx": "gfx1151",
+    "python": "3.12.16",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "torch_alt_spelling": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "hip": "7.18.26441",
+    "miopen_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+    "ultralytics": "8.4.214"
+  },
+  "stack_drift": [],
+  "stack_drift_class": "FROZEN_STACK CONFIRMED"
+}

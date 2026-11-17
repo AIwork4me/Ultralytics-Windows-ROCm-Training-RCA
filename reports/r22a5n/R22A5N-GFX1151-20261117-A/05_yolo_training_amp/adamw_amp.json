@@ -1,0 +1,340 @@
+{
+  "run_id": "R22A5N-G34-AMP",
+  "mission": "R22A.5N",
+  "timestamp": "2026-11-17T03:45:28.184537+00:00",
+  "source_sha": "ff52f87393d66f5773e95b70c1721550d8065b0b",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.13.13",
+  "torch": "2.16.0a0+rocm10.3.0a20261116",
+  "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+  "hip": "7.18.26455",
+  "ultralytics": "8.4.214",
+  "wheel_lock_sha256": "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533",
+  "loaded_miopen_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python audit_adamw_amp.py --data coco128.yaml --epochs 3 --imgsz 256 --batch 8 --device -1 optimizer='auto' (framework default AMP+nbs)",
+  "exit_code": 0,
+  "duration_s": 122.3,
+  "pass_fail_skip": "ADAMW_AMP_MULTISTEP_PASS",
+  "failure_classification": null,
+  "raw_log_path": "reports\\r22a5n\\R22A5N-GFX1151-20261117-A\\05_yolo_training_amp\\adamw_amp.log",
+  "harness_train_args": "epochs=3, imgsz=256, batch=8, optimizer='auto', device=-1, workers=0, amp=default, nbs=default",
+  "harness_disclosure": "unified Part A supplemental harness: optimizer=auto (NOT forced), normal nbs retained, workers=0 to isolate AdamW+AMP from Windows worker behavior",
+  "ultralytics_install_path": "C:\\r22a5n\\venv\\Lib\\site-packages\\ultralytics\\__init__.py",
+  "optimizer": {
+    "requested": "auto",
+    "resolved_class": "AdamW",
+    "trainer_args_optimizer_after_resolution": "AdamW",
+    "resolution_note": "optimizer=auto resolved to AdamW (8.4.x iterations heuristic: >10000 → MuSGD else AdamW)",
+    "fused": true,
+    "param_groups": [
+      {
+        "lr": 0.000119,
+        "weight_decay": 0.0005,
+        "n_params": 126,
+        "param_group": "weight"
+      },
+      {
+        "lr": 0.000119,
+        "weight_decay": 0.0,
+        "n_params": 114,
+        "param_group": "bn"
+      },
+      {
+        "lr": 0.000119,
+        "weight_decay": 0.0,
+        "n_params": 126,
+        "param_group": "bias"
+      }
+    ]
+  },
+  "gradient_accumulation": {
+    "nbs": 64,
+    "batch_size": 8,
+    "nb_batches_per_epoch": 16,
+    "accumulate_at_start": 8,
+    "note": "normal Ultralytics nbs default retained — NOT forced to step every batch"
+  },
+  "amp": {
+    "resolved": true,
+    "scaler_present": true,
+    "scaler_enabled": true,
+    "autocast_dtype_observed": "float16",
+    "stem_conv_output_dtypes_observed": {
+      "float16": 96
+    },
+    "autocast_forward_samples": {
+      "sampled": 48,
+      "enabled": 48
+    }
+  },
+  "low_precision_evidence": {
+    "conv_output_dtypes": {
+      "float16": 96
+    },
+    "samples_low_precision": 96,
+    "samples_total": 96,
+    "note": "observed dtype reported — no assumed FP16/BF16 label"
+  },
+  "training_counts": {
+    "forward_samples": 48,
+    "forward_autocast_on": 48,
+    "batches_completed": 48,
+    "scaler_step_attempts": 11,
+    "optimizer_steps_underlying": 11,
+    "confirmed_update_events": 7,
+    "skipped_found_inf_flagged": 4,
+    "grads_finite_on_stepped_updates": true,
+    "per_step_events": [
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 0.0,
+        "accumulate_now": 1,
+        "batch_index": 0
+      },
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 3.71875e-06,
+        "accumulate_now": 1,
+        "batch_index": 1
+      },
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 7.4375e-06,
+        "accumulate_now": 1,
+        "batch_index": 2
+      },
+      {
+        "invoked": true,
+        "found_inf_any": true,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": false,
+        "sentinel_max_abs_delta": 0.0,
+        "param_checksum_changed": false,
+        "lr_first_group": 1.4875e-05,
+        "accumulate_now": 2,
+        "batch_index": 4
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 2.2411346435546875e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 2.23125e-05,
+        "accumulate_now": 2,
+        "batch_index": 6
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 3.361701965332031e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 3.3468750000000004e-05,
+        "accumulate_now": 3,
+        "batch_index": 9
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 4.839897155761719e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 4.834375e-05,
+        "accumulate_now": 4,
+        "batch_index": 13
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 4.503130912780762e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 4.4848125000000004e-05,
+        "accumulate_now": 5,
+        "batch_index": 18
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 6.020069122314453e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 5.9797500000000005e-05,
+        "accumulate_now": 6,
+        "batch_index": 24
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 4.08124178647995e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 4.046e-05,
+        "accumulate_now": 8,
+        "batch_index": 32
+      },
+      {
+        "invoked": true,
+        "found_inf_any": false,
+        "grad_scale": null,
+        "grad_tensors_checked": 366,
+        "grads_all_finite": true,
+        "sentinel_max_abs_delta": 3.9422360714524984e-05,
+        "param_checksum_changed": true,
+        "lr_first_group": 4.046e-05,
+        "accumulate_now": 8,
+        "batch_index": 40
+      }
+    ],
+    "step_event_semantics": "sentinel_max_abs_delta > 0 is the definitive update evidence; with fused AdamW under GradScaler the python-level step call runs on every scaler attempt and the inf skip happens inside the fused kernel"
+  },
+  "gradscaler": {
+    "present": true,
+    "scale_history": [
+      65536.0,
+      32768.0,
+      16384.0,
+      8192.0,
+      4096.0,
+      4096.0,
+      4096.0,
+      4096.0,
+      4096.0,
+      4096.0,
+      4096.0
+    ],
+    "scale_history_len": 11,
+    "scale_first": 65536.0,
+    "scale_final": 4096.0,
+    "backoff_events_observed": 4,
+    "note": "backoff counted from the per-step series, never inferred from endpoints"
+  },
+  "raw_trainer_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 366,
+    "tensors_changed_beyond_1e_9": 366,
+    "max_abs_delta": 0.0002919640392065048,
+    "mean_abs_delta": 0.0002763981507395145,
+    "all_finite": true
+  },
+  "loaded_model_delta": {
+    "total_tensors": 366,
+    "tensors_changed_beyond_1e-9": 248,
+    "tensors_changed_beyond_1e_9": 248,
+    "max_abs_delta": 0.0001220703125,
+    "mean_abs_delta": 8.097486417801654e-05,
+    "all_finite": true
+  },
+  "buffer_delta": {
+    "total_tensors": 342,
+    "tensors_changed_beyond_1e-9": 342,
+    "tensors_changed_beyond_1e_9": 342,
+    "max_abs_delta": 48.0,
+    "mean_abs_delta": 16.10575534224957,
+    "all_finite": true
+  },
+  "buffer_delta_note": "named_buffers (incl. BatchNorm running stats) tracked separately and NEVER counted as parameter updates",
+  "minimum_effective_updates_required": 3,
+  "checkpoint": {
+    "path": "C:\\r22a5n\\runs\\amp_coco128\\weights\\last.pt",
+    "exists": true,
+    "sha256": "0186fb2caf7fbd2e7d80b6f628095e699fafa9685c46d9cae951940699d07c24"
+  },
+  "contract": {
+    "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+    "reason": "all Part A checks satisfied",
+    "checks": [
+      {
+        "check": "physical_gpu_identity",
+        "ok": true,
+        "detail": "AMD Radeon(TM) 8060S Graphics / gfx1151"
+      },
+      {
+        "check": "optimizer_requested_auto",
+        "ok": true,
+        "detail": "requested='auto' (harness must not force an optimizer)"
+      },
+      {
+        "check": "optimizer_resolved_adamw",
+        "ok": true,
+        "detail": "optimizer=auto resolved to AdamW (8.4.x iterations heuristic: >10000 → MuSGD else AdamW)"
+      },
+      {
+        "check": "amp_resolved",
+        "ok": true,
+        "detail": "trainer amp=True"
+      },
+      {
+        "check": "forward_autocast_active",
+        "ok": true,
+        "detail": "48 forward samples with autocast enabled"
+      },
+      {
+        "check": "step_accounting_consistent",
+        "ok": true,
+        "detail": "7 effective of 11 step calls, 4 found_inf skips observed"
+      },
+      {
+        "check": "min_updates",
+        "ok": true,
+        "detail": "7 confirmed parameter-update events (sentinel/checksum deltas); 11 python-level step calls; 11 scaler attempts (minimum required: 3)"
+      },
+      {
+        "check": "grads_finite_all_groups",
+        "ok": true,
+        "detail": "finite grads at every CONFIRMED update across all groups (skipped nonfinite steps recorded separately — they are the GradScaler working as designed, not failures)"
+      },
+      {
+        "check": "nonzero_parameter_deltas",
+        "ok": true,
+        "detail": "366 parameter tensors changed beyond 1e-9"
+      },
+      {
+        "check": "parameter_deltas_finite",
+        "ok": true,
+        "detail": "max_abs_delta finite for every parameter tensor"
+      },
+      {
+        "check": "training_completed",
+        "ok": true,
+        "detail": "train() returned normally / process exit 0"
+      }
+    ]
+  }
+}

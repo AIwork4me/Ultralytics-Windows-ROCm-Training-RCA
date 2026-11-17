@@ -1,0 +1,56 @@
+# command: C:\Users\rocm\miniconda3\envs\pm13437_official\python.exe -I C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\windows-training-validation\tests\g1_primitives.py --out windows-training-validation\raw\envA_nostl_neg.result.json --expect-stl-fail
+# exit_code: 4
+# mode: nostl expect_fail: True
+# USERPROFILE: windows-training-validation\raw\cache_homes\envA_nostl_neg
+# VCToolsInstallDir: windows-training-validation\raw\cache_homes\envA_nostl_neg\fakevc
+# INCLUDE: 
+
+--- stdout ---
+{
+  "environment": {
+    "python_executable": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_official\\python.exe",
+    "torch": "2.12.0+rocm7.14.1",
+    "torch_version_hip": "7.14.60850",
+    "device": "AMD Radeon(TM) 8060S Graphics",
+    "cuda_available": true,
+    "hip_present": true
+  },
+  "expect_stl_fail": {
+    "status": "UNEXPECTED_FAIL",
+    "signature": {
+      "hiprtc_compilation_error": false,
+      "type_traits_missing": false,
+      "batchnorm_fwd_train_spatial": false,
+      "miopen_status_unknown": true
+    },
+    "message_excerpt": "miopenStatusUnknownError"
+  }
+}
+
+--- stderr ---
+MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+MIOpen(HIP): Info [Handle] stream: 0000000000000000, device_id: 0
+MIOpen(HIP): Info [get_device_name] Raw device name: gfx1151
+MIOpen(HIP): Info [SetStream] stream: 0000000000000000, device_id: 0
+MIOpen(HIP): Info [AmdRocmMetadataVersionDetect] ROCm MD version AMDHSA_COv3, HIP version 7.14.60850, MIOpen version 3.5.2.cd957402
+MIOpen(HIP): Info [FindSolutionImpl] BnFwdTrainingSpatial
+MIOpen(HIP): Info [GetPerfDbPathFile] Database directory does not exist
+MIOpen(HIP): Info [Measure] ReadonlyRamDb::Prefetch time: 0.0013 ms
+MIOpen(HIP): Info [Prefetch] File is unreadable: "windows-training-validation\\raw\\cache_homes\\envA_nostl_neg\\.miopen\\db\\batchnorm_gfx1151_20.HIP.3_5_2_cd957402.udb.txt"
+MIOpen(HIP): Info [Measure] RamDb::Prefetch time: 0.0341 ms
+MIOpen(HIP): Info [FindSolutionImpl] Perf Db: record not found for: BnFwdTrainingSpatial
+MIOpen(HIP): Info [GetDefaultPerformanceConfig] Variant1-1
+MIOpen(HIP): Info [KernDb] database not present
+MIOpen(HIP): Info [PrintVersion] HIPRTC v.9.0
+MIOpen(HIP): Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
+MIOpen(HIP): Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp
+MIOpen(HIP): Warning [BuildHip] In file included from C:\Users\rocm\AppData\Local\Temp\comgr-16232-6-dfa8a9\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-16232-6-dfa8a9\include\batchnorm_functions.hpp:30:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-16232-6-dfa8a9\include\configuration.hpp:34:
+In file included from C:\Users\rocm\AppData\Local\Temp\comgr-16232-6-dfa8a9\include\vector_types.hpp:8:
+C:\Users\rocm\AppData\Local\Temp\comgr-16232-6-dfa8a9\include\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found
+  151 | #include <type_traits>
+      |          ^~~~~~~~~~~~~
+1 error generated when compiling for gfx1151.
+MIOpen Error: DESKTOP-IF0424E:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:299: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp
+

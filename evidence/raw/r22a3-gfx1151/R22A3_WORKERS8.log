@@ -1,0 +1,28 @@
+Exception in thread Thread-5 (_run):
+Traceback (most recent call last):
+  File "C:\Users\rocm\miniconda3\envs\r22a_py312\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\rocm\miniconda3\envs\r22a_py312\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\windows-golden-path\scripts\run_stability.py", line 221, in _run
+    self._snapshot_once()
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\windows-golden-path\scripts\run_stability.py", line 208, in _snapshot_once
+    "pid": p.pid, "ppid": p.ppid() if p.is_running() else None,
+                          ^^^^^^^^
+  File "C:\RadeonYOLO\R22A\venvs\r22-candidate\Lib\site-packages\psutil\_common.py", line 377, in wrapper
+    raise err from None
+  File "C:\RadeonYOLO\R22A\venvs\r22-candidate\Lib\site-packages\psutil\_common.py", line 375, in wrapper
+    return fun(self)
+           ^^^^^^^^^
+  File "C:\RadeonYOLO\R22A\venvs\r22-candidate\Lib\site-packages\psutil\__init__.py", line 670, in ppid
+    self._ppid = self._ppid or self._proc.ppid()
+                               ^^^^^^^^^^^^^^^^^
+  File "C:\RadeonYOLO\R22A\venvs\r22-candidate\Lib\site-packages\psutil\_pswindows.py", line 787, in ppid
+    raise NoSuchProcess(self.pid, self._name) from None
+psutil.NoSuchProcess: process no longer exists (pid=27252)
+[run 1/5] exit=0 PASS  nw=8 wpids=13 (199.2s)
+[run 2/5] exit=0 PASS  nw=8 wpids=13 (195.3s)
+[run 3/5] exit=0 PASS  nw=8 wpids=13 (198.4s)
+[run 4/5] exit=0 PASS  nw=8 wpids=13 (82.9s)
+[run 5/5] exit=0 PASS  nw=8 wpids=13 (60.7s)
+STABILITY: PASS (5/5)

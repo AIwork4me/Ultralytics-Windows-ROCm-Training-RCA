@@ -1,0 +1,8 @@
+# G0 child identity leg
+# cmd=C:\r22a5n1\venv\Scripts\python.exe -I C:\r22a5n1\scratch_g0\g0_child_1794891411\g0_child.py
+# USERPROFILE=C:\r22a5n1\scratch_g0\g0_child_1794891411\home
+
+--- stdout ---
+G0_CHILD_IDENTITY {"torch": "2.16.0a0+rocm10.3.0a20261116", "hip": "7.18.26455", "cuda_available": true, "device_count": 1, "gpu_name": "AMD Radeon(TM) 8060S Graphics", "op_finite": true, "miopen": {"loaded": true, "path": "C:\\r22a5n1\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll", "sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6", "bytes": 519806464, "embedded_version_strings": ["3.6.3.25f28906"], "pr13437_marker_miopen_initializer_list": 2}}
+
+--- stderr ---

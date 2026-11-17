@@ -1,0 +1,81 @@
+{
+ "utc": "2026-11-15T00:00:39.368670+00:00",
+ "home": "C:\\Users\\rocm\\.miopen",
+ "exists": true,
+ "db_files": [
+  {
+   "file": "gfx115128.HIP.3_6_1_39d8d603.ufdb.txt",
+   "size": 204,
+   "sha256_12": "1facd9277187"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_1_39d8d603.ufdb.txt.time",
+   "size": 16,
+   "sha256_12": "5428aacc1e57"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_2_64214f24.ufdb.txt",
+   "size": 149695,
+   "sha256_12": "f24cccd5b387"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_2_64214f24.ufdb.txt.time",
+   "size": 14,
+   "sha256_12": "670deb1ae74a"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_2_d4b574ac.ufdb.txt",
+   "size": 167077,
+   "sha256_12": "239fb58b89e5"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_2_d4b574ac.ufdb.txt.time",
+   "size": 15,
+   "sha256_12": "ec044237d779"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_2_f0a5d266.ufdb.txt",
+   "size": 757321,
+   "sha256_12": "c52c46c32eb8"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_2_f0a5d266.ufdb.txt.time",
+   "size": 15,
+   "sha256_12": "a2b62b89a7da"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_2_f0f330c4.ufdb.txt",
+   "size": 180489,
+   "sha256_12": "2cd38ee72094"
+  },
+  {
+   "file": "gfx115128.HIP.3_6_2_f0f330c4.ufdb.txt.time",
+   "size": 15,
+   "sha256_12": "5e2408cb4d3b"
+  },
+  {
+   "file": "gfx1151_20.HIP.3_5_1_98f923c854.ufdb.txt",
+   "size": 10392472,
+   "sha256_12": "bc7b891a9845"
+  },
+  {
+   "file": "gfx1151_20.HIP.3_5_1_98f923c854.ufdb.txt.time",
+   "size": 14,
+   "sha256_12": "09af74a4196e"
+  },
+  {
+   "file": "gfx1151_20.HIP.3_5_2_cd957402.ufdb.txt",
+   "size": 720579,
+   "sha256_12": "d7797a1111de"
+  },
+  {
+   "file": "gfx1151_20.HIP.3_5_2_cd957402.ufdb.txt.time",
+   "size": 15,
+   "sha256_12": "26e37dbbe892"
+  },
+  {
+   "file": "miopen-lockfiles",
+   "err": "[Errno 13] Permission denied: 'C:\\\\Users\\\\rocm\\\\.miopen\\\\db\\\\miopen-lockfiles'"
+  }
+ ]
+}

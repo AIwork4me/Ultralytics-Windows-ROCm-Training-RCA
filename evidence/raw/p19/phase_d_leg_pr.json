@@ -1,0 +1,18 @@
+{
+  "leg": "pr",
+  "ultralytics_file": "C:\\P19\\pr27203\\ultralytics\\__init__.py",
+  "git_head": "d8fe65c8c1052cb4305f3cec1be9cb909538dcf1",
+  "torch_device_count": 1,
+  "torch_is_available": true,
+  "cuda_device_count()": 1,
+  "cuda_is_available()": true,
+  "nvml_available": false,
+  "select_idle_gpu(count=1)": [
+    0
+  ],
+  "parse_device('-1')": "0",
+  "test_cuda_DEVICES": [
+    0
+  ],
+  "test_checks_would_pass": true
+}

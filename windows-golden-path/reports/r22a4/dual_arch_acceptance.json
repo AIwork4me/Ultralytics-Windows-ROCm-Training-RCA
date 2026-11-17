@@ -1,0 +1,248 @@
+{
+  "mission": "R22A.4",
+  "verdict": "R22_DEV_DUAL_ARCH_SUPPLEMENTAL_VALIDATED",
+  "verdict_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)",
+  "gfx1100": {
+    "facts": {
+      "gpu_architecture": "gfx1100",
+      "gpu_name": "AMD Radeon RX 7900 XTX",
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "adamw_auto_selected": true,
+      "autocast_forward": "48/48",
+      "low_precision_dtype_observed": "torch.float16",
+      "low_precision_op_samples": 48,
+      "step_attempts": 11,
+      "effective_updates": 6,
+      "nonfinite_skip_or_backoff": 5,
+      "named_param_delta": "366/366",
+      "workers_configured": 8,
+      "worker_identities_observed": 13,
+      "runs_in_matrix": 6,
+      "derived_cache_roles": [
+        "cold",
+        "cold",
+        "cache_priming",
+        "warm",
+        "warm",
+        "warm"
+      ],
+      "monitor_health": "independent-corroboration",
+      "part_a_verdict": "ADAMW_AMP_MULTISTEP_PASS",
+      "part_b_verdict": "WORKERS8_SHORT_RELIABILITY_PASS"
+    },
+    "combined": {
+      "verdict": "R22A2_GFX1100_SUPPLEMENTAL_PASS",
+      "reasons": [],
+      "part_a_recomputed": {
+        "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+        "failure_classification": null,
+        "schema": "r22a2-flat",
+        "adapter": "r22a2-flat-v1",
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon RX 7900 XTX / gfx1100"
+          },
+          {
+            "check": "optimizer_requested_auto",
+            "ok": true,
+            "detail": "requested='auto' (harness must not force an optimizer)"
+          },
+          {
+            "check": "optimizer_resolved_adamw",
+            "ok": true,
+            "detail": "optimizer=auto resolved to AdamW (8.4.x iterations heuristic: >10000 → MuSGD else AdamW)"
+          },
+          {
+            "check": "amp_resolved",
+            "ok": true,
+            "detail": "trainer amp=True"
+          },
+          {
+            "check": "forward_autocast_active",
+            "ok": true,
+            "detail": "48 forward samples with autocast enabled"
+          },
+          {
+            "check": "step_accounting_consistent",
+            "ok": true,
+            "detail": "6 effective of 11 step calls"
+          },
+          {
+            "check": "min_updates",
+            "ok": true,
+            "detail": "6 confirmed parameter-update events (sentinel/checksum deltas); 11 python-level step calls; 11 scaler attempts (minimum required: 3)"
+          },
+          {
+            "check": "grads_finite_all_groups",
+            "ok": true,
+            "detail": "finite grads at every CONFIRMED update across all groups (skipped nonfinite steps recorded separately — they are the GradScaler working as designed, not failures)"
+          },
+          {
+            "check": "nonzero_parameter_deltas",
+            "ok": true,
+            "detail": "366 parameter tensors changed beyond 1e-9"
+          },
+          {
+            "check": "parameter_deltas_finite",
+            "ok": true,
+            "detail": "max_abs_delta finite for every parameter tensor"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "train() returned normally / process exit 0"
+          }
+        ]
+      },
+      "part_b_overall": {
+        "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+        "reason": "exact matrix satisfied: 2 COLD (distinct homes) + 1 CACHE_PRIMING + 3 WARM (shared home + 1 ADDITIONAL justified warm sample(s)), all 6 PASS with workers=8 verified OS-level and clean shutdown",
+        "derived_cache_roles": [
+          "cold",
+          "cold",
+          "cache_priming",
+          "warm",
+          "warm",
+          "warm"
+        ],
+        "log_authenticity": null
+      },
+      "monitor_exception_disclosure": null,
+      "runtime_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)"
+    },
+    "physical_training_functional": "PHYSICAL_TRAINING_FUNCTIONAL_PASS",
+    "release_grade_evidence": "RELEASE_GRADE_EVIDENCE_ACCEPTED"
+  },
+  "gfx1151": {
+    "facts": {
+      "gpu_architecture": "gfx1151",
+      "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "adamw_auto_selected": true,
+      "autocast_forward": "48/48",
+      "low_precision_dtype_observed": "float16",
+      "low_precision_op_samples": 48,
+      "step_attempts": 11,
+      "effective_updates": 7,
+      "nonfinite_skip_or_backoff": 4,
+      "named_param_delta": "366/366",
+      "workers_configured": 8,
+      "worker_identities_observed": 13,
+      "runs_in_matrix": 6,
+      "derived_cache_roles": [
+        "cold",
+        "cold",
+        "cache_priming",
+        "warm",
+        "warm",
+        "warm"
+      ],
+      "monitor_health": "recorded",
+      "part_a_verdict": "ADAMW_AMP_MULTISTEP_PASS",
+      "part_b_verdict": "WORKERS8_SHORT_RELIABILITY_PASS"
+    },
+    "combined": {
+      "verdict": "R22A3_GFX1151_SUPPLEMENTAL_PASS",
+      "reasons": [],
+      "part_a_recomputed": {
+        "verdict": "ADAMW_AMP_MULTISTEP_PASS",
+        "failure_classification": null,
+        "schema": "r22a3-nested",
+        "adapter": "r22a3-nested-v1",
+        "checks": [
+          {
+            "check": "physical_gpu_identity",
+            "ok": true,
+            "detail": "AMD Radeon(TM) 8060S Graphics / gfx1151"
+          },
+          {
+            "check": "optimizer_requested_auto",
+            "ok": true,
+            "detail": "requested='auto' (harness must not force an optimizer)"
+          },
+          {
+            "check": "optimizer_resolved_adamw",
+            "ok": true,
+            "detail": "args.optimizer rewritten to 'AdamW'"
+          },
+          {
+            "check": "amp_resolved",
+            "ok": true,
+            "detail": "trainer amp=True"
+          },
+          {
+            "check": "forward_autocast_active",
+            "ok": true,
+            "detail": "48 forward samples with autocast enabled"
+          },
+          {
+            "check": "step_accounting_consistent",
+            "ok": true,
+            "detail": "7 effective of 11 step calls, 4 found_inf skips observed"
+          },
+          {
+            "check": "min_updates",
+            "ok": true,
+            "detail": "7 confirmed parameter-update events (sentinel/checksum deltas); 11 python-level step calls; 11 scaler attempts (minimum required: 3)"
+          },
+          {
+            "check": "grads_finite_all_groups",
+            "ok": true,
+            "detail": "finite grads at every CONFIRMED update across all groups (skipped nonfinite steps recorded separately — they are the GradScaler working as designed, not failures)"
+          },
+          {
+            "check": "nonzero_parameter_deltas",
+            "ok": true,
+            "detail": "366 parameter tensors changed beyond 1e-9"
+          },
+          {
+            "check": "parameter_deltas_finite",
+            "ok": true,
+            "detail": "max_abs_delta finite for every parameter tensor"
+          },
+          {
+            "check": "training_completed",
+            "ok": true,
+            "detail": "train() returned normally / process exit 0"
+          }
+        ]
+      },
+      "part_b_overall": {
+        "verdict": "WORKERS8_SHORT_RELIABILITY_PASS",
+        "reason": "exact matrix satisfied: 2 COLD (distinct homes) + 1 CACHE_PRIMING + 3 WARM (shared home + 1 ADDITIONAL justified warm sample(s)), all 6 PASS with workers=8 verified OS-level and clean shutdown",
+        "derived_cache_roles": [
+          "cold",
+          "cold",
+          "cache_priming",
+          "warm",
+          "warm",
+          "warm"
+        ],
+        "log_authenticity": null
+      },
+      "monitor_exception_disclosure": null,
+      "runtime_ceiling": "DEV_CANDIDATE (maximum runtime classification; never OFFICIAL_STABLE / R23_RELEASE_READY)"
+    },
+    "physical_training_functional": "PHYSICAL_TRAINING_FUNCTIONAL_PASS",
+    "release_grade_evidence": "RELEASE_GRADE_EVIDENCE_ACCEPTED"
+  },
+  "monitor_exception_disclosures": {
+    "gfx1151": {
+      "found_in": "evidence/raw/r22a3-gfx1151/R22A3_WORKERS8.log",
+      "classified_as": "MONITOR_PROCESS_EXIT_RACE",
+      "raw_exception": "psutil.NoSuchProcess (pre-R22A.4 harness revision)",
+      "affected_runs": [
+        "R22A3-B-R1"
+      ],
+      "disposition": "function-level training PASS preserved: independent per-run identity/sighting evidence (13 identities × 33–148 sightings, all with ppid+create_time) substantiates all five runs; the sampler-thread death is disclosed, not deleted; R22A.4 harness records monitor health explicitly and fails closed"
+    }
+  },
+  "notes": [
+    "every cell recomputed from frozen raw records via versioned adapters",
+    "cache roles derived from home identity only (fresh-home first use = CACHE_PRIMING, never pre-warmed)",
+    "no dGPU vs APU performance comparison is made or implied",
+    "effective-update counts (6 gfx1100 / 7 gfx1151) are factual observations of different hardware runs, not targets"
+  ]
+}

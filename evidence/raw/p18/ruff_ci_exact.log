@@ -1,0 +1,11 @@
+=== pr27198 (CI-exact ruff: --extend-select F,I,D,UP,RUF,FA --ignore BLE001,...) ===
+All checks passed!
+ruff exit: 0
+ruff format --check:
+2 files already formatted
+
+=== pr27203 (same command) ===
+All checks passed!
+ruff exit: 0
+ruff format --check:
+2 files already formatted

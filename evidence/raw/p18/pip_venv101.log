@@ -1,0 +1,85 @@
+Looking in indexes: https://stable.repo.amd.com/rocm/whl-next/
+Collecting torch==2.14.0+rocm10.1.0 (from torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Downloading torch-2.14.0%2Brocm10.1.0-cp312-cp312-win_amd64.whl (115.6 MB)
+     ---------------------------------------- 115.6/115.6 MB 14.5 MB/s  0:00:08
+Collecting filelock (from torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached filelock-4.0.8-py3-none-any.whl (109 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Collecting setuptools>=77.0.3 (from torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached setuptools-81.0.0-py3-none-any.whl (1.1 MB)
+Collecting sympy>=1.13.3 (from torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Collecting networkx>=2.5.1 (from torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached networkx-3.7-py3-none-any.whl (2.1 MB)
+Collecting jinja2 (from torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Collecting fsspec>=0.8.5 (from torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached fsspec-2026.9.0-py3-none-any.whl (221 kB)
+Collecting rocm~=10.1.0 (from rocm[libraries]~=10.1.0->torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached rocm-10.1.0-py3-none-any.whl
+Collecting rocm-bootstrap (from torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached rocm_bootstrap-0.3.0-py3-none-any.whl (30 kB)
+Collecting amd-torch-device-gfx1100==2.14.0+rocm10.1.0 (from torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Downloading amd_torch_device_gfx1100-2.14.0%2Brocm10.1.0-cp312-cp312-win_amd64.whl (50.4 MB)
+     ---------------------------------------- 50.4/50.4 MB 15.9 MB/s  0:00:03
+Collecting amd-torch-device-gfx110x==2.14.0+rocm10.1.0 (from torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Downloading amd_torch_device_gfx110x-2.14.0%2Brocm10.1.0-cp312-cp312-win_amd64.whl (307.0 MB)
+     ---------------------------------------- 307.0/307.0 MB 12.9 MB/s  0:00:23
+Collecting rocm-sdk-device-gfx1100~=10.1.0 (from amd-torch-device-gfx1100==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached rocm_sdk_device_gfx1100-10.1.0-py3-none-win_amd64.whl (201.2 MB)
+Collecting rocm-sdk-core==10.1.0 (from rocm~=10.1.0->rocm[libraries]~=10.1.0->torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached rocm_sdk_core-10.1.0-py3-none-win_amd64.whl (777.0 MB)
+Collecting rocm-sdk-libraries==10.1.0 (from rocm-sdk-device-gfx1100~=10.1.0->amd-torch-device-gfx1100==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached rocm_sdk_libraries-10.1.0-py3-none-win_amd64.whl (118.6 MB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.14.0+rocm10.1.0->torch[device-gfx1100]==2.14.0+rocm10.1.0)
+  Using cached markupsafe-3.0.3-cp312-cp312-win_amd64.whl (15 kB)
+Installing collected packages: rocm-sdk-libraries, rocm-sdk-core, mpmath, typing-extensions, sympy, setuptools, rocm-sdk-device-gfx1100, rocm-bootstrap, rocm, networkx, MarkupSafe, fsspec, filelock, jinja2, torch, amd-torch-device-gfx110x, amd-torch-device-gfx1100
+
+Successfully installed MarkupSafe-3.0.3 amd-torch-device-gfx1100-2.14.0+rocm10.1.0 amd-torch-device-gfx110x-2.14.0+rocm10.1.0 filelock-4.0.8 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 rocm-10.1.0 rocm-bootstrap-0.3.0 rocm-sdk-core-10.1.0 rocm-sdk-device-gfx1100-10.1.0 rocm-sdk-libraries-10.1.0 setuptools-81.0.0 sympy-1.14.0 torch-2.14.0+rocm10.1.0 typing-extensions-4.16.0
+
+[notice] A new release of pip is available: 26.2.2 -> 26.3
+[notice] To update, run: C:\P18\venv101\Scripts\python.exe -m pip install --upgrade pip
+PIP_EXIT=0
+C:\P18\venv101\Lib\site-packages\torch\_subclasses\functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at B:/src/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\P18\\venv101\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx110060.HIP.fdb.txt"
+MIOpen: Error [Compile] 'hiprtcCompileProgram(prog.get(), c_options.size(), c_options.data())' MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6)
+MIOpen: Error [BuildHip] HIPRTC status = HIPRTC_ERROR_COMPILATION (6), source file: MIOpenBatchNormFwdTrainSpatial.cpp
+MIOpen: Warning [BuildHip] In file included from C:\Users\Rocm\AppData\Local\Temp\comgr-11700-521-793231\input\MIOpenBatchNormFwdTrainSpatial.cpp:8:
+In file included from C:\Users\Rocm\AppData\Local\Temp\comgr-11700-521-793231\include\batchnorm_functions.hpp:30:
+In file included from C:\Users\Rocm\AppData\Local\Temp\comgr-11700-521-793231\include\configuration.hpp:34:
+In file included from C:\Users\Rocm\AppData\Local\Temp\comgr-11700-521-793231\include\vector_types.hpp:8:
+C:\Users\Rocm\AppData\Local\Temp\comgr-11700-521-793231\include\miopen_type_traits.hpp:151:10: fatal error: 'type_traits' file not found
+  151 | #include <type_traits>
+      |          ^~~~~~~~~~~~~
+1 error generated when compiling for gfx1100.
+MIOpen Error: DESKTOP-S6VG7J7:C:/home/runner/_work/rockrel/rockrel/rocm-libraries/projects/miopen/src/hipoc/hipoc_program.cpp:204: Code object build failed. Source: MIOpenBatchNormFwdTrainSpatial.cpp
+Traceback (most recent call last):
+  File "<string>", line 8, in <module>
+  File "C:\P18\venv101\Lib\site-packages\torch\nn\modules\module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\P18\venv101\Lib\site-packages\torch\nn\modules\module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\P18\venv101\Lib\site-packages\torch\nn\modules\container.py", line 259, in forward
+    input = module(input)
+            ^^^^^^^^^^^^^
+  File "C:\P18\venv101\Lib\site-packages\torch\nn\modules\module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\P18\venv101\Lib\site-packages\torch\nn\modules\module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\P18\venv101\Lib\site-packages\torch\nn\modules\batchnorm.py", line 210, in forward
+    return F.batch_norm(
+           ^^^^^^^^^^^^^
+  File "C:\P18\venv101\Lib\site-packages\torch\nn\functional.py", line 2904, in batch_norm
+    return torch.batch_norm(
+           ^^^^^^^^^^^^^^^^^
+RuntimeError: miopenStatusUnknownError
+torch 2.14.0+rocm10.1.0 | hip 7.16.26385 | avail True
+BN_EXIT=1

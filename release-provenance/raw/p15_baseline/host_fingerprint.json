@@ -1,0 +1,13 @@
+[
+    {
+        "Name":  "GameViewer Virtual Display Adapter",
+        "DriverVersion":  "15.6.5.199",
+        "AdapterRAM":  null
+    },
+    {
+        "Name":  "AMD Radeon(TM) 8060S Graphics",
+        "DriverVersion":  "32.0.22032.6002",
+        "AdapterRAM":  4293918720
+    }
+]
+10.0.26200

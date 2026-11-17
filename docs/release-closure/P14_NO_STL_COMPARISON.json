@@ -1,0 +1,58 @@
+{
+  "mission": "P14.1 no-host-STL negative control — three-leg comparison",
+  "generated_utc": "2026-11-15T02:45:00Z",
+  "purpose": "Determine at RUNTIME whether the newest official Windows wheel (whl-next 10.1.0) contains the PR #13437 fix, using the exact original MIOpen BatchNorm reproducer that fails on machines without a host MSVC STL.",
+  "procedure": {
+    "reproducer": "C:/YOLO_PR13437_PostMerge/scripts/test_batchnorm.py (original issue-#3956 minimal reproduction; BatchNorm2d(100) forward+backward on GPU, in-process loaded-DLL provenance)",
+    "no_stl_technique": "VCToolsInstallDir -> empty dir C:\\pm13437_home\\fakevc removes MSVC STL from wheel-clang include search (validated P13437 technique; scrubbing INCLUDE/PATH alone is insufficient), plus --no-host-stl INCLUDE/PATH scrub",
+    "cache_isolation": "USERPROFILE redirected per leg -> fresh MIOpen cache (no cross-leg cache contamination)",
+    "hardware": "AMD Radeon 8060S (gfx1151), Windows 11 26200, same driver for all legs",
+    "execution": "sequential, one leg at a time; no overlapping GPU experiments"
+  },
+  "legs": [
+    {
+      "leg": "A",
+      "label": "Historical official wheel WITHOUT fix",
+      "env": "pm13437_official",
+      "torch": "2.12.0+rocm7.14.1",
+      "miopen_dll_sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+      "miopen_version": "3.5.2.cd957402",
+      "marker_initializer_list": 0,
+      "exit_code": 1,
+      "result": "FAIL",
+      "failure_signature": "MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6) -> miopen_type_traits.hpp:151:10 fatal error: 'type_traits' file not found -> RuntimeError: miopenStatusUnknownError",
+      "log": "release-provenance/raw/p14_wheel_audit/legA_official.log",
+      "log_sha256": "dd5159b74d0d14bbe6aecb847ae0927919d47328ed3b50ed35bbf9eba77e47f2"
+    },
+    {
+      "leg": "B",
+      "label": "Official NEWER candidate wheel (whl-next 10.1.0)",
+      "env": "p14_whlnext (fresh install from official index)",
+      "torch": "2.13.0+rocm10.1.0",
+      "miopen_dll_sha256": "266d716bab4aaf4ec3bb7492d35f6b65473982bc38f22b14235863a15c1429b4",
+      "miopen_version": "3.6.1.39d8d603",
+      "marker_initializer_list": 0,
+      "exit_code": 1,
+      "result": "FAIL",
+      "failure_signature": "IDENTICAL to LEG A: MIOpenBatchNormFwdTrainSpatial.cpp: HIPRTC_ERROR_COMPILATION (6) -> miopen_type_traits.hpp:151:10 fatal error: 'type_traits' file not found -> RuntimeError: miopenStatusUnknownError",
+      "log": "release-provenance/raw/p14_wheel_audit/legB_whlnext.log",
+      "log_sha256": "0f50b55be9348bcd803c035b979323de21d05e79bea177c51630d5a8c94832eb"
+    },
+    {
+      "leg": "C",
+      "label": "ENGINEERING_REFERENCE (source build of merge commit f0a5d266) — not a release artifact",
+      "env": "pm13437_merged",
+      "torch": "2.12.0+rocm7.14.1",
+      "miopen_dll_sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+      "miopen_version": "3.6.2.f0a5d266",
+      "marker_initializer_list": 2,
+      "exit_code": 0,
+      "result": "PASS",
+      "evidence": "loss=0.999990 y_finite=True xgrad_finite=True BATCHNORM_FORWARD_BACKWARD: PASS",
+      "log": "release-provenance/raw/p14_wheel_audit/legC_merged.log",
+      "log_sha256": "3a95978975441288071ade78252c0cbaa15b3f03182cf295df0000c79e16bccb"
+    }
+  ],
+  "verdict": "The newest official Windows channel (whl-next 10.1.0, torch 2.13.0/2.14.0+rocm10.1.0) FAILS the original no-STL reproducer with the exact pre-fix signature, while the engineering reference PASSes on the same GPU/session. BLOCKED_RELEASE stands with runtime evidence for the new channel.",
+  "note": "This negative control is run on a disposable test install in a dedicated env (p14_whlnext); ENV A/ENV B untouched; no unsafe in-place DLL replacement performed."
+}

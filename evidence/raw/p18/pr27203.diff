@@ -1,0 +1,159 @@
+diff --git a/tests/test_cuda.py b/tests/test_cuda.py
+index 64fecd7b4da..49016c25f88 100644
+--- a/tests/test_cuda.py
++++ b/tests/test_cuda.py
+@@ -27,9 +27,13 @@
+         if idle_gpus := gpu_info.select_idle_gpu(
+             count=2,
+             min_memory_fraction=autodevice_fraction,
+-            min_util_fraction=autodevice_fraction,
++            min_util_fraction=autodevice_fraction if gpu_info.nvml_available else 0,
+         ):
+-            DEVICES = idle_gpus
++            # Without NVML, GPUInfo returns physical IDs but cuda:N expects visible logical IDs.
++            visible = [str(int(x)) for x in os.getenv("CUDA_VISIBLE_DEVICES", "").split(",") if x.isdigit()]
++            DEVICES = (
++                [visible.index(str(i)) for i in idle_gpus] if visible and not gpu_info.nvml_available else idle_gpus
++            )
+ 
+ 
+ def test_checks():
+diff --git a/tests/test_python.py b/tests/test_python.py
+index 994d0bb298c..a62ccaa4e40 100644
+--- a/tests/test_python.py
++++ b/tests/test_python.py
+@@ -241,6 +241,20 @@ def test_select_device(monkeypatch):
+     assert torch_utils.parse_device("-1") == "0"  # idle physical GPU 1 found via normalized visible ids
+ 
+ 
++def test_select_idle_gpu_fallback():
++    """Check device restrictions on a real host without simulating GPU state."""
++    from ultralytics.utils.autodevice import GPUInfo
++
++    gpu_info = GPUInfo()
++    assert gpu_info.select_idle_gpu(count=1, indices=[]) == []
++    assert gpu_info.select_idle_gpu(count=1, indices=[99999]) == []
++    if not gpu_info.nvml_available:
++        assert gpu_info.select_idle_gpu(count=1, min_util_fraction=0.2) == []
++        visible = os.getenv("CUDA_VISIBLE_DEVICES", "").split(",")[0]
++        if visible.isdigit() and torch.cuda.device_count():
++            assert gpu_info.select_idle_gpu(count=1, indices=[int(visible)]) == [int(visible)]
++
++
+ def test_autobackend_memory_format(tmp_path):
+     """Check backend memory formats on the real host platform without mocked platform state."""
+     from ultralytics.nn.autobackend import AutoBackend
+diff --git a/ultralytics/utils/autodevice.py b/ultralytics/utils/autodevice.py
+index 12cd71a26e1..9dbcc78cefa 100644
+--- a/ultralytics/utils/autodevice.py
++++ b/ultralytics/utils/autodevice.py
+@@ -2,6 +2,7 @@
+ 
+ from __future__ import annotations
+ 
++import os
+ import random
+ from typing import Any
+ 
+@@ -145,7 +146,7 @@ def select_idle_gpu(
+             count (int): The number of idle GPUs to select.
+             min_memory_fraction (float): Minimum free memory required as a fraction of total memory.
+             min_util_fraction (float): Minimum free utilization rate required from 0.0 - 1.0.
+-            indices (list[int] | None): Restrict selection to these GPU indices, e.g. the GPUs visible under an external
++            indices (list[int] | None): Restrict selection to GPU IDs, using physical IDs under an external
+                 CUDA_VISIBLE_DEVICES restriction. None searches all GPUs.
+ 
+         Returns:
+@@ -153,7 +154,9 @@ def select_idle_gpu(
+ 
+         Notes:
+             Returns fewer than 'count' if not enough qualify or exist.
+-            Returns empty list if NVML stats are unavailable or no GPUs meet the criteria.
++            Without NVML stats, available devices can be selected using torch.cuda.mem_get_info for free-memory
++            checks; a nonzero idle-utilization requirement cannot be verified and returns no devices.
++            Returns empty list if no GPUs meet the criteria.
+         """
+         assert min_memory_fraction <= 1.0, f"min_memory_fraction must be <= 1.0, got {min_memory_fraction}"
+         assert min_util_fraction <= 1.0, f"min_util_fraction must be <= 1.0, got {min_util_fraction}"
+@@ -167,8 +170,42 @@ def select_idle_gpu(
+ 
+         self.refresh_stats()
+         if not self.gpu_stats:
+-            LOGGER.warning("NVML stats unavailable.")
+-            return []
++            LOGGER.warning("NVML stats unavailable; GPU utilization cannot be measured.")
++            import torch
++
++            if min_util_fraction:
++                LOGGER.warning(f"Cannot verify {min_util_fraction * 100:.1f}% free GPU utilization without NVML.")
++                return []
++            n = torch.cuda.device_count()
++            visible = [
++                str(int(x)) if x.isdigit() else x
++                for x in os.getenv("CUDA_VISIBLE_DEVICES", "").replace(" ", "").split(",")
++                if x
++            ][:n]
++            candidates = (
++                indices if indices is not None else ([int(x) for x in visible if x.isdigit()] if visible else range(n))
++            )
++            selected = []
++            for idx in candidates:
++                logical = visible.index(str(idx)) if visible and str(idx) in visible else (idx if not visible else -1)
++                if not 0 <= logical < n or idx in selected:
++                    continue
++                if min_memory_fraction:
++                    try:
++                        free, total = torch.cuda.mem_get_info(logical)
++                    except Exception as e:
++                        LOGGER.warning(f"Free memory query failed for device {idx}: {e}")
++                        continue
++                    if not total or free / total < min_memory_fraction:
++                        continue
++                selected.append(idx)
++                if len(selected) == count:
++                    break
++            if selected:
++                LOGGER.info(f"Selected CUDA devices {selected} (utilization not measured)")
++            else:
++                LOGGER.warning("No visible CUDA devices meet the verifiable free-memory requirements.")
++            return selected
+ 
+         # Filter and sort eligible GPUs
+         eligible_gpus = [
+diff --git a/ultralytics/utils/checks.py b/ultralytics/utils/checks.py
+index bfad3c58cdb..7a224702ea1 100644
+--- a/ultralytics/utils/checks.py
++++ b/ultralytics/utils/checks.py
+@@ -1142,10 +1142,10 @@ def strip_auth(v):
+ 
+ 
+ def cuda_device_count() -> int:
+-    """Get the number of NVIDIA GPUs available in the environment.
++    """Get the number of CUDA GPUs (NVIDIA via nvidia-smi, or AMD HIP via PyTorch) available in the environment.
+ 
+     Returns:
+-        (int): The number of NVIDIA GPUs available.
++        (int): The number of CUDA GPUs available.
+     """
+     if IS_JETSON:
+         # NVIDIA Jetson does not fully support nvidia-smi and therefore use PyTorch instead
+@@ -1162,15 +1162,16 @@ def cuda_device_count() -> int:
+ 
+             return int(first_line)
+         except (subprocess.CalledProcessError, FileNotFoundError, ValueError):
+-            # If the command fails, nvidia-smi is not found, or output is not an integer, assume no GPUs are available
+-            return 0
++            # nvidia-smi absent or unusable (e.g. AMD HIP or CPU-only): fall back to the torch device count, which
++            # reports HIP devices too, and 0 when no accelerator is present
++            return torch.cuda.device_count()
+ 
+ 
+ def cuda_is_available() -> bool:
+     """Check if CUDA is available in the environment.
+ 
+     Returns:
+-        (bool): True if one or more NVIDIA GPUs are available, False otherwise.
++        (bool): True if one or more CUDA GPUs (NVIDIA or AMD HIP) are available, False otherwise.
+     """
+     return cuda_device_count() > 0
+ 

@@ -1,0 +1,97 @@
+{
+  "label": "R21_ENVIRONMENT_BASELINE",
+  "captured_utc": "2026-11-15T14:59:54.303849+00:00",
+  "python": "3.12.16",
+  "python_executable": "C:\\P19\\venv\\Scripts\\python.exe",
+  "os": "Windows-11-10.0.26300-SP0",
+  "windows_build": "10.0.26300.0",
+  "gpu_name_cim": "AMD Radeon RX 7900 XTX",
+  "driver_version": "32.0.21030.2001",
+  "gfx_target": "gfx1100",
+  "workarounds": {
+    "hiprtc_compile_options_append": "-IC:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\scripts\\miopen_shims",
+    "hiprtc_include_injection": true,
+    "miopen_env_overrides": {},
+    "miopen_path_redirection": [],
+    "any_workaround_present": true
+  },
+  "env": {
+    "PATH": "C:\\Users\\Rocm\\bin;C:\\Program Files\\Git\\ucrt64\\bin;C:\\Program Files\\Git\\usr\\local\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\ucrt64\\bin;C:\\Program Files\\Git\\usr\\bin;C:\\Users\\Rocm\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0;C:\\WINDOWS\\System32\\OpenSSH;C:\\Program Files\\GitHub CLI;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs;C:\\Users\\Rocm\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Rocm\\AppData\\Local\\Microsoft\\WinGet\\Packages\\astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe;C:\\Users\\Rocm\\AppData\\Roaming\\npm;C:\\Users\\Rocm\\AppData\\Local\\Programs\\ZCode\\resources\\tools\\ripgrep;C:\\Users\\Rocm\\AppData\\Local\\Programs\\ZCode\\resources\\tools\\ugrep;C:\\Program Files\\nodejs;C:\\Program Files\\Git\\usr\\bin\\vendor_perl;C:\\Program Files\\Git\\usr\\bin\\core_perl",
+    "INCLUDE": null,
+    "LIB": null,
+    "VCToolsInstallDir": null,
+    "HIP_PATH": null,
+    "ROCM_PATH": null,
+    "PYTHONPATH": null,
+    "HIPRTC_COMPILE_OPTIONS_APPEND": "-IC:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\scripts\\miopen_shims"
+  },
+  "torch": "2.12.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "torch_cuda_available": true,
+  "device_count": 1,
+  "gpu_name_torch": "AMD Radeon RX 7900 XTX",
+  "miopen": {
+    "loaded": true,
+    "path": "C:\\P19\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+    "bytes": 492380672,
+    "embedded_version_strings": [
+      "3.5.2.cd957402"
+    ],
+    "pr13437_marker_miopen_initializer_list": 0
+  },
+  "packages": {
+    "torch": "2.12.0+rocm7.14.1",
+    "torchvision": "0.27.0+rocm7.14.1",
+    "ultralytics": "8.4.213",
+    "rocm-sdk-libraries": "7.14.1",
+    "rocm-sdk-core": "7.14.1",
+    "amd-torch-device-gfx1100": "2.12.0+rocm7.14.1",
+    "amd-torch-device-gfx1151": null,
+    "amd-torchvision-device-gfx1100": "0.27.0+rocm7.14.1",
+    "amd-torchvision-device-gfx1151": null
+  },
+  "run_id": "R21-ENV-BASELINE",
+  "mission": "R21",
+  "os_edition": "Microsoft Windows 11 专业版",
+  "free_disk_c_gb": "562.361568450928",
+  "running_gpu_processes": "[{\"Id\":548,\"ProcessName\":\"python\"},{\"Id\":4708,\"ProcessName\":\"python\"},{\"Id\":22820,\"ProcessName\":\"python\"},{\"Id\":27924,\"ProcessName\":\"python\"}]",
+  "msvc": {
+    "VCToolsInstallDir_env": null,
+    "INCLUDE_env_set": false,
+    "cl_on_path": false
+  },
+  "miopen_caches": {
+    "userprofile": {
+      "path": "C:\\Users\\Rocm\\.cache\\miopen",
+      "exists": false,
+      "entries": 0
+    },
+    "appdata": {
+      "path": "C:\\Users\\Rocm\\AppData\\Roaming\\miopen",
+      "exists": false,
+      "entries": 0
+    }
+  },
+  "python_interpreters": [
+    {
+      "path": "C:\\P19\\venv\\Scripts\\python.exe",
+      "version": "3.12.16"
+    },
+    {
+      "path": "C:\\P18\\venv\\Scripts\\python.exe",
+      "version": "3.12.16"
+    },
+    {
+      "path": "C:\\P19\\venv\\Scripts\\python.exe",
+      "version": "3.12.16"
+    }
+  ],
+  "target_venv_stack": {
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "cuda_available": true,
+    "device_count": 1,
+    "device_name": "AMD Radeon RX 7900 XTX"
+  }
+}

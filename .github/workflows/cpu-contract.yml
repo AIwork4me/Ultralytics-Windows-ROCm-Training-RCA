@@ -1,0 +1,85 @@
+# Lightweight CPU-only contract validation for the Windows Golden Path harness.
+#
+# Purpose (mission R21.1 section 10): fail on a contract or false-PASS
+# regression without any GPU, AMD wheel download, or large CI framework.
+#
+# What each step guards:
+#   compileall  - committed-bytes SyntaxError class (the 31526a1 defect where
+#                 four gate scripts were committed with an unclosed paren and
+#                 evidence could only have come from uncommitted working copies)
+#   pytest      - 45 CPU contract tests incl. 17 adversarial fail-closed
+#                 controls (missing/failed/hidden-failed gates, synthetic or
+#                 hand-written evidence, DEV->stable promotion, ...)
+#   verifier    - repo release-closure evidence audit (575 checks) plus its
+#                 12 adversarial self-tests proving the verifier itself
+#                 rejects known-bad records
+name: cpu-contract
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cpu-contract:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out exact PR head (not an implicit merge preview)
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Assert checked-out exact HEAD
+        shell: pwsh
+        run: |
+          $actual = (git rev-parse HEAD).Trim()
+          $expected = "${{ github.event.pull_request.head.sha || github.sha }}"
+          if ($actual -ne $expected) { throw "checkout SHA mismatch: $actual vs $expected" }
+          Write-Output "EXACT_HEAD_VERIFIED=$actual"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install minimal test dependencies
+        run: python -m pip install --disable-pip-version-check --no-cache-dir pytest
+
+      - name: Committed harness sources compile (SyntaxError regression gate)
+        run: python -m compileall -q windows-golden-path
+
+      - name: R22A.5A preflight scripts compile
+        run: python -m compileall -q scripts/r22a5a
+
+      - name: R22A.5N.1 acceptance/evidence scripts compile
+        run: python -m compileall -q scripts/r22a5n1
+
+      - name: R22A.5N gfx1100 profile engine compile
+        run: python -m compileall -q scripts/r22a5n1100
+
+      - name: CPU contract tests (adversarial, fail-closed)
+        run: python -m pytest windows-golden-path/tests -q
+
+      - name: Release-closure evidence verifier + adversarial self-tests
+        run: python scripts/verify_release_closure.py
+
+      # R22A.5N-GFX1100.1: audit the physical evidence bytes in the PR
+      # checkout; these steps never initialize or pretend to test a GPU.
+      - name: Verify committed gfx1100 raw evidence SHA256 manifest
+        run: python scripts/r22a5n1/evidence_pack.py verify --root reports/r22a5n/R22A5N-GFX1100-20261117-A --run-id R22A5N-GFX1100-20261117-A
+
+      - name: Recompute all nine gfx1100 gates (CPU replay of real GPU receipts)
+        shell: pwsh
+        run: |
+          python scripts/r22a5n1100/nightly_acceptance.py --evidence-root reports/r22a5n/R22A5N-GFX1100-20261117-A --repo-root . --run-id R22A5N-GFX1100-20261117-A --out "$env:RUNNER_TEMP\\gfx1100_nightly_acceptance.json"
+
+      - name: Upload independently recomputed gfx1100 acceptance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r22a5n-gfx1100-acceptance-recomputed
+          path: ${{ runner.temp }}\\gfx1100_nightly_acceptance.json
+          if-no-files-found: warn

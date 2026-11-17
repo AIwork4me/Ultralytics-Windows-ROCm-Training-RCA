@@ -1,0 +1,32 @@
+{
+  "mission": "P19B P1: before/after comparison of PR #27203 functions on identical machine",
+  "before_ref": "ultralytics/ultralytics main @ 3e59149d4e047019e759dc8feec09208fa09163d",
+  "after_ref": "PR #27203 head d8fe65c8c1052cb4305f3cec1be9cb909538dcf1",
+  "method": "fresh subprocess per cell; PYTHONPATH selects the tree (C:\\P19B\\main-baseline vs C:\\P19B\\pr27203 worktrees); same python/torch/GPU/driver; probe script C:\\P19B\\scratch\\p1_device_probe.py; raw log P19B_baseline_comparison_*.log",
+  "machine": "AMD Radeon 8060S (gfx1151), Windows 11 26200.9974, driver 32.0.22032.6002, torch 2.12.0+rocm7.14.1, boot 2026-11-15T20:49:03 (clean)",
+  "results": {
+    "plain_no_cvd": {
+      "torch_cuda_device_count": {"main": 1, "pr": 1},
+      "torch_cuda_is_available": {"main": true, "pr": true},
+      "ul_cuda_device_count": {"main": 0, "pr": 1},
+      "ul_cuda_is_available": {"main": false, "pr": true},
+      "parse_device_minus1": {"main": "\"\"", "pr": "\"0\""},
+      "cuda_alloc_ok": {"main": true, "pr": true}
+    },
+    "cuda_visible_devices_0": {
+      "torch_cuda_device_count": {"main": 1, "pr": 1},
+      "ul_cuda_device_count": {"main": 0, "pr": 1},
+      "ul_cuda_is_available": {"main": false, "pr": true},
+      "parse_device_minus1": {"main": "\"\"", "pr": "\"0\""},
+      "cuda_alloc_ok": {"main": true, "pr": true},
+      "note": "CUDA_VISIBLE_DEVICES set before torch init; results identical to plain -> no regression under restriction, physical-id remapping intact"
+    }
+  },
+  "measured_value_of_pr": [
+    "cuda_device_count()/cuda_is_available(): main reports 0/False on AMD (nvidia-smi missing) although torch sees 1 GPU; PR reports 1/True matching torch.",
+    "Downstream effect (empirical, same session): on main, tests/test_cuda.py module constant CUDA_IS_AVAILABLE=False -> every GPU test would skip; on PR the full file collected 188 items and ran 10 non-slow tests with 8 GPU executions.",
+    "parse_device('-1'): main returns empty string (falls into select_device's implicit current-device path, with 'NVML stats unavailable' warning and no idle-GPU selection); PR returns explicit '0' via the new select_idle_gpu no-NVML fallback.",
+    "Multi-GPU physical-id remapping under CUDA_VISIBLE_DEVICES: NOT_RUN (single gfx1151 GPU; both modes behave identically as expected)."
+  ],
+  "no_drift_note": "torch_utils.py and engine/trainer.py are byte-identical between main 3e59149 and PR head d8fe65c8 (verified by diff); the only changed owners are ultralytics/utils/checks.py and ultralytics/utils/autodevice.py."
+}

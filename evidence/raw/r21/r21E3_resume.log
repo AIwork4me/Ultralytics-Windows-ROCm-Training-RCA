@@ -1,0 +1,24 @@
+{
+  "wait_for_checkpoint": {
+    "ok": true,
+    "epochs_done": 3,
+    "waited_s": 21.7
+  },
+  "child1_returncode": 1,
+  "rows_at_kill": 3,
+  "checkpoint_resumability": {
+    "checked": true,
+    "has_optimizer_state": true,
+    "ckpt_epoch": 1
+  },
+  "resume_exit": 0,
+  "resume_done_marker": true,
+  "resume_state_evidence_logged": true,
+  "final_epoch_rows": 9,
+  "last_epoch_value": 8,
+  "epoch_continuity": true,
+  "infer_exit": 0,
+  "infer_ok": true
+}
+CHECKPOINT_RESUME: PASS
+E3B_EXIT=0

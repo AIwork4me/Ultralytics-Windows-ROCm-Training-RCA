@@ -1,0 +1,151 @@
+# run_id=g2mx_segment_20261114T134012Z task=segment tag=fp32v2 environment_id=ENV_B_patched amp=False python=C:/Users/rocm/miniconda3/envs/pm13437_merged/python.exe started_utc=2026-11-14T13:42:00.278683+00:00
+# exit=0
+--- stdout ---
+[PASS] t01_gpu_pretrained_inference 
+New https://pypi.org/project/ultralytics/8.4.212 available  Update with 'pip install -U ultralytics'
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=False, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8-seg.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=1, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n-seg.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=smoke, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=False, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\segment\smoke, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=42, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=segment, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    863656  ultralytics.nn.modules.head.Segment26        [80, 32, 64, 1, True, [64, 128, 256]]
+YOLO26n-seg summary: 309 layers, 3,126,280 parameters, 3,126,280 gradients, 10.6 GFLOPs
+
+Transferred 844/844 items from pretrained weights
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 64.4±31.4 MB/s, size: 50.0 KB)
+
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-seg\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 541.2Kit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 519.4±368.0 MB/s, size: 54.0 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-seg\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 466.0Kit/s 0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 134 weight(decay=0.0), 154 weight(decay=0.0005), 154 bias(decay=0.0)
+Using 4 train, 4 val images for fraction=1.0 at imgsz=640
+Using 0 dataloader workers
+Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\segment\smoke[0m
+Starting training for 1 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   seg_loss   cls_loss    l1_loss   sem_loss  Instances       Size
+
+[K        1/1     0.328G     0.9466      2.145      1.271    0.01019     0.2597         13        640: 0% ──────────── 0/1  2.2s
+[K        1/1     0.328G     0.9466      2.145      1.271    0.01019     0.2597         13        640: 100% ━━━━━━━━━━━━ 1/1 2.2s/it 2.2s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 5.6it/s 0.2s
+                   all          4         17        0.9      0.612      0.863      0.624       0.84        0.6      0.839      0.534
+
+1 epochs completed in 0.001 hours.
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\segment\smoke\weights\last.pt, 6.7MB
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\segment\smoke\weights\best.pt, 6.7MB
+
+Validating C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\segment\smoke\weights\best.pt...
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n-seg summary (fused): 136 layers, 2,722,980 parameters, 0 gradients, 9.3 GFLOPs
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 15.2it/s 0.1s
+                   all          4         17      0.902      0.612      0.861      0.625      0.842        0.6      0.838      0.535
+                person          3         10          1      0.172      0.692      0.369       0.64        0.1      0.556      0.251
+                   dog          1          1      0.893          1      0.995      0.796      0.893          1      0.995      0.895
+                 horse          1          2      0.768          1      0.995      0.696      0.768          1      0.995      0.174
+              elephant          1          2      0.947        0.5      0.495      0.297      0.947        0.5      0.495      0.297
+              umbrella          1          1        0.8          1      0.995      0.895        0.8          1      0.995      0.895
+          potted plant          1          1          1          0      0.995      0.697          1          0      0.995      0.697
+Speed: 0.3ms preprocess, 5.2ms inference, 0.0ms loss, 2.0ms postprocess per image
+[PASS] t04_one_epoch_smoke 
+[PASS] t09_save_last_pt 
+[PASS] t10_save_best_pt 
+New https://pypi.org/project/ultralytics/8.4.212 available  Update with 'pip install -U ultralytics'
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=False, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco8-seg.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=4, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n-seg.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=multi, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=False, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\segment\multi, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=42, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=segment, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    863656  ultralytics.nn.modules.head.Segment26        [80, 32, 64, 1, True, [64, 128, 256]]
+YOLO26n-seg summary: 309 layers, 3,126,280 parameters, 3,126,280 gradients, 10.6 GFLOPs
+
+Transferred 844/844 items from pretrained weights
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 395.7±248.8 MB/s, size: 50.0 KB)
+
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-seg\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 932.1Kit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 492.9±308.9 MB/s, size: 54.0 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-seg\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 541.2Kit/s 0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 134 weight(decay=0.0), 154 weight(decay=0.0005), 154 bias(decay=0.0)
+[recorder] attached (main) amp_effective=False scaler_enabled=False
+Using 4 train, 4 val images for fraction=1.0 at imgsz=640
+Using 0 dataloader workers
+Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\segment\multi[0m
+Starting training for 4 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   seg_loss   cls_loss    l1_loss   sem_loss  Instances       Size
+
+[K        1/4      1.77G     0.9466      2.145      1.271    0.01019     0.2597         13        640: 0% ──────────── 0/1  0.6s
+[K        1/4      1.77G     0.9466      2.145      1.271    0.01019     0.2597         13        640: 100% ━━━━━━━━━━━━ 1/1 1.6it/s 0.6s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 9.8it/s 0.1s
+                   all          4         17      0.918      0.613      0.868      0.629      0.852        0.6      0.826      0.535
+
+      Epoch    GPU_mem   box_loss   seg_loss   cls_loss    l1_loss   sem_loss  Instances       Size
+
+[K        2/4      1.81G      1.009      2.407      2.324    0.02249     0.3643         13        640: 0% ──────────── 0/1  0.2s
+[K        2/4      1.81G      1.009      2.407      2.324    0.02249     0.3643         13        640: 100% ━━━━━━━━━━━━ 1/1 4.5it/s 0.2s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Mask(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 8.6it/s 0.1s
+                   all          4         17      0.918      0.613      0.868      0.629      0.852        0.6      0.826      0.535
+[interrupt] simulated interruption after epoch 1
+[PASS] t05_multi_epoch_interrupted 
+[PASS] t06_loss_finite_throughout 
+MAIN stage done — interrupted run at C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\segment\multi
+SUMMARY segment: 8/9 PASS (1 SKIP — SKIP is not functional PASS)
+
+--- stderr ---
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx115128.HIP.fdb.txt"
+

@@ -1,0 +1,117 @@
+{
+  "run_id": "GP-G-20261116-093332",
+  "mission": "R21",
+  "timestamp": "2026-11-16T01:59:13.428494+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python run_stability.py --runs 10 --cold --device -1",
+  "exit_code": 0,
+  "duration_s": 1230.9,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\stability_runs.json",
+  "runs": [
+    {
+      "run": 1,
+      "exit_code": 0,
+      "duration_s": 115.9,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run01\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 2,
+      "exit_code": 0,
+      "duration_s": 117.7,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run02\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 3,
+      "exit_code": 0,
+      "duration_s": 117.8,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run03\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 4,
+      "exit_code": 0,
+      "duration_s": 116.7,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run04\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 5,
+      "exit_code": 0,
+      "duration_s": 115.9,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run05\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 6,
+      "exit_code": 0,
+      "duration_s": 117.7,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run06\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 7,
+      "exit_code": 0,
+      "duration_s": 123.8,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run07\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 8,
+      "exit_code": 0,
+      "duration_s": 134.9,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run08\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 9,
+      "exit_code": 0,
+      "duration_s": 135.6,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run09\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 10,
+      "exit_code": 0,
+      "duration_s": 133.5,
+      "cache_class": "cold(fresh-USERPROFILE)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-20261116-093332\\run10\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    }
+  ],
+  "n_pass": 10,
+  "n_total": 10,
+  "anomaly_tally": {},
+  "cache_class": "cold(fresh-USERPROFILE per run)",
+  "note": "independent training PROCESSES; cache classes tracked separately; unexplained kernel/runtime failures block stable readiness"
+}

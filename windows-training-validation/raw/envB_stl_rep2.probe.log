@@ -1,0 +1,11 @@
+# probe exit: 0
+--- stdout ---
+{
+  "miopen_path": "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+  "miopen_sha256": "ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a",
+  "hip": "7.14.60850",
+  "device": "AMD Radeon(TM) 8060S Graphics"
+}
+
+--- stderr ---
+

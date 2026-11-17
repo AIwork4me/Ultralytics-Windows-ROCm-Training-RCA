@@ -1,0 +1,303 @@
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx115128.HIP.fdb.txt"
+[34m[1mAMP: [0mchecks passed 
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=coco128.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=4, erasing=0.4, exist_ok=False, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=64, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=train-10, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\P19B\pr27203\runs\detect\train-10, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=0, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 594.9±302.9 MB/s, size: 50.9 KB)
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco128\labels\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 22.4Mit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 478.7±316.1 MB/s, size: 52.5 KB)
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco128\labels\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 31.6Mit/s 0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+Plotting labels to C:\P19B\pr27203\runs\detect\train-10\labels.jpg... 
+Using 128 train, 128 val images for fraction=1.0 at imgsz=64
+Using 0 dataloader workers
+Logging results to [1mC:\P19B\pr27203\runs\detect\train-10[0m
+Starting training for 4 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        1/4     0.223G      3.491      7.056     0.1341         61         64: 0% ──────────── 0/8  2.1s[K        1/4     0.242G      3.354      7.023     0.1243         91         64: 12% ━─────────── 1/8 2.4it/s 2.2s<2.9s[K        1/4     0.242G      3.464      7.055     0.1361         52         64: 25% ━━━───────── 2/8 4.1it/s 2.3s<1.4s[K        1/4     0.242G      3.522      7.204     0.1354         70         64: 37% ━━━━──────── 3/8 5.3it/s 2.4s<0.9s[K        1/4     0.242G      3.501      7.166      0.136         56         64: 50% ━━━━━━────── 4/8 6.7it/s 2.5s<0.6s[K        1/4     0.252G      3.605      7.214     0.1382         87         64: 62% ━━━━━━━───── 5/8 7.5it/s 2.6s<0.4s[K        1/4     0.252G      3.623      7.111     0.1357         96         64: 75% ━━━━━━━━━─── 6/8 8.1it/s 2.8s<0.2s[K        1/4     0.252G      3.595      7.082     0.1347         87         64: 87% ━━━━━━━━━━── 7/8 8.2it/s 2.9s<0.1s[K        1/4     0.252G      3.595      7.082     0.1347         87         64: 100% ━━━━━━━━━━━━ 8/8 2.8it/s 2.9s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.7it/s 0.2s<1.8s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 3.3it/s 0.3s<0.6s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 3.9it/s 0.5s<0.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 6.1it/s 0.7s
+                   all        128        929     0.0535     0.0781     0.0471     0.0278
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        2/4     0.271G      3.624      7.303     0.1276         91         64: 12% ━─────────── 1/8 1.8it/s 0.2s<3.9s[K        2/4     0.271G      3.549      7.044     0.1315        111         64: 37% ━━━━──────── 3/8 4.8it/s 0.3s<1.0s[K        2/4     0.271G      3.522      7.031     0.1263         54         64: 62% ━━━━━━━───── 5/8 7.3it/s 0.5s<0.4s[K        2/4     0.271G      3.544      6.973      0.129         85         64: 87% ━━━━━━━━━━── 7/8 8.7it/s 0.7s<0.1s[K        2/4     0.271G      3.544      6.973      0.129         85         64: 100% ━━━━━━━━━━━━ 8/8 12.2it/s 0.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 2.3it/s 0.1s<1.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 3.8it/s 0.3s<0.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 4.7it/s 0.4s<0.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 7.2it/s 0.6s
+                   all        128        929     0.0395      0.064     0.0348     0.0192
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        3/4     0.271G      3.504      7.076     0.1271         97         64: 12% ━─────────── 1/8 1.8it/s 0.2s<3.8s[K        3/4     0.271G      3.534      6.852     0.1322         66         64: 37% ━━━━──────── 3/8 5.0it/s 0.3s<1.0s[K        3/4     0.271G      3.457      6.774     0.1228         82         64: 62% ━━━━━━━───── 5/8 6.8it/s 0.5s<0.4s[K        3/4     0.271G      3.408      6.859     0.1203         70         64: 87% ━━━━━━━━━━── 7/8 8.6it/s 0.7s<0.1s[K        3/4     0.271G      3.408      6.859     0.1203         70         64: 100% ━━━━━━━━━━━━ 8/8 12.1it/s 0.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 2.2it/s 0.1s<1.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 3.5it/s 0.3s<0.6s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 4.3it/s 0.5s<0.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 6.6it/s 0.6s
+                   all        128        929     0.0325     0.0515     0.0247     0.0123
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+[K        4/4     0.271G       3.83      6.833     0.1394        102         64: 12% ━─────────── 1/8 1.7it/s 0.2s<4.1s[K        4/4     0.271G      3.432      7.071     0.1221         76         64: 37% ━━━━──────── 3/8 4.8it/s 0.3s<1.0s[K        4/4     0.271G      3.596      7.059     0.1272         64         64: 62% ━━━━━━━───── 5/8 6.9it/s 0.5s<0.4s[K        4/4     0.271G      3.513      7.126     0.1224         85         64: 87% ━━━━━━━━━━── 7/8 8.2it/s 0.7s<0.1s[K        4/4     0.271G      3.513      7.126     0.1224         85         64: 100% ━━━━━━━━━━━━ 8/8 11.6it/s 0.7s
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 2.3it/s 0.1s<1.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 3.8it/s 0.3s<0.5s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 4.6it/s 0.4s<0.2s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 6.9it/s 0.6s
+                   all        128        929     0.0339     0.0492     0.0175    0.00972
+
+4 epochs completed in 0.003 hours.
+Optimizer stripped from C:\P19B\pr27203\runs\detect\train-10\weights\last.pt, 5.5MB
+Optimizer stripped from C:\P19B\pr27203\runs\detect\train-10\weights\best.pt, 5.5MB
+
+Validating C:\P19B\pr27203\runs\detect\train-10\weights\best.pt...
+Ultralytics 8.4.213  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n summary (fused): 120 layers, 2,408,932 parameters, 0 gradients, 5.5 GFLOPs
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 25% ━━━───────── 1/4 1.8it/s 0.2s<1.7s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 50% ━━━━━━────── 2/4 2.8it/s 0.4s<0.7s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 75% ━━━━━━━━━─── 3/4 3.4it/s 0.6s<0.3s[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 4/4 5.3it/s 0.8s
+                   all        128        929     0.0541     0.0781     0.0473     0.0275
+                person         61        254      0.134      0.197      0.112     0.0505
+               bicycle          3          6          0          0          0          0
+                   car         12         46     0.0202     0.0435    0.00109   0.000359
+            motorcycle          4          5     0.0238        0.2     0.0075     0.0045
+              airplane          5          6     0.0476      0.333      0.335      0.184
+                   bus          5          7      0.125      0.286      0.057     0.0371
+                 train          3          3          0          0          0          0
+                 truck          5         12          0          0          0          0
+                  boat          2          6       0.05      0.167      0.165     0.0825
+         traffic light          4         14          0          0          0          0
+             stop sign          2          2          0          0          0          0
+                 bench          5          9          0          0          0          0
+                  bird          2         16          0          0          0          0
+                   cat          4          4          0          0          0          0
+                   dog          9          9      0.037      0.111    0.00767    0.00358
+                 horse          1          2          0          0          0          0
+              elephant          4         17      0.087      0.118      0.115     0.0703
+                  bear          1          1        0.1          1      0.995      0.697
+                 zebra          2          4      0.333        0.5      0.412      0.296
+               giraffe          4          9      0.167      0.333      0.123     0.0246
+              backpack          4          6          0          0          0          0
+              umbrella          4         18        0.2      0.111      0.085     0.0085
+               handbag          9         19          0          0          0          0
+                   tie          6          7          0          0          0          0
+              suitcase          2          4          0          0          0          0
+               frisbee          5          5          0          0          0          0
+                  skis          1          1          0          0          0          0
+             snowboard          2          7          0          0          0          0
+           sports ball          6          6          0          0          0          0
+                  kite          2         10          0          0          0          0
+          baseball bat          4          4          0          0          0          0
+        baseball glove          4          7          1      0.143      0.145      0.087
+            skateboard          3          5          0          0          0          0
+         tennis racket          5          7          0          0          0          0
+                bottle          6         18     0.0541      0.111     0.0198    0.00885
+            wine glass          5         16          0          0          0          0
+                   cup         10         36          0          0          0          0
+                  fork          6          6          1      0.167      0.165     0.0495
+                 knife          7         16          0          0          0          0
+                 spoon          5         22          0          0          0          0
+                  bowl          9         28     0.0833     0.0714      0.025      0.015
+                banana          1          1          0          0          0          0
+              sandwich          2          2     0.0417        0.5     0.0825     0.0206
+                orange          1          4          0          0          0          0
+              broccoli          4         11          0          0          0          0
+                carrot          3         24          0          0          0          0
+               hot dog          1          2          0          0          0          0
+                 pizza          5          5      0.125        0.4      0.252      0.177
+                 donut          2         14          0          0          0          0
+                  cake          4          4     0.0227       0.25     0.0306     0.0184
+                 chair          9         35          0          0          0          0
+                 couch          5          6          0          0          0          0
+          potted plant          9         14          0          0          0          0
+                   bed          3          3          0          0          0          0
+          dining table         10         13     0.0882      0.231      0.144       0.07
+                toilet          2          2          0          0          0          0
+                    tv          2          2          0          0          0          0
+                laptop          2          3          0          0          0          0
+                 mouse          2          2          0          0          0          0
+                remote          5          8          0          0          0          0
+            cell phone          5          8          0          0          0          0
+             microwave          3          3          0          0          0          0
+                  oven          5          5          0          0          0          0
+                  sink          4          6          0          0          0          0
+          refrigerator          5          5          0          0          0          0
+                  book          6         29          0          0          0          0
+                 clock          8          9     0.0769      0.222     0.0346     0.0173
+                  vase          2          2          0          0          0          0
+              scissors          1          1          0          0          0          0
+            teddy bear          6         21     0.0244     0.0476      0.045     0.0315
+            toothbrush          2          5          0          0          0          0
+Speed: 0.0ms preprocess, 0.4ms inference, 0.0ms loss, 0.8ms postprocess per image
+Results saved to [1mC:\P19B\pr27203\runs\detect\train-10[0m
+{
+  "started_at": "2026-11-15T14:01:52.522952+00:00",
+  "torch": "2.12.0+rocm7.14.1",
+  "hip": "7.14.60850",
+  "ultralytics_file": "C:\\P19B\\pr27203\\ultralytics\\__init__.py",
+  "ultralytics_version": "8.4.213",
+  "parse_device_minus1": "0",
+  "scaler_class_alias": false,
+  "check_amp_pretrain": true,
+  "train_kwargs": {
+    "data": "coco128.yaml",
+    "epochs": "4",
+    "device": "-1",
+    "imgsz": "64",
+    "batch": "16",
+    "workers": "0",
+    "seed": "0",
+    "cache": "False"
+  },
+  "trainer_amp_flag": true,
+  "trainer_scaler_class": "torch.amp.grad_scaler.GradScaler",
+  "trainer_optimizer_class": "AdamW",
+  "n_trainable_params": 366,
+  "train_completed": true,
+  "results_dict_sample": {
+    "metrics/precision(B)": "0.05410369991946178",
+    "metrics/recall(B)": "0.0780552048920805",
+    "metrics/mAP50(B)": "0.04730528141162063",
+    "metrics/mAP50-95(B)": "0.02751292393576405",
+    "fitness": "0.02751292393576405"
+  },
+  "params_changed_count": 366,
+  "params_changed_sample": [
+    "model.0.bn.bias",
+    "model.0.bn.weight",
+    "model.0.conv.weight",
+    "model.1.bn.bias",
+    "model.1.bn.weight",
+    "model.1.conv.weight",
+    "model.10.cv1.bn.bias",
+    "model.10.cv1.bn.weight",
+    "model.10.cv1.conv.weight",
+    "model.10.cv2.bn.bias",
+    "model.10.cv2.bn.weight",
+    "model.10.cv2.conv.weight",
+    "model.10.m.0.attn.pe.bn.bias",
+    "model.10.m.0.attn.pe.bn.weight",
+    "model.10.m.0.attn.pe.conv.weight"
+  ],
+  "params_total_trainable": 366,
+  "amp_scaler_used": true,
+  "instrumentation": {
+    "step_attempts": 13,
+    "step_success": 13,
+    "optimizer_steps_executed": 13,
+    "update_calls": 13,
+    "unscale_calls": 13,
+    "scales_seen": [
+      65536.0,
+      32768.0,
+      16384.0,
+      8192.0,
+      4096.0,
+      2048.0,
+      2048.0,
+      1024.0,
+      1024.0,
+      512.0,
+      512.0,
+      512.0,
+      512.0
+    ],
+    "autocast_enabled_samples": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "autocast_sample_count": 32,
+    "epoch_train_losses": [
+      [
+        3.5952255725860596,
+        7.081813812255859,
+        0.13467364013195038
+      ],
+      [
+        3.5439631938934326,
+        6.973092555999756,
+        0.12896950542926788
+      ],
+      [
+        3.408388137817383,
+        6.859189510345459,
+        0.12027019262313843
+      ],
+      [
+        3.5130863189697266,
+        7.126147747039795,
+        0.12242193520069122
+      ],
+      [
+        3.5130863189697266,
+        7.126147747039795,
+        0.12242193520069122
+      ]
+    ],
+    "overflow_skips_inferred": 0
+  },
+  "scale_first": 65536.0,
+  "scale_last": 512.0,
+  "scale_changed": true,
+  "autocast_true_fraction": 1.0,
+  "finished_at": "2026-11-15T14:02:27.004205+00:00",
+  "epoch_losses_finite": true,
+  "VERDICT_AMP_TRUE_OPTIMIZER_UPDATE": "PASS"
+}

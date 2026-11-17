@@ -1,0 +1,54 @@
+{
+  "run_id": "R22A-G8-WARM",
+  "mission": "R22A",
+  "timestamp": "2026-11-16T02:01:08.083871+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python run_stability.py --runs 3 --warm --device -1",
+  "exit_code": 0,
+  "duration_s": 93.8,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-warm\\stability_runs.json",
+  "runs": [
+    {
+      "run": 1,
+      "exit_code": 0,
+      "duration_s": 32.6,
+      "cache_class": "warm(process-level)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-warm\\run01\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 2,
+      "exit_code": 0,
+      "duration_s": 30.4,
+      "cache_class": "warm(process-level)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-warm\\run02\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    },
+    {
+      "run": 3,
+      "exit_code": 0,
+      "duration_s": 29.5,
+      "cache_class": "warm(process-level)",
+      "log": "C:\\RadeonYOLO\\R22A\\scratch\\gpstab-warm\\run03\\child.log",
+      "status": "PASS",
+      "anomalies": []
+    }
+  ],
+  "n_pass": 3,
+  "n_total": 3,
+  "anomaly_tally": {},
+  "cache_class": "warm",
+  "note": "independent training PROCESSES; cache classes tracked separately; unexplained kernel/runtime failures block stable readiness"
+}

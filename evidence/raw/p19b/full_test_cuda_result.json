@@ -1,0 +1,44 @@
+{
+  "mission": "P19B P0-B: full pytest tests/test_cuda.py on PR #27203 head",
+  "git_sha": "d8fe65c8c1052cb4305f3cec1be9cb909538dcf1",
+  "command": "pytest tests/test_cuda.py (upstream default, no --slow; run from worktree root C:\\P19B\\pr27203)",
+  "duration_seconds": 321.31,
+  "exit_code": 1,
+  "exit_code_note": "pytest exit 1 = test failures present (1 failed); not an execution error",
+  "collected_pre_filter": 188,
+  "ran_after_slow_filter": 10,
+  "counts": {
+    "passed": 8,
+    "failed": 1,
+    "skipped": 1,
+    "errors": 0,
+    "xfailed": 0,
+    "xpassed": 0
+  },
+  "passed_tests": [
+    "test_checks",
+    "test_amp",
+    "test_semantic_loss_all_ignore_amp[1]",
+    "test_semantic_loss_all_ignore_amp[3]",
+    "test_train",
+    "test_track_exported_model[False]",
+    "test_track_exported_model[320]",
+    "test_autobatch"
+  ],
+  "skipped_tests": [
+    {
+      "nodeid": "tests/test_cuda.py::test_train_cold_process_nonzero_device",
+      "reason": "requires an idle CUDA device with nonzero index (single-GPU machine: DEVICES=[0])"
+    }
+  ],
+  "failed_tests": [
+    {
+      "nodeid": "tests/test_cuda.py::test_onnx_dynamic_spatial_outputs",
+      "error": "torch.onnx.OnnxExporterError: Module onnx is not installed!",
+      "classification": "mission category 5 (optional export dependency 'onnx'/'onnxruntime' not installed in this environment). Secondary note: even with the deps installed, the test asserts 'CUDAExecutionProvider' which requires the NVIDIA CUDA runtime, unavailable on AMD Windows (category 4). NOT a PR #27203 regression: the PR does not touch ONNX/export code paths.",
+      "traceback_file_ref": "full_test_cuda.log"
+    }
+  ],
+  "gpu_relevance_note": "All GPU-executing tests passed, including test_amp (real check_amp on cuda:0), test_train (three real trainings on cuda:0 with autobatch, compile=True graceful fallback, tile), test_autobatch, test_track_exported_model x2, and both AMP loss-guard tests. No GPU test was skipped due to missing hardware: DEVICES=[0] was selected by the PR's new no-NVML fallback ('NVML stats unavailable, selecting the first CUDA devices without idle checks.').",
+  "integrity": "No test files modified; no skipif/xfail/mock added; no NVIDIA-only runtime installed or mocked; junit XML at junit_test_cuda.xml."
+}

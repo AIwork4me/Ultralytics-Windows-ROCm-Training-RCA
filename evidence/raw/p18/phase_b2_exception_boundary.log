@@ -1,0 +1,147 @@
+{
+ "OutOfMemoryError_mro": [
+  "OutOfMemoryError",
+  "RuntimeError",
+  "Exception",
+  "BaseException"
+ ],
+ "OOM_is_RuntimeError": true,
+ "AcceleratorError": "present",
+ "AcceleratorError_mro": [
+  "AcceleratorError",
+  "RuntimeError",
+  "Exception",
+  "BaseException"
+ ],
+ "AcceleratorError_is_RuntimeError": true
+}
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+ERROR [34m[1mAMP: [0mchecks failed with an exception (RuntimeError: simulated backend failure). AMP will be disabled during training as a precaution. This error is not necessarily AMP-specific — if FP32 training also fails with the same error, the problem is your GPU backend/runtime rather than AMP.
+[PASS] RuntimeError@construction -> caught/False: outcome=caught
+    log: ERROR [34m[1mAMP: [0mchecks failed with an exception (RuntimeError: simulated backend failure). AMP will be disabled during training as a precaution. This error is not necessari
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+ERROR [34m[1mAMP: [0mchecks failed with an exception (OutOfMemoryError: CUDA out of memory. (simulated)). AMP will be disabled during training as a precaution. This error is not necessarily AMP-specific — if FP32 training also fails with the same error, the problem is your GPU backend/runtime rather than AMP.
+[PASS] OutOfMemoryError@construction -> caught/False: outcome=caught
+    log: ERROR [34m[1mAMP: [0mchecks failed with an exception (OutOfMemoryError: CUDA out of memory. (simulated)). AMP will be disabled during training as a precaution. This error is not
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+ERROR [34m[1mAMP: [0mchecks failed with an exception (AcceleratorError: simulated accelerator error). AMP will be disabled during training as a precaution. This error is not necessarily AMP-specific — if FP32 training also fails with the same error, the problem is your GPU backend/runtime rather than AMP.
+[PASS] AcceleratorError@construction -> caught/False: outcome=caught
+    log: ERROR [34m[1mAMP: [0mchecks failed with an exception (AcceleratorError: simulated accelerator error). AMP will be disabled during training as a precaution. This error is not nec
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[PASS] ValueError@construction -> propagate: outcome=propagate propagated=ValueError
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[PASS] TypeError@construction -> propagate: outcome=propagate propagated=TypeError
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[PASS] KeyboardInterrupt -> propagate: outcome=propagate propagated=KeyboardInterrupt
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[PASS] SystemExit -> propagate: outcome=propagate propagated=SystemExit
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+ERROR [34m[1mAMP: [0mchecks failed with an exception (RuntimeError: hipErrorInvalidKernelFile (simulated mid-forward)). AMP will be disabled during training as a precaution. This error is not necessarily AMP-specific — if FP32 training also fails with the same error, the problem is your GPU backend/runtime rather than AMP.
+[PASS] RuntimeError@forward REAL_GPU -> caught/False: outcome=caught
+    log: ERROR [34m[1mAMP: [0mchecks failed with an exception (RuntimeError: hipErrorInvalidKernelFile (simulated mid-forward)). AMP will be disabled during training as a precaution. Thi
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[PASS] healthy control check_amp -> True
+RESULT_JSON_BEGIN
+{
+  "cases": [
+    {
+      "name": "RuntimeError@construction -> caught/False",
+      "expect": "caught",
+      "inject": "construction",
+      "returned": false,
+      "outcome": "caught",
+      "error_log_excerpt": "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (RuntimeError: simulated backend failure). AMP will be disabled during training as a precaution. This error is not necessari",
+      "pass": true
+    },
+    {
+      "name": "OutOfMemoryError@construction -> caught/False",
+      "expect": "caught",
+      "inject": "construction",
+      "returned": false,
+      "outcome": "caught",
+      "error_log_excerpt": "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (OutOfMemoryError: CUDA out of memory. (simulated)). AMP will be disabled during training as a precaution. This error is not",
+      "pass": true
+    },
+    {
+      "name": "AcceleratorError@construction -> caught/False",
+      "expect": "caught",
+      "inject": "construction",
+      "returned": false,
+      "outcome": "caught",
+      "error_log_excerpt": "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (AcceleratorError: simulated accelerator error). AMP will be disabled during training as a precaution. This error is not nec",
+      "pass": true
+    },
+    {
+      "name": "ValueError@construction -> propagate",
+      "expect": "propagate",
+      "inject": "construction",
+      "propagated": "ValueError",
+      "outcome": "propagate",
+      "error_log_excerpt": null,
+      "pass": true
+    },
+    {
+      "name": "TypeError@construction -> propagate",
+      "expect": "propagate",
+      "inject": "construction",
+      "propagated": "TypeError",
+      "outcome": "propagate",
+      "error_log_excerpt": null,
+      "pass": true
+    },
+    {
+      "name": "KeyboardInterrupt -> propagate",
+      "expect": "propagate",
+      "inject": "construction",
+      "propagated": "KeyboardInterrupt",
+      "outcome": "propagate",
+      "error_log_excerpt": null,
+      "pass": true
+    },
+    {
+      "name": "SystemExit -> propagate",
+      "expect": "propagate",
+      "inject": "construction",
+      "propagated": "SystemExit",
+      "outcome": "propagate",
+      "error_log_excerpt": null,
+      "pass": true
+    },
+    {
+      "name": "RuntimeError@forward REAL_GPU -> caught/False",
+      "expect": "caught",
+      "inject": "forward",
+      "returned": false,
+      "outcome": "caught",
+      "error_log_excerpt": "ERROR \u001b[34m\u001b[1mAMP: \u001b[0mchecks failed with an exception (RuntimeError: hipErrorInvalidKernelFile (simulated mid-forward)). AMP will be disabled during training as a precaution. Thi",
+      "pass": true
+    }
+  ],
+  "provenance": {
+    "ultralytics_file": "C:\\P18\\pr27198\\ultralytics\\__init__.py",
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "device": "AMD Radeon RX 7900 XTX"
+  },
+  "inheritance_facts": {
+    "OutOfMemoryError_mro": [
+      "OutOfMemoryError",
+      "RuntimeError",
+      "Exception",
+      "BaseException"
+    ],
+    "OOM_is_RuntimeError": true,
+    "AcceleratorError": "present",
+    "AcceleratorError_mro": [
+      "AcceleratorError",
+      "RuntimeError",
+      "Exception",
+      "BaseException"
+    ],
+    "AcceleratorError_is_RuntimeError": true
+  },
+  "healthy_control_check_amp": true,
+  "all_pass": true
+}
+RESULT_JSON_END

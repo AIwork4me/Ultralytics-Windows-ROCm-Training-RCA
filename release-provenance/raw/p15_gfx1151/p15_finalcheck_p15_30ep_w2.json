@@ -1,0 +1,22 @@
+{
+  "leg": "finalcheck",
+  "run_id": "p15_30ep_w2",
+  "best_sha256": "b606f877114e67b59e1e53461214391d6ea7053c1dcf077ce64740f21dbec8f5",
+  "last_sha256": "b860b905a4ab89276e0992d0e7798a9115681e34fc18f055afef838080940947",
+  "val_map5095": 0.5948558219937099,
+  "val_map50": 0.7822797891409833,
+  "reload_predict_boxes": 6,
+  "reload_ok": true,
+  "finished_utc": "2026-11-15T03:24:30.723751+00:00",
+  "env": {
+    "utc": "2026-11-15T03:24:30.723779+00:00",
+    "python": "3.13.16",
+    "torch": "2.12.0+rocm7.14.1",
+    "torch_hip": "7.14.60850",
+    "ultralytics": "8.4.182",
+    "device_name": "AMD Radeon(TM) 8060S Graphics",
+    "device_count_torch": 1,
+    "device_count_checks_fn": 0,
+    "miopen_python_module": false
+  }
+}

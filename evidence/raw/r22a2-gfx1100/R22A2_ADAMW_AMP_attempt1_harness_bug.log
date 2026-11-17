@@ -1,0 +1,72 @@
+New https://pypi.org/project/ultralytics/8.4.215 available  Update with 'pip install -U ultralytics'
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 20.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, idle checks skipped.
+Ultralytics 8.4.214  Python-3.12.16 torch-2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6 CUDA:0 (AMD Radeon RX 7900 XTX, 24560MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=True, angle=1.0, augment=False, auto_augment=randaugment, batch=8, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=C:/RadeonYOLO/R22A2/cache/datasets/coco128-r22a2.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=3, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=256, iou=None, kobj=1.0, line_width=None, lr0=0.01, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=yolo26n.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=adamw_run, nbs=64, nms=None, opset=None, optimize=False, optimizer=auto, overlap_mask=True, patience=100, perspective=0.0, plots=True, pose=12.0, pretrained=True, profile=False, project=C:\RadeonYOLO\R22A2\scratch, quantize=None, rect=False, resume=False, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\RadeonYOLO\R22A2\scratch\adamw_run, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=42, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=detect, tile=False, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.1, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1    309656  ultralytics.nn.modules.head.Detect           [80, 1, True, [64, 128, 256]] 
+YOLO26n summary: 260 layers, 2,572,280 parameters, 2,572,280 gradients, 6.2 GFLOPs
+
+Transferred 708/708 items from pretrained weights
+[34m[1mAMP: [0mrunning Automatic Mixed Precision (AMP) checks...
+[34m[1mAMP: [0mchecks passed 
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 817.7±364.2 MB/s, size: 41.3 KB)
+[K[34m[1mtrain: [0mScanning C:\RadeonYOLO\R22A2\cache\datasets\coco128\labels\train2017... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128 4.3Kit/s 0.0s
+[34m[1mtrain: [0mNew cache created: C:\RadeonYOLO\R22A2\cache\datasets\coco128\labels\train2017.cache
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 1489.4±707.4 MB/s, size: 81.0 KB)
+[K[34m[1mval: [0mScanning C:\RadeonYOLO\R22A2\cache\datasets\coco128\labels\train2017.cache... 126 images, 2 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 128/128  0.0s
+[34m[1moptimizer:[0m 'optimizer=auto' found, ignoring 'lr0=0.01' and determining best 'optimizer' and 'lr0' automatically... 
+[34m[1moptimizer:[0m AdamW(lr=0.000119, momentum=0.9) with parameter groups 114 weight(decay=0.0), 126 weight(decay=0.0005), 126 bias(decay=0.0)
+Plotting labels to C:\RadeonYOLO\R22A2\scratch\adamw_run\labels.jpg... 
+Using 128 train, 128 val images for fraction=1.0 at imgsz=256
+Using 0 dataloader workers
+Logging results to [1mC:\RadeonYOLO\R22A2\scratch\adamw_run[0m
+Starting training for 3 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss   cls_loss    l1_loss  Instances       Size
+MIOpen: Error [EvaluateInvokers] DESKTOP-S6VG7J7:C:/home/runner/_work/TheRock/TheRock/rocm-libraries/projects/miopen/src/conv/solver_finders.cpp:545: Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0
+[K: 0% ──────────── 0/16  25.0s
+Traceback (most recent call last):
+  File "C:\Users\Rocm\Desktop\YOLO\rca-r21\windows-golden-path\scripts\audit_adamw_amp.py", line 427, in <module>
+    main()
+  File "C:\Users\Rocm\Desktop\YOLO\rca-r21\windows-golden-path\scripts\audit_adamw_amp.py", line 286, in main
+    model.train(**train_kwargs)
+  File "C:\RadeonYOLO\venvs\r22-dev\Lib\site-packages\ultralytics\engine\model.py", line 899, in train
+    self.trainer.train()
+  File "C:\RadeonYOLO\venvs\r22-dev\Lib\site-packages\ultralytics\engine\trainer.py", line 264, in train
+    self._do_train()
+  File "C:\RadeonYOLO\venvs\r22-dev\Lib\site-packages\ultralytics\engine\trainer.py", line 611, in _do_train
+    self.optimizer_step()
+  File "C:\RadeonYOLO\venvs\r22-dev\Lib\site-packages\ultralytics\engine\trainer.py", line 936, in optimizer_step
+    self.scaler.step(self.optimizer)
+  File "C:\Users\Rocm\Desktop\YOLO\rca-r21\windows-golden-path\scripts\audit_adamw_amp.py", line 241, in counting_scaler_step
+    return orig_scaler_step(*a, **kw)
+           ^^^^^^^^^^^^^^^^
+NameError: name 'orig_scaler_step' is not defined
+PART_A_EXIT=1

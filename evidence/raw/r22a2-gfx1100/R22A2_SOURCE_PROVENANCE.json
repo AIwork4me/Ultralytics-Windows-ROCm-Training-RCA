@@ -1,0 +1,61 @@
+{
+  "source_head": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "integration_base": "81477298bb25af892a457b57b4401e8c96fb9b15",
+  "gpu_name": "AMD Radeon RX 7900 XTX",
+  "gfx_target": "gfx1100",
+  "windows_build": "10.0.26300.0",
+  "driver_version": "32.0.21030.2001",
+  "python": "3.12.16",
+  "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+  "hip": "7.18.26441",
+  "ultralytics": "8.4.214",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "wheel_lock": "evidence/raw/r22-dev-rerun/resolved_wheel_lock.json (46 artifacts, audit ok, families [10])",
+  "miopen_dll_sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+  "mission": "R22A2",
+  "run_id": "R22A2-PROV",
+  "timestamp": "2026-11-16T09:16:40.496710+00:00",
+  "feature_branch": "feature/r22a2-gfx1100-adamw-workers8",
+  "base_is_previously_verified_head": true,
+  "stack_targets_from_mission": {
+    "therock": "ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0...",
+    "torchvision": "0.29.2+gitb2281111.devrocm10.3.0...",
+    "rocm-sdk-libraries": "10.3.0.dev0+ff576965...",
+    "ultralytics": "8.4.214"
+  },
+  "stack_observed": {
+    "torch": "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "torchvision": "0.29.2+gitb2281111.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "rocm_sdk_libraries": "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6",
+    "ultralytics": "8.4.214",
+    "therock_commit_in_all_native_versions": true
+  },
+  "wheel_lock_file": "evidence/raw/r22-dev-rerun/resolved_wheel_lock.json",
+  "wheel_lock_audit": "verify_provenance.audit_lock recomputed vs installed dists: ok=true, classes {native_amd_gpu_stack: 8, approved_pypi_bootstrap: 1, third_party: 37}, families [10]",
+  "wheel_lock_n_artifacts": 46,
+  "miopen_dll": {
+    "loaded": true,
+    "path": "C:\\RadeonYOLO\\venvs\\r22-dev\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll",
+    "sha256": "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91",
+    "bytes": 501333504,
+    "embedded_version_strings": [
+      "3.6.3.4e7d93e3"
+    ],
+    "pr13437_marker_miopen_initializer_list": 2
+  },
+  "environment_workarounds": {
+    "hiprtc_compile_options_append": null,
+    "hiprtc_include_injection": false,
+    "miopen_env_overrides": {},
+    "miopen_path_redirection": [],
+    "any_workaround_present": false
+  },
+  "environment_disclosure": {
+    "hiprtc_user_env_var_present_at_host": true,
+    "handling": "HIPRTC_COMPILE_OPTIONS_APPEND stripped from every R22A.2 GPU process env at orchestration (env -u) and defensively inside run_stability.py; user-level env NOT modified",
+    "reason": "var originates from YOLO26 Day1 labs shim work; accepted R22 dev-rerun evidence recorded it absent; stripping restores the exact accepted baseline condition"
+  },
+  "workaround_verdict": "no workaround present in any R22A.2 GPU process (host user-level HIPRTC var stripped at orchestration; global env untouched)"
+}

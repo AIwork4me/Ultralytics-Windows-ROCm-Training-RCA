@@ -1,0 +1,203 @@
+diff --git a/tests/test_cuda.py b/tests/test_cuda.py
+index 64fecd7..49016c2 100644
+--- a/tests/test_cuda.py
++++ b/tests/test_cuda.py
+@@ -27,9 +27,13 @@ if CUDA_IS_AVAILABLE:
+         if idle_gpus := gpu_info.select_idle_gpu(
+             count=2,
+             min_memory_fraction=autodevice_fraction,
+-            min_util_fraction=autodevice_fraction,
++            min_util_fraction=autodevice_fraction if gpu_info.nvml_available else 0,
+         ):
+-            DEVICES = idle_gpus
++            # Without NVML, GPUInfo returns physical IDs but cuda:N expects visible logical IDs.
++            visible = [str(int(x)) for x in os.getenv("CUDA_VISIBLE_DEVICES", "").split(",") if x.isdigit()]
++            DEVICES = (
++                [visible.index(str(i)) for i in idle_gpus] if visible and not gpu_info.nvml_available else idle_gpus
++            )
+ 
+ 
+ def test_checks():
+diff --git a/tests/test_python.py b/tests/test_python.py
+index 994d0bb..a62ccaa 100644
+--- a/tests/test_python.py
++++ b/tests/test_python.py
+@@ -241,6 +241,20 @@ def test_select_device(monkeypatch):
+     assert torch_utils.parse_device("-1") == "0"  # idle physical GPU 1 found via normalized visible ids
+ 
+ 
++def test_select_idle_gpu_fallback():
++    """Check device restrictions on a real host without simulating GPU state."""
++    from ultralytics.utils.autodevice import GPUInfo
++
++    gpu_info = GPUInfo()
++    assert gpu_info.select_idle_gpu(count=1, indices=[]) == []
++    assert gpu_info.select_idle_gpu(count=1, indices=[99999]) == []
++    if not gpu_info.nvml_available:
++        assert gpu_info.select_idle_gpu(count=1, min_util_fraction=0.2) == []
++        visible = os.getenv("CUDA_VISIBLE_DEVICES", "").split(",")[0]
++        if visible.isdigit() and torch.cuda.device_count():
++            assert gpu_info.select_idle_gpu(count=1, indices=[int(visible)]) == [int(visible)]
++
++
+ def test_autobackend_memory_format(tmp_path):
+     """Check backend memory formats on the real host platform without mocked platform state."""
+     from ultralytics.nn.autobackend import AutoBackend
+diff --git a/ultralytics/utils/autodevice.py b/ultralytics/utils/autodevice.py
+index 12cd71a..9dbcc78 100644
+--- a/ultralytics/utils/autodevice.py
++++ b/ultralytics/utils/autodevice.py
+@@ -2,6 +2,7 @@
+ 
+ from __future__ import annotations
+ 
++import os
+ import random
+ from typing import Any
+ 
+@@ -145,7 +146,7 @@ class GPUInfo:
+             count (int): The number of idle GPUs to select.
+             min_memory_fraction (float): Minimum free memory required as a fraction of total memory.
+             min_util_fraction (float): Minimum free utilization rate required from 0.0 - 1.0.
+-            indices (list[int] | None): Restrict selection to these GPU indices, e.g. the GPUs visible under an external
++            indices (list[int] | None): Restrict selection to GPU IDs, using physical IDs under an external
+                 CUDA_VISIBLE_DEVICES restriction. None searches all GPUs.
+ 
+         Returns:
+@@ -153,7 +154,9 @@ class GPUInfo:
+ 
+         Notes:
+             Returns fewer than 'count' if not enough qualify or exist.
+-            Returns empty list if NVML stats are unavailable or no GPUs meet the criteria.
++            Without NVML stats, available devices can be selected using torch.cuda.mem_get_info for free-memory
++            checks; a nonzero idle-utilization requirement cannot be verified and returns no devices.
++            Returns empty list if no GPUs meet the criteria.
+         """
+         assert min_memory_fraction <= 1.0, f"min_memory_fraction must be <= 1.0, got {min_memory_fraction}"
+         assert min_util_fraction <= 1.0, f"min_util_fraction must be <= 1.0, got {min_util_fraction}"
+@@ -167,8 +170,42 @@ class GPUInfo:
+ 
+         self.refresh_stats()
+         if not self.gpu_stats:
+-            LOGGER.warning("NVML stats unavailable.")
+-            return []
++            LOGGER.warning("NVML stats unavailable; GPU utilization cannot be measured.")
++            import torch
++
++            if min_util_fraction:
++                LOGGER.warning(f"Cannot verify {min_util_fraction * 100:.1f}% free GPU utilization without NVML.")
++                return []
++            n = torch.cuda.device_count()
++            visible = [
++                str(int(x)) if x.isdigit() else x
++                for x in os.getenv("CUDA_VISIBLE_DEVICES", "").replace(" ", "").split(",")
++                if x
++            ][:n]
++            candidates = (
++                indices if indices is not None else ([int(x) for x in visible if x.isdigit()] if visible else range(n))
++            )
++            selected = []
++            for idx in candidates:
++                logical = visible.index(str(idx)) if visible and str(idx) in visible else (idx if not visible else -1)
++                if not 0 <= logical < n or idx in selected:
++                    continue
++                if min_memory_fraction:
++                    try:
++                        free, total = torch.cuda.mem_get_info(logical)
++                    except Exception as e:
++                        LOGGER.warning(f"Free memory query failed for device {idx}: {e}")
++                        continue
++                    if not total or free / total < min_memory_fraction:
++                        continue
++                selected.append(idx)
++                if len(selected) == count:
++                    break
++            if selected:
++                LOGGER.info(f"Selected CUDA devices {selected} (utilization not measured)")
++            else:
++                LOGGER.warning("No visible CUDA devices meet the verifiable free-memory requirements.")
++            return selected
+ 
+         # Filter and sort eligible GPUs
+         eligible_gpus = [
+diff --git a/ultralytics/utils/checks.py b/ultralytics/utils/checks.py
+index bfad3c5..61f0fb4 100644
+--- a/ultralytics/utils/checks.py
++++ b/ultralytics/utils/checks.py
+@@ -1023,9 +1023,9 @@ def check_amp(model):
+ 
+     An untrained YOLO26n built from its YAML runs one FP32 forward pass in train mode on a random batch, and every
+     Conv2d and Attention layer is recomputed under AMP from its own FP32 input. Comparing layer by layer keeps the
+-    tolerance independent of model depth and weights, so no pretrained weights are downloaded. If the checks fail, it
+-    means there are anomalies with AMP on the system that may cause NaN losses or zero-mAP results, so AMP will be
+-    disabled during training.
++    tolerance independent of model depth and weights, so no pretrained weights are downloaded. Numerical mismatches
++    disable AMP; probe exceptions also disable AMP as a precaution, without establishing that the GPU backend can
++    execute FP32 training successfully.
+ 
+     Args:
+         model (torch.nn.Module): A YOLO model instance, whose device is checked.
+@@ -1070,13 +1070,23 @@ def check_amp(model):
+         close.append(bool((output - y.float()).norm() <= 0.05 * output.norm()))  # False for NaN or inf
+ 
+     LOGGER.info(f"{prefix}running Automatic Mixed Precision (AMP) checks...")
+-    # Untrained models underflow FP16 in eval mode; train-mode BatchNorm keeps activations in range as in AMP training
+-    m = DetectionModel("yolo26n.yaml", verbose=False).to(device)  # built in train mode
+-    for layer in m.modules():
+-        if isinstance(layer, (torch.nn.Conv2d, Attention)):  # convolutions and attention matmuls
+-            layer.register_forward_hook(compare_amp)
+-    with torch.no_grad():
+-        m(torch.rand(8, 3, 256, 256, device=device))  # batch 8, as GTX 16xx AMP faults appeared only at batch >= 7
++    try:
++        # Untrained models underflow FP16 in eval mode; train-mode BatchNorm keeps activations in range as in AMP training
++        m = DetectionModel("yolo26n.yaml", verbose=False).to(device)  # built in train mode
++        for layer in m.modules():
++            if isinstance(layer, (torch.nn.Conv2d, Attention)):  # convolutions and attention matmuls
++                layer.register_forward_hook(compare_amp)
++        with torch.no_grad():
++            m(torch.rand(8, 3, 256, 256, device=device))  # batch 8, as GTX 16xx AMP faults appeared only at batch >= 7
++    # Only runtime failures are eligible for precautionary AMP disablement; programming errors must propagate.
++    # An invalid GPU runtime may also fail during subsequent FP32 training.
++    except RuntimeError as e:
++        LOGGER.error(
++            f"{prefix}checks failed with an exception ({type(e).__name__}: {e}). AMP will be disabled during training "
++            f"as a precaution. This error is not necessarily AMP-specific — if FP32 training also fails with the same "
++            f"error, the problem is your GPU backend/runtime rather than AMP."
++        )
++        return False
+     if all(close):
+         LOGGER.info(f"{prefix}checks passed ✅")
+         return True
+@@ -1142,10 +1152,10 @@ def print_args(args: dict | None = None, show_file=True, show_func=False):
+ 
+ 
+ def cuda_device_count() -> int:
+-    """Get the number of NVIDIA GPUs available in the environment.
++    """Get the number of CUDA GPUs (NVIDIA via nvidia-smi, or AMD HIP via PyTorch) available in the environment.
+ 
+     Returns:
+-        (int): The number of NVIDIA GPUs available.
++        (int): The number of CUDA GPUs available.
+     """
+     if IS_JETSON:
+         # NVIDIA Jetson does not fully support nvidia-smi and therefore use PyTorch instead
+@@ -1162,15 +1172,16 @@ def cuda_device_count() -> int:
+ 
+             return int(first_line)
+         except (subprocess.CalledProcessError, FileNotFoundError, ValueError):
+-            # If the command fails, nvidia-smi is not found, or output is not an integer, assume no GPUs are available
+-            return 0
++            # nvidia-smi absent or unusable (e.g. AMD HIP or CPU-only): fall back to the torch device count, which
++            # reports HIP devices too, and 0 when no accelerator is present
++            return torch.cuda.device_count()
+ 
+ 
+ def cuda_is_available() -> bool:
+     """Check if CUDA is available in the environment.
+ 
+     Returns:
+-        (bool): True if one or more NVIDIA GPUs are available, False otherwise.
++        (bool): True if one or more CUDA GPUs (NVIDIA or AMD HIP) are available, False otherwise.
+     """
+     return cuda_device_count() > 0
+ 

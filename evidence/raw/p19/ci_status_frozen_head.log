@@ -1,0 +1,21 @@
+Assets	pass	7s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801915988	
+Benchmarks (macos-latest, 3.13, yolo26n)	pass	5m9s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950673	
+Benchmarks (ubuntu-26.04-arm, 3.13, yolo26n)	pass	6m32s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950693	
+Benchmarks (ubuntu-latest, 3.13, yolo26n)	pass	10m57s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950689	
+CLA	pass	6s	https://github.com/ultralytics/ultralytics/actions/runs/43710873692/job/132801913754	
+Docs	pass	1m42s	https://github.com/ultralytics/ultralytics/actions/runs/43710875273/job/132801915660	
+IsolatedExports	pass	15m20s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950712	
+Tests (macos-latest, 3.13, latest)	pass	13m54s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950692	
+Tests (ubuntu-26.04-arm, 3.13, latest)	pass	18m23s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950757	
+Tests (ubuntu-latest, 3.13, latest)	pass	14m20s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950730	
+Tests (ubuntu-latest, 3.15, latest, solutions)	pass	9m20s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950822	
+Tests (ubuntu-latest, 3.8, 1.8.0, 0.9.0)	pass	7m29s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950792	
+GPU	skipping	0	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801951967	
+RaspberryPi	skipping	0	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801951732	
+SlowTests	skipping	0	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801951962	
+Tests (windows-latest, 3.13, latest)	pass	17m6s	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801950716	
+actions	pass	25s	https://github.com/ultralytics/ultralytics/actions/runs/43710875283/job/132801915769	
+codecov/patch	pass	0	https://app.codecov.io/gh/ultralytics/ultralytics/pull/27203	
+AMD_GPU	skipping	0	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801917002	
+Conda	skipping	0	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801917030	
+NVIDIA_Jetson	skipping	0	https://github.com/ultralytics/ultralytics/actions/runs/43710875289/job/132801917267	

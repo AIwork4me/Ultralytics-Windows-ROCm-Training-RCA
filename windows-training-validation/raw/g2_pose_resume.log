@@ -1,0 +1,109 @@
+# exit=0
+--- stdout ---
+New https://pypi.org/project/ultralytics/8.4.212 available  Update with 'pip install -U ultralytics'
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+[34m[1mengine\trainer: [0magnostic_nms=False, amp=False, angle=1.0, augment=False, auto_augment=randaugment, batch=16, bgr=0.0, box=7.5, cache=False, cfg=None, channels_last=None, classes=None, close_mosaic=10, cls=0.5, cls_pw=0.0, cls_remap=True, compile=False, conf=None, copy_paste=0.0, copy_paste_mode=flip, cos_lr=False, cutmix=0.0, data=C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\ultralytics\cfg\datasets\coco8-pose.yaml, degrees=0.0, deterministic=True, device=0, dfl=1.5, dgrad=0.5, dis=6.0, distill_model=None, dlam=1.0, dlog=1.0, dnn=False, dropout=0.0, dynamic=False, embed=None, epochs=4, erasing=0.4, exist_ok=True, fliplr=0.5, flipud=0.0, format=torchscript, fraction=1.0, freeze=None, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, imgsz=640, iou=0.7, kobj=1.0, line_width=None, lr0=0.002, lrf=0.01, mask_ratio=4, max_det=300, mixup=0.0, mode=train, model=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\multi\weights\last.pt, momentum=0.937, mosaic=1.0, multi_scale=0.0, name=multi, nbs=64, nms=None, opset=None, optimize=False, optimizer=AdamW, overlap_mask=True, patience=100, perspective=0.0, plots=False, pose=12.0, pretrained=True, profile=False, project=None, quantize=None, rect=False, resume=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\multi\weights\last.pt, retina_masks=False, rle=1.0, save=True, save_conf=False, save_crop=False, save_dir=C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\multi, save_frames=False, save_json=False, save_period=-1, save_txt=False, scale=0.5, seed=42, shear=0.0, show=False, show_boxes=True, show_conf=True, show_labels=True, simplify=True, single_cls=False, source=None, split=val, stream_buffer=False, task=pose, time=None, tracker=tracktrack.yaml, translate=0.1, val=True, verbose=True, vid_stride=1, visualize=False, warmup_bias_lr=0.0, warmup_epochs=3.0, warmup_momentum=0.8, weight_decay=0.0005, workers=0, workspace=None
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      6640  ultralytics.nn.modules.block.C3k2            [32, 64, 1, False, 0.25]      
+  3                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+  4                  -1  1     26080  ultralytics.nn.modules.block.C3k2            [64, 128, 1, False, 0.25]     
+  5                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+  6                  -1  1     87040  ultralytics.nn.modules.block.C3k2            [128, 128, 1, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    346112  ultralytics.nn.modules.block.C3k2            [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5, 3, True]        
+ 10                  -1  1    249728  ultralytics.nn.modules.block.C2PSA           [256, 256, 1]                 
+ 11                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 12             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 13                  -1  1    119808  ultralytics.nn.modules.block.C3k2            [384, 128, 1, True]           
+ 14                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 15             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 16                  -1  1     34304  ultralytics.nn.modules.block.C3k2            [256, 64, 1, True]            
+ 17                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 18            [-1, 13]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 19                  -1  1     95232  ultralytics.nn.modules.block.C3k2            [192, 128, 1, True]           
+ 20                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 21            [-1, 10]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 22                  -1  1    463104  ultralytics.nn.modules.block.C3k2            [384, 256, 1, True, 0.5, True]
+ 23        [16, 19, 22]  1   1416840  ultralytics.nn.modules.head.Pose26           [1, [17, 3], 1, True, [64, 128, 256]]
+YOLO26n-pose summary: 363 layers, 3,679,464 parameters, 3,679,464 gradients, 10.4 GFLOPs
+
+Transferred 879/879 items from pretrained weights
+[34m[1mtrain: [0mFast image access  (ping: 0.0±0.0 ms, read: 434.6±179.6 MB/s, size: 39.1 KB)
+
+[K[34m[1mtrain: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-pose\labels\train.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 671.1Kit/s 0.0s
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 561.4±370.6 MB/s, size: 39.1 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-pose\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 1.9Mit/s 0.0s
+[34m[1moptimizer:[0m AdamW(lr=0.002, momentum=0.937) with parameter groups 126 weight(decay=0.0), 186 weight(decay=0.0005), 186 bias(decay=0.0)
+Resuming training C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\multi\weights\last.pt from epoch 3 to 4 total epochs
+Using 4 train, 4 val images for fraction=1.0 at imgsz=640
+Using 0 dataloader workers
+Logging results to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\multi[0m
+Starting training for 4 epochs...
+Closing dataloader mosaic
+
+      Epoch    GPU_mem   box_loss  pose_loss  kobj_loss   cls_loss    l1_loss   rle_loss  Instances       Size
+
+[K        3/4     0.322G      1.647      1.893     0.2823      1.471    0.01795       2.66          7        640: 0% ──────────── 0/1  14.5s
+[K        3/4     0.322G      1.647      1.893     0.2823      1.471    0.01795       2.66          7        640: 100% ━━━━━━━━━━━━ 1/1 14.5s/it 14.5s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Pose(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 7.7it/s 0.1s
+                   all          4         14      0.826      0.857      0.858      0.427      0.539      0.418      0.335      0.065
+
+      Epoch    GPU_mem   box_loss  pose_loss  kobj_loss   cls_loss    l1_loss   rle_loss  Instances       Size
+
+[K        4/4      1.47G       1.33       3.38     0.3271     0.7762     0.0274      6.534          7        640: 0% ──────────── 0/1  0.2s
+[K        4/4      1.47G       1.33       3.38     0.3271     0.7762     0.0274      6.534          7        640: 100% ━━━━━━━━━━━━ 1/1 5.0it/s 0.2s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Pose(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 13.3it/s 0.1s
+                   all          4         14      0.826      0.857      0.858      0.427      0.539      0.418      0.335      0.065
+
+2 epochs completed in 0.005 hours.
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\multi\weights\last.pt, 7.8MB
+Optimizer stripped from C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\multi\weights\best.pt, 7.8MB
+
+Validating C:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\multi\weights\best.pt...
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n-pose summary (fused): 129 layers, 2,926,494 parameters, 0 gradients, 7.6 GFLOPs
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Pose(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 22.5it/s 0.0s
+                   all          4         14      0.974      0.714      0.874      0.695      0.779      0.571      0.616       0.41
+Speed: 0.2ms preprocess, 4.7ms inference, 0.0ms loss, 1.0ms postprocess per image
+[PASS] t12_resume_interrupted 
+[PASS] t09_save_last_pt 
+[PASS] t10_save_best_pt 
+[PASS] t11_reload_checkpoint 
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n-pose summary (fused): 129 layers, 2,926,494 parameters, 0 gradients, 7.6 GFLOPs
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 612.4±365.0 MB/s, size: 39.1 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-pose\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 1.2Mit/s 0.0s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Pose(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 12.8it/s 0.1s
+                   all          4         14      0.974      0.714      0.874      0.695      0.779      0.571      0.616       0.41
+Speed: 0.4ms preprocess, 12.3ms inference, 0.0ms loss, 0.8ms postprocess per image
+Results saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\val[0m
+[PASS] t13_gpu_val_saved_model 
+[PASS] t14_gpu_predict_saved_model 
+Ultralytics 8.4.182  Python-3.13.16 torch-2.12.0+rocm7.14.1 CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)
+YOLO26n-pose summary (fused): 129 layers, 2,926,494 parameters, 0 gradients, 7.6 GFLOPs
+[34m[1mval: [0mFast image access  (ping: 0.0±0.0 ms, read: 571.1±318.2 MB/s, size: 39.1 KB)
+
+[K[34m[1mval: [0mScanning C:\Users\rocm\Desktop\YOLO_AMD\datasets\coco8-pose\labels\val.cache... 4 images, 0 backgrounds, 0 corrupt: 100% ━━━━━━━━━━━━ 4/4 1.4Mit/s 0.0s
+
+[K                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95)     Pose(P          R      mAP50  mAP50-95): 100% ━━━━━━━━━━━━ 1/1 21.3it/s 0.0s
+                   all          4         14      0.974      0.714      0.874      0.695      0.779      0.571      0.616       0.41
+Speed: 0.4ms preprocess, 4.8ms inference, 0.0ms loss, 0.7ms postprocess per image
+Results saved to [1mC:\Users\rocm\Desktop\YOLO_AMD\g2_work\runs\pose\val-2[0m
+[PASS] t15_metrics_before_after_reload 
+SUMMARY pose: 14/14 PASS
+
+--- stderr ---
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+MIOpen: Warning [ParseAndLoadDb] File is unreadable: "C:\\Users\\rocm\\miniconda3\\envs\\pm13437_merged\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\gfx115128.HIP.fdb.txt"
+

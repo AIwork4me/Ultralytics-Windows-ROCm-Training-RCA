@@ -1,0 +1,122 @@
+{
+  "run_id": "R22C-CLEAN-FULL",
+  "generated_utc": "2026-11-15T15:56:35.192457+00:00",
+  "gates": {
+    "r22cA2_provenance_clean.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_CANDIDATE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cA_provenance.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "ENGINEERING_REFERENCE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cB2_torch_gates_clean.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_PRE_FIX",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cB_torch_gates.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "ENGINEERING_REFERENCE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cC_nostl.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "ENGINEERING_REFERENCE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cD2_train_cli_clean.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_PRE_FIX",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cD_train_cli.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "ENGINEERING_REFERENCE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cE2_optimizer_clean.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_PRE_FIX",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cE_optimizer.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "ENGINEERING_REFERENCE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cF2_resume_clean.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_PRE_FIX",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cF_resume.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "ENGINEERING_REFERENCE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cG2_stability_cold.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "ENGINEERING_REFERENCE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cG3_stability_clean_cold.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "OFFICIAL_PRE_FIX",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    },
+    "r22cG_stability.json": {
+      "claimed": "PASS",
+      "exit_code": 0,
+      "runtime_class": "ENGINEERING_REFERENCE",
+      "failure_classification": null,
+      "physical_run": true,
+      "evidence_class": "PHYSICAL_GPU_RUN"
+    }
+  },
+  "violations": [],
+  "any_physical_gpu_pass": true,
+  "summary_class": "PHYSICAL_GPU_PASS_EVIDENCED",
+  "note": "synthetic fixtures can never produce PHYSICAL_GPU_PASS"
+}

@@ -1,0 +1,71 @@
+{
+  "mission": "P19B maintainer-required training command on PR #27203 head",
+  "git_sha": "d8fe65c8c1052cb4305f3cec1be9cb909538dcf1",
+  "command": "yolo train model=yolo26n.pt data=coco8.yaml epochs=1 device=-1",
+  "command_modified": false,
+  "machine": {
+    "gpu": "AMD Radeon(TM) 8060S Graphics (gfx1151, APU)",
+    "gpu_mem_reported_mb": 80065,
+    "os": "Windows 11 build 26200.9974",
+    "driver": "32.0.22032.6002",
+    "python": "3.13.16",
+    "torch": "2.12.0+rocm7.14.1",
+    "hip": "7.14.60850",
+    "ultralytics_version": "8.4.213 (imported from C:\\P19B\\pr27203)",
+    "last_boot": "2026-11-15T20:49:03 (clean reboot before all P19B runs; 8 stale HIP processes from P17/P18 cleared)"
+  },
+  "runs": [
+    {
+      "run_id": "P19B_TRAIN_MAINTAINER_20261115_211636",
+      "log": "evidence/raw/p19b/maintainer_train_run1_FAILED.log",
+      "exit_code": 1,
+      "result": "FAIL",
+      "phase_reached": "first training batch forward (after model build, AMP checks passed, optimizer created)",
+      "error": "torch.AcceleratorError: CUDA error: invalid kernel file (hipErrorInvalidKernelFile) surfaced at nn.BatchNorm2d num_batches_tracked.add_(1)",
+      "error_class": "Windows ROCm runtime / MIOpen kernel-cache fault (matches P17 RCA family; not a PR code path failure)",
+      "supporting_notes": [
+        "PR fallback fired correctly: 'NVML stats unavailable, selecting the first CUDA devices without idle checks.'",
+        "device=-1 resolved to device=0 (AMD Radeon 8060S) before failure",
+        "'AMP: checks passed' before failure (probe forward+backward OK)",
+        "MIOpen warnings in log: CK grouped conv symbols missing for gfx1151 (warning), ParseAndLoadDb 'File is unreadable: gfx115128.HIP.fdb.txt' (unreadable shipped find-db)",
+        "minimal repro immediately after failure: same model train-mode forward batch=16 imgsz=640 under autocast PASSED in fresh process (rca_min_repro.json) -> intermittent, not deterministic"
+      ]
+    },
+    {
+      "run_id": "P19B_TRAIN_MAINTAINER_20261115_211949",
+      "log": "evidence/raw/p19b/maintainer_train_run2_PASS.log",
+      "exit_code": 0,
+      "result": "PASS",
+      "epoch_completed": true,
+      "epoch_time_s": 31.9,
+      "train_losses_box_cls_dfl": [0.8567, 1.589, 0.01289],
+      "final_val_mAP50": 0.941,
+      "final_val_mAP50_95": 0.677,
+      "checkpoints": {
+        "best.pt_sha256": "093543a1146c50fe333a3c11610c51b55d62dbcea759aa50a39ad023075be1dd",
+        "last.pt_sha256": "4505b780c84243d96ba4fbb7285a136167404a3b9d5c48d487218503cc80de49"
+      },
+      "non_fatal_anomalies": [
+        "MIOpen: Error [EvaluateInvokers] 'Invalid elapsed time detected in EvaluateInvokers, failed condition: elapsed <= 0' during final validation (val completed normally, results correct)"
+      ]
+    },
+    {
+      "run_id": "P19B_TRAIN_MAINTAINER_20261115_212121",
+      "log": "evidence/raw/p19b/maintainer_train_run3_PASS.log",
+      "exit_code": 0,
+      "result": "PASS",
+      "epoch_completed": true,
+      "note": "warm-cache rerun; epoch + final validation completed, exit 0"
+    }
+  ],
+  "summary": {
+    "tally": "1 FAIL / 2 PASS, byte-identical command and environment (fresh reboot, no MIOPEN_* overrides, no zombie processes)",
+    "g3_verdict": "PASS_WITH_INTERMITTENT_MACHINE_FAULT_DISCLOSURE",
+    "device_minus_one_evidence": [
+      "'Searching for 1 idle GPUs ... NVML stats unavailable, selecting the first CUDA devices without idle checks.' (new PR fallback)",
+      "'Ultralytics 8.4.213 ... CUDA:0 (AMD Radeon(TM) 8060S Graphics, 80065MiB)'",
+      "args.device resolved to '0'; training and final validation both ran on CUDA:0"
+    ],
+    "amp_evidence": "'AMP: checks passed' in all 3 runs (probe runs real forward+backward on cuda:0)"
+  }
+}

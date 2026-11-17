@@ -1,0 +1,11 @@
+=== P14 LEG C: ENGINEERING_REFERENCE merged-source MIOpen (3.6.2.f0a5d266) no-STL (UTC 2026-11-15T02:06:30Z) ===
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+[merged_ref_nostl] host-STL visibility scrubbed: 0 entries removed (INCLUDE cleared)
+[merged_ref_nostl] torch=2.12.0+rocm7.14.1 hip=7.14.60850
+[merged_ref_nostl] device=AMD Radeon(TM) 8060S Graphics cap=(11, 5)
+[merged_ref_nostl] MIOpen.dll loaded=C:\Users\rocm\miniconda3\envs\pm13437_merged\Lib\site-packages\_rocm_sdk_libraries\bin\MIOpen.dll
+[merged_ref_nostl] MIOpen.dll sha256=ed7c67a909307b211bbda260eeda7f6bce17cc7d097b6b1f74f8270456e6179a
+[merged_ref_nostl] MIOpen.dll postfix_marker miopen_initializer_list count=2
+[merged_ref_nostl] loss=0.999990 y_finite=True xgrad_finite=True
+[merged_ref_nostl] BATCHNORM_FORWARD_BACKWARD: PASS

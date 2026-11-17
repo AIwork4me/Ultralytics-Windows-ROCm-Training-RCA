@@ -1,0 +1,78 @@
+{
+  "run_id": "R22A5N-GFX1151-20261117-A",
+  "mission": "R22A.5N",
+  "generated_utc": "2026-11-17T03:07:05.769647+00:00",
+  "repository": {
+    "url": "https://github.com/AIwork4me/Ultralytics-Windows-ROCm-Training-RCA",
+    "branch": "validation/r22a5n-gfx1151-official-nightly",
+    "integration_branch_expected_head": "ff52f87393d66f5773e95b70c1721550d8065b0b",
+    "verified_head_matches_expected": true,
+    "local_head": "ff52f87393d66f5773e95b70c1721550d8065b0b",
+    "origin_head": "ff52f87393d66f5773e95b70c1721550d8065b0b",
+    "working_tree": "?? bus.jpg\n?? windows-golden-path/reports/r22a-gfx1151/SHA256SUMS",
+    "untracked_files_untouched": [
+      "bus.jpg",
+      "windows-golden-path/reports/r22a-gfx1151/SHA256SUMS"
+    ],
+    "new_branch": "validation/r22a5n-gfx1151-official-nightly"
+  },
+  "windows": {
+    "build": "10.0.26200.9974 (cmd /c ver, decoded earlier: Microsoft Windows [版本 10.0.26200.9974])"
+  },
+  "hardware": {
+    "manufacturer": "ASUS",
+    "model": "ProArt PX13 HN7306EA",
+    "gpu": "AMD Radeon(TM) 8060S Graphics",
+    "gpu_driver_version": "32.0.22032.6002",
+    "expected_gfx_target": "gfx1151",
+    "device_identity_ambiguity": "none — 8060S is the only AMD dGPU; gfx1151 confirmed by prior DEV/R22A.3 evidence on this host"
+  },
+  "python": {
+    "interpreter": "C:\\Users\\rocm\\miniconda3\\python.exe",
+    "version": "Python 3.13.13",
+    "note": "miniconda3 3.13.13 (cp313) — matches torch cp313 wheel ABI; mission venv will be isolated from it"
+  },
+  "disk": {
+    "c_free_bytes": 217156366336,
+    "c_free_gb": 202.2,
+    "estimate": "wheels ~4-5 GB (torch ~3GB, sdk-libraries ~1.4GB incl. 520MB MIOpen.dll, core+device ~0.5GB), venv unpacked ~12-15 GB, models/cache ~1 GB — ample"
+  },
+  "environment": {
+    "hiprtc_miopen_vctools_include_leakage": "NONE in process env, user, or machine scope",
+    "relevant_env_vars_present": []
+  },
+  "caches": {
+    "r22a5a_cache": {
+      "path": "C:/Users/rocm/Desktop/YOLO_AMD/r22a5a_cache",
+      "wheel": "rocm_sdk_libraries-10.3.0a20261116-py3-none-win_amd64.whl",
+      "sha256": "b11baad94242690642f95687993f200fe9ef27fcdbe34e2bbf4605e0407599f0",
+      "matches_frozen_audit": true
+    },
+    "existing_venvs_untouched": [
+      "p16_testenv",
+      "p17_env27198",
+      "p17_env27203",
+      "golden_path_p14 (historical)"
+    ]
+  },
+  "prerequisites_read": [
+    "AGENTS.md — none exist in repo (full-tree search)",
+    "docs/release-closure/R22A41_FINAL_FREEZE.md",
+    "docs/release-closure/R22A5A_FINAL_REPORT_20261117_zh.md (R22A.5A)",
+    "release-provenance/r22a5a/nightly_wheel_audit_20261117.json",
+    "release-provenance/r22a5a/install_plan_gfx1151.json",
+    "release-provenance/r22a5a/candidate_lock_template.json",
+    "docs/release-closure/R22A5A_STABLE_GPU_ACCEPTANCE_CONTRACT.md",
+    "docs/release-closure/R22A5A_G9_PREFLIGHT.md",
+    "golden-path/STABLE_ACCEPTANCE_GUIDE.md"
+  ],
+  "frozen_candidate_reference": {
+    "wheel": "rocm_sdk_libraries-10.3.0a20261116-py3-none-win_amd64.whl",
+    "wheel_sha256": "b11baad94242690642f95687993f200fe9ef27fcdbe34e2bbf4605e0407599f0",
+    "miopen_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+    "miopen_build": "3.6.3.25f28906",
+    "ancestry": "f0a5d266...25f28906 ahead_by=1074 behind_by=0",
+    "prior_classification": "POST_FIX_LIBRARIES"
+  },
+  "verdict": "PREFLIGHT_OK"
+}

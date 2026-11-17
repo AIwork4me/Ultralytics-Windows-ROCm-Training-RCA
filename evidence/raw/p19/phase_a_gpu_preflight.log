@@ -1,0 +1,32 @@
+=== P19 PHASE A GPU PRE-FLIGHT 2026-11-15T12:19:26.224964+00:00 ===
+OS: 10.0.26300
+Adapters: [{"Name": "AMD Radeon RX 7900 XTX", "DriverVersion": "32.0.21030.2001", "AdapterRAM": 4293918720}, {"Name": "Intel(R) UHD Graphics 770", "DriverVersion": "32.0.101.6129", "AdapterRAM": 2147479552}, {"Name": "GameViewer Virtual Display Adapter", "DriverVersion": "15.6.5.199", "AdapterRAM": null}, {"Name": "Microsoft Remote Display Adapter", "DriverVersion": "10.0.26100.9818", "AdapterRAM": null}]
+SAC: {"VerifiedAndReputablePolicyState": 0, "interpretation": "0=Off 1=On"}
+torch=2.12.0+rocm7.14.1 hip=7.14.60850 avail=True
+gpu0=AMD Radeon RX 7900 XTX arch=gfx1100
+mem free=23.84GiB total=23.98GiB
+compute fp32: loss=0.673265 finite=True
+compute amp: loss=0.660741 finite=True
+optimizer_step_changed_weights=True
+miopen.dll: ['C:\\P19\\venv\\Lib\\site-packages\\_rocm_sdk_libraries\\bin\\MIOpen.dll']
+  sha256 e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc
+nvidia-smi: FileNotFoundError (not installed)
+WARNING Failed to initialize pynvml, GPU stats disabled: NVML Shared Library Not Found
+Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+Searching for 2 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+Searching for 1 idle GPUs with free memory >= 0.0% and free utilization >= 0.0%...
+WARNING NVML stats unavailable, selecting the first CUDA devices without idle checks.
+ultralytics 8.4.213 from C:\P19\pr27203\ultralytics\__init__.py
+git HEAD d8fe65c8c1052cb4305f3cec1be9cb909538dcf1
+cuda_is_available=True cuda_device_count=1 (torch=1)
+GPUInfo nvml_available=False gpu_stats=0
+select_idle_gpu: count1=[0] count2=[0] indices[]=[] indices[0]=[0]
+HIPRTC_COMPILE_OPTIONS_APPEND='-IC:\\Users\\Rocm\\Desktop\\YOLO\\YOLO26_ROCm_Day1_Labs\\scripts\\miopen_shims'
+CUDA_VISIBLE_DEVICES='<unset>'
+runtime_type=ENGINEERING_REFERENCE (MIOpen freestanding-header shim via HIPRTC_COMPILE_OPTIONS_APPEND; AMD wheel bytes unchanged)
+PHASE A VERDICT: PASS
+wrote C:\P19\evidence\P19_PHASE_A_ENV_GPU.json

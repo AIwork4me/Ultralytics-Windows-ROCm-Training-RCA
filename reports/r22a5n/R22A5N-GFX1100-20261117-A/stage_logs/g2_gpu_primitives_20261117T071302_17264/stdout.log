@@ -1,0 +1,10 @@
+[PASS] cuda_available
+[PASS] device_identity
+[PASS] fp32_gemm
+[PASS] fp16_gemm
+[PASS] autograd
+[PASS] conv2d_fwd_bwd
+[PASS] batchnorm_fwd_bwd
+[PASS] torchvision_nms_gpu
+[PASS] tensor_lifetime
+TORCHVISION_OPS: PASS (exit 0)
