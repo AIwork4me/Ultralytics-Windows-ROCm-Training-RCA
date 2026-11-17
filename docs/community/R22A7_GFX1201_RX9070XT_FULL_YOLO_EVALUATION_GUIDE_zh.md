@@ -2,6 +2,8 @@
 
 执行者：[@LZ-QWQ](https://github.com/LZ-QWQ)。状态：**TEST PLAN / NOT_RUN**。本指南并不宣称 AMD 已正式支持 Windows ML training，也不包含任何新 gfx1201 实测结果。
 
+**完整实操：请先按 [R22A7_GFX1201_EXECUTION_PLAYBOOK_zh.md](R22A7_GFX1201_EXECUTION_PLAYBOOK_zh.md) 的官方包、GPU 门禁、35 模型逐项、受控恢复、AMP、SHA 和证据 PR 步骤执行；本页是任务契约与验收范围。**
+
 ## 0. 目标、边界与严禁事项
 
 在 Windows 11 Radeon RX 9070 XT 16GB（gfx1201）上，使用独立确认的 AMD 官方 Nightly ROCm/PyTorch/torchvision/设备轮 + PyPI 正式发布的 Ultralytics，实测 YOLO 模型的真正 GPU training / validation / best+last 保存 / 独立 reload / GPU predict / 跨进程中断恢复。证明或证伪无需特殊 Ultralytics 分支、DLL 替换、HIPRTC 头文件注入与私有 wheel 的 Golden Path。
