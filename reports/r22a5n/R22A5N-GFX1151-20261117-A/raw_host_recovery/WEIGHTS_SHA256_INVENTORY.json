@@ -1,0 +1,41 @@
+{
+  "note": "original weights remain on the test host at C:/r22a5n \u2014 hashes recorded for durable identity; files too large for routine git history are NOT claimed as independently byte-verifiable from the PR alone",
+  "weights": {
+    "runs/amp_coco128/weights/last.pt": {
+      "sha256": "0186fb2caf7fbd2e7d80b6f628095e699fafa9685c46d9cae951940699d07c24",
+      "bytes": 5475397
+    },
+    "runs/amp_coco128/weights/best.pt": {
+      "sha256": "6d8f4d62da2571df71a0a97a8ce6aff7cc1c8cc6100bb55e7140d661713e76e3",
+      "bytes": 5475397
+    },
+    "runs/g5_resume/runs/lifecycle/weights/last.pt": {
+      "sha256": "c7b4e593a42b7c98f696d653453a47e3ad93345c206be2b0d2f28dcf97700f79",
+      "bytes": 5509957
+    },
+    "runs/g5_resume/runs/lifecycle/weights/best.pt": {
+      "sha256": "3bc57f7b7089447ab60f7b498fdbd01642c977358ce1ab19e429bebd4f17af77",
+      "bytes": 5509957
+    },
+    "runs/workers8/weights/last.pt": {
+      "sha256": "950bb3186ba24e3197d6efb5d992a146a077113be98e5fd535d3b69c0965aaad",
+      "bytes": 5475077
+    },
+    "runs/workers8/weights/best.pt": {
+      "sha256": "2ca9f66eb22c3582b02db281f328f6405fdc40a9faa63d5e02a9b3f857019e3c",
+      "bytes": 5475077
+    },
+    "runs/workers8_v2/weights/last.pt": {
+      "sha256": "f87d65302124a729c66c29b68943e9066d88c626eb3172187e1eef6af6f0cdaa",
+      "bytes": 5475397
+    },
+    "runs/workers8_v2/weights/best.pt": {
+      "sha256": "81da293b438aba283e05a3547b255abb4c80cbbd1336d9e39a48eedfb7562d7d",
+      "bytes": 5475397
+    },
+    "runs/g5_resume/yolo26n.pt": {
+      "sha256": "9b09cc8bf347f0fc8a5f7657480587f25db09b34bf33b0652110fb03a8ad4fef",
+      "bytes": 5544453
+    }
+  }
+}

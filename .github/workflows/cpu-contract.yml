@@ -43,6 +43,7 @@ jobs:
 
       - name: R22A.5A preflight scripts compile
         run: python -m compileall -q scripts/r22a5a
+        run: python -m compileall -q scripts/r22a5n1
 
       - name: CPU contract tests (adversarial, fail-closed)
         run: python -m pytest windows-golden-path/tests -q

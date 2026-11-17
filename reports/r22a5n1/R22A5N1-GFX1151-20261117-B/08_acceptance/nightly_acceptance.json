@@ -1,0 +1,706 @@
+{
+  "overall": "R22A5N1_GFX1151_NIGHTLY_EVIDENCE_AUDITED_PASS",
+  "reason": "all gates independently recomputed PASS on physical gfx1151 with audited nightly bytes and byte-bound lock provenance",
+  "gate_verdicts": {
+    "PKG": "PASS",
+    "LK": "PASS",
+    "G0": "PASS",
+    "G1": "PASS",
+    "G2": "PASS",
+    "G3": "PASS",
+    "G4": "PASS",
+    "G5": "PASS",
+    "G7": "PASS"
+  },
+  "ceiling": "R22A5N1_GFX1151_NIGHTLY_EVIDENCE_AUDITED_PASS",
+  "forbidden_verdict_hits": [],
+  "note": "nightly/dev artifacts cap at candidate-level verdicts; no Stable/dual-arch/clean-install claim is possible from this single-GPU nightly mission",
+  "run_id": "R22A5N1-GFX1151-20261117-B",
+  "mission": "R22A.5N.1",
+  "engine_version": "r22a5n1-acceptance-v2",
+  "timestamp": "2026-11-17T05:21:33.105224+00:00",
+  "evidence_root": "reports\\r22a5n1\\R22A5N1-GFX1151-20261117-B",
+  "gates": [
+    {
+      "gate": "PKG",
+      "verdict": "PASS",
+      "reason": "NIGHTLY_PACKAGE_SET_VERIFIED (independently recomputed)",
+      "facts": {
+        "lock_present": true,
+        "audit_present": true,
+        "manifest_present": true,
+        "recomputed": {
+          "package_count": 46,
+          "channel": "nightly",
+          "gfx_target": "gfx1151",
+          "origin_violations": [],
+          "origin_ok": true,
+          "native_families": [
+            "10"
+          ],
+          "family_ok": true,
+          "device_wheels_present": {
+            "rocm-sdk-device-gfx1151": true,
+            "amd-torch-device-gfx1151": true,
+            "amd-torchvision-device-gfx1151": true
+          },
+          "device_wheel_ok": true,
+          "torch_is_amd_hip": true,
+          "abi_violations": [],
+          "abi_ok": true,
+          "sdk_wheel_sha256": "b11baad94242690642f95687993f200fe9ef27fcdbe34e2bbf4605e0407599f0"
+        },
+        "origin_violations": [],
+        "abi_violations": [],
+        "audit_wheel_sha256": "b11baad94242690642f95687993f200fe9ef27fcdbe34e2bbf4605e0407599f0",
+        "audit_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "audit_dll_build": "25f28906",
+        "ancestry": {
+          "compare": "f0a5d2664...25f28906",
+          "status": "ahead",
+          "ahead_by": 1074,
+          "behind_by": 0,
+          "commit_date_gh": "2026-10-19T09:27:09Z"
+        },
+        "ancestry_recomputed": false,
+        "ancestry_note": "externally recorded by the bounded gh audit; consistency-checked only (wheel/DLL byte identity is the load-bearing evidence)",
+        "installed_missing_vs_lock": {},
+        "rogue_native_installed": [],
+        "gpu_stack": {
+          "torch": "2.16.0a0+rocm10.3.0a20261116",
+          "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+          "ultralytics": "8.4.214",
+          "rocm": "10.3.0a20261116",
+          "rocm-sdk-core": "10.3.0a20261116",
+          "rocm-sdk-libraries": "10.3.0a20261116",
+          "rocm-sdk-device-gfx1151": "10.3.0a20261116",
+          "amd-torch-device-gfx1151": "2.16.0a0+rocm10.3.0a20261116",
+          "amd-torchvision-device-gfx1151": "0.30.0a0+rocm10.3.0a20261116",
+          "ultralytics-platform": "0.1.111",
+          "ultralytics-thop": "2.2.5",
+          "numpy": "2.5.5",
+          "opencv-python": "5.0.0.93",
+          "rocm-bootstrap": "0.3.0"
+        }
+      }
+    },
+    {
+      "gate": "LK",
+      "verdict": "PASS",
+      "reason": "all training receipts bound to the exact lock bytes",
+      "facts": {
+        "lock_path": "reports\\r22a5n1\\R22A5N1-GFX1151-20261117-B\\01_package_provenance\\resolved_wheel_lock_nightly_gfx1151.json",
+        "receipts": [
+          {
+            "receipt": "05_yolo_training_amp/adamw_amp.json",
+            "recorded_sha": "cf147540a166a623bcf4f7961e07540980af5e117c7a0cc1f2cf38c2b013a7ac",
+            "has_binding": true,
+            "status": "BOUND",
+            "violations": []
+          },
+          {
+            "receipt": "07_reliability/workers8_amp_v2.json",
+            "recorded_sha": "cf147540a166a623bcf4f7961e07540980af5e117c7a0cc1f2cf38c2b013a7ac",
+            "has_binding": true,
+            "status": "BOUND",
+            "violations": []
+          }
+        ],
+        "lock_sha256_recomputed": "cf147540a166a623bcf4f7961e07540980af5e117c7a0cc1f2cf38c2b013a7ac"
+      }
+    },
+    {
+      "gate": "G0",
+      "verdict": "PASS",
+      "reason": "runtime identity verified in child process",
+      "facts": {
+        "present": true,
+        "verdict": "G0_RUNTIME_IDENTITY_PASS",
+        "child_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "frozen_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "child_gpu_name": "AMD Radeon(TM) 8060S Graphics",
+        "gfx_target": "gfx1151",
+        "child_op_finite": true,
+        "parent_child_agree": true,
+        "runtime_class": "OFFICIAL_CANDIDATE",
+        "exit_code": 0,
+        "child_dll_marker": 2
+      }
+    },
+    {
+      "gate": "G1",
+      "verdict": "PASS",
+      "reason": "NIGHTLY_NO_STL_REGRESSION_CONFIRMED — strong source-lineage + behavioral paired control (pre-fix and nightly stacks differ in more than one component; this is NOT a single-variable intervention)",
+      "facts": {
+        "candidate_present": true,
+        "control_present": true,
+        "candidate_classification": "OFFICIAL_CANDIDATE_PASS",
+        "candidate_exit": 0,
+        "candidate_child_dll": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "candidate_pid": 33320,
+        "control_child_dll": "e97891df7ea0ba2b6eda703bd69499521dc9a38300fe626f412b5544dec647bc",
+        "control_pid": 21840,
+        "candidate_scratch": "C:\\r22a5n1\\scratch_g1_cand5\\nostl_official_1794891682",
+        "control_scratch": "C:\\r22a5n1\\scratch_g1_ctrl3\\nostl_official_1794891727",
+        "control_failure_class": "MIOPEN_HIPRTC_COMPILATION",
+        "control_dll_marker": 0,
+        "distinct_processes": true,
+        "distinct_cold_cache_identity": true,
+        "control_raw_log_available": true,
+        "candidate_raw_log_available": true,
+        "control_failure_reclassified": "MIOPEN_HIPRTC_COMPILATION",
+        "control_signature_in_raw_bytes": true,
+        "candidate_log_has_no_prefix_signature": true
+      }
+    },
+    {
+      "gate": "G2",
+      "verdict": "PASS",
+      "reason": "NIGHTLY_CORE_GPU_PASS (details re-checked)",
+      "facts": {
+        "present": true,
+        "gate_statuses": {
+          "cuda_available": "PASS",
+          "device_identity": "PASS",
+          "fp32_gemm": "PASS",
+          "fp16_gemm": "PASS",
+          "autograd": "PASS",
+          "conv2d_fwd_bwd": "PASS",
+          "batchnorm_fwd_bwd": "PASS",
+          "torchvision_nms_gpu": "PASS",
+          "tensor_lifetime": "PASS"
+        },
+        "nonfinite_details": [],
+        "gfx_target": "gfx1151",
+        "pass_fail_skip": "PASS",
+        "runtime_class": "OFFICIAL_CANDIDATE",
+        "cpu_fallback_used": false,
+        "loaded_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "exit_code": 0
+      }
+    },
+    {
+      "gate": "G3",
+      "verdict": "PASS",
+      "reason": "NIGHTLY_YOLO_TRAINING_PASS (statistics recomputed from per-step facts)",
+      "facts": {
+        "present": true,
+        "recomputed": {
+          "attempts": 11,
+          "effective_updates": 7,
+          "inf_skips": 4,
+          "unexplained_no_update_steps": 0,
+          "unexplained_indices": [],
+          "moved_on_inf_skip": [],
+          "nonfinite_grads_on_effective": [],
+          "batch_index_monotonic": true,
+          "all_invoked": true,
+          "lr_recorded": true,
+          "accumulate_recorded": true,
+          "scale_history_len": 11,
+          "scale_history_matches_attempts": true,
+          "backoffs_recomputed": 4,
+          "inf_skips_without_scale_backoff": []
+        },
+        "stored_counts": {
+          "attempts": 11,
+          "effective": 7,
+          "inf_skips": 4,
+          "scale_len": 11
+        },
+        "counts_reconcile": true,
+        "batches_completed": 48,
+        "dtype_histogram": {
+          "float16": 96
+        },
+        "low_precision_samples_recomputed": 96,
+        "low_precision_samples_stored": 96,
+        "optimizer_requested": "auto",
+        "optimizer_resolved": "AdamW",
+        "param_tensors_changed": 248,
+        "param_all_finite": true,
+        "checkpoint": {
+          "path": "C:\\r22a5n1\\runs\\amp_coco128\\weights\\last.pt",
+          "exists": true,
+          "sha256": "17f9f166b8d99986ee5e05d659714387440dadd51e26f1ecdb4de51367dbd2f2",
+          "best_pt_sha256": "8f94d2362a37fe94beffd45a058cc8f41a9edbce042e116e308916996abc1df5",
+          "run_args_yaml_sha256": "67c1e0bdb0e1aa1bd27bd8a1aa83f7e6a0013253293abe6200323bd5c9e1dd0a"
+        },
+        "loaded_miopen_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+        "gfx_target": "gfx1151",
+        "exit_code": 0,
+        "runtime_class": "OFFICIAL_CANDIDATE",
+        "epoch_observations_len": 4
+      }
+    },
+    {
+      "gate": "G4",
+      "verdict": "PASS",
+      "reason": "NIGHTLY_AMP_PASS (AMP_PASS)",
+      "facts": {
+        "present": true,
+        "recomputed": {
+          "attempts": 11,
+          "effective_updates": 7,
+          "inf_skips": 4,
+          "unexplained_no_update_steps": 0,
+          "unexplained_indices": [],
+          "moved_on_inf_skip": [],
+          "nonfinite_grads_on_effective": [],
+          "batch_index_monotonic": true,
+          "all_invoked": true,
+          "lr_recorded": true,
+          "accumulate_recorded": true,
+          "scale_history_len": 11,
+          "scale_history_matches_attempts": true,
+          "backoffs_recomputed": 4,
+          "inf_skips_without_scale_backoff": []
+        },
+        "stored_counts": {
+          "attempts": 11,
+          "effective": 7,
+          "inf_skips": 4,
+          "scale_len": 11
+        },
+        "counts_reconcile": true,
+        "batches_completed": 48,
+        "dtype_histogram": {
+          "float16": 96
+        },
+        "low_precision_samples_recomputed": 96,
+        "low_precision_samples_stored": 96,
+        "optimizer_requested": "auto",
+        "optimizer_resolved": "AdamW",
+        "param_tensors_changed": 248,
+        "param_all_finite": true,
+        "checkpoint": {
+          "path": "C:\\r22a5n1\\runs\\amp_coco128\\weights\\last.pt",
+          "exists": true,
+          "sha256": "17f9f166b8d99986ee5e05d659714387440dadd51e26f1ecdb4de51367dbd2f2",
+          "best_pt_sha256": "8f94d2362a37fe94beffd45a058cc8f41a9edbce042e116e308916996abc1df5",
+          "run_args_yaml_sha256": "67c1e0bdb0e1aa1bd27bd8a1aa83f7e6a0013253293abe6200323bd5c9e1dd0a"
+        },
+        "loaded_miopen_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+        "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+        "gfx_target": "gfx1151",
+        "exit_code": 0,
+        "runtime_class": "OFFICIAL_CANDIDATE",
+        "epoch_observations_len": 4
+      },
+      "amp_verdict": "AMP_PASS"
+    },
+    {
+      "gate": "G5",
+      "verdict": "PASS",
+      "reason": "NIGHTLY_CHECKPOINT_RESUME_PASS — core resume verified; scheduler: NOT_SERIALIZED_BY_UPSTREAM",
+      "facts": {
+        "present": true,
+        "checkpoint_bytes_anchored": {
+          "last.pt": true,
+          "best.pt": true
+        },
+        "pass_fail_skip": "PASS",
+        "checkpoint_resumable": {
+          "checked": true,
+          "has_optimizer_state": true,
+          "ckpt_epoch": 0
+        },
+        "resume_exit": 0,
+        "resume_done_marker": true,
+        "epoch_continuity": true,
+        "final_epoch_rows": 5,
+        "last_epoch_value": 4,
+        "infer_exit": 0,
+        "infer_ok": true,
+        "checkpoint_sha256": {
+          "last.pt": "740300937be218ba6d1491b27a18f6d6c92499422ba37e6950d48f610458442a",
+          "best.pt": "ba1cd34476f897e0e6064b345a3c883e555b90b744b718d4db5ad87e84b6eb3f"
+        },
+        "ckpt_sha_at_kill": "1fb0e51a8ac74078bd08ff92220047369911ea700a2862d031ef29a9dab13ff3",
+        "gfx_target": "gfx1151",
+        "resume_semantics": "resume=True (training state), not weights-only load",
+        "resume_effective_updates": 8,
+        "optimizer_state_entries_after_resume": 366,
+        "state_classes": {
+          "model_weights": {
+            "serialized": true,
+            "observed_fields": [
+              "ema"
+            ]
+          },
+          "optimizer": {
+            "serialized": true,
+            "observed_fields": [
+              "optimizer"
+            ]
+          },
+          "scheduler": {
+            "serialized": "NOT_SERIALIZED_BY_UPSTREAM",
+            "observed_fields": []
+          },
+          "gradscaler": {
+            "serialized": true,
+            "observed_fields": [
+              "scaler"
+            ]
+          },
+          "epoch": {
+            "serialized": true,
+            "observed_fields": [
+              "epoch"
+            ]
+          },
+          "best_fitness": {
+            "serialized": true,
+            "observed_fields": [
+              "best_fitness"
+            ]
+          },
+          "trainer_args": {
+            "serialized": true,
+            "observed_fields": [
+              "train_args"
+            ]
+          },
+          "ema": {
+            "serialized": true,
+            "observed_fields": [
+              "ema"
+            ]
+          },
+          "_raw_top_level_keys": [
+            "best_fitness",
+            "date",
+            "docs",
+            "ema",
+            "epoch",
+            "git",
+            "license",
+            "model",
+            "modelopt",
+            "optimizer",
+            "scaler",
+            "stopper",
+            "train_args",
+            "train_metrics",
+            "train_results",
+            "updates",
+            "version"
+          ]
+        },
+        "epoch_continuity_recomputed": true,
+        "state_verdict": "FULL_TRAINING_STATE_RESTORE_PASS",
+        "not_serialized_classes": {
+          "scheduler": "NOT_SERIALIZED_BY_UPSTREAM"
+        }
+      }
+    },
+    {
+      "gate": "G7",
+      "verdict": "PASS",
+      "reason": "bounded workers=8 exercise verified from live census + recomputed orphan check",
+      "facts": {
+        "present": true,
+        "harness_train_args": "epochs=3, imgsz=256, batch=8, optimizer='auto', device=-1, workers=8, amp=default, nbs=default",
+        "exit_code": 0,
+        "recomputed_stats": {
+          "attempts": 11,
+          "effective_updates": 7,
+          "inf_skips": 4,
+          "unexplained_no_update_steps": 0,
+          "unexplained_indices": [],
+          "moved_on_inf_skip": [],
+          "nonfinite_grads_on_effective": [],
+          "batch_index_monotonic": true,
+          "all_invoked": true,
+          "lr_recorded": true,
+          "accumulate_recorded": true,
+          "scale_history_len": 11,
+          "scale_history_matches_attempts": true,
+          "backoffs_recomputed": 4,
+          "inf_skips_without_scale_backoff": []
+        },
+        "census_present": true,
+        "orphan_present": true,
+        "trainer_pid": 39592,
+        "spawn_children": [
+          20660,
+          30512,
+          36664,
+          40360,
+          44440,
+          46388,
+          48436,
+          48720,
+          52876,
+          52992,
+          53072,
+          53516,
+          54332,
+          54936,
+          56100,
+          57236
+        ],
+        "spawn_children_count": 16,
+        "census_captured_utc": "2026-11-17T05:18:34.737321+00:00",
+        "preexisting_disclosed": [
+          12052,
+          37120,
+          52244,
+          53968,
+          55012
+        ],
+        "envelope_child_pid": 6784,
+        "trainer_ancestry_chain": [
+          39592,
+          6784,
+          55012,
+          52244,
+          53968,
+          54396
+        ],
+        "trainer_pid_ties_to_envelope": true,
+        "orphan_all_pids": [
+          12052,
+          37120,
+          52244,
+          53968,
+          55012
+        ],
+        "orphan_checker_pid": 55012,
+        "leftover_recomputed": [],
+        "stored_mission_tree_leftover": []
+      }
+    }
+  ],
+  "reliability_census": {
+    "stage": "mid-run census",
+    "captured_utc": "2026-11-17T05:18:34.737321+00:00",
+    "trainer_pid": 39592,
+    "spawn_children_of_trainer": [
+      20660,
+      30512,
+      36664,
+      40360,
+      44440,
+      46388,
+      48436,
+      48720,
+      52876,
+      52992,
+      53072,
+      53516,
+      54332,
+      54936,
+      56100,
+      57236
+    ],
+    "checker_pid": 55012,
+    "rows_at_census": 1,
+    "orchestrator_pid": 6784,
+    "spawn_children_count": 16,
+    "spawn_main_children_count": 16,
+    "snapshot_count": 1,
+    "snapshots": [
+      {
+        "captured_utc": "2026-11-17T05:18:34.737321+00:00",
+        "python_tree": [
+          {
+            "pid": 37120,
+            "ppid": 3268,
+            "cmdline": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe C:/P19B/scratch/p1_amp_audit.py"
+          },
+          {
+            "pid": 12052,
+            "ppid": 37120,
+            "cmdline": "C:\\Users\\rocm\\Desktop\\YOLO_AMD\\p17_env27203\\Scripts\\python.exe C:/P19B/scratch/p1_amp_audit.py"
+          },
+          {
+            "pid": 53968,
+            "ppid": 54396,
+            "cmdline": "C:\\Users\\rocm\\miniconda3\\python.exe -X utf8 C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/scripts/r22a5n1/run_envelope.py --name stage_e_"
+          },
+          {
+            "pid": 52244,
+            "ppid": 53968,
+            "cmdline": "C:/r22a5n1/venv/Scripts/python.exe -X utf8 C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/scripts/r22a5n1/worker_stage.py --python C:/r22a"
+          },
+          {
+            "pid": 55012,
+            "ppid": 52244,
+            "cmdline": "C:/r22a5n1/venv/Scripts/python.exe -X utf8 C:/Users/rocm/Desktop/YOLO_AMD/Ultralytics-Windows-ROCm-Training-RCA/scripts/r22a5n1/worker_stage.py --python C:/r22a"
+          },
+          {
+            "pid": 6784,
+            "ppid": 55012,
+            "cmdline": "C:/r22a5n1/venv/Scripts/python.exe -X utf8 C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-golden-path\\scripts\\audit_adamw_amp.py -"
+          },
+          {
+            "pid": 39592,
+            "ppid": 6784,
+            "cmdline": "C:/r22a5n1/venv/Scripts/python.exe -X utf8 C:\\Users\\rocm\\Desktop\\YOLO_AMD\\Ultralytics-Windows-ROCm-Training-RCA\\windows-golden-path\\scripts\\audit_adamw_amp.py -"
+          },
+          {
+            "pid": 46388,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2728)\" \"--multipr"
+          },
+          {
+            "pid": 54936,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2796)\" \"--multipr"
+          },
+          {
+            "pid": 48720,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2812)\" \"--multipr"
+          },
+          {
+            "pid": 30512,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2852)\" \"--multipr"
+          },
+          {
+            "pid": 48436,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2576)\" \"--multipr"
+          },
+          {
+            "pid": 52876,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2776)\" \"--multipr"
+          },
+          {
+            "pid": 57236,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2664)\" \"--multipr"
+          },
+          {
+            "pid": 53516,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2616)\" \"--multipr"
+          },
+          {
+            "pid": 44440,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2620)\" \"--multipr"
+          },
+          {
+            "pid": 40360,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=1588)\" \"--multipr"
+          },
+          {
+            "pid": 53072,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2196)\" \"--multipr"
+          },
+          {
+            "pid": 36664,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2876)\" \"--multipr"
+          },
+          {
+            "pid": 52992,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=3044)\" \"--multipr"
+          },
+          {
+            "pid": 20660,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=3008)\" \"--multipr"
+          },
+          {
+            "pid": 54332,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=2536)\" \"--multipr"
+          },
+          {
+            "pid": 56100,
+            "ppid": 39592,
+            "cmdline": "\"C:\\Users\\rocm\\miniconda3\\python.exe\" \"-X\" \"utf8\" \"-c\" \"from multiprocessing.spawn import spawn_main; spawn_main(parent_pid=39592, pipe_handle=3016)\" \"--multipr"
+          }
+        ],
+        "trainer_pid": 39592,
+        "children": [
+          20660,
+          30512,
+          36664,
+          40360,
+          44440,
+          46388,
+          48436,
+          48720,
+          52876,
+          52992,
+          53072,
+          53516,
+          54332,
+          54936,
+          56100,
+          57236
+        ],
+        "spawn_main": [
+          46388,
+          54936,
+          48720,
+          30512,
+          48436,
+          52876,
+          57236,
+          53516,
+          44440,
+          40360,
+          53072,
+          36664,
+          52992,
+          20660,
+          54332,
+          56100
+        ]
+      }
+    ],
+    "capture_method": "series of full Win32_Process CIM tree snapshots executed live while training; trainer identified as the deepest audit_adamw_amp process; every snapshot retained; peak snapshot cited",
+    "preexisting_zombies_disclosed": [
+      12052,
+      37120,
+      52244,
+      53968,
+      55012
+    ]
+  },
+  "reliability_orphan_check": {
+    "stage": "post-run orphan check",
+    "captured_utc": "2026-11-17T05:18:47.718391+00:00",
+    "checker_pid": 55012,
+    "all_python_pids": [
+      12052,
+      37120,
+      52244,
+      53968,
+      55012
+    ],
+    "baseline_python_pids": [
+      12052,
+      37120,
+      52244,
+      53968,
+      55012
+    ],
+    "mission_tree_leftover": [],
+    "orphan_verdict": "CLEAN",
+    "note": "leftover recomputed = all_python_pids − baseline − checker; stored verdict is derived, never authoritative"
+  },
+  "frozen_candidate": {
+    "wheel": "rocm_sdk_libraries-10.3.0a20261116-py3-none-win_amd64.whl",
+    "wheel_sha256": "b11baad94242690642f95687993f200fe9ef27fcdbe34e2bbf4605e0407599f0",
+    "miopen_dll_sha256": "f9312c3e646f5f871d30abfcb310cc5f7137499511e20e5e4b68d82d49a40cb6",
+    "miopen_build": "3.6.3.25f28906",
+    "merged_fix_commit": "f0a5d2664cf3334161f7b82c02dfcd2213988a8a",
+    "torch": "2.16.0a0+rocm10.3.0a20261116",
+    "ultralytics": "8.4.214",
+    "gfx_target": "gfx1151",
+    "channel": "nightly"
+  }
+}

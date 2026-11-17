@@ -1,0 +1,4 @@
+[baseline] 5 preexisting python pids: [12052, 24244, 37120, 49676, 50024]
+[train] trainer pid=54180
+[census] 1 spawn children of trainer (spawn_main: 0)
+[orphan] leftover=[] verdict=CLEAN

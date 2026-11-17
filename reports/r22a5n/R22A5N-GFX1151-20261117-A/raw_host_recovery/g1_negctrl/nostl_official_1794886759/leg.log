@@ -1,0 +1,16 @@
+# leg=official
+# cmd=C:\Users\rocm\Desktop\YOLO_AMD\p16_testenv\Scripts\python.exe -I C:\r22a5n\scratch\g1_negctrl\nostl_official_1794886759\bn_repro.py
+# VCToolsInstallDir=C:\r22a5n\scratch\g1_negctrl\nostl_official_1794886759\fakevc
+# INCLUDE=''
+# USERPROFILE=C:\r22a5n\scratch\g1_negctrl\nostl_official_1794886759\home
+# HIPRTC_COMPILE_OPTIONS_APPEND=None
+
+--- stdout ---
+BN_NOSTL_REPRO out_finite=True grad_finite=True loss=0.999990
+
+--- stderr ---
+MIOpen: Warning [LoadSymbols] Failed to resolve CK grouped conv symbols (5 missing): ck_impl_depthwise_bwd_data_fill_valid_kernels, ck_impl_depthwise_bwd_data_is_applicable, ck_impl_depthwise_bwd_data_is_args_supported, ck_impl_depthwise_bwd_data_get_workspace_size, ck_impl_depthwise_bwd_data_get_solution
+MIOpen: Warning [OpenRuntimeLibraryForDevice] Failed to resolve symbols in CK grouped conv library for device gfx1151
+C:\r22a5n\scratch\g1_negctrl\nostl_official_1794886759\bn_repro.py:17: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at B:\src\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:839.)
+  (out_finite, grad_finite, float(loss)))

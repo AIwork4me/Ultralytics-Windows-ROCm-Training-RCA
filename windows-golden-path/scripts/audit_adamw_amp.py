@@ -56,6 +56,98 @@ WHEEL_LOCK = REPO_ROOT / "evidence/raw/r22a-gfx1151/R22A_GFX1151_PACKAGE_LOCK.js
 MIN_UPDATES = 3
 LOW_PRECISION_DTYPES = ("float16", "bfloat16", "torch.float16", "torch.bfloat16")
 
+# --- R22A.5N.1 P0-A: explicit wheel-lock provenance contract ------------------
+# The original Nightly receipts mis-recorded the HISTORICAL DEV lock SHA because
+# this script hashed WHEEL_LOCK unconditionally. The fix is fail-closed and
+# backward-compatible:
+#   * --wheel-lock <path>  — the experiment's OWN verified lock; bytes hashed,
+#     channel/gfx/runtime-version binding enforced, any mismatch aborts BEFORE
+#     training (exit 2 — no GPU time spent on an unprovable run)
+#   * channel != "dev" WITHOUT --wheel-lock — abort (never silently default a
+#     Nightly/RC/Stable run to the historical DEV lock)
+#   * channel == "dev" without --wheel-lock — historical behavior preserved
+#     (R22A.2/R22A.3/R22A.4 receipts remain exactly reproducible)
+LOCK_GATE_VERSION = "r22a5n1-wheel-lock-gate-v1"
+# runtime packages whose INSTALLED version must equal the lock record
+LOCK_BOUND_RUNTIME_PACKAGES = ("torch", "torchvision", "ultralytics")
+
+
+def verify_lock_binding(lock: dict, lock_sha256: str, channel: str,
+                        gfx_target: str | None,
+                        runtime_versions: dict[str, str | None]) -> dict:
+    """Pure fail-closed validation of a parsed wheel lock vs run facts.
+
+    Returns {"ok": bool, "violations": [...], "facts": {...}} — CPU-testable,
+    never raises on bad input (every defect is a recorded violation)."""
+    v: list[str] = []
+    if not isinstance(lock, dict):
+        return {"ok": False, "violations": ["lock is not a JSON object"],
+                "facts": {}}
+    lock_channel = lock.get("channel")
+    lock_gfx = lock.get("gfx_target")
+    packages = lock.get("packages")
+    if not lock_channel:
+        v.append("lock has no channel identity")
+    elif lock_channel != channel:
+        v.append(f"lock channel {lock_channel!r} != requested channel {channel!r}")
+    if not lock_gfx:
+        v.append("lock has no gfx_target identity")
+    elif gfx_target and lock_gfx != gfx_target:
+        v.append(f"lock gfx_target {lock_gfx!r} != observed GPU {gfx_target!r}")
+    if not isinstance(packages, list) or not packages:
+        v.append("lock carries no package records")
+        packages = packages if isinstance(packages, list) else []
+    by_name = {gp_lib.dist_key(p.get("name")): p for p in packages
+               if isinstance(p, dict)}
+    for pkg, ver in (runtime_versions or {}).items():
+        rec = by_name.get(gp_lib.dist_key(pkg))
+        if rec is None:
+            v.append(f"runtime package {pkg!r} absent from lock records")
+        elif str(rec.get("version")) != str(ver):
+            v.append(f"runtime {pkg}=={ver} != lock record "
+                     f"{rec.get('version')!r}")
+    return {"ok": not v, "violations": v,
+            "facts": {"channel": lock_channel, "gfx_target": lock_gfx,
+                      "package_count": len(packages), "sha256": lock_sha256,
+                      "gate_version": LOCK_GATE_VERSION,
+                      "runtime_versions": dict(runtime_versions or {})}}
+
+
+def resolve_wheel_lock(wheel_lock_arg: str | None, channel: str,
+                       gfx_target: str | None,
+                       runtime_versions: dict[str, str | None]) -> dict:
+    """Resolve + bind the experiment lock; FAIL-CLOSED for non-dev channels.
+
+    Returns the lock-binding block for the receipt, or raises SystemExit(2)
+    with explicit violations (nothing silently defaults anymore)."""
+    if wheel_lock_arg is None and channel != "dev":
+        print(f"LOCK_GATE: refusing to run channel {channel!r} without an "
+              "explicit --wheel-lock (the historical default is the DEV lock — "
+              "a Nightly run must bind its OWN package-set identity)",
+              file=sys.stderr)
+        raise SystemExit(2)
+    path = Path(wheel_lock_arg) if wheel_lock_arg else WHEEL_LOCK
+    if not path.is_file():
+        print(f"LOCK_GATE: wheel lock file not found: {path}", file=sys.stderr)
+        raise SystemExit(2)
+    raw = path.read_bytes()
+    sha = hashlib.sha256(raw).hexdigest()
+    try:
+        lock = json.loads(raw)
+    except ValueError as e:
+        print(f"LOCK_GATE: wheel lock is not valid JSON ({e}): {path}",
+              file=sys.stderr)
+        raise SystemExit(2)
+    binding = verify_lock_binding(lock, sha, channel, gfx_target, runtime_versions)
+    binding["facts"]["path"] = str(path)
+    if not binding["ok"]:
+        print("LOCK_GATE: wheel-lock binding FAILED — refusing to train:",
+              file=sys.stderr)
+        for viol in binding["violations"]:
+            print(f"  - {viol}", file=sys.stderr)
+        raise SystemExit(2)
+    return binding
+
 
 def git_head() -> str | None:
     try:
@@ -391,6 +483,10 @@ def main() -> None:
                     help="Part A isolates AdamW+AMP from worker behavior (mission §3)")
     ap.add_argument("--min-updates", type=int, default=3)
     ap.add_argument("--run-dir", required=True, help="fresh disposable run dir")
+    ap.add_argument("--wheel-lock", default=None,
+                    help="explicit experiment wheel lock (REQUIRED for any "
+                         "channel != dev; exact bytes hashed and bound to "
+                         "channel/gfx/runtime versions — fail-closed)")
     args = ap.parse_args()
 
     run_dir = Path(args.run_dir)
@@ -398,6 +494,18 @@ def main() -> None:
         shutil.rmtree(run_dir)
     run_dir.parent.mkdir(parents=True, exist_ok=True)
     t0 = time.time()
+
+    # R22A.5N.1 P0-A: bind the package-set identity BEFORE any GPU work
+    runtime_versions = {"torch": torch.__version__,
+                        "torchvision": im.version("torchvision"),
+                        "ultralytics": im.version("ultralytics")}
+    gpu_name_pre = torch.cuda.get_device_name(0) if torch.cuda.device_count() else None
+    lock_binding = resolve_wheel_lock(args.wheel_lock, args.channel,
+                                      gp_lib.gfx_from_device_name(gpu_name_pre or ""),
+                                      runtime_versions)
+
+    weights_init = Path("yolo26n.pt")
+    weights_init_sha = gp_lib.sha256_file(weights_init) if weights_init.is_file() else None
 
     model = YOLO("yolo26n.pt")
     params0 = {k: v.detach().cpu().clone() for k, v in model.model.named_parameters()}
@@ -413,6 +521,7 @@ def main() -> None:
     conv_out_dtypes: dict[str, int] = {}
     in_train_batch = {"on": False}
     final_scale = {"v": None}
+    epoch_observations: list[dict] = []  # R22A.5N.1 §7.3 per-epoch facts
 
     def on_train_start(trainer):
         opt = trainer.optimizer
@@ -432,6 +541,17 @@ def main() -> None:
         facts["scaler_present"] = getattr(trainer, "scaler", None) is not None
         facts["scaler_enabled"] = bool(getattr(trainer.scaler, "is_enabled", lambda: True)()) \
             if facts["scaler_present"] else False
+        # R22A.5N.1 §7.3: resolved trainer args + dataset identity as-run
+        try:
+            facts["resolved_train_args"] = sanitize(dict(vars(trainer.args)))
+        except TypeError:
+            facts["resolved_train_args"] = sanitize(
+                {k: v for k, v in trainer.args.__dict__.items()}) \
+                if hasattr(trainer.args, "__dict__") else None
+        data_yaml = Path(str(getattr(trainer, "data", "") or ""))
+        facts["data_yaml_path"] = str(data_yaml) if str(data_yaml) else None
+        facts["data_yaml_sha256"] = gp_lib.sha256_file(data_yaml) \
+            if str(data_yaml) and data_yaml.is_file() else None
         facts["param_groups"] = [
             {"lr": float(g["lr"]), "weight_decay": float(g.get("weight_decay", 0.0)),
              "n_params": len(g["params"]), "param_group": g.get("param_group")}
@@ -540,10 +660,31 @@ def main() -> None:
         if getattr(trainer, "scaler", None) is not None:
             final_scale["v"] = float(trainer.scaler.get_scale())
 
+    def on_fit_epoch_end(trainer):
+        # R22A.5N.1 §7.3: per-epoch loss/validation observations as-run
+        tl = getattr(trainer, "tloss", None)
+        if tl is None:
+            loss_items: object = []
+        elif hasattr(tl, "tolist"):
+            loss_items = [float(x) for x in tl.tolist()]
+        elif isinstance(tl, dict):  # ultralytics 8.4.x maps loss name -> value
+            loss_items = {str(k): float(v) for k, v in tl.items()
+                          if isinstance(v, (int, float))}
+        else:
+            loss_items = sanitize(tl)
+        epoch_observations.append({
+            "epoch": int(getattr(trainer, "epoch", -1)),
+            "loss_items": loss_items,
+            "metrics": sanitize(dict(getattr(trainer, "metrics", {}) or {})),
+            "fitness": (float(trainer.fitness)
+                        if getattr(trainer, "fitness", None) is not None else None),
+        })
+
     for cb, fn in (("on_train_start", on_train_start),
                    ("on_train_batch_start", on_train_batch_start),
                    ("on_train_batch_end", on_train_batch_end),
-                   ("on_train_end", on_train_end)):
+                   ("on_train_end", on_train_end),
+                   ("on_fit_epoch_end", on_fit_epoch_end)):
         model.add_callback(cb, fn)
 
     train_kwargs = dict(
@@ -558,7 +699,6 @@ def main() -> None:
     model.train(**train_kwargs)
     training_completed = True
 
-    trainer = model.trainer
     effective = [s for s in steps if s["sentinel_max_abs_delta"] > 0.0]
     skipped = [s for s in steps if s.get("found_inf_any") is True]
     n_backoff = sum(1 for i in range(1, len(scale_history))
@@ -613,7 +753,14 @@ def main() -> None:
         "python": sys.version.split()[0], "torch": torch.__version__,
         "torchvision": im.version("torchvision"), "hip": torch.version.hip,
         "ultralytics": im.version("ultralytics"),
-        "wheel_lock_sha256": gp_lib.sha256_file(WHEEL_LOCK) if WHEEL_LOCK.exists() else None,
+        "wheel_lock_sha256": lock_binding["facts"]["sha256"],
+        "wheel_lock_path": lock_binding["facts"]["path"],
+        "wheel_lock_channel": lock_binding["facts"]["channel"],
+        "wheel_lock_gfx": lock_binding["facts"]["gfx_target"],
+        "wheel_lock_package_count": lock_binding["facts"]["package_count"],
+        "runtime_package_versions": runtime_versions,
+        "provenance_gate_version": LOCK_GATE_VERSION,
+        "wheel_lock_binding": lock_binding,
         "loaded_miopen_dll_sha256": miopen.get("sha256") if miopen.get("loaded") else None,
         "runtime_class": gp_lib.classify_runtime(gp_lib.detect_workarounds(), args.channel,
                                                  miopen if miopen.get("loaded") else None),
@@ -693,7 +840,23 @@ def main() -> None:
         "buffer_delta_note": "named_buffers (incl. BatchNorm running stats) tracked "
                              "separately and NEVER counted as parameter updates",
         "minimum_effective_updates_required": args.min_updates,
-        "checkpoint": {"path": str(ckpt), "exists": ckpt.exists(), "sha256": ckpt_sha},
+        "model_identity": {
+            "init_weights": "yolo26n.pt",
+            "init_weights_sha256": weights_init_sha,
+            "task": getattr(getattr(model, "model", None), "task", None),
+        },
+        "dataset_identity": {
+            "data_arg": args.data,
+            "resolved_yaml_path": facts.get("data_yaml_path"),
+            "resolved_yaml_sha256": facts.get("data_yaml_sha256"),
+        },
+        "resolved_train_args": facts.get("resolved_train_args"),
+        "epoch_observations": epoch_observations,
+        "checkpoint": {"path": str(ckpt), "exists": ckpt.exists(), "sha256": ckpt_sha,
+                       "best_pt_sha256": gp_lib.sha256_file(run_dir / "weights" / "best.pt")
+                       if (run_dir / "weights" / "best.pt").is_file() else None,
+                       "run_args_yaml_sha256": gp_lib.sha256_file(run_dir / "args.yaml")
+                       if (run_dir / "args.yaml").is_file() else None},
         "contract": contract,
     }
     record = sanitize(record)

@@ -1,0 +1,127 @@
+{
+  "run_id": "R22A5N1-G5",
+  "mission": "R22A.5N.1",
+  "timestamp": "2026-11-17T05:11:31.186176+00:00",
+  "gpu_name": "AMD Radeon(TM) 8060S Graphics",
+  "gfx_target": "gfx1151",
+  "windows_build": "10.0.26200.0",
+  "driver_version": "32.0.22032.6002",
+  "python": "3.13.13",
+  "torch": "2.16.0a0+rocm10.3.0a20261116",
+  "torchvision": "0.30.0a0+rocm10.3.0a20261116",
+  "hip": "7.18.26455",
+  "runtime_class": "OFFICIAL_CANDIDATE",
+  "command": "python verify_checkpoint_resume_v2.py --epochs 4 --kill-after-epoch 1 --device -1",
+  "exit_code": 0,
+  "duration_s": 93.1,
+  "pass_fail_skip": "PASS",
+  "failure_classification": null,
+  "raw_log_path": "C:\\r22a5n1\\g5_work\\lifecycle_summary.log",
+  "stages": {
+    "wait_for_checkpoint": {
+      "ok": true,
+      "epochs_done": 2,
+      "waited_s": 31.7
+    },
+    "child1_returncode": 1,
+    "total_epochs": 4,
+    "kill_after_epoch": 1,
+    "rows_at_kill": 2,
+    "checkpoint_resumability": {
+      "checked": true,
+      "has_optimizer_state": true,
+      "ckpt_epoch": 0
+    },
+    "checkpoint_sha256_at_kill": "1fb0e51a8ac74078bd08ff92220047369911ea700a2862d031ef29a9dab13ff3",
+    "resume_exit": 0,
+    "resume_done_marker": true,
+    "resume_start_epoch": 1,
+    "optimizer_state_entries": 366,
+    "resume_effective_updates": 8,
+    "resume_step_attempts": 8,
+    "resume_state_evidence_logged": true,
+    "final_epoch_rows": 5,
+    "last_epoch_value": 4,
+    "epoch_continuity": true,
+    "infer_exit": 0,
+    "infer_ok": true
+  },
+  "state_classes": {
+    "model_weights": {
+      "serialized": true,
+      "observed_fields": [
+        "ema"
+      ]
+    },
+    "optimizer": {
+      "serialized": true,
+      "observed_fields": [
+        "optimizer"
+      ]
+    },
+    "scheduler": {
+      "serialized": "NOT_SERIALIZED_BY_UPSTREAM",
+      "observed_fields": []
+    },
+    "gradscaler": {
+      "serialized": true,
+      "observed_fields": [
+        "scaler"
+      ]
+    },
+    "epoch": {
+      "serialized": true,
+      "observed_fields": [
+        "epoch"
+      ]
+    },
+    "best_fitness": {
+      "serialized": true,
+      "observed_fields": [
+        "best_fitness"
+      ]
+    },
+    "trainer_args": {
+      "serialized": true,
+      "observed_fields": [
+        "train_args"
+      ]
+    },
+    "ema": {
+      "serialized": true,
+      "observed_fields": [
+        "ema"
+      ]
+    },
+    "_raw_top_level_keys": [
+      "best_fitness",
+      "date",
+      "docs",
+      "ema",
+      "epoch",
+      "git",
+      "license",
+      "model",
+      "modelopt",
+      "optimizer",
+      "scaler",
+      "stopper",
+      "train_args",
+      "train_metrics",
+      "train_results",
+      "updates",
+      "version"
+    ]
+  },
+  "state_class_note": "state classes classified from the OBSERVED checkpoint dict at the interrupt. Observed 8.4.214 reality: optimizer/epoch/best_fitness/train_args/EMA and GradScaler (key 'scaler') ARE serialized; the LR scheduler is NOT (rebuilt from train_args on resume) — reported NOT_SERIALIZED_BY_UPSTREAM, never assumed",
+  "resume_semantics": "resume=True (training state), not weights-only load",
+  "checkpoint_sha256": {
+    "last.pt": "740300937be218ba6d1491b27a18f6d6c92499422ba37e6950d48f610458442a",
+    "best.pt": "ba1cd34476f897e0e6064b345a3c883e555b90b744b718d4db5ad87e84b6eb3f"
+  },
+  "logs": {
+    "stage1": "C:\\r22a5n1\\g5_work\\stage1.log",
+    "stage3_resume": "C:\\r22a5n1\\g5_work\\stage3.log",
+    "stage4_infer": "C:\\r22a5n1\\g5_work\\stage4.log"
+  }
+}

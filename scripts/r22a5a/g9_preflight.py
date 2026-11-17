@@ -64,8 +64,9 @@ NOSTL_DESIGN_ELEMENTS = [
      "fresh USERPROFILE per leg (cold MIOpen cache identity)"),
     ("shim_removed_official", r'pop\("HIPRTC_COMPILE_OPTIONS_APPEND", None\)',
      "official leg REMOVES the HIPRTC shim (pure official bytes)"),
-    ("child_process", r"subprocess\.run",
-     "reproducer executes in an isolated child process"),
+    ("child_process", r"subprocess\.(run|Popen)",
+     "reproducer executes in an isolated child process (run or Popen — "
+     "R22A.5N.1 uses Popen so the child PID is capturable as evidence)"),
     ("historical_shape", r"20, 100, 35, 45",
      "BatchNorm2d(100) at the historically failing shape"),
     ("forward_backward", r"loss\.backward\(\)",

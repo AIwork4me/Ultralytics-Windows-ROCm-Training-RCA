@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\windows-golden-path\scripts\audit_adamw_amp.py", line 882, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\windows-golden-path\scripts\audit_adamw_amp.py", line 691, in main
+    model.train(**train_kwargs)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\r22a5n1\venv\Lib\site-packages\ultralytics\engine\model.py", line 899, in train
+    self.trainer.train()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\r22a5n1\venv\Lib\site-packages\ultralytics\engine\trainer.py", line 264, in train
+    self._do_train()
+    ~~~~~~~~~~~~~~^^
+  File "C:\r22a5n1\venv\Lib\site-packages\ultralytics\engine\trainer.py", line 697, in _do_train
+    self.run_callbacks("on_fit_epoch_end")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\r22a5n1\venv\Lib\site-packages\ultralytics\engine\trainer.py", line 236, in run_callbacks
+    callback(self)
+    ~~~~~~~~^^^^^^
+  File "C:\Users\rocm\Desktop\YOLO_AMD\Ultralytics-Windows-ROCm-Training-RCA\windows-golden-path\scripts\audit_adamw_amp.py", line 667, in on_fit_epoch_end
+    "loss_items": sanitize([float(x) for x in (trainer.tloss.tolist()
+                                               ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'tolist'
