@@ -58,8 +58,10 @@ def verify_attempt(path: Path, entry: dict) -> dict:
         facts["issues"].append("CASE_ID_MISMATCH")
     if cfg.get("case",{}).get("model")!=entry["model"]:
         facts["issues"].append("MODEL_IDENTITY_MISMATCH")
-    if env.get("exit_code")!=0 or env.get("status")!="CHILD_EXIT_0" or child.get("status")!="PASS":
-        facts["issues"].append("CHILD_NOT_SUCCESSFUL")
+    child_status=child.get("status")
+    envelope_status=env.get("status")
+    # Authentic failed attempts must remain visible, but are never positive
+    # evidence for a model. A retry does not erase previous failure receipts.
     for name,key in (("stdout.raw","stdout_sha256"),("stderr.raw","stderr_sha256"),
                      ("child_result.json","child_result_sha256")):
         if env.get(key)!=hash_file(path/name):
@@ -68,6 +70,15 @@ def verify_attempt(path: Path, entry: dict) -> dict:
         facts["issues"].append("LOCK_SHA_MISMATCH")
     if cfg.get("preflight_sha256")!=env.get("preflight_sha256"):
         facts["issues"].append("PREFLIGHT_SHA_MISMATCH")
+    if child_status!="PASS" or envelope_status!="CHILD_EXIT_0" or env.get("exit_code")!=0:
+        if child_status in ("FAIL","OOM") and envelope_status=="CHILD_FAILED" \
+                and isinstance(env.get("exit_code"),int) and env["exit_code"]!=0:
+            if not facts["issues"]:
+                facts["verdict"]="FAILED_ATTEMPT_AUDITED"
+                facts["failure_class"]=child.get("error_type")
+                return facts
+        facts["issues"].append("CONTRADICTORY_OR_INCOMPLETE_RESULT")
+        return facts
     rt=child.get("runtime",{})
     if "gfx1201" not in str(rt.get("gfx","")).lower() or "9070" not in str(rt.get("gpu_name","")):
         facts["issues"].append("WRONG_GPU")
@@ -106,7 +117,7 @@ def audit(root: Path) -> dict:
     result={"schema_version":"r22a7-gfx1201-submission-audit-v1",
             "experiment_type":"community_unofficial_nightly_training_evidence",
             "verdict":"NOT_READY","mandatory_total":len(cases),"verified_train":0,
-            "verified_resume":0,"not_run":[],"rejected":[],"cases":{},
+            "verified_resume":0,"not_run":[],"rejected":[],"failed_attempts":[],"cases":{},
             "note":"Structural audit of raw byte receipts; not AMD Stable training support or independent AMP numerical certification."}
     for cid,case in cases.items():
         path=root/cid
@@ -120,9 +131,10 @@ def audit(root: Path) -> dict:
         if passing_resume:result["verified_resume"]+=1
         if not all_dirs:result["not_run"].append(cid)
         result["rejected"] += [{"model":cid,**x} for x in checked if x["verdict"]=="REJECTED"]
+        result["failed_attempts"] += [{"model":cid,**x} for x in checked if x["verdict"]=="FAILED_ATTEMPT_AUDITED"]
         result["cases"][cid]={"train":bool(passing_train),"resume":bool(passing_resume),
                               "attempt_count":len(all_dirs),"attempts":checked}
-    if result["verified_train"]==35:
+    if result["verified_train"]==35 and not result["rejected"]:
         result["verdict"]="TRAIN_VALIDATE_RELOAD_PREDICT_MATRIX_35_STRUCTURALLY_COMPLETE"
     # No false promotion: full-state resume/AMP needs separate physical audit.
     return result
