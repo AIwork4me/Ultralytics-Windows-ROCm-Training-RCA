@@ -1,0 +1,153 @@
+{
+  "run_id": "R22A5A-G9-PREFLIGHT-2026-11-17",
+  "mission": "R22A.5A",
+  "timestamp": "2026-11-17T00:57:32.269048+00:00",
+  "package_input_qualification": {
+    "channel": "stable",
+    "qualified": false,
+    "status": "BLOCKED_RELEASE",
+    "tier": "UNQUALIFIED",
+    "why": "OFFICIAL_PRE_FIX — artifact classification 'OFFICIAL_PRE_FIX' is not fix-confirmed; blockers=[]",
+    "hint": "track rocm-libraries#15862; re-run scan_official_releases.py + audit_wheel_provenance.py when a new artifact appears"
+  },
+  "g9_gate": {
+    "status": "BLOCKED_RELEASE",
+    "meaning": "no official Windows artifact containing the merged fix is qualified; the golden path must NOT proceed with pre-fix wheels (rocm-libraries#15862 remains open)"
+  },
+  "nostl_design_static_check": {
+    "file": "windows-golden-path/scripts/verify_miopen_nostl.py",
+    "all_elements_present": true,
+    "elements": [
+      {
+        "element": "vc_redirect",
+        "present": true,
+        "purpose": "VCToolsInstallDir redirected to an empty scratch dir (host MSVC STL include tree unreachable — NOT merely an unset variable)"
+      },
+      {
+        "element": "include_empty",
+        "present": true,
+        "purpose": "INCLUDE cleared so no system include path leaks"
+      },
+      {
+        "element": "fresh_cache_home",
+        "present": true,
+        "purpose": "fresh USERPROFILE per leg (cold MIOpen cache identity)"
+      },
+      {
+        "element": "shim_removed_official",
+        "present": true,
+        "purpose": "official leg REMOVES the HIPRTC shim (pure official bytes)"
+      },
+      {
+        "element": "child_process",
+        "present": true,
+        "purpose": "reproducer executes in an isolated child process"
+      },
+      {
+        "element": "historical_shape",
+        "present": true,
+        "purpose": "BatchNorm2d(100) at the historically failing shape"
+      },
+      {
+        "element": "forward_backward",
+        "present": true,
+        "purpose": "forward + loss + backward really execute"
+      },
+      {
+        "element": "finite_checks",
+        "present": true,
+        "purpose": "outputs and gradients checked finite"
+      },
+      {
+        "element": "failure_signature_map",
+        "present": true,
+        "purpose": "failure signature mapped to the mission vocabulary"
+      },
+      {
+        "element": "prefail_expected",
+        "present": true,
+        "purpose": "pre-fix wheel EXPECTED to fail (the negative control: an unexpected PASS under the redirect is reported, never silently accepted — that would indicate hidden host STL reachability)"
+      }
+    ],
+    "note": "static design verification only — the runtime no-STL gate executes in R22A.5B on real hardware"
+  },
+  "instruction_hidden_requirements": {
+    "files": [
+      {
+        "file": "golden-path\\README.md",
+        "exists": true,
+        "hits": [
+          {
+            "code": "MSVC_BUILD_TOOLS",
+            "pattern": "Visual Studio|VS Build Tools|Build Tools|MSVC",
+            "match": "MSVC",
+            "why": "instructs installing MSVC Build Tools / VS C++ toolset (host STL)",
+            "disclosed": true
+          },
+          {
+            "code": "EDITABLE_CHECKOUT",
+            "pattern": "-e\\s+\\S+|editable",
+            "match": "editable",
+            "why": "installs an editable/dev checkout instead of a released package",
+            "disclosed": false
+          }
+        ]
+      },
+      {
+        "file": "golden-path\\WINDOWS_SETUP.md",
+        "exists": true,
+        "hits": [
+          {
+            "code": "MSVC_BUILD_TOOLS",
+            "pattern": "Visual Studio|VS Build Tools|Build Tools|MSVC",
+            "match": "MSVC",
+            "why": "instructs installing MSVC Build Tools / VS C++ toolset (host STL)",
+            "disclosed": true
+          },
+          {
+            "code": "EDITABLE_CHECKOUT",
+            "pattern": "-e\\s+\\S+|editable",
+            "match": "editable",
+            "why": "installs an editable/dev checkout instead of a released package",
+            "disclosed": false
+          }
+        ]
+      },
+      {
+        "file": "windows-golden-path\\README.md",
+        "exists": true,
+        "hits": []
+      },
+      {
+        "file": "windows-golden-path\\docs\\release-checklist.md",
+        "exists": true,
+        "hits": [
+          {
+            "code": "VCTOOLS_REDIRECT",
+            "pattern": "VCToolsInstallDir",
+            "match": "VCToolsInstallDir",
+            "why": "relies on VCToolsInstallDir redirect (host MSVC STL toolchain)",
+            "disclosed": true
+          },
+          {
+            "code": "EDITABLE_CHECKOUT",
+            "pattern": "-e\\s+\\S+|editable",
+            "match": "editable",
+            "why": "installs an editable/dev checkout instead of a released package",
+            "disclosed": true
+          }
+        ]
+      }
+    ],
+    "undisclosed_reliance_present": true,
+    "rule": "the STABLE-flow instructions must not RELY on any hidden requirement; disclosed pre-fix workarounds are acceptable ONLY while BLOCKED_RELEASE stands and must be removed from the primary path when a fixed wheel qualifies"
+  },
+  "golden_path_readiness": {
+    "missing_files": [],
+    "compile_ok": true,
+    "manifests_parse": true,
+    "note": "historical MODE A/MODE B behavior untouched (R22A.4.1 freeze)"
+  },
+  "live_env_leakage": [],
+  "verdict": "BLOCKED_RELEASE"
+}
