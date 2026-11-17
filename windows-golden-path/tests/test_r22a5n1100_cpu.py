@@ -713,7 +713,7 @@ def test_g5_anchor_mismatch_rejected():
 # --------------------------------------------- G7 hardened falsifications
 def test_g7_recomputed_from_raw_snapshots_passes():
     g = na.evaluate_g7_hardened(P, good_rel(), good_census(), good_orphan(),
-                                {"envelope": {"child_pid": 4242}})
+                                good_envelope())
     assert g["verdict"] == "PASS"
     f = g["facts"]
     assert f["trainer_pid"] == 4242
@@ -726,7 +726,8 @@ def test_g7_missing_raw_snapshots_fails_closed():
     del census["snapshots"]
     g = na.evaluate_g7_hardened(P, good_rel(), census, good_orphan(), None)
     assert g["verdict"] == "FAIL"
-    assert "raw python_tree snapshots" in g["reason"]
+    assert g["facts"]["snapshots_examined"] == 0
+    assert g["facts"]["peak_snapshot"]["simultaneous_valid_workers"] == 0
 
 
 def test_g7_fake_worker_pid_in_stored_list_not_counted():
@@ -904,3 +905,69 @@ def test_gfx1151_wholesale_acceptance_copy_cannot_be_relabeled():
              *na.evaluate_g34(P, args_gfx1151["amp"]),
              na.evaluate_g5_hardened(P, args_gfx1151["ckpt"])]
     assert all(g["verdict"] == "FAIL" for g in gates)
+
+
+# ======================= R22A.5N-GFX1100.1 real pack replay (read-only)
+def test_real_gfx1100_pack_strict_g5_g7_replay():
+    """Strict G5/G7 execute on committed physical records, not forged fixtures."""
+    root = REPO_ROOT / "reports/r22a5n/R22A5N-GFX1100-20261117-A"
+    def load(rel):
+        return json.loads((root / rel).read_text(encoding="utf-8"))
+    ckpt = load("07_checkpoint_resume/checkpoint_resume.json")
+    ckpt_env = load("07_checkpoint_resume/lifecycle_envelope.json")
+    g5 = na.evaluate_g5_hardened(P, ckpt, ckpt_env.get("artifact_hashes"))
+    assert g5["verdict"] == "PASS", g5
+    assert g5["facts"]["state_verdict"] == "RESUME_PASS_CORE_STATE_VERIFIED"
+    assert g5["facts"]["epoch_evidence_missing"] == []
+    rel = load("08_workers_reliability/workers8_amp_v2.json")
+    census = load("08_workers_reliability/workers8_midrun_census.json")
+    orphan = load("08_workers_reliability/workers8_postrun_orphan_check.json")
+    envelope = load("08_workers_reliability/workers8_envelope.json")
+    g7 = na.evaluate_g7_hardened(P, rel, census, orphan, envelope)
+    assert g7["verdict"] == "PASS", g7
+    assert g7["facts"]["peak_snapshot"]["simultaneous_valid_workers"] == 16
+    assert g7["facts"]["baseline_reconciles_envelope"] is True
+    assert g7["facts"]["trainer_terminated"] is True
+    assert g7["facts"]["attributed_workers_terminated"] is True
+
+
+def test_gfx1100_g5_missing_ckpt_epoch_fails_closed():
+    ck = good_ckpt()
+    del ck["stages"]["checkpoint_resumability"]["ckpt_epoch"]
+    g = na.evaluate_g5_hardened(P, ck)
+    assert g["verdict"] == "FAIL"
+    assert "checkpoint_resumability.ckpt_epoch" in g["facts"]["epoch_evidence_missing"]
+
+
+def test_gfx1100_g5_resume_start_discontinuity_fails_closed():
+    ck = good_ckpt()
+    ck["stages"]["resume_start_epoch"] = 3  # checkpoint epoch is 1
+    g = na.evaluate_g5_hardened(P, ck)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["epoch_continuity_recomputed"] is False
+
+
+def test_gfx1100_g7_missing_envelope_fails_closed():
+    g = na.evaluate_g7_hardened(P, good_rel(), good_census(), good_orphan(), None)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["trainer_pid_ties_to_envelope"] is False
+
+
+def test_gfx1100_g7_missing_envelope_baseline_fails_closed():
+    g = na.evaluate_g7_hardened(
+        P, good_rel(), good_census(), good_orphan(),
+        {"envelope": {"child_pid": 4242}})
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["baseline_reconciles_envelope"] is False
+
+
+def test_gfx1100_g7_forged_baseline_worker_survivor_fails_closed():
+    live_worker = 50100
+    fake_base = [37120, 12052, live_worker]
+    census = good_census(preexisting_zombies_disclosed=fake_base)
+    orphan = good_orphan(baseline_python_pids=fake_base,
+                         all_python_pids=[37120, 12052, 999, live_worker])
+    envelope = good_envelope(baseline_python_pids=fake_base)
+    g = na.evaluate_g7_hardened(P, good_rel(), census, orphan, envelope)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["attributed_workers_terminated"] is False
