@@ -27,8 +27,18 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 15
     steps:
-      - name: Check out
+      - name: Check out exact PR head (not an implicit merge preview)
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Assert checked-out exact HEAD
+        shell: pwsh
+        run: |
+          $actual = (git rev-parse HEAD).Trim()
+          $expected = "${{ github.event.pull_request.head.sha || github.sha }}"
+          if ($actual -ne $expected) { throw "checkout SHA mismatch: $actual vs $expected" }
+          Write-Output "EXACT_HEAD_VERIFIED=$actual"
 
       - name: Set up Python
         uses: actions/setup-python@v5
