@@ -60,6 +60,9 @@ jobs:
       - name: R22A.5N gfx1100 profile engine compile
         run: python -m compileall -q scripts/r22a5n1100
 
+      - name: R22A.7 gfx1201 community matrix and harness compile (CPU-only; no GPU claim)
+        run: python -m compileall -q scripts/r22a7_gfx1201
+
       - name: CPU contract tests (adversarial, fail-closed)
         run: python -m pytest windows-golden-path/tests -q
 
