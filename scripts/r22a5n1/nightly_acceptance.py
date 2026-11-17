@@ -849,15 +849,22 @@ def evaluate_g7(rel, supp, orphan, trainer_receipt) -> dict:
             isinstance(baseline, list) and bool(baseline)
             and all(_strict_int(p) and p > 0 for p in baseline)
             and len(set(baseline)) == len(baseline))
+        # The pre-run envelope baseline is mandatory, not an optional
+        # witness: missing/malformed/duplicate IDs must never grant a PASS.
+        env_baseline_ok = (
+            isinstance(env_baseline, list) and bool(env_baseline)
+            and all(_strict_int(p) and p > 0 for p in env_baseline)
+            and len(set(env_baseline)) == len(env_baseline))
         f.update({
             "orphan_all_pids": all_pids,
             "orphan_checker_pid": checker,
             "orphan_baseline_pids": baseline,
             "baseline_reconciles_census_disclosure": (
                 baseline_ok and set(preexisting) == set(baseline)),
+            "envelope_baseline_valid": env_baseline_ok,
             "baseline_reconciles_envelope": (
-                baseline_ok and (env_baseline is None
-                                 or set(env_baseline) == set(baseline))),
+                baseline_ok and env_baseline_ok
+                and set(env_baseline) == set(baseline)),
             "baseline_contradicts_census_tree": [
                 p for p in (baseline or [])
                 if trainer_pid is not None
