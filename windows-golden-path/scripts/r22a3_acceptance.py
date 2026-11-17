@@ -31,13 +31,17 @@ import gp_lib  # noqa: E402
 import supplemental_acceptance as sa  # noqa: E402
 
 
-def combined_verdict(part_a: dict, part_b: dict, repo_root: Path) -> dict:
+def combined_verdict(part_a: dict, part_b: dict | list, repo_root: Path) -> dict:
     """Recompute from embedded facts of BOTH records; claimed verdicts are
-    inputs only, never authority (R22A.4 §5 fix of the stored-PASS bypass)."""
+    inputs only, never authority (R22A.4 §5 fix of the stored-PASS bypass).
+    part_b accepts either the full receipt dict (R22A3_WORKERS8.json) or the
+    bare runs[] list (R22A3_WORKERS8_RUNS.json — the documented CLI example;
+    gpu_name then falls back to the Part A record)."""
     runs = sa.runs_from_r22a3_receipt(
         part_b, repo_root,
         lifecycle_path=repo_root / "evidence/raw/r22a3-gfx1151/R22A3_PROCESS_LIFECYCLE.json")
-    return sa.combined_verdict(part_a, runs, "gfx1151", part_b.get("gpu_name"))
+    gpu_b = part_b.get("gpu_name") if isinstance(part_b, dict) else None
+    return sa.combined_verdict(part_a, runs, "gfx1151", gpu_b)
 
 
 def main() -> None:

@@ -1881,6 +1881,222 @@ class TestDualArch:
             == "MONITOR_PROCESS_EXIT_RACE"
 
 
+class TestRuntimeProvenanceGate:
+    """Mission R22A.4.1 §5.3 trust boundary for the INCONCLUSIVE-classified
+    additional sample (R22A4-B-ADD1): acceptance may flow ONLY from the
+    committed DEV package-lock hash + full runtime-identity agreement with
+    the frozen same-pack receipts; absent evidence is INCONCLUSIVE, forged or
+    conflicting evidence is NO_GO, and the receipt's own runtime_class field
+    is never rewritten."""
+
+    sa = load_module("supplemental_acceptance")
+
+    TORCH_R = "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb1b91a46bce9edc16d87ca0efe7b6"
+    TORCH_L = "2.15.0+gitf6cd88cb.devrocm10.3.0.dev0.ff5769655eeb1b91a46bce9edc16d87ca0efe7b6"
+    ROCM_L = "10.3.0.dev0+ff5769655eeb1b91a46bce9edc16d87ca0efe7b6"
+    LOCK_SHA = "97a2da636a8264887e2f9f89443e43673967e6d8b50acb2b5003a626fe089533"
+    DLL = "47a2e32c7401af2581860bc4a9e9fbb5b3f80be1e68c951b4ff3058f48683b91"
+
+    def receipt(self, **over):
+        r = {"run_id": "R22A4-B-ADD1", "runtime_class": "INCONCLUSIVE",
+             "gpu_name": "AMD Radeon(TM) 8060S Graphics", "gfx_target": "gfx1151",
+             "torch": self.TORCH_R, "ultralytics": "8.4.214",
+             "loaded_miopen_dll_sha256": self.DLL,
+             "wheel_lock_sha256": self.LOCK_SHA}
+        r.update(over)
+        return r
+
+    def lock(self, **over):
+        lk = {"channel": "dev",
+              "packages": [
+                  {"name": "torch", "version": self.TORCH_L, "sha256": "b" * 64},
+                  {"name": "ultralytics", "version": "8.4.214", "sha256": "d" * 64},
+                  {"name": "rocm", "version": self.ROCM_L, "sha256": "6" * 64}]}
+        lk.update(over)
+        return lk
+
+    def reference(self):
+        return {"torch": self.TORCH_R, "ultralytics": "8.4.214",
+                "loaded_miopen_dll_sha256": self.DLL,
+                "gfx_target": "gfx1151",
+                "gpu_name": "AMD Radeon(TM) 8060S Graphics"}
+
+    def gate(self, receipt=None, lock="keep", lock_sha="keep", reference=None):
+        return self.sa.runtime_provenance_gate(
+            self.receipt() if receipt is None else receipt,
+            self.lock() if lock == "keep" else lock,
+            self.LOCK_SHA if lock_sha == "keep" else lock_sha,
+            self.reference() if reference is None else reference)
+
+    def test_case1_inconclusive_with_verified_dev_lock_accepted(self):
+        g = self.gate()
+        assert g["RECEIPT_RUNTIME_CLASS"] == "INCONCLUSIVE"  # verbatim, never rewritten
+        assert g["AUTHORITATIVE_PACKAGE_PROVENANCE"] == "DEV_LOCK_VERIFIED"
+        assert g["RUNTIME_IDENTITY_MATCH"] == "MATCH"
+        assert g["ACCEPTANCE_DISPOSITION"] == "PROVENANCE_ACCEPTED_DEV"
+        assert g["identity_checks"]["wheel_identity"] == "MATCH"
+
+    def test_case2_lock_absent_is_inconclusive(self):
+        g = self.gate(lock=None, lock_sha=None)
+        assert g["AUTHORITATIVE_PACKAGE_PROVENANCE"] == "LOCK_ABSENT"
+        assert g["ACCEPTANCE_DISPOSITION"] == "INCONCLUSIVE"
+
+    def test_case3_lock_hash_mismatch_is_no_go(self):
+        g = self.gate(lock_sha="0" * 64)
+        assert g["AUTHORITATIVE_PACKAGE_PROVENANCE"] == "LOCK_MISMATCH"
+        assert g["ACCEPTANCE_DISPOSITION"] == "NO_GO"
+
+    def test_case4_forged_dev_label_wrong_wheel_identity_is_no_go(self):
+        # receipt claims the DEV torch string but the LOCK resolves a
+        # different wheel revision — a DEV label is not identity
+        bad_lock = self.lock(packages=[
+            {"name": "torch", "version":
+             "2.15.0+gitdeadbeef.devrocm10.3.0.dev0.deadbeefcafe", "sha256": "b" * 64},
+            {"name": "ultralytics", "version": "8.4.214", "sha256": "d" * 64},
+            {"name": "rocm", "version": self.ROCM_L, "sha256": "6" * 64}])
+        g = self.gate(lock=bad_lock)
+        assert g["ACCEPTANCE_DISPOSITION"] == "NO_GO"
+        assert g["identity_checks"]["wheel_identity"] == "MISMATCH"
+
+    def test_case5_correct_torch_but_wrong_miopen_dll_is_no_go(self):
+        g = self.gate(reference=self.reference() | {
+            "loaded_miopen_dll_sha256": "ab" * 32})
+        assert g["identity_checks"]["loaded_miopen_dll_sha256"] == "MISMATCH"
+        assert g["ACCEPTANCE_DISPOSITION"] == "NO_GO"
+
+    def test_case6_correct_gpu_name_but_wrong_gfx_target_is_no_go(self):
+        g = self.gate(receipt=self.receipt(gfx_target="gfx1100"))
+        assert g["identity_checks"]["gfx_target"] == "MISMATCH"
+        assert g["ACCEPTANCE_DISPOSITION"] == "NO_GO"
+
+    def test_case7_mixed_stable_and_dev_identity_is_no_go(self):
+        # receipt ran an official-stable torch wheel while the lock is DEV
+        stable = "2.12.0+rocm7.14.1"
+        g = self.gate(receipt=self.receipt(torch=stable),
+                      reference=self.reference() | {"torch": stable})
+        assert g["identity_checks"]["wheel_identity"] == "UNVERIFIABLE"
+        assert g["ACCEPTANCE_DISPOSITION"] == "INCONCLUSIVE" or \
+            g["ACCEPTANCE_DISPOSITION"] == "NO_GO"
+        assert g["ACCEPTANCE_DISPOSITION"] != "PROVENANCE_ACCEPTED_DEV"
+
+    def test_case7b_stable_channel_lock_is_no_go(self):
+        g = self.gate(lock=self.lock(channel="stable"))
+        assert g["AUTHORITATIVE_PACKAGE_PROVENANCE"] == "LOCK_NOT_DEV"
+        assert g["ACCEPTANCE_DISPOSITION"] == "NO_GO"
+
+    def test_case8_missing_identity_component_fail_closed(self):
+        g = self.gate(receipt=self.receipt(loaded_miopen_dll_sha256=None))
+        assert g["identity_checks"]["loaded_miopen_dll_sha256"] == "UNVERIFIABLE"
+        assert g["ACCEPTANCE_DISPOSITION"] == "INCONCLUSIVE"
+        g2 = self.gate(receipt=self.receipt(gpu_name=None))
+        assert g2["ACCEPTANCE_DISPOSITION"] == "NO_GO"  # synthetic-class
+
+    def test_gate_on_committed_r22a4_evidence_pack(self):
+        # the real frozen pack: the committed DEV package-lock blob hash must
+        # equal the receipt's wheel_lock_sha256 and every identity component
+        # must agree with the frozen same-pack receipts
+        p1151 = REPO_ROOT / "evidence/raw/r22a3-gfx1151"
+        lock = REPO_ROOT / "evidence/raw/r22a-gfx1151/R22A_GFX1151_PACKAGE_LOCK.json"
+        frozen = json.loads((p1151 / "R22A3_WORKERS8.json").read_text(encoding="utf-8"))
+        add = json.loads(
+            (p1151 / "R22A3_WORKERS8_WARM_ADDITIONAL.json").read_text(encoding="utf-8"))
+        a1151 = json.loads((p1151 / "R22A3_ADAMW_AMP.json").read_text(encoding="utf-8"))
+        g = self.sa.runtime_provenance_gate(
+            add, json.loads(lock.read_text(encoding="utf-8")),
+            self.sa._sha_file(lock),
+            {"torch": frozen["torch"], "ultralytics": frozen["ultralytics"],
+             "loaded_miopen_dll_sha256": a1151["loaded_miopen_dll_sha256"],
+             "gfx_target": frozen["gfx_target"], "gpu_name": frozen["gpu_name"]})
+        assert g["RECEIPT_RUNTIME_CLASS"] == "INCONCLUSIVE"
+        assert g["AUTHORITATIVE_PACKAGE_PROVENANCE"] == "DEV_LOCK_VERIFIED"
+        assert g["ACCEPTANCE_DISPOSITION"] == "PROVENANCE_ACCEPTED_DEV"
+
+    def test_dual_arch_fails_closed_when_gate_rejects_additional(self):
+        runs1100 = full_matrix_runs(n_warm=2)
+        runs1100.append(worker_run(matrix="warm", run=9, home_dir="C:/h/warm",
+                                   home_pre_existed=True,
+                                   sample_class="additional",
+                                   justification="3rd qualifying warm"))
+        a1100 = adamw_flat_facts(runtime_class="OFFICIAL_CANDIDATE")
+        runs1151 = full_matrix_runs_1151()
+        runs1151.append(worker_run_1151(
+            run=6, matrix="warm", home_dir="C:/r22a3/h/warm",
+            home_pre_existed=True, sample_class="additional",
+            justification="3rd qualifying warm"))
+        a1151 = adamw_nested_facts(runtime_class="OFFICIAL_CANDIDATE")
+        bad_gate = self.gate(lock_sha="0" * 64)  # LOCK_MISMATCH -> NO_GO
+        rep = self.sa.dual_arch_acceptance(a1100, runs1100, a1151, runs1151,
+                                           {}, {}, None, bad_gate)
+        assert rep["verdict"] == "NO-GO"
+        assert rep["gfx1151"]["release_grade_evidence"] == "NOT_ACCEPTED"
+        assert any("runtime provenance gate" in r
+                   for r in rep["gfx1151"]["combined"]["reasons"])
+        # gate None keeps the historical pure-function behavior
+        ok = self.sa.dual_arch_acceptance(a1100, runs1100, a1151, runs1151, {}, {})
+        assert ok["verdict"] == "R22_DEV_DUAL_ARCH_SUPPLEMENTAL_VALIDATED"
+
+
+class TestR22A3AcceptanceCompat:
+    """The r22a3_acceptance.py COMPATIBILITY WRAPPER (mission R22A.4.1 §6):
+    must accept both historical part-B input forms and must never re-introduce
+    stored-PASS authority. The wrapper serves the ORIGINAL frozen five alone
+    (documented honest NO-GO under the unified contract: 2 COLD + 1
+    CACHE_PRIMING + 2 WARM); the qualifying composition is established by
+    supplemental_acceptance --dual."""
+
+    sa = load_module("supplemental_acceptance")
+    wrap = load_module("r22a3_acceptance")
+
+    def _frozen_five_shape(self):
+        # r22a3-native keys the adapter reads (raw_log_sha256 etc.), with
+        # REAL run ids so the committed R22A3_PROCESS_LIFECYCLE.json
+        # corroborates worker identity — mirroring the frozen receipts
+        runs = []
+        for i, (rid, cls, home, pre) in enumerate([
+                ("R22A3-B-R1", "cold(fresh-USERPROFILE)", "C:/u1", None),
+                ("R22A3-B-R2", "cold(fresh-USERPROFILE)", "C:/u2", None),
+                ("R22A3-B-R3", "warm(home)", "C:/r22a3/h/warm", None),
+                ("R22A3-B-R4", "warm(home)", "C:/r22a3/h/warm", None),
+                ("R22A3-B-R5", "warm(home)", "C:/r22a3/h/warm", None)], start=1):
+            runs.append({"run": i, "run_id": rid, "exit_code": 0,
+                         "duration_s": 100.0 + i, "cache_class": cls,
+                         "home_dir": home, "home_pre_existed": pre,
+                         "raw_log_sha256": f"fixture-run{i:02d}",
+                         "start_utc": f"2026-11-16T11:{i:02d}:00+00:00",
+                         "device_name": "AMD Radeon(TM) 8060S Graphics",
+                         "worker_shutdown": "CLEAN",
+                         "training_completed": True, "checkpoint_exists": True})
+        return runs
+
+    def test_wrapper_accepts_bare_runs_list(self):
+        # the wrapper docstring's own CLI example passes
+        # R22A3_WORKERS8_RUNS.json (a bare runs[] LIST); this crashed with
+        # AttributeError before R22A.4.1 (part_b.get on a list). Honest
+        # 2C+1P+2W composition recomputes to PARTIAL_PASS with the same
+        # PartB NO_GO reason as the real frozen pack (never a stored PASS).
+        part_a = adamw_nested_facts(runtime_class="OFFICIAL_CANDIDATE")
+        c = self.wrap.combined_verdict(part_a, self._frozen_five_shape(), REPO_ROOT)
+        assert c["verdict"] == "PARTIAL_PASS"  # PartA PASS, PartB honest NO_GO
+        assert any("PartB" in r and "pre-warmed" in r for r in c["reasons"])
+
+    def test_wrapper_accepts_receipt_dict(self):
+        part_a = adamw_nested_facts(runtime_class="OFFICIAL_CANDIDATE")
+        c = self.wrap.combined_verdict(
+            part_a, {"gpu_name": "AMD Radeon(TM) 8060S Graphics",
+                     "runs": self._frozen_five_shape()}, REPO_ROOT)
+        assert c["verdict"] == "PARTIAL_PASS"
+
+    def test_wrapper_never_reads_stored_overall(self):
+        import ast
+        src = (SCRIPTS / "r22a3_acceptance.py").read_text(encoding="utf-8")
+        tree = ast.parse(src)
+        fn = next(n for n in tree.body
+                  if isinstance(n, ast.FunctionDef) and n.name == "combined_verdict")
+        seg = ast.get_source_segment(src, fn)
+        assert "workers8_overall" not in seg      # stored serialized overall: never read
+        assert "overall_workers8_verdict" not in seg  # stored-trusting helper: never called
+
+
 class TestEvidenceTools:
     sa = load_module("supplemental_acceptance")
 

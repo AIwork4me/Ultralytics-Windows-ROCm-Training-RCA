@@ -37,6 +37,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -415,6 +416,137 @@ def physical_provenance_ok(rec: dict, gfx_expected: str) -> tuple[bool, str | No
     return True, None
 
 
+# --- runtime provenance gate (mission R22A.4.1 §5) ----------------------------
+
+def _therock_revision(version: str) -> str | None:
+    """TheRock source revision carried by a DEV local version, e.g.
+    '2.15.0+gitf6cd88cb.devrocm10.3.0.dev0-ff5769655eeb…' -> the trailing hex
+    segment (whichever of '-'/'.'
+    separates it). Official-stable versions ('2.12.0+rocm7.14.1') carry no
+    such revision -> None."""
+    tail = version.split("+", 1)[-1]
+    for seg in reversed(tail.replace("-", ".").split(".")):
+        if len(seg) >= 8 and all(c in "0123456789abcdef" for c in seg.lower()):
+            return seg.lower()
+    return None
+
+
+def runtime_provenance_gate(receipt: dict, package_lock: dict | None,
+                            package_lock_sha256: str | None,
+                            reference: dict) -> dict:
+    """Fail-closed provenance classification for a receipt whose
+    runtime_class is INCONCLUSIVE — the R22A4-B-ADD1 case: the probe did not
+    pass --channel, so the receipt cannot self-classify its channel.
+
+    Authority chain (mission R22A.4.1 §5.2): the receipt field is NEVER
+    rewritten (quoted verbatim); classification authority is the INDEPENDENTLY
+    HASHED committed DEV package lock plus full runtime-identity agreement
+    with the frozen same-pack receipts (reference). Fail-closed policy:
+      - absent evidence (lock/lock-hash/identity component missing)
+        -> INCONCLUSIVE, never accepted;
+      - conflicting or forged evidence (hash mismatch, wrong wheel/DLL/gfx,
+        mixed stable+DEV identity, non-dev lock) -> NO_GO;
+      - everything verified -> PROVENANCE_ACCEPTED_DEV (ceiling DEV_CANDIDATE).
+    """
+    problems: list[str] = []
+    missing: list[str] = []
+    checks: dict[str, str] = {}
+
+    def pkg(name: str) -> dict | None:
+        for e in (package_lock or {}).get("packages") or []:
+            if e.get("name") == name:
+                return e
+        return None
+
+    # 1. authoritative package provenance (committed lock vs receipt claim)
+    if package_lock is None or not package_lock_sha256:
+        lock_state = "LOCK_ABSENT"
+        missing.append("committed package lock or its sha256 not provided")
+    elif receipt.get("wheel_lock_sha256") != package_lock_sha256:
+        lock_state = "LOCK_MISMATCH"
+        problems.append(f"receipt wheel_lock_sha256 "
+                        f"{str(receipt.get('wheel_lock_sha256'))[:12]}… != committed "
+                        f"package-lock hash {str(package_lock_sha256)[:12]}…")
+    elif str(package_lock.get("channel") or "") != "dev":
+        lock_state = "LOCK_NOT_DEV"
+        problems.append(f"package-lock channel {package_lock.get('channel')!r} != 'dev'")
+    else:
+        lock_state = "DEV_LOCK_VERIFIED"
+    checks["package_lock"] = lock_state
+
+    # 2. runtime identity match against the frozen reference receipts
+    def identity(field: str, got, want) -> None:
+        if want is None or got in (None, ""):
+            missing.append(f"{field} not recorded (receipt={got!r}, reference={want!r})")
+            checks[field] = "UNVERIFIABLE"
+        elif got != want:
+            problems.append(f"{field}: receipt {got!r} != reference {want!r}")
+            checks[field] = "MISMATCH"
+        else:
+            checks[field] = "MATCH"
+
+    identity("torch", receipt.get("torch"), reference.get("torch"))
+    identity("ultralytics", receipt.get("ultralytics"),
+             reference.get("ultralytics"))
+    identity("loaded_miopen_dll_sha256", receipt.get("loaded_miopen_dll_sha256"),
+             reference.get("loaded_miopen_dll_sha256"))
+    identity("gfx_target", receipt.get("gfx_target"), reference.get("gfx_target"))
+    if not receipt.get("gpu_name"):
+        problems.append("no gpu_name recorded (synthetic receipt cannot claim "
+                        "physical GPU)")
+        checks["gpu_name"] = "MISSING"
+    else:
+        checks["gpu_name"] = "RECORDED"
+
+    # 3. wheel identity consistency WITHIN the verified lock (forged-label and
+    #    mixed stable/DEV classes): the receipt's torch must BE the lock's
+    #    torch wheel (a '-'/'.'
+    #    before the TheRock revision is a runner/lock spelling difference, not
+    #    an identity difference) and receipt torch, lock torch and lock rocm
+    #    must all carry the SAME TheRock revision.
+    if lock_state == "DEV_LOCK_VERIFIED":
+        lock_torch = str((pkg("torch") or {}).get("version") or "")
+        lock_rocm = str((pkg("rocm") or {}).get("version") or "")
+        rev_receipt = _therock_revision(str(receipt.get("torch") or ""))
+        rev_lock_torch = _therock_revision(lock_torch)
+        rev_lock_rocm = _therock_revision(lock_rocm)
+        if not lock_torch or not rev_receipt or not rev_lock_rocm:
+            missing.append(f"wheel identity unverifiable (receipt torch "
+                           f"{str(receipt.get('torch'))[:40]!r}, lock torch "
+                           f"{lock_torch[:40]!r}, lock rocm {lock_rocm[:40]!r})")
+            checks["wheel_identity"] = "UNVERIFIABLE"
+        elif (str(receipt.get("torch")).replace("-", ".", 1) != lock_torch
+              or rev_receipt != rev_lock_rocm or rev_lock_torch != rev_lock_rocm):
+            problems.append(f"wheel identity mismatch: receipt torch "
+                            f"{str(receipt.get('torch'))[:40]!r} vs lock torch "
+                            f"{lock_torch[:40]!r} / lock rocm {lock_rocm[:40]!r} "
+                            f"(mixed stable/DEV or forged DEV label)")
+            checks["wheel_identity"] = "MISMATCH"
+        else:
+            checks["wheel_identity"] = "MATCH"
+
+    if problems:
+        disposition, match_state = "NO_GO", {"mismatch": problems}
+    elif missing:
+        disposition, match_state = "INCONCLUSIVE", {"unverifiable": missing}
+    else:
+        disposition, match_state = "PROVENANCE_ACCEPTED_DEV", "MATCH"
+    return {
+        "run_id": receipt.get("run_id"),
+        "RECEIPT_RUNTIME_CLASS": receipt.get("runtime_class"),  # verbatim, never rewritten
+        "AUTHORITATIVE_PACKAGE_PROVENANCE": lock_state,
+        "RUNTIME_IDENTITY_MATCH": match_state,
+        "identity_checks": checks,
+        "ACCEPTANCE_DISPOSITION": disposition,
+        "ceiling": "DEV_CANDIDATE",
+        "note": "receipt runtime_class is preserved verbatim; acceptance for an "
+                "INCONCLUSIVE receipt flows ONLY from the committed DEV package "
+                "lock hash + full runtime-identity agreement with the frozen "
+                "same-pack receipts (fail-closed: absent->INCONCLUSIVE, "
+                "conflicting->NO_GO)",
+    }
+
+
 def combined_verdict(part_a: dict, part_b_runs: list[dict], gfx_expected: str,
                      part_b_gpu_name: str | None = None,
                      expected_cold: int = 2, expected_warm: int = 3,
@@ -506,16 +638,36 @@ def _arch_facts(part_a: dict, part_b_runs: list[dict], b_verdict: dict) -> dict:
 
 def dual_arch_acceptance(a1100: dict, runs1100: list, a1151: dict, runs1151: list,
                          b1100: dict, b1151: dict,
-                         monitor_disclosures: dict | None = None) -> dict:
+                         monitor_disclosures: dict | None = None,
+                         additional_provenance: dict | None = None) -> dict:
     """Side-by-side dual-arch reconciliation. Every displayed value is
     recomputed from the corresponding source records (mission §9); nothing is
     a template. PHYSICAL_TRAINING_FUNCTIONAL_PASS (the hardware trained) is
     explicitly distinguished from RELEASE_GRADE_EVIDENCE_ACCEPTED (the
-    evidence satisfies the strict release contract)."""
+    evidence satisfies the strict release contract).
+
+    additional_provenance: result of runtime_provenance_gate() for the
+    INCONCLUSIVE-classified additional sample. When supplied and any
+    additional-class run participates in a matrix, acceptance FAILS CLOSED
+    unless the disposition is PROVENANCE_ACCEPTED_DEV (mission R22A.4.1 §5).
+    None preserves the historical pure-function behavior (CPU-test call
+    path); the canonical CLI path always evaluates the gate."""
     c1100 = combined_verdict(a1100, runs1100, "gfx1100", a1100.get("gpu_name"))
     c1151 = combined_verdict(a1151, runs1151, "gfx1151", a1151.get("gpu_name"))
     f1100 = _arch_facts(a1100, runs1100, c1100["part_b_overall"])
     f1151 = _arch_facts(a1151, runs1151, c1151["part_b_overall"])
+
+    for runs, c in ((runs1100, c1100), (runs1151, c1151)):
+        if (additional_provenance is not None
+                and any(str(r.get("sample_class") or "") == "additional" for r in runs)
+                and additional_provenance.get("ACCEPTANCE_DISPOSITION")
+                != "PROVENANCE_ACCEPTED_DEV"):
+            why = additional_provenance.get("ACCEPTANCE_DISPOSITION") or "GATE_NOT_EVALUATED"
+            c["verdict"] = "NO-GO"
+            c["reasons"] = c["reasons"] + [
+                f"additional-sample runtime provenance gate: {why} "
+                f"({additional_provenance.get('RUNTIME_IDENTITY_MATCH')}, "
+                f"lock={additional_provenance.get('AUTHORITATIVE_PACKAGE_PROVENANCE')})"]
 
     def functional(f: dict, c: dict, runs: list) -> str:
         trained_clean = (f["part_a_verdict"] == "ADAMW_AMP_MULTISTEP_PASS"
@@ -543,6 +695,7 @@ def dual_arch_acceptance(a1100: dict, runs1100: list, a1151: dict, runs1151: lis
                     "physical_training_functional": functional(f1151, c1151, runs1151),
                     "release_grade_evidence": evidence_grade(c1151)},
         "monitor_exception_disclosures": monitor_disclosures or {},
+        "additional_sample_provenance": additional_provenance,
         "notes": [
             "every cell recomputed from frozen raw records via versioned adapters",
             "cache roles derived from home identity only (fresh-home first use = "
@@ -550,11 +703,73 @@ def dual_arch_acceptance(a1100: dict, runs1100: list, a1151: dict, runs1151: lis
             "no dGPU vs APU performance comparison is made or implied",
             "effective-update counts (6 gfx1100 / 7 gfx1151) are factual "
             "observations of different hardware runs, not targets",
+            "additional-sample (INCONCLUSIVE receipt) acceptance flows only "
+            "from the committed DEV package-lock hash + runtime identity "
+            "match (runtime_provenance_gate); the receipt's own "
+            "runtime_class field is preserved verbatim",
         ],
     }
 
 
 # --- CLI ----------------------------------------------------------------------
+
+def dual_input_evidence(root: Path) -> list[dict]:
+    """Deterministic identity of every evidence file the --dual recompute
+    reads: repo-relative path + SHA256 of the COMMITTED blob (git cat-file at
+    HEAD — the worktree copy is never authority)."""
+    p1100 = root / GFX_PACKS["gfx1100"]
+    p1151 = root / GFX_PACKS["gfx1151"]
+    rels = [f"{GFX_PACKS['gfx1100']}/R22A2_ADAMW_AMP.json"]
+    for f in ("cold_matrix_stability_runs.json", "warm_matrix_stability_runs.json",
+              "additional_matrix_stability_runs.json"):
+        rels.append(f"{GFX_PACKS['gfx1100']}/runs/{f}")
+    rels += [p.relative_to(root).as_posix()
+             for p in sorted((p1100 / "runs").glob("*child.log"))]
+    rels += [f"{GFX_PACKS['gfx1151']}/{f}" for f in (
+        "R22A3_ADAMW_AMP.json", "R22A3_WORKERS8.json", "R22A3_WORKERS8_RUNS.json",
+        "R22A3_PROCESS_LIFECYCLE.json", "R22A3_WORKERS8_WARM_ADDITIONAL.json",
+        "R22A3_WORKERS8_WARM_ADDITIONAL_RUNS.json")]
+    rels += [p.relative_to(root).as_posix()
+             for p in sorted((p1151 / "runs").glob("*.log"))]
+    rels.append("evidence/raw/r22a-gfx1151/R22A_GFX1151_PACKAGE_LOCK.json")
+    out = []
+    for rel in rels:
+        try:
+            blob = subprocess.run(
+                ["git", "cat-file", "blob", f"HEAD:{rel}"], cwd=str(root),
+                capture_output=True, timeout=30).stdout
+        except Exception:
+            blob = b""
+        out.append({"path": rel,
+                    "git_blob_sha256": hashlib.sha256(blob).hexdigest()
+                    if blob else None})
+    return out
+
+
+def dual_harness_code_sha(root: Path) -> dict:
+    """SHA256 of the harness sources that PRODUCED this report — hashed as
+    COMMITTED BLOBS (git cat-file at HEAD), never as working-tree bytes:
+    a CRLF checkout must not change the recorded identity. Falls back to
+    LF-normalized working bytes when git is unavailable."""
+    here = Path(__file__).resolve().parent
+    root = Path(root).resolve()
+    out = {}
+    for n in ("supplemental_acceptance.py", "run_stability.py",
+              "audit_adamw_amp.py", "gp_lib.py"):
+        rel = (here / n).resolve().relative_to(root).as_posix()
+        try:
+            blob = subprocess.run(
+                ["git", "cat-file", "blob", f"HEAD:{rel}"], cwd=str(root),
+                capture_output=True, timeout=30).stdout
+        except Exception:
+            blob = b""
+        if blob:
+            out[n] = hashlib.sha256(blob).hexdigest()
+        else:
+            out[n] = hashlib.sha256(
+                (here / n).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
+    return out
+
 
 def _load(p: str) -> dict:
     return json.loads(Path(p).read_text(encoding="utf-8"))
@@ -601,9 +816,39 @@ def main() -> None:
                            "is disclosed, not deleted; R22A.4 harness records "
                            "monitor health explicitly and fails closed",
         }} if (p1151 / "R22A3_WORKERS8_RUNS.json").is_file() else {}
+        # Runtime provenance gate (mission R22A.4.1 §5): the additional
+        # sample's receipt is INCONCLUSIVE (no --channel at probe time); its
+        # DEV identity is established ONLY through the committed package lock
+        # (hash-verified against the Git blob content on disk) + runtime
+        # identity agreement with the frozen same-pack receipts.
+        additional_provenance = None
+        add_receipt_path = p1151 / "R22A3_WORKERS8_WARM_ADDITIONAL.json"
+        lock_path = root / "evidence/raw/r22a-gfx1151/R22A_GFX1151_PACKAGE_LOCK.json"
+        if add_path.is_file() and add_receipt_path.is_file():
+            frozen = _load(p1151 / "R22A3_WORKERS8.json")
+            additional_provenance = runtime_provenance_gate(
+                _load(add_receipt_path),
+                _load(lock_path) if lock_path.is_file() else None,
+                _sha_file(lock_path) if lock_path.is_file() else None,
+                reference={
+                    "torch": frozen.get("torch"),
+                    "ultralytics": frozen.get("ultralytics"),
+                    "loaded_miopen_dll_sha256": a1151.get("loaded_miopen_dll_sha256"),
+                    "gfx_target": frozen.get("gfx_target"),
+                    "gpu_name": frozen.get("gpu_name"),
+                })
         b1100 = evaluate_part_b(runs1100, a1100.get("gpu_name"))
         b1151 = evaluate_part_b(runs1151, a1151.get("gpu_name"))
-        rep = dual_arch_acceptance(a1100, runs1100, a1151, runs1151, b1100, b1151, disc)
+        rep = dual_arch_acceptance(a1100, runs1100, a1151, runs1151, b1100, b1151,
+                                   disc, additional_provenance)
+        # self-describing provenance (mission R22A.4.1 §6): exact input
+        # evidence identity (committed blobs) + harness code identity +
+        # adapter versions. No timestamp: the dual report stays deterministic.
+        rep["input_evidence"] = dual_input_evidence(root)
+        rep["harness_code_sha256"] = dual_harness_code_sha(root)
+        rep["schema_adapters"] = {
+            arch: rep[arch]["combined"]["part_a_recomputed"].get("adapter")
+            for arch in ("gfx1100", "gfx1151")}
     else:
         if not args.arch or not args.part_a or not args.part_b:
             ap.error("--arch, --part-a and --part-b are required (or use --dual)")
@@ -634,8 +879,12 @@ def main() -> None:
         }
         rep["pass_fail_skip"] = rep["combined"]["verdict"]
 
+    # newline="\n" keeps the committed report bytes hash-identical across
+    # platforms (no CRLF translation on Windows — same convention the runner
+    # uses for child logs)
     Path(args.out).write_text(json.dumps(rep, indent=2, ensure_ascii=False,
-                                         default=repr), encoding="utf-8")
+                                         default=repr), encoding="utf-8",
+                                         newline="\n")
     verdict = rep.get("verdict") or rep.get("combined", {}).get("verdict")
     print(json.dumps({"verdict": verdict} if args.dual else rep["combined"],
                      indent=2, default=repr))
