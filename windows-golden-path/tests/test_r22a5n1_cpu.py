@@ -1186,3 +1186,33 @@ def test_r22a5n2_g7_real_pack_b_sixteen_workers_verified():
     assert f["attributed_workers_terminated"] is True
     assert f["leftover_recomputed"] == []
     assert f["baseline_contradicts_census_tree"] == []
+
+    assert f["envelope_baseline_valid"] is True
+    assert f["baseline_reconciles_envelope"] is True
+
+
+# ======================== G7 final trust boundary: envelope baseline required
+def test_g7_missing_envelope_baseline_fails_closed():
+    env = good_envelope()
+    del env["baseline_python_pids"]
+    g = _g7(envelope=env)
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["envelope_baseline_valid"] is False
+    assert g["facts"]["baseline_reconciles_envelope"] is False
+
+
+@pytest.mark.parametrize("bad_baseline", [
+    None, [], "12052", [12052, 12052], [True, 37120],
+    BASELINE_PIDS[:-1], BASELINE_PIDS + [99999], BASELINE_PIDS + [-1],
+])
+def test_g7_invalid_or_mismatched_envelope_baseline_fails_closed(bad_baseline):
+    g = _g7(envelope=good_envelope(baseline_python_pids=bad_baseline))
+    assert g["verdict"] == "FAIL"
+    assert g["facts"]["baseline_reconciles_envelope"] is False
+
+
+def test_g7_valid_envelope_baseline_reconciles():
+    g = _g7(envelope=good_envelope())
+    assert g["verdict"] == "PASS"
+    assert g["facts"]["envelope_baseline_valid"] is True
+    assert g["facts"]["baseline_reconciles_envelope"] is True
